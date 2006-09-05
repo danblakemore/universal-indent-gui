@@ -1,0 +1,455 @@
+<ui version="4.0" >
+ <author>Thomas_-_S</author>
+ <comment></comment>
+ <exportmacro></exportmacro>
+ <class>IndentGui</class>
+ <widget class="QMainWindow" name="IndentGui" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>UniversalIndentGUI</string>
+  </property>
+  <property name="windowIcon" >
+   <iconset resource="../resources/Icons.qrc" >:/mainWindow/icon2.png</iconset>
+  </property>
+  <widget class="QWidget" name="centralwidget" >
+   <layout class="QVBoxLayout" >
+    <property name="margin" >
+     <number>9</number>
+    </property>
+    <property name="spacing" >
+     <number>6</number>
+    </property>
+    <item>
+     <layout class="QHBoxLayout" >
+      <property name="margin" >
+       <number>0</number>
+      </property>
+      <property name="spacing" >
+       <number>6</number>
+      </property>
+      <item>
+       <widget class="QComboBox" name="cmbBoxIndenters" >
+        <property name="toolTip" >
+         <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;/head>&lt;body style=" white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;">&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Shows the currently chosen indenters name and lets you choose other available indenters&lt;/p>&lt;/body>&lt;/html></string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pbOpenFile" >
+        <property name="toolTip" >
+         <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;/head>&lt;body style=" white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;">&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:8pt;">Opens a dialog for selecting a source code file.&lt;/span>&lt;/p>&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;">This file will be used to show what the indent tool changes.&lt;/p>&lt;/body>&lt;/html></string>
+        </property>
+        <property name="text" >
+         <string> Open Source File </string>
+        </property>
+        <property name="icon" >
+         <iconset resource="../resources/Icons.qrc" >:/mainWindow/document-open.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="cbLivePreview" >
+        <property name="toolTip" >
+         <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;/head>&lt;body style=" white-space: pre-wrap; font-family:MS Shell Dlg 2; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;">&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;">Turns the preview of the reformatted source code on and off.&lt;/p>&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;">In other words it switches between formatted and nonformatted code. (Strg+P)&lt;/p>&lt;/body>&lt;/html></string>
+        </property>
+        <property name="text" >
+         <string>Live Indent Preview</string>
+        </property>
+        <property name="icon" >
+         <iconset resource="../resources/Icons.qrc" >:/mainWindow/live-preview.png</iconset>
+        </property>
+        <property name="shortcut" >
+         <string>Ctrl+P</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="cbHighlight" >
+        <property name="toolTip" >
+         <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;/head>&lt;body style=" white-space: pre-wrap; font-family:MS Shell Dlg 2; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;">&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;">Enables and disables the highlightning of the source&lt;/p>&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;">code shown below. (Still needs some performance improvements) (Strg+H)&lt;/p>&lt;/body>&lt;/html></string>
+        </property>
+        <property name="text" >
+         <string>Syntax Highlight</string>
+        </property>
+        <property name="icon" >
+         <iconset resource="../resources/Icons.qrc" >:/mainWindow/syntax-highlight.png</iconset>
+        </property>
+        <property name="shortcut" >
+         <string>Ctrl+H</string>
+        </property>
+        <property name="checked" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer>
+        <property name="orientation" >
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" >
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pbAbout" >
+        <property name="toolTip" >
+         <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;/head>&lt;body style=" white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;">&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Shows info about UniversalIndentGUI&lt;/p>&lt;/body>&lt;/html></string>
+        </property>
+        <property name="text" >
+         <string>About</string>
+        </property>
+        <property name="icon" >
+         <iconset resource="../resources/Icons.qrc" >:/mainWindow/info.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pbExit" >
+        <property name="toolTip" >
+         <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;/head>&lt;body style=" white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;">&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Quits the UniversalIndentGUI&lt;/p>&lt;/body>&lt;/html></string>
+        </property>
+        <property name="text" >
+         <string>Exit</string>
+        </property>
+        <property name="icon" >
+         <iconset resource="../resources/Icons.qrc" >:/mainWindow/system-log-out.png</iconset>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" >
+      <property name="margin" >
+       <number>0</number>
+      </property>
+      <property name="spacing" >
+       <number>0</number>
+      </property>
+      <item>
+       <layout class="QVBoxLayout" >
+        <property name="margin" >
+         <number>0</number>
+        </property>
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+       </layout>
+      </item>
+      <item>
+       <widget class="QTextEdit" name="txtedLineNumbers" >
+        <property name="maximumSize" >
+         <size>
+          <width>50</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="font" >
+         <font>
+          <family>Courier New</family>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+          <underline>false</underline>
+          <strikeout>false</strikeout>
+         </font>
+        </property>
+        <property name="contextMenuPolicy" >
+         <enum>Qt::NoContextMenu</enum>
+        </property>
+        <property name="verticalScrollBarPolicy" >
+         <enum>Qt::ScrollBarAlwaysOff</enum>
+        </property>
+        <property name="lineWrapMode" >
+         <enum>QTextEdit::NoWrap</enum>
+        </property>
+        <property name="readOnly" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QTextEdit" name="txtedSourceCode" >
+        <property name="font" >
+         <font>
+          <family>Courier New</family>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+          <underline>false</underline>
+          <strikeout>false</strikeout>
+         </font>
+        </property>
+        <property name="lineWrapMode" >
+         <enum>QTextEdit::NoWrap</enum>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>581</y>
+     <width>800</width>
+     <height>19</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QMenuBar" name="menuBar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuHelp" >
+    <property name="title" >
+     <string>Help</string>
+    </property>
+    <addaction name="actionAbout_UniversalIndentGUI" />
+   </widget>
+   <widget class="QMenu" name="menuIndenter" >
+    <property name="title" >
+     <string>Indenter</string>
+    </property>
+    <addaction name="actionLoad_Indenter_Config_File" />
+    <addaction name="actionSave_Indenter_Config_File" />
+   </widget>
+   <widget class="QMenu" name="menuFile" >
+    <property name="title" >
+     <string>File</string>
+    </property>
+    <widget class="QMenu" name="menuExport" >
+     <property name="title" >
+      <string>Export</string>
+     </property>
+     <addaction name="actionExportPDF" />
+     <addaction name="actionExportHTML" />
+    </widget>
+    <addaction name="actionOpen_Source_File" />
+    <addaction name="actionSave_Source_File" />
+    <addaction name="actionSave_Source_File_As" />
+    <addaction name="menuExport" />
+    <addaction name="actionExit" />
+   </widget>
+   <widget class="QMenu" name="menuSettings" >
+    <property name="title" >
+     <string>Settings</string>
+    </property>
+    <addaction name="actionParameter_Tooltips" />
+   </widget>
+   <addaction name="menuFile" />
+   <addaction name="menuIndenter" />
+   <addaction name="menuSettings" />
+   <addaction name="menuHelp" />
+  </widget>
+  <action name="actionOpen_Source_File" >
+   <property name="icon" >
+    <iconset resource="../resources/Icons.qrc" >:/mainWindow/document-open.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Open Source File</string>
+   </property>
+   <property name="statusTip" >
+    <string>Opens a dialog for selecting a source code file.</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionSave_Source_File" >
+   <property name="enabled" >
+    <bool>true</bool>
+   </property>
+   <property name="icon" >
+    <iconset resource="../resources/Icons.qrc" >:/mainWindow/document-save.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Save Source File</string>
+   </property>
+   <property name="statusTip" >
+    <string>Saves the currently shown source code to the last opened or saved source file.</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionSave_Source_File_As" >
+   <property name="enabled" >
+    <bool>true</bool>
+   </property>
+   <property name="icon" >
+    <iconset resource="../resources/Icons.qrc" >:/mainWindow/document-save-as.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Save Source File As</string>
+   </property>
+   <property name="statusTip" >
+    <string>Opens a file dialog to save the currently shown source code.</string>
+   </property>
+  </action>
+  <action name="actionLoad_Indenter_Config_File" >
+   <property name="icon" >
+    <iconset resource="../resources/Icons.qrc" >:/mainWindow/load_indent_cfg.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Load Indenter Config File</string>
+   </property>
+   <property name="statusTip" >
+    <string>Opens a file dialog to load the original config file of the indenter.</string>
+   </property>
+   <property name="shortcut" >
+    <string>Alt+O</string>
+   </property>
+  </action>
+  <action name="actionSave_Indenter_Config_File" >
+   <property name="enabled" >
+    <bool>true</bool>
+   </property>
+   <property name="icon" >
+    <iconset resource="../resources/Icons.qrc" >:/mainWindow/save_indent_cfg.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Save Indenter Config File</string>
+   </property>
+   <property name="statusTip" >
+    <string>Opens a dialog to save the current indenter configuration to a file.</string>
+   </property>
+   <property name="shortcut" >
+    <string>Alt+S</string>
+   </property>
+  </action>
+  <action name="actionAbout_UniversalIndentGUI" >
+   <property name="icon" >
+    <iconset resource="../resources/Icons.qrc" >:/mainWindow/info.png</iconset>
+   </property>
+   <property name="text" >
+    <string>About UniversalIndentGUI</string>
+   </property>
+   <property name="statusTip" >
+    <string>Shows info about UniversalIndentGUI.</string>
+   </property>
+  </action>
+  <action name="actionExit" >
+   <property name="icon" >
+    <iconset resource="../resources/Icons.qrc" >:/mainWindow/system-log-out.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Exit</string>
+   </property>
+   <property name="statusTip" >
+    <string>Quits the UniversalIndentGUI.</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionExportPDF" >
+   <property name="icon" >
+    <iconset resource="../resources/Icons.qrc" >:/mainWindow/exportpdf.png</iconset>
+   </property>
+   <property name="text" >
+    <string>PDF</string>
+   </property>
+   <property name="statusTip" >
+    <string>Export the currently visible source code as PDF document</string>
+   </property>
+  </action>
+  <action name="actionExportHTML" >
+   <property name="icon" >
+    <iconset resource="../resources/Icons.qrc" >:/mainWindow/exporthtml.png</iconset>
+   </property>
+   <property name="text" >
+    <string>HTML</string>
+   </property>
+   <property name="statusTip" >
+    <string>Export the currently visible source code as HTML document</string>
+   </property>
+  </action>
+  <action name="actionParameter_Tooltips" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="checked" >
+    <bool>true</bool>
+   </property>
+   <property name="icon" >
+    <iconset resource="../resources/Icons.qrc" >:/mainWindow/tooltip.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Parameter Tooltips</string>
+   </property>
+   <property name="statusTip" >
+    <string>If checked, tool tips will show up if the mouse cursor remains over an indenter parameter for a while.</string>
+   </property>
+  </action>
+ </widget>
+ <pixmapfunction></pixmapfunction>
+ <tabstops>
+  <tabstop>cmbBoxIndenters</tabstop>
+  <tabstop>pbOpenFile</tabstop>
+  <tabstop>cbLivePreview</tabstop>
+  <tabstop>cbHighlight</tabstop>
+  <tabstop>pbAbout</tabstop>
+  <tabstop>pbExit</tabstop>
+  <tabstop>txtedLineNumbers</tabstop>
+  <tabstop>txtedSourceCode</tabstop>
+ </tabstops>
+ <resources>
+  <include location="../resources/Icons.qrc" />
+ </resources>
+ <connections>
+  <connection>
+   <sender>pbExit</sender>
+   <signal>clicked()</signal>
+   <receiver>IndentGui</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>764</x>
+     <y>42</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>793</x>
+     <y>59</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionExit</sender>
+   <signal>activated()</signal>
+   <receiver>IndentGui</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
