@@ -38,9 +38,11 @@ Since I have no access to any other systems I would be thankful for info how to 
 4. Compile UniversalIndentGUI
 -----------------------------
 
-A current version of the project can be downloaded via subversion.
+The latest version of the project can be downloaded via subversion.
 Server: https://svn.sourceforge.net
 Repository: svnroot/universalindent
+Directory: trunk
+As one path: https://svn.sourceforge.net/svnroot/universalindent/trunk
 
 The Qt Framework Version >=4.x with source code is needed to compile. It is available at www.trolltech.com. Please look there for more info.
 
