@@ -88,6 +88,7 @@ private:
     bool maybeSave();
 
     void createLanguageMenu();
+    void syntaxHighlightCPP( QTextEdit *textEdit );
 
 protected:
     void closeEvent( QCloseEvent *event );

@@ -569,6 +569,7 @@ void MainWindow::exportToHTML() {
         QFile::remove(fileName);
         QFile outSrcFile(fileName);
         outSrcFile.open( QFile::ReadWrite | QFile::Text );
+        syntaxHighlightCPP(txtedSourceCode);
         outSrcFile.write( txtedSourceCode->toHtml().toAscii() );
         outSrcFile.close();
     }
@@ -818,4 +819,30 @@ void MainWindow::languageChanged(QAction *languageAction) {
             language = languageInfo.languageShort;
         }
     }
+}
+
+void MainWindow::syntaxHighlightCPP( QTextEdit *textEdit ) {
+    QString sourceCode = textEdit->toPlainText();
+    QStringList keywordPatterns;
+    keywordPatterns << "\\bchar\\b" << "\\bclass\\b" << "\\bconst\\b"
+        << "\\bdouble\\b" << "\\benum\\b" << "\\bexplicit\\b"
+        << "\\bfriend\\b" << "\\binline\\b" << "\\bint\\b"
+        << "\\blong\\b" << "\\bnamespace\\b" << "\\boperator\\b"
+        << "\\bprivate\\b" << "\\bprotected\\b" << "\\bpublic\\b"
+        << "\\bshort\\b" << "\\bsignals\\b" << "\\bsigned\\b"
+        << "\\bslots\\b" << "\\bstatic\\b" << "\\bstruct\\b"
+        << "\\btemplate\\b" << "\\btypedef\\b" << "\\btypename\\b"
+        << "\\bunion\\b" << "\\bunsigned\\b" << "\\bvirtual\\b"
+        << "\\bvoid\\b" << "\\bvolatile\\b" << "\\belse\\b"
+        << "\\bif\\b" << "\\bwhile\\b";
+
+    QRegExp expression("[a-zA-Z][a-zA-Z0-9_]*");
+    int index = sourceCode.indexOf(expression);
+    int length = 0;
+    while (index >= 0) {
+        length = expression.matchedLength();
+        //setFormat(index, length, rule.format);
+        index = sourceCode.indexOf(expression, index + length);
+    }
+    sourceCode.replace(QRegExp("([a-zA-Z][a-zA-Z0-9_]*)"), "<b>\\1</b>");
 }
