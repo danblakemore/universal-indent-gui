@@ -54,18 +54,19 @@ IndentHandler::IndentHandler(QString dataDirPathStr, int indenterID, QMainWindow
 	QDir dataDirctory = QDir(dataDirPathStr);
 
 	indenterIniFileList = dataDirctory.entryList( QStringList("uigui_*.ini") );
+    if ( indenterIniFileList.count() > 0 ) {
+        // Take care if the selected indenterID is smaller or greater than the number of existing indenters
+        if ( indenterID < 0 ) {
+            indenterID = 0;
+        }
+        if ( indenterID >= indenterIniFileList.count() ) {
+            indenterID = indenterIniFileList.count() - 1;
+        }
+
+        // reads and parses first found indent ini file and creates toolbox entries
+        readIndentIniFile( dataDirctoryStr + indenterIniFileList.at(indenterID) );
+    }
     noIndenterExecExistDialogAlreadyShown = false;
-
-    // Take care if the selected indenterID is smaller or greater than the number of existing indenters
-    if ( indenterID < 0 ) {
-        indenterID = 0;
-    }
-    if ( indenterID >= indenterIniFileList.count() ) {
-        indenterID = indenterIniFileList.count() - 1;
-    }
-
-	// reads and parses first found indent ini file and creates toolbox entries
-	readIndentIniFile( dataDirctoryStr + indenterIniFileList.at(indenterID) );
 }
 
 
