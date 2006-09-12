@@ -24,19 +24,13 @@
 /*!
 	Constructs the main window.
  */
-MainWindow::MainWindow(QString language, QWidget *parent) : QMainWindow(parent)
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
 	// generate gui as it is build in the file "indentgui.ui"
     setupUi(this);
 
 	// set the program version, which is shown in the main window title
     version = "UniversalIndentGUI 0.3.1 Beta";
-
-    // set the program language
-    this->language = language;
-
-    createLanguageMenu();
-    connect( languageActionGroup, SIGNAL(triggered(QAction*)), this, SLOT(languageChanged(QAction*)) );
 
     connect( pbOpenFile, SIGNAL(clicked()), this, SLOT(openSourceFileDialog()) );
     connect( actionOpen_Source_File, SIGNAL(activated()), this, SLOT(openSourceFileDialog()) );
@@ -52,6 +46,9 @@ MainWindow::MainWindow(QString language, QWidget *parent) : QMainWindow(parent)
     indentHandler = 0;
 
     loadSettings();
+
+    createLanguageMenu();
+    connect( languageActionGroup, SIGNAL(triggered(QAction*)), this, SLOT(languageChanged(QAction*)) );
 
     updateWindowTitle();
 
@@ -668,6 +665,31 @@ void MainWindow::loadSettings() {
         actionParameter_Tooltips->setChecked( true );
     }
 
+
+    // Handle selected language
+    // ------------------------
+
+    // read the selected language
+    if ( settingsFileExists ) {
+        language = settings->value("UniversalIndentGUI/language").toString();
+    }
+    else {
+        language = "";
+    }
+
+    // if no language was set use the system language
+    if ( language.isEmpty() ) {
+        language = QLocale::system().name();
+        language.truncate(2);
+    }  
+
+    // load the translation file and set it for the application
+    translator = new QTranslator();
+    translator->load( QString("./translations/universalindent_") + language );
+    qApp->installTranslator(translator);
+    retranslateUi(this);
+
+
     if ( settingsFileExists ) {
         delete settings;
     }
@@ -788,7 +810,7 @@ void MainWindow::createLanguageMenu() {
         }
 
         languageAction = new QAction(languageInfo.languageName, languageActionGroup);
-        languageAction->setStatusTip(languageInfo.languageName + tr(" as user interface language. (Available after program restart.)"));
+        languageAction->setStatusTip(languageInfo.languageName + tr(" as user interface language."));
         languageAction->setCheckable(true);
 
         // if the language selected in the ini file or no ini exists the system locale is
@@ -812,11 +834,21 @@ void MainWindow::createLanguageMenu() {
     corresponding action in the languageInfoList and set the language for the next program start.
  */
 void MainWindow::languageChanged(QAction *languageAction) {
+
     // Search for the activated action
     foreach ( LanguageInfo languageInfo, languageInfos ) {
         // Set the new language if found in list
         if ( languageInfo.languageAction == languageAction ) {
+            // remove the old translation
+            qApp->removeTranslator( translator );
+
             language = languageInfo.languageShort;
+
+            // load the new translation file and add it to the translation list
+            translator->load( QString("./translations/universalindent_") + language );
+            qApp->installTranslator( translator );
+            retranslateUi(this);
+            aboutDialog->retranslate();
         }
     }
 }

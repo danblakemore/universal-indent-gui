@@ -312,11 +312,15 @@ Möchten Sie die Änderungen speichern?</translation>
     </message>
     <message>
         <source> as user interface language. (Available after program restart.)</source>
-        <translation> als Programmsprache verwenden. (Nach Neustart aktiv.)</translation>
+        <translation type="obsolete"> als Programmsprache verwenden. (Nach Neustart aktiv.)</translation>
     </message>
     <message>
         <source>Language</source>
         <translation>Sprache</translation>
+    </message>
+    <message>
+        <source> as user interface language.</source>
+        <translation> als Programmsprache verwenden.</translation>
     </message>
 </context>
 </TS>

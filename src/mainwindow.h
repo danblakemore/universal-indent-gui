@@ -30,6 +30,8 @@
 #include <QCloseEvent>
 #include <QHelpEvent>
 #include <QToolTip>
+#include <QTranslator>
+#include <QLocale>
 
 class MainWindow : public QMainWindow, private Ui::IndentGui
 {
@@ -37,7 +39,7 @@ class MainWindow : public QMainWindow, private Ui::IndentGui
 
 public:
     //! Constructor
-    MainWindow(QString language, QWidget *parent = 0);
+    MainWindow(QWidget *parent = 0);
 
 private:
     QString version;
@@ -55,6 +57,7 @@ private:
     QString currentSourceFileExtension;
     QString savedSourceContent;
     QActionGroup *languageActionGroup;
+    QTranslator *translator;
 
     bool sourceCodeChanged;
     bool scrollPositionChanged;

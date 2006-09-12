@@ -22,6 +22,7 @@ class AboutDialog : public QDialog, private Ui::AboutDialog
 
 public:
     AboutDialog(QWidget *parent = 0);
+    void retranslate();
 };
 
 #endif // ABOUTDIALOG_H

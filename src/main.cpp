@@ -12,9 +12,6 @@
 
 #include "mainwindow.h"
 #include <QApplication>
-#include <QTranslator>
-#include <QLocale>
-#include <QSettings>
 
 
 /*!
@@ -23,29 +20,8 @@
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
-    QTranslator translator;
-    QSettings *settings;
-    QString language;
 
-    // read last selected language from settings if the settings file exists
-    if ( QFile::exists("./UniversalIndentGUI.ini") ) {
-        settings = new QSettings("./UniversalIndentGUI.ini", QSettings::IniFormat);
-        language = settings->value("UniversalIndentGUI/language").toString();
-
-        delete settings;
-    }
-
-    // if no language was set use the system language
-    if ( language.isEmpty() ) {
-        language = QLocale::system().name();
-        language.truncate(2);
-    }        
-
-    // load the translation file and set it for the application
-    translator.load( QString("./translations/universalindent_") + language );
-    app.installTranslator(&translator);
-
-    MainWindow mainWindow( language );
+    MainWindow mainWindow;
 
     mainWindow.show();
 	
