@@ -150,6 +150,9 @@
       </item>
       <item>
        <widget class="QTextEdit" name="txtedLineNumbers" >
+        <property name="enabled" >
+         <bool>false</bool>
+        </property>
         <property name="maximumSize" >
          <size>
           <width>50</width>
