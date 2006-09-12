@@ -58,6 +58,7 @@ private:
     QString savedSourceContent;
     QActionGroup *languageActionGroup;
     QTranslator *translator;
+    QMenu *languageMenu;
 
     bool sourceCodeChanged;
     bool scrollPositionChanged;

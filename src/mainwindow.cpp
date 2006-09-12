@@ -823,7 +823,7 @@ void MainWindow::createLanguageMenu() {
         languageInfos.append( languageInfo );
     }    
 
-    QMenu *languageMenu = menuSettings->addMenu( tr("Language") );
+    languageMenu = menuSettings->addMenu( tr("Language") );
 
     languageMenu->addActions( languageActionGroup->actions() );
 }
@@ -834,6 +834,7 @@ void MainWindow::createLanguageMenu() {
     corresponding action in the languageInfoList and set the language for the next program start.
  */
 void MainWindow::languageChanged(QAction *languageAction) {
+    LanguageInfo languageInfo;
 
     // Search for the activated action
     foreach ( LanguageInfo languageInfo, languageInfos ) {
@@ -848,6 +849,24 @@ void MainWindow::languageChanged(QAction *languageAction) {
             translator->load( QString("./translations/universalindent_") + language );
             qApp->installTranslator( translator );
             retranslateUi(this);
+
+            // translate the language menu
+            languageMenu->setTitle( tr("Language") );
+            foreach ( languageInfo, languageInfos ) {
+                // Identify the language mnemonic and set the full name
+                if ( languageInfo.languageShort == "en" ) {
+                    languageInfo.languageName = tr("English");
+                }
+                else if ( languageInfo.languageShort == "de" ) {
+                    languageInfo.languageName = tr("German");
+                }
+                else {
+                    languageInfo.languageName = tr("Unknown language mnemonic ") + languageInfo.languageShort;
+                }
+                languageInfo.languageAction->setText( languageInfo.languageName );
+                languageInfo.languageAction->setStatusTip( languageInfo.languageName + tr(" as user interface language.") );
+            }
+
             aboutDialog->retranslate();
         }
     }
