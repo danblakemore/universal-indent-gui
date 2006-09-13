@@ -3,6 +3,9 @@ echo calling rm -r release/debug
 echo ---------------------------
 rm -r release
 rm -r debug
+echo calling svn update
+echo ------------------
+svn update
 echo calling qmake
 echo -------------
 qmake
