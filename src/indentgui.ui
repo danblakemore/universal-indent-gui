@@ -1,7 +1,5 @@
 <ui version="4.0" >
  <author>Thomas_-_S</author>
- <comment></comment>
- <exportmacro></exportmacro>
  <class>IndentGui</class>
  <widget class="QMainWindow" name="IndentGui" >
   <property name="geometry" >
@@ -206,16 +204,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QStatusBar" name="statusbar" >
-   <property name="geometry" >
-    <rect>
-     <x>0</x>
-     <y>581</y>
-     <width>800</width>
-     <height>19</height>
-    </rect>
-   </property>
-  </widget>
+  <widget class="QStatusBar" name="statusbar" />
   <widget class="QMenuBar" name="menuBar" >
    <property name="geometry" >
     <rect>
@@ -407,7 +396,6 @@
    </property>
   </action>
  </widget>
- <pixmapfunction></pixmapfunction>
  <tabstops>
   <tabstop>cmbBoxIndenters</tabstop>
   <tabstop>pbOpenFile</tabstop>
