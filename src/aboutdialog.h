@@ -14,6 +14,8 @@
 #define ABOUTDIALOG_H
 
 #include <QDialog>
+#include <QUrl>
+#include <QDesktopServices>
 #include "ui_aboutdialog.h"
 
 class AboutDialog : public QDialog, private Ui::AboutDialog
@@ -23,6 +25,10 @@ class AboutDialog : public QDialog, private Ui::AboutDialog
 public:
     AboutDialog(QWidget *parent = 0);
     void retranslate();
+private slots:
+    void linkClicked(const QUrl &link);
+private:
+    QString textBrowserSavedContent;
 };
 
 #endif // ABOUTDIALOG_H
