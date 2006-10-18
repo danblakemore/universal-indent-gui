@@ -644,7 +644,7 @@ void MainWindow::loadSettings() {
     if ( indenterID < 0 ) {
         indenterID = 0;
     }
-    if ( indenterID >= indentHandler->getAvailableIndenters().count() ) {
+    if ( indenterID >= indentHandler->getAvailableIndenters().count() && indenterID != 0 ) {
         indenterID = indentHandler->getAvailableIndenters().count() - 1;
     }
 
