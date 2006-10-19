@@ -719,7 +719,7 @@ QStringList IndentHandler::getAvailableIndenters() {
 
             if ( index == 0 ) {
                 line = line.remove(0, 13);
-                indenterNamesList << line;
+                indenterNamesList << line.trimmed();
             }
         }
     }
