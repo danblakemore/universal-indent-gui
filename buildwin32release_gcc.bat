@@ -1,3 +1,9 @@
+@echo off
+set QTDIR=%QTDIR%_static
+set PATH=%QTDIR%\bin
+set PATH=%PATH%;D:\Programme\Informat\MinGW\bin;D:\Programme\Tools\7-Zip
+set PATH=%PATH%;%SystemRoot%\System32
+set QMAKESPEC=win32-g++
 lrelease .\translations\universalindent_de.ts -qm .\translations\universalindent_de.qm
 qmake
 make release
