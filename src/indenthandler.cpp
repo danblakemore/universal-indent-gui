@@ -41,12 +41,13 @@ IndentHandler::IndentHandler(QString dataDirPathStr, int indenterID, QMainWindow
 
 	// create vertical layout box, into which the toolbox will be added
 	vboxLayout = new QVBoxLayout(this);
+	vboxLayout->setMargin(2);
 
 	// create a toolbox and set its resize behavior
 	toolBox = new QToolBox(this);
 	toolBox->setObjectName(QString::fromUtf8("toolBox"));
-	toolBox->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
-	toolBox->setMaximumSize(QSize(16777215, 16777215));
+	//toolBox->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
+	//toolBox->setMaximumSize(QSize(16777215, 16777215));
 	// insert the toolbox into the vlayout
 	vboxLayout->addWidget(toolBox);
 
@@ -438,7 +439,7 @@ void IndentHandler::loadConfigFile(QString filePathName) {
 }
 
 /*!
-    Opens and parses the indenter ini file that is declarde by \a iniFilePath.
+    Opens and parses the indenter ini file that is declared by \a iniFilePath.
  */
 void IndentHandler::readIndentIniFile(QString iniFilePath) {
     Q_ASSERT_X( !iniFilePath.isEmpty(), "readIndentIniFile", "iniFilePath is empty" );
@@ -484,6 +485,7 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
 
         toolBoxPage.page = new QWidget();
         toolBoxPage.page->setObjectName(categoryName);
+		toolBoxPage.page->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
         toolBoxPage.vboxLayout = new QVBoxLayout(toolBoxPage.page);
         toolBoxPage.vboxLayout->setSpacing(6);
         toolBoxPage.vboxLayout->setMargin(9);
