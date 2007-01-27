@@ -16,6 +16,7 @@
 //#include "arthurwidgets.h"
 
 #include "ui_indentgui.h"
+#include "ui_toolBarWidget.h"
 #include "aboutdialog.h"
 #include "cpphighlighter.h"
 #include "indenthandler.h"
@@ -65,6 +66,7 @@ private:
     bool indentSettingsChanged;
     bool previewToggled;
 
+	Ui::toolBarWidget *toolBarWidget;
     IndentHandler *indentHandler;
 
     // Stores info about a language, like the full name, mnemonic and a reference to its menu action

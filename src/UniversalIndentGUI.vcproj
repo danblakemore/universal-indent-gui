@@ -88,6 +88,7 @@
 			/>
 			<Tool
 				Name="VCManifestTool"
+				EmbedManifest="false"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -274,6 +275,10 @@
 				RelativePath=".\indentgui.ui"
 				>
 			</File>
+			<File
+				RelativePath=".\toolBarWidget.ui"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Generated"
@@ -320,6 +325,26 @@
 			</File>
 			<File
 				RelativePath="$(OutDir)\tmp\uic\ui_indentgui.h"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="MOC"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="MOC"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="$(OutDir)\tmp\uic\ui_toolBarWidget.h"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"

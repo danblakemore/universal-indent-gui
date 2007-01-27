@@ -12,6 +12,8 @@
 
 #include "mainwindow.h"
 
+// TODO: Toolbar must not be hideable by contextmenue or settings by main menue allowed
+
 /*!
 	\class MainWindow
 	\brief Is the main window of UniversalIndentGUI
@@ -32,7 +34,13 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 	// set the program version, which is shown in the main window title
     version = "UniversalIndentGUI 0.3.1 Beta";
 
-    connect( pbOpenFile, SIGNAL(clicked()), this, SLOT(openSourceFileDialog()) );
+	toolBarWidget = new Ui::toolBarWidget();
+	QWidget* helpWidget = new QWidget();
+	toolBarWidget->setupUi(helpWidget);
+	toolBar->addWidget(helpWidget);
+	toolBar->setAllowedAreas( Qt::TopToolBarArea | Qt::BottomToolBarArea );
+
+    connect( toolBarWidget->pbOpenFile, SIGNAL(clicked()), this, SLOT(openSourceFileDialog()) );
     connect( actionOpen_Source_File, SIGNAL(activated()), this, SLOT(openSourceFileDialog()) );
     //connect( pbLoadIndentCfg, SIGNAL(clicked()), this, SLOT(openConfigFileDialog()) );
     connect( actionLoad_Indenter_Config_File, SIGNAL(activated()), this, SLOT(openConfigFileDialog()) );
@@ -41,7 +49,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     connect( actionSave_Indenter_Config_File, SIGNAL(activated()), this, SLOT(saveasIndentCfgFileDialog()) );
     connect( actionExportPDF, SIGNAL(activated()), this, SLOT(exportToPDF()) );
     connect( actionExportHTML, SIGNAL(activated()), this, SLOT(exportToHTML()) );
-    connect( cbHighlight, SIGNAL(clicked(bool)), this, SLOT(turnHighlightOnOff(bool)) );
+    connect( toolBarWidget->cbHighlight, SIGNAL(clicked(bool)), this, SLOT(turnHighlightOnOff(bool)) );
 
     indentHandler = 0;
 
@@ -55,18 +63,19 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     textEditVScrollBar = txtedSourceCode->verticalScrollBar();
     textEdit2VScrollBar = txtedLineNumbers->verticalScrollBar();
 
-    highlighter = new CppHighlighter(txtedSourceCode->document());
+    highlighter = new CppHighlighter(txtedSourceCode);
 
     sourceCodeChanged = false;
     scrollPositionChanged = false;
     indentSettingsChanged = false;
     previewToggled = true;
 
-    connect( cmbBoxIndenters, SIGNAL(activated(int)), this, SLOT(selectIndenter(int)) );
+    connect( toolBarWidget->cmbBoxIndenters, SIGNAL(activated(int)), this, SLOT(selectIndenter(int)) );
 
     // generate about dialog box
     aboutDialog = new AboutDialog(this);
-    connect( pbAbout, SIGNAL(clicked()), aboutDialog, SLOT(exec()) );
+    connect( toolBarWidget->pbAbout, SIGNAL(clicked()), aboutDialog, SLOT(exec()) );
+	connect( toolBarWidget->pbExit, SIGNAL(clicked()), this, SLOT(close()));
     connect( actionAbout_UniversalIndentGUI, SIGNAL(activated()), aboutDialog, SLOT(exec()) );
 
     //QAction *actionAStyle;
@@ -79,13 +88,21 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     //menuSelect_Indenter->addAction(actionAStyle);
     //retranslateUi(this);
 
+	//toolBar->addWidget(cmbBoxIndenters);
+	//toolBar->addWidget(pbOpenFile);
+	//toolBar->addWidget(cbLivePreview);
+	//toolBar->addWidget(cbHighlight);
+	////toolBar->addWidget(spacerItem);
+	//toolBar->addWidget(pbAbout);
+	//toolBar->addWidget(pbExit);
+
     updateSourceView();
 
     connect( textEditVScrollBar, SIGNAL(valueChanged(int)), textEdit2VScrollBar, SLOT(setValue(int)));
     connect( textEdit2VScrollBar, SIGNAL(valueChanged(int)), textEditVScrollBar, SLOT(setValue(int)));
 
     connect( txtedSourceCode, SIGNAL(textChanged()), this, SLOT(sourceCodeChangedSlot()) );
-    connect( cbLivePreview, SIGNAL(clicked(bool)), this, SLOT(previewTurnedOnOff(bool)) );
+    connect( toolBarWidget->cbLivePreview, SIGNAL(clicked(bool)), this, SLOT(previewTurnedOnOff(bool)) );
 }
 
 
@@ -104,10 +121,10 @@ void MainWindow::selectIndenter(int indenterID) {
 
 	indentHandler = new IndentHandler("./data/", indenterID, this, centralwidget);
     indentHandler->hide();
-    vboxLayout1->insertWidget(0, indentHandler);
+    vboxLayout->insertWidget(0, indentHandler);
     oldIndentHandler->hide();
     indentHandler->show();
-	vboxLayout1->removeWidget(oldIndentHandler);
+	vboxLayout->removeWidget(oldIndentHandler);
 	delete oldIndentHandler;
 
     // Take care if the selected indenterID is smaller or greater than the number of existing indenters
@@ -118,11 +135,11 @@ void MainWindow::selectIndenter(int indenterID) {
         indenterID = indentHandler->getAvailableIndenters().count() - 1;
     }
 
-	cmbBoxIndenters->setCurrentIndex(indenterID);
+	toolBarWidget->cmbBoxIndenters->setCurrentIndex(indenterID);
 	QObject::connect(indentHandler, SIGNAL(settingsCodeChanged()), this, SLOT(indentSettingsChangedSlot()));
 
     currentIndenterID = indenterID;
-    if ( cbLivePreview->isChecked() ) {
+    if ( toolBarWidget->cbLivePreview->isChecked() ) {
         callIndenter();
     }
     previewToggled = true;
@@ -177,7 +194,7 @@ void MainWindow::openSourceFileDialog() {
 
         openedSourceFileContent = loadFile(fileName);
         sourceFileContent = openedSourceFileContent;
-        if ( cbLivePreview->isChecked() ) {
+        if ( toolBarWidget->cbLivePreview->isChecked() ) {
             callIndenter();
         }
         sourceCodeChanged = true;
@@ -319,7 +336,7 @@ void MainWindow::updateSourceView()
     textEditLastScrollPos = textEditVScrollBar->value();
 
 
-    if ( cbLivePreview->isChecked() ) {
+    if ( toolBarWidget->cbLivePreview->isChecked() ) {
         sourceViewContent = sourceFormattedContent;
     }
     else {
@@ -400,7 +417,7 @@ void MainWindow::sourceCodeChangedSlot() {
     } 
     enteredCharacter = sourceFileContent.at(cursorPos-1);
 
-    if ( cbLivePreview->isChecked() ) {
+    if ( toolBarWidget->cbLivePreview->isChecked() ) {
         callIndenter();
         previewToggled = true;
     }
@@ -422,7 +439,7 @@ void MainWindow::sourceCodeChangedSlot() {
     savedCursor.setPosition( cursorPos );
     txtedSourceCode->setTextCursor( savedCursor );
 
-    if ( cbLivePreview->isChecked() ) {
+    if ( toolBarWidget->cbLivePreview->isChecked() ) {
         sourceCodeChanged = false;
     }
 
@@ -448,7 +465,7 @@ void MainWindow::indentSettingsChangedSlot() {
     QTextCursor savedCursor = txtedSourceCode->textCursor();
     int cursorPos = savedCursor.position();
     
-    if ( cbLivePreview->isChecked() ) {
+    if ( toolBarWidget->cbLivePreview->isChecked() ) {
         callIndenter();
         previewToggled = true;
 
@@ -636,9 +653,9 @@ void MainWindow::loadSettings() {
     }
 
     indentHandler = new IndentHandler("./data/", indenterID, this, centralwidget);
-    vboxLayout1->addWidget(indentHandler);
+    vboxLayout->addWidget(indentHandler);
 
-	cmbBoxIndenters->addItems( indentHandler->getAvailableIndenters() );
+	toolBarWidget->cmbBoxIndenters->addItems( indentHandler->getAvailableIndenters() );
 
     // Take care if the selected indenterID is smaller or greater than the number of existing indenters
     if ( indenterID < 0 ) {
@@ -648,7 +665,7 @@ void MainWindow::loadSettings() {
         indenterID = indentHandler->getAvailableIndenters().count() - 1;
     }
 
-	cmbBoxIndenters->setCurrentIndex(indenterID);
+	toolBarWidget->cmbBoxIndenters->setCurrentIndex(indenterID);
 	QObject::connect(indentHandler, SIGNAL(settingsCodeChanged()), this, SLOT(indentSettingsChangedSlot()));
     currentIndenterID = indenterID;
 

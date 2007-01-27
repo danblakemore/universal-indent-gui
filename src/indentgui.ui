@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>949</width>
+    <height>633</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -17,9 +17,9 @@
    <iconset resource="../resources/Icons.qrc" >:/mainWindow/icon2.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget" >
-   <layout class="QVBoxLayout" >
+   <layout class="QHBoxLayout" >
     <property name="margin" >
-     <number>9</number>
+     <number>0</number>
     </property>
     <property name="spacing" >
      <number>6</number>
@@ -27,125 +27,11 @@
     <item>
      <layout class="QHBoxLayout" >
       <property name="margin" >
-       <number>0</number>
-      </property>
-      <property name="spacing" >
-       <number>6</number>
-      </property>
-      <item>
-       <widget class="QComboBox" name="cmbBoxIndenters" >
-        <property name="toolTip" >
-         <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;/head>&lt;body style=" white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;">&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Shows the currently chosen indenters name and lets you choose other available indenters&lt;/p>&lt;/body>&lt;/html></string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pbOpenFile" >
-        <property name="toolTip" >
-         <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;/head>&lt;body style=" white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;">&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:8pt;">Opens a dialog for selecting a source code file.&lt;/span>&lt;/p>&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;">This file will be used to show what the indent tool changes.&lt;/p>&lt;/body>&lt;/html></string>
-        </property>
-        <property name="text" >
-         <string> Open Source File </string>
-        </property>
-        <property name="icon" >
-         <iconset resource="../resources/Icons.qrc" >:/mainWindow/document-open.png</iconset>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QCheckBox" name="cbLivePreview" >
-        <property name="toolTip" >
-         <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;/head>&lt;body style=" white-space: pre-wrap; font-family:MS Shell Dlg 2; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;">&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;">Turns the preview of the reformatted source code on and off.&lt;/p>&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;">In other words it switches between formatted and nonformatted code. (Strg+P)&lt;/p>&lt;/body>&lt;/html></string>
-        </property>
-        <property name="text" >
-         <string>Live Indent Preview</string>
-        </property>
-        <property name="icon" >
-         <iconset resource="../resources/Icons.qrc" >:/mainWindow/live-preview.png</iconset>
-        </property>
-        <property name="shortcut" >
-         <string>Ctrl+P</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QCheckBox" name="cbHighlight" >
-        <property name="toolTip" >
-         <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;/head>&lt;body style=" white-space: pre-wrap; font-family:MS Shell Dlg 2; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;">&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;">Enables and disables the highlightning of the source&lt;/p>&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;">code shown below. (Still needs some performance improvements) (Strg+H)&lt;/p>&lt;/body>&lt;/html></string>
-        </property>
-        <property name="text" >
-         <string>Syntax Highlight</string>
-        </property>
-        <property name="icon" >
-         <iconset resource="../resources/Icons.qrc" >:/mainWindow/syntax-highlight.png</iconset>
-        </property>
-        <property name="shortcut" >
-         <string>Ctrl+H</string>
-        </property>
-        <property name="checked" >
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer>
-        <property name="orientation" >
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" >
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pbAbout" >
-        <property name="toolTip" >
-         <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;/head>&lt;body style=" white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;">&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Shows info about UniversalIndentGUI&lt;/p>&lt;/body>&lt;/html></string>
-        </property>
-        <property name="text" >
-         <string>About</string>
-        </property>
-        <property name="icon" >
-         <iconset resource="../resources/Icons.qrc" >:/mainWindow/info.png</iconset>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pbExit" >
-        <property name="toolTip" >
-         <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;/head>&lt;body style=" white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;">&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Quits the UniversalIndentGUI&lt;/p>&lt;/body>&lt;/html></string>
-        </property>
-        <property name="text" >
-         <string>Exit</string>
-        </property>
-        <property name="icon" >
-         <iconset resource="../resources/Icons.qrc" >:/mainWindow/system-log-out.png</iconset>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" >
-      <property name="margin" >
-       <number>0</number>
+       <number>2</number>
       </property>
       <property name="spacing" >
        <number>0</number>
       </property>
-      <item>
-       <layout class="QVBoxLayout" >
-        <property name="margin" >
-         <number>0</number>
-        </property>
-        <property name="spacing" >
-         <number>6</number>
-        </property>
-       </layout>
-      </item>
       <item>
        <widget class="QTextEdit" name="txtedLineNumbers" >
         <property name="enabled" >
@@ -210,23 +96,10 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>949</width>
      <height>21</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuHelp" >
-    <property name="title" >
-     <string>Help</string>
-    </property>
-    <addaction name="actionAbout_UniversalIndentGUI" />
-   </widget>
-   <widget class="QMenu" name="menuIndenter" >
-    <property name="title" >
-     <string>Indenter</string>
-    </property>
-    <addaction name="actionLoad_Indenter_Config_File" />
-    <addaction name="actionSave_Indenter_Config_File" />
-   </widget>
    <widget class="QMenu" name="menuFile" >
     <property name="title" >
      <string>File</string>
@@ -244,16 +117,93 @@
     <addaction name="menuExport" />
     <addaction name="actionExit" />
    </widget>
+   <widget class="QMenu" name="menuHelp" >
+    <property name="title" >
+     <string>Help</string>
+    </property>
+    <addaction name="actionAbout_UniversalIndentGUI" />
+   </widget>
    <widget class="QMenu" name="menuSettings" >
     <property name="title" >
      <string>Settings</string>
     </property>
+    <addaction name="actionLive_Indent_Preview" />
+    <addaction name="actionSyntax_Highlight" />
     <addaction name="actionParameter_Tooltips" />
+   </widget>
+   <widget class="QMenu" name="menuIndenter" >
+    <property name="title" >
+     <string>Indenter</string>
+    </property>
+    <addaction name="actionLoad_Indenter_Config_File" />
+    <addaction name="actionSave_Indenter_Config_File" />
    </widget>
    <addaction name="menuFile" />
    <addaction name="menuIndenter" />
    <addaction name="menuSettings" />
    <addaction name="menuHelp" />
+  </widget>
+  <widget class="QDockWidget" name="dockWidget" >
+   <property name="sizePolicy" >
+    <sizepolicy>
+     <hsizetype>3</hsizetype>
+     <vsizetype>5</vsizetype>
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="features" >
+    <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable|QDockWidget::NoDockWidgetFeatures</set>
+   </property>
+   <property name="allowedAreas" >
+    <set>Qt::LeftDockWidgetArea|Qt::NoDockWidgetArea|Qt::RightDockWidgetArea</set>
+   </property>
+   <attribute name="dockWidgetArea" >
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents" >
+    <layout class="QHBoxLayout" >
+     <property name="margin" >
+      <number>0</number>
+     </property>
+     <property name="spacing" >
+      <number>6</number>
+     </property>
+     <item>
+      <layout class="QVBoxLayout" >
+       <property name="margin" >
+        <number>0</number>
+       </property>
+       <property name="spacing" >
+        <number>0</number>
+       </property>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QToolBar" name="toolBar" >
+   <property name="contextMenuPolicy" >
+    <enum>Qt::NoContextMenu</enum>
+   </property>
+   <property name="windowTitle" >
+    <string>Main Toolbar</string>
+   </property>
+   <property name="orientation" >
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <property name="iconSize" >
+    <size>
+     <width>16</width>
+     <height>16</height>
+    </size>
+   </property>
+   <property name="toolButtonStyle" >
+    <enum>Qt::ToolButtonTextBesideIcon</enum>
+   </property>
+   <attribute name="toolBarArea" >
+    <number>4</number>
+   </attribute>
   </widget>
   <action name="actionOpen_Source_File" >
    <property name="icon" >
@@ -395,14 +345,33 @@
     <string>If checked, tool tips will show up if the mouse cursor remains over an indenter parameter for a while.</string>
    </property>
   </action>
+  <action name="actionLive_Indent_Preview" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="icon" >
+    <iconset resource="../resources/Icons.qrc" >:/mainWindow/live-preview.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Live Indent Preview</string>
+   </property>
+  </action>
+  <action name="actionSyntax_Highlight" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="checked" >
+    <bool>true</bool>
+   </property>
+   <property name="icon" >
+    <iconset resource="../resources/Icons.qrc" >:/mainWindow/syntax-highlight.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Syntax Highlight</string>
+   </property>
+  </action>
  </widget>
  <tabstops>
-  <tabstop>cmbBoxIndenters</tabstop>
-  <tabstop>pbOpenFile</tabstop>
-  <tabstop>cbLivePreview</tabstop>
-  <tabstop>cbHighlight</tabstop>
-  <tabstop>pbAbout</tabstop>
-  <tabstop>pbExit</tabstop>
   <tabstop>txtedLineNumbers</tabstop>
   <tabstop>txtedSourceCode</tabstop>
  </tabstops>
@@ -410,22 +379,6 @@
   <include location="../resources/Icons.qrc" />
  </resources>
  <connections>
-  <connection>
-   <sender>pbExit</sender>
-   <signal>clicked()</signal>
-   <receiver>IndentGui</receiver>
-   <slot>close()</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>764</x>
-     <y>42</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>793</x>
-     <y>59</y>
-    </hint>
-   </hints>
-  </connection>
   <connection>
    <sender>actionExit</sender>
    <signal>activated()</signal>
