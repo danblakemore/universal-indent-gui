@@ -48,6 +48,7 @@ HEADERS += src/cpphighlighter.h \
            src/aboutdialog.h
 
 FORMS += src/indentgui.ui \
+         src/toolBarWidget.ui \
          src/aboutdialog.ui
 
 SOURCES += src/cpphighlighter.cpp \
