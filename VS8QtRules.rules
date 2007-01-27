@@ -7,7 +7,7 @@
 		<CustomBuildRule
 			Name="UIC"
 			DisplayName="UIC"
-			CommandLine="%qtdir%\bin\uic.exe &quot;$(InputDir)$(InputName).ui&quot; -o &quot;$(OutDir)\tmp\uic\ui_$(InputName).h&quot;"
+			CommandLine="uic.exe &quot;$(InputDir)$(InputName).ui&quot; -o &quot;$(OutDir)\tmp\uic\ui_$(InputName).h&quot;"
 			Outputs="$(OutDir)\tmp\uic\ui_$(InputName).h"
 			FileExtensions="*.ui"
 			ExecutionDescription="UICing $(InputName).h..."
@@ -18,7 +18,7 @@
 		<CustomBuildRule
 			Name="MOC"
 			DisplayName="MOC"
-			CommandLine="%qtdir%\bin\moc.exe &quot;$(InputDir)$(InputName).h&quot; -o &quot;$(OutDir)\tmp\moc\moc_$(InputName).cpp&quot;"
+			CommandLine="moc.exe &quot;$(InputDir)$(InputName).h&quot; -o &quot;$(OutDir)\tmp\moc\moc_$(InputName).cpp&quot;"
 			Outputs="$(OutDir)\tmp\moc\moc_$(InputName).cpp"
 			FileExtensions="*.h"
 			ExecutionDescription="MOCing $(InputName).h..."
@@ -29,7 +29,7 @@
 		<CustomBuildRule
 			Name="QRC"
 			DisplayName="QRC"
-			CommandLine="%qtdir%\bin\rcc.exe -name $(InputName) &quot;$(InputDir)$(InputName).qrc&quot; -o &quot;$(OutDir)\tmp\qrc\qrc_$(InputName).cpp&quot;"
+			CommandLine="rcc.exe -name $(InputName) &quot;$(InputDir)$(InputName).qrc&quot; -o &quot;$(OutDir)\tmp\qrc\qrc_$(InputName).cpp&quot;"
 			Outputs="$(OutDir)\tmp\qrc\qrc_$(InputName).cpp"
 			FileExtensions="*.qrc"
 			ExecutionDescription="QRCing $(InputName).h..."
