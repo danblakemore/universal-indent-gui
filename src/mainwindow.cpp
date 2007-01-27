@@ -40,23 +40,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 	toolBar->addWidget(helpWidget);
 	toolBar->setAllowedAreas( Qt::TopToolBarArea | Qt::BottomToolBarArea );
 
-    connect( toolBarWidget->pbOpenFile, SIGNAL(clicked()), this, SLOT(openSourceFileDialog()) );
-    connect( actionOpen_Source_File, SIGNAL(activated()), this, SLOT(openSourceFileDialog()) );
-    //connect( pbLoadIndentCfg, SIGNAL(clicked()), this, SLOT(openConfigFileDialog()) );
-    connect( actionLoad_Indenter_Config_File, SIGNAL(activated()), this, SLOT(openConfigFileDialog()) );
-    connect( actionSave_Source_File_As, SIGNAL(activated()), this, SLOT(saveasSourceFileDialog()) );
-    connect( actionSave_Source_File, SIGNAL(activated()), this, SLOT(saveSourceFile()) );
-    connect( actionSave_Indenter_Config_File, SIGNAL(activated()), this, SLOT(saveasIndentCfgFileDialog()) );
-    connect( actionExportPDF, SIGNAL(activated()), this, SLOT(exportToPDF()) );
-    connect( actionExportHTML, SIGNAL(activated()), this, SLOT(exportToHTML()) );
-    connect( toolBarWidget->cbHighlight, SIGNAL(clicked(bool)), this, SLOT(turnHighlightOnOff(bool)) );
-
     indentHandler = 0;
 
     loadSettings();
 
     createLanguageMenu();
-    connect( languageActionGroup, SIGNAL(triggered(QAction*)), this, SLOT(languageChanged(QAction*)) );
 
     updateWindowTitle();
 
@@ -70,13 +58,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     indentSettingsChanged = false;
     previewToggled = true;
 
-    connect( toolBarWidget->cmbBoxIndenters, SIGNAL(activated(int)), this, SLOT(selectIndenter(int)) );
-
     // generate about dialog box
     aboutDialog = new AboutDialog(this);
-    connect( toolBarWidget->pbAbout, SIGNAL(clicked()), aboutDialog, SLOT(exec()) );
-	connect( toolBarWidget->pbExit, SIGNAL(clicked()), this, SLOT(close()));
-    connect( actionAbout_UniversalIndentGUI, SIGNAL(activated()), aboutDialog, SLOT(exec()) );
 
     //QAction *actionAStyle;
     //QMenu *menuSelect_Indenter;
@@ -98,11 +81,36 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 
     updateSourceView();
 
+	connect( toolBarWidget->pbOpen_Source_File, SIGNAL(clicked()), this, SLOT(openSourceFileDialog()) );
+	connect( actionOpen_Source_File, SIGNAL(activated()), this, SLOT(openSourceFileDialog()) );
+	connect( actionSave_Source_File_As, SIGNAL(activated()), this, SLOT(saveasSourceFileDialog()) );
+	connect( actionSave_Source_File, SIGNAL(activated()), this, SLOT(saveSourceFile()) );
+	connect( actionExportPDF, SIGNAL(activated()), this, SLOT(exportToPDF()) );
+	connect( actionExportHTML, SIGNAL(activated()), this, SLOT(exportToHTML()) );
+
+	connect( actionLoad_Indenter_Config_File, SIGNAL(activated()), this, SLOT(openConfigFileDialog()) );
+	connect( actionSave_Indenter_Config_File, SIGNAL(activated()), this, SLOT(saveasIndentCfgFileDialog()) );
+
+    connect( toolBarWidget->cbLivePreview, SIGNAL(toggled(bool)), this, SLOT(previewTurnedOnOff(bool)) );
+	connect( toolBarWidget->cbLivePreview, SIGNAL(toggled(bool)), actionLive_Indent_Preview, SLOT(setChecked(bool)) );
+	connect( actionLive_Indent_Preview, SIGNAL(toggled(bool)), toolBarWidget->cbLivePreview, SLOT(setChecked(bool)) );
+	connect( toolBarWidget->cbHighlight, SIGNAL(toggled(bool)), this, SLOT(turnHighlightOnOff(bool)) );
+	connect( toolBarWidget->cbHighlight, SIGNAL(toggled(bool)), actionSyntax_Highlight, SLOT(setChecked(bool)) );
+	connect( actionSyntax_Highlight, SIGNAL(toggled(bool)), toolBarWidget->cbHighlight, SLOT(setChecked(bool)) );
+
+	connect( toolBarWidget->pbExit, SIGNAL(clicked()), this, SLOT(close()));
+	connect( actionAbout_UniversalIndentGUI, SIGNAL(activated()), aboutDialog, SLOT(exec()) );
+	connect( toolBarWidget->pbAbout, SIGNAL(clicked()), aboutDialog, SLOT(exec()) );
+
+	connect( languageActionGroup, SIGNAL(triggered(QAction*)), this, SLOT(languageChanged(QAction*)) );
+
+	connect( toolBarWidget->cmbBoxIndenters, SIGNAL(activated(int)), this, SLOT(selectIndenter(int)) );
+
     connect( textEditVScrollBar, SIGNAL(valueChanged(int)), textEdit2VScrollBar, SLOT(setValue(int)));
     connect( textEdit2VScrollBar, SIGNAL(valueChanged(int)), textEditVScrollBar, SLOT(setValue(int)));
 
     connect( txtedSourceCode, SIGNAL(textChanged()), this, SLOT(sourceCodeChangedSlot()) );
-    connect( toolBarWidget->cbLivePreview, SIGNAL(clicked(bool)), this, SLOT(previewTurnedOnOff(bool)) );
+    
 }
 
 
@@ -705,6 +713,7 @@ void MainWindow::loadSettings() {
     translator->load( QString("./translations/universalindent_") + language );
     qApp->installTranslator(translator);
     retranslateUi(this);
+	toolBarWidget->retranslateUi(toolBar);
 
 
     if ( settingsFileExists ) {
@@ -866,6 +875,7 @@ void MainWindow::languageChanged(QAction *languageAction) {
             translator->load( QString("./translations/universalindent_") + language );
             qApp->installTranslator( translator );
             retranslateUi(this);
+			toolBarWidget->retranslateUi(toolBar);
 
             // translate the language menu
             languageMenu->setTitle( tr("Language") );
