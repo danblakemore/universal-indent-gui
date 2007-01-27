@@ -55,7 +55,7 @@ private:
     void writeConfigFile(QString parameterString);
     void readIndentIniFile(QString iniFilePath);
 
-    // holds a reference to all created pages of the toolbox and the pages boxlayout
+    //! Holds a reference to all created pages of the toolbox and the pages boxlayout
     struct ToolBoxPage
 	{
         QWidget *page;
@@ -63,7 +63,7 @@ private:
 	};
 	QVector<ToolBoxPage> toolBoxPages;
 
-    // hold a reference to all checkboxes needed for boolean parameter setting and the parameters name
+    //! Holds a reference to all checkboxes needed for boolean parameter setting and the parameters name
     struct ParamBoolean
 	{
         QString paramName;
@@ -73,7 +73,7 @@ private:
 	};
 	QVector<ParamBoolean> paramBooleans;
 
-    // hold a reference to all lineedits needed for parameter setting and the parameters name
+    //! Holds a reference to all lineedits needed for parameter setting and the parameters name
     struct ParamString
 	{
         QString paramName;
@@ -84,7 +84,7 @@ private:
 	};
 	QVector<ParamString> paramStrings;
 
-    // hold a reference to all spinboxes needed for parameter setting and the parameters name
+    //! Hold a reference to all spinboxes needed for parameter setting and the parameters name
     struct ParamNumeric
 	{
         QString paramName;
@@ -95,7 +95,7 @@ private:
 	};
 	QVector<ParamNumeric> paramNumerics;
 
-    // hold a reference to all comboboxes needed for parameter setting and the parameters name
+    //! Hold a reference to all comboboxes needed for parameter setting and the parameters name
     struct ParamMultiple
 	{
         QString paramName;
@@ -111,9 +111,9 @@ private:
     QSettings *indenterSettings;
     QStringList indenterParameters;
 	QByteArray cfgFileData;
-    // the indenters name in a descriptive form
+    //! The indenters name in a descriptive form
     QString indenterName;
-    // the indenters file name, that is being called (w/o extension)
+    //! The indenters file name (w/o extension), that is being called
     QString indenterFileName;
     QString dataDirctoryStr;
     QStringList indenterIniFileList;
