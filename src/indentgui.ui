@@ -184,7 +184,7 @@
   </widget>
   <widget class="QToolBar" name="toolBar" >
    <property name="contextMenuPolicy" >
-    <enum>Qt::NoContextMenu</enum>
+    <enum>Qt::PreventContextMenu</enum>
    </property>
    <property name="windowTitle" >
     <string>Main Toolbar</string>
