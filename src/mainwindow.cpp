@@ -908,10 +908,9 @@ void MainWindow::createEncodingMenu() {
 	QAction *encodingAction;
 	QString encodingName;
 
-
 	encodingActionGroup = new QActionGroup(this);
 
-	QStringList encodingsList = QStringList() << "Normal" << "UTF-8" << "UTF-16" << "UTF-16BE" << "UTF-16LE"
+	QStringList encodingsList = QStringList() << "UTF-8" << "UTF-16" << "UTF-16BE" << "UTF-16LE"
 		<< "Apple Roman" << "Big5" << "Big5-HKSCS" << "EUC-JP" << "EUC-KR" << "GB18030-0"
 		<< "IBM 850" << "IBM 866" << "IBM 874" << "ISO 2022-JP" << "ISO 8859-1" << "ISO 8859-13"
 		<< "Iscii-Bng" << "JIS X 0201" << "JIS X 0208" << "KOI8-R" << "KOI8-U" << "MuleLao-1"
@@ -920,11 +919,12 @@ void MainWindow::createEncodingMenu() {
 	// Loop for each found translation file
 	foreach ( encodingName, encodingsList ) {
 		encodingAction = new QAction(encodingName, encodingActionGroup);
-		encodingAction->setStatusTip(encodingName + tr(" as text encoding."));
+		encodingAction->setStatusTip( tr("Reopen the currently opened source code file by using the text encoding scheme ") + encodingName );
 		//encodingAction->setCheckable(true);
 	}    
 	//encodingActionGroup->actions().first()->setChecked(true);
-	encodingMenu = menuSettings->addMenu( tr("Text Encoding") );
+	encodingMenu = new QMenu( tr("Reopen File with other Encoding") );
+	menuFile->insertMenu(actionSave_Source_File, encodingMenu);
 
 	encodingMenu->addActions( encodingActionGroup->actions() );
 }
