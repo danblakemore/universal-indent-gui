@@ -12,8 +12,6 @@
 
 #include "mainwindow.h"
 
-// TODO: Toolbar must not be hideable by contextmenue or settings by main menue allowed
-
 /*!
 	\class MainWindow
 	\brief Is the main window of UniversalIndentGUI
@@ -45,6 +43,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     loadSettings();
 
     createLanguageMenu();
+	createEncodingMenu();
 
     updateWindowTitle();
 
@@ -103,6 +102,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 	connect( toolBarWidget->pbAbout, SIGNAL(clicked()), aboutDialog, SLOT(exec()) );
 
 	connect( languageActionGroup, SIGNAL(triggered(QAction*)), this, SLOT(languageChanged(QAction*)) );
+	connect( encodingActionGroup, SIGNAL(triggered(QAction*)), this, SLOT(encodingChanged(QAction*)) );
 
 	connect( toolBarWidget->cmbBoxIndenters, SIGNAL(activated(int)), this, SLOT(selectIndenter(int)) );
 
@@ -171,6 +171,7 @@ QString MainWindow::loadFile(QString filePath) {
     else {
         QTextStream inSrcStrm(&inSrcFile);
         QApplication::setOverrideCursor(Qt::WaitCursor);
+		//inSrcStrm.setCodec( QTextCodec::codecForName("UTF-8") );
         fileContent = inSrcStrm.readAll();
         QApplication::restoreOverrideCursor();
         inSrcFile.close();
@@ -857,9 +858,9 @@ void MainWindow::createLanguageMenu() {
 
 /*!
     This slot is called whenever a language is selected in the menu. It tries to find the
-    corresponding action in the languageInfoList and set the language for the next program start.
+    corresponding action in the languageInfoList and sets the language.
  */
-void MainWindow::languageChanged(QAction *languageAction) {
+void MainWindow::languageChanged(QAction* languageAction) {
     LanguageInfo languageInfo;
 
     // Search for the activated action
@@ -898,6 +899,51 @@ void MainWindow::languageChanged(QAction *languageAction) {
         }
     }
 }
+
+
+/*!
+	Creates a menu entry under the settings menu for all available text encodings.
+*/
+void MainWindow::createEncodingMenu() {
+	QAction *encodingAction;
+	QString encodingName;
+
+
+	encodingActionGroup = new QActionGroup(this);
+
+	QStringList encodingsList = QStringList() << "Normal" << "UTF-8" << "UTF-16" << "UTF-16BE" << "UTF-16LE"
+		<< "Apple Roman" << "Big5" << "Big5-HKSCS" << "EUC-JP" << "EUC-KR" << "GB18030-0"
+		<< "IBM 850" << "IBM 866" << "IBM 874" << "ISO 2022-JP" << "ISO 8859-1" << "ISO 8859-13"
+		<< "Iscii-Bng" << "JIS X 0201" << "JIS X 0208" << "KOI8-R" << "KOI8-U" << "MuleLao-1"
+		<< "ROMAN8" << "Shift-JIS" << "TIS-620" << "TSCII" << "Windows-1250" << "WINSAMI2";
+
+	// Loop for each found translation file
+	foreach ( encodingName, encodingsList ) {
+		encodingAction = new QAction(encodingName, encodingActionGroup);
+		encodingAction->setStatusTip(encodingName + tr(" as text encoding."));
+		//encodingAction->setCheckable(true);
+	}    
+	//encodingActionGroup->actions().first()->setChecked(true);
+	encodingMenu = menuSettings->addMenu( tr("Text Encoding") );
+
+	encodingMenu->addActions( encodingActionGroup->actions() );
+}
+
+
+/*!
+	This slot is called whenever an encoding is selected in the settings menu.
+*/
+void MainWindow::encodingChanged(QAction* encodingAction) {
+	if ( maybeSave() ) {
+		QByteArray qb = savedSourceContent.toLocal8Bit();
+		QTextStream inSrcStrm(&qb);
+		QString encodingName = encodingAction->text();
+		inSrcStrm.setCodec( QTextCodec::codecForName(encodingName.toAscii()) );
+		QString newSrcCode = inSrcStrm.readAll();
+		txtedSourceCode->setPlainText( newSrcCode );
+	}
+}
+
 
 void MainWindow::syntaxHighlightCPP( QTextEdit *textEdit ) {
     QString sourceCode = textEdit->toPlainText();

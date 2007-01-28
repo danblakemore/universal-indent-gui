@@ -33,6 +33,7 @@
 #include <QToolTip>
 #include <QTranslator>
 #include <QLocale>
+#include <QTextCodec>
 
 class MainWindow : public QMainWindow, private Ui::IndentGui
 {
@@ -58,8 +59,10 @@ private:
     QString currentSourceFileExtension;
     QString savedSourceContent;
     QActionGroup *languageActionGroup;
+	QActionGroup *encodingActionGroup;
     QTranslator *translator;
     QMenu *languageMenu;
+	QMenu *encodingMenu;
 
     bool sourceCodeChanged;
     bool scrollPositionChanged;
@@ -94,6 +97,7 @@ private:
     bool maybeSave();
 
     void createLanguageMenu();
+	void createEncodingMenu();
     void syntaxHighlightCPP( QTextEdit *textEdit );
 
 protected:
@@ -116,6 +120,7 @@ private slots:
     void exportToPDF();
     void exportToHTML();
     void languageChanged(QAction *languageAction);
+	void encodingChanged(QAction *encodingAction);
 };
 
 #endif // MAINWINDOW_H
