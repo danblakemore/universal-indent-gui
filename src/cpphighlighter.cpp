@@ -22,9 +22,10 @@
 /*!
     The constructor initializes some regular expressions and keywords to identify cpp tokens
  */
-CppHighlighter::CppHighlighter(QTextDocument *parent)
+CppHighlighter::CppHighlighter(QTextEdit *parent)
 : QSyntaxHighlighter(parent)
 {
+    this->parent = parent;
 	HighlightingRule rule;
 
     highlightningIsOn = true;
@@ -129,4 +130,32 @@ void CppHighlighter::turnHighlightOn() {
 */
 void CppHighlighter::turnHighlightOff() {
     highlightningIsOn = false;
+/*  // Some tests on changing the style of the textedit for export with syntax highlight.
+    this->parent->setHtml("<html>Thomas ist public toll!<br> Und ich auch.</html>");
+    QString text = this->parent->toPlainText();
+    QTextCursor cursor = this->parent->textCursor();
+    QTextCharFormat fmt;
+    fmt.setFontWeight(QFont::Light);
+    fmt.setForeground(Qt::red);
+    cursor.setCharFormat(fmt);
+    this->parent->setCurrentCharFormat(fmt);
+
+    foreach (HighlightingRule rule, highlightingRules) {
+        QRegExp expression(rule.pattern);
+        int index = text.indexOf(expression);
+        while (index >= 0) {
+            int length = expression.matchedLength();
+            bool b = cursor.hasSelection();
+            cursor.setPosition(index);
+            cursor.setPosition(index+length, QTextCursor::KeepAnchor);
+            b = cursor.hasSelection();
+            int s = cursor.selectionStart();
+            s = cursor.selectionEnd();
+            cursor.mergeCharFormat(fmt);
+            this->parent->setTextCursor(cursor);
+            this->parent->mergeCurrentCharFormat(rule.format);
+            index = text.indexOf(expression, index + length);
+        }
+    }
+*/
 }

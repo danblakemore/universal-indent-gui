@@ -25,7 +25,7 @@ class CppHighlighter : public QSyntaxHighlighter
 	Q_OBJECT
 
 public:
-	CppHighlighter(QTextDocument *parent = 0);
+	CppHighlighter(QTextEdit *parent);
     void turnHighlightOff();
     void turnHighlightOn();
 
@@ -34,6 +34,7 @@ protected:
 
 private:
     bool highlightningIsOn;
+    QTextEdit *parent;
 
 	struct HighlightingRule
 	{
