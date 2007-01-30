@@ -1,4 +1,8 @@
 #!/bin/bash
+echo setting Qt path to /usr/local/Trolltech/Qt-4.2.1/bin
+echo ----------------------------------------------------
+PATH=/usr/local/Trolltech/Qt-4.2.1/bin:$PATH
+export PATH
 echo calling rm -r release/debug
 echo ---------------------------
 rm -r release
