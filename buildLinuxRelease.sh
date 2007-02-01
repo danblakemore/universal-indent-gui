@@ -9,7 +9,7 @@ rm -r release
 rm -r debug
 echo calling svn update
 echo ------------------
-svn update
+#svn update
 echo calling qmake
 echo -------------
 qmake
@@ -26,13 +26,14 @@ echo calling mkdir UniversalIndentGUI_linux32
 echo ----------------------------------------
 mkdir UniversalIndentGUI_linux32
 mkdir UniversalIndentGUI_linux32/data
+mkdir UniversalIndentGUI_linux32/doc
 mkdir UniversalIndentGUI_linux32/translations
 echo copying files to UniversalIndentGUI_linux32
 echo ----------------------------------------
-cp ./changelog.txt ./UniversalIndentGUI_linux32/
+cp ./CHANGELOG.txt ./UniversalIndentGUI_linux32/
 cp ./LICENSE.GPL ./UniversalIndentGUI_linux32/
-cp ./readme.txt ./UniversalIndentGUI_linux32/
-cp ./release/UniversalIndentGUI ./UniversalIndentGUI_linux32/
+cp ./README.txt ./UniversalIndentGUI_linux32/
+cp ./INSTALL.txt ./UniversalIndentGUI_linux32/
 cp ./data/.astylerc ./UniversalIndentGUI_linux32/data/
 cp ./data/astyle ./UniversalIndentGUI_linux32/data/
 cp ./data/astyle.html ./UniversalIndentGUI_linux32/data/
@@ -50,10 +51,12 @@ cp ./data/uigui_bcpp.ini ./UniversalIndentGUI_linux32/data/
 cp ./data/uigui_greatcode.ini ./UniversalIndentGUI_linux32/data/
 cp ./data/uigui_gnuindent.ini ./UniversalIndentGUI_linux32/data/
 cp ./data/example.cpp ./UniversalIndentGUI_linux32/data/
-cp ./translations/*.qm ./UniversalIndentGUI_linux32/translations
+cp ./translations/*.qm ./UniversalIndentGUI_linux32/translations/
+cp ./doc/iniFileFormat.html ./UniversalIndentGUI_linux32/doc/
+cp ./release/UniversalIndentGUI ./UniversalIndentGUI_linux32/
 cd UniversalIndentGUI_linux32
 echo compressing UniversalIndentGUI_linux32
 echo ----------------------------------------
-tar czf UniversalIndentGUI_0.3_Beta_linux32.tgz *
+tar czf UniversalIndentGUI_0.4_Beta_linux32.tgz *
 cd ..
 read -p "press any key to continue"

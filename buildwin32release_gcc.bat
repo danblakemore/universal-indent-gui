@@ -12,8 +12,8 @@ md UniversalIndentGUI_win32
 cd UniversalIndentGUI_win32
 md translations
 md data
+md doc
 cd ..
-copy .\translations\*.qm .\UniversalIndentGUI_win32\translations
 copy .\data\.astylerc .\UniversalIndentGUI_win32\data
 copy .\data\astyle.exe .\UniversalIndentGUI_win32\data
 copy .\data\astyle.html .\UniversalIndentGUI_win32\data
@@ -31,12 +31,14 @@ copy .\data\uigui_bcpp.ini .\UniversalIndentGUI_win32\data
 copy .\data\uigui_gnuindent.ini .\UniversalIndentGUI_win32\data
 copy .\data\uigui_greatcode.ini .\UniversalIndentGUI_win32\data
 copy .\data\example.cpp .\UniversalIndentGUI_win32\data
-copy .\changelog.txt .\UniversalIndentGUI_win32\
+copy .\CHANGELOG.txt .\UniversalIndentGUI_win32\
 copy .\LICENSE.GPL .\UniversalIndentGUI_win32\
 copy .\INSTALL.txt .\UniversalIndentGUI_win32\
-copy .\readme.txt .\UniversalIndentGUI_win32\
+copy .\README.txt .\UniversalIndentGUI_win32\
+copy .\translations\*.qm .\UniversalIndentGUI_win32\translations\
+copy .\doc\iniFileFormat.html .\UniversalIndentGUI_win32\doc\
 copy .\release\UniversalIndentGUI.exe .\UniversalIndentGUI_win32\
 cd UniversalIndentGUI_win32
-7z.exe a -tzip UniversalIndentGUI_0.3.1_Beta_win32.zip
+7z.exe a -tzip UniversalIndentGUI_0.4_Beta_win32.zip
 cd ..
 pause
