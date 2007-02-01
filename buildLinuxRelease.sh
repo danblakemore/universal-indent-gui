@@ -36,6 +36,9 @@ cp ./release/UniversalIndentGUI ./UniversalIndentGUI_linux32/
 cp ./data/.astylerc ./UniversalIndentGUI_linux32/data/
 cp ./data/astyle ./UniversalIndentGUI_linux32/data/
 cp ./data/astyle.html ./UniversalIndentGUI_linux32/data/
+cp ./data/bcpp.cfg ./UniversalIndentGUI_linux32/data/
+cp ./data/bcpp ./UniversalIndentGUI_linux32/data/
+cp ./data/bcpp.txt ./UniversalIndentGUI_linux32/data/
 cp ./data/gc.cfg ./UniversalIndentGUI_linux32/data/
 cp ./data/gc.exe ./UniversalIndentGUI_linux32/data/
 cp ./data/gc.txt ./UniversalIndentGUI_linux32/data/
@@ -43,6 +46,7 @@ cp ./data/.indent.pro ./UniversalIndentGUI_linux32/data/
 cp ./data/indent ./UniversalIndentGUI_linux32/data/
 cp ./data/indent.html ./UniversalIndentGUI_linux32/data/
 cp ./data/uigui_astyle.ini ./UniversalIndentGUI_linux32/data/
+cp ./data/uigui_bcpp.ini ./UniversalIndentGUI_linux32/data/
 cp ./data/uigui_greatcode.ini ./UniversalIndentGUI_linux32/data/
 cp ./data/uigui_gnuindent.ini ./UniversalIndentGUI_linux32/data/
 cp ./data/example.cpp ./UniversalIndentGUI_linux32/data/
