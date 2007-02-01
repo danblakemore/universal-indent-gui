@@ -1,7 +1,6 @@
 2007-02-01 Version 0.4 Beta
 [add] All parameters of GNU Indent have been added.
-[Add] From now on BCPP is included.
-[add] Language selector and german translation added.
+[add] From now on the indenter BCPP is included.
 [add] The loaded source file encoding is now convertable by the menu entry "Reopen File with other Encoding". This way chinese encoding etc. is possible to load. (Suggest for this submitted by Nelson, Bug ID 1643541)
 [add] A subdirectory "doc" has been added, containing the file "iniFileFormat.html" with info how to write ini files for new indenters.
 [change] Updated the astyle executable and the ini file to version 1.20.1
