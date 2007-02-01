@@ -30,7 +30,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     setupUi(this);
 
 	// set the program version, which is shown in the main window title
-    version = "UniversalIndentGUI 0.3.1 Beta";
+    version = "UniversalIndentGUI 0.3.2 Beta";
 
 	toolBarWidget = new Ui::toolBarWidget();
 	QWidget* helpWidget = new QWidget();
@@ -54,7 +54,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 
     sourceCodeChanged = false;
     scrollPositionChanged = false;
-    indentSettingsChanged = false;
+    // Set this true, so the indenter is called at first program start
+    indentSettingsChanged = true;
     previewToggled = true;
 
     // generate about dialog box
