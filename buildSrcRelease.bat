@@ -1,3 +1,4 @@
+set PATH=%PATH%;D:\Programme\Tools\7-Zip
 rd UniversalIndentGUI_src /S /Q
 md UniversalIndentGUI_src
 cd UniversalIndentGUI_src
@@ -12,6 +13,7 @@ copy .\data\uigui_gnuindent.ini .\UniversalIndentGUI_src\data
 copy .\data\uigui_bcpp.ini .\UniversalIndentGUI_src\data
 copy .\resources\* .\UniversalIndentGUI_src\resources
 copy .\src\* .\UniversalIndentGUI_src\src
+del .\UniversalIndentGUI_src\src\*.user
 copy .\CHANGELOG.txt .\UniversalIndentGUI_src\
 copy .\LICENSE.GPL .\UniversalIndentGUI_src\
 copy .\README.txt .\UniversalIndentGUI_src\
