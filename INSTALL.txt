@@ -1,0 +1,9 @@
+How to install UniversalIndentGUI
+---------------------------------
+
+Well, there is no really need to install this application at all. While you are reading this file, 
+you obviously have allready unpacked the archive and thats all you need to do. You can start
+the program by calling its executable. On Windows thats "UniversalIndentGUI.exe" and on any
+other system it is "UniversalIndentGUI".
+
+No additional libraries are needed.
