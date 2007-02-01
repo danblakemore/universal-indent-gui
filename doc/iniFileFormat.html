@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="PSPad editor, www.pspad.com">
+  <title>iniFileFormat</title>
+</head>
+<body>
+Fileformat of the UniversalIndentGUI indent description ini files<br>
+=================================================================<br>
+<br>
+1. General<br>
+----------<br>
+The ini file has equal base format as common used ini files. It contains groups, which are written in brackets []. These groups can contain keys, to which a value can be assigned by the equal sign =.<br>
+<br>
+2. Ini file header<br>
+------------------<br>
+At the beginning of the ini file the header is located. It is named [%20header]. You might wonder why I use the "%20" before the header. The reason for this is, that Qt, which I use as programming framework, automatically sorts the ini file by the group names in alphabetical order. To have the header at the beginning of each ini file I use "%20", it stands for a space. So nothing important about this.<br>
+Following a ini file header is shown:<br>
+<pre>
+[%20header]
+categories=General|Tab and Bracket Options|Indentation|Formatting Options
+cfgfilename=.astylerc
+cfgfileparameterending=cr
+filename=astyle
+filetypes=*.cpp|*.c|*.h|*.hpp|*.cs
+inputfilename=indentinput.cpp
+inputfileparameter=
+name=Astyle
+outputfilename=indentinput.cpp
+outputfileparameter=none
+stringparaminquotes=false
+usecfgfileparameter="--options="
+</pre>
+
+"categories" defines the categories, where each parameter can be assigned to. It is a list of strings, with each category name divied by a "|" from the other.<br>
+<br>
+"cfgfilename" is the filename of the indenters default config file. It is used when the indenter is being called and might be explicit handed over as argument by setting the parameter "usecfgfileparameter".<br>
+<br>
+"cfgfileparameterending" defines how each parameter setting in the indenters config file is seperated from the other. Possible values are "cr" for CarriageReturn or any other string (also space signs).<br>
+<br>
+"filename" is the name of the indenters executable without any extension. Under linux it is tested, whether only a file with the extension ".exe" exists. If so, wine will be used to call the indenter.<br>
+<br>
+"filetypes" is a list of fileendings used for the selection in the "open source file" file dialog.<br>
+<br>
+"outputfilename" defines the file used as input file for the called indenter. It is a copy of the previous opened source code file.<br>
+<br>
+"inputfileparameter" sets the eventually needed parameter in front of "inputfilename" to tell the indenter and the command line call that the following string is the input file.<br>
+<br>
+"name" is the name of the indenter as it will be shown in UniversalIndentGUIs indenters selection. Theoretic it can be any string.<br>
+<br>
+"inputfileparameter" the file name where the indenter writes its formatted source code to. Also the file UniversalIndentGUI reads after the indenter call to show it in the preview. Some times an indenter overwrites the content of the inputfile by default and creates a backup (as AStyle does). In this case "outputfilename" is equal to "inputfilename" but the parameter "outputfileparameter" has to be set to "none". No  output file name will be selected for the indenter but UniversalIndentGUI knows where the output was written to.<br>
+<br>
+"outputfileparameter" same as for "inputfileparameter" with respect to the special case mentioned for "inputfileparameter".<br>
+<br>
+"stringparaminquotes" tells UniversalIndentGUI that all string values should be written to the indenter config file in quotes.<br>
+<br>
+"usecfgfileparameter" is used to tell the indenter where to find the config file that it should use. If this parameter is left empty you should read the indenters manual where it searches by default for the config file.<br>
+<br>
+3. The indenters parameters<br>
+---------------------------<br>
+After the header definition the paramters used by the indenter are defined. Each paramter name is written in brackets [] again, but the name is only descriptive and not functional. Each parameter consists of keys with values (same as in header). There are four types of parameters: boolean, numeric, string and multiple. All have the following keys in common:<br>
+"Category" defines to which category they belong and are corresponding only shown there in the GUI.<br>
+<br>
+"Description" holds a text describing the parameter and it options. It is formatted as html, so source code examples can be embedded via &lt;pre&gt;&lt;/pre&gt; for example. This text is shown as tool tip for each parameter.<br>
+<br>
+"EditorType" defines whether the parameter is boolean, numeric, string or multiple.<br>
+<br>
+"Value" is the current defined value for the parameter. For boolean 0 is equal to false and 1 is equal to true. In case of multiple the number defines which of the multiple choice parameters is selected, starting with 0.<br>
+<br>
+"ValueDefault" is the default value that is normally used by the indenter if this parameter is not defined. It is needed if the config file of an indenter is loaded but this value is not defined there.<br>
+<br>
+"Enabled" is not used for boolean but for all other parameters. Defines whether the value should be written to the indenters config file or not. If it is disabled it will not be written and the indenter uses its default value.<br>
+<br>
+<br>
+3.1. Boolean parameters<br>
+<br>
+Example:<br>
+<pre>
+[ANSI_style_formatting]
+Category=0
+Description=&lt;html&gt;ANSI style formatting/indenting.&lt;/html&gt;
+EditorType=boolean
+TrueFalse="--style=ansi|"
+Value=0
+ValueDefault=0
+</pre>
+
+The only special here is the key "TrueFalse". The string is a parameter list always consiting of two parameters devided by a "|" sign, where the first one defines the true case and the second the false case. Some indenters like GreatCode have a parameter for true and false, some other like AStyle in this example only have a parameter for the false case, so the second parameter is empty.<br>
+<br>
+<br>
+3.2. Numeric parameters<br>
+<pre>
+[indent_spaces]
+CallName="--indent=spaces="
+Category=1
+Description=&lt;html&gt;Indent using # spaces per indent&lt;/html&gt;
+EditorType=numeric
+Enabled=false
+MaxVal=20
+MinVal=2
+Value=4
+ValueDefault=4
+</pre>
+
+Numeric parameters have defined a maximum value "MaxVal" and a minimum value "MinVal" which can/should not be exceeded. The "CallName" is the parameter as string as it will be written to the indenters config file. At its ending "Value" will be appended.<br>
+<br>
+<br>
+3.3. String parameters<br>
+<pre>
+[cmt_sep_char_4]
+CallName=-cmt_sep_char_4-
+Category=5
+Description="&lt;html&gt;Set the special character to fill automatic comments.&lt;/html&gt;"
+EditorType=string
+Enabled=true
+Value=*
+ValueDefault=*
+</pre>
+
+The "CallName" is the parameter as string as it will be written to the indenters config file. At its ending "Value" will be appended.<br>
+<br>
+<br>
+3.4. Multiple parameters<br>
+<pre>
+[bracket_style]
+Category=1
+Choices="--brackets=break|--brackets=attach|--brackets=linux|--brackets=break-closing-headers"
+Description=&lt;html&gt;Sets the bracket style.&lt;/html&gt;
+EditorType=multiple
+Enabled=false
+Value=1
+ValueDefault=-1
+</pre>
+Multiple parameters can have exactly one parameter out of a list selected. "Choices" is a parameter list consiting of parameters devided by a "|" sign. Each parameter in the list will be exactly written to the indenters config file as defined here.<br></body>
+</html>
