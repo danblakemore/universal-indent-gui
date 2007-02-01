@@ -1,3 +1,16 @@
+2007-02-01 Version 0.4 Beta
+[add] All parameters of GNU Indent have been added.
+[Add] From now on BCPP is included.
+[add] Language selector and german translation added.
+[add] The loaded source file encoding is now convertable by the menu entry "Reopen File with other Encoding". This way chinese encoding etc. is possible to load. (Suggest for this submitted by Nelson, Bug ID 1643541)
+[change] Updated the astyle executable and the ini file to version 1.20.1
+[change] Restructured the gui design a little bit. Using a moveable dock widget for the indenter settings now. Using a toolbar that can also be placed at the bottom.
+[change] Made it possible to change the language without the need to restart the application.
+[change] Line numbers are now geyed out, because this is more decent and selecting the numbers is no longer possible.
+[change] The link to the homepage in the about dialog now really opens the website.
+[change] The linux version is now statically linked against Qt so there should be no problems with wrong Qt versions installed or even no Qt libraries installed.
+[fix] Bug ID 1553601: If no uigui ini file was found the application stopped with an exception.
+
 2006-09-04 Version 0.3.1 Beta
 [add] Language selector and german translation added.
 
