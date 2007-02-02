@@ -158,6 +158,9 @@
    <property name="allowedAreas" >
     <set>Qt::LeftDockWidgetArea|Qt::NoDockWidgetArea|Qt::RightDockWidgetArea</set>
    </property>
+   <property name="windowTitle" >
+    <string>Indenter Parameter</string>
+   </property>
    <attribute name="dockWidgetArea" >
     <number>1</number>
    </attribute>
