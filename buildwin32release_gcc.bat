@@ -19,6 +19,8 @@ copy .\data\astyle.exe .\UniversalIndentGUI_win32\data
 copy .\data\astyle.html .\UniversalIndentGUI_win32\data
 copy .\data\indent.exe .\UniversalIndentGUI_win32\data
 copy .\data\indent.html .\UniversalIndentGUI_win32\data
+copy .\data\libintl-2.dll .\UniversalIndentGUI_win32\data
+copy .\data\libiconv-2.dll .\UniversalIndentGUI_win32\data
 copy .\data\.indent.pro .\UniversalIndentGUI_win32\data
 copy .\data\bcpp.cfg .\UniversalIndentGUI_win32\data
 copy .\data\bcpp.exe .\UniversalIndentGUI_win32\data
