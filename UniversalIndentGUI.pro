@@ -25,21 +25,17 @@ QMAKE_LFLAGS = $${newFlags}
 #message(new flags:$${QMAKE_LFLAGS})
 
 CONFIG(debug, debug|release) {
-    unix:DESTDIR = ./debug
-    win32:DESTDIR = ./release
-    win32:UI_DIR = ./debug/tmp/uic
+    DESTDIR = ./debug
 } else {
-    unix:DESTDIR = ./release
-    win32:DESTDIR = ./debug
-    win32:UI_DIR = ./release/tmp/uic
+    DESTDIR = ./release
 }
 
 MOC_DIR = $${DESTDIR}/tmp/moc
-unix:UI_DIR = $${DESTDIR}/tmp/uic
+UI_DIR = $${DESTDIR}/tmp/uic
 OBJECTS_DIR = $${DESTDIR}/tmp/obj
 RCC_DIR = $${DESTDIR}/tmp/qrc
 
-message ( destdir is $${DESTDIR}. uic is $${UI_DIR}. moc id $${MOC_DIR})
+message ( destdir is $${DESTDIR}. uic is $${UI_DIR}. moc is $${MOC_DIR})
 
 # Input
 HEADERS += src/cpphighlighter.h \
