@@ -30,6 +30,9 @@
 #include <QDir>
 #include <QMessageBox>
 #include <QMainWindow>
+#include <QTextStream>
+#include <QTextCodec>
+
 
 class IndentHandler : public QWidget
 {

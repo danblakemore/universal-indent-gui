@@ -172,7 +172,7 @@ QString MainWindow::loadFile(QString filePath) {
     else {
         QTextStream inSrcStrm(&inSrcFile);
         QApplication::setOverrideCursor(Qt::WaitCursor);
-		//inSrcStrm.setCodec( QTextCodec::codecForName("UTF-8") );
+		inSrcStrm.setCodec( QTextCodec::codecForName("UTF-8") );
         fileContent = inSrcStrm.readAll();
         QApplication::restoreOverrideCursor();
         inSrcFile.close();
@@ -243,7 +243,7 @@ bool MainWindow::saveasSourceFileDialog() {
     QFile::remove(fileName);
     QFile outSrcFile(fileName);
     outSrcFile.open( QFile::ReadWrite | QFile::Text );
-    outSrcFile.write( savedSourceContent.toAscii() );
+    outSrcFile.write( savedSourceContent.toUtf8() );
     outSrcFile.close();
 
     QFileInfo fileInfo(fileName);
@@ -271,7 +271,7 @@ bool MainWindow::saveSourceFile() {
         QFile outSrcFile(currentSourceFile);
         savedSourceContent = txtedSourceCode->toPlainText();
         outSrcFile.open( QFile::ReadWrite | QFile::Text );
-        outSrcFile.write( savedSourceContent.toAscii() );
+        outSrcFile.write( savedSourceContent.toUtf8() );
         outSrcFile.close();
 
         txtedSourceCode->document()->setModified( false );
@@ -936,12 +936,22 @@ void MainWindow::createEncodingMenu() {
 */
 void MainWindow::encodingChanged(QAction* encodingAction) {
 	if ( maybeSave() ) {
-		QByteArray qb = savedSourceContent.toLocal8Bit();
-		QTextStream inSrcStrm(&qb);
-		QString encodingName = encodingAction->text();
-		inSrcStrm.setCodec( QTextCodec::codecForName(encodingName.toAscii()) );
-		QString newSrcCode = inSrcStrm.readAll();
-		txtedSourceCode->setPlainText( newSrcCode );
+        QFile inSrcFile(currentSourceFile);
+        QString fileContent = "";
+
+        if ( !inSrcFile.open(QFile::ReadOnly | QFile::Text) ) {
+            QMessageBox::warning(NULL, tr("Error opening file"), tr("Cannot read the file ")+"\""+currentSourceFile+"\"." );
+        }
+        else {
+            QTextStream inSrcStrm(&inSrcFile);
+            QApplication::setOverrideCursor(Qt::WaitCursor);
+            QString encodingName = encodingAction->text();
+            inSrcStrm.setCodec( QTextCodec::codecForName(encodingName.toAscii()) );
+            fileContent = inSrcStrm.readAll();
+            QApplication::restoreOverrideCursor();
+            inSrcFile.close();
+            txtedSourceCode->setPlainText( fileContent );
+        }
 	}
 }
 
