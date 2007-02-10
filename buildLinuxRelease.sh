@@ -1,7 +1,7 @@
 #!/bin/bash
-echo setting Qt path to /usr/local/Trolltech/Qt-4.2.1/bin
+echo setting Qt path to /usr/local/Trolltech/Qt-4.2.2/bin
 echo ----------------------------------------------------
-PATH=/usr/local/Trolltech/Qt-4.2.1/bin:$PATH
+PATH=/usr/local/Trolltech/Qt-4.2.2/bin:$PATH
 export PATH
 echo calling rm -r release/debug
 echo ---------------------------
@@ -46,10 +46,14 @@ cp ./data/gc.txt ./UniversalIndentGUI_linux32/data/
 cp ./data/.indent.pro ./UniversalIndentGUI_linux32/data/
 cp ./data/indent ./UniversalIndentGUI_linux32/data/
 cp ./data/indent.html ./UniversalIndentGUI_linux32/data/
+cp ./data/uncrustify.cfg ./UniversalIndentGUI_linux32/data/
+cp ./data/uncrustify ./UniversalIndentGUI_linux32/data/
+cp ./data/uncrustify.txt ./UniversalIndentGUI_linux32/data/
 cp ./data/uigui_astyle.ini ./UniversalIndentGUI_linux32/data/
 cp ./data/uigui_bcpp.ini ./UniversalIndentGUI_linux32/data/
 cp ./data/uigui_greatcode.ini ./UniversalIndentGUI_linux32/data/
 cp ./data/uigui_gnuindent.ini ./UniversalIndentGUI_linux32/data/
+cp ./data/uigui_uncrustify.ini ./UniversalIndentGUI_linux32/data/
 cp ./data/example.cpp ./UniversalIndentGUI_linux32/data/
 cp ./translations/*.qm ./UniversalIndentGUI_linux32/translations/
 cp ./doc/iniFileFormat.html ./UniversalIndentGUI_linux32/doc/
