@@ -78,7 +78,7 @@ IndentHandler::IndentHandler(QString dataDirPathStr, int indenterID, QMainWindow
 }
 
 
-/*! 
+/*!
    Format \a sourceCode by calling the indenter. The \a inputFileExtension has to be given as parameter
    so the called indenter can identify the programming language if needed.
  */
@@ -92,6 +92,7 @@ QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtensi
     writeConfigFile( parameterString );
 
     QString formattedSourceCode;
+    bool wineInstalled = true;
 
     // only add point to file extension if the string is not empty
     if ( !inputFileExtension.isEmpty() ) {
@@ -100,7 +101,7 @@ QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtensi
 
     QFile::remove(dataDirctoryStr + inputFileName + inputFileExtension);
     QFile outSrcFile(dataDirctoryStr + inputFileName + inputFileExtension);
-	QString indentCallString = inputFileParameter + inputFileName + inputFileExtension;
+    QString indentCallString = inputFileParameter + inputFileName + inputFileExtension;
     if ( outputFileParameter != "none" ) {
         indentCallString += " "+ outputFileParameter + outputFileName + inputFileExtension;
     }
@@ -110,7 +111,7 @@ QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtensi
 
     // Test if the indenter executable exists. If not show a dialog box once and return
     // the unformatted source code. Else continue calling the indenter.
-    bool indenterExecutableExists = false; 
+    bool indenterExecutableExists = false;
 #if defined(Q_OS_WIN32)
     indenterExecutableExists = QFile::exists(dataDirctoryStr + indenterFileName+".exe");
 #else
@@ -127,9 +128,9 @@ QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtensi
 
     // generate the indenter call string either for win32 or other systems
 #if defined(Q_OS_WIN32)
-	indentCallString = dataDirctoryStr + indenterFileName +".exe "+ indentCallString;
+    indentCallString = dataDirctoryStr + indenterFileName +".exe "+ indentCallString;
 #else
-	indentCallString = "./" + indenterFileName +" "+ indentCallString;
+    indentCallString = "./" + indenterFileName +" "+ indentCallString;
 #endif
 
     // if needed add the parameter to the indenter call string where the config file can be found
@@ -141,64 +142,77 @@ QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtensi
     outSrcFile.open( QFile::ReadWrite | QFile::Text );
     outSrcFile.write( sourceCode.toUtf8() );
     outSrcFile.close();
-    
+
     // errors and standard outputs from the process call are merged together
     indentProcess.setReadChannelMode(QProcess::MergedChannels);
 
 #if defined(Q_OS_LINUX)
-	// if no linux binary exists to run the indenter, use wine to run the windows exe
-	if ( !QFile::exists(dataDirctoryStr + indenterFileName) ) {
-		indentCallString = "wine " + indentCallString;
-	}
+    // if no linux binary exists to run the indenter, use wine to run the windows exe and test if wine is installed
+    if ( !QFile::exists(dataDirctoryStr + indenterFileName) ) {
+        QProcess wineTestProcess;
+        wineTestProcess.start("wine --version");
+        // if the process of wine was not callable assume that wine is not installed
+        if ( !wineTestProcess.waitForFinished() ) {
+            wineInstalled = false;
+        }
+        indentCallString = "wine " + indentCallString;
+    }
 #endif
 
-    // set the directory for the indenter execution
-    indentProcess.setWorkingDirectory( QFileInfo(dataDirctoryStr).absoluteFilePath() );
-
-    indentProcess.start(indentCallString);
-
-    // test if there was an error during starting the process of the indenter, or in case of linux
-    // there might also been an error starting wine
-    if ( !indentProcess.waitForFinished() ) {
-        processReturnString = indentProcess.errorString();
-
-        switch ( indentProcess.error() ) {
-            case QProcess::FailedToStart : 
-                processReturnString += "\nThe process failed to start. Either the invoked program is missing, or you may have insufficient permissions to invoke the program.";
-                break;
-            case QProcess::Crashed : 
-                processReturnString += "\nThe process crashed some time after starting successfully.";
-                break;
-            case QProcess::Timedout : 
-                processReturnString += "\nThe last waitFor...() function timed out. The state of QProcess is unchanged, and you can try calling waitFor...() again.";
-                break;
-            case QProcess::WriteError : 
-                processReturnString += "\nAn error occurred when attempting to write to the process. For example, the process may not be running, or it may have closed its input channel.";
-                break;
-            case QProcess::ReadError : 
-                processReturnString += "\nAn error occurred when attempting to read from the process. For example, the process may not be running.";
-                break;
-            case QProcess::UnknownError : 
-                processReturnString += "\nAn unknown error occurred. This is the default return value of error().";
-                break;
-            default :
-                break;
-        }
-        QMessageBox::warning(NULL, tr("Error calling Indenter"), processReturnString
-            +tr("\nCallstring was: ")+indentCallString);
+    if ( !wineInstalled ) {
+        QMessageBox::warning(NULL, tr("wine not installed"), tr("There exists only a win32 executable of the indenter and wine does not seem to be installed. Please install wine to be able to run the indenter.") );
     }
-    // there was no problem starting  the process/indenter so fetch, what it returned
     else {
-        processReturnString = indentProcess.readAll();
-    }
+        // set the directory for the indenter execution
+        indentProcess.setWorkingDirectory( QFileInfo(dataDirctoryStr).absoluteFilePath() );
 
-    // if the indenter returned an errorcode != 0 show its output
-    if ( indentProcess.exitCode() != 0 ) {
-        QString exitCode;
-        exitCode.setNum(indentProcess.exitCode());
-        QMessageBox::warning(NULL, tr("Indenter returned error"), tr("Indenter returned with exit code ")+exitCode
-            +tr(".\nIndent console output was: \n")+processReturnString
-            +tr("\nCallstring was: ")+indentCallString);
+        indentProcess.start(indentCallString);
+
+        processReturnString = "<html><body>";
+        // test if there was an error during starting the process of the indenter, or in case of linux
+        // there might also been an error starting wine
+        if ( !indentProcess.waitForFinished() ) {
+            processReturnString += tr("<b>Returned error message:</b> ") + indentProcess.errorString() + "<br>";
+
+            switch ( indentProcess.error() ) {
+                case QProcess::FailedToStart :
+                    processReturnString += tr("<b>Reason could be:</b> ") + "The process failed to start. Either the invoked program is missing, or you may have insufficient permissions to invoke the program.<br>";
+                    break;
+                case QProcess::Crashed :
+                    processReturnString += "The process crashed some time after starting successfully.<br>";
+                    break;
+                case QProcess::Timedout :
+                    processReturnString += "The last waitFor...() function timed out. The state of QProcess is unchanged, and you can try calling waitFor...() again.<br>";
+                    break;
+                case QProcess::WriteError :
+                    processReturnString += "An error occurred when attempting to write to the process. For example, the process may not be running, or it may have closed its input channel.<br>";
+                    break;
+                case QProcess::ReadError :
+                    processReturnString += "An error occurred when attempting to read from the process. For example, the process may not be running.<br>";
+                    break;
+                case QProcess::UnknownError :
+                    processReturnString += "An unknown error occurred. This is the default return value of error().<br>";
+                    break;
+                default :
+                    break;
+            }
+            processReturnString += tr("<b>Callstring was:</b> ") + indentCallString + "</html></body>";
+            QMessageBox::warning(NULL, tr("Error calling Indenter"), processReturnString);
+        }
+        // there was no problem starting the process/indenter so fetch, what it returned
+        else {
+            processReturnString += indentProcess.readAll();
+        }
+
+        // if the indenter returned an errorcode != 0 show its output
+        if ( indentProcess.exitCode() != 0 ) {
+            QString exitCode;
+            exitCode.setNum(indentProcess.exitCode());
+            processReturnString = tr("<b>Indenter returned with exit code:</b> ") + exitCode + "<br>" +
+                                tr("<b>Indent console output was:</b> ") + processReturnString + "<br>" +
+                                tr("<b>Callstring was:</b> ") + indentCallString + "</html></body>";
+            QMessageBox::warning(NULL, tr("Indenter returned error"), processReturnString);
+        }
     }
 
     // read the output file generated by the indenter call
@@ -265,7 +279,7 @@ QString IndentHandler::getParameterString() {
         indenterSettings->setValue( pMultiple.paramName + "/Value", pMultiple.comboBox->currentIndex () );
         indenterSettings->setValue( pMultiple.paramName + "/Enabled", pMultiple.valueEnabledChkBox->isChecked() );
     }
-    
+
     return parameterString;
 }
 
@@ -455,7 +469,7 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
 
     // open the ini-file that contains all available indenter settings with their additional infos
     indenterSettings = new QSettings(iniFilePath, QSettings::IniFormat, this);
-    
+
 	QStringList categories;
     //QString indenterGroupString = "";
     QString paramToolTip = "";
@@ -568,7 +582,7 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
                 QHBoxLayout *hboxLayout = new QHBoxLayout();
                 hboxLayout->addWidget(chkBox);
                 hboxLayout->addWidget(spinBox);
-                hboxLayout->addWidget(label);                
+                hboxLayout->addWidget(label);
                 toolBoxPages.at(category).vboxLayout->addLayout(hboxLayout);
 
                 // remember parameter name and reference to its spinbox
@@ -640,7 +654,7 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
                 QHBoxLayout *hboxLayout = new QHBoxLayout();
                 hboxLayout->addWidget(chkBox);
                 hboxLayout->addWidget(lineEdit);
-                hboxLayout->addWidget(label);  
+                hboxLayout->addWidget(label);
                 toolBoxPages.at(category).vboxLayout->addLayout(hboxLayout);
 
                 // remember parameter name and reference to its lineedit
@@ -716,7 +730,7 @@ QStringList IndentHandler::getAvailableIndenters() {
 
     // Loop for every existing uigui ini file
     foreach (QString indenterIniFile, indenterIniFileList) {
-        
+
         // Open the ini file and search for the indenter name
         QFile file(dataDirctoryStr + indenterIniFile);
         if ( file.open(QIODevice::ReadOnly | QIODevice::Text) ) {
