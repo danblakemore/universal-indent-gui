@@ -28,10 +28,14 @@ copy .\data\bcpp.txt .\UniversalIndentGUI_win32\data
 copy .\data\gc.cfg .\UniversalIndentGUI_win32\data
 copy .\data\gc.exe .\UniversalIndentGUI_win32\data
 copy .\data\gc.txt .\UniversalIndentGUI_win32\data
+copy .\data\uncrustify.cfg .\UniversalIndentGUI_win32\data
+copy .\data\uncrustify.exe .\UniversalIndentGUI_win32\data
+copy .\data\uncrustify.txt .\UniversalIndentGUI_win32\data
 copy .\data\uigui_astyle.ini .\UniversalIndentGUI_win32\data
 copy .\data\uigui_bcpp.ini .\UniversalIndentGUI_win32\data
 copy .\data\uigui_gnuindent.ini .\UniversalIndentGUI_win32\data
 copy .\data\uigui_greatcode.ini .\UniversalIndentGUI_win32\data
+copy .\data\uigui_uncrustify.ini .\UniversalIndentGUI_win32\data
 copy .\data\example.cpp .\UniversalIndentGUI_win32\data
 copy .\CHANGELOG.txt .\UniversalIndentGUI_win32\
 copy .\LICENSE.GPL .\UniversalIndentGUI_win32\
