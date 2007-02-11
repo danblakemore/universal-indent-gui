@@ -160,6 +160,7 @@ QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtensi
 #endif
 
     if ( !wineInstalled ) {
+        QApplication::restoreOverrideCursor();
         QMessageBox::warning(NULL, tr("wine not installed"), tr("There exists only a win32 executable of the indenter and wine does not seem to be installed. Please install wine to be able to run the indenter.") );
     }
     else {
@@ -197,6 +198,7 @@ QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtensi
                     break;
             }
             processReturnString += tr("<b>Callstring was:</b> ") + indentCallString + "</html></body>";
+            QApplication::restoreOverrideCursor();
             QMessageBox::warning(NULL, tr("Error calling Indenter"), processReturnString);
         }
         // there was no problem starting the process/indenter so fetch, what it returned
@@ -211,6 +213,7 @@ QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtensi
             processReturnString = tr("<b>Indenter returned with exit code:</b> ") + exitCode + "<br>" +
                                 tr("<b>Indent console output was:</b> ") + processReturnString + "<br>" +
                                 tr("<b>Callstring was:</b> ") + indentCallString + "</html></body>";
+            QApplication::restoreOverrideCursor();
             QMessageBox::warning(NULL, tr("Indenter returned error"), processReturnString);
         }
     }
