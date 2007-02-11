@@ -5,6 +5,7 @@
 [change] Some changes mad to the Artistic Styler ini file as suggested by its author Jim Pattee.
 [change] Put the file open button at first position in the toolbar, because normally this is the first step one would do, if he tries to find the optimal indenter and settings for himself.
 [change] The background in the about dialog has been changed to look equal on all systems.
+[change] The error message dialogs had small optical enhancements to be more readable.
 [fix] Bug ID 1657255: If an error occurred during the try to call the indenter, a message box is being shown, but the mouse cursor still indicated that the application is being busy.
 [fix] Bug ID 1651071: Changing the file encoding did not affect the code sent to the indenter, so the code while preview turned on, had wrong encoding (still seems to have some encoding problems under Linux).
 [fix] Bug ID 1650222: On Windows systems there were two DLLs missing to run GNU Indent ("libiconv-2.dll" and "libintl-2.dll")
