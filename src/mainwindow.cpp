@@ -37,7 +37,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     setupUi(this);
 
     // set the program version, which is shown in the main window title
-    version = "UniversalIndentGUI 0.4 Beta";
+    version = "UniversalIndentGUI 0.4.1 Beta";
 
     toolBarWidget = new Ui::toolBarWidget();
     QWidget* helpWidget = new QWidget();
