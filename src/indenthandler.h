@@ -46,16 +46,16 @@ class IndentHandler : public QWidget
     Q_OBJECT
 
 public:
-	IndentHandler(QString dataDirPathStr, int indenterID, QMainWindow *mainWindow = 0, QWidget *parent = 0);
+    IndentHandler(QString dataDirPathStr, int indenterID, QMainWindow *mainWindow = 0, QWidget *parent = 0);
 
     //! Format source code with the currently selected indenter
     QString callIndenter(QString sourceCode, QString inputFileExtension);
 
-	void loadConfigFile(QString filePathName);
+    void loadConfigFile(QString filePathName);
 
     QStringList getAvailableIndenters();
 
-	QString getPossibleIndenterFileExtensions();
+    QString getPossibleIndenterFileExtensions();
 
     QString getParameterString();
 
@@ -66,61 +66,56 @@ private:
     void readIndentIniFile(QString iniFilePath);
 
     //! Holds a reference to all created pages of the toolbox and the pages boxlayout
-    struct ToolBoxPage
-	{
+    struct ToolBoxPage {
         QWidget *page;
-		QVBoxLayout *vboxLayout;
-	};
-	QVector<ToolBoxPage> toolBoxPages;
+        QVBoxLayout *vboxLayout;
+    };
+    QVector<ToolBoxPage> toolBoxPages;
 
     //! Holds a reference to all checkboxes needed for boolean parameter setting and the parameters name
-    struct ParamBoolean
-	{
+    struct ParamBoolean {
         QString paramName;
-		QString trueString;
-		QString falseString;
+        QString trueString;
+        QString falseString;
         QCheckBox *checkBox;
-	};
-	QVector<ParamBoolean> paramBooleans;
+    };
+    QVector<ParamBoolean> paramBooleans;
 
     //! Holds a reference to all lineedits needed for parameter setting and the parameters name
-    struct ParamString
-	{
+    struct ParamString {
         QString paramName;
-		QString paramCallName;
+        QString paramCallName;
         QCheckBox *valueEnabledChkBox;
         QLineEdit *lineEdit;
         QLabel *label;
-	};
-	QVector<ParamString> paramStrings;
+    };
+    QVector<ParamString> paramStrings;
 
     //! Hold a reference to all spinboxes needed for parameter setting and the parameters name
-    struct ParamNumeric
-	{
+    struct ParamNumeric {
         QString paramName;
-		QString paramCallName;
+        QString paramCallName;
         QCheckBox *valueEnabledChkBox;
         QSpinBox *spinBox;
         QLabel *label;
-	};
-	QVector<ParamNumeric> paramNumerics;
+    };
+    QVector<ParamNumeric> paramNumerics;
 
     //! Hold a reference to all comboboxes needed for parameter setting and the parameters name
-    struct ParamMultiple
-	{
+    struct ParamMultiple {
         QString paramName;
-		QString paramCallName;
+        QString paramCallName;
         QCheckBox *valueEnabledChkBox;
         QComboBox *comboBox;
         QStringList choicesStrings;
-	};
-	QVector<ParamMultiple> paramMultiples;
+    };
+    QVector<ParamMultiple> paramMultiples;
 
-	QVBoxLayout *vboxLayout;
+    QVBoxLayout *vboxLayout;
     QToolBox *toolBox;
     QSettings *indenterSettings;
     QStringList indenterParameters;
-	QByteArray cfgFileData;
+    QByteArray cfgFileData;
     //! The indenters name in a descriptive form
     QString indenterName;
     //! The indenters file name (w/o extension), that is being called
@@ -132,7 +127,7 @@ private:
     QString inputFileParameter;
     QString inputFileName;
     QString outputFileParameter;
-	QString outputFileName;
+    QString outputFileName;
     QString fileTypes;
     QString useCfgFileParameter;
     bool noIndenterExecExistDialogAlreadyShown;

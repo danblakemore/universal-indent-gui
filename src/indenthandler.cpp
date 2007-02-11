@@ -42,26 +42,26 @@ IndentHandler::IndentHandler(QString dataDirPathStr, int indenterID, QMainWindow
 
     this->mainWindow = mainWindow;
 
-	// define this widgets size and resize behavior
-	this->setMaximumWidth(263);
-	this->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
+    // define this widgets size and resize behavior
+    this->setMaximumWidth(263);
+    this->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
 
-	// create vertical layout box, into which the toolbox will be added
-	vboxLayout = new QVBoxLayout(this);
-	vboxLayout->setMargin(2);
+    // create vertical layout box, into which the toolbox will be added
+    vboxLayout = new QVBoxLayout(this);
+    vboxLayout->setMargin(2);
 
-	// create a toolbox and set its resize behavior
-	toolBox = new QToolBox(this);
-	toolBox->setObjectName(QString::fromUtf8("toolBox"));
-	//toolBox->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
-	//toolBox->setMaximumSize(QSize(16777215, 16777215));
-	// insert the toolbox into the vlayout
-	vboxLayout->addWidget(toolBox);
+    // create a toolbox and set its resize behavior
+    toolBox = new QToolBox(this);
+    toolBox->setObjectName(QString::fromUtf8("toolBox"));
+    //toolBox->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
+    //toolBox->setMaximumSize(QSize(16777215, 16777215));
+    // insert the toolbox into the vlayout
+    vboxLayout->addWidget(toolBox);
 
-	dataDirctoryStr = dataDirPathStr;
-	QDir dataDirctory = QDir(dataDirPathStr);
+    dataDirctoryStr = dataDirPathStr;
+    QDir dataDirctory = QDir(dataDirPathStr);
 
-	indenterIniFileList = dataDirctory.entryList( QStringList("uigui_*.ini") );
+    indenterIniFileList = dataDirctory.entryList( QStringList("uigui_*.ini") );
     if ( indenterIniFileList.count() > 0 ) {
         // Take care if the selected indenterID is smaller or greater than the number of existing indenters
         if ( indenterID < 0 ) {
@@ -307,19 +307,19 @@ void IndentHandler::writeConfigFile(QString paramString) {
 void IndentHandler::loadConfigFile(QString filePathName) {
     Q_ASSERT_X( !filePathName.isEmpty(), "loadConfigFile", "filePathName is empty" );
 
-	QFile cfgFile(filePathName);
-	int index;
+    QFile cfgFile(filePathName);
+    int index;
     int crPos;
     int paramValue = 0;
     QString paramValueStr;
 
     // open the config file and read all data
-	cfgFile.open( QFile::ReadOnly | QFile::Text );
-	cfgFileData = cfgFile.readAll();
-	cfgFile.close();
+    cfgFile.open( QFile::ReadOnly | QFile::Text );
+    cfgFileData = cfgFile.readAll();
+    cfgFile.close();
 
     // search for name of each boolean parameter and set its value if found
-	foreach (ParamBoolean pBoolean, paramBooleans) {
+    foreach (ParamBoolean pBoolean, paramBooleans) {
 
         // boolean value that will be assigned to the checkbox
         bool paramValue = false;
@@ -340,10 +340,10 @@ void IndentHandler::loadConfigFile(QString filePathName) {
                 if ( index != -1 ) {
                     paramValue = false;
                 }
-				// neither true nor false parameter found so use default value
-				else {
-					paramValue = indenterSettings->value(pBoolean.paramName + "/ValueDefault").toBool();
-				}
+                // neither true nor false parameter found so use default value
+                else {
+                        paramValue = indenterSettings->value(pBoolean.paramName + "/ValueDefault").toBool();
+                }
             }
         }
         // the false parameter string is longer than the true string
@@ -362,20 +362,20 @@ void IndentHandler::loadConfigFile(QString filePathName) {
                 if ( index != -1 ) {
                     paramValue = true;
                 }
-				// neither true nor false parameter found so use default value
-				else {
-					paramValue = indenterSettings->value(pBoolean.paramName + "/ValueDefault").toBool();
-				}
+                // neither true nor false parameter found so use default value
+                else {
+                        paramValue = indenterSettings->value(pBoolean.paramName + "/ValueDefault").toBool();
+                }
             }
         }
         pBoolean.checkBox->setChecked(paramValue);
-	}
+    }
 
     // search for name of each numeric parameter and set the value found behind it
-	foreach (ParamNumeric pNumeric, paramNumerics) {
-		index = cfgFileData.indexOf( pNumeric.paramCallName, 0 );
-		// parameter was found in config file
-		if ( index != -1 ) {
+    foreach (ParamNumeric pNumeric, paramNumerics) {
+        index = cfgFileData.indexOf( pNumeric.paramCallName, 0 );
+        // parameter was found in config file
+        if ( index != -1 ) {
             // set index after the parameter name, so in front of the number
             index += pNumeric.paramCallName.length();
 
@@ -390,26 +390,26 @@ void IndentHandler::loadConfigFile(QString filePathName) {
             QObject::disconnect(pNumeric.spinBox, SIGNAL(valueChanged(int)), this, SIGNAL(settingsCodeChanged()));
             pNumeric.spinBox->setValue( paramValue );
             QObject::connect(pNumeric.spinBox, SIGNAL(valueChanged(int)), this, SIGNAL(settingsCodeChanged()));
-		}
-		// parameter was not found in config file
-		else {
-			int defaultValue = indenterSettings->value(pNumeric.paramName + "/ValueDefault").toInt();
-			// a value of -1 means that this parameter is disabled
-			if ( defaultValue == -1 ) {
-				pNumeric.valueEnabledChkBox->setChecked( false );
-			}
-			// if not disabled use the given default value
-			else {
-				pNumeric.spinBox->setValue( defaultValue );
-			}
-		}
-	}
+        }
+        // parameter was not found in config file
+        else {
+            int defaultValue = indenterSettings->value(pNumeric.paramName + "/ValueDefault").toInt();
+            // a value of -1 means that this parameter is disabled
+            if ( defaultValue == -1 ) {
+                pNumeric.valueEnabledChkBox->setChecked( false );
+            }
+            // if not disabled use the given default value
+            else {
+                pNumeric.spinBox->setValue( defaultValue );
+            }
+        }
+    }
 
     // search for name of each string parameter and set it
-	foreach (ParamString pString, paramStrings) {
-		index = cfgFileData.indexOf( pString.paramCallName, 0 );
-		// parameter was found in config file
-		if ( index != -1 ) {
+    foreach (ParamString pString, paramStrings) {
+        index = cfgFileData.indexOf( pString.paramCallName, 0 );
+        // parameter was found in config file
+        if ( index != -1 ) {
             // set index after the parameter name, so in front of the string
             index += pString.paramCallName.length();
 
@@ -419,23 +419,23 @@ void IndentHandler::loadConfigFile(QString filePathName) {
             // get the number and convert it to int
             paramValueStr = QString( cfgFileData.mid( index, crPos - index ) );
             pString.lineEdit->setText( paramValueStr );
-		}
-		// parameter was not found in config file
-		else {
-			QString defaultValue = indenterSettings->value(pString.paramName + "/ValueDefault").toString();
-			// a value of -1 means that this parameter is disabled
-			if ( defaultValue == "-1" ) {
-				pString.valueEnabledChkBox->setChecked( false );
-			}
-			// if not disabled use the given default value
-			else {
-				pString.lineEdit->setText( defaultValue );
-			}
-		}
-	}
+        }
+        // parameter was not found in config file
+        else {
+            QString defaultValue = indenterSettings->value(pString.paramName + "/ValueDefault").toString();
+            // a value of -1 means that this parameter is disabled
+            if ( defaultValue == "-1" ) {
+                pString.valueEnabledChkBox->setChecked( false );
+            }
+            // if not disabled use the given default value
+            else {
+                pString.lineEdit->setText( defaultValue );
+            }
+        }
+    }
 
     // search for name of each multiple choice parameter and set it
-	foreach (ParamMultiple pMultiple, paramMultiples) {
+    foreach (ParamMultiple pMultiple, paramMultiples) {
         int i = 0;
         index = -1;
 
@@ -449,19 +449,19 @@ void IndentHandler::loadConfigFile(QString filePathName) {
             i++;
         }
 
-		// parameter was not set in config file, so use default value
-		if ( index == -1 ) {
-			int defaultValue = indenterSettings->value(pMultiple.paramName + "/ValueDefault").toInt();
-			// a value of -1 means that this parameter is disabled
-			if ( defaultValue == -1 ) {
-				pMultiple.valueEnabledChkBox->setChecked( false );
-			}
-			// if not disabled use the given default value
-			else {
-				pMultiple.comboBox->setCurrentIndex( defaultValue );
-			}
-		}
-	}
+        // parameter was not set in config file, so use default value
+        if ( index == -1 ) {
+            int defaultValue = indenterSettings->value(pMultiple.paramName + "/ValueDefault").toInt();
+            // a value of -1 means that this parameter is disabled
+            if ( defaultValue == -1 ) {
+                pMultiple.valueEnabledChkBox->setChecked( false );
+            }
+            // if not disabled use the given default value
+            else {
+                pMultiple.comboBox->setCurrentIndex( defaultValue );
+            }
+        }
+    }
 }
 
 /*!
@@ -473,7 +473,7 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
     // open the ini-file that contains all available indenter settings with their additional infos
     indenterSettings = new QSettings(iniFilePath, QSettings::IniFormat, this);
 
-	QStringList categories;
+    QStringList categories;
     //QString indenterGroupString = "";
     QString paramToolTip = "";
 
@@ -494,7 +494,7 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
     inputFileParameter = indenterSettings->value(" header/inputFileParameter").toString();
     inputFileName = indenterSettings->value(" header/inputFileName").toString();
     outputFileParameter = indenterSettings->value(" header/outputFileParameter").toString();
-	outputFileName = indenterSettings->value(" header/outputFileName").toString();
+    outputFileName = indenterSettings->value(" header/outputFileName").toString();
     fileTypes = indenterSettings->value(" header/fileTypes").toString();
     fileTypes.replace('|', " ");
 
@@ -511,7 +511,7 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
 
         toolBoxPage.page = new QWidget();
         toolBoxPage.page->setObjectName(categoryName);
-		toolBoxPage.page->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+        toolBoxPage.page->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
         toolBoxPage.vboxLayout = new QVBoxLayout(toolBoxPage.page);
         toolBoxPage.vboxLayout->setSpacing(6);
         toolBoxPage.vboxLayout->setMargin(9);
@@ -533,7 +533,7 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
 
         // if it is not the indent header definition read the parameter and add it to
         // the corresponding category toolbox page
-		if ( indenterParameter != " header") {
+        if ( indenterParameter != " header") {
             // read to which category the parameter belongs
             int category = indenterSettings->value(indenterParameter + "/Category").toInt();
             // read which type of input field the parameter needs
@@ -541,8 +541,8 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
 
             // edit type is numeric so create a spinbox with label
             if ( editType == "numeric" ) {
-				// read the parameter name as it is used at the command line or in its config file
-				QString parameterCallName = indenterSettings->value(indenterParameter + "/CallName").toString();
+                // read the parameter name as it is used at the command line or in its config file
+                QString parameterCallName = indenterSettings->value(indenterParameter + "/CallName").toString();
 
                 // create checkbox which enables or disables the parameter
                 QCheckBox *chkBox = new QCheckBox( toolBoxPages.at(category).page );
@@ -561,18 +561,18 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
                 spinBox->setMaximumWidth(50);
                 spinBox->setMinimumWidth(50);
                 spinBox->installEventFilter( mainWindow );
-				if ( indenterSettings->value(indenterParameter + "/MinVal").toString() != "" ) {
-					spinBox->setMinimum( indenterSettings->value(indenterParameter + "/MinVal").toInt() );
-				}
-				else {
+                if ( indenterSettings->value(indenterParameter + "/MinVal").toString() != "" ) {
+                        spinBox->setMinimum( indenterSettings->value(indenterParameter + "/MinVal").toInt() );
+                }
+                else {
                     spinBox->setMinimum( 0 );
-				}
+                }
                 if ( indenterSettings->value(indenterParameter + "/MaxVal").toString() != "" ) {
-					spinBox->setMaximum( indenterSettings->value(indenterParameter + "/MaxVal").toInt() );
-				}
-				else {
+                        spinBox->setMaximum( indenterSettings->value(indenterParameter + "/MaxVal").toInt() );
+                }
+                else {
                     spinBox->setMaximum( 2000 );
-				}
+                }
 
                 // create the label
                 QLabel *label = new QLabel( toolBoxPages.at(category).page );
@@ -591,7 +591,7 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
                 // remember parameter name and reference to its spinbox
                 ParamNumeric paramNumeric;
                 paramNumeric.paramName = indenterParameter;
-				paramNumeric.paramCallName = parameterCallName;
+                paramNumeric.paramCallName = parameterCallName;
                 paramNumeric.spinBox = spinBox;
                 paramNumeric.label = label;
                 paramNumeric.valueEnabledChkBox = chkBox;
@@ -606,26 +606,26 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
                 QCheckBox *chkBox = new QCheckBox( toolBoxPages.at(category).page );
                 chkBox->setText(indenterParameter);
                 chkBox->setChecked( indenterSettings->value(indenterParameter + "/Value").toBool() );
-				paramToolTip = indenterSettings->value(indenterParameter + "/Description").toString();
-				chkBox->setToolTip( paramToolTip );
+                paramToolTip = indenterSettings->value(indenterParameter + "/Description").toString();
+                chkBox->setToolTip( paramToolTip );
                 chkBox->installEventFilter( mainWindow );
-				toolBoxPages.at(category).vboxLayout->addWidget(chkBox);
+                toolBoxPages.at(category).vboxLayout->addWidget(chkBox);
 
                 // remember parameter name and reference to its checkbox
                 ParamBoolean paramBoolean;
                 paramBoolean.paramName = indenterParameter;
                 paramBoolean.checkBox = chkBox;
-				QStringList trueFalseStrings = indenterSettings->value(indenterParameter + "/TrueFalse").toString().split("|");
-				paramBoolean.trueString = trueFalseStrings.at(0);
-				paramBoolean.falseString = trueFalseStrings.at(1);
+                QStringList trueFalseStrings = indenterSettings->value(indenterParameter + "/TrueFalse").toString().split("|");
+                paramBoolean.trueString = trueFalseStrings.at(0);
+                paramBoolean.falseString = trueFalseStrings.at(1);
                 paramBooleans.append(paramBoolean);
 
                 QObject::connect(chkBox, SIGNAL(clicked()), this, SIGNAL(settingsCodeChanged()));
             }
             // edit type is numeric so create a lineedit with label
             else if ( editType == "string" ) {
-				// read the parameter name as it is used at the command line or in its config file
-				QString parameterCallName = indenterSettings->value(indenterParameter + "/CallName").toString();
+                // read the parameter name as it is used at the command line or in its config file
+                QString parameterCallName = indenterSettings->value(indenterParameter + "/CallName").toString();
 
                 // create checkbox which enables or disables the parameter
                 QCheckBox *chkBox = new QCheckBox( toolBoxPages.at(category).page );
@@ -641,15 +641,15 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
                 lineEdit->setText( indenterSettings->value(indenterParameter + "/Value").toString() );
                 paramToolTip = indenterSettings->value(indenterParameter + "/Description").toString();
                 lineEdit->setToolTip( paramToolTip );
-				lineEdit->setMaximumWidth(50);
-				lineEdit->setMinimumWidth(50);
+                lineEdit->setMaximumWidth(50);
+                lineEdit->setMinimumWidth(50);
                 lineEdit->installEventFilter( mainWindow );
 
                 // create the label
                 QLabel *label = new QLabel( toolBoxPages.at(category).page );
                 label->setText(indenterParameter);
-				label->setBuddy(lineEdit);
-				label->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
+                label->setBuddy(lineEdit);
+                label->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
                 label->setToolTip( paramToolTip );
                 label->installEventFilter( mainWindow );
 
@@ -663,7 +663,7 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
                 // remember parameter name and reference to its lineedit
                 ParamString paramString;
                 paramString.paramName = indenterParameter;
-				paramString.paramCallName = parameterCallName;
+                paramString.paramCallName = parameterCallName;
                 paramString.lineEdit = lineEdit;
                 paramString.label = label;
                 paramString.valueEnabledChkBox = chkBox;
@@ -674,8 +674,8 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
             }
             // edit type is multiple so create a combobox with label
             else if ( editType == "multiple" ) {
-				// read the parameter name as it is used at the command line or in its config file
-				QString parameterCallName = indenterSettings->value(indenterParameter + "/CallName").toString();
+                // read the parameter name as it is used at the command line or in its config file
+                QString parameterCallName = indenterSettings->value(indenterParameter + "/CallName").toString();
 
                 // create checkbox which enables or disables the parameter
                 QCheckBox *chkBox = new QCheckBox( toolBoxPages.at(category).page );
@@ -704,7 +704,7 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
                 // remember parameter name and reference to its lineedit
                 ParamMultiple paramMultiple;
                 paramMultiple.paramName = indenterParameter;
-				paramMultiple.paramCallName = parameterCallName;
+                paramMultiple.paramCallName = parameterCallName;
                 paramMultiple.comboBox = comboBox;
                 paramMultiple.choicesStrings = choicesStrings;
                 paramMultiple.valueEnabledChkBox = chkBox;
@@ -794,7 +794,7 @@ void IndentHandler::setIndenter(int indenterID) {
     Returns a string containing by the indenter supported file types/extensions devided by a space.
  */
 QString IndentHandler::getPossibleIndenterFileExtensions() {
-	return fileTypes;
+    return fileTypes;
 }
 
 /*!

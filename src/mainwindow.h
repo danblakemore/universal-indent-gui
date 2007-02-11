@@ -56,41 +56,41 @@ private:
     QString sourceFileContent;
     QString sourceFormattedContent;
     QString sourceViewContent;
-	CppHighlighter *highlighter;
-	QScrollBar *textEditVScrollBar;
-	QScrollBar *textEdit2VScrollBar;
+    CppHighlighter *highlighter;
+    QScrollBar *textEditVScrollBar;
+    QScrollBar *textEdit2VScrollBar;
     AboutDialog *aboutDialog;
-	int textEditLastScrollPos;
+    int textEditLastScrollPos;
     int currentIndenterID;
     QString currentSourceFile;
     QString currentSourceFileExtension;
     QString savedSourceContent;
     QActionGroup *languageActionGroup;
-	QActionGroup *encodingActionGroup;
+    QActionGroup *encodingActionGroup;
     QTranslator *translator;
     QMenu *languageMenu;
-	QMenu *encodingMenu;
+    QMenu *encodingMenu;
 
     bool sourceCodeChanged;
     bool scrollPositionChanged;
     bool indentSettingsChanged;
     bool previewToggled;
 
-	Ui::toolBarWidget *toolBarWidget;
+    Ui::toolBarWidget *toolBarWidget;
     IndentHandler *indentHandler;
 
     // Stores info about a language, like the full name, mnemonic and a reference to its menu action
     struct LanguageInfo
-	{
+    {
         QString languageName;
         QString languageShort;
-		QAction *languageAction;
-	};
-	QVector<LanguageInfo> languageInfos;
+        QAction *languageAction;
+    };
+    QVector<LanguageInfo> languageInfos;
 
     //! Tries to load a file and returns its content as QString
     QString loadFile(QString filePath);
-    
+
     QString openFileDialog(QString dialogHeaderStr, QString startPath, QString fileMaskStr);
 
     void updateWindowTitle();
@@ -104,13 +104,13 @@ private:
     bool maybeSave();
 
     void createLanguageMenu();
-	void createEncodingMenu();
+    void createEncodingMenu();
     void syntaxHighlightCPP( QTextEdit *textEdit );
 
 protected:
     void closeEvent( QCloseEvent *event );
     bool eventFilter(QObject *obj, QEvent *event);
-    
+
 private slots:
     void openConfigFileDialog();
     void openSourceFileDialog();
@@ -120,14 +120,14 @@ private slots:
     void callIndenter();
     void updateSourceView();
     void turnHighlightOnOff(bool turnOn);
-	void selectIndenter(int indenterID);
+    void selectIndenter(int indenterID);
     void sourceCodeChangedSlot();
     void indentSettingsChangedSlot();
     void previewTurnedOnOff(bool turnOn);
     void exportToPDF();
     void exportToHTML();
     void languageChanged(QAction *languageAction);
-	void encodingChanged(QAction *encodingAction);
+    void encodingChanged(QAction *encodingAction);
 };
 
 #endif // MAINWINDOW_H

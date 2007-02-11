@@ -22,7 +22,7 @@
 
 
 /*!
-	Entry point to UniversalIndentGUI application. Does not evaluate any command line parameters.
+    Entry point to UniversalIndentGUI application. Does not evaluate any command line parameters.
  */
 int main(int argc, char *argv[])
 {
@@ -31,6 +31,6 @@ int main(int argc, char *argv[])
     MainWindow mainWindow;
 
     mainWindow.show();
-	
+
     return app.exec();
 }

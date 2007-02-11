@@ -29,36 +29,35 @@ class QTextDocument;
 
 class CppHighlighter : public QSyntaxHighlighter
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	CppHighlighter(QTextEdit *parent);
+    CppHighlighter(QTextEdit *parent);
     void turnHighlightOff();
     void turnHighlightOn();
 
 protected:
-	void highlightBlock(const QString &text);
+    void highlightBlock(const QString &text);
 
 private:
     bool highlightningIsOn;
     QTextEdit *parent;
 
-	struct HighlightingRule
-	{
-		QRegExp pattern;
-		QTextCharFormat format;
-	};
-	QVector<HighlightingRule> highlightingRules;
+    struct HighlightingRule {
+        QRegExp pattern;
+        QTextCharFormat format;
+    };
+    QVector<HighlightingRule> highlightingRules;
 
-	QRegExp commentStartExpression;
-	QRegExp commentEndExpression;
+    QRegExp commentStartExpression;
+    QRegExp commentEndExpression;
 
-	QTextCharFormat keywordFormat;
-	QTextCharFormat classFormat;
-	QTextCharFormat singleLineCommentFormat;
-	QTextCharFormat multiLineCommentFormat;
-	QTextCharFormat quotationFormat;
-	QTextCharFormat functionFormat;
+    QTextCharFormat keywordFormat;
+    QTextCharFormat classFormat;
+    QTextCharFormat singleLineCommentFormat;
+    QTextCharFormat multiLineCommentFormat;
+    QTextCharFormat quotationFormat;
+    QTextCharFormat functionFormat;
 };
 
 #endif

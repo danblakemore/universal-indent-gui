@@ -20,37 +20,37 @@
 #include "mainwindow.h"
 
 /*!
-	\class MainWindow
-	\brief Is the main window of UniversalIndentGUI
+    \class MainWindow
+    \brief Is the main window of UniversalIndentGUI
 
-	The MainWindow class is responsible for generating and displaying most of the gui elements.
-	Its look is set in the file "indentgui.ui". An object for the indent handler is generated here
-	and user actions are being controlled. Is responsible for file open dialogs and indenter selection.
+    The MainWindow class is responsible for generating and displaying most of the gui elements.
+    Its look is set in the file "indentgui.ui". An object for the indent handler is generated here
+    and user actions are being controlled. Is responsible for file open dialogs and indenter selection.
  */
 
 /*!
-	Constructs the main window.
+    Constructs the main window.
  */
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
-	// generate gui as it is build in the file "indentgui.ui"
+    // generate gui as it is build in the file "indentgui.ui"
     setupUi(this);
 
-	// set the program version, which is shown in the main window title
+    // set the program version, which is shown in the main window title
     version = "UniversalIndentGUI 0.4 Beta";
 
-	toolBarWidget = new Ui::toolBarWidget();
-	QWidget* helpWidget = new QWidget();
-	toolBarWidget->setupUi(helpWidget);
-	toolBar->addWidget(helpWidget);
-	toolBar->setAllowedAreas( Qt::TopToolBarArea | Qt::BottomToolBarArea );
+    toolBarWidget = new Ui::toolBarWidget();
+    QWidget* helpWidget = new QWidget();
+    toolBarWidget->setupUi(helpWidget);
+    toolBar->addWidget(helpWidget);
+    toolBar->setAllowedAreas( Qt::TopToolBarArea | Qt::BottomToolBarArea );
 
     indentHandler = 0;
 
     loadSettings();
 
     createLanguageMenu();
-	createEncodingMenu();
+    createEncodingMenu();
 
     updateWindowTitle();
 
@@ -78,55 +78,55 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     //menuSelect_Indenter->addAction(actionAStyle);
     //retranslateUi(this);
 
-	//toolBar->addWidget(cmbBoxIndenters);
-	//toolBar->addWidget(pbOpenFile);
-	//toolBar->addWidget(cbLivePreview);
-	//toolBar->addWidget(cbHighlight);
-	////toolBar->addWidget(spacerItem);
-	//toolBar->addWidget(pbAbout);
-	//toolBar->addWidget(pbExit);
+    //toolBar->addWidget(cmbBoxIndenters);
+    //toolBar->addWidget(pbOpenFile);
+    //toolBar->addWidget(cbLivePreview);
+    //toolBar->addWidget(cbHighlight);
+    ////toolBar->addWidget(spacerItem);
+    //toolBar->addWidget(pbAbout);
+    //toolBar->addWidget(pbExit);
 
     updateSourceView();
 
-	connect( toolBarWidget->pbOpen_Source_File, SIGNAL(clicked()), this, SLOT(openSourceFileDialog()) );
-	connect( actionOpen_Source_File, SIGNAL(activated()), this, SLOT(openSourceFileDialog()) );
-	connect( actionSave_Source_File_As, SIGNAL(activated()), this, SLOT(saveasSourceFileDialog()) );
-	connect( actionSave_Source_File, SIGNAL(activated()), this, SLOT(saveSourceFile()) );
-	connect( actionExportPDF, SIGNAL(activated()), this, SLOT(exportToPDF()) );
-	connect( actionExportHTML, SIGNAL(activated()), this, SLOT(exportToHTML()) );
+    connect( toolBarWidget->pbOpen_Source_File, SIGNAL(clicked()), this, SLOT(openSourceFileDialog()) );
+    connect( actionOpen_Source_File, SIGNAL(activated()), this, SLOT(openSourceFileDialog()) );
+    connect( actionSave_Source_File_As, SIGNAL(activated()), this, SLOT(saveasSourceFileDialog()) );
+    connect( actionSave_Source_File, SIGNAL(activated()), this, SLOT(saveSourceFile()) );
+    connect( actionExportPDF, SIGNAL(activated()), this, SLOT(exportToPDF()) );
+    connect( actionExportHTML, SIGNAL(activated()), this, SLOT(exportToHTML()) );
 
-	connect( actionLoad_Indenter_Config_File, SIGNAL(activated()), this, SLOT(openConfigFileDialog()) );
-	connect( actionSave_Indenter_Config_File, SIGNAL(activated()), this, SLOT(saveasIndentCfgFileDialog()) );
+    connect( actionLoad_Indenter_Config_File, SIGNAL(activated()), this, SLOT(openConfigFileDialog()) );
+    connect( actionSave_Indenter_Config_File, SIGNAL(activated()), this, SLOT(saveasIndentCfgFileDialog()) );
 
     connect( toolBarWidget->cbLivePreview, SIGNAL(toggled(bool)), this, SLOT(previewTurnedOnOff(bool)) );
-	connect( toolBarWidget->cbLivePreview, SIGNAL(toggled(bool)), actionLive_Indent_Preview, SLOT(setChecked(bool)) );
-	connect( actionLive_Indent_Preview, SIGNAL(toggled(bool)), toolBarWidget->cbLivePreview, SLOT(setChecked(bool)) );
-	connect( toolBarWidget->cbHighlight, SIGNAL(toggled(bool)), this, SLOT(turnHighlightOnOff(bool)) );
-	connect( toolBarWidget->cbHighlight, SIGNAL(toggled(bool)), actionSyntax_Highlight, SLOT(setChecked(bool)) );
-	connect( actionSyntax_Highlight, SIGNAL(toggled(bool)), toolBarWidget->cbHighlight, SLOT(setChecked(bool)) );
+    connect( toolBarWidget->cbLivePreview, SIGNAL(toggled(bool)), actionLive_Indent_Preview, SLOT(setChecked(bool)) );
+    connect( actionLive_Indent_Preview, SIGNAL(toggled(bool)), toolBarWidget->cbLivePreview, SLOT(setChecked(bool)) );
+    connect( toolBarWidget->cbHighlight, SIGNAL(toggled(bool)), this, SLOT(turnHighlightOnOff(bool)) );
+    connect( toolBarWidget->cbHighlight, SIGNAL(toggled(bool)), actionSyntax_Highlight, SLOT(setChecked(bool)) );
+    connect( actionSyntax_Highlight, SIGNAL(toggled(bool)), toolBarWidget->cbHighlight, SLOT(setChecked(bool)) );
 
-	connect( toolBarWidget->pbExit, SIGNAL(clicked()), this, SLOT(close()));
-	connect( actionAbout_UniversalIndentGUI, SIGNAL(activated()), aboutDialog, SLOT(exec()) );
-	connect( toolBarWidget->pbAbout, SIGNAL(clicked()), aboutDialog, SLOT(exec()) );
+    connect( toolBarWidget->pbExit, SIGNAL(clicked()), this, SLOT(close()));
+    connect( actionAbout_UniversalIndentGUI, SIGNAL(activated()), aboutDialog, SLOT(exec()) );
+    connect( toolBarWidget->pbAbout, SIGNAL(clicked()), aboutDialog, SLOT(exec()) );
 
-	connect( languageActionGroup, SIGNAL(triggered(QAction*)), this, SLOT(languageChanged(QAction*)) );
-	connect( encodingActionGroup, SIGNAL(triggered(QAction*)), this, SLOT(encodingChanged(QAction*)) );
+    connect( languageActionGroup, SIGNAL(triggered(QAction*)), this, SLOT(languageChanged(QAction*)) );
+    connect( encodingActionGroup, SIGNAL(triggered(QAction*)), this, SLOT(encodingChanged(QAction*)) );
 
-	connect( toolBarWidget->cmbBoxIndenters, SIGNAL(activated(int)), this, SLOT(selectIndenter(int)) );
+    connect( toolBarWidget->cmbBoxIndenters, SIGNAL(activated(int)), this, SLOT(selectIndenter(int)) );
 
     connect( textEditVScrollBar, SIGNAL(valueChanged(int)), textEdit2VScrollBar, SLOT(setValue(int)));
     connect( textEdit2VScrollBar, SIGNAL(valueChanged(int)), textEditVScrollBar, SLOT(setValue(int)));
 
     connect( txtedSourceCode, SIGNAL(textChanged()), this, SLOT(sourceCodeChangedSlot()) );
-    
+
 }
 
 
 /*!
-	Creates the by \a indenterID selected indent handler object and adds the indent widget to its layout
+    Creates the by \a indenterID selected indent handler object and adds the indent widget to its layout
  */
 void MainWindow::selectIndenter(int indenterID) {
-	IndentHandler *oldIndentHandler = indentHandler;
+    IndentHandler *oldIndentHandler = indentHandler;
 
     // prevent unnecessary updates if same indenter as current has been selected
     if ( indenterID == currentIndenterID ) {
@@ -135,13 +135,13 @@ void MainWindow::selectIndenter(int indenterID) {
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
-	indentHandler = new IndentHandler("./data/", indenterID, this, centralwidget);
+    indentHandler = new IndentHandler("./data/", indenterID, this, centralwidget);
     indentHandler->hide();
     vboxLayout->insertWidget(0, indentHandler);
     oldIndentHandler->hide();
     indentHandler->show();
-	vboxLayout->removeWidget(oldIndentHandler);
-	delete oldIndentHandler;
+    vboxLayout->removeWidget(oldIndentHandler);
+    delete oldIndentHandler;
 
     // Take care if the selected indenterID is smaller or greater than the number of existing indenters
     if ( indenterID < 0 ) {
@@ -151,8 +151,8 @@ void MainWindow::selectIndenter(int indenterID) {
         indenterID = indentHandler->getAvailableIndenters().count() - 1;
     }
 
-	toolBarWidget->cmbBoxIndenters->setCurrentIndex(indenterID);
-	QObject::connect(indentHandler, SIGNAL(settingsCodeChanged()), this, SLOT(indentSettingsChangedSlot()));
+    toolBarWidget->cmbBoxIndenters->setCurrentIndex(indenterID);
+    QObject::connect(indentHandler, SIGNAL(settingsCodeChanged()), this, SLOT(indentSettingsChangedSlot()));
 
     currentIndenterID = indenterID;
     if ( toolBarWidget->cbLivePreview->isChecked() ) {
@@ -165,8 +165,8 @@ void MainWindow::selectIndenter(int indenterID) {
 }
 
 /*!
-	Tries to load the by \a filePath defined file and returns its content as QString.
-	If the file could not be loaded a error dialog will be shown.
+    Tries to load the by \a filePath defined file and returns its content as QString.
+    If the file could not be loaded a error dialog will be shown.
  */
 QString MainWindow::loadFile(QString filePath) {
 
@@ -179,7 +179,7 @@ QString MainWindow::loadFile(QString filePath) {
     else {
         QTextStream inSrcStrm(&inSrcFile);
         QApplication::setOverrideCursor(Qt::WaitCursor);
-		inSrcStrm.setCodec( QTextCodec::codecForName("UTF-8") );
+        inSrcStrm.setCodec( QTextCodec::codecForName("UTF-8") );
         fileContent = inSrcStrm.readAll();
         QApplication::restoreOverrideCursor();
         inSrcFile.close();
@@ -188,8 +188,8 @@ QString MainWindow::loadFile(QString filePath) {
 }
 
 /*!
-	Calls the source file open dialog to load a source file for the formatting preview.
-	If the file was successfully loaded the indenter will be called to generate the formatted source code.
+    Calls the source file open dialog to load a source file for the formatting preview.
+    If the file was successfully loaded the indenter will be called to generate the formatted source code.
  */
 void MainWindow::openSourceFileDialog() {
     // If the source code file is changed and the shown dialog for saving the file
@@ -198,7 +198,7 @@ void MainWindow::openSourceFileDialog() {
         return;
     }
     QString openedSourceFileContent = "";
-	QString fileExtensions = tr("Supported by indenter")+" ("+indentHandler->getPossibleIndenterFileExtensions()+
+    QString fileExtensions = tr("Supported by indenter")+" ("+indentHandler->getPossibleIndenterFileExtensions()+
                              ");;"+tr("All files")+" (*.*)";
 
     //QString openedSourceFileContent = openFileDialog( tr("Choose source code file"), "./", fileExtensions );
@@ -229,11 +229,11 @@ void MainWindow::openSourceFileDialog() {
 
 
 /*!
-	Calls the source file save as dialog to save a source file under a choosen name.
-	If the file already exists and it should be overwritten, a warning is shown before.
+    Calls the source file save as dialog to save a source file under a choosen name.
+    If the file already exists and it should be overwritten, a warning is shown before.
  */
 bool MainWindow::saveasSourceFileDialog() {
-	QString fileExtensions = tr("Supported by indenter")+" ("+indentHandler->getPossibleIndenterFileExtensions()+
+    QString fileExtensions = tr("Supported by indenter")+" ("+indentHandler->getPossibleIndenterFileExtensions()+
                              ");;"+tr("All files")+" (*.*)";
 
     //QString openedSourceFileContent = openFileDialog( tr("Choose source code file"), "./", fileExtensions );
@@ -289,11 +289,11 @@ bool MainWindow::saveSourceFile() {
 
 
 /*!
-	Calls the indenter config file save as dialog to save the config file under a choosen name.
-	If the file already exists and it should be overwritten, a warning is shown before.
+    Calls the indenter config file save as dialog to save the config file under a choosen name.
+    If the file already exists and it should be overwritten, a warning is shown before.
  */
 void MainWindow::saveasIndentCfgFileDialog() {
-	QString fileExtensions = tr("All files")+" (*.*)";
+    QString fileExtensions = tr("All files")+" (*.*)";
 
     //QString openedSourceFileContent = openFileDialog( tr("Choose source code file"), "./", fileExtensions );
     QString fileName = QFileDialog::getSaveFileName( this, tr("Save indent config file"), indentHandler->getIndenterCfgFile(), fileExtensions);
@@ -309,11 +309,11 @@ void MainWindow::saveasIndentCfgFileDialog() {
 
 
 /*!
-	Shows a file open dialog to open an existing config file for the currently selected indenter.
-	If the file was successfully opened the indent handler is called to load the settings and update itself.
+    Shows a file open dialog to open an existing config file for the currently selected indenter.
+    If the file was successfully opened the indent handler is called to load the settings and update itself.
  */
 void MainWindow::openConfigFileDialog() {
-    QString configFilePath; 
+    QString configFilePath;
 
     configFilePath = QFileDialog::getOpenFileName( NULL, tr("Choose indenter config file"), indentHandler->getIndenterCfgFile(), "All files (*.*)" );
 
@@ -323,8 +323,8 @@ void MainWindow::openConfigFileDialog() {
 }
 
 /*!
-	Shows a file open dialog with the title \a dialogHeaderStr starting in the directory \a startPath 
-	and with a file mask defined by \a fileMaskStr. Returns the contents of the file as QString.
+    Shows a file open dialog with the title \a dialogHeaderStr starting in the directory \a startPath
+    and with a file mask defined by \a fileMaskStr. Returns the contents of the file as QString.
  */
 QString MainWindow::openFileDialog(QString dialogHeaderStr, QString startPath, QString fileMaskStr) {
 
@@ -340,9 +340,9 @@ QString MainWindow::openFileDialog(QString dialogHeaderStr, QString startPath, Q
 }
 
 /*!
-	Updates the text edit field, which is showing the loaded, and if preview is enabled formatted, source code.
-	Reassigns the line numbers and in case of switch between preview and none preview keeps the text field
-	at the same line number.
+    Updates the text edit field, which is showing the loaded, and if preview is enabled formatted, source code.
+    Reassigns the line numbers and in case of switch between preview and none preview keeps the text field
+    at the same line number.
  */
 void MainWindow::updateSourceView()
 {
@@ -384,8 +384,8 @@ void MainWindow::updateSourceView()
 }
 
 /*!
-	Calls the selected indenter with the currently loaded source code to retrieve the formatted source code.
-	The original loaded source code file will not be changed.
+    Calls the selected indenter with the currently loaded source code to retrieve the formatted source code.
+    The original loaded source code file will not be changed.
  */
 void MainWindow::callIndenter() {
     QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
@@ -395,7 +395,7 @@ void MainWindow::callIndenter() {
 }
 
 /*!
-	Switches the syntax highlighting corresponding to the value \a turnOn either on or off.
+    Switches the syntax highlighting corresponding to the value \a turnOn either on or off.
  */
 void MainWindow::turnHighlightOnOff(bool turnOn) {
     if ( turnOn ) {
@@ -431,7 +431,7 @@ void MainWindow::sourceCodeChangedSlot() {
 
     if ( cursorPos <= 0 ) {
         cursorPos = 1;
-    } 
+    }
     enteredCharacter = sourceFileContent.at(cursorPos-1);
 
     if ( toolBarWidget->cbLivePreview->isChecked() ) {
@@ -481,7 +481,7 @@ void MainWindow::indentSettingsChangedSlot() {
 
     QTextCursor savedCursor = txtedSourceCode->textCursor();
     int cursorPos = savedCursor.position();
-    
+
     if ( toolBarWidget->cbLivePreview->isChecked() ) {
         callIndenter();
         previewToggled = true;
@@ -564,7 +564,7 @@ void MainWindow::updateWindowTitle() {
     Opens a dialog to save the current source code as a PDF document.
  */
 void MainWindow::exportToPDF() {
-	QString fileExtensions = tr("PDF Document")+" (*.pdf)";
+    QString fileExtensions = tr("PDF Document")+" (*.pdf)";
 
     QString fileName = currentSourceFile;
     QFileInfo fileInfo(fileName);
@@ -672,7 +672,7 @@ void MainWindow::loadSettings() {
     indentHandler = new IndentHandler("./data/", indenterID, this, centralwidget);
     vboxLayout->addWidget(indentHandler);
 
-	toolBarWidget->cmbBoxIndenters->addItems( indentHandler->getAvailableIndenters() );
+    toolBarWidget->cmbBoxIndenters->addItems( indentHandler->getAvailableIndenters() );
 
     // Take care if the selected indenterID is smaller or greater than the number of existing indenters
     if ( indenterID < 0 ) {
@@ -682,8 +682,8 @@ void MainWindow::loadSettings() {
         indenterID = indentHandler->getAvailableIndenters().count() - 1;
     }
 
-	toolBarWidget->cmbBoxIndenters->setCurrentIndex(indenterID);
-	QObject::connect(indentHandler, SIGNAL(settingsCodeChanged()), this, SLOT(indentSettingsChangedSlot()));
+    toolBarWidget->cmbBoxIndenters->setCurrentIndex(indenterID);
+    QObject::connect(indentHandler, SIGNAL(settingsCodeChanged()), this, SLOT(indentSettingsChangedSlot()));
     currentIndenterID = indenterID;
 
 
@@ -715,14 +715,14 @@ void MainWindow::loadSettings() {
     if ( language.isEmpty() ) {
         language = QLocale::system().name();
         language.truncate(2);
-    }  
+    }
 
     // load the translation file and set it for the application
     translator = new QTranslator();
     translator->load( QString("./translations/universalindent_") + language );
     qApp->installTranslator(translator);
     retranslateUi(this);
-	toolBarWidget->retranslateUi(toolBar);
+    toolBarWidget->retranslateUi(toolBar);
 
 
     if ( settingsFileExists ) {
@@ -773,7 +773,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
         }
         else {
             //QToolTip::showText( QPoint(100,100) , "Test1");
-            return true;            
+            return true;
         }
     } else {
         // pass the event on to the parent class
@@ -856,7 +856,7 @@ void MainWindow::createLanguageMenu() {
 
         languageInfo.languageAction = languageAction;
         languageInfos.append( languageInfo );
-    }    
+    }
 
     languageMenu = menuSettings->addMenu( tr("Language") );
 
@@ -884,7 +884,7 @@ void MainWindow::languageChanged(QAction* languageAction) {
             translator->load( QString("./translations/universalindent_") + language );
             qApp->installTranslator( translator );
             retranslateUi(this);
-			toolBarWidget->retranslateUi(toolBar);
+            toolBarWidget->retranslateUi(toolBar);
 
             // translate the language menu
             languageMenu->setTitle( tr("Language") );
@@ -910,39 +910,39 @@ void MainWindow::languageChanged(QAction* languageAction) {
 
 
 /*!
-	Creates a menu entry under the settings menu for all available text encodings.
+    Creates a menu entry under the settings menu for all available text encodings.
 */
 void MainWindow::createEncodingMenu() {
-	QAction *encodingAction;
-	QString encodingName;
+    QAction *encodingAction;
+    QString encodingName;
 
-	encodingActionGroup = new QActionGroup(this);
+    encodingActionGroup = new QActionGroup(this);
 
-	QStringList encodingsList = QStringList() << "UTF-8" << "UTF-16" << "UTF-16BE" << "UTF-16LE"
-		<< "Apple Roman" << "Big5" << "Big5-HKSCS" << "EUC-JP" << "EUC-KR" << "GB18030-0"
-		<< "IBM 850" << "IBM 866" << "IBM 874" << "ISO 2022-JP" << "ISO 8859-1" << "ISO 8859-13"
-		<< "Iscii-Bng" << "JIS X 0201" << "JIS X 0208" << "KOI8-R" << "KOI8-U" << "MuleLao-1"
-		<< "ROMAN8" << "Shift-JIS" << "TIS-620" << "TSCII" << "Windows-1250" << "WINSAMI2";
+    QStringList encodingsList = QStringList() << "UTF-8" << "UTF-16" << "UTF-16BE" << "UTF-16LE"
+            << "Apple Roman" << "Big5" << "Big5-HKSCS" << "EUC-JP" << "EUC-KR" << "GB18030-0"
+            << "IBM 850" << "IBM 866" << "IBM 874" << "ISO 2022-JP" << "ISO 8859-1" << "ISO 8859-13"
+            << "Iscii-Bng" << "JIS X 0201" << "JIS X 0208" << "KOI8-R" << "KOI8-U" << "MuleLao-1"
+            << "ROMAN8" << "Shift-JIS" << "TIS-620" << "TSCII" << "Windows-1250" << "WINSAMI2";
 
-	// Loop for each found translation file
-	foreach ( encodingName, encodingsList ) {
-		encodingAction = new QAction(encodingName, encodingActionGroup);
-		encodingAction->setStatusTip( tr("Reopen the currently opened source code file by using the text encoding scheme ") + encodingName );
-		//encodingAction->setCheckable(true);
-	}    
-	//encodingActionGroup->actions().first()->setChecked(true);
-	encodingMenu = new QMenu( tr("Reopen File with other Encoding") );
-	menuFile->insertMenu(actionSave_Source_File, encodingMenu);
+    // Loop for each found translation file
+    foreach ( encodingName, encodingsList ) {
+            encodingAction = new QAction(encodingName, encodingActionGroup);
+            encodingAction->setStatusTip( tr("Reopen the currently opened source code file by using the text encoding scheme ") + encodingName );
+            //encodingAction->setCheckable(true);
+    }
+    //encodingActionGroup->actions().first()->setChecked(true);
+    encodingMenu = new QMenu( tr("Reopen File with other Encoding") );
+    menuFile->insertMenu(actionSave_Source_File, encodingMenu);
 
-	encodingMenu->addActions( encodingActionGroup->actions() );
+    encodingMenu->addActions( encodingActionGroup->actions() );
 }
 
 
 /*!
-	This slot is called whenever an encoding is selected in the settings menu.
+    This slot is called whenever an encoding is selected in the settings menu.
 */
 void MainWindow::encodingChanged(QAction* encodingAction) {
-	if ( maybeSave() ) {
+    if ( maybeSave() ) {
         QFile inSrcFile(currentSourceFile);
         QString fileContent = "";
 
@@ -959,7 +959,7 @@ void MainWindow::encodingChanged(QAction* encodingAction) {
             inSrcFile.close();
             txtedSourceCode->setPlainText( fileContent );
         }
-	}
+    }
 }
 
 
