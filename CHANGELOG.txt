@@ -1,3 +1,15 @@
+2007-02-11 Version 0.4.1 Beta
+[add] Support for the indenter Uncrustify has been added.
+[add] Feature Request ID 1651719: A binary release for Linux AMD64 is now available.
+[add] Feature Request ID 1657251: If only a win32 executable exists under Linux, wine will be used to call it. Now a test will be mad if wine is installed and an error message will show up if not installed.
+[change] Some changes mad to the Artistic Styler ini file as suggested by its author Jim Pattee.
+[change] Put the file open button at first position in the toolbar, because normally this is the first step one would do, if he tries to find the optimal indenter and settings for himself.
+[change] The background in the about dialog has been changed to look equal on all systems.
+[fix] Bug ID 1657255: If an error occurred during the try to call the indenter, a message box is being shown, but the mouse cursor still indicated that the application is being busy.
+[fix] Bug ID 1651071: Changing the file encoding did not affect the code sent to the indenter, so the code while preview turned on, had wrong encoding (still seems to have some encoding problems under Linux).
+[fix] Bug ID 1650222: On Windows systems there were two DLLs missing to run GNU Indent ("libiconv-2.dll" and "libintl-2.dll")
+[fix] Bug ID 1649918: The indenter was not called after first program start, so preview updated first after changing a setting or the code.
+
 2007-02-01 Version 0.4 Beta
 [add] All parameters of GNU Indent have been added.
 [add] From now on the indenter BCPP is included.
