@@ -903,6 +903,20 @@ void MainWindow::languageChanged(QAction* languageAction) {
                 languageInfo.languageAction->setStatusTip( languageInfo.languageName + tr(" as user interface language.") );
             }
 
+			// translate the encoding menu
+			QStringList encodingsList = QStringList() << "UTF-8" << "UTF-16" << "UTF-16BE" << "UTF-16LE"
+				<< "Apple Roman" << "Big5" << "Big5-HKSCS" << "EUC-JP" << "EUC-KR" << "GB18030-0"
+				<< "IBM 850" << "IBM 866" << "IBM 874" << "ISO 2022-JP" << "ISO 8859-1" << "ISO 8859-13"
+				<< "Iscii-Bng" << "JIS X 0201" << "JIS X 0208" << "KOI8-R" << "KOI8-U" << "MuleLao-1"
+				<< "ROMAN8" << "Shift-JIS" << "TIS-620" << "TSCII" << "Windows-1250" << "WINSAMI2";
+
+			encodingMenu->setTitle( tr("Reopen File with other Encoding") );
+			QList<QAction *> encodingActionList = encodingActionGroup->actions();
+			for ( int i = 0; i < encodingActionList.size(); i++ ) {
+				encodingActionList.at(i)->setStatusTip( tr("Reopen the currently opened source code file by using the text encoding scheme ") + encodingsList.at(i) );
+			}
+
+			// translate the about dialog
             aboutDialog->retranslate();
         }
     }
