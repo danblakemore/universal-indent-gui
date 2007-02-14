@@ -89,7 +89,10 @@ QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtensi
 
     // generate the parameter string that will be save to the indenters config file
     QString parameterString = getParameterString();
-    writeConfigFile( parameterString );
+
+	if ( !configFilename.isEmpty() ) {
+		writeConfigFile( parameterString );
+	}
 
     QString formattedSourceCode;
     bool wineInstalled = true;
@@ -102,6 +105,12 @@ QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtensi
     QFile::remove(dataDirctoryStr + inputFileName + inputFileExtension);
     QFile outSrcFile(dataDirctoryStr + inputFileName + inputFileExtension);
     QString indentCallString = inputFileParameter + inputFileName + inputFileExtension;
+
+	// If the config file name is empty it is assumed that all parameters are sent via command line call
+	if ( configFilename.isEmpty() ) {
+		indentCallString += " " + parameterString;
+	}
+
     if ( outputFileParameter != "none" ) {
         indentCallString += " "+ outputFileParameter + outputFileName + inputFileExtension;
     }
