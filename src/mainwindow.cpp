@@ -37,7 +37,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     setupUi(this);
 
     // set the program version, which is shown in the main window title
-    version = "UniversalIndentGUI 0.4.1 Beta";
+    version = "UniversalIndentGUI 0.4.2 Beta";
 
     toolBarWidget = new Ui::toolBarWidget();
     QWidget* helpWidget = new QWidget();
@@ -948,9 +948,9 @@ void MainWindow::createEncodingMenu() {
     foreach ( encodingName, encodingsList ) {
             encodingAction = new QAction(encodingName, encodingActionGroup);
             encodingAction->setStatusTip( tr("Reopen the currently opened source code file by using the text encoding scheme ") + encodingName );
-            //encodingAction->setCheckable(true);
+            encodingAction->setCheckable(true);
     }
-    //encodingActionGroup->actions().first()->setChecked(true);
+    encodingActionGroup->actions().first()->setChecked(true);
     encodingMenu = new QMenu( tr("Reopen File with other Encoding") );
     menuFile->insertMenu(actionSave_Source_File, encodingMenu);
 
