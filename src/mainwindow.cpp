@@ -840,6 +840,9 @@ void MainWindow::createLanguageMenu() {
         else if ( languageShort == "de" ) {
             languageInfo.languageName = tr("German");
         }
+		else if ( languageShort == "tw" ) {
+			languageInfo.languageName = tr("Taiwan (Chinese)");
+		}
         else {
             languageInfo.languageName = tr("Unknown language mnemonic ") + languageShort;
         }
@@ -896,6 +899,9 @@ void MainWindow::languageChanged(QAction* languageAction) {
                 else if ( languageInfo.languageShort == "de" ) {
                     languageInfo.languageName = tr("German");
                 }
+				else if ( languageInfo.languageShort == "tw" ) {
+					languageInfo.languageName = tr("Taiwan (Chinese)");
+				}
                 else {
                     languageInfo.languageName = tr("Unknown language mnemonic ") + languageInfo.languageShort;
                 }
