@@ -16,6 +16,7 @@ qmake
 echo calling lrelease release
 echo ------------------------
 lrelease ./translations/universalindent_de.ts -qm ./translations/universalindent_de.qm
+lrelease ./translations/universalindent_tw.ts -qm ./translations/universalindent_tw.qm
 echo calling make release
 echo --------------------
 make release
@@ -40,6 +41,7 @@ cp ./data/astyle.html ./UniversalIndentGUI_linux32/data/
 cp ./data/bcpp.cfg ./UniversalIndentGUI_linux32/data/
 cp ./data/bcpp ./UniversalIndentGUI_linux32/data/
 cp ./data/bcpp.txt ./UniversalIndentGUI_linux32/data/
+cp ./data/csstidy ./UniversalIndentGUI_linux32/data/
 cp ./data/gc.cfg ./UniversalIndentGUI_linux32/data/
 cp ./data/gc.exe ./UniversalIndentGUI_linux32/data/
 cp ./data/gc.txt ./UniversalIndentGUI_linux32/data/
@@ -51,6 +53,7 @@ cp ./data/uncrustify ./UniversalIndentGUI_linux32/data/
 cp ./data/uncrustify.txt ./UniversalIndentGUI_linux32/data/
 cp ./data/uigui_astyle.ini ./UniversalIndentGUI_linux32/data/
 cp ./data/uigui_bcpp.ini ./UniversalIndentGUI_linux32/data/
+cp ./data/uigui_csstidy.ini ./UniversalIndentGUI_linux32/data/
 cp ./data/uigui_greatcode.ini ./UniversalIndentGUI_linux32/data/
 cp ./data/uigui_gnuindent.ini ./UniversalIndentGUI_linux32/data/
 cp ./data/uigui_uncrustify.ini ./UniversalIndentGUI_linux32/data/
@@ -61,6 +64,6 @@ cp ./release/UniversalIndentGUI ./UniversalIndentGUI_linux32/
 cd UniversalIndentGUI_linux32
 echo compressing UniversalIndentGUI_linux32
 echo ----------------------------------------
-tar czf UniversalIndentGUI_0.4_Beta_linux32.tgz *
+tar czf UniversalIndentGUI_0.4.2_Beta_linux32.tgz *
 cd ..
 read -p "press any key to continue"
