@@ -1,3 +1,7 @@
+2007-02-25 Version 0.4.2 Beta
+[add] Support for the indenter CSSTidy has been added.
+[add] Support for new language: Taiwan (Chinese).
+[change] For easier translation the about dialog has been redesigned a bit.
 2007-02-11 Version 0.4.1 Beta
 [add] Support for the indenter Uncrustify has been added.
 [add] Feature Request ID 1651719: A binary release for Linux AMD64 is now available.
