@@ -637,7 +637,7 @@ void MainWindow::loadSettings() {
 
     // read the version string from settings if the settings file exists
     if ( settingsFileExists ) {
-        QString readVersion = settings->value("UniversalIndentGUI/version").toString();
+        QString readVersion = settings->value("UniversalIndentGUI/version", "").toString();
         // if version strings are not equal set first run true.
         if ( readVersion != version ) {
             isFirstRunOfThisVersion = true;
@@ -651,16 +651,30 @@ void MainWindow::loadSettings() {
     }
 
 
+	// Handle last opened window size
+	// ------------------------------
+
+	// read windows last size and position from settings if the settings file exists
+	if ( settingsFileExists ) {
+		bool maximized = settings->value( "UniversalIndentGUI/maximized", false ).toBool();
+		QPoint pos = settings->value( "UniversalIndentGUI/position", QPoint(0, 0) ).toPoint();
+		QSize size = settings->value( "UniversalIndentGUI/size", QSize(800, 600) ).toSize();
+		resize(size);
+		move(pos);
+		if ( maximized ) {
+			showMaximized();
+		}
+	}
+	else {
+		currentSourceFile = "./data/example.cpp";
+	}
+
     // Handle last opened source code file
     // -----------------------------------
 
     // read last opened source code file from settings if the settings file exists
     if ( settingsFileExists ) {
-        currentSourceFile = settings->value("UniversalIndentGUI/lastSourceCodeFile").toString();
-        // if no file was set use default example
-        if ( currentSourceFile.isEmpty() ) {
-            currentSourceFile = "./data/example.cpp";
-        }
+        currentSourceFile = settings->value("UniversalIndentGUI/lastSourceCodeFile", "./data/example.cpp").toString();
     }
     else {
         currentSourceFile = "./data/example.cpp";
@@ -688,7 +702,7 @@ void MainWindow::loadSettings() {
 
     // read last selected indenter from settings if the settings file exists
     if ( settingsFileExists ) {
-        indenterID = settings->value("UniversalIndentGUI/lastSelectedIndenter").toInt();
+        indenterID = settings->value("UniversalIndentGUI/lastSelectedIndenter", 0).toInt();
     }
     else {
         indenterID = 0;
@@ -717,7 +731,7 @@ void MainWindow::loadSettings() {
 
     // read if indenter parameter tool tips are enabled
     if ( settingsFileExists ) {
-        bool indenterParameterTooltipsEnabled = settings->value("UniversalIndentGUI/indenterParameterTooltipsEnabled").toBool();
+        bool indenterParameterTooltipsEnabled = settings->value("UniversalIndentGUI/indenterParameterTooltipsEnabled", true).toBool();
         actionParameter_Tooltips->setChecked( indenterParameterTooltipsEnabled );
     }
     else {
@@ -730,7 +744,7 @@ void MainWindow::loadSettings() {
 
     // read the selected language
     if ( settingsFileExists ) {
-        language = settings->value("UniversalIndentGUI/language").toString();
+        language = settings->value("UniversalIndentGUI/language", "").toString();
     }
     else {
         language = "";
@@ -768,11 +782,16 @@ void MainWindow::saveSettings() {
     settings.setValue( "UniversalIndentGUI/indenterParameterTooltipsEnabled", actionParameter_Tooltips->isChecked() );
     settings.setValue( "UniversalIndentGUI/language", language );
     settings.setValue( "UniversalIndentGUI/version", version );
+	settings.setValue( "UniversalIndentGUI/maximized", isMaximized() );
+	if ( !isMaximized() ) {
+		settings.setValue( "UniversalIndentGUI/position", pos() );
+		settings.setValue( "UniversalIndentGUI/size", size() );
+	}
 }
 
 
 /*!
-    Is allways called when the program is quit. Calls the saveSettings function before really quits.
+    Is always called when the program is quit. Calls the saveSettings function before really quits.
 */
 void MainWindow::closeEvent( QCloseEvent *event ) {
     if ( maybeSave() ) {
