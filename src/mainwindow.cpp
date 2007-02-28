@@ -36,8 +36,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     // generate gui as it is build in the file "indentgui.ui"
     setupUi(this);
 
-    // set the program version, which is shown in the main window title
-    version = "UniversalIndentGUI 0.4.2 Beta";
+    // set the program version, revision and date, which is shown in the main window title and in the about dialog.
+    version = "0.4.2 Beta";
+    revision = "250";
+    QDate buildDate(2007, 2, 28);
+    buildDateStr = buildDate.toString("d. MMMM yyyy");
 
     toolBarWidget = new Ui::toolBarWidget();
     QWidget* helpWidget = new QWidget();
@@ -47,6 +50,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 
     indentHandler = 0;
 
+    isFirstRunOfThisVersion = false;
     loadSettings();
 
     createLanguageMenu();
@@ -66,7 +70,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     previewToggled = true;
 
     // generate about dialog box
-    aboutDialog = new AboutDialog(this);
+    aboutDialog = new AboutDialog(this, version, revision, buildDateStr);
 
     //QAction *actionAStyle;
     //QMenu *menuSelect_Indenter;
@@ -556,7 +560,7 @@ void MainWindow::previewTurnedOnOff(bool turnOn) {
     source code filename.
  */
 void MainWindow::updateWindowTitle() {
-    this->setWindowTitle( version +" [*]"+ currentSourceFile);
+    this->setWindowTitle( "UniversalIndentGUI " + version +" [*]"+ currentSourceFile);
 }
 
 
@@ -620,11 +624,32 @@ void MainWindow::loadSettings() {
     // If no ini file does exist remember that
     if ( !QFile::exists("./UniversalIndentGUI.ini") ) {
         settingsFileExists = false;
+        isFirstRunOfThisVersion = true;
     }
     // else open the settings file
     else {
         settings = new QSettings("./UniversalIndentGUI.ini", QSettings::IniFormat, this);
     }
+
+
+    // Handle if first run of this version
+    // -----------------------------------
+
+    // read the version string from settings if the settings file exists
+    if ( settingsFileExists ) {
+        QString readVersion = settings->value("UniversalIndentGUI/version").toString();
+        // if version strings are not equal set first run true.
+        if ( readVersion != version ) {
+            isFirstRunOfThisVersion = true;
+        }
+        else {
+            isFirstRunOfThisVersion = false;
+        }
+    }
+    else {
+        currentSourceFile = "./data/example.cpp";
+    }
+
 
     // Handle last opened source code file
     // -----------------------------------
@@ -742,6 +767,7 @@ void MainWindow::saveSettings() {
     settings.setValue( "UniversalIndentGUI/lastSelectedIndenter", currentIndenterID );
     settings.setValue( "UniversalIndentGUI/indenterParameterTooltipsEnabled", actionParameter_Tooltips->isChecked() );
     settings.setValue( "UniversalIndentGUI/language", language );
+    settings.setValue( "UniversalIndentGUI/version", version );
 }
 
 

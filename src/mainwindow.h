@@ -41,6 +41,7 @@
 #include <QTranslator>
 #include <QLocale>
 #include <QTextCodec>
+#include <QDate>
 
 class MainWindow : public QMainWindow, private Ui::IndentGui
 {
@@ -52,6 +53,8 @@ public:
 
 private:
     QString version;
+    QString revision;
+    QString buildDateStr;
     QString language;
     QString sourceFileContent;
     QString sourceFormattedContent;
@@ -70,6 +73,7 @@ private:
     QTranslator *translator;
     QMenu *languageMenu;
     QMenu *encodingMenu;
+    bool isFirstRunOfThisVersion;
 
     bool sourceCodeChanged;
     bool scrollPositionChanged;

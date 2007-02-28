@@ -30,12 +30,15 @@ class AboutDialog : public QDialog, private Ui::AboutDialog
     Q_OBJECT
 
 public:
-    AboutDialog(QWidget *parent = 0);
+    AboutDialog(QWidget *parent, QString version, QString revision, QString buildDate);
     void retranslate();
 private slots:
     void linkClicked(const QUrl &link);
 private:
     QString textBrowserSavedContent;
+    QString version;
+    QString revision;
+    QString buildDate;
 };
 
 #endif // ABOUTDIALOG_H
