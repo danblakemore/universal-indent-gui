@@ -87,6 +87,16 @@ QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtensi
     Q_ASSERT_X( !outputFileName.isEmpty(), "callIndenter", "outputFileName is empty" );
     Q_ASSERT_X( !indenterFileName.isEmpty(), "callIndenter", "indenterFileName is empty" );
 
+	QString formattedSourceCode;
+	bool wineInstalled = true;
+	QString indentCallString;
+	QString parameterInputFile;
+	QString parameterOuputFile;
+	QString parameterParamterFile;
+	QProcess indentProcess;
+	QString processReturnString;
+	bool indenterExecutableExists = false;
+
     // generate the parameter string that will be save to the indenters config file
     QString parameterString = getParameterString();
 
@@ -94,33 +104,40 @@ QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtensi
 		writeConfigFile( parameterString );
 	}
 
-    QString formattedSourceCode;
-    bool wineInstalled = true;
-
     // only add point to file extension if the string is not empty
     if ( !inputFileExtension.isEmpty() ) {
         inputFileExtension = "." + inputFileExtension;
     }
+	QFile::remove(dataDirctoryStr + inputFileName + inputFileExtension);
+	QFile outSrcFile(dataDirctoryStr + inputFileName + inputFileExtension);
+	parameterInputFile = " " + inputFileParameter + inputFileName + inputFileExtension;
 
-    QFile::remove(dataDirctoryStr + inputFileName + inputFileExtension);
-    QFile outSrcFile(dataDirctoryStr + inputFileName + inputFileExtension);
-    QString indentCallString = inputFileParameter + inputFileName + inputFileExtension;
+    if ( outputFileParameter != "none" ) {
+        parameterOuputFile = " " + outputFileParameter + outputFileName + inputFileExtension;
+    }
 
 	// If the config file name is empty it is assumed that all parameters are sent via command line call
 	if ( configFilename.isEmpty() ) {
-		indentCallString += " " + parameterString;
+		parameterParamterFile = " " + parameterString;
+	}
+	// if needed add the parameter to the indenter call string where the config file can be found
+	else {
+		parameterParamterFile = " " + useCfgFileParameter + configFilename;
 	}
 
-    if ( outputFileParameter != "none" ) {
-        indentCallString += " "+ outputFileParameter + outputFileName + inputFileExtension;
-    }
-
-    QProcess indentProcess;
-    QString processReturnString;
+	// Assemble indenter call string for parameters according to the set order.
+	if ( parameterOrder == "ipo" ) {
+		indentCallString = parameterInputFile + parameterParamterFile + parameterOuputFile;
+	} 
+	else if ( parameterOrder == "pio" ) {
+		indentCallString = parameterParamterFile + parameterInputFile + parameterOuputFile;
+	}
+	else {
+		indentCallString = parameterInputFile + parameterOuputFile + parameterParamterFile;
+	}
 
     // Test if the indenter executable exists. If not show a dialog box once and return
     // the unformatted source code. Else continue calling the indenter.
-    bool indenterExecutableExists = false;
 #if defined(Q_OS_WIN32)
     indenterExecutableExists = QFile::exists(dataDirctoryStr + indenterFileName+".exe");
 #else
@@ -137,15 +154,10 @@ QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtensi
 
     // generate the indenter call string either for win32 or other systems
 #if defined(Q_OS_WIN32)
-    indentCallString = dataDirctoryStr + indenterFileName +".exe "+ indentCallString;
+    indentCallString = dataDirctoryStr + indenterFileName +".exe"+ indentCallString;
 #else
-    indentCallString = "./" + indenterFileName +" "+ indentCallString;
+    indentCallString = "./" + indenterFileName + indentCallString;
 #endif
-
-    // if needed add the parameter to the indenter call string where the config file can be found
-    if ( !useCfgFileParameter.isEmpty() ) {
-        indentCallString += " "+ useCfgFileParameter + configFilename;
-    }
 
     // write the source code to the input file for the indenter
     outSrcFile.open( QFile::ReadWrite | QFile::Text );
@@ -500,6 +512,9 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
         cfgFileParameterEnding = "\n";
     }
 
+	// Read the parameter order. Possible values are (p=parameter[file] i=inputfile o=outputfile)
+	// pio, ipo, iop
+	parameterOrder = indenterSettings->value(" header/parameterOrder", "pio").toString();
     inputFileParameter = indenterSettings->value(" header/inputFileParameter").toString();
     inputFileName = indenterSettings->value(" header/inputFileName").toString();
     outputFileParameter = indenterSettings->value(" header/outputFileParameter").toString();

@@ -122,6 +122,7 @@ private:
     QString indenterFileName;
     QString dataDirctoryStr;
     QStringList indenterIniFileList;
+	QString parameterOrder;
     QString configFilename;
     QString cfgFileParameterEnding;
     QString inputFileParameter;
