@@ -183,7 +183,7 @@ QString MainWindow::loadFile(QString filePath) {
     else {
         QTextStream inSrcStrm(&inSrcFile);
         QApplication::setOverrideCursor(Qt::WaitCursor);
-        inSrcStrm.setCodec( QTextCodec::codecForName("UTF-8") );
+        inSrcStrm.setCodec( QTextCodec::codecForName(currentEncoding.toAscii()) );
         fileContent = inSrcStrm.readAll();
         QApplication::restoreOverrideCursor();
         inSrcFile.close();
@@ -669,6 +669,19 @@ void MainWindow::loadSettings() {
 		currentSourceFile = "./data/example.cpp";
 	}
 
+
+	// Handle last selected file encoding
+	// ----------------------------------
+
+	// read last selected encoding for the opened source code file.
+	if ( settingsFileExists ) {
+		currentEncoding = settings->value( "UniversalIndentGUI/encoding", "UTF-8" ).toString();
+	}
+	else {
+		currentEncoding = "UTF-8";
+	}
+
+
     // Handle last opened source code file
     // -----------------------------------
 
@@ -784,6 +797,7 @@ void MainWindow::saveSettings() {
     settings.setValue( "UniversalIndentGUI/lastSelectedIndenter", currentIndenterID );
     settings.setValue( "UniversalIndentGUI/indenterParameterTooltipsEnabled", actionParameter_Tooltips->isChecked() );
     settings.setValue( "UniversalIndentGUI/language", language );
+	settings.setValue( "UniversalIndentGUI/encoding", currentEncoding );
     settings.setValue( "UniversalIndentGUI/version", version );
 	settings.setValue( "UniversalIndentGUI/maximized", isMaximized() );
 	if ( !isMaximized() ) {
@@ -992,13 +1006,15 @@ void MainWindow::createEncodingMenu() {
             << "Iscii-Bng" << "JIS X 0201" << "JIS X 0208" << "KOI8-R" << "KOI8-U" << "MuleLao-1"
             << "ROMAN8" << "Shift-JIS" << "TIS-620" << "TSCII" << "Windows-1250" << "WINSAMI2";
 
-    // Loop for each found translation file
+    // Loop for each available encoding
     foreach ( encodingName, encodingsList ) {
             encodingAction = new QAction(encodingName, encodingActionGroup);
             encodingAction->setStatusTip( tr("Reopen the currently opened source code file by using the text encoding scheme ") + encodingName );
             encodingAction->setCheckable(true);
+			if ( encodingName == currentEncoding ) {
+				encodingAction->setChecked(true);
+			}
     }
-    encodingActionGroup->actions().first()->setChecked(true);
     encodingMenu = new QMenu( tr("Reopen File with other Encoding") );
     menuFile->insertMenu(actionSave_Source_File, encodingMenu);
 
@@ -1021,6 +1037,7 @@ void MainWindow::encodingChanged(QAction* encodingAction) {
             QTextStream inSrcStrm(&inSrcFile);
             QApplication::setOverrideCursor(Qt::WaitCursor);
             QString encodingName = encodingAction->text();
+			currentEncoding = encodingName;
             inSrcStrm.setCodec( QTextCodec::codecForName(encodingName.toAscii()) );
             fileContent = inSrcStrm.readAll();
             QApplication::restoreOverrideCursor();
