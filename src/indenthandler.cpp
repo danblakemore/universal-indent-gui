@@ -121,7 +121,7 @@ QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtensi
 		parameterParamterFile = " " + parameterString;
 	}
 	// if needed add the parameter to the indenter call string where the config file can be found
-	else {
+	else if (useCfgFileParameter != "none") {
 		parameterParamterFile = " " + useCfgFileParameter + configFilename;
 	}
 
