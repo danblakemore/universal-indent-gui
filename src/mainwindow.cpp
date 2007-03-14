@@ -788,22 +788,24 @@ void MainWindow::loadSettings() {
     Settings are for example last selected indenter, last loaded config file and so on.
 */
 void MainWindow::saveSettings() {
-    QSettings settings("./UniversalIndentGUI.ini", QSettings::IniFormat, this);
+    QSettings *settings = new QSettings("./UniversalIndentGUI.ini", QSettings::IniFormat, this);
 
     QFileInfo fileInfo(currentSourceFile);
     if ( fileInfo.isFile() ) {
-        settings.setValue( "UniversalIndentGUI/lastSourceCodeFile", currentSourceFile );
+        settings->setValue( "UniversalIndentGUI/lastSourceCodeFile", currentSourceFile );
     }
-    settings.setValue( "UniversalIndentGUI/lastSelectedIndenter", currentIndenterID );
-    settings.setValue( "UniversalIndentGUI/indenterParameterTooltipsEnabled", actionParameter_Tooltips->isChecked() );
-    settings.setValue( "UniversalIndentGUI/language", language );
-	settings.setValue( "UniversalIndentGUI/encoding", currentEncoding );
-    settings.setValue( "UniversalIndentGUI/version", version );
-	settings.setValue( "UniversalIndentGUI/maximized", isMaximized() );
+    settings->setValue( "UniversalIndentGUI/lastSelectedIndenter", currentIndenterID );
+    settings->setValue( "UniversalIndentGUI/indenterParameterTooltipsEnabled", actionParameter_Tooltips->isChecked() );
+    settings->setValue( "UniversalIndentGUI/language", language );
+	settings->setValue( "UniversalIndentGUI/encoding", currentEncoding );
+    settings->setValue( "UniversalIndentGUI/version", version );
+	settings->setValue( "UniversalIndentGUI/maximized", isMaximized() );
 	if ( !isMaximized() ) {
-		settings.setValue( "UniversalIndentGUI/position", pos() );
-		settings.setValue( "UniversalIndentGUI/size", size() );
+		settings->setValue( "UniversalIndentGUI/position", pos() );
+		settings->setValue( "UniversalIndentGUI/size", size() );
 	}
+
+    delete settings;
 }
 
 
