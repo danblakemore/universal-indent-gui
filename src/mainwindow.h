@@ -43,6 +43,9 @@
 #include <QTextCodec>
 #include <QDate>
 
+#include <Qsci/qsciscintilla.h>
+#include <Qsci/qsciprinter.h>
+
 class MainWindow : public QMainWindow, private Ui::IndentGui
 {
     Q_OBJECT
@@ -52,6 +55,9 @@ public:
     MainWindow(QWidget *parent = 0);
 
 private:
+	QsciScintilla *txtedSourceCode;
+	QSettings *settings;
+
     QString version;
     QString revision;
     QString buildDateStr;
@@ -62,7 +68,6 @@ private:
     QString sourceViewContent;
     CppHighlighter *highlighter;
     QScrollBar *textEditVScrollBar;
-    QScrollBar *textEdit2VScrollBar;
     AboutDialog *aboutDialog;
     int textEditLastScrollPos;
     int currentIndenterID;
@@ -110,7 +115,6 @@ private:
 
     void createLanguageMenu();
     void createEncodingMenu();
-    void syntaxHighlightCPP( QTextEdit *textEdit );
 
 protected:
     void closeEvent( QCloseEvent *event );
@@ -125,7 +129,9 @@ private slots:
     void callIndenter();
     void updateSourceView();
     void turnHighlightOnOff(bool turnOn);
+	void setWhiteSpaceVisibility(bool visible);
     void selectIndenter(int indenterID);
+	void sourceCodeChangedHelperSlot();
     void sourceCodeChangedSlot();
     void indentSettingsChangedSlot();
     void previewTurnedOnOff(bool turnOn);

@@ -15,22 +15,22 @@ md translations
 md data
 md doc
 cd ..
-copy .\data\.astylerc .\UniversalIndentGUI_win32\data
+rem copy .\data\.astylerc .\UniversalIndentGUI_win32\data
 copy .\data\astyle.exe .\UniversalIndentGUI_win32\data
 copy .\data\astyle.html .\UniversalIndentGUI_win32\data
 copy .\data\indent.exe .\UniversalIndentGUI_win32\data
 copy .\data\indent.html .\UniversalIndentGUI_win32\data
 copy .\data\libintl-2.dll .\UniversalIndentGUI_win32\data
 copy .\data\libiconv-2.dll .\UniversalIndentGUI_win32\data
-copy .\data\.indent.pro .\UniversalIndentGUI_win32\data
-copy .\data\bcpp.cfg .\UniversalIndentGUI_win32\data
+rem copy .\data\.indent.pro .\UniversalIndentGUI_win32\data
+rem copy .\data\bcpp.cfg .\UniversalIndentGUI_win32\data
 copy .\data\bcpp.exe .\UniversalIndentGUI_win32\data
 copy .\data\bcpp.txt .\UniversalIndentGUI_win32\data
 copy .\data\csstidy.exe .\UniversalIndentGUI_win32\data
-copy .\data\gc.cfg .\UniversalIndentGUI_win32\data
+rem copy .\data\gc.cfg .\UniversalIndentGUI_win32\data
 copy .\data\gc.exe .\UniversalIndentGUI_win32\data
 copy .\data\gc.txt .\UniversalIndentGUI_win32\data
-copy .\data\uncrustify.cfg .\UniversalIndentGUI_win32\data
+rem copy .\data\uncrustify.cfg .\UniversalIndentGUI_win32\data
 copy .\data\uncrustify.exe .\UniversalIndentGUI_win32\data
 copy .\data\uncrustify.txt .\UniversalIndentGUI_win32\data
 copy .\data\uigui_astyle.ini .\UniversalIndentGUI_win32\data
@@ -38,6 +38,7 @@ copy .\data\uigui_bcpp.ini .\UniversalIndentGUI_win32\data
 copy .\data\uigui_csstidy.ini .\UniversalIndentGUI_win32\data
 copy .\data\uigui_gnuindent.ini .\UniversalIndentGUI_win32\data
 copy .\data\uigui_greatcode.ini .\UniversalIndentGUI_win32\data
+copy .\data\uigui_phpCB.ini .\UniversalIndentGUI_win32\data
 copy .\data\uigui_uncrustify.ini .\UniversalIndentGUI_win32\data
 copy .\data\example.cpp .\UniversalIndentGUI_win32\data
 copy .\CHANGELOG.txt .\UniversalIndentGUI_win32\
@@ -48,6 +49,6 @@ copy .\translations\*.qm .\UniversalIndentGUI_win32\translations\
 copy .\doc\iniFileFormat.html .\UniversalIndentGUI_win32\doc\
 copy .\release\UniversalIndentGUI.exe .\UniversalIndentGUI_win32\
 cd UniversalIndentGUI_win32
-7z.exe a -tzip UniversalIndentGUI_0.4.2_Beta_win32.zip
+7z.exe a -tzip UniversalIndentGUI_0.5.0_Beta_win32.zip
 cd ..
 pause

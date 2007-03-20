@@ -1,3 +1,21 @@
+2007-03-19 Version 0.5.1 Beta
+[change] The live typing and indenting feature was not adapted to QScintilla. Now works again (depending on the used indenter).
+[fix] Bug ID 1678783: Files other encoded than ascii were not displayed correctly. Now allways displaying using UTF-8.
+[fix] Bug ID 1678783: The new syntax highlighter selection menu was not translated.
+
+2007-03-14 Version 0.5.0 Beta
+[add/change] Using QScintilla as editing component, which is by far more mighty than the before uses QTextEdit. Have a look inside the development area for details.
+[add] Because of QScintilla, added syntax highlightning for bash, batch, cpp, csharp, css, diff, html, idl, java, javascript, lua, makefile, perl, pov, ini, python, ruby, sql and tex.
+[add] Also added code folding for previously mentioned languages.
+[add] Added support for the indenter "phpCB" phpCodeBeatufier. (Thanks to Nelson Tai) The executable is not included in the UiGui release, because I am not sure about the license of phpCB right now.
+[add] The output of an indenter can now be read from stdout, by setting "stdout" for "outputFileParameter".
+[add] Feature Request ID 1673549 : The order of the indenter call parameters for input file, output file and options[file] is now selectable in three states: pio, ipo, iop.
+[add] Feature Request ID 1675503 : The last set encoding is being remembered and used on loading last file.
+[add] Feature Request ID 1669822 : The last window position, size and maximized state is stored in the settings and restored.
+[add] Feature Request ID 1673670 : Made it possible to switch between visible and invisible white space characters, like spaces and tabs.
+[change] The "personal" configuration files of each indenter (like gc.cfg) are no longer included in a release, so these settings can be loaded into UiGui after updating.
+[fix] Bug ID 1678783: If the current opened file had no save name yet, only the path was written to the settings file, causing an error on next start.
+
 2007-02-25 Version 0.4.2 Beta
 [add] Support for the indenter CSSTidy has been added.
 [add] Support for new language: Taiwan (Chinese).

@@ -1,7 +1,7 @@
 #!/bin/bash
-echo setting Qt path to /usr/local/Trolltech/Qt-4.2.2/bin
+echo setting Qt path to /usr/local/Trolltech/Qt-4.2.1/bin
 echo ----------------------------------------------------
-PATH=/usr/local/Trolltech/Qt-4.2.2/bin:$PATH
+PATH=/usr/local/Trolltech/Qt-4.2.1/bin:$PATH
 export PATH
 echo calling rm -r release/debug
 echo ---------------------------
@@ -35,26 +35,27 @@ cp ./CHANGELOG.txt ./UniversalIndentGUI_linux32/
 cp ./LICENSE.GPL ./UniversalIndentGUI_linux32/
 cp ./README.txt ./UniversalIndentGUI_linux32/
 cp ./INSTALL.txt ./UniversalIndentGUI_linux32/
-cp ./data/.astylerc ./UniversalIndentGUI_linux32/data/
+#cp ./data/.astylerc ./UniversalIndentGUI_linux32/data/
 cp ./data/astyle ./UniversalIndentGUI_linux32/data/
 cp ./data/astyle.html ./UniversalIndentGUI_linux32/data/
-cp ./data/bcpp.cfg ./UniversalIndentGUI_linux32/data/
+#cp ./data/bcpp.cfg ./UniversalIndentGUI_linux32/data/
 cp ./data/bcpp ./UniversalIndentGUI_linux32/data/
 cp ./data/bcpp.txt ./UniversalIndentGUI_linux32/data/
 cp ./data/csstidy ./UniversalIndentGUI_linux32/data/
-cp ./data/gc.cfg ./UniversalIndentGUI_linux32/data/
+#cp ./data/gc.cfg ./UniversalIndentGUI_linux32/data/
 cp ./data/gc.exe ./UniversalIndentGUI_linux32/data/
 cp ./data/gc.txt ./UniversalIndentGUI_linux32/data/
-cp ./data/.indent.pro ./UniversalIndentGUI_linux32/data/
+#cp ./data/.indent.pro ./UniversalIndentGUI_linux32/data/
 cp ./data/indent ./UniversalIndentGUI_linux32/data/
 cp ./data/indent.html ./UniversalIndentGUI_linux32/data/
-cp ./data/uncrustify.cfg ./UniversalIndentGUI_linux32/data/
+#cp ./data/uncrustify.cfg ./UniversalIndentGUI_linux32/data/
 cp ./data/uncrustify ./UniversalIndentGUI_linux32/data/
 cp ./data/uncrustify.txt ./UniversalIndentGUI_linux32/data/
 cp ./data/uigui_astyle.ini ./UniversalIndentGUI_linux32/data/
 cp ./data/uigui_bcpp.ini ./UniversalIndentGUI_linux32/data/
 cp ./data/uigui_csstidy.ini ./UniversalIndentGUI_linux32/data/
 cp ./data/uigui_greatcode.ini ./UniversalIndentGUI_linux32/data/
+cp ./data/uigui_phpCB.ini ./UniversalIndentGUI_linux32/data/
 cp ./data/uigui_gnuindent.ini ./UniversalIndentGUI_linux32/data/
 cp ./data/uigui_uncrustify.ini ./UniversalIndentGUI_linux32/data/
 cp ./data/example.cpp ./UniversalIndentGUI_linux32/data/
@@ -64,6 +65,6 @@ cp ./release/UniversalIndentGUI ./UniversalIndentGUI_linux32/
 cd UniversalIndentGUI_linux32
 echo compressing UniversalIndentGUI_linux32
 echo ----------------------------------------
-tar czf UniversalIndentGUI_0.4.2_Beta_linux32.tgz *
+tar czf UniversalIndentGUI_0.5.0_Beta_linux32.tgz *
 cd ..
 read -p "press any key to continue"

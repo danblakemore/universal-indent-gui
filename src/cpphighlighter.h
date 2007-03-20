@@ -20,44 +20,73 @@
 #ifndef CPPHIGHLIGHTER_H
 #define CPPHIGHLIGHTER_H
 
-#include <QSyntaxHighlighter>
+#include <QObject>
+#include <QMap>
+#include <QMenu>
+#include <Qsci/qsciscintilla.h>
+#include <Qsci/qscilexer.h>
+#include <Qsci/qscilexerbash.h>
+#include <Qsci/qscilexerbatch.h>
+#include <Qsci/qscilexercpp.h>
+#include <Qsci/qscilexercsharp.h>
+#include <Qsci/qscilexercss.h>
+#include <Qsci/qscilexerd.h>
+#include <Qsci/qscilexerdiff.h>
+#include <Qsci/qscilexerhtml.h>
+#include <Qsci/qscilexeridl.h>
+#include <Qsci/qscilexerjava.h>
+#include <Qsci/qscilexerjavascript.h>
+#include <Qsci/qscilexerlua.h>
+#include <Qsci/qscilexermakefile.h>
+#include <Qsci/qscilexerperl.h>
+#include <Qsci/qscilexerpov.h>
+#include <Qsci/qscilexerproperties.h>
+#include <Qsci/qscilexerpython.h>
+#include <Qsci/qscilexerruby.h>
+#include <Qsci/qscilexersql.h>
+#include <Qsci/qscilexertex.h>
 
-#include <QHash>
-#include <QTextCharFormat>
 
-class QTextDocument;
-
-class CppHighlighter : public QSyntaxHighlighter
+class CppHighlighter : public QObject
 {
     Q_OBJECT
 
 public:
-    CppHighlighter(QTextEdit *parent);
+    CppHighlighter(QsciScintilla *parent, QSettings *settings=0);
     void turnHighlightOff();
     void turnHighlightOn();
-
-protected:
-    void highlightBlock(const QString &text);
+	
+	bool readCurrentSettings(const char *prefix);
+	void writeCurrentSettings(const char *prefix);
+    void retranslate();
+    QMenu* getHighlighterMenu();
 
 private:
     bool highlightningIsOn;
-    QTextEdit *parent;
+    QsciScintilla *parent;
+    QMap<int, QFont> fontForStyles;
+    QMap<int, QColor> colorForStyles;
+	QsciLexer* lexer;
+	QSettings *settings;
+	QStringList highlighterList;
+    QMenu *highlighterMenu;
+    QActionGroup *highlighterActionGroup;
 
-    struct HighlightingRule {
-        QRegExp pattern;
-        QTextCharFormat format;
-    };
-    QVector<HighlightingRule> highlightingRules;
+    void createHighlighterMenu();
 
-    QRegExp commentStartExpression;
-    QRegExp commentEndExpression;
+public slots:
+    //! The foreground color for style number \a style is set to \a color.  If
+    //! \a style is -1 then the color is set for all styles.
+    void setColor(const QColor &color, int style = -1);
 
-    QTextCharFormat keywordFormat;
-    QTextCharFormat classFormat;
-    QTextCharFormat singleLineCommentFormat;
-    QTextCharFormat multiLineCommentFormat;
-    QTextCharFormat quotationFormat;
-    QTextCharFormat functionFormat;
+    //! The font for style number \a style is set to \a font.  If \a style is
+    //! -1 then the font is set for all styles.
+    void setFont(const QFont &font, int style = -1);
+
+	//! Sets the lexer that is responsible for the given \a extension.
+	void setLexerForExtension( QString extension );
+
+	void highlighterChanged(QAction* highlighterAction);
 };
 
 #endif

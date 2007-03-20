@@ -12,6 +12,8 @@ DEPENDPATH += resources \
 
 INCLUDEPATH += src
 
+LIBS += -lqscintilla2
+
 # remove linker flag "-mthreads" so the mingwm10.dll is no longer needed
 #message(old flags:$${QMAKE_LFLAGS})
 parameters = $${QMAKE_LFLAGS}

@@ -18,43 +18,46 @@ At the beginning of the ini file the header is located. It is named [%20header].
 Following a ini file header is shown:<br>
 <pre>
 [%20header]
-categories=General|Tab and Bracket Options|Indentation|Formatting Options
-cfgfilename=.astylerc
-cfgfileparameterending=cr
-filename=astyle
-filetypes=*.cpp|*.c|*.h|*.hpp|*.cs
-inputfilename=indentinput.cpp
-inputfileparameter=
-name=Astyle
-outputfilename=indentinput.cpp
-outputfileparameter=none
+categories=Predefined Style|Tab and Bracket|Indentation|Formatting
+cfgFileParameterEnding=cr
+configFilename=.astylerc
+fileTypes=*.cpp|*.c|*.h|*.hpp|*.cs|*.java
+indenterFileName=astyle
+indenterName=Artistic Style
+inputFileName=indentinput
+inputFileParameter=
+outputFileName=indentinput
+outputFileParameter=none
+parameterOrder=ipo
 stringparaminquotes=false
-usecfgfileparameter="--options="
+useCfgFileParameter="--options="
 </pre>
 
 "categories" defines the categories, where each parameter can be assigned to. It is a list of strings, with each category name divied by a "|" from the other.<br>
 <br>
-"cfgfilename" is the filename of the indenters default config file. It is used when the indenter is being called and might be explicit handed over as argument by setting the parameter "usecfgfileparameter".<br>
+"cfgFileParameterEnding" defines how each parameter setting in the indenters config file is seperated from the other. Possible values are "cr" for CarriageReturn or any other string (also space signs, which are normally used if parameters are only set via commandline).<br>
 <br>
-"cfgfileparameterending" defines how each parameter setting in the indenters config file is seperated from the other. Possible values are "cr" for CarriageReturn or any other string (also space signs).<br>
+"configFilename" is the filename of the indenters default config file. It is used when the indenter is being called and might be explicit handed over as argument by setting the parameter "useCfgFileParameter". If "configFilename" is left empty, all parameters are set with the commandline call of the indenter. (As needed for csstidy and phpCB for example.)<br>
 <br>
-"filename" is the name of the indenters executable without any extension. Under linux it is tested, whether only a file with the extension ".exe" exists. If so, wine will be used to call the indenter.<br>
+"fileTypes" is a list of fileendings used for the selection in the "open source file" file dialog.<br>
 <br>
-"filetypes" is a list of fileendings used for the selection in the "open source file" file dialog.<br>
+"indenterFileName" is the name of the indenters executable without any extension. Under linux it is tested, whether only a file with the extension ".exe" exists. If so, wine will be used to call the indenter.<br>
 <br>
-"outputfilename" defines the file used as input file for the called indenter. It is a copy of the previous opened source code file.<br>
+"indenterName"  is the name of the indenter as it will be shown in UniversalIndentGUIs indenters selection. Theoretic it can be any string.<br>
 <br>
-"inputfileparameter" sets the eventually needed parameter in front of "inputfilename" to tell the indenter and the command line call that the following string is the input file.<br>
+"inputFileName" defines the file used as input file for the called indenter. It is a copy of the previous opened source code file.<br>
 <br>
-"name" is the name of the indenter as it will be shown in UniversalIndentGUIs indenters selection. Theoretic it can be any string.<br>
+"inputFileParameter" sets the eventually needed parameter in front of "inputFileName" to tell the indenter and the command line call that the following string is the input file. If set to "none" no special output file will be set.<br>
 <br>
-"inputfileparameter" the file name where the indenter writes its formatted source code to. Also the file UniversalIndentGUI reads after the indenter call to show it in the preview. Some times an indenter overwrites the content of the inputfile by default and creates a backup (as AStyle does). In this case "outputfilename" is equal to "inputfilename" but the parameter "outputfileparameter" has to be set to "none". No  output file name will be selected for the indenter but UniversalIndentGUI knows where the output was written to.<br>
+"outputFileName" the file name where the indenter writes its formatted source code to. Also the file UniversalIndentGUI reads after the indenter call to show it in the preview. Some times an indenter overwrites the content of the inputfile by default and creates a backup (as AStyle does). In this case "outputFileName" is equal to "inputFileName" but the parameter "outputFileParameter" has to be set to "none". No  output file name will be selected for the indenter but UniversalIndentGUI knows where the output was written to.<br>
 <br>
-"outputfileparameter" same as for "inputfileparameter" with respect to the special case mentioned for "inputfileparameter".<br>
+"outputFileParameter" same as for "inputFileParameter" with respect to the special case mentioned for "inputFileParameter" if the input file will be overwritten.<br>
+<br>
+"parameterOrder" Some indenters need a strict order of the command line parameters for input file, output file and eventually indent settings. "parameterOrder" can be set to "iop", "ipo" and "pio" to define the order of input, ouput and paramters at the commandline call.<br>
 <br>
 "stringparaminquotes" tells UniversalIndentGUI that all string values should be written to the indenter config file in quotes.<br>
 <br>
-"usecfgfileparameter" is used to tell the indenter where to find the config file that it should use. If this parameter is left empty you should read the indenters manual where it searches by default for the config file.<br>
+"useCfgFileParameter" is the parameter for the indenter used to tell the indenter where to find the config file, set in "configFilename", that it should use. If this parameter is left empty you should read the indenters manual where it searches by default for the config file.<br>
 <br>
 3. The indenters parameters<br>
 ---------------------------<br>

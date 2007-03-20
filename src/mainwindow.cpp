@@ -36,10 +36,21 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     // generate gui as it is build in the file "indentgui.ui"
     setupUi(this);
 
+	txtedSourceCode = new QsciScintilla(this);
+	hboxLayout1->addWidget(txtedSourceCode);
+
+    txtedSourceCode->setUtf8(true);
+    txtedSourceCode->setMarginLineNumbers(1, true);
+	txtedSourceCode->setMarginWidth(1, QString("10000") );
+	txtedSourceCode->setBraceMatching(txtedSourceCode->SloppyBraceMatch);
+	txtedSourceCode->setMatchedBraceForegroundColor( QColor("red") );
+	txtedSourceCode->setFolding(QsciScintilla::BoxedTreeFoldStyle);
+	txtedSourceCode->setWhitespaceVisibility(QsciScintilla::WsVisible);
+
     // set the program version, revision and date, which is shown in the main window title and in the about dialog.
-    version = "0.4.2 Beta";
-    revision = "250";
-    QDate buildDate(2007, 2, 28);
+    version = "0.5.0 Beta";
+    revision = "276";
+    QDate buildDate(2007, 3, 14);
     buildDateStr = buildDate.toString("d. MMMM yyyy");
 
     toolBarWidget = new Ui::toolBarWidget();
@@ -48,10 +59,20 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     toolBar->addWidget(helpWidget);
     toolBar->setAllowedAreas( Qt::TopToolBarArea | Qt::BottomToolBarArea );
 
+	// Create or open the settings file.
+	settings = new QSettings("./UniversalIndentGUI.ini", QSettings::IniFormat, this);
+
+	highlighter = new CppHighlighter(txtedSourceCode);
+	menuSettings->insertMenu(actionSyntax_Highlight, highlighter->getHighlighterMenu() );
+
     indentHandler = 0;
 
     isFirstRunOfThisVersion = false;
     loadSettings();
+
+    // Because the language settings are being loaded after creating the highlighter menu
+    // the menu has to be retranslated after loading the language settings
+    highlighter->retranslate();
 
     createLanguageMenu();
     createEncodingMenu();
@@ -59,9 +80,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     updateWindowTitle();
 
     textEditVScrollBar = txtedSourceCode->verticalScrollBar();
-    textEdit2VScrollBar = txtedLineNumbers->verticalScrollBar();
-
-    highlighter = new CppHighlighter(txtedSourceCode);
 
     sourceCodeChanged = false;
     scrollPositionChanged = false;
@@ -72,25 +90,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     // generate about dialog box
     aboutDialog = new AboutDialog(this, version, revision, buildDateStr);
 
-    //QAction *actionAStyle;
-    //QMenu *menuSelect_Indenter;
-    //menuSelect_Indenter = new QMenu(menuIndenter);
-    //menuSelect_Indenter->setObjectName(QString::fromUtf8("menuSelect_Indenter"));
-    //menuIndenter->addAction(menuSelect_indenter->menuAction());
-    //actionAStyle = new QAction(this);
-    //actionAStyle->setObjectName(QString::fromUtf8("actionAStyle"));
-    //menuSelect_Indenter->addAction(actionAStyle);
-    //retranslateUi(this);
-
-    //toolBar->addWidget(cmbBoxIndenters);
-    //toolBar->addWidget(pbOpenFile);
-    //toolBar->addWidget(cbLivePreview);
-    //toolBar->addWidget(cbHighlight);
-    ////toolBar->addWidget(spacerItem);
-    //toolBar->addWidget(pbAbout);
-    //toolBar->addWidget(pbExit);
-
     updateSourceView();
+    txtedSourceCode->setModified(false);
 
     connect( toolBarWidget->pbOpen_Source_File, SIGNAL(clicked()), this, SLOT(openSourceFileDialog()) );
     connect( actionOpen_Source_File, SIGNAL(activated()), this, SLOT(openSourceFileDialog()) );
@@ -108,6 +109,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     connect( toolBarWidget->cbHighlight, SIGNAL(toggled(bool)), this, SLOT(turnHighlightOnOff(bool)) );
     connect( toolBarWidget->cbHighlight, SIGNAL(toggled(bool)), actionSyntax_Highlight, SLOT(setChecked(bool)) );
     connect( actionSyntax_Highlight, SIGNAL(toggled(bool)), toolBarWidget->cbHighlight, SLOT(setChecked(bool)) );
+	connect( actionWhiteSpaceVisible, SIGNAL(toggled(bool)), this, SLOT(setWhiteSpaceVisibility(bool)) );
 
     connect( toolBarWidget->pbExit, SIGNAL(clicked()), this, SLOT(close()));
     connect( actionAbout_UniversalIndentGUI, SIGNAL(activated()), aboutDialog, SLOT(exec()) );
@@ -118,11 +120,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 
     connect( toolBarWidget->cmbBoxIndenters, SIGNAL(activated(int)), this, SLOT(selectIndenter(int)) );
 
-    connect( textEditVScrollBar, SIGNAL(valueChanged(int)), textEdit2VScrollBar, SLOT(setValue(int)));
-    connect( textEdit2VScrollBar, SIGNAL(valueChanged(int)), textEditVScrollBar, SLOT(setValue(int)));
-
-    connect( txtedSourceCode, SIGNAL(textChanged()), this, SLOT(sourceCodeChangedSlot()) );
-
+    connect( txtedSourceCode, SIGNAL(textChanged()), this, SLOT(sourceCodeChangedHelperSlot()) );
 }
 
 
@@ -187,6 +185,10 @@ QString MainWindow::loadFile(QString filePath) {
         fileContent = inSrcStrm.readAll();
         QApplication::restoreOverrideCursor();
         inSrcFile.close();
+
+		QFileInfo fileInfo(filePath);
+		currentSourceFileExtension = fileInfo.suffix();
+		highlighter->setLexerForExtension( currentSourceFileExtension );
     }
     return fileContent;
 }
@@ -226,14 +228,14 @@ void MainWindow::openSourceFileDialog() {
         textEditVScrollBar->setValue( textEditLastScrollPos );
 
         savedSourceContent = openedSourceFileContent;
-        txtedSourceCode->document()->setModified( false );
-        setWindowModified( txtedSourceCode->document()->isModified() );
+        txtedSourceCode->setModified( false );
+        setWindowModified( txtedSourceCode->isModified() );
     }
 }
 
 
 /*!
-    Calls the source file save as dialog to save a source file under a choosen name.
+    Calls the source file save as dialog to save a source file under a chosen name.
     If the file already exists and it should be overwritten, a warning is shown before.
  */
 bool MainWindow::saveasSourceFileDialog() {
@@ -243,12 +245,12 @@ bool MainWindow::saveasSourceFileDialog() {
     //QString openedSourceFileContent = openFileDialog( tr("Choose source code file"), "./", fileExtensions );
     QString fileName = QFileDialog::getSaveFileName( this, tr("Save source code file"), currentSourceFile, fileExtensions);
 
-    // Saveing has been canceled if the filename is empty
+    // Saving has been canceled if the filename is empty
     if ( fileName.isEmpty() ) {
         return false;
     }
 
-    savedSourceContent = txtedSourceCode->toPlainText();
+    savedSourceContent = txtedSourceCode->text();
 
     currentSourceFile = fileName;
     QFile::remove(fileName);
@@ -260,8 +262,8 @@ bool MainWindow::saveasSourceFileDialog() {
     QFileInfo fileInfo(fileName);
     currentSourceFileExtension = fileInfo.suffix();
 
-    txtedSourceCode->document()->setModified( false );
-    setWindowModified( txtedSourceCode->document()->isModified() );
+    txtedSourceCode->setModified( false );
+    setWindowModified( txtedSourceCode->isModified() );
 
     updateWindowTitle();
     return true;
@@ -280,20 +282,20 @@ bool MainWindow::saveSourceFile() {
     else {
         QFile::remove(currentSourceFile);
         QFile outSrcFile(currentSourceFile);
-        savedSourceContent = txtedSourceCode->toPlainText();
+        savedSourceContent = txtedSourceCode->text();
         outSrcFile.open( QFile::ReadWrite | QFile::Text );
         outSrcFile.write( savedSourceContent.toUtf8() );
         outSrcFile.close();
 
-        txtedSourceCode->document()->setModified( false );
-        setWindowModified( txtedSourceCode->document()->isModified() );
+        txtedSourceCode->setModified( false );
+        setWindowModified( txtedSourceCode->isModified() );
     }
     return true;
 }
 
 
 /*!
-    Calls the indenter config file save as dialog to save the config file under a choosen name.
+    Calls the indenter config file save as dialog to save the config file under a chosen name.
     If the file already exists and it should be overwritten, a warning is shown before.
  */
 void MainWindow::saveasIndentCfgFileDialog() {
@@ -350,12 +352,7 @@ QString MainWindow::openFileDialog(QString dialogHeaderStr, QString startPath, Q
  */
 void MainWindow::updateSourceView()
 {
-    QString lineNumbers = "";
-    int i;
-    int numberOfLines = 0;
-
     textEditLastScrollPos = textEditVScrollBar->value();
-
 
     if ( toolBarWidget->cbLivePreview->isChecked() ) {
         sourceViewContent = sourceFormattedContent;
@@ -365,24 +362,13 @@ void MainWindow::updateSourceView()
     }
 
     if (previewToggled) {
-        disconnect( txtedSourceCode, SIGNAL(textChanged ()), this, SLOT(sourceCodeChangedSlot()) );
-        // because under linux the courier font is always set bold
-#if defined(Q_OS_LINUX)
-        txtedSourceCode->setFontFamily("freemono");
-        txtedLineNumbers->setFontFamily("freemono");
-#endif
-
-        txtedSourceCode->setPlainText(sourceViewContent);
+        disconnect( txtedSourceCode, SIGNAL(textChanged ()), this, SLOT(sourceCodeChangedHelperSlot()) );
+		bool textIsModified = txtedSourceCode->isModified();
+        txtedSourceCode->setText(sourceViewContent);
+		txtedSourceCode->setModified(textIsModified);
         previewToggled = false;
-        connect( txtedSourceCode, SIGNAL(textChanged ()), this, SLOT(sourceCodeChangedSlot()) );
+        connect( txtedSourceCode, SIGNAL(textChanged ()), this, SLOT(sourceCodeChangedHelperSlot()) );
     }
-
-    numberOfLines = sourceViewContent.count(QRegExp("\n"));
-    for (i = 1; i <= numberOfLines+1; i++) {
-        lineNumbers.append(QString::number(i)+"\n");
-    }
-    txtedLineNumbers->setPlainText(lineNumbers);
-    txtedLineNumbers->setAlignment(Qt::AlignRight);
 
     textEditVScrollBar->setValue( textEditLastScrollPos );
 }
@@ -412,31 +398,42 @@ void MainWindow::turnHighlightOnOff(bool turnOn) {
     updateSourceView();
 }
 
+
+void MainWindow::sourceCodeChangedHelperSlot() {
+	QTimer::singleShot(0, this, SLOT(sourceCodeChangedSlot()));
+}
+
 /*!
     Is emitted whenever the text inside the source view window changes. Calls the indenter
     to format the changed source code.
  */
 void MainWindow::sourceCodeChangedSlot() {
     QChar enteredCharacter;
+	int cursorPos,cursorPosAbsolut, cursorLine;
+	QString text;
 
     sourceCodeChanged = true;
     if ( scrollPositionChanged ) {
         scrollPositionChanged = false;
     }
 
-    QTextCursor savedCursor = txtedSourceCode->textCursor();
-    int cursorPos = savedCursor.position();
-
-    sourceFileContent = txtedSourceCode->toPlainText();
-
-    if ( sourceFileContent.count() == 0 || sourceFileContent.at(sourceFileContent.count()-1) != '\n' ) {
+    sourceFileContent = txtedSourceCode->text();
+	
+    if ( sourceFileContent.count() == 0 ) {
         sourceFileContent += "\n";
     }
-
-    if ( cursorPos <= 0 ) {
-        cursorPos = 1;
+    else {
+        txtedSourceCode->getCursorPosition(&cursorLine, &cursorPos);
+        cursorPosAbsolut = txtedSourceCode->SendScintilla(QsciScintillaBase::SCI_GETCURRENTPOS);
+	    text = txtedSourceCode->text(cursorLine);
+        if ( cursorPosAbsolut > 0 ) {
+            cursorPosAbsolut--;
+        }
+        if ( cursorPos > 0 ) {
+            cursorPos--;
+        }
+        enteredCharacter = sourceFileContent.at(cursorPosAbsolut);
     }
-    enteredCharacter = sourceFileContent.at(cursorPos-1);
 
     if ( toolBarWidget->cbLivePreview->isChecked() ) {
         callIndenter();
@@ -444,33 +441,75 @@ void MainWindow::sourceCodeChangedSlot() {
     }
     updateSourceView();
 
-    QString text = txtedSourceCode->toPlainText();
-    int lineBreakCounter = 0;
-    while ( cursorPos <= text.count() && text.at(cursorPos-1) != enteredCharacter && lineBreakCounter < 5 ) {
-        if ( text.at(cursorPos-1) == '\n' ) {
-            lineBreakCounter++;
+    if ( !enteredCharacter.isNull() ) {
+        //const char ch = enteredCharacter.toAscii();
+
+        int saveCursorLine = cursorLine;
+        int saveCursorPos = cursorPos;
+
+        bool charFound = false;
+
+        // Search forward
+        int lineBreakCounter = 0;
+        for ( cursorLine = saveCursorLine; cursorLine-saveCursorLine < 6 && cursorLine < txtedSourceCode->lines(); cursorLine++ ) {
+            text = txtedSourceCode->text(cursorLine);
+            while ( cursorPos < text.count() && enteredCharacter != text.at(cursorPos)) {
+                cursorPos++;
+            }
+            if ( cursorPos >= text.count() ) {
+                cursorPos = 0;
+            } 
+            else {
+                charFound = true;
+                break;
+            }
         }
-        cursorPos++;
+
+        // If foward search did not find the character, search backward
+        if ( !charFound ) {
+            text = txtedSourceCode->text(saveCursorLine);
+            cursorPos = saveCursorPos;
+            if ( cursorPos >= text.count() ) {
+                cursorPos = text.count() - 1;
+            }
+            int lineBreakCounter = 0;
+            for ( cursorLine = saveCursorLine; saveCursorLine-cursorLine < 6 && cursorLine >= 0; cursorLine-- ) {
+                text = txtedSourceCode->text(cursorLine);
+                while ( cursorPos >= 0 && enteredCharacter != text.at(cursorPos)) {
+                    cursorPos--;
+                }
+                if ( cursorPos < 0 ) {
+                    cursorPos = txtedSourceCode->lineLength(cursorLine-1) - 1;
+                } 
+                else {
+                    charFound = true;
+                    break;
+                }
+            }
+        }
+
+        // If the character was found set its new cursor position...
+        if ( charFound ) {
+            txtedSourceCode->setCursorPosition( cursorLine, cursorPos+1 );
+        }
+        // ...if it was not found, set the previous cursor position.
+        else {
+            txtedSourceCode->setCursorPosition( saveCursorLine, saveCursorPos+1 );
+        }
     }
 
-    savedCursor = txtedSourceCode->textCursor();
-    if ( cursorPos > txtedSourceCode->toPlainText().count() ) {
-        cursorPos = txtedSourceCode->toPlainText().count() - 1;
-    }
-    savedCursor.setPosition( cursorPos );
-    txtedSourceCode->setTextCursor( savedCursor );
 
     if ( toolBarWidget->cbLivePreview->isChecked() ) {
         sourceCodeChanged = false;
     }
 
-    if ( savedSourceContent == txtedSourceCode->toPlainText() ) {
-        txtedSourceCode->document()->setModified( false );
-        setWindowModified( txtedSourceCode->document()->isModified() );
+    if ( savedSourceContent == txtedSourceCode->text() ) {
+        txtedSourceCode->setModified( false );
+        setWindowModified( txtedSourceCode->isModified() );
     }
     else {
-        txtedSourceCode->document()->setModified( true );
-        setWindowModified( txtedSourceCode->document()->isModified() );
+        txtedSourceCode->setModified( true );
+        setWindowModified( txtedSourceCode->isModified() );
     }
 }
 
@@ -483,8 +522,8 @@ void MainWindow::sourceCodeChangedSlot() {
 void MainWindow::indentSettingsChangedSlot() {
     indentSettingsChanged = true;
 
-    QTextCursor savedCursor = txtedSourceCode->textCursor();
-    int cursorPos = savedCursor.position();
+	int cursorLine, cursorPos;
+	txtedSourceCode->getCursorPosition(&cursorLine, &cursorPos);
 
     if ( toolBarWidget->cbLivePreview->isChecked() ) {
         callIndenter();
@@ -492,13 +531,13 @@ void MainWindow::indentSettingsChangedSlot() {
 
         updateSourceView();
         if (sourceCodeChanged) {
-            savedCursor = txtedSourceCode->textCursor();
-            if ( cursorPos >= txtedSourceCode->toPlainText().count() ) {
-                cursorPos = txtedSourceCode->toPlainText().count() - 1;
+/*            savedCursor = txtedSourceCode->textCursor();
+            if ( cursorPos >= txtedSourceCode->text().count() ) {
+                cursorPos = txtedSourceCode->text().count() - 1;
             }
             savedCursor.setPosition( cursorPos );
             txtedSourceCode->setTextCursor( savedCursor );
-
+*/
             sourceCodeChanged = false;
         }
         indentSettingsChanged = false;
@@ -507,13 +546,13 @@ void MainWindow::indentSettingsChangedSlot() {
         updateSourceView();
     }
 
-    if ( savedSourceContent == txtedSourceCode->toPlainText() ) {
-        txtedSourceCode->document()->setModified( false );
-        setWindowModified( txtedSourceCode->document()->isModified() );
+    if ( savedSourceContent == txtedSourceCode->text() ) {
+        txtedSourceCode->setModified( false );
+        setWindowModified( txtedSourceCode->isModified() );
     }
     else {
-        txtedSourceCode->document()->setModified( true );
-        setWindowModified( txtedSourceCode->document()->isModified() );
+        txtedSourceCode->setModified( true );
+        setWindowModified( txtedSourceCode->isModified() );
     }
 }
 
@@ -525,32 +564,33 @@ void MainWindow::indentSettingsChangedSlot() {
  */
 void MainWindow::previewTurnedOnOff(bool turnOn) {
     previewToggled = true;
-    QTextCursor savedCursor = txtedSourceCode->textCursor();
-    int cursorPos = savedCursor.position();
+
+	int cursorLine, cursorPos;
+	txtedSourceCode->getCursorPosition(&cursorLine, &cursorPos);
 
     if ( turnOn && (indentSettingsChanged || sourceCodeChanged) ) {
         callIndenter();
     }
     updateSourceView();
     if (sourceCodeChanged) {
-        savedCursor = txtedSourceCode->textCursor();
-        if ( cursorPos >= txtedSourceCode->toPlainText().count() ) {
-            cursorPos = txtedSourceCode->toPlainText().count() - 1;
+/*        savedCursor = txtedSourceCode->textCursor();
+        if ( cursorPos >= txtedSourceCode->text().count() ) {
+            cursorPos = txtedSourceCode->text().count() - 1;
         }
         savedCursor.setPosition( cursorPos );
         txtedSourceCode->setTextCursor( savedCursor );
-
+*/
         sourceCodeChanged = false;
     }
     indentSettingsChanged = false;
 
-    if ( savedSourceContent == txtedSourceCode->toPlainText() ) {
-        txtedSourceCode->document()->setModified( false );
-        setWindowModified( txtedSourceCode->document()->isModified() );
+    if ( savedSourceContent == txtedSourceCode->text() ) {
+        txtedSourceCode->setModified( false );
+        setWindowModified( txtedSourceCode->isModified() );
     }
     else {
-        txtedSourceCode->document()->setModified( true );
-        setWindowModified( txtedSourceCode->document()->isModified() );
+        txtedSourceCode->setModified( true );
+        setWindowModified( txtedSourceCode->isModified() );
     }
 }
 
@@ -578,11 +618,10 @@ void MainWindow::exportToPDF() {
     fileName = QFileDialog::getSaveFileName( this, tr("Export source code file"), fileName, fileExtensions);
 
     if ( !fileName.isEmpty() ) {
-        QPrinter printer(QPrinter::HighResolution);
+        QsciPrinter printer(QPrinter::HighResolution);
         printer.setOutputFormat(QPrinter::PdfFormat);
         printer.setOutputFileName(fileName);
-
-        txtedSourceCode->document()->print(&printer);
+		printer.printRange(txtedSourceCode);
     }
 }
 
@@ -601,12 +640,12 @@ void MainWindow::exportToHTML() {
     fileName = QFileDialog::getSaveFileName( this, tr("Export source code file"), fileName, fileExtensions);
 
     if ( !fileName.isEmpty() ) {
-        QFile::remove(fileName);
+/*        QFile::remove(fileName);
         QFile outSrcFile(fileName);
         outSrcFile.open( QFile::ReadWrite | QFile::Text );
         syntaxHighlightCPP(txtedSourceCode);
         outSrcFile.write( txtedSourceCode->toHtml().toAscii() );
-        outSrcFile.close();
+        outSrcFile.close(); */
     }
 }
 
@@ -617,19 +656,8 @@ void MainWindow::exportToHTML() {
     last loaded config file and so on.
 */
 void MainWindow::loadSettings() {
-    QSettings *settings;
     bool settingsFileExists = true;
     int indenterID;
-
-    // If no ini file does exist remember that
-    if ( !QFile::exists("./UniversalIndentGUI.ini") ) {
-        settingsFileExists = false;
-        isFirstRunOfThisVersion = true;
-    }
-    // else open the settings file
-    else {
-        settings = new QSettings("./UniversalIndentGUI.ini", QSettings::IniFormat, this);
-    }
 
 
     // Handle if first run of this version
@@ -698,7 +726,6 @@ void MainWindow::loadSettings() {
         QFileInfo fileInfo(currentSourceFile);
         currentSourceFile = fileInfo.absoluteFilePath();
         sourceFileContent = loadFile(currentSourceFile);
-        currentSourceFileExtension = fileInfo.suffix();
     }
     // if no source code file exists make some default settings.
     else {
@@ -739,6 +766,26 @@ void MainWindow::loadSettings() {
     currentIndenterID = indenterID;
 
 
+	// Handle if white space is set to be visible
+	// ------------------------------------------
+
+	// read if indenter parameter tool tips are enabled
+	if ( settingsFileExists ) {
+		bool whiteSpaceIsVisible = settings->value( "UniversalIndentGUI/whiteSpaceIsVisible", false ).toBool();
+		actionWhiteSpaceVisible->setChecked( whiteSpaceIsVisible );
+		if ( whiteSpaceIsVisible ) {
+			txtedSourceCode->setWhitespaceVisibility(QsciScintilla::WsVisible);
+		}
+		else {
+			txtedSourceCode->setWhitespaceVisibility(QsciScintilla::WsInvisible);
+		}
+	}
+	else {
+		actionWhiteSpaceVisible->setChecked( false );
+		txtedSourceCode->setWhitespaceVisibility(QsciScintilla::WsInvisible);
+	}
+
+
     // Handle if indenter parameter tool tips are enabled
     // --------------------------------------------------
 
@@ -769,17 +816,14 @@ void MainWindow::loadSettings() {
         language.truncate(2);
     }
 
+	highlighter->readCurrentSettings("");
+
     // load the translation file and set it for the application
     translator = new QTranslator();
     translator->load( QString("./translations/universalindent_") + language );
     qApp->installTranslator(translator);
     retranslateUi(this);
     toolBarWidget->retranslateUi(toolBar);
-
-
-    if ( settingsFileExists ) {
-        delete settings;
-    }
 }
 
 
@@ -788,8 +832,6 @@ void MainWindow::loadSettings() {
     Settings are for example last selected indenter, last loaded config file and so on.
 */
 void MainWindow::saveSettings() {
-    QSettings *settings = new QSettings("./UniversalIndentGUI.ini", QSettings::IniFormat, this);
-
     QFileInfo fileInfo(currentSourceFile);
     if ( fileInfo.isFile() ) {
         settings->setValue( "UniversalIndentGUI/lastSourceCodeFile", currentSourceFile );
@@ -804,8 +846,8 @@ void MainWindow::saveSettings() {
 		settings->setValue( "UniversalIndentGUI/position", pos() );
 		settings->setValue( "UniversalIndentGUI/size", size() );
 	}
-
-    delete settings;
+    settings->setValue( "UniversalIndentGUI/whiteSpaceIsVisible", actionWhiteSpaceVisible->isChecked() );
+    highlighter->writeCurrentSettings("");
 }
 
 
@@ -825,8 +867,8 @@ void MainWindow::closeEvent( QCloseEvent *event ) {
 
 /*!
     This function is setup to capture tooltip events. All widgets that are created by the
-    indentHandler object and are responsible for indenter paramters are connected with
-    this eventfilter. So depending on the settings the tooltips can be enabled and
+    indentHandler object and are responsible for indenter parameters are connected with
+    this event filter. So depending on the settings the tooltips can be enabled and
     disabled for these widgets.
  */
 bool MainWindow::eventFilter(QObject *obj, QEvent *event)
@@ -851,7 +893,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
  */
 bool MainWindow::maybeSave()
 {
-    if ( txtedSourceCode->document()->isModified() ) {
+    if ( txtedSourceCode->isModified() ) {
         int ret = QMessageBox::warning(this, tr("Modified code"),
             tr("The source code has been modified.\n"
             "Do you want to save your changes?"),
@@ -986,8 +1028,11 @@ void MainWindow::languageChanged(QAction* languageAction) {
 				encodingActionList.at(i)->setStatusTip( tr("Reopen the currently opened source code file by using the text encoding scheme ") + encodingsList.at(i) );
 			}
 
-			// translate the about dialog
+			// Translate the about dialog.
             aboutDialog->retranslate();
+
+            // Translate the highlighter menue.
+            highlighter->retranslate();
         }
     }
 }
@@ -1044,34 +1089,20 @@ void MainWindow::encodingChanged(QAction* encodingAction) {
             fileContent = inSrcStrm.readAll();
             QApplication::restoreOverrideCursor();
             inSrcFile.close();
-            txtedSourceCode->setPlainText( fileContent );
+            txtedSourceCode->setText( fileContent );
         }
     }
 }
 
 
-void MainWindow::syntaxHighlightCPP( QTextEdit *textEdit ) {
-    QString sourceCode = textEdit->toPlainText();
-    QStringList keywordPatterns;
-    keywordPatterns << "\\bchar\\b" << "\\bclass\\b" << "\\bconst\\b"
-        << "\\bdouble\\b" << "\\benum\\b" << "\\bexplicit\\b"
-        << "\\bfriend\\b" << "\\binline\\b" << "\\bint\\b"
-        << "\\blong\\b" << "\\bnamespace\\b" << "\\boperator\\b"
-        << "\\bprivate\\b" << "\\bprotected\\b" << "\\bpublic\\b"
-        << "\\bshort\\b" << "\\bsignals\\b" << "\\bsigned\\b"
-        << "\\bslots\\b" << "\\bstatic\\b" << "\\bstruct\\b"
-        << "\\btemplate\\b" << "\\btypedef\\b" << "\\btypename\\b"
-        << "\\bunion\\b" << "\\bunsigned\\b" << "\\bvirtual\\b"
-        << "\\bvoid\\b" << "\\bvolatile\\b" << "\\belse\\b"
-        << "\\bif\\b" << "\\bwhile\\b";
-
-    QRegExp expression("[a-zA-Z][a-zA-Z0-9_]*");
-    int index = sourceCode.indexOf(expression);
-    int length = 0;
-    while (index >= 0) {
-        length = expression.matchedLength();
-        //setFormat(index, length, rule.format);
-        index = sourceCode.indexOf(expression, index + length);
-    }
-    sourceCode.replace(QRegExp("([a-zA-Z][a-zA-Z0-9_]*)"), "<b>\\1</b>");
+/*!
+	Is called whenever the white space visibitlity is being changed in the menue.
+ */
+void MainWindow::setWhiteSpaceVisibility(bool visible) {
+	if ( visible ) {
+		txtedSourceCode->setWhitespaceVisibility(QsciScintilla::WsVisible);
+	}
+	else {
+		txtedSourceCode->setWhitespaceVisibility(QsciScintilla::WsInvisible);
+	}
 }

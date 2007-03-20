@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8,00"
-	Name="UniversalIndentGUI"
+	Name="UiGUIQSci"
 	ProjectGUID="{CF521500-824E-4DB7-A7FA-F4A8B6BB008A}"
 	RootNamespace="UniversalIndentGUI"
 	Keyword="Win32Proj"
@@ -76,7 +76,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="qtmaind.lib QtGuid4.lib QtCored4.lib"
+				AdditionalDependencies="qtmaind.lib QtGuid4.lib QtCored4.lib qscintilla2.lib"
 				LinkIncremental="2"
 				IgnoreAllDefaultLibraries="false"
 				GenerateDebugInformation="true"

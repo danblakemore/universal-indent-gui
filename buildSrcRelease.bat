@@ -27,5 +27,5 @@ copy .\VS8QtRules.rules .\UniversalIndentGUI_src\
 copy .\doc\iniFileFormat.html .\UniversalIndentGUI_src\doc\
 copy .\translations\*.ts .\UniversalIndentGUI_src\translations\
 cd UniversalIndentGUI_src
-7z.exe a -tzip UniversalIndentGUI_0.4.2_Beta_src.zip
+7z.exe a -tzip UniversalIndentGUI_0.5.0_Beta_src.zip
 cd ..

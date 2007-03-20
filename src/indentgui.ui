@@ -32,60 +32,6 @@
       <property name="spacing" >
        <number>0</number>
       </property>
-      <item>
-       <widget class="QTextEdit" name="txtedLineNumbers" >
-        <property name="enabled" >
-         <bool>false</bool>
-        </property>
-        <property name="maximumSize" >
-         <size>
-          <width>50</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="font" >
-         <font>
-          <family>Courier New</family>
-          <pointsize>10</pointsize>
-          <weight>50</weight>
-          <italic>false</italic>
-          <bold>false</bold>
-          <underline>false</underline>
-          <strikeout>false</strikeout>
-         </font>
-        </property>
-        <property name="contextMenuPolicy" >
-         <enum>Qt::NoContextMenu</enum>
-        </property>
-        <property name="verticalScrollBarPolicy" >
-         <enum>Qt::ScrollBarAlwaysOff</enum>
-        </property>
-        <property name="lineWrapMode" >
-         <enum>QTextEdit::NoWrap</enum>
-        </property>
-        <property name="readOnly" >
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QTextEdit" name="txtedSourceCode" >
-        <property name="font" >
-         <font>
-          <family>Courier New</family>
-          <pointsize>10</pointsize>
-          <weight>50</weight>
-          <italic>false</italic>
-          <bold>false</bold>
-          <underline>false</underline>
-          <strikeout>false</strikeout>
-         </font>
-        </property>
-        <property name="lineWrapMode" >
-         <enum>QTextEdit::NoWrap</enum>
-        </property>
-       </widget>
-      </item>
      </layout>
     </item>
    </layout>
@@ -117,6 +63,13 @@
     <addaction name="menuExport" />
     <addaction name="actionExit" />
    </widget>
+   <widget class="QMenu" name="menuIndenter" >
+    <property name="title" >
+     <string>Indenter</string>
+    </property>
+    <addaction name="actionLoad_Indenter_Config_File" />
+    <addaction name="actionSave_Indenter_Config_File" />
+   </widget>
    <widget class="QMenu" name="menuHelp" >
     <property name="title" >
      <string>Help</string>
@@ -129,14 +82,8 @@
     </property>
     <addaction name="actionLive_Indent_Preview" />
     <addaction name="actionSyntax_Highlight" />
+    <addaction name="actionWhiteSpaceVisible" />
     <addaction name="actionParameter_Tooltips" />
-   </widget>
-   <widget class="QMenu" name="menuIndenter" >
-    <property name="title" >
-     <string>Indenter</string>
-    </property>
-    <addaction name="actionLoad_Indenter_Config_File" />
-    <addaction name="actionSave_Indenter_Config_File" />
    </widget>
    <addaction name="menuFile" />
    <addaction name="menuIndenter" />
@@ -321,6 +268,9 @@
    </property>
   </action>
   <action name="actionExportHTML" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
    <property name="icon" >
     <iconset resource="../resources/Icons.qrc" >:/mainWindow/exporthtml.png</iconset>
    </property>
@@ -373,11 +323,24 @@
     <string>Syntax Highlight</string>
    </property>
   </action>
+  <action name="actionWhiteSpaceVisible" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>White Space Visible</string>
+   </property>
+   <property name="iconText" >
+    <string>White Space Visible</string>
+   </property>
+   <property name="toolTip" >
+    <string>Set white space visible</string>
+   </property>
+   <property name="statusTip" >
+    <string>Enables or disables diplaying of white space characters in the editor.</string>
+   </property>
+  </action>
  </widget>
- <tabstops>
-  <tabstop>txtedLineNumbers</tabstop>
-  <tabstop>txtedSourceCode</tabstop>
- </tabstops>
  <resources>
   <include location="../resources/Icons.qrc" />
  </resources>
