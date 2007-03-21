@@ -1,4 +1,5 @@
 2007-03-19 Version 0.5.1 Beta
+[add] Supporting syntax highlightning for the programming language D.
 [change] The live typing and indenting feature was not adapted to QScintilla. Now works again (depending on the used indenter).
 [fix] Bug ID 1678783: Files other encoded than ascii were not displayed correctly. Now allways displaying files using UTF-8 encoding.
 [fix] Bug ID 1678783: The new syntax highlighter selection menu was not translated.
