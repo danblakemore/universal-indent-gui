@@ -13,6 +13,7 @@ copy .\data\uigui_bcpp.ini .\UniversalIndentGUI_src\data
 copy .\data\uigui_csstidy.ini .\UniversalIndentGUI_win32\data
 copy .\data\uigui_greatcode.ini .\UniversalIndentGUI_src\data
 copy .\data\uigui_gnuindent.ini .\UniversalIndentGUI_src\data
+copy .\data\uigui_phpCB.ini .\UniversalIndentGUI_win32\data
 copy .\data\uigui_uncrustify.ini .\UniversalIndentGUI_win32\datas
 copy .\resources\* .\UniversalIndentGUI_src\resources
 copy .\src\* .\UniversalIndentGUI_src\src
@@ -27,5 +28,5 @@ copy .\VS8QtRules.rules .\UniversalIndentGUI_src\
 copy .\doc\iniFileFormat.html .\UniversalIndentGUI_src\doc\
 copy .\translations\*.ts .\UniversalIndentGUI_src\translations\
 cd UniversalIndentGUI_src
-7z.exe a -tzip UniversalIndentGUI_0.5.0_Beta_src.zip
+7z.exe a -tzip UniversalIndentGUI_0.5.1_Beta_src.zip
 cd ..

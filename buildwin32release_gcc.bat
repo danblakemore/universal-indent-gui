@@ -49,6 +49,6 @@ copy .\translations\*.qm .\UniversalIndentGUI_win32\translations\
 copy .\doc\iniFileFormat.html .\UniversalIndentGUI_win32\doc\
 copy .\release\UniversalIndentGUI.exe .\UniversalIndentGUI_win32\
 cd UniversalIndentGUI_win32
-7z.exe a -tzip UniversalIndentGUI_0.5.0_Beta_win32.zip
+7z.exe a -tzip UniversalIndentGUI_0.5.1_Beta_win32.zip
 cd ..
 pause
