@@ -48,9 +48,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 	txtedSourceCode->setWhitespaceVisibility(QsciScintilla::WsVisible);
 
     // set the program version, revision and date, which is shown in the main window title and in the about dialog.
-    version = "0.5.0 Beta";
-    revision = "276";
-    QDate buildDate(2007, 3, 14);
+    version = "0.5.1 Beta";
+    revision = "299";
+    QDate buildDate(2007, 3, 21);
     buildDateStr = buildDate.toString("d. MMMM yyyy");
 
     toolBarWidget = new Ui::toolBarWidget();

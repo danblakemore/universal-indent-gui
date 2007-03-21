@@ -1,7 +1,8 @@
 2007-03-19 Version 0.5.1 Beta
 [change] The live typing and indenting feature was not adapted to QScintilla. Now works again (depending on the used indenter).
-[fix] Bug ID 1678783: Files other encoded than ascii were not displayed correctly. Now allways displaying using UTF-8.
+[fix] Bug ID 1678783: Files other encoded than ascii were not displayed correctly. Now allways displaying files using UTF-8 encoding.
 [fix] Bug ID 1678783: The new syntax highlighter selection menu was not translated.
+[fix] When file was reloaded with other encoding the file was allways set to be modified even if it wasn't.
 
 2007-03-14 Version 0.5.0 Beta
 [add/change] Using QScintilla as editing component, which is by far more mighty than the before uses QTextEdit. Have a look inside the development area for details.
