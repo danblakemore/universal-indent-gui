@@ -1090,6 +1090,7 @@ void MainWindow::encodingChanged(QAction* encodingAction) {
             QApplication::restoreOverrideCursor();
             inSrcFile.close();
             txtedSourceCode->setText( fileContent );
+			txtedSourceCode->setModified(false);
         }
     }
 }
