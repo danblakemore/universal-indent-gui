@@ -297,8 +297,11 @@ void CppHighlighter::setLexerForExtension( QString extension ) {
 		delete lexer;
 	}
 
+	//TODO: highlighterList contains for example "javascript" but the file extension is "js". There should be a second list for the extensions.
     int indexOfHighlighter = highlighterList.indexOf(extension);
-    highlighterActionGroup->actions().at(indexOfHighlighter)->setChecked(true);
+	if ( indexOfHighlighter != -1 ) {
+		highlighterActionGroup->actions().at(indexOfHighlighter)->setChecked(true);
+	}
 
 	if ( extension == "cpp" || extension == "hpp" || extension == "c" || extension == "h" || extension == "cxx" || extension == "hxx" ) {
 		lexer = new QsciLexerCPP();
