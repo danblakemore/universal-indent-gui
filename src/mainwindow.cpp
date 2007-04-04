@@ -799,6 +799,19 @@ void MainWindow::loadSettings() {
     }
 
 
+    // Handle the width of tabs in spaces
+    // ----------------------------------
+
+    // read the tab width
+    if ( settingsFileExists ) {
+        int tabWidth = settings->value("UniversalIndentGUI/tabWidth", 4).toInt();
+        txtedSourceCode->setTabWidth(tabWidth);
+    }
+    else {
+        txtedSourceCode->setTabWidth(4);
+    }
+
+
     // Handle selected language
     // ------------------------
 
@@ -847,6 +860,7 @@ void MainWindow::saveSettings() {
 		settings->setValue( "UniversalIndentGUI/size", size() );
 	}
     settings->setValue( "UniversalIndentGUI/whiteSpaceIsVisible", actionWhiteSpaceVisible->isChecked() );
+    settings->setValue( "UniversalIndentGUI/tabWidth", txtedSourceCode->tabWidth() );
     highlighter->writeCurrentSettings("");
 }
 
