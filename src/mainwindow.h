@@ -71,6 +71,7 @@ private:
     AboutDialog *aboutDialog;
     int textEditLastScrollPos;
     int currentIndenterID;
+	bool loadLastSourceCodeFileOnStartup;
     QString currentSourceFile;
     QString currentSourceFileExtension;
     QString savedSourceContent;

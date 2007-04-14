@@ -84,6 +84,7 @@
     <addaction name="actionSyntax_Highlight" />
     <addaction name="actionWhiteSpaceVisible" />
     <addaction name="actionParameter_Tooltips" />
+    <addaction name="actionAuto_Open_Last_file" />
    </widget>
    <addaction name="menuFile" />
    <addaction name="menuIndenter" />
@@ -338,6 +339,23 @@
    </property>
    <property name="statusTip" >
     <string>Enables or disables diplaying of white space characters in the editor.</string>
+   </property>
+  </action>
+  <action name="actionAuto_Open_Last_file" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="checked" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>Auto Open Last File</string>
+   </property>
+   <property name="toolTip" >
+    <string>Auto open last source file on startup</string>
+   </property>
+   <property name="statusTip" >
+    <string>If selected opens last source code file on startup</string>
    </property>
   </action>
  </widget>

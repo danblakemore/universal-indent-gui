@@ -694,7 +694,10 @@ void MainWindow::loadSettings() {
 		}
 	}
 	else {
-		currentSourceFile = "./data/example.cpp";
+		QPoint pos = QPoint(0, 0);
+		QSize size = QSize(800, 600);
+		resize(size);
+		move(pos);
 	}
 
 
@@ -713,27 +716,46 @@ void MainWindow::loadSettings() {
     // Handle last opened source code file
     // -----------------------------------
 
-    // read last opened source code file from settings if the settings file exists
-    if ( settingsFileExists ) {
-        currentSourceFile = settings->value("UniversalIndentGUI/lastSourceCodeFile", "./data/example.cpp").toString();
-    }
-    else {
-        currentSourceFile = "./data/example.cpp";
-    }
+	// read if last opened source code file should be loaded on startup
+	if ( settingsFileExists ) {
+		loadLastSourceCodeFileOnStartup = settings->value("UniversalIndentGUI/loadLastSourceCodeFileOnStartup", true).toBool();
+	}
+	else {
+		loadLastSourceCodeFileOnStartup = true;
+	}
+	actionAuto_Open_Last_file->setChecked( loadLastSourceCodeFileOnStartup );
 
-    // if source file exist load it
-    if ( QFile::exists(currentSourceFile) ) {
-        QFileInfo fileInfo(currentSourceFile);
-        currentSourceFile = fileInfo.absoluteFilePath();
-        sourceFileContent = loadFile(currentSourceFile);
-    }
-    // if no source code file exists make some default settings.
-    else {
-        QFileInfo fileInfo(currentSourceFile);
-        currentSourceFile = fileInfo.absolutePath();
-        currentSourceFileExtension = "";
-        sourceFileContent = "if(x==\"y\"){x=z;}";
-    }
+	// Only load last source code file if set to do so
+	if ( loadLastSourceCodeFileOnStartup ) {
+		// read last opened source code file from settings if the settings file exists
+		if ( settingsFileExists ) {
+			currentSourceFile = settings->value("UniversalIndentGUI/lastSourceCodeFile", "./data/example.cpp").toString();
+		}
+		else {
+			currentSourceFile = "./data/example.cpp";
+		}
+
+		// if source file exist load it
+		if ( QFile::exists(currentSourceFile) ) {
+			QFileInfo fileInfo(currentSourceFile);
+			currentSourceFile = fileInfo.absoluteFilePath();
+			sourceFileContent = loadFile(currentSourceFile);
+		}
+		// if no source code file exists make some default settings.
+		else {
+			QFileInfo fileInfo(currentSourceFile);
+			currentSourceFile = fileInfo.absolutePath();
+			currentSourceFileExtension = "";
+			sourceFileContent = "if(x==\"y\"){x=z;}";
+		}
+	}
+	// if last opened source file should not be loaded make some default settings.
+	else {
+		QFileInfo fileInfo("./data/example.cpp");
+		currentSourceFile = fileInfo.absolutePath();
+		currentSourceFileExtension = "";
+		sourceFileContent = "";
+	}
     savedSourceContent = sourceFileContent;
 
 
@@ -849,6 +871,7 @@ void MainWindow::saveSettings() {
     if ( fileInfo.isFile() ) {
         settings->setValue( "UniversalIndentGUI/lastSourceCodeFile", currentSourceFile );
     }
+	settings->setValue( "UniversalIndentGUI/loadLastSourceCodeFileOnStartup", actionAuto_Open_Last_file->isChecked() );
     settings->setValue( "UniversalIndentGUI/lastSelectedIndenter", currentIndenterID );
     settings->setValue( "UniversalIndentGUI/indenterParameterTooltipsEnabled", actionParameter_Tooltips->isChecked() );
     settings->setValue( "UniversalIndentGUI/language", language );
