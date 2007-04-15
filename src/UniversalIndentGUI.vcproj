@@ -227,6 +227,10 @@
 				RelativePath=".\mainwindow.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\settingsdialog.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -247,6 +251,10 @@
 			</File>
 			<File
 				RelativePath=".\mainwindow.h"
+				>
+			</File>
+			<File
+				RelativePath=".\settingsdialog.h"
 				>
 			</File>
 		</Filter>
@@ -276,6 +284,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\SettingsDialog.ui"
+				>
+			</File>
+			<File
 				RelativePath=".\toolBarWidget.ui"
 				>
 			</File>
@@ -297,6 +309,10 @@
 			</File>
 			<File
 				RelativePath="$(OutDir)\tmp\moc\moc_mainwindow.cpp"
+				>
+			</File>
+			<File
+				RelativePath="$(OutDir)\tmp\moc\moc_settingsdialog.cpp"
 				>
 			</File>
 			<File
@@ -325,6 +341,26 @@
 			</File>
 			<File
 				RelativePath="$(OutDir)\tmp\uic\ui_indentgui.h"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="MOC"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="MOC"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="$(OutDir)\tmp\uic\ui_SettingsDialog.h"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"

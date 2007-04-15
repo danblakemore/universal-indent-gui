@@ -90,6 +90,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     // generate about dialog box
     aboutDialog = new AboutDialog(this, version, revision, buildDateStr);
 
+	// generate settings dialog box
+	settingsDialog = new SettingsDialog(this);
+
     updateSourceView();
     txtedSourceCode->setModified(false);
 
@@ -102,6 +105,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 
     connect( actionLoad_Indenter_Config_File, SIGNAL(activated()), this, SLOT(openConfigFileDialog()) );
     connect( actionSave_Indenter_Config_File, SIGNAL(activated()), this, SLOT(saveasIndentCfgFileDialog()) );
+
+	connect( actionShowSettings, SIGNAL(activated()), settingsDialog, SLOT(exec()) );
 
     connect( toolBarWidget->cbLivePreview, SIGNAL(toggled(bool)), this, SLOT(previewTurnedOnOff(bool)) );
     connect( toolBarWidget->cbLivePreview, SIGNAL(toggled(bool)), actionLive_Indent_Preview, SLOT(setChecked(bool)) );

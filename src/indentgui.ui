@@ -85,6 +85,7 @@
     <addaction name="actionWhiteSpaceVisible" />
     <addaction name="actionParameter_Tooltips" />
     <addaction name="actionAuto_Open_Last_file" />
+    <addaction name="actionShowSettings" />
    </widget>
    <addaction name="menuFile" />
    <addaction name="menuIndenter" />
@@ -356,6 +357,11 @@
    </property>
    <property name="statusTip" >
     <string>If selected opens last source code file on startup</string>
+   </property>
+  </action>
+  <action name="actionShowSettings" >
+   <property name="text" >
+    <string>ShowSettings</string>
    </property>
   </action>
  </widget>
