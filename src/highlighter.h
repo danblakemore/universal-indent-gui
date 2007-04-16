@@ -17,8 +17,8 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef CPPHIGHLIGHTER_H
-#define CPPHIGHLIGHTER_H
+#ifndef HIGHLIGHTER_H
+#define HIGHLIGHTER_H
 
 #include <QObject>
 #include <QMap>
@@ -47,12 +47,12 @@
 #include <Qsci/qscilexertex.h>
 
 
-class CppHighlighter : public QObject
+class Highlighter : public QObject
 {
     Q_OBJECT
 
 public:
-    CppHighlighter(QsciScintilla *parent, QSettings *settings=0);
+    Highlighter(QsciScintilla *parent, QSettings *settings=0);
     void turnHighlightOff();
     void turnHighlightOn();
 	
@@ -89,4 +89,4 @@ public slots:
 	void highlighterChanged(QAction* highlighterAction);
 };
 
-#endif
+#endif  // HIGHLIGHTER_H

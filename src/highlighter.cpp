@@ -19,17 +19,17 @@
 
 #include <QtGui>
 
-#include "cpphighlighter.h"
+#include "highlighter.h"
 
 /*!
-    \class CppHighlighter
+    \class Highlighter
     \brief Highlighter used by QTextEdit fields to syntax highlight cpp source code
 */
 
 /*!
     The constructor initializes some regular expressions and keywords to identify cpp tokens
  */
-CppHighlighter::CppHighlighter(QsciScintilla *parent, QSettings *settings)
+Highlighter::Highlighter(QsciScintilla *parent, QSettings *settings)
 : QObject(parent)
 {
     this->parent = parent;
@@ -58,7 +58,7 @@ CppHighlighter::CppHighlighter(QsciScintilla *parent, QSettings *settings)
 /*!
 	Creates a menu entry under the settings menu for all available text encodings.
 */
-void CppHighlighter::createHighlighterMenu() {
+void Highlighter::createHighlighterMenu() {
 	QAction *highlighterAction;
 	QString highlighterName;
 
@@ -81,7 +81,7 @@ void CppHighlighter::createHighlighterMenu() {
 /*!
     Returns the menu for selecting the highlighter.
  */
-QMenu *CppHighlighter::getHighlighterMenu() {
+QMenu *Highlighter::getHighlighterMenu() {
     return highlighterMenu;
 }
 
@@ -89,7 +89,7 @@ QMenu *CppHighlighter::getHighlighterMenu() {
 /*!
     This slot handles signals coming from selecting another syntax highlighter.
  */
-void CppHighlighter::highlighterChanged(QAction* highlighterAction) {
+void Highlighter::highlighterChanged(QAction* highlighterAction) {
 	QString highlighterName = highlighterAction->text();
 	setLexerForExtension(highlighterName);
 }
@@ -98,7 +98,7 @@ void CppHighlighter::highlighterChanged(QAction* highlighterAction) {
 /*!
     Retranslates the highlighter menu.
  */
-void CppHighlighter::retranslate() {
+void Highlighter::retranslate() {
     if ( highlighterMenu ) {
         highlighterMenu->setTitle( tr("Set Syntax Highlighter") );
         QList<QAction *> actionList = highlighterMenu->actions();
@@ -115,7 +115,7 @@ void CppHighlighter::retranslate() {
 /*!
     Turns the syntax parser on.
 */
-void CppHighlighter::turnHighlightOn() {
+void Highlighter::turnHighlightOn() {
     highlightningIsOn = true;
 	parent->setLexer(lexer);
 }
@@ -123,7 +123,7 @@ void CppHighlighter::turnHighlightOn() {
 /*!
     Turns the syntax parser off.
 */
-void CppHighlighter::turnHighlightOff() {
+void Highlighter::turnHighlightOff() {
     highlightningIsOn = false;
 	parent->setLexer();
 }
@@ -132,7 +132,7 @@ void CppHighlighter::turnHighlightOff() {
 /*!
     Read the settings for the current lexer from the settings file.
  */
-bool CppHighlighter::readCurrentSettings( const char *prefix )
+bool Highlighter::readCurrentSettings( const char *prefix )
 {
     bool ok, flag, rc = true;
     int num;
@@ -213,7 +213,7 @@ bool CppHighlighter::readCurrentSettings( const char *prefix )
 /*!
     Write the settings for the current lexer to the settings file.
  */
-void CppHighlighter::writeCurrentSettings( const char *prefix )
+void Highlighter::writeCurrentSettings( const char *prefix )
 {
     QString key;
 
@@ -277,19 +277,19 @@ void CppHighlighter::writeCurrentSettings( const char *prefix )
 }
 
 
-void CppHighlighter::setColor(const QColor &color, int style) {
+void Highlighter::setColor(const QColor &color, int style) {
     colorForStyles[style] = color;
     lexer->setColor( color, style );
 }
 
 
-void CppHighlighter::setFont(const QFont &font, int style) {
+void Highlighter::setFont(const QFont &font, int style) {
     fontForStyles[style] = font;
     lexer->setFont( font, style );
 }
 
 
-void CppHighlighter::setLexerForExtension( QString extension ) {
+void Highlighter::setLexerForExtension( QString extension ) {
     int indexOfHighlighter = 0;
 	extension = extension.toLower();
 

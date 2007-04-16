@@ -212,7 +212,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\cpphighlighter.cpp"
+				RelativePath=".\highlighter.cpp"
 				>
 			</File>
 			<File
@@ -242,7 +242,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\cpphighlighter.h"
+				RelativePath=".\highlighter.h"
 				>
 			</File>
 			<File
@@ -300,7 +300,7 @@
 				>
 			</File>
 			<File
-				RelativePath="$(OutDir)\tmp\moc\moc_cpphighlighter.cpp"
+				RelativePath="$(OutDir)\tmp\moc\moc_highlighter.cpp"
 				>
 			</File>
 			<File

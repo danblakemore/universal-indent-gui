@@ -26,7 +26,7 @@
 #include "ui_toolBarWidget.h"
 #include "aboutdialog.h"
 #include "settingsdialog.h"
-#include "cpphighlighter.h"
+#include "highlighter.h"
 #include "indenthandler.h"
 #include <QWidget>
 #include <QString>
@@ -67,7 +67,7 @@ private:
     QString sourceFileContent;
     QString sourceFormattedContent;
     QString sourceViewContent;
-    CppHighlighter *highlighter;
+    Highlighter *highlighter;
     QScrollBar *textEditVScrollBar;
     AboutDialog *aboutDialog;
 	SettingsDialog *settingsDialog;
