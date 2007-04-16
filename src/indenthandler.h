@@ -81,7 +81,7 @@ private:
     };
     QVector<ParamBoolean> paramBooleans;
 
-    //! Holds a reference to all lineedits needed for parameter setting and the parameters name
+    //! Holds a reference to all line edits needed for parameter setting and the parameters name
     struct ParamString {
         QString paramName;
         QString paramCallName;
@@ -91,7 +91,7 @@ private:
     };
     QVector<ParamString> paramStrings;
 
-    //! Hold a reference to all spinboxes needed for parameter setting and the parameters name
+    //! Hold a reference to all spin boxes needed for parameter setting and the parameters name
     struct ParamNumeric {
         QString paramName;
         QString paramCallName;
@@ -101,13 +101,14 @@ private:
     };
     QVector<ParamNumeric> paramNumerics;
 
-    //! Hold a reference to all comboboxes needed for parameter setting and the parameters name
+    //! Hold a reference to all combo boxes needed for parameter setting and the parameters name
     struct ParamMultiple {
         QString paramName;
         QString paramCallName;
         QCheckBox *valueEnabledChkBox;
         QComboBox *comboBox;
         QStringList choicesStrings;
+		QStringList choicesStringsReadable;
     };
     QVector<ParamMultiple> paramMultiples;
 

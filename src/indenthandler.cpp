@@ -652,12 +652,12 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
 
                 QObject::connect(chkBox, SIGNAL(clicked()), this, SIGNAL(settingsCodeChanged()));
             }
-            // edit type is numeric so create a lineedit with label
+            // edit type is numeric so create a line edit with label
             else if ( editType == "string" ) {
                 // read the parameter name as it is used at the command line or in its config file
                 QString parameterCallName = indenterSettings->value(indenterParameter + "/CallName").toString();
 
-                // create checkbox which enables or disables the parameter
+                // create check box which enables or disables the parameter
                 QCheckBox *chkBox = new QCheckBox( toolBoxPages.at(category).page );
                 chkBox->setChecked( indenterSettings->value(indenterParameter + "/Enabled").toBool() );
                 chkBox->setToolTip( "Enables/disables the parameter. If disabled the indenters default value will be used." );
@@ -690,7 +690,7 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
                 hboxLayout->addWidget(label);
                 toolBoxPages.at(category).vboxLayout->addLayout(hboxLayout);
 
-                // remember parameter name and reference to its lineedit
+                // remember parameter name and reference to its line edit
                 ParamString paramString;
                 paramString.paramName = indenterParameter;
                 paramString.paramCallName = parameterCallName;
@@ -718,8 +718,14 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
 
                 // create the combo box
                 QComboBox *comboBox = new QComboBox( toolBoxPages.at(category).page );
-                QStringList choicesStrings = indenterSettings->value(indenterParameter + "/Choices").toString().split("|");
-                comboBox->addItems( choicesStrings );
+				QStringList choicesStrings = indenterSettings->value(indenterParameter + "/Choices").toString().split("|");
+				QStringList choicesStringsReadable = indenterSettings->value(indenterParameter + "/ChoicesReadable").toString().split("|", QString::SkipEmptyParts);
+				if ( choicesStringsReadable.isEmpty() ) {
+					comboBox->addItems( choicesStrings );
+				}
+				else {
+					comboBox->addItems( choicesStringsReadable );
+				}
                 comboBox->setCurrentIndex( indenterSettings->value(indenterParameter + "/Value").toInt() );
                 paramToolTip = indenterSettings->value(indenterParameter + "/Description").toString();
                 comboBox->setToolTip( paramToolTip );
@@ -736,7 +742,8 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
                 paramMultiple.paramName = indenterParameter;
                 paramMultiple.paramCallName = parameterCallName;
                 paramMultiple.comboBox = comboBox;
-                paramMultiple.choicesStrings = choicesStrings;
+				paramMultiple.choicesStrings = choicesStrings;
+				paramMultiple.choicesStringsReadable = choicesStringsReadable;
                 paramMultiple.valueEnabledChkBox = chkBox;
                 paramMultiples.append(paramMultiple);
 
