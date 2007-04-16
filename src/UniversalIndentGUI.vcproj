@@ -228,7 +228,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\settingsdialog.cpp"
+				RelativePath=".\uiguisettingsdialog.cpp"
 				>
 			</File>
 		</Filter>
@@ -254,7 +254,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\settingsdialog.h"
+				RelativePath=".\uiguisettingsdialog.h"
 				>
 			</File>
 		</Filter>
@@ -284,11 +284,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\SettingsDialog.ui"
+				RelativePath=".\toolBarWidget.ui"
 				>
 			</File>
 			<File
-				RelativePath=".\toolBarWidget.ui"
+				RelativePath=".\UiGuiSettingsDialog.ui"
 				>
 			</File>
 		</Filter>
@@ -312,7 +312,7 @@
 				>
 			</File>
 			<File
-				RelativePath="$(OutDir)\tmp\moc\moc_settingsdialog.cpp"
+				RelativePath="$(OutDir)\tmp\moc\moc_uiguisettingsdialog.cpp"
 				>
 			</File>
 			<File
@@ -360,7 +360,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="$(OutDir)\tmp\uic\ui_SettingsDialog.h"
+				RelativePath="$(OutDir)\tmp\uic\ui_toolBarWidget.h"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"
@@ -380,7 +380,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="$(OutDir)\tmp\uic\ui_toolBarWidget.h"
+				RelativePath="$(OutDir)\tmp\uic\ui_UiGuiSettingsDialog.h"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"

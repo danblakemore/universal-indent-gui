@@ -25,7 +25,7 @@
 #include "ui_indentgui.h"
 #include "ui_toolBarWidget.h"
 #include "aboutdialog.h"
-#include "settingsdialog.h"
+#include "uiguisettingsdialog.h"
 #include "highlighter.h"
 #include "indenthandler.h"
 #include <QWidget>
@@ -70,7 +70,7 @@ private:
     Highlighter *highlighter;
     QScrollBar *textEditVScrollBar;
     AboutDialog *aboutDialog;
-	SettingsDialog *settingsDialog;
+	UiGuiSettingsDialog *settingsDialog;
     int textEditLastScrollPos;
     int currentIndenterID;
 	bool loadLastSourceCodeFileOnStartup;

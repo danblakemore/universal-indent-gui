@@ -91,7 +91,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     aboutDialog = new AboutDialog(this, version, revision, buildDateStr);
 
 	// generate settings dialog box
-	settingsDialog = new SettingsDialog(this);
+	settingsDialog = new UiGuiSettingsDialog(this);
 
     updateSourceView();
     txtedSourceCode->setModified(false);
