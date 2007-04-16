@@ -37,22 +37,25 @@ UI_DIR = $${DESTDIR}/tmp/uic
 OBJECTS_DIR = $${DESTDIR}/tmp/obj
 RCC_DIR = $${DESTDIR}/tmp/qrc
 
-message ( destdir is $${DESTDIR}. uic is $${UI_DIR}. moc is $${MOC_DIR})
+#message ( destdir is $${DESTDIR}. uic is $${UI_DIR}. moc is $${MOC_DIR})
 
 # Input
-HEADERS += src/cpphighlighter.h \
+HEADERS += src/highlighter.h \
            src/indenthandler.h \
            src/mainwindow.h \
+           src/uiguisettingsdialog.h \
            src/aboutdialog.h
 
 FORMS += src/indentgui.ui \
          src/toolBarWidget.ui \
+         src/UiGuiSettingsDialog.ui \
          src/aboutdialog.ui
 
-SOURCES += src/cpphighlighter.cpp \
+SOURCES += src/highlighter.cpp \
            src/indenthandler.cpp \
            src/main.cpp \
            src/mainwindow.cpp \
+           src/uiguisettingsdialog.cpp \
            src/aboutdialog.cpp
 
 RESOURCES += resources/Icons.qrc
