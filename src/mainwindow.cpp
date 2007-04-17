@@ -790,7 +790,7 @@ void MainWindow::loadSettings() {
 	}
 	else {
 		currentIndenterID = 0;
-		QMessageBox::warning(NULL, tr("No indenter ini files"), tr("There exists no indenter ini files in the directory \"")+dataDirctoryStr+"\".");
+		QMessageBox::warning(NULL, tr("No indenter ini files"), tr("There exists no indenter ini files in the directory \"") + QDir(dataDirctoryStr).absolutePath() + "\".");
 	}
 
     toolBarWidget->cmbBoxIndenters->setCurrentIndex( currentIndenterID );
