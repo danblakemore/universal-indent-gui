@@ -25,12 +25,12 @@
 #include <QDesktopServices>
 #include "ui_settingsdialog.h"
 
-class SettingsDialog : public QDialog, private Ui::SettingsDialog
+class UiGuiSettingsDialog : public QDialog, private Ui::SettingsDialog
 {
 	Q_OBJECT
 
 public:
-	SettingsDialog(QWidget *parent);
+	UiGuiSettingsDialog(QWidget *parent);
 	void retranslate();
 };
 

@@ -17,24 +17,24 @@
 *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
 ***************************************************************************/
 
-#include "settingsdialog.h"
+#include "uiguisettingsdialog.h"
 
 /*!
-	\class SettingsDialog
+	\class UiGuiSettingsDialog
 	\brief Displays a dialog window with settings for UniversalIndentGUI
 */
 
 /*!
 	The constructor calls the setup function for the ui created by uic. and adds
 */
-SettingsDialog::SettingsDialog(QWidget *parent) :
+UiGuiSettingsDialog::UiGuiSettingsDialog(QWidget *parent) :
 QDialog(parent)
 {
 	setupUi(this);
 }
 
 
-void SettingsDialog::retranslate() {
+void UiGuiSettingsDialog::retranslate() {
 	retranslateUi(this);
 }
 
