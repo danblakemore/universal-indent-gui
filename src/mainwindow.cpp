@@ -33,6 +33,8 @@
  */
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
+	dataDirctoryStr = "./data/";
+
     // generate gui as it is build in the file "indentgui.ui"
     setupUi(this);
 
@@ -142,7 +144,7 @@ void MainWindow::selectIndenter(int indenterID) {
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
-    indentHandler = new IndentHandler("./data/", indenterID, this, centralwidget);
+    indentHandler = new IndentHandler(dataDirctoryStr, indenterID, this, centralwidget);
     indentHandler->hide();
     vboxLayout->insertWidget(0, indentHandler);
     oldIndentHandler->hide();
@@ -662,8 +664,6 @@ void MainWindow::exportToHTML() {
 */
 void MainWindow::loadSettings() {
     bool settingsFileExists = true;
-    int indenterID;
-
 
     // Handle if first run of this version
     // -----------------------------------
@@ -680,7 +680,7 @@ void MainWindow::loadSettings() {
         }
     }
     else {
-        currentSourceFile = "./data/example.cpp";
+        currentSourceFile = dataDirctoryStr + "example.cpp";
     }
 
 
@@ -734,10 +734,10 @@ void MainWindow::loadSettings() {
 	if ( loadLastSourceCodeFileOnStartup ) {
 		// read last opened source code file from settings if the settings file exists
 		if ( settingsFileExists ) {
-			currentSourceFile = settings->value("UniversalIndentGUI/lastSourceCodeFile", "./data/example.cpp").toString();
+			currentSourceFile = settings->value("UniversalIndentGUI/lastSourceCodeFile", dataDirctoryStr+"example.cpp").toString();
 		}
 		else {
-			currentSourceFile = "./data/example.cpp";
+			currentSourceFile = dataDirctoryStr+"example.cpp";
 		}
 
 		// if source file exist load it
@@ -756,7 +756,7 @@ void MainWindow::loadSettings() {
 	}
 	// if last opened source file should not be loaded make some default settings.
 	else {
-		QFileInfo fileInfo("./data/example.cpp");
+		QFileInfo fileInfo(dataDirctoryStr+"example.cpp");
 		currentSourceFile = fileInfo.absolutePath();
 		currentSourceFileExtension = "";
 		sourceFileContent = "";
@@ -769,28 +769,32 @@ void MainWindow::loadSettings() {
 
     // read last selected indenter from settings if the settings file exists
     if ( settingsFileExists ) {
-        indenterID = settings->value("UniversalIndentGUI/lastSelectedIndenter", 0).toInt();
+        currentIndenterID = settings->value("UniversalIndentGUI/lastSelectedIndenter", 0).toInt();
+		if ( currentIndenterID < 0 ) {
+			currentIndenterID = 0;
+		}
     }
     else {
-        indenterID = 0;
+        currentIndenterID = 0;
     }
 
-    indentHandler = new IndentHandler("./data/", indenterID, this, centralwidget);
+    indentHandler = new IndentHandler(dataDirctoryStr, currentIndenterID, this, centralwidget);
     vboxLayout->addWidget(indentHandler);
 
-    toolBarWidget->cmbBoxIndenters->addItems( indentHandler->getAvailableIndenters() );
+	if ( !indentHandler->getAvailableIndenters().isEmpty() ) {
+		toolBarWidget->cmbBoxIndenters->addItems( indentHandler->getAvailableIndenters() );
+		// Take care if the selected indenterID is greater than the number of existing indenters
+		if ( currentIndenterID >= indentHandler->getAvailableIndenters().count() ) {
+			currentIndenterID = indentHandler->getAvailableIndenters().count() - 1;
+		}
+	}
+	else {
+		currentIndenterID = 0;
+		QMessageBox::warning(NULL, tr("No indenter ini files"), tr("There exists no indenter ini files in the directory \"")+dataDirctoryStr+"\".");
+	}
 
-    // Take care if the selected indenterID is smaller or greater than the number of existing indenters
-    if ( indenterID < 0 ) {
-        indenterID = 0;
-    }
-    if ( indenterID >= indentHandler->getAvailableIndenters().count() && indenterID != 0 ) {
-        indenterID = indentHandler->getAvailableIndenters().count() - 1;
-    }
-
-    toolBarWidget->cmbBoxIndenters->setCurrentIndex(indenterID);
+    toolBarWidget->cmbBoxIndenters->setCurrentIndex( currentIndenterID );
     QObject::connect(indentHandler, SIGNAL(settingsCodeChanged()), this, SLOT(indentSettingsChangedSlot()));
-    currentIndenterID = indenterID;
 
 
 	// Handle if white space is set to be visible
