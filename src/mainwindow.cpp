@@ -48,6 +48,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 	txtedSourceCode->setMatchedBraceForegroundColor( QColor("red") );
 	txtedSourceCode->setFolding(QsciScintilla::BoxedTreeFoldStyle);
 	txtedSourceCode->setWhitespaceVisibility(QsciScintilla::WsVisible);
+	txtedSourceCode->setAutoCompletionSource(QsciScintilla::AcsAll);
+	txtedSourceCode->setAutoCompletionThreshold(3);
 
     // set the program version, revision and date, which is shown in the main window title and in the about dialog.
     version = "0.5.1 Beta";
@@ -127,7 +129,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 
     connect( toolBarWidget->cmbBoxIndenters, SIGNAL(activated(int)), this, SLOT(selectIndenter(int)) );
 
-    connect( txtedSourceCode, SIGNAL(textChanged()), this, SLOT(sourceCodeChangedHelperSlot()) );
+	connect( txtedSourceCode, SIGNAL(textChanged()), this, SLOT(sourceCodeChangedHelperSlot()) );
+	connect( txtedSourceCode, SIGNAL(linesChanged()), this, SLOT(numberOfLinesChanged()) );
 }
 
 
@@ -1143,7 +1146,7 @@ void MainWindow::encodingChanged(QAction* encodingAction) {
 
 
 /*!
-	Is called whenever the white space visibitlity is being changed in the menue.
+	Is called whenever the white space visibility is being changed in the menu.
  */
 void MainWindow::setWhiteSpaceVisibility(bool visible) {
 	if ( visible ) {
@@ -1152,4 +1155,14 @@ void MainWindow::setWhiteSpaceVisibility(bool visible) {
 	else {
 		txtedSourceCode->setWhitespaceVisibility(QsciScintilla::WsInvisible);
 	}
+}
+
+/*!
+	This slot is called whenever the number of lines in the editor changes
+	and adapts the margin for the displayed line numbers.
+*/
+void MainWindow::numberOfLinesChanged() {
+	QString lineNumbers;
+	lineNumbers.setNum( txtedSourceCode->lines()*10 );
+	txtedSourceCode->setMarginWidth(1, lineNumbers);
 }

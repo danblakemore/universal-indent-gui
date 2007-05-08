@@ -143,6 +143,7 @@ private slots:
     void exportToHTML();
     void languageChanged(QAction *languageAction);
     void encodingChanged(QAction *encodingAction);
+	void numberOfLinesChanged();
 };
 
 #endif // MAINWINDOW_H
