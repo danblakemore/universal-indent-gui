@@ -16,7 +16,8 @@ qmake
 echo calling lrelease release
 echo ------------------------
 lrelease ./translations/universalindent_de.ts -qm ./translations/universalindent_de.qm
-lrelease ./translations/universalindent_tw.ts -qm ./translations/universalindent_tw.qm
+lrelease ./translations/universalindent_zh.ts -qm ./translations/universalindent_zh.qm
+lrelease ./translations/universalindent_ja.ts -qm ./translations/universalindent_ja.qm
 echo calling make release
 echo --------------------
 make release

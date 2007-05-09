@@ -341,12 +341,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1133"/>
+        <location filename="../src/mainwindow.cpp" line="1136"/>
         <source>Error opening file</source>
         <translation type="unfinished">ファイルの読み込みエラーが発生しました</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1133"/>
+        <location filename="../src/mainwindow.cpp" line="1136"/>
         <source>Cannot read the file </source>
         <translation type="unfinished">次のファイルを開けませんでした。: </translation>
     </message>
@@ -417,12 +417,12 @@ Do you want to save your changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1064"/>
+        <location filename="../src/mainwindow.cpp" line="1067"/>
         <source>Unknown language mnemonic </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1067"/>
+        <location filename="../src/mainwindow.cpp" line="1070"/>
         <source> as user interface language.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -432,12 +432,12 @@ Do you want to save your changes?</source>
         <translation type="unfinished">言語</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1117"/>
+        <location filename="../src/mainwindow.cpp" line="1120"/>
         <source>Reopen File with other Encoding</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1111"/>
+        <location filename="../src/mainwindow.cpp" line="1114"/>
         <source>Reopen the currently opened source code file by using the text encoding scheme </source>
         <translation type="unfinished"></translation>
     </message>
@@ -452,13 +452,13 @@ Do you want to save your changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1061"/>
-        <source>Taiwan (Chinese)</source>
+        <location filename="../src/mainwindow.cpp" line="1064"/>
+        <source>Japanese</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1002"/>
-        <source>Japanese</source>
+        <location filename="../src/mainwindow.cpp" line="1061"/>
+        <source>Chinese</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -373,7 +373,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1067"/>
+        <location filename="../src/mainwindow.cpp" line="1070"/>
         <source> as user interface language.</source>
         <translation> 套用到程式界面</translation>
     </message>
@@ -383,7 +383,7 @@ p, li { white-space: pre-wrap; }
         <translation>所有檔案</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1133"/>
+        <location filename="../src/mainwindow.cpp" line="1136"/>
         <source>Cannot read the file </source>
         <translation>無法讀取檔案</translation>
     </message>
@@ -403,7 +403,7 @@ p, li { white-space: pre-wrap; }
         <translation>English</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1133"/>
+        <location filename="../src/mainwindow.cpp" line="1136"/>
         <source>Error opening file</source>
         <translation>開啟檔案時發生錯誤</translation>
     </message>
@@ -438,12 +438,12 @@ p, li { white-space: pre-wrap; }
         <translation>PDF 文件</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1117"/>
+        <location filename="../src/mainwindow.cpp" line="1120"/>
         <source>Reopen File with other Encoding</source>
         <translation>用別的編碼方式重新開啟</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1111"/>
+        <location filename="../src/mainwindow.cpp" line="1114"/>
         <source>Reopen the currently opened source code file by using the text encoding scheme </source>
         <translation>重新開啟目前的檔案，編碼使用 </translation>
     </message>
@@ -470,14 +470,14 @@ Do you want to save your changes?</source>
 你要儲存嗎？</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1064"/>
+        <location filename="../src/mainwindow.cpp" line="1067"/>
         <source>Unknown language mnemonic </source>
         <translation>將未知語言 </translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="1061"/>
         <source>Taiwan (Chinese)</source>
-        <translation>Taiwan (Chinese)</translation>
+        <translation type="obsolete">Taiwan (Chinese)</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="796"/>
@@ -490,8 +490,13 @@ Do you want to save your changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1002"/>
+        <location filename="../src/mainwindow.cpp" line="1064"/>
         <source>Japanese</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1061"/>
+        <source>Chinese</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

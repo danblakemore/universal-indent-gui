@@ -995,8 +995,8 @@ void MainWindow::createLanguageMenu() {
         else if ( languageShort == "de" ) {
             languageInfo.languageName = tr("German");
         }
-		else if ( languageShort == "tw" ) {
-			languageInfo.languageName = tr("Taiwan (Chinese)");
+		else if ( languageShort == "zh" ) {
+			languageInfo.languageName = tr("Chinese");
 		}
 		else if ( languageShort == "ja" ) {
 			languageInfo.languageName = tr("Japanese");
@@ -1057,8 +1057,11 @@ void MainWindow::languageChanged(QAction* languageAction) {
                 else if ( languageInfo.languageShort == "de" ) {
                     languageInfo.languageName = tr("German");
                 }
-				else if ( languageInfo.languageShort == "tw" ) {
-					languageInfo.languageName = tr("Taiwan (Chinese)");
+				else if ( languageInfo.languageShort == "zh" ) {
+					languageInfo.languageName = tr("Chinese");
+				}
+				else if ( languageInfo.languageShort == "ja" ) {
+					languageInfo.languageName = tr("Japanese");
 				}
                 else {
                     languageInfo.languageName = tr("Unknown language mnemonic ") + languageInfo.languageShort;

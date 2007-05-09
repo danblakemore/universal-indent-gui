@@ -491,12 +491,12 @@ Indent console output was:
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1133"/>
+        <location filename="../src/mainwindow.cpp" line="1136"/>
         <source>Error opening file</source>
         <translation>Fehler beim Dateiöffnen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1133"/>
+        <location filename="../src/mainwindow.cpp" line="1136"/>
         <source>Cannot read the file </source>
         <translation> Kann folgende Datei nicht lesen</translation>
     </message>
@@ -568,7 +568,7 @@ Möchten Sie die Änderungen speichern?</translation>
         <translation>Deutsch</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1064"/>
+        <location filename="../src/mainwindow.cpp" line="1067"/>
         <source>Unknown language mnemonic </source>
         <translation>Unbekanntes Sprachkürzel </translation>
     </message>
@@ -583,24 +583,24 @@ Möchten Sie die Änderungen speichern?</translation>
         <translation>Sprache</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1067"/>
+        <location filename="../src/mainwindow.cpp" line="1070"/>
         <source> as user interface language.</source>
         <translation> als Programmsprache verwenden.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1111"/>
+        <location filename="../src/mainwindow.cpp" line="1114"/>
         <source>Reopen the currently opened source code file by using the text encoding scheme </source>
         <translation>Die momentan geöffnete Quellcodedatei erneut öffnen, unter Verwendung der Textcordierung </translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1117"/>
+        <location filename="../src/mainwindow.cpp" line="1120"/>
         <source>Reopen File with other Encoding</source>
         <translation>Datei mit anderer Codierung erneut öffnen</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="1061"/>
         <source>Taiwan (Chinese)</source>
-        <translation>Taiwanisch (Chinesisch)</translation>
+        <translation type="obsolete">Taiwanisch (Chinesisch)</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="796"/>
@@ -613,9 +613,14 @@ Möchten Sie die Änderungen speichern?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1002"/>
+        <location filename="../src/mainwindow.cpp" line="1064"/>
         <source>Japanese</source>
-        <translation type="unfinished"></translation>
+        <translation>Japanisch</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1061"/>
+        <source>Chinese</source>
+        <translation>Chinesisch</translation>
     </message>
 </context>
 <context>
