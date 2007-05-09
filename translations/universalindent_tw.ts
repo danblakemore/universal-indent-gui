@@ -373,7 +373,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1064"/>
+        <location filename="../src/mainwindow.cpp" line="1067"/>
         <source> as user interface language.</source>
         <translation> 套用到程式界面</translation>
     </message>
@@ -383,7 +383,7 @@ p, li { white-space: pre-wrap; }
         <translation>所有檔案</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1130"/>
+        <location filename="../src/mainwindow.cpp" line="1133"/>
         <source>Cannot read the file </source>
         <translation>無法讀取檔案</translation>
     </message>
@@ -398,12 +398,12 @@ p, li { white-space: pre-wrap; }
         <translation>選擇檔案</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1052"/>
+        <location filename="../src/mainwindow.cpp" line="1055"/>
         <source>English</source>
         <translation>English</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1130"/>
+        <location filename="../src/mainwindow.cpp" line="1133"/>
         <source>Error opening file</source>
         <translation>開啟檔案時發生錯誤</translation>
     </message>
@@ -413,7 +413,7 @@ p, li { white-space: pre-wrap; }
         <translation>匯出檔案</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1055"/>
+        <location filename="../src/mainwindow.cpp" line="1058"/>
         <source>German</source>
         <translation>German</translation>
     </message>
@@ -423,7 +423,7 @@ p, li { white-space: pre-wrap; }
         <translation>HTML 文件</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1048"/>
+        <location filename="../src/mainwindow.cpp" line="1051"/>
         <source>Language</source>
         <translation>語言</translation>
     </message>
@@ -438,12 +438,12 @@ p, li { white-space: pre-wrap; }
         <translation>PDF 文件</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1114"/>
+        <location filename="../src/mainwindow.cpp" line="1117"/>
         <source>Reopen File with other Encoding</source>
         <translation>用別的編碼方式重新開啟</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1108"/>
+        <location filename="../src/mainwindow.cpp" line="1111"/>
         <source>Reopen the currently opened source code file by using the text encoding scheme </source>
         <translation>重新開啟目前的檔案，編碼使用 </translation>
     </message>
@@ -470,12 +470,12 @@ Do you want to save your changes?</source>
 你要儲存嗎？</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1061"/>
+        <location filename="../src/mainwindow.cpp" line="1064"/>
         <source>Unknown language mnemonic </source>
         <translation>將未知語言 </translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1058"/>
+        <location filename="../src/mainwindow.cpp" line="1061"/>
         <source>Taiwan (Chinese)</source>
         <translation>Taiwan (Chinese)</translation>
     </message>
@@ -487,6 +487,11 @@ Do you want to save your changes?</source>
     <message>
         <location filename="../src/mainwindow.cpp" line="796"/>
         <source>There exists no indenter ini files in the directory &quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1002"/>
+        <source>Japanese</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

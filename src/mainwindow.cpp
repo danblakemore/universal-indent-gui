@@ -998,6 +998,9 @@ void MainWindow::createLanguageMenu() {
 		else if ( languageShort == "tw" ) {
 			languageInfo.languageName = tr("Taiwan (Chinese)");
 		}
+		else if ( languageShort == "ja" ) {
+			languageInfo.languageName = tr("Japanese");
+		}
         else {
             languageInfo.languageName = tr("Unknown language mnemonic ") + languageShort;
         }

@@ -491,12 +491,12 @@ Indent console output was:
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1130"/>
+        <location filename="../src/mainwindow.cpp" line="1133"/>
         <source>Error opening file</source>
         <translation>Fehler beim Dateiöffnen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1130"/>
+        <location filename="../src/mainwindow.cpp" line="1133"/>
         <source>Cannot read the file </source>
         <translation> Kann folgende Datei nicht lesen</translation>
     </message>
@@ -558,17 +558,17 @@ Möchten Sie die Änderungen speichern?</translation>
         <translation>Geänderter Quellcode</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1052"/>
+        <location filename="../src/mainwindow.cpp" line="1055"/>
         <source>English</source>
         <translation>Englisch</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1055"/>
+        <location filename="../src/mainwindow.cpp" line="1058"/>
         <source>German</source>
         <translation>Deutsch</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1061"/>
+        <location filename="../src/mainwindow.cpp" line="1064"/>
         <source>Unknown language mnemonic </source>
         <translation>Unbekanntes Sprachkürzel </translation>
     </message>
@@ -578,27 +578,27 @@ Möchten Sie die Änderungen speichern?</translation>
         <translation type="obsolete"> als Programmsprache verwenden. (Nach Neustart aktiv.)</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1048"/>
+        <location filename="../src/mainwindow.cpp" line="1051"/>
         <source>Language</source>
         <translation>Sprache</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1064"/>
+        <location filename="../src/mainwindow.cpp" line="1067"/>
         <source> as user interface language.</source>
         <translation> als Programmsprache verwenden.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1108"/>
+        <location filename="../src/mainwindow.cpp" line="1111"/>
         <source>Reopen the currently opened source code file by using the text encoding scheme </source>
         <translation>Die momentan geöffnete Quellcodedatei erneut öffnen, unter Verwendung der Textcordierung </translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1114"/>
+        <location filename="../src/mainwindow.cpp" line="1117"/>
         <source>Reopen File with other Encoding</source>
         <translation>Datei mit anderer Codierung erneut öffnen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1058"/>
+        <location filename="../src/mainwindow.cpp" line="1061"/>
         <source>Taiwan (Chinese)</source>
         <translation>Taiwanisch (Chinesisch)</translation>
     </message>
@@ -610,6 +610,11 @@ Möchten Sie die Änderungen speichern?</translation>
     <message>
         <location filename="../src/mainwindow.cpp" line="796"/>
         <source>There exists no indenter ini files in the directory &quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1002"/>
+        <source>Japanese</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

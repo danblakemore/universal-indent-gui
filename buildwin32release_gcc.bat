@@ -6,6 +6,7 @@ set PATH=%PATH%;%SystemRoot%\System32
 set QMAKESPEC=win32-g++
 lrelease .\translations\universalindent_de.ts -qm .\translations\universalindent_de.qm
 lrelease .\translations\universalindent_tw.ts -qm .\translations\universalindent_tw.qm
+lrelease .\translations\universalindent_ja.ts -qm .\translations\universalindent_ja.qm
 qmake
 make release
 rd UniversalIndentGUI_win32 /S /Q
