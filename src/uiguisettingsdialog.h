@@ -23,7 +23,7 @@
 #include <QDialog>
 #include <QUrl>
 #include <QDesktopServices>
-#include "ui_settingsdialog.h"
+#include "ui_UiGuiSettingsDialog.h"
 
 class UiGuiSettingsDialog : public QDialog, private Ui::SettingsDialog
 {
