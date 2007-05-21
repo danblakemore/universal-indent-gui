@@ -17,8 +17,8 @@
 *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
 ***************************************************************************/
 
-#ifndef SETTINGSDIALOG_H
-#define SETTINGSDIALOG_H
+#ifndef UIGUISETTINGSDIALOG_H
+#define UIGUISETTINGSDIALOG_H
 
 #include <QDialog>
 #include <QUrl>
@@ -34,4 +34,4 @@ public:
 	void retranslate();
 };
 
-#endif // SETTINGSDIALOG_H
+#endif // UIGUISETTINGSDIALOG_H
