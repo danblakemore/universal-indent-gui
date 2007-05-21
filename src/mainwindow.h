@@ -25,6 +25,7 @@
 #include "ui_indentgui.h"
 #include "ui_toolBarWidget.h"
 #include "aboutdialog.h"
+#include "uiguisettings.h"
 #include "uiguisettingsdialog.h"
 #include "highlighter.h"
 #include "indenthandler.h"

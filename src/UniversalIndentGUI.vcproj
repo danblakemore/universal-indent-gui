@@ -228,6 +228,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\uiguisettings.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\uiguisettingsdialog.cpp"
 				>
 			</File>
@@ -251,6 +255,10 @@
 			</File>
 			<File
 				RelativePath=".\mainwindow.h"
+				>
+			</File>
+			<File
+				RelativePath=".\uiguisettings.h"
 				>
 			</File>
 			<File
@@ -309,6 +317,10 @@
 			</File>
 			<File
 				RelativePath="$(OutDir)\tmp\moc\moc_mainwindow.cpp"
+				>
+			</File>
+			<File
+				RelativePath="$(OutDir)\tmp\moc\moc_uiguisettings.cpp"
 				>
 			</File>
 			<File

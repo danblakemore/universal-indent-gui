@@ -64,6 +64,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     toolBar->setAllowedAreas( Qt::TopToolBarArea | Qt::BottomToolBarArea );
 
 	// Create or open the settings file.
+    //TODO: Replace this with the new UiGuiSettings
 	settings = new QSettings("./UniversalIndentGUI.ini", QSettings::IniFormat, this);
 
 	highlighter = new Highlighter(txtedSourceCode);
