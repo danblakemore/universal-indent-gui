@@ -31,6 +31,8 @@ UiGuiSettingsDialog::UiGuiSettingsDialog(QWidget *parent) :
 QDialog(parent)
 {
 	setupUi(this);
+
+    connect(this, SIGNAL(accepted()), this, SLOT(handleAccepted()) );
 }
 
 
@@ -38,3 +40,9 @@ void UiGuiSettingsDialog::retranslate() {
 	retranslateUi(this);
 }
 
+int UiGuiSettingsDialog::showDialog() {
+    return exec();
+}
+
+void UiGuiSettingsDialog::handleAccepted() {
+}

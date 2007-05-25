@@ -8,12 +8,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>307</width>
-    <height>236</height>
+    <width>507</width>
+    <height>428</height>
    </rect>
   </property>
   <property name="windowTitle" >
-   <string>Dialog</string>
+   <string>Settings</string>
   </property>
   <layout class="QVBoxLayout" >
    <property name="margin" >
@@ -23,17 +23,308 @@
     <number>6</number>
    </property>
    <item>
-    <widget class="QGroupBox" name="groupBox_2" >
-     <property name="title" >
-      <string>Common</string>
+    <widget class="QTabWidget" name="tabWidget" >
+     <property name="currentIndex" >
+      <number>0</number>
      </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="groupBox" >
-     <property name="title" >
-      <string>Source Code Edit</string>
-     </property>
+     <widget class="QWidget" name="tab" >
+      <attribute name="title" >
+       <string>Common</string>
+      </attribute>
+      <layout class="QVBoxLayout" >
+       <property name="margin" >
+        <number>9</number>
+       </property>
+       <property name="spacing" >
+        <number>6</number>
+       </property>
+       <item>
+        <widget class="QCheckBox" name="uiGuiAutoOpenLastFile" >
+         <property name="text" >
+          <string>Automatically open last file on startup</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="uiGuiEnableParameterTooltips" >
+         <property name="text" >
+          <string>Enable Parameter Tooltips</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" >
+         <property name="margin" >
+          <number>0</number>
+         </property>
+         <property name="spacing" >
+          <number>6</number>
+         </property>
+         <item>
+          <widget class="QSpinBox" name="uiGuiRecentlyOpenedListSize" >
+           <property name="sizePolicy" >
+            <sizepolicy>
+             <hsizetype>0</hsizetype>
+             <vsizetype>0</vsizetype>
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="maximum" >
+            <number>30</number>
+           </property>
+           <property name="minimum" >
+            <number>1</number>
+           </property>
+           <property name="value" >
+            <number>1</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label" >
+           <property name="text" >
+            <string>Number of files in recently opened list.</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" >
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_2" >
+      <attribute name="title" >
+       <string>Editor</string>
+      </attribute>
+      <layout class="QVBoxLayout" >
+       <property name="margin" >
+        <number>9</number>
+       </property>
+       <property name="spacing" >
+        <number>6</number>
+       </property>
+       <item>
+        <widget class="QCheckBox" name="uiGuiWhiteSpaceVisible" >
+         <property name="text" >
+          <string>Display white space character (tabs, spaces, etc.).</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" >
+         <property name="margin" >
+          <number>0</number>
+         </property>
+         <property name="spacing" >
+          <number>6</number>
+         </property>
+         <item>
+          <widget class="QSpinBox" name="uiGuiDisplayedTabWidth" >
+           <property name="sizePolicy" >
+            <sizepolicy>
+             <hsizetype>0</hsizetype>
+             <vsizetype>0</vsizetype>
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="maximum" >
+            <number>99</number>
+           </property>
+           <property name="minimum" >
+            <number>1</number>
+           </property>
+           <property name="value" >
+            <number>1</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_2" >
+           <property name="text" >
+            <string>Displayed width of tabs.</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" >
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_3" >
+      <attribute name="title" >
+       <string>Syntax Highlighter</string>
+      </attribute>
+      <layout class="QVBoxLayout" >
+       <property name="margin" >
+        <number>9</number>
+       </property>
+       <property name="spacing" >
+        <number>6</number>
+       </property>
+       <item>
+        <widget class="QCheckBox" name="uiGuiEnableSyntaxHighlightning" >
+         <property name="text" >
+          <string>Enable syntax highlightning.</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox" >
+         <property name="title" >
+          <string>Highlighter settings</string>
+         </property>
+         <layout class="QHBoxLayout" >
+          <property name="margin" >
+           <number>9</number>
+          </property>
+          <property name="spacing" >
+           <number>6</number>
+          </property>
+          <item>
+           <widget class="QListWidget" name="listWidget" >
+            <property name="currentRow" >
+             <number>0</number>
+            </property>
+            <item>
+             <property name="text" >
+              <string>C++</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
+              <string>C#</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
+              <string>HTML</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
+              <string>TeX</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
+              <string>Ruby</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <widget class="QListWidget" name="listWidget_2" >
+            <property name="currentRow" >
+             <number>0</number>
+            </property>
+            <item>
+             <property name="text" >
+              <string>Comment</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
+              <string>Number</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
+              <string>Preprocessor</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
+              <string>Reserved word</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
+              <string>Normal text</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" >
+            <property name="margin" >
+             <number>0</number>
+            </property>
+            <property name="spacing" >
+             <number>6</number>
+            </property>
+            <item>
+             <widget class="QPushButton" name="pushButton_2" >
+              <property name="text" >
+               <string>Set Font</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton" >
+              <property name="text" >
+               <string>Set Color</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer>
+              <property name="orientation" >
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" >
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" >
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
    <item>

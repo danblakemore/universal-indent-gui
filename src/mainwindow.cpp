@@ -68,7 +68,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 	settings = new QSettings("./UniversalIndentGUI.ini", QSettings::IniFormat, this);
 
 	highlighter = new Highlighter(txtedSourceCode);
-	menuSettings->insertMenu(actionSyntax_Highlight, highlighter->getHighlighterMenu() );
+	menuSettings->insertMenu(uiGuiEnableSyntaxHighlightning, highlighter->getHighlighterMenu() );
 
     indentHandler = 0;
 
@@ -111,15 +111,15 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     connect( actionLoad_Indenter_Config_File, SIGNAL(activated()), this, SLOT(openConfigFileDialog()) );
     connect( actionSave_Indenter_Config_File, SIGNAL(activated()), this, SLOT(saveasIndentCfgFileDialog()) );
 
-	connect( actionShowSettings, SIGNAL(activated()), settingsDialog, SLOT(exec()) );
+	connect( actionShowSettings, SIGNAL(activated()), settingsDialog, SLOT(showDialog()) );
 
     connect( toolBarWidget->cbLivePreview, SIGNAL(toggled(bool)), this, SLOT(previewTurnedOnOff(bool)) );
     connect( toolBarWidget->cbLivePreview, SIGNAL(toggled(bool)), actionLive_Indent_Preview, SLOT(setChecked(bool)) );
     connect( actionLive_Indent_Preview, SIGNAL(toggled(bool)), toolBarWidget->cbLivePreview, SLOT(setChecked(bool)) );
-    connect( toolBarWidget->cbHighlight, SIGNAL(toggled(bool)), this, SLOT(turnHighlightOnOff(bool)) );
-    connect( toolBarWidget->cbHighlight, SIGNAL(toggled(bool)), actionSyntax_Highlight, SLOT(setChecked(bool)) );
-    connect( actionSyntax_Highlight, SIGNAL(toggled(bool)), toolBarWidget->cbHighlight, SLOT(setChecked(bool)) );
-	connect( actionWhiteSpaceVisible, SIGNAL(toggled(bool)), this, SLOT(setWhiteSpaceVisibility(bool)) );
+    connect( toolBarWidget->uiGuiEnableSyntaxHighlightning, SIGNAL(toggled(bool)), this, SLOT(turnHighlightOnOff(bool)) );
+    connect( toolBarWidget->uiGuiEnableSyntaxHighlightning, SIGNAL(toggled(bool)), uiGuiEnableSyntaxHighlightning, SLOT(setChecked(bool)) );
+    connect( uiGuiEnableSyntaxHighlightning, SIGNAL(toggled(bool)), toolBarWidget->uiGuiEnableSyntaxHighlightning, SLOT(setChecked(bool)) );
+	connect( uiGuiWhiteSpaceVisible, SIGNAL(toggled(bool)), this, SLOT(setWhiteSpaceVisibility(bool)) );
 
     connect( toolBarWidget->pbExit, SIGNAL(clicked()), this, SLOT(close()));
     connect( actionAbout_UniversalIndentGUI, SIGNAL(activated()), aboutDialog, SLOT(exec()) );
@@ -732,7 +732,7 @@ void MainWindow::loadSettings() {
 	else {
 		loadLastSourceCodeFileOnStartup = true;
 	}
-	actionAuto_Open_Last_file->setChecked( loadLastSourceCodeFileOnStartup );
+	uiGuiAutoOpenLastFile->setChecked( loadLastSourceCodeFileOnStartup );
 
 	// Only load last source code file if set to do so
 	if ( loadLastSourceCodeFileOnStartup ) {
@@ -807,7 +807,7 @@ void MainWindow::loadSettings() {
 	// read if indenter parameter tool tips are enabled
 	if ( settingsFileExists ) {
 		bool whiteSpaceIsVisible = settings->value( "UniversalIndentGUI/whiteSpaceIsVisible", false ).toBool();
-		actionWhiteSpaceVisible->setChecked( whiteSpaceIsVisible );
+		uiGuiWhiteSpaceVisible->setChecked( whiteSpaceIsVisible );
 		if ( whiteSpaceIsVisible ) {
 			txtedSourceCode->setWhitespaceVisibility(QsciScintilla::WsVisible);
 		}
@@ -816,7 +816,7 @@ void MainWindow::loadSettings() {
 		}
 	}
 	else {
-		actionWhiteSpaceVisible->setChecked( false );
+		uiGuiWhiteSpaceVisible->setChecked( false );
 		txtedSourceCode->setWhitespaceVisibility(QsciScintilla::WsInvisible);
 	}
 
@@ -827,10 +827,10 @@ void MainWindow::loadSettings() {
     // read if indenter parameter tool tips are enabled
     if ( settingsFileExists ) {
         bool indenterParameterTooltipsEnabled = settings->value("UniversalIndentGUI/indenterParameterTooltipsEnabled", true).toBool();
-        actionParameter_Tooltips->setChecked( indenterParameterTooltipsEnabled );
+        uiGuiEnableParameterTooltips->setChecked( indenterParameterTooltipsEnabled );
     }
     else {
-        actionParameter_Tooltips->setChecked( true );
+        uiGuiEnableParameterTooltips->setChecked( true );
     }
 
 
@@ -884,9 +884,9 @@ void MainWindow::saveSettings() {
     if ( fileInfo.isFile() ) {
         settings->setValue( "UniversalIndentGUI/lastSourceCodeFile", currentSourceFile );
     }
-	settings->setValue( "UniversalIndentGUI/loadLastSourceCodeFileOnStartup", actionAuto_Open_Last_file->isChecked() );
+	settings->setValue( "UniversalIndentGUI/loadLastSourceCodeFileOnStartup", uiGuiAutoOpenLastFile->isChecked() );
     settings->setValue( "UniversalIndentGUI/lastSelectedIndenter", currentIndenterID );
-    settings->setValue( "UniversalIndentGUI/indenterParameterTooltipsEnabled", actionParameter_Tooltips->isChecked() );
+    settings->setValue( "UniversalIndentGUI/indenterParameterTooltipsEnabled", uiGuiEnableParameterTooltips->isChecked() );
     settings->setValue( "UniversalIndentGUI/language", language );
 	settings->setValue( "UniversalIndentGUI/encoding", currentEncoding );
     settings->setValue( "UniversalIndentGUI/version", version );
@@ -895,7 +895,7 @@ void MainWindow::saveSettings() {
 		settings->setValue( "UniversalIndentGUI/position", pos() );
 		settings->setValue( "UniversalIndentGUI/size", size() );
 	}
-    settings->setValue( "UniversalIndentGUI/whiteSpaceIsVisible", actionWhiteSpaceVisible->isChecked() );
+    settings->setValue( "UniversalIndentGUI/whiteSpaceIsVisible", uiGuiWhiteSpaceVisible->isChecked() );
     settings->setValue( "UniversalIndentGUI/tabWidth", txtedSourceCode->tabWidth() );
     highlighter->writeCurrentSettings("");
 }
@@ -924,7 +924,7 @@ void MainWindow::closeEvent( QCloseEvent *event ) {
 bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 {
     if ( event->type() == QEvent::ToolTip) {
-        if ( actionParameter_Tooltips->isChecked() ) {
+        if ( uiGuiEnableParameterTooltips->isChecked() ) {
             return QMainWindow::eventFilter(obj, event);
         }
         else {

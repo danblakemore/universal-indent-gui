@@ -81,10 +81,10 @@
      <string>Settings</string>
     </property>
     <addaction name="actionLive_Indent_Preview" />
-    <addaction name="actionSyntax_Highlight" />
-    <addaction name="actionWhiteSpaceVisible" />
-    <addaction name="actionParameter_Tooltips" />
-    <addaction name="actionAuto_Open_Last_file" />
+    <addaction name="uiGuiEnableSyntaxHighlightning" />
+    <addaction name="uiGuiWhiteSpaceVisible" />
+    <addaction name="uiGuiEnableParameterTooltips" />
+    <addaction name="uiGuiAutoOpenLastFile" />
     <addaction name="actionShowSettings" />
    </widget>
    <addaction name="menuFile" />
@@ -283,7 +283,7 @@
     <string>Export the currently visible source code as HTML document</string>
    </property>
   </action>
-  <action name="actionParameter_Tooltips" >
+  <action name="uiGuiEnableParameterTooltips" >
    <property name="checkable" >
     <bool>true</bool>
    </property>
@@ -311,7 +311,7 @@
     <string>Live Indent Preview</string>
    </property>
   </action>
-  <action name="actionSyntax_Highlight" >
+  <action name="uiGuiEnableSyntaxHighlightning" >
    <property name="checkable" >
     <bool>true</bool>
    </property>
@@ -325,7 +325,7 @@
     <string>Syntax Highlight</string>
    </property>
   </action>
-  <action name="actionWhiteSpaceVisible" >
+  <action name="uiGuiWhiteSpaceVisible" >
    <property name="checkable" >
     <bool>true</bool>
    </property>
@@ -342,7 +342,7 @@
     <string>Enables or disables diplaying of white space characters in the editor.</string>
    </property>
   </action>
-  <action name="actionAuto_Open_Last_file" >
+  <action name="uiGuiAutoOpenLastFile" >
    <property name="checkable" >
     <bool>true</bool>
    </property>

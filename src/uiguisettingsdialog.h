@@ -21,8 +21,6 @@
 #define UIGUISETTINGSDIALOG_H
 
 #include <QDialog>
-#include <QUrl>
-#include <QDesktopServices>
 #include "ui_UiGuiSettingsDialog.h"
 
 class UiGuiSettingsDialog : public QDialog, private Ui::SettingsDialog
@@ -32,6 +30,12 @@ class UiGuiSettingsDialog : public QDialog, private Ui::SettingsDialog
 public:
 	UiGuiSettingsDialog(QWidget *parent);
 	void retranslate();
+
+public slots:
+    int showDialog();
+
+private slots:
+    void handleAccepted();
 };
 
 #endif // UIGUISETTINGSDIALOG_H

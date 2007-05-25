@@ -28,6 +28,9 @@
 #include <QPoint>
 #include <QSize>
 #include <QMainWindow>
+#include <QPushButton>
+#include <QSpinBox>
+#include <QCheckBox>
 #include <QLocale>
 
 class UiGuiSettings : public QObject
@@ -39,6 +42,7 @@ public:
     virtual ~UiGuiSettings();
     bool loadSettings();
     bool saveSettings();
+    bool setValueByName(QString settingsName, QVariant value);
 
 private:
     QMainWindow *parent;
@@ -56,6 +60,9 @@ private:
     bool indenterParameterTooltipsEnabled;
     bool whiteSpaceIsVisible;
     int tabWidth;
+
+public slots:
+    void handleExternSettings();
 };
 
 #endif // UIGUISETTINGS_H

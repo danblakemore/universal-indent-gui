@@ -37,6 +37,35 @@ UiGuiSettings::UiGuiSettings(QMainWindow *parent) : QObject(parent) {
     The destructor saves the settings to a file.
  */
 UiGuiSettings::~UiGuiSettings() {
+    saveSettings();
+}
+
+
+/*!
+    Extern widgets can connect to this slot to change settings. The type of the
+    object by whom the connected signal was emitted is identified and the
+    name and value of the object acquired. By the name the corresponding
+    setting is set.
+ */
+void UiGuiSettings::handleExternSettings() {
+    if ( sender() ) {
+        QString objectName = sender()->objectName();
+        QString className( sender()->metaObject()->className() );
+
+        if ( className == "QCheckBox" ) {
+            QCheckBox* checkBox = dynamic_cast<QCheckBox *>(sender());
+            setValueByName( objectName, QVariant(checkBox->isChecked()) );
+        }
+        else if ( className == "QSpinBox" ) {
+            QSpinBox* spinBox = dynamic_cast<QSpinBox *>(sender());
+            setValueByName( objectName, QVariant(spinBox->value()) );
+        }
+    }
+}
+
+
+bool UiGuiSettings::setValueByName(QString settingsName, QVariant value) {
+    return true;
 }
 
 
