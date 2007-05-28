@@ -157,3 +157,15 @@ bool UiGuiSettings::saveSettings() {
 
     return true;
 }
+
+
+/*!
+	Registers the \a qobject to be updated if the setting with the name \a settingName
+	changes its value.
+ */
+void UiGuiSettings::registerForUpdateOnValueChange( QObject* qobject, QString settingName ) {
+	// Test if the named setting really exist.
+	if ( settings.contains(settingName) ) {
+		forOnValueChangeRegisteredObjects[settingName].append(qobject);
+	}
+}

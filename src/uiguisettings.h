@@ -44,6 +44,7 @@ public:
     bool saveSettings();
     bool setValueByName(QString settingName, QVariant value);
 	QVariant getValueByName(QString settingName);
+	void registerForUpdateOnValueChange(QObject* qobject, QString settingName);
 
 public slots:
 	void handleValueChangeFromExtern();
