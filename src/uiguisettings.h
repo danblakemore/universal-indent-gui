@@ -38,31 +38,25 @@ class UiGuiSettings : public QObject
 	Q_OBJECT
 
 public:
-	UiGuiSettings(QMainWindow *parent);
+	UiGuiSettings(QString settingFilePath = "./UniversalIndentGUI.ini");
     virtual ~UiGuiSettings();
     bool loadSettings();
     bool saveSettings();
-    bool setValueByName(QString settingsName, QVariant value);
-
-private:
-    QMainWindow *parent;
-    QString version;
-    QSettings *settings;
-    bool isFirstRunOfThisVersion;
-    QString currentSourceFile;
-    QString dataDirctoryStr;
-    QString currentEncoding;
-    bool loadLastSourceCodeFileOnStartup;
-    QString sourceFileContent;
-    QString currentSourceFileExtension;
-    int currentIndenterID;
-    QString language;
-    bool indenterParameterTooltipsEnabled;
-    bool whiteSpaceIsVisible;
-    int tabWidth;
+    bool setValueByName(QString settingName, QVariant value);
+	QVariant getValueByName(QString settingName);
 
 public slots:
-    void handleExternSettings();
+	void handleValueChangeFromExtern();
+
+private:
+    QSettings *qsettings;
+
+	//! This map holds all possible settings defined by their name as QString. The value is of the type QVariant.
+	QMap<QString, QVariant> settings;
+
+	//! This map associates the settings name to an object pointer list. 
+	//! Each object in this list gets its value updated if the setting changes.
+	QMap<QString, QList<QObject*>> forOnValueChangeRegisteredObjects;
 };
 
 #endif // UIGUISETTINGS_H

@@ -25,11 +25,11 @@
 */
 
 /*!
-	The constructor ...
+	The constructor for the settings.
 */
-UiGuiSettings::UiGuiSettings(QMainWindow *parent) : QObject(parent) {
-    this->parent = parent;
-    settings = new QSettings("./UniversalIndentGUI.ini", QSettings::IniFormat, this);
+UiGuiSettings::UiGuiSettings(QString settingFilePath) : QObject() {
+    qsettings = new QSettings(settingFilePath, QSettings::IniFormat, this);
+	loadSettings();
 }
 
 
@@ -47,7 +47,7 @@ UiGuiSettings::~UiGuiSettings() {
     name and value of the object acquired. By the name the corresponding
     setting is set.
  */
-void UiGuiSettings::handleExternSettings() {
+void UiGuiSettings::handleValueChangeFromExtern() {
     if ( sender() ) {
         QString objectName = sender()->objectName();
         QString className( sender()->metaObject()->className() );
@@ -64,252 +64,96 @@ void UiGuiSettings::handleExternSettings() {
 }
 
 
-bool UiGuiSettings::setValueByName(QString settingsName, QVariant value) {
-    return true;
+/*!
+	Sets the value of the by \a settingsName defined setting to the value \a value.
+ */
+bool UiGuiSettings::setValueByName(QString settingName, QVariant value) {
+	// Test if the named setting really exist.
+	if ( settings.contains(settingName) ) {
+		settings[settingName] = value;
+		return true;
+	}
+    return false;
 }
 
 
 /*!
-    Loads the settings for the main application out of the file "UniversalIndentGUI.ini",
-    which should exists in the call directory. Settings are for example last selected indenter,
-    last loaded config file and so on.
+	Returns the value of the by \a settingsName defined setting as QVariant. 
+	If the named setting does not exist, 0 is being returned.
+*/
+QVariant UiGuiSettings::getValueByName(QString settingName) {
+	// Test if the named setting really exist.
+	if ( settings.contains(settingName) ) {
+		return settings[settingName];
+	}
+	return QVariant(0);
+}
+
+
+/*!
+    Loads the settings for the main application.
+	Settings are for example last selected indenter, last loaded source code file and so on.
 */
 bool UiGuiSettings::loadSettings() {
-    bool settingsFileExists = true;
+	// Read the version string saved in the settings file.
+	settings["VersionInSettingsFile"] = qsettings->value("UniversalIndentGUI/version", "").toString();
 
-    // Handle if first run of this version
-    // -----------------------------------
+	// Read windows last size and position from the settings file.
+	settings["WindowIsMaximized"] = qsettings->value( "UniversalIndentGUI/maximized", false ).toBool();
+	settings["WindowPosition"] = qsettings->value( "UniversalIndentGUI/position", QPoint(0, 0) ).toPoint();
+	settings["WindowSize"] = qsettings->value( "UniversalIndentGUI/size", QSize(800, 600) ).toSize();
 
-    // read the version string from settings if the settings file exists
-    if ( settingsFileExists ) {
-        QString readVersion = settings->value("UniversalIndentGUI/version", "").toString();
-        // if version strings are not equal set first run true.
-        if ( readVersion != version ) {
-            isFirstRunOfThisVersion = true;
-        }
-        else {
-            isFirstRunOfThisVersion = false;
-        }
-    }
-    else {
-        currentSourceFile = dataDirctoryStr + "example.cpp";
-    }
+	// Read last selected encoding for the opened source code file.
+	settings["FileEncoding"] = qsettings->value( "UniversalIndentGUI/encoding", "UTF-8" ).toString();
 
+	// Read if last opened source code file should be loaded on startup.
+	settings["LoadLastOpenedFileOnStartup"] = qsettings->value("UniversalIndentGUI/loadLastSourceCodeFileOnStartup", true).toBool();
 
-	// Handle last opened window size
-	// ------------------------------
+	// Read last opened source code file from the settings file.
+	settings["LastOpenedFile"] = qsettings->value("UniversalIndentGUI/lastSourceCodeFile", settings["IndenterExecutableDir"].toString()+"example.cpp").toString();
 
-	// read windows last size and position from settings if the settings file exists
-	if ( settingsFileExists ) {
-		bool maximized = settings->value( "UniversalIndentGUI/maximized", false ).toBool();
-		QPoint pos = settings->value( "UniversalIndentGUI/position", QPoint(0, 0) ).toPoint();
-		QSize size = settings->value( "UniversalIndentGUI/size", QSize(800, 600) ).toSize();
-		parent->resize(size);
-		parent->move(pos);
-		if ( maximized ) {
-			parent->showMaximized();
-		}
+	// Read last selected indenter from the settings file.
+	int LastSelectedIndenterID = qsettings->value("UniversalIndentGUI/lastSelectedIndenter", 0).toInt();
+	if ( LastSelectedIndenterID < 0 ) {
+		LastSelectedIndenterID = 0;
 	}
-	else {
-		QPoint pos = QPoint(0, 0);
-		QSize size = QSize(800, 600);
-		parent->resize(size);
-		parent->move(pos);
-	}
+	settings["LastSelectedIndenterID"] = LastSelectedIndenterID;
 
+	// Read if white space characters should be displayed.
+	settings["WhiteSpaceIsVisible"] = qsettings->value( "UniversalIndentGUI/whiteSpaceIsVisible", false ).toBool();
 
-	// Handle last selected file encoding
-	// ----------------------------------
+	// Read if indenter parameter tool tips are enabled.
+	settings["IndenterParameterTooltipsEnabled"] = qsettings->value("UniversalIndentGUI/indenterParameterTooltipsEnabled", true).toBool();
 
-	// read last selected encoding for the opened source code file.
-	if ( settingsFileExists ) {
-		currentEncoding = settings->value( "UniversalIndentGUI/encoding", "UTF-8" ).toString();
-	}
-	else {
-		currentEncoding = "UTF-8";
-	}
+	// Read the tab width from the settings file.
+	settings["TabWidth"] = qsettings->value("UniversalIndentGUI/tabWidth", 4).toInt();
 
+	// Read the last selected language.
+	settings["Language"] = qsettings->value("UniversalIndentGUI/language", "").toString();
 
-    // Handle last opened source code file
-    // -----------------------------------
-
-	// read if last opened source code file should be loaded on startup
-	if ( settingsFileExists ) {
-		loadLastSourceCodeFileOnStartup = settings->value("UniversalIndentGUI/loadLastSourceCodeFileOnStartup", true).toBool();
-	}
-	else {
-		loadLastSourceCodeFileOnStartup = true;
-	}
-	//actionAuto_Open_Last_file->setChecked( loadLastSourceCodeFileOnStartup );
-
-	// Only load last source code file if set to do so
-	if ( loadLastSourceCodeFileOnStartup ) {
-		// read last opened source code file from settings if the settings file exists
-		if ( settingsFileExists ) {
-			currentSourceFile = settings->value("UniversalIndentGUI/lastSourceCodeFile", dataDirctoryStr+"example.cpp").toString();
-		}
-		else {
-			currentSourceFile = dataDirctoryStr+"example.cpp";
-		}
-
-		// if source file exist load it
-		if ( QFile::exists(currentSourceFile) ) {
-			QFileInfo fileInfo(currentSourceFile);
-			currentSourceFile = fileInfo.absoluteFilePath();
-			//sourceFileContent = loadFile(currentSourceFile);
-		}
-		// if no source code file exists make some default settings.
-		else {
-			QFileInfo fileInfo(currentSourceFile);
-			currentSourceFile = fileInfo.absolutePath();
-			currentSourceFileExtension = "";
-			sourceFileContent = "if(x==\"y\"){x=z;}";
-		}
-	}
-	// if last opened source file should not be loaded make some default settings.
-	else {
-		QFileInfo fileInfo(dataDirctoryStr+"example.cpp");
-		currentSourceFile = fileInfo.absolutePath();
-		currentSourceFileExtension = "";
-		sourceFileContent = "";
-	}
-    //savedSourceContent = sourceFileContent;
-
-
-    // Handle last selected indenter
-    // -----------------------------
-
-    // read last selected indenter from settings if the settings file exists
-    if ( settingsFileExists ) {
-        currentIndenterID = settings->value("UniversalIndentGUI/lastSelectedIndenter", 0).toInt();
-		if ( currentIndenterID < 0 ) {
-			currentIndenterID = 0;
-		}
-    }
-    else {
-        currentIndenterID = 0;
-    }
-
-    /*
-    indentHandler = new IndentHandler(dataDirctoryStr, currentIndenterID, this, centralwidget);
-    vboxLayout->addWidget(indentHandler);
-
-	if ( !indentHandler->getAvailableIndenters().isEmpty() ) {
-		toolBarWidget->cmbBoxIndenters->addItems( indentHandler->getAvailableIndenters() );
-		// Take care if the selected indenterID is greater than the number of existing indenters
-		if ( currentIndenterID >= indentHandler->getAvailableIndenters().count() ) {
-			currentIndenterID = indentHandler->getAvailableIndenters().count() - 1;
-		}
-	}
-	else {
-		currentIndenterID = 0;
-		QMessageBox::warning(NULL, tr("No indenter ini files"), tr("There exists no indenter ini files in the directory \"") + QDir(dataDirctoryStr).absolutePath() + "\".");
-	}
-
-    toolBarWidget->cmbBoxIndenters->setCurrentIndex( currentIndenterID );
-    QObject::connect(indentHandler, SIGNAL(settingsCodeChanged()), this, SLOT(indentSettingsChangedSlot()));
-    */
-
-	// Handle if white space is set to be visible
-	// ------------------------------------------
-
-	// read if indenter parameter tool tips are enabled
-	if ( settingsFileExists ) {
-		whiteSpaceIsVisible = settings->value( "UniversalIndentGUI/whiteSpaceIsVisible", false ).toBool();
-		//actionWhiteSpaceVisible->setChecked( whiteSpaceIsVisible );
-		if ( whiteSpaceIsVisible ) {
-			//txtedSourceCode->setWhitespaceVisibility(QsciScintilla::WsVisible);
-		}
-		else {
-			//txtedSourceCode->setWhitespaceVisibility(QsciScintilla::WsInvisible);
-		}
-	}
-	else {
-		//actionWhiteSpaceVisible->setChecked( false );
-		//txtedSourceCode->setWhitespaceVisibility(QsciScintilla::WsInvisible);
-	}
-
-
-    // Handle if indenter parameter tool tips are enabled
-    // --------------------------------------------------
-
-    // read if indenter parameter tool tips are enabled
-    if ( settingsFileExists ) {
-        indenterParameterTooltipsEnabled = settings->value("UniversalIndentGUI/indenterParameterTooltipsEnabled", true).toBool();
-        //actionParameter_Tooltips->setChecked( indenterParameterTooltipsEnabled );
-    }
-    else {
-        //actionParameter_Tooltips->setChecked( true );
-    }
-
-
-    // Handle the width of tabs in spaces
-    // ----------------------------------
-
-    // read the tab width
-    if ( settingsFileExists ) {
-        tabWidth = settings->value("UniversalIndentGUI/tabWidth", 4).toInt();
-        //txtedSourceCode->setTabWidth(tabWidth);
-    }
-    else {
-        //txtedSourceCode->setTabWidth(4);
-    }
-
-
-    // Handle selected language
-    // ------------------------
-
-    // read the selected language
-    if ( settingsFileExists ) {
-        language = settings->value("UniversalIndentGUI/language", "").toString();
-    }
-    else {
-        language = "";
-    }
-
-    // if no language was set use the system language
-    if ( language.isEmpty() ) {
-        language = QLocale::system().name();
-        language.truncate(2);
-    }
-
-	//highlighter->readCurrentSettings("");
-
-    // load the translation file and set it for the application
-    /*
-    translator = new QTranslator();
-    translator->load( QString("./translations/universalindent_") + language );
-    qApp->installTranslator(translator);
-    retranslateUi(this);
-    toolBarWidget->retranslateUi(toolBar);
-    */
-    return true;
+	return true;
 }
 
 
 /*!
-    Saves the settings for the main application to the file "UniversalIndentGUI.ini".
-    Settings are for example last selected indenter, last loaded config file and so on.
+    Saves the settings for the main application.
+    Settings are for example last selected indenter, last loaded source code file and so on.
 */
 bool UiGuiSettings::saveSettings() {
-    QFileInfo fileInfo(currentSourceFile);
-    if ( fileInfo.isFile() ) {
-        settings->setValue( "UniversalIndentGUI/lastSourceCodeFile", currentSourceFile );
-    }
-	settings->setValue( "UniversalIndentGUI/loadLastSourceCodeFileOnStartup", loadLastSourceCodeFileOnStartup );
-    settings->setValue( "UniversalIndentGUI/lastSelectedIndenter", currentIndenterID );
-    settings->setValue( "UniversalIndentGUI/indenterParameterTooltipsEnabled", indenterParameterTooltipsEnabled );
-    settings->setValue( "UniversalIndentGUI/language", language );
-	settings->setValue( "UniversalIndentGUI/encoding", currentEncoding );
-    settings->setValue( "UniversalIndentGUI/version", version );
-	settings->setValue( "UniversalIndentGUI/maximized", parent->isMaximized() );
-	if ( !parent->isMaximized() ) {
-		settings->setValue( "UniversalIndentGUI/position", parent->pos() );
-		settings->setValue( "UniversalIndentGUI/size", parent->size() );
+    qsettings->setValue( "UniversalIndentGUI/lastSourceCodeFile", settings["LastOpenedFile"] );
+	qsettings->setValue( "UniversalIndentGUI/loadLastSourceCodeFileOnStartup", settings["LastOpenedFile"] );
+    qsettings->setValue( "UniversalIndentGUI/lastSelectedIndenter", settings["LastSelectedIndenterID"] );
+    qsettings->setValue( "UniversalIndentGUI/indenterParameterTooltipsEnabled", settings["IndenterParameterTooltipsEnabled"] );
+    qsettings->setValue( "UniversalIndentGUI/language", settings["Language"] );
+	qsettings->setValue( "UniversalIndentGUI/encoding", settings["FileEncoding"] );
+    qsettings->setValue( "UniversalIndentGUI/version", settings["VersionInSettingsFile"] );
+	qsettings->setValue( "UniversalIndentGUI/maximized", settings["WindowIsMaximized"] );
+	if ( !settings["WindowIsMaximized"].toBool() ) {
+		qsettings->setValue( "UniversalIndentGUI/position", settings["WindowPosition"] );
+		qsettings->setValue( "UniversalIndentGUI/size", settings["WindowSize"] );
 	}
-    settings->setValue( "UniversalIndentGUI/whiteSpaceIsVisible", whiteSpaceIsVisible );
-    settings->setValue( "UniversalIndentGUI/tabWidth", tabWidth );
-    //highlighter->writeCurrentSettings("");
+    qsettings->setValue( "UniversalIndentGUI/whiteSpaceIsVisible", settings["WhiteSpaceIsVisible"] );
+    qsettings->setValue( "UniversalIndentGUI/tabWidth", settings["TabWidth"] );
 
     return true;
 }

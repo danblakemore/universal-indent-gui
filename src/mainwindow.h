@@ -58,7 +58,7 @@ public:
 
 private:
 	QsciScintilla *txtedSourceCode;
-	QSettings *settings;
+	UiGuiSettings *settings;
 
     QString version;
     QString revision;
