@@ -21,17 +21,14 @@
 #define UIGUISETTINGS_H
 
 #include <QObject>
-#include <QFile>
-#include <QFileInfo>
 #include <QString>
 #include <QSettings>
 #include <QPoint>
 #include <QSize>
-#include <QMainWindow>
 #include <QPushButton>
 #include <QSpinBox>
 #include <QCheckBox>
-#include <QLocale>
+#include <QAction>
 
 class UiGuiSettings : public QObject
 {
@@ -50,6 +47,9 @@ public slots:
 	void handleValueChangeFromExtern();
 
 private:
+    QVariant getValueOfQObject(QObject* qobject);
+    bool setValueOfQObject(QObject* qobject, QVariant value);
+
     QSettings *qsettings;
 
 	//! This map holds all possible settings defined by their name as QString. The value is of the type QVariant.

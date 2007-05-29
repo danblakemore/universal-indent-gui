@@ -37,7 +37,7 @@ UiGuiSettings::UiGuiSettings(QString settingFilePath) : QObject() {
     The destructor saves the settings to a file.
  */
 UiGuiSettings::~UiGuiSettings() {
-	//FIX: Is never called!!
+	//FIXME: Is never called!!
     saveSettings();
 }
 
@@ -50,28 +50,118 @@ UiGuiSettings::~UiGuiSettings() {
  */
 void UiGuiSettings::handleValueChangeFromExtern() {
     if ( sender() ) {
+        // Get the objects name and remove "uiGui" from its beginning.
         QString objectName = sender()->objectName();
-        QString className( sender()->metaObject()->className() );
+        objectName.remove(0,5);
 
-        if ( className == "QCheckBox" ) {
-            QCheckBox* checkBox = dynamic_cast<QCheckBox *>(sender());
-            setValueByName( objectName, QVariant(checkBox->isChecked()) );
-        }
-        else if ( className == "QSpinBox" ) {
-            QSpinBox* spinBox = dynamic_cast<QSpinBox *>(sender());
-            setValueByName( objectName, QVariant(spinBox->value()) );
-        }
+        // Set the value of the setting to the objects value.
+        setValueByName( objectName, getValueOfQObject(sender()) );
     }
 }
 
 
 /*!
+	Registers the \a qobject to be updated if the setting with the name \a settingName
+	changes its value. Also it immediatly sets the value of \a qobject to the current
+    value of \a settingName.
+ */
+void UiGuiSettings::registerForUpdateOnValueChange( QObject* qobject, QString settingName ) {
+	// Test if the named setting really exists.
+	if ( settings.contains(settingName) ) {
+        // Add the object to the list for the setting to be updated on value change.
+		forOnValueChangeRegisteredObjects[settingName].append(qobject);
+        // Set the objects value to the current value of the setting.
+        setValueOfQObject( qobject, settings[settingName] );
+	}
+}
+
+
+/*!
+    Gets the value of the \a qobject, if it is either a QCheckBox, QSpinBox or QAction,
+    and returns it as QVariant.
+ */
+QVariant UiGuiSettings::getValueOfQObject(QObject* qobject) {
+    // Get the objects class name.
+    QString className( qobject->metaObject()->className() );
+
+    if ( className == "QCheckBox" ) {
+        QCheckBox* checkBox = dynamic_cast<QCheckBox *>(qobject);
+        if ( checkBox != NULL ) {
+            return checkBox->isChecked();
+        }
+    }
+    else if ( className == "QSpinBox" ) {
+        QSpinBox* spinBox = dynamic_cast<QSpinBox *>(qobject);
+        if ( spinBox != NULL ) {
+            return spinBox->value();
+        }
+    }
+    else if ( className == "QAction" ) {
+        QAction* action = dynamic_cast<QAction *>(qobject);
+        if ( action != NULL ) {
+            return action->isChecked();
+        }
+    }
+
+    return -1;
+}
+
+
+/*!
+    Sets the value of the \a qobject, if it is either a QCheckBox, QSpinBox or QAction,
+    to \a value.
+ */
+bool UiGuiSettings::setValueOfQObject(QObject* qobject, QVariant value) {
+    bool couldSetValue = true;
+
+    // Get the objects class name.
+    QString className( qobject->metaObject()->className() );
+
+    if ( className == "QCheckBox" ) {
+        QCheckBox* checkBox = dynamic_cast<QCheckBox *>(qobject);
+        if ( checkBox != NULL ) {
+            checkBox->setChecked( value.toBool() );
+        }
+    }
+    else if ( className == "QSpinBox" ) {
+        QSpinBox* spinBox = dynamic_cast<QSpinBox *>(qobject);
+        if ( spinBox != NULL ) {
+            spinBox->setValue( value.toInt() );
+        }
+    }
+    else if ( className == "QAction" ) {
+        QAction* action = dynamic_cast<QAction *>(qobject);
+        if ( action != NULL ) {
+            action->setChecked( value.toBool() );
+        }
+    }
+    // The object type was none of ones this function can handle.
+    else {
+        couldSetValue = false;
+    }
+
+    return couldSetValue;
+}
+
+/*!
 	Sets the value of the by \a settingsName defined setting to the value \a value.
+    Also behaves like a signal, because if a value is changed to a value other than
+    it has been before, all registered objects for the setting \a settingName
+    in the map \sa forOnValueChangeRegisteredObjects will get their values updated.
  */
 bool UiGuiSettings::setValueByName(QString settingName, QVariant value) {
-	// Test if the named setting really exist.
+	// Test if the named setting really exists.
 	if ( settings.contains(settingName) ) {
-		settings[settingName] = value;
+        // Test if the new value is different to the one before.
+        if ( settings[settingName] != value ) {
+            // Set the new value.
+		    settings[settingName] = value;
+
+            // Update all objects that are registered for an update on this settings value change.
+            foreach( QObject* qobject, forOnValueChangeRegisteredObjects[settingName] ) {
+                setValueOfQObject(qobject, value);
+            }
+        }
 		return true;
 	}
     return false;
@@ -83,7 +173,7 @@ bool UiGuiSettings::setValueByName(QString settingName, QVariant value) {
 	If the named setting does not exist, 0 is being returned.
 */
 QVariant UiGuiSettings::getValueByName(QString settingName) {
-	// Test if the named setting really exist.
+	// Test if the named setting really exists.
 	if ( settings.contains(settingName) ) {
 		return settings[settingName];
 	}
@@ -120,6 +210,9 @@ bool UiGuiSettings::loadSettings() {
 	}
 	settings["LastSelectedIndenterID"] = LastSelectedIndenterID;
 
+    // Read if syntax highlightning is enabled.
+	settings["SyntaxHighlightningEnabled"] = qsettings->value( "UniversalIndentGUI/SyntaxHighlightningEnabled", true ).toBool();
+
 	// Read if white space characters should be displayed.
 	settings["WhiteSpaceIsVisible"] = qsettings->value( "UniversalIndentGUI/whiteSpaceIsVisible", false ).toBool();
 
@@ -142,7 +235,7 @@ bool UiGuiSettings::loadSettings() {
 */
 bool UiGuiSettings::saveSettings() {
     qsettings->setValue( "UniversalIndentGUI/lastSourceCodeFile", settings["LastOpenedFile"] );
-	qsettings->setValue( "UniversalIndentGUI/loadLastSourceCodeFileOnStartup", settings["LastOpenedFile"] );
+	qsettings->setValue( "UniversalIndentGUI/loadLastSourceCodeFileOnStartup", settings["LoadLastOpenedFileOnStartup"] );
     qsettings->setValue( "UniversalIndentGUI/lastSelectedIndenter", settings["LastSelectedIndenterID"] );
     qsettings->setValue( "UniversalIndentGUI/indenterParameterTooltipsEnabled", settings["IndenterParameterTooltipsEnabled"] );
     qsettings->setValue( "UniversalIndentGUI/language", settings["Language"] );
@@ -153,20 +246,9 @@ bool UiGuiSettings::saveSettings() {
 		qsettings->setValue( "UniversalIndentGUI/position", settings["WindowPosition"] );
 		qsettings->setValue( "UniversalIndentGUI/size", settings["WindowSize"] );
 	}
+    qsettings->setValue( "UniversalIndentGUI/SyntaxHighlightningEnabled", settings["SyntaxHighlightningEnabled"] );
     qsettings->setValue( "UniversalIndentGUI/whiteSpaceIsVisible", settings["WhiteSpaceIsVisible"] );
     qsettings->setValue( "UniversalIndentGUI/tabWidth", settings["TabWidth"] );
 
     return true;
-}
-
-
-/*!
-	Registers the \a qobject to be updated if the setting with the name \a settingName
-	changes its value.
- */
-void UiGuiSettings::registerForUpdateOnValueChange( QObject* qobject, QString settingName ) {
-	// Test if the named setting really exist.
-	if ( settings.contains(settingName) ) {
-		forOnValueChangeRegisteredObjects[settingName].append(qobject);
-	}
 }

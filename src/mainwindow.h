@@ -94,7 +94,7 @@ private:
     Ui::toolBarWidget *toolBarWidget;
     IndentHandler *indentHandler;
 
-    // Stores info about a language, like the full name, mnemonic and a reference to its menu action
+    //! Stores info about a language, like the full name, mnemonic and a reference to its menu action
     struct LanguageInfo
     {
         QString languageName;
@@ -103,23 +103,19 @@ private:
     };
     QVector<LanguageInfo> languageInfos;
 
-    //! Tries to load a file and returns its content as QString
     QString loadFile(QString filePath);
-
     QString openFileDialog(QString dialogHeaderStr, QString startPath, QString fileMaskStr);
-
     void updateWindowTitle();
-
-    //! Loads the settings for the main program
-    void loadSettings();
-
-    //! Saves the settings for the main program
+    void loadLastOpenedFile();
     void saveSettings();
-
     bool maybeSave();
-
     void createLanguageMenu();
     void createEncodingMenu();
+    bool initApplicationLanguage();
+    void initMainWindow();
+    void initTextEditor();
+    void initSyntaxHighlighter();
+    void initIndenter();
 
 protected:
     void closeEvent( QCloseEvent *event );

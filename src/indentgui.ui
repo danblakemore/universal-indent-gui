@@ -81,7 +81,7 @@
      <string>Settings</string>
     </property>
     <addaction name="actionLive_Indent_Preview" />
-    <addaction name="uiGuiEnableSyntaxHighlightning" />
+    <addaction name="uiGuiSyntaxHighlightningEnabled" />
     <addaction name="uiGuiWhiteSpaceIsVisible" />
     <addaction name="uiGuiEnableParameterTooltips" />
     <addaction name="uiGuiLoadLastOpenedFileOnStartup" />
@@ -172,9 +172,6 @@
    </property>
   </action>
   <action name="actionSave_Source_File" >
-   <property name="enabled" >
-    <bool>true</bool>
-   </property>
    <property name="icon" >
     <iconset resource="../resources/Icons.qrc" >:/mainWindow/document-save.png</iconset>
    </property>
@@ -189,9 +186,6 @@
    </property>
   </action>
   <action name="actionSave_Source_File_As" >
-   <property name="enabled" >
-    <bool>true</bool>
-   </property>
    <property name="icon" >
     <iconset resource="../resources/Icons.qrc" >:/mainWindow/document-save-as.png</iconset>
    </property>
@@ -217,9 +211,6 @@
    </property>
   </action>
   <action name="actionSave_Indenter_Config_File" >
-   <property name="enabled" >
-    <bool>true</bool>
-   </property>
    <property name="icon" >
     <iconset resource="../resources/Icons.qrc" >:/mainWindow/save_indent_cfg.png</iconset>
    </property>
@@ -270,9 +261,6 @@
    </property>
   </action>
   <action name="actionExportHTML" >
-   <property name="checkable" >
-    <bool>true</bool>
-   </property>
    <property name="icon" >
     <iconset resource="../resources/Icons.qrc" >:/mainWindow/exporthtml.png</iconset>
    </property>
@@ -310,8 +298,11 @@
    <property name="text" >
     <string>Live Indent Preview</string>
    </property>
+   <property name="shortcut" >
+    <string>Ctrl+L</string>
+   </property>
   </action>
-  <action name="uiGuiEnableSyntaxHighlightning" >
+  <action name="uiGuiSyntaxHighlightningEnabled" >
    <property name="checkable" >
     <bool>true</bool>
    </property>

@@ -139,7 +139,7 @@ public slots:
     void setIndenter(int indenterID);
 
 signals:
-    void settingsCodeChanged();
+    void indenterSettingsChanged();
 
 };
 

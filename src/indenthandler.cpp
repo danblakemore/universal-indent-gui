@@ -414,9 +414,9 @@ void IndentHandler::loadConfigFile(QString filePathName) {
             paramValue = cfgFileData.mid( index, crPos - index ).toInt(NULL);
 
             // disable the signal-slot connection. Otherwise signal is emmitted each time when value is set
-            QObject::disconnect(pNumeric.spinBox, SIGNAL(valueChanged(int)), this, SIGNAL(settingsCodeChanged()));
+            QObject::disconnect(pNumeric.spinBox, SIGNAL(valueChanged(int)), this, SIGNAL(indenterSettingsChanged()));
             pNumeric.spinBox->setValue( paramValue );
-            QObject::connect(pNumeric.spinBox, SIGNAL(valueChanged(int)), this, SIGNAL(settingsCodeChanged()));
+            QObject::connect(pNumeric.spinBox, SIGNAL(valueChanged(int)), this, SIGNAL(indenterSettingsChanged()));
         }
         // parameter was not found in config file
         else {
@@ -627,8 +627,8 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
                 paramNumeric.valueEnabledChkBox = chkBox;
                 paramNumerics.append(paramNumeric);
 
-                QObject::connect(spinBox, SIGNAL(valueChanged(int)), this, SIGNAL(settingsCodeChanged()));
-                QObject::connect(chkBox, SIGNAL(clicked()), this, SIGNAL(settingsCodeChanged()));
+                QObject::connect(spinBox, SIGNAL(valueChanged(int)), this, SIGNAL(indenterSettingsChanged()));
+                QObject::connect(chkBox, SIGNAL(clicked()), this, SIGNAL(indenterSettingsChanged()));
             }
             // edit type is boolean so create a checkbox
             else if ( editType == "boolean" ) {
@@ -650,7 +650,7 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
                 paramBoolean.falseString = trueFalseStrings.at(1);
                 paramBooleans.append(paramBoolean);
 
-                QObject::connect(chkBox, SIGNAL(clicked()), this, SIGNAL(settingsCodeChanged()));
+                QObject::connect(chkBox, SIGNAL(clicked()), this, SIGNAL(indenterSettingsChanged()));
             }
             // edit type is numeric so create a line edit with label
             else if ( editType == "string" ) {
@@ -699,8 +699,8 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
                 paramString.valueEnabledChkBox = chkBox;
                 paramStrings.append(paramString);
 
-                QObject::connect(lineEdit, SIGNAL(editingFinished()), this, SIGNAL(settingsCodeChanged()));
-                QObject::connect(chkBox, SIGNAL(clicked()), this, SIGNAL(settingsCodeChanged()));
+                QObject::connect(lineEdit, SIGNAL(editingFinished()), this, SIGNAL(indenterSettingsChanged()));
+                QObject::connect(chkBox, SIGNAL(clicked()), this, SIGNAL(indenterSettingsChanged()));
             }
             // edit type is multiple so create a combobox with label
             else if ( editType == "multiple" ) {
@@ -747,8 +747,8 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
                 paramMultiple.valueEnabledChkBox = chkBox;
                 paramMultiples.append(paramMultiple);
 
-                QObject::connect(comboBox, SIGNAL(activated(int)), this, SIGNAL(settingsCodeChanged()));
-                QObject::connect(chkBox, SIGNAL(clicked()), this, SIGNAL(settingsCodeChanged()));
+                QObject::connect(comboBox, SIGNAL(activated(int)), this, SIGNAL(indenterSettingsChanged()));
+                QObject::connect(chkBox, SIGNAL(clicked()), this, SIGNAL(indenterSettingsChanged()));
             }
 
         }
@@ -793,7 +793,7 @@ QStringList IndentHandler::getAvailableIndenters() {
 
 
 /*!
-    Deletes all elements in the toolbox and initialize the indenter selected by \a indenterID.
+    Deletes all elements in the toolbox and initializes the indenter selected by \a indenterID.
  */
 void IndentHandler::setIndenter(int indenterID) {
     // TODO: This function is never called because out of the mainwindow object a new indenthandler object is created if another indenter is selected.

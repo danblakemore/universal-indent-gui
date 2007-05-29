@@ -33,67 +33,53 @@
  */
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
-	dataDirctoryStr = "./data/";
-
-    // generate gui as it is build in the file "indentgui.ui"
-    setupUi(this);
-
-	txtedSourceCode = new QsciScintilla(this);
-	hboxLayout1->addWidget(txtedSourceCode);
-
-    txtedSourceCode->setUtf8(true);
-    txtedSourceCode->setMarginLineNumbers(1, true);
-	txtedSourceCode->setMarginWidth(1, QString("10000") );
-	txtedSourceCode->setBraceMatching(txtedSourceCode->SloppyBraceMatch);
-	txtedSourceCode->setMatchedBraceForegroundColor( QColor("red") );
-	txtedSourceCode->setFolding(QsciScintilla::BoxedTreeFoldStyle);
-	txtedSourceCode->setWhitespaceVisibility(QsciScintilla::WsVisible);
-	txtedSourceCode->setAutoCompletionSource(QsciScintilla::AcsAll);
-	txtedSourceCode->setAutoCompletionThreshold(3);
-
     // set the program version, revision and date, which is shown in the main window title and in the about dialog.
     version = "0.5.1 Beta";
     revision = "300";
     QDate buildDate(2007, 3, 21);
     buildDateStr = buildDate.toString("d. MMMM yyyy");
 
+    // Create the settings object, which loads all UiGui settings from a file.
+	settings = new UiGuiSettings();
+
+    // Initialize the language of the application.
+    initApplicationLanguage();
+
+    // Creates the main window and initializes it.
+    initMainWindow();
+
+    // Create toolbar and insert it into the main window.
     toolBarWidget = new Ui::toolBarWidget();
     QWidget* helpWidget = new QWidget();
     toolBarWidget->setupUi(helpWidget);
     toolBar->addWidget(helpWidget);
     toolBar->setAllowedAreas( Qt::TopToolBarArea | Qt::BottomToolBarArea );
+    connect( toolBarWidget->uiGuiSyntaxHighlightningEnabled, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern()) );
+    settings->registerForUpdateOnValueChange( toolBarWidget->uiGuiSyntaxHighlightningEnabled, "SyntaxHighlightningEnabled" );
 
-	highlighter = new Highlighter(txtedSourceCode);
-	menuSettings->insertMenu(uiGuiEnableSyntaxHighlightning, highlighter->getHighlighterMenu() );
+    // Create the textedit component using the QScintilla widget.
+    initTextEditor();
 
-    indentHandler = 0;
+    // Create and init the syntax highlighter.
+    initSyntaxHighlighter();
 
-    isFirstRunOfThisVersion = false;
-	settings = new UiGuiSettings();
-    loadSettings();
+    // Create and init the indenter.
+    initIndenter();
 
-    // Because the language settings are being loaded after creating the highlighter menu
-    // the menu has to be retranslated after loading the language settings
-    highlighter->retranslate();
-
+    // Create some menus.
     createLanguageMenu();
     createEncodingMenu();
-
-    updateWindowTitle();
-
-    textEditVScrollBar = txtedSourceCode->verticalScrollBar();
-
-    sourceCodeChanged = false;
-    scrollPositionChanged = false;
-    // Set this true, so the indenter is called at first program start
-    indentSettingsChanged = true;
-    previewToggled = true;
+    // Let the highlighter create a menu for selecting the language specific highlightning.
+	menuSettings->insertMenu(uiGuiSyntaxHighlightningEnabled, highlighter->getHighlighterMenu() );
 
     // generate about dialog box
     aboutDialog = new AboutDialog(this, version, revision, buildDateStr);
 
 	// generate settings dialog box
 	settingsDialog = new UiGuiSettingsDialog(this);
+
+    // Loads the last opened file, if this is enabled in the settings.
+    loadLastOpenedFile();
 
     updateSourceView();
     txtedSourceCode->setModified(false);
@@ -109,36 +95,207 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     connect( actionSave_Indenter_Config_File, SIGNAL(activated()), this, SLOT(saveasIndentCfgFileDialog()) );
 
 	connect( actionShowSettings, SIGNAL(activated()), settingsDialog, SLOT(showDialog()) );
-
-    connect( toolBarWidget->cbLivePreview, SIGNAL(toggled(bool)), this, SLOT(previewTurnedOnOff(bool)) );
-    connect( toolBarWidget->cbLivePreview, SIGNAL(toggled(bool)), actionLive_Indent_Preview, SLOT(setChecked(bool)) );
-    connect( actionLive_Indent_Preview, SIGNAL(toggled(bool)), toolBarWidget->cbLivePreview, SLOT(setChecked(bool)) );
-    connect( toolBarWidget->uiGuiEnableSyntaxHighlightning, SIGNAL(toggled(bool)), this, SLOT(turnHighlightOnOff(bool)) );
-    connect( toolBarWidget->uiGuiEnableSyntaxHighlightning, SIGNAL(toggled(bool)), uiGuiEnableSyntaxHighlightning, SLOT(setChecked(bool)) );
-    connect( uiGuiEnableSyntaxHighlightning, SIGNAL(toggled(bool)), toolBarWidget->uiGuiEnableSyntaxHighlightning, SLOT(setChecked(bool)) );
-	connect( uiGuiWhiteSpaceIsVisible, SIGNAL(toggled(bool)), this, SLOT(setWhiteSpaceVisibility(bool)) );
-
-    connect( toolBarWidget->pbExit, SIGNAL(clicked()), this, SLOT(close()));
     connect( actionAbout_UniversalIndentGUI, SIGNAL(activated()), aboutDialog, SLOT(exec()) );
     connect( toolBarWidget->pbAbout, SIGNAL(clicked()), aboutDialog, SLOT(exec()) );
-
-    connect( languageActionGroup, SIGNAL(triggered(QAction*)), this, SLOT(languageChanged(QAction*)) );
-    connect( encodingActionGroup, SIGNAL(triggered(QAction*)), this, SLOT(encodingChanged(QAction*)) );
+    connect( toolBarWidget->pbExit, SIGNAL(clicked()), this, SLOT(close()));
 
     connect( toolBarWidget->cmbBoxIndenters, SIGNAL(activated(int)), this, SLOT(selectIndenter(int)) );
 
 	connect( txtedSourceCode, SIGNAL(textChanged()), this, SLOT(sourceCodeChangedHelperSlot()) );
 	connect( txtedSourceCode, SIGNAL(linesChanged()), this, SLOT(numberOfLinesChanged()) );
+
+    connect( toolBarWidget->cbLivePreview, SIGNAL(toggled(bool)), this, SLOT(previewTurnedOnOff(bool)) );
+    connect( toolBarWidget->cbLivePreview, SIGNAL(toggled(bool)), actionLive_Indent_Preview, SLOT(setChecked(bool)) );
+    connect( actionLive_Indent_Preview, SIGNAL(toggled(bool)), toolBarWidget->cbLivePreview, SLOT(setChecked(bool)) );
+    
+    // Connections that concern settings.
+	connect( uiGuiWhiteSpaceIsVisible, SIGNAL(toggled(bool)), this, SLOT(setWhiteSpaceVisibility(bool)) );
+
+    connect( languageActionGroup, SIGNAL(triggered(QAction*)), this, SLOT(languageChanged(QAction*)) );
+    connect( encodingActionGroup, SIGNAL(triggered(QAction*)), this, SLOT(encodingChanged(QAction*)) );
+
+
 }
 
 
 /*!
-    Creates the by \a indenterID selected indent handler object and adds the indent widget to its layout
+    Create and init the syntax highlighter and set it to use the QScintilla edit component.
+ */
+void MainWindow::initSyntaxHighlighter() {
+    // Create the highlighter.
+    highlighter = new Highlighter(txtedSourceCode);
+
+    // Handle if syntax highlightning is enabled
+	bool syntaxHighlightningEnabled = settings->getValueByName("SyntaxHighlightningEnabled").toBool();
+	if ( syntaxHighlightningEnabled ) {
+        highlighter->turnHighlightOn();
+    }
+    else {
+        highlighter->turnHighlightOff();
+    }
+
+    // Set the entry in the settings menue and in the toolbar to show whether syntax highlight is enabled.
+    uiGuiSyntaxHighlightningEnabled->setChecked( syntaxHighlightningEnabled );
+    toolBarWidget->uiGuiSyntaxHighlightningEnabled->setChecked( syntaxHighlightningEnabled );
+}
+
+
+/*!
+    Initializes the main window by creating the main gui and make some settings.
+ */
+void MainWindow::initMainWindow() {
+    // Generate gui as it is build in the file "indentgui.ui"
+    setupUi(this);
+
+	// Handle last opened window size
+	// ------------------------------
+	bool maximized = settings->getValueByName("WindowIsMaximized").toBool();
+	QPoint pos = settings->getValueByName("WindowPosition").toPoint();
+	QSize size = settings->getValueByName("WindowSize").toSize();
+	resize(size);
+	move(pos);
+	if ( maximized ) {
+		showMaximized();
+	}
+
+    // Handle if first run of this version
+    // -----------------------------------
+    QString readVersion = settings->getValueByName("VersionInSettingsFile").toString();
+	// If version strings are not equal set first run true.
+	if ( readVersion != version ) {
+		isFirstRunOfThisVersion = true;
+	}
+	else {
+		isFirstRunOfThisVersion = false;
+	}
+
+    // Get last selected file encoding
+	// -------------------------------
+	currentEncoding = settings->getValueByName("FileEncoding").toString();
+
+    connect( uiGuiSyntaxHighlightningEnabled, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern()) );
+    settings->registerForUpdateOnValueChange( uiGuiSyntaxHighlightningEnabled, "SyntaxHighlightningEnabled" );
+    connect( uiGuiSyntaxHighlightningEnabled, SIGNAL(toggled(bool)), this, SLOT(turnHighlightOnOff(bool)) );
+
+    // Init of some variables.
+    dataDirctoryStr = "./data/";
+    sourceCodeChanged = false;
+    scrollPositionChanged = false;
+}
+
+
+/*!
+   Create and initialize the text editor component. It uses the QScintilla widget.
+ */
+void MainWindow::initTextEditor() {
+    // Create the QScintilla widget and add it to the layout.
+    txtedSourceCode = new QsciScintilla(this);
+	hboxLayout1->addWidget(txtedSourceCode);
+
+    // Make some settings for the QScintilla widget.
+    txtedSourceCode->setUtf8(true);
+    txtedSourceCode->setMarginLineNumbers(1, true);
+	txtedSourceCode->setMarginWidth(1, QString("10000") );
+	txtedSourceCode->setBraceMatching(txtedSourceCode->SloppyBraceMatch);
+	txtedSourceCode->setMatchedBraceForegroundColor( QColor("red") );
+	txtedSourceCode->setFolding(QsciScintilla::BoxedTreeFoldStyle);
+	txtedSourceCode->setAutoCompletionSource(QsciScintilla::AcsAll);
+	txtedSourceCode->setAutoCompletionThreshold(3);
+
+    // Handle if white space is set to be visible
+	bool whiteSpaceIsVisible = settings->getValueByName("WhiteSpaceIsVisible").toBool();
+	uiGuiWhiteSpaceIsVisible->setChecked( whiteSpaceIsVisible );
+	if ( whiteSpaceIsVisible ) {
+		txtedSourceCode->setWhitespaceVisibility(QsciScintilla::WsVisible);
+	}
+	else {
+		txtedSourceCode->setWhitespaceVisibility(QsciScintilla::WsInvisible);
+	}
+
+    // Handle the width of tabs in spaces
+    int tabWidth = settings->getValueByName("TabWidth").toInt();
+    txtedSourceCode->setTabWidth(tabWidth);
+
+    // Remember a pointer to the scrollbar of the QScintilla widget used to keep
+    // on the same line as before when turning preview on/off.
+    textEditVScrollBar = txtedSourceCode->verticalScrollBar();
+}
+
+/*!
+    If the program language is defined in the settings, the corresponding language
+    file will be loaded and set for the application. If not set there, the system
+    default language will be set, if a translation file for that language exists.
+    Returns true, if the translation file could be loaded. Otherwise it returns
+    false and uses the default language, which is english.
+ */
+bool MainWindow::initApplicationLanguage() {
+    // Get the language settings from the settings object.
+    language = settings->getValueByName("Language").toString();
+
+    // If no language was set use the system language
+    if ( language.isEmpty() ) {
+        language = QLocale::system().name();
+        language.truncate(2);
+    }
+    // Load the translation file and set it for the application
+    translator = new QTranslator();
+    bool translationFileLoaded = translator->load( QString("./translations/universalindent_") + language );
+    if ( translationFileLoaded ) {
+        qApp->installTranslator(translator);
+    }
+
+    return translationFileLoaded;
+}
+
+
+/*!
+    Creates and initializes the indenter.
+ */
+void MainWindow::initIndenter() {
+    // Get Id of last selected indenter.
+	currentIndenterID = settings->getValueByName("LastSelectedIndenterID").toInt();
+
+    // Create the indenter widget with the ID and add it to the layout.
+    indentHandler = new IndentHandler(dataDirctoryStr, currentIndenterID, this, centralwidget);
+    vboxLayout->addWidget(indentHandler);
+
+    // Check whether indenters are available.
+	if ( !indentHandler->getAvailableIndenters().isEmpty() ) {
+		toolBarWidget->cmbBoxIndenters->addItems( indentHandler->getAvailableIndenters() );
+		// Take care if the selected indenterID is greater than the number of existing indenters
+		if ( currentIndenterID >= indentHandler->getAvailableIndenters().count() ) {
+			currentIndenterID = indentHandler->getAvailableIndenters().count() - 1;
+		}
+	}
+    // If no indenter are found, show a warning message.
+	else {
+		currentIndenterID = 0;
+		QMessageBox::warning(NULL, tr("No indenter ini files"), tr("There exists no indenter ini files in the directory \"") + QDir(dataDirctoryStr).absolutePath() + "\".");
+	}
+
+    // Set the combobox in the toolbar to show the selected indenter.
+    toolBarWidget->cmbBoxIndenters->setCurrentIndex( currentIndenterID );
+
+    // If settings for the indenter have changed, let the main window know aboud it.
+    connect(indentHandler, SIGNAL(indenterSettingsChanged()), this, SLOT(indentSettingsChangedSlot()));
+
+    // Set this true, so the indenter is called at first program start
+    indentSettingsChanged = true;
+    previewToggled = true;
+
+    // Handle if indenter parameter tool tips are enabled
+	bool indenterParameterTooltipsEnabled = settings->getValueByName("IndenterParameterTooltipsEnabled").toBool();
+	uiGuiEnableParameterTooltips->setChecked( indenterParameterTooltipsEnabled );
+}
+
+
+/*!
+    Creates the by \a indenterID selected indent handler object and adds the indent widget to its layout.
  */
 void MainWindow::selectIndenter(int indenterID) {
     IndentHandler *oldIndentHandler = indentHandler;
 
-    // prevent unnecessary updates if same indenter as current has been selected
+    // Prevent unnecessary updates if same indenter as current has been selected
     if ( indenterID == currentIndenterID ) {
         return;
     }
@@ -161,18 +318,23 @@ void MainWindow::selectIndenter(int indenterID) {
         indenterID = indentHandler->getAvailableIndenters().count() - 1;
     }
 
+    // Set the combobox in the toolbar to show the selected indenter.
     toolBarWidget->cmbBoxIndenters->setCurrentIndex(indenterID);
-    QObject::connect(indentHandler, SIGNAL(settingsCodeChanged()), this, SLOT(indentSettingsChangedSlot()));
+
+    // If settings for the indenter have changed, let the main window know aboud it.
+    connect(indentHandler, SIGNAL(indenterSettingsChanged()), this, SLOT(indentSettingsChangedSlot()));
 
     currentIndenterID = indenterID;
     if ( toolBarWidget->cbLivePreview->isChecked() ) {
         callIndenter();
     }
+
     previewToggled = true;
     indentSettingsChanged = true;
     updateSourceView();
     QApplication::restoreOverrideCursor();
 }
+
 
 /*!
     Tries to load the by \a filePath defined file and returns its content as QString.
@@ -200,6 +362,7 @@ QString MainWindow::loadFile(QString filePath) {
     }
     return fileContent;
 }
+
 
 /*!
     Calls the source file open dialog to load a source file for the formatting preview.
@@ -336,6 +499,7 @@ void MainWindow::openConfigFileDialog() {
     }
 }
 
+
 /*!
     Shows a file open dialog with the title \a dialogHeaderStr starting in the directory \a startPath
     and with a file mask defined by \a fileMaskStr. Returns the contents of the file as QString.
@@ -352,6 +516,7 @@ QString MainWindow::openFileDialog(QString dialogHeaderStr, QString startPath, Q
 
     return fileContent;
 }
+
 
 /*!
     Updates the text edit field, which is showing the loaded, and if preview is enabled formatted, source code.
@@ -381,6 +546,7 @@ void MainWindow::updateSourceView()
     textEditVScrollBar->setValue( textEditLastScrollPos );
 }
 
+
 /*!
     Calls the selected indenter with the currently loaded source code to retrieve the formatted source code.
     The original loaded source code file will not be changed.
@@ -391,6 +557,7 @@ void MainWindow::callIndenter() {
     //updateSourceView();
     QApplication::restoreOverrideCursor();
 }
+
 
 /*!
     Switches the syntax highlighting corresponding to the value \a turnOn either on or off.
@@ -410,6 +577,7 @@ void MainWindow::turnHighlightOnOff(bool turnOn) {
 void MainWindow::sourceCodeChangedHelperSlot() {
 	QTimer::singleShot(0, this, SLOT(sourceCodeChangedSlot()));
 }
+
 
 /*!
     Is emitted whenever the text inside the source view window changes. Calls the indenter
@@ -659,43 +827,13 @@ void MainWindow::exportToHTML() {
 
 
 /*!
-    Loads the settings for the main application out of the file "UniversalIndentGUI.ini",
-    which should exists in the call directory. Settings are for example last selected indenter,
-    last loaded config file and so on.
+    Loads the last opened file if this option is enabled in the settings. If the file
+    does not exist, the default example file is tried to be loaded. If even that
+    fails a very small code example is shown.
+    If the setting for openening the last file is disabled, the editor is empty on startup.
 */
-void MainWindow::loadSettings() {
-
-	// Handle if first run of this version
-    // -----------------------------------
-    QString readVersion = settings->getValueByName("VersionInSettingsFile").toString();
-	// If version strings are not equal set first run true.
-	if ( readVersion != version ) {
-		isFirstRunOfThisVersion = true;
-	}
-	else {
-		isFirstRunOfThisVersion = false;
-	}
-
-
-	// Handle last opened window size
-	// ------------------------------
-	bool maximized = settings->getValueByName("WindowIsMaximized").toBool();
-	QPoint pos = settings->getValueByName("WindowPosition").toPoint();
-	QSize size = settings->getValueByName("WindowSize").toSize();
-	resize(size);
-	move(pos);
-	if ( maximized ) {
-		showMaximized();
-	}
-
-
-	// Handle last selected file encoding
-	// ----------------------------------
-	currentEncoding = settings->getValueByName("FileEncoding").toString();
-
-
-    // Handle last opened source code file
-    // -----------------------------------
+void MainWindow::loadLastOpenedFile() {
+    // Get setting for last opened source code file
 	loadLastSourceCodeFileOnStartup = settings->getValueByName("LoadLastOpenedFileOnStartup").toBool();
 	uiGuiLoadLastOpenedFileOnStartup->setChecked( loadLastSourceCodeFileOnStartup );
 
@@ -703,95 +841,35 @@ void MainWindow::loadSettings() {
 	if ( loadLastSourceCodeFileOnStartup ) {
 		currentSourceFile = settings->getValueByName("LastOpenedFile").toString();
 
-		// if source file exist load it
+		// If source file exist load it.
 		if ( QFile::exists(currentSourceFile) ) {
 			QFileInfo fileInfo(currentSourceFile);
 			currentSourceFile = fileInfo.absoluteFilePath();
 			sourceFileContent = loadFile(currentSourceFile);
 		}
-		// if no source code file exists make some default settings.
+        // If the last opened source code file does not exist, try to load the default example.cpp file.
+        else if ( QFile::exists(dataDirctoryStr + "example.cpp") ) {
+			QFileInfo fileInfo(dataDirctoryStr + "example.cpp");
+			currentSourceFile = fileInfo.absoluteFilePath();
+			sourceFileContent = loadFile(currentSourceFile);
+		}
+		// If neither the example source code file exists show some small code example.
 		else {
-			QFileInfo fileInfo(currentSourceFile);
-			currentSourceFile = fileInfo.absolutePath();
-			currentSourceFileExtension = "";
+			currentSourceFile = "untitled.cpp";
+			currentSourceFileExtension = "cpp";
 			sourceFileContent = "if(x==\"y\"){x=z;}";
 		}
 	}
 	// if last opened source file should not be loaded make some default settings.
 	else {
-		QFileInfo fileInfo(dataDirctoryStr+"example.cpp");
-		currentSourceFile = fileInfo.absolutePath();
-		currentSourceFileExtension = "";
+		currentSourceFile = "untitled.cpp";
+		currentSourceFileExtension = "cpp";
 		sourceFileContent = "";
 	}
     savedSourceContent = sourceFileContent;
 
-
-    // Handle last selected indenter
-    // -----------------------------
-	currentIndenterID = settings->getValueByName("LastSelectedIndenterID").toInt();
-
-    indentHandler = new IndentHandler(dataDirctoryStr, currentIndenterID, this, centralwidget);
-    vboxLayout->addWidget(indentHandler);
-
-	if ( !indentHandler->getAvailableIndenters().isEmpty() ) {
-		toolBarWidget->cmbBoxIndenters->addItems( indentHandler->getAvailableIndenters() );
-		// Take care if the selected indenterID is greater than the number of existing indenters
-		if ( currentIndenterID >= indentHandler->getAvailableIndenters().count() ) {
-			currentIndenterID = indentHandler->getAvailableIndenters().count() - 1;
-		}
-	}
-	else {
-		currentIndenterID = 0;
-		QMessageBox::warning(NULL, tr("No indenter ini files"), tr("There exists no indenter ini files in the directory \"") + QDir(dataDirctoryStr).absolutePath() + "\".");
-	}
-
-    toolBarWidget->cmbBoxIndenters->setCurrentIndex( currentIndenterID );
-    QObject::connect(indentHandler, SIGNAL(settingsCodeChanged()), this, SLOT(indentSettingsChangedSlot()));
-
-
-	// Handle if white space is set to be visible
-	// ------------------------------------------
-	bool whiteSpaceIsVisible = settings->getValueByName("WhiteSpaceIsVisible").toBool();
-	uiGuiWhiteSpaceIsVisible->setChecked( whiteSpaceIsVisible );
-	if ( whiteSpaceIsVisible ) {
-		txtedSourceCode->setWhitespaceVisibility(QsciScintilla::WsVisible);
-	}
-	else {
-		txtedSourceCode->setWhitespaceVisibility(QsciScintilla::WsInvisible);
-	}
-
-
-    // Handle if indenter parameter tool tips are enabled
-    // --------------------------------------------------
-	bool indenterParameterTooltipsEnabled = settings->getValueByName("IndenterParameterTooltipsEnabled").toBool();
-	uiGuiEnableParameterTooltips->setChecked( indenterParameterTooltipsEnabled );
-
-
-    // Handle the width of tabs in spaces
-    // ----------------------------------
-    int tabWidth = settings->getValueByName("TabWidth").toInt();
-    txtedSourceCode->setTabWidth(tabWidth);
-
-
-    // Handle selected language
-    // ------------------------
-    language = settings->getValueByName("Language").toString();
-
-    // if no language was set use the system language
-    if ( language.isEmpty() ) {
-        language = QLocale::system().name();
-        language.truncate(2);
-    }
-
-	highlighter->readCurrentSettings("");
-
-    // load the translation file and set it for the application
-    translator = new QTranslator();
-    translator->load( QString("./translations/universalindent_") + language );
-    qApp->installTranslator(translator);
-    retranslateUi(this);
-    toolBarWidget->retranslateUi(toolBar);
+    // Update the mainwindow title to show the name of the loaded source code file.
+    updateWindowTitle();
 }
 
 
@@ -815,6 +893,7 @@ void MainWindow::saveSettings() {
 		settings->setValueByName( "WindowPosition", pos() );
 		settings->setValueByName( "WindowSize", size() );
 	}
+    settings->setValueByName( "SyntaxHighlightningEnabled", uiGuiSyntaxHighlightningEnabled->isChecked() );
     settings->setValueByName( "WhiteSpaceIsVisible", uiGuiWhiteSpaceIsVisible->isChecked() );
     settings->setValueByName( "TabWidth", txtedSourceCode->tabWidth() );
 
