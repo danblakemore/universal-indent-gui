@@ -404,6 +404,8 @@ void Highlighter::setLexerForExtension( QString extension ) {
         highlighterActionGroup->actions().at(indexOfHighlighter)->setChecked(true);
 	}
 
-	parent->setLexer(lexer);
+    if ( highlightningIsOn ) {
+	    parent->setLexer(lexer);
+    }
 	readCurrentSettings("");
 }
