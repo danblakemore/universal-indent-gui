@@ -37,6 +37,7 @@ UiGuiSettings::UiGuiSettings(QString settingFilePath) : QObject() {
     The destructor saves the settings to a file.
  */
 UiGuiSettings::~UiGuiSettings() {
+	//FIX: Is never called!!
     saveSettings();
 }
 

@@ -116,7 +116,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     connect( toolBarWidget->uiGuiEnableSyntaxHighlightning, SIGNAL(toggled(bool)), this, SLOT(turnHighlightOnOff(bool)) );
     connect( toolBarWidget->uiGuiEnableSyntaxHighlightning, SIGNAL(toggled(bool)), uiGuiEnableSyntaxHighlightning, SLOT(setChecked(bool)) );
     connect( uiGuiEnableSyntaxHighlightning, SIGNAL(toggled(bool)), toolBarWidget->uiGuiEnableSyntaxHighlightning, SLOT(setChecked(bool)) );
-	connect( uiGuiWhiteSpaceVisible, SIGNAL(toggled(bool)), this, SLOT(setWhiteSpaceVisibility(bool)) );
+	connect( uiGuiWhiteSpaceIsVisible, SIGNAL(toggled(bool)), this, SLOT(setWhiteSpaceVisibility(bool)) );
 
     connect( toolBarWidget->pbExit, SIGNAL(clicked()), this, SLOT(close()));
     connect( actionAbout_UniversalIndentGUI, SIGNAL(activated()), aboutDialog, SLOT(exec()) );
@@ -697,7 +697,7 @@ void MainWindow::loadSettings() {
     // Handle last opened source code file
     // -----------------------------------
 	loadLastSourceCodeFileOnStartup = settings->getValueByName("LoadLastOpenedFileOnStartup").toBool();
-	uiGuiAutoOpenLastFile->setChecked( loadLastSourceCodeFileOnStartup );
+	uiGuiLoadLastOpenedFileOnStartup->setChecked( loadLastSourceCodeFileOnStartup );
 
 	// Only load last source code file if set to do so
 	if ( loadLastSourceCodeFileOnStartup ) {
@@ -753,7 +753,7 @@ void MainWindow::loadSettings() {
 	// Handle if white space is set to be visible
 	// ------------------------------------------
 	bool whiteSpaceIsVisible = settings->getValueByName("WhiteSpaceIsVisible").toBool();
-	uiGuiWhiteSpaceVisible->setChecked( whiteSpaceIsVisible );
+	uiGuiWhiteSpaceIsVisible->setChecked( whiteSpaceIsVisible );
 	if ( whiteSpaceIsVisible ) {
 		txtedSourceCode->setWhitespaceVisibility(QsciScintilla::WsVisible);
 	}
@@ -804,7 +804,7 @@ void MainWindow::saveSettings() {
     if ( fileInfo.isFile() ) {
         settings->setValueByName( "LastOpenedFile", currentSourceFile );
     }
-	settings->setValueByName( "LoadLastOpenedFileOnStartup", uiGuiAutoOpenLastFile->isChecked() );
+	settings->setValueByName( "LoadLastOpenedFileOnStartup", uiGuiLoadLastOpenedFileOnStartup->isChecked() );
     settings->setValueByName( "LastSelectedIndenterID", currentIndenterID );
     settings->setValueByName( "IndenterParameterTooltipsEnabled", uiGuiEnableParameterTooltips->isChecked() );
     settings->setValueByName( "Language", language );
@@ -815,7 +815,7 @@ void MainWindow::saveSettings() {
 		settings->setValueByName( "WindowPosition", pos() );
 		settings->setValueByName( "WindowSize", size() );
 	}
-    settings->setValueByName( "WhiteSpaceIsVisible", uiGuiWhiteSpaceVisible->isChecked() );
+    settings->setValueByName( "WhiteSpaceIsVisible", uiGuiWhiteSpaceIsVisible->isChecked() );
     settings->setValueByName( "TabWidth", txtedSourceCode->tabWidth() );
 
 	settings->saveSettings();

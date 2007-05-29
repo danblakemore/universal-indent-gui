@@ -82,9 +82,9 @@
     </property>
     <addaction name="actionLive_Indent_Preview" />
     <addaction name="uiGuiEnableSyntaxHighlightning" />
-    <addaction name="uiGuiWhiteSpaceVisible" />
+    <addaction name="uiGuiWhiteSpaceIsVisible" />
     <addaction name="uiGuiEnableParameterTooltips" />
-    <addaction name="uiGuiAutoOpenLastFile" />
+    <addaction name="uiGuiLoadLastOpenedFileOnStartup" />
     <addaction name="actionShowSettings" />
    </widget>
    <addaction name="menuFile" />
@@ -325,7 +325,7 @@
     <string>Syntax Highlight</string>
    </property>
   </action>
-  <action name="uiGuiWhiteSpaceVisible" >
+  <action name="uiGuiWhiteSpaceIsVisible" >
    <property name="checkable" >
     <bool>true</bool>
    </property>
@@ -342,7 +342,7 @@
     <string>Enables or disables diplaying of white space characters in the editor.</string>
    </property>
   </action>
-  <action name="uiGuiAutoOpenLastFile" >
+  <action name="uiGuiLoadLastOpenedFileOnStartup" >
    <property name="checkable" >
     <bool>true</bool>
    </property>
