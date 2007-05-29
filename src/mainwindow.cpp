@@ -109,34 +109,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     connect( actionLive_Indent_Preview, SIGNAL(toggled(bool)), toolBarWidget->cbLivePreview, SLOT(setChecked(bool)) );
     
     // Connections that concern settings.
-	connect( uiGuiWhiteSpaceIsVisible, SIGNAL(toggled(bool)), this, SLOT(setWhiteSpaceVisibility(bool)) );
-
     connect( languageActionGroup, SIGNAL(triggered(QAction*)), this, SLOT(languageChanged(QAction*)) );
     connect( encodingActionGroup, SIGNAL(triggered(QAction*)), this, SLOT(encodingChanged(QAction*)) );
 
 
-}
-
-
-/*!
-    Create and init the syntax highlighter and set it to use the QScintilla edit component.
- */
-void MainWindow::initSyntaxHighlighter() {
-    // Create the highlighter.
-    highlighter = new Highlighter(txtedSourceCode);
-
-    // Handle if syntax highlightning is enabled
-	bool syntaxHighlightningEnabled = settings->getValueByName("SyntaxHighlightningEnabled").toBool();
-	if ( syntaxHighlightningEnabled ) {
-        highlighter->turnHighlightOn();
-    }
-    else {
-        highlighter->turnHighlightOff();
-    }
-
-    // Set the entry in the settings menue and in the toolbar to show whether syntax highlight is enabled.
-    uiGuiSyntaxHighlightningEnabled->setChecked( syntaxHighlightningEnabled );
-    toolBarWidget->uiGuiSyntaxHighlightningEnabled->setChecked( syntaxHighlightningEnabled );
 }
 
 
@@ -173,9 +149,21 @@ void MainWindow::initMainWindow() {
 	// -------------------------------
 	currentEncoding = settings->getValueByName("FileEncoding").toString();
 
+    // Register the syntax highlightning setting in the menu to the settings object.
     connect( uiGuiSyntaxHighlightningEnabled, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern()) );
     settings->registerForUpdateOnValueChange( uiGuiSyntaxHighlightningEnabled, "SyntaxHighlightningEnabled" );
+    // Tell the highlighter if it has to be enabled or disabled.
     connect( uiGuiSyntaxHighlightningEnabled, SIGNAL(toggled(bool)), this, SLOT(turnHighlightOnOff(bool)) );
+
+    // Register the load last file setting in the menu to the settings object.
+    connect( uiGuiLoadLastOpenedFileOnStartup, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern()) );
+    settings->registerForUpdateOnValueChange( uiGuiLoadLastOpenedFileOnStartup, "LoadLastOpenedFileOnStartup" );
+
+    // Register the white space setting in the menu to the settings object.
+    connect( uiGuiWhiteSpaceIsVisible, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern()) );
+    settings->registerForUpdateOnValueChange( uiGuiWhiteSpaceIsVisible, "WhiteSpaceIsVisible" );
+    // Tell the QScintilla editor if it has to show white space.
+    connect( uiGuiWhiteSpaceIsVisible, SIGNAL(toggled(bool)), this, SLOT(setWhiteSpaceVisibility(bool)) );
 
     // Init of some variables.
     dataDirctoryStr = "./data/";
@@ -204,13 +192,7 @@ void MainWindow::initTextEditor() {
 
     // Handle if white space is set to be visible
 	bool whiteSpaceIsVisible = settings->getValueByName("WhiteSpaceIsVisible").toBool();
-	uiGuiWhiteSpaceIsVisible->setChecked( whiteSpaceIsVisible );
-	if ( whiteSpaceIsVisible ) {
-		txtedSourceCode->setWhitespaceVisibility(QsciScintilla::WsVisible);
-	}
-	else {
-		txtedSourceCode->setWhitespaceVisibility(QsciScintilla::WsInvisible);
-	}
+    setWhiteSpaceVisibility( whiteSpaceIsVisible );
 
     // Handle the width of tabs in spaces
     int tabWidth = settings->getValueByName("TabWidth").toInt();
@@ -220,6 +202,25 @@ void MainWindow::initTextEditor() {
     // on the same line as before when turning preview on/off.
     textEditVScrollBar = txtedSourceCode->verticalScrollBar();
 }
+
+
+/*!
+    Create and init the syntax highlighter and set it to use the QScintilla edit component.
+ */
+void MainWindow::initSyntaxHighlighter() {
+    // Create the highlighter.
+    highlighter = new Highlighter(txtedSourceCode);
+
+    // Handle if syntax highlightning is enabled
+	bool syntaxHighlightningEnabled = settings->getValueByName("SyntaxHighlightningEnabled").toBool();
+	if ( syntaxHighlightningEnabled ) {
+        highlighter->turnHighlightOn();
+    }
+    else {
+        highlighter->turnHighlightOff();
+    }
+}
+
 
 /*!
     If the program language is defined in the settings, the corresponding language
@@ -284,8 +285,8 @@ void MainWindow::initIndenter() {
     previewToggled = true;
 
     // Handle if indenter parameter tool tips are enabled
-	bool indenterParameterTooltipsEnabled = settings->getValueByName("IndenterParameterTooltipsEnabled").toBool();
-	uiGuiEnableParameterTooltips->setChecked( indenterParameterTooltipsEnabled );
+    connect( uiGuiIndenterParameterTooltipsEnabled, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern()) );
+    settings->registerForUpdateOnValueChange( uiGuiIndenterParameterTooltipsEnabled, "IndenterParameterTooltipsEnabled" );
 }
 
 
@@ -299,6 +300,9 @@ void MainWindow::selectIndenter(int indenterID) {
     if ( indenterID == currentIndenterID ) {
         return;
     }
+
+    // Disconnect the old indent handler from the settings changed slot, because he will be deleted.
+    disconnect(oldIndentHandler, SIGNAL(indenterSettingsChanged()), this, SLOT(indentSettingsChangedSlot()));
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
@@ -882,9 +886,9 @@ void MainWindow::saveSettings() {
     if ( fileInfo.isFile() ) {
         settings->setValueByName( "LastOpenedFile", currentSourceFile );
     }
-	settings->setValueByName( "LoadLastOpenedFileOnStartup", uiGuiLoadLastOpenedFileOnStartup->isChecked() );
+	//settings->setValueByName( "LoadLastOpenedFileOnStartup", uiGuiLoadLastOpenedFileOnStartup->isChecked() );
     settings->setValueByName( "LastSelectedIndenterID", currentIndenterID );
-    settings->setValueByName( "IndenterParameterTooltipsEnabled", uiGuiEnableParameterTooltips->isChecked() );
+    //settings->setValueByName( "IndenterParameterTooltipsEnabled", uiGuiIndenterParameterTooltipsEnabled->isChecked() );
     settings->setValueByName( "Language", language );
 	settings->setValueByName( "FileEncoding", currentEncoding );
     settings->setValueByName( "VersionInSettingsFile", version );
@@ -893,10 +897,11 @@ void MainWindow::saveSettings() {
 		settings->setValueByName( "WindowPosition", pos() );
 		settings->setValueByName( "WindowSize", size() );
 	}
-    settings->setValueByName( "SyntaxHighlightningEnabled", uiGuiSyntaxHighlightningEnabled->isChecked() );
-    settings->setValueByName( "WhiteSpaceIsVisible", uiGuiWhiteSpaceIsVisible->isChecked() );
-    settings->setValueByName( "TabWidth", txtedSourceCode->tabWidth() );
+    //settings->setValueByName( "SyntaxHighlightningEnabled", uiGuiSyntaxHighlightningEnabled->isChecked() );
+    //settings->setValueByName( "WhiteSpaceIsVisible", uiGuiWhiteSpaceIsVisible->isChecked() );
+    //settings->setValueByName( "TabWidth", txtedSourceCode->tabWidth() );
 
+    //FIXME: Needs to be called explicit here, because the destructor of UiGuiSettings doesn't do it.
 	settings->saveSettings();
 
     highlighter->writeCurrentSettings("");
@@ -926,7 +931,7 @@ void MainWindow::closeEvent( QCloseEvent *event ) {
 bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 {
     if ( event->type() == QEvent::ToolTip) {
-        if ( uiGuiEnableParameterTooltips->isChecked() ) {
+        if ( uiGuiIndenterParameterTooltipsEnabled->isChecked() ) {
             return QMainWindow::eventFilter(obj, event);
         }
         else {
@@ -1073,7 +1078,7 @@ void MainWindow::languageChanged(QAction* languageAction) {
                 languageInfo.languageAction->setStatusTip( languageInfo.languageName + tr(" as user interface language.") );
             }
 
-			// translate the encoding menu
+			// Translate the encoding menu.
 			QStringList encodingsList = QStringList() << "UTF-8" << "UTF-16" << "UTF-16BE" << "UTF-16LE"
 				<< "Apple Roman" << "Big5" << "Big5-HKSCS" << "EUC-JP" << "EUC-KR" << "GB18030-0"
 				<< "IBM 850" << "IBM 866" << "IBM 874" << "ISO 2022-JP" << "ISO 8859-1" << "ISO 8859-13"

@@ -71,7 +71,7 @@ void UiGuiSettings::registerForUpdateOnValueChange( QObject* qobject, QString se
         // Add the object to the list for the setting to be updated on value change.
 		forOnValueChangeRegisteredObjects[settingName].append(qobject);
         // Set the objects value to the current value of the setting.
-        setValueOfQObject( qobject, settings[settingName] );
+        setValueOfQObject( qobject, settings[settingName], settingName );
 	}
 }
 
@@ -109,9 +109,10 @@ QVariant UiGuiSettings::getValueOfQObject(QObject* qobject) {
 
 /*!
     Sets the value of the \a qobject, if it is either a QCheckBox, QSpinBox or QAction,
-    to \a value.
+    to \a value. The parameter \a settingName is used to call more than always one function
+    of an object, depending on the settings name.
  */
-bool UiGuiSettings::setValueOfQObject(QObject* qobject, QVariant value) {
+bool UiGuiSettings::setValueOfQObject(QObject* qobject, QVariant value, QString settingName) {
     bool couldSetValue = true;
 
     // Get the objects class name.
@@ -133,6 +134,23 @@ bool UiGuiSettings::setValueOfQObject(QObject* qobject, QVariant value) {
         QAction* action = dynamic_cast<QAction *>(qobject);
         if ( action != NULL ) {
             action->setChecked( value.toBool() );
+        }
+    }
+    // Handle QsciScintilla to set its value depending on the connected/registered setting name.
+    else if ( className == "QsciScintilla" ) {
+        QsciScintilla* qsciScintilla = dynamic_cast<QsciScintilla *>(qobject);
+        if ( qsciScintilla != NULL ) {
+            if ( settingName == "TabWidth" ) {
+                qsciScintilla->setTabWidth( value.toInt() );
+            }
+            else if ( settingName == "WhiteSpaceIsVisible" ) {
+                if ( value.toBool() ) {
+                    qsciScintilla->setWhitespaceVisibility( QsciScintilla::WsVisible );
+                }
+                else {
+                    qsciScintilla->setWhitespaceVisibility( QsciScintilla::WsInvisible );
+                }
+            }
         }
     }
     // The object type was none of ones this function can handle.
@@ -159,7 +177,7 @@ bool UiGuiSettings::setValueByName(QString settingName, QVariant value) {
 
             // Update all objects that are registered for an update on this settings value change.
             foreach( QObject* qobject, forOnValueChangeRegisteredObjects[settingName] ) {
-                setValueOfQObject(qobject, value);
+                setValueOfQObject(qobject, value, settingName);
             }
         }
 		return true;

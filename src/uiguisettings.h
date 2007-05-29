@@ -29,6 +29,7 @@
 #include <QSpinBox>
 #include <QCheckBox>
 #include <QAction>
+#include <Qsci/qsciscintilla.h>
 
 class UiGuiSettings : public QObject
 {
@@ -48,7 +49,7 @@ public slots:
 
 private:
     QVariant getValueOfQObject(QObject* qobject);
-    bool setValueOfQObject(QObject* qobject, QVariant value);
+    bool setValueOfQObject(QObject* qobject, QVariant value, QString settingName);
 
     QSettings *qsettings;
 

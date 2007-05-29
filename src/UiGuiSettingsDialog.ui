@@ -46,7 +46,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="uiGuiEnableParameterTooltips" >
+        <widget class="QCheckBox" name="uiGuiIndenterParameterTooltipsEnabled" >
          <property name="text" >
           <string>Enable Parameter Tooltips</string>
          </property>

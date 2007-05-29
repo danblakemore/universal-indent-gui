@@ -83,7 +83,7 @@
     <addaction name="actionLive_Indent_Preview" />
     <addaction name="uiGuiSyntaxHighlightningEnabled" />
     <addaction name="uiGuiWhiteSpaceIsVisible" />
-    <addaction name="uiGuiEnableParameterTooltips" />
+    <addaction name="uiGuiIndenterParameterTooltipsEnabled" />
     <addaction name="uiGuiLoadLastOpenedFileOnStartup" />
     <addaction name="actionShowSettings" />
    </widget>
@@ -271,7 +271,7 @@
     <string>Export the currently visible source code as HTML document</string>
    </property>
   </action>
-  <action name="uiGuiEnableParameterTooltips" >
+  <action name="uiGuiIndenterParameterTooltipsEnabled" >
    <property name="checkable" >
     <bool>true</bool>
    </property>
