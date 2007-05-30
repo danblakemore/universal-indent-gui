@@ -31,8 +31,7 @@
 /*!
     Constructs the main window.
  */
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
-{
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     // set the program version, revision and date, which is shown in the main window title and in the about dialog.
     version = "0.5.1 Beta";
     revision = "300";
@@ -83,10 +82,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 
     updateSourceView();
     txtedSourceCode->setModified(false);
-
-    // Connections that concern settings.
-    connect( languageActionGroup, SIGNAL(triggered(QAction*)), this, SLOT(languageChanged(QAction*)) );
-    connect( encodingActionGroup, SIGNAL(triggered(QAction*)), this, SLOT(encodingChanged(QAction*)) );
 }
 
 
@@ -989,24 +984,24 @@ void MainWindow::createLanguageMenu() {
 
     languageActionGroup = new QActionGroup(this);
 
-    // English is the default language. A translation file does not exist but to have a menu entry, added here
+    // English is the default language. A translation file does not exist but to have a menu entry, added here.
     languageFileList << "universalindent_en.qm";
 
-    // Find all translation files in the "translations" directory
+    // Find all translation files in the "translations" directory.
     QDir dataDirctory = QDir("./translations");
     languageFileList << dataDirctory.entryList( QStringList("universalindent_*.qm") );
 
     // Loop for each found translation file
     foreach ( languageShort, languageFileList ) {
-        // remove the leading string "universalindent_" from the filename
+        // Remove the leading string "universalindent_" from the filename.
         languageShort.remove(0,16);
-        // remove trailing file extension ".qm"
+        // Remove trailing file extension ".qm".
         languageShort.chop(3);
         languageShort = languageShort.toLower();
 
         languageInfo.languageShort = languageShort;
 
-        // Identify the language mnemonic and set the full name
+        // Identify the language mnemonic and set the full name.
         if ( languageShort == "en" ) {
             languageInfo.languageName = tr("English");
         }
@@ -1027,8 +1022,8 @@ void MainWindow::createLanguageMenu() {
         languageAction->setStatusTip(languageInfo.languageName + tr(" as user interface language."));
         languageAction->setCheckable(true);
 
-        // if the language selected in the ini file or no ini exists the system locale is
-        // equal to the current language mnemonic set this menu entry checked
+        // If the language selected in the ini file or no ini exists the system locale is
+        // equal to the current language mnemonic set this menu entry checked.
         if ( languageShort == language ) {
             languageAction->setChecked(true);
         }
@@ -1040,6 +1035,8 @@ void MainWindow::createLanguageMenu() {
     languageMenu = menuSettings->addMenu( tr("Language") );
 
     languageMenu->addActions( languageActionGroup->actions() );
+
+    connect( languageActionGroup, SIGNAL(triggered(QAction*)), this, SLOT(languageChanged(QAction*)) );
 }
 
 
@@ -1139,6 +1136,8 @@ void MainWindow::createEncodingMenu() {
     menuFile->insertMenu(actionSave_Source_File, encodingMenu);
 
     encodingMenu->addActions( encodingActionGroup->actions() );
+
+    connect( encodingActionGroup, SIGNAL(triggered(QAction*)), this, SLOT(encodingChanged(QAction*)) );
 }
 
 
