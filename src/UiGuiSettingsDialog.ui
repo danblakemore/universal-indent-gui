@@ -8,8 +8,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>507</width>
-    <height>428</height>
+    <width>369</width>
+    <height>237</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -44,6 +44,67 @@
        <property name="spacing" >
         <number>6</number>
        </property>
+       <item>
+        <layout class="QHBoxLayout" >
+         <property name="margin" >
+          <number>0</number>
+         </property>
+         <property name="spacing" >
+          <number>6</number>
+         </property>
+         <item>
+          <widget class="QComboBox" name="comboBox" >
+           <property name="sizePolicy" >
+            <sizepolicy>
+             <hsizetype>0</hsizetype>
+             <vsizetype>0</vsizetype>
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <item>
+            <property name="text" >
+             <string>English</string>
+            </property>
+            <property name="icon" >
+             <iconset resource="../resources/Icons.qrc" >:/language/language-english.png</iconset>
+            </property>
+           </item>
+           <item>
+            <property name="text" >
+             <string>German</string>
+            </property>
+            <property name="icon" >
+             <iconset resource="../resources/Icons.qrc" >:/language/language-german.png</iconset>
+            </property>
+           </item>
+           <item>
+            <property name="text" >
+             <string>Chinese</string>
+            </property>
+            <property name="icon" >
+             <iconset resource="../resources/Icons.qrc" >:/language/language-chinese.png</iconset>
+            </property>
+           </item>
+           <item>
+            <property name="text" >
+             <string>Japanese</string>
+            </property>
+            <property name="icon" >
+             <iconset resource="../resources/Icons.qrc" >:/language/language-japanese.png</iconset>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label" >
+           <property name="text" >
+            <string>Application language</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
        <item>
         <widget class="QCheckBox" name="uiGuiLoadLastOpenedFileOnStartup" >
          <property name="text" >
@@ -193,7 +254,7 @@
      </widget>
      <widget class="QWidget" name="tab_3" >
       <attribute name="title" >
-       <string>Syntax Highlighter</string>
+       <string>Syntax Highlighting</string>
       </attribute>
       <attribute name="icon" >
        <iconset resource="../resources/Icons.qrc" >:/settingsDialog/syntax-highlight.png</iconset>
@@ -208,7 +269,7 @@
        <item>
         <widget class="QCheckBox" name="uiGuiSyntaxHighlightningEnabled" >
          <property name="text" >
-          <string>Enable syntax highlightning</string>
+          <string>Enable syntax highlighting</string>
          </property>
         </widget>
        </item>
