@@ -979,49 +979,35 @@ bool MainWindow::maybeSave()
     Searches for available translation files and adds a menu entry for each.
  */
 void MainWindow::createLanguageMenu() {
-    QString languageShort;
-    QStringList languageFileList;
+	QString languageShort;
+	QString languageName;
     QAction *languageAction;
-    LanguageInfo languageInfo;
 
     languageActionGroup = new QActionGroup(this);
 
-    // English is the default language. A translation file does not exist but to have a menu entry, added here.
-    languageFileList << "universalindent_en.qm";
-
-    // Find all translation files in the "translations" directory.
-    QDir dataDirctory = QDir("./translations");
-    languageFileList << dataDirctory.entryList( QStringList("universalindent_*.qm") );
-
     // Loop for each found translation file
-    foreach ( languageShort, languageFileList ) {
-        // Remove the leading string "universalindent_" from the filename.
-        languageShort.remove(0,16);
-        // Remove trailing file extension ".qm".
-        languageShort.chop(3);
-        languageShort = languageShort.toLower();
-
-        languageInfo.languageShort = languageShort;
+    foreach ( languageShort, settings->getAvailableTranslations() ) {
 
         // Identify the language mnemonic and set the full name.
         if ( languageShort == "en" ) {
-            languageInfo.languageName = tr("English");
+            languageName = tr("English");
         }
         else if ( languageShort == "de" ) {
-            languageInfo.languageName = tr("German");
+            languageName = tr("German");
         }
 		else if ( languageShort == "zh" ) {
-			languageInfo.languageName = tr("Chinese");
+			languageName = tr("Chinese");
 		}
 		else if ( languageShort == "ja" ) {
-			languageInfo.languageName = tr("Japanese");
+			languageName = tr("Japanese");
 		}
         else {
-            languageInfo.languageName = tr("Unknown language mnemonic ") + languageShort;
+            languageName = tr("Unknown language mnemonic ") + languageShort;
         }
 
-        languageAction = new QAction(languageInfo.languageName, languageActionGroup);
-        languageAction->setStatusTip(languageInfo.languageName + tr(" as user interface language."));
+        languageAction = new QAction(languageName, languageActionGroup);
+        languageAction->setStatusTip(languageName + tr(" as user interface language."));
+		languageAction->setIcon( QIcon(QString(":/language/language-"+languageShort+".png")) );
         languageAction->setCheckable(true);
 
         // If the language selected in the ini file or no ini exists the system locale is
@@ -1029,9 +1015,6 @@ void MainWindow::createLanguageMenu() {
         if ( languageShort == language ) {
             languageAction->setChecked(true);
         }
-
-        languageInfo.languageAction = languageAction;
-        languageInfos.append( languageInfo );
     }
 
     languageMenu = menuSettings->addMenu( tr("Language") );
@@ -1047,66 +1030,68 @@ void MainWindow::createLanguageMenu() {
     corresponding action in the languageInfoList and sets the language.
  */
 void MainWindow::languageChanged(QAction* languageAction) {
-    LanguageInfo languageInfo;
+	QString languageName;
 
-    // Search for the activated action
-    foreach ( LanguageInfo languageInfo, languageInfos ) {
-        // Set the new language if found in list
-        if ( languageInfo.languageAction == languageAction ) {
-            // remove the old translation
-            qApp->removeTranslator( translator );
+	int languageIndex = languageActionGroup->actions().indexOf(languageAction);
+	language = settings->getAvailableTranslations().at(languageIndex);
 
-            language = languageInfo.languageShort;
+	// Remove the old translation.
+	qApp->removeTranslator( translator );
 
-            // load the new translation file and add it to the translation list
-            translator->load( QString("./translations/universalindent_") + language );
-            qApp->installTranslator( translator );
-            retranslateUi(this);
-            toolBarWidget->retranslateUi(toolBar);
+	// Load the new translation file and add it to the translation list.
+	translator->load( QString("./translations/universalindent_") + language );
+	qApp->installTranslator( translator );
+	
+	// Translate the language menu.
+	languageMenu->setTitle( tr("Language") );
+	int i = 0;
+	foreach ( QAction* languageAction, languageActionGroup->actions() ) {
+		QString languageShort = settings->getAvailableTranslations().at(i);
 
-            // translate the language menu
-            languageMenu->setTitle( tr("Language") );
-            foreach ( languageInfo, languageInfos ) {
-                // Identify the language mnemonic and set the full name
-                if ( languageInfo.languageShort == "en" ) {
-                    languageInfo.languageName = tr("English");
-                }
-                else if ( languageInfo.languageShort == "de" ) {
-                    languageInfo.languageName = tr("German");
-                }
-				else if ( languageInfo.languageShort == "zh" ) {
-					languageInfo.languageName = tr("Chinese");
-				}
-				else if ( languageInfo.languageShort == "ja" ) {
-					languageInfo.languageName = tr("Japanese");
-				}
-                else {
-                    languageInfo.languageName = tr("Unknown language mnemonic ") + languageInfo.languageShort;
-                }
-                languageInfo.languageAction->setText( languageInfo.languageName );
-                languageInfo.languageAction->setStatusTip( languageInfo.languageName + tr(" as user interface language.") );
-            }
+		// Identify the language mnemonic and set the full name
+		if ( languageShort == "en" ) {
+			languageName = tr("English");
+		}
+		else if ( languageShort == "de" ) {
+			languageName = tr("German");
+		}
+		else if ( languageShort == "zh" ) {
+			languageName = tr("Chinese");
+		}
+		else if ( languageShort == "ja" ) {
+			languageName = tr("Japanese");
+		}
+		else {
+			languageName = tr("Unknown language mnemonic ") + language;
+		}
+		languageAction->setText( languageName );
+		//languageAction->setIcon( QIcon(QString(":/language/language-"+languageShort+".png")) );
+		languageAction->setStatusTip( languageName + tr(" as user interface language.") );
+		i++;
+	}
 
-			// Translate the encoding menu.
-			QStringList encodingsList = QStringList() << "UTF-8" << "UTF-16" << "UTF-16BE" << "UTF-16LE"
-				<< "Apple Roman" << "Big5" << "Big5-HKSCS" << "EUC-JP" << "EUC-KR" << "GB18030-0"
-				<< "IBM 850" << "IBM 866" << "IBM 874" << "ISO 2022-JP" << "ISO 8859-1" << "ISO 8859-13"
-				<< "Iscii-Bng" << "JIS X 0201" << "JIS X 0208" << "KOI8-R" << "KOI8-U" << "MuleLao-1"
-				<< "ROMAN8" << "Shift-JIS" << "TIS-620" << "TSCII" << "Windows-1250" << "WINSAMI2";
+	// Translate the encoding menu.
+	QStringList encodingsList = QStringList() << "UTF-8" << "UTF-16" << "UTF-16BE" << "UTF-16LE"
+		<< "Apple Roman" << "Big5" << "Big5-HKSCS" << "EUC-JP" << "EUC-KR" << "GB18030-0"
+		<< "IBM 850" << "IBM 866" << "IBM 874" << "ISO 2022-JP" << "ISO 8859-1" << "ISO 8859-13"
+		<< "Iscii-Bng" << "JIS X 0201" << "JIS X 0208" << "KOI8-R" << "KOI8-U" << "MuleLao-1"
+		<< "ROMAN8" << "Shift-JIS" << "TIS-620" << "TSCII" << "Windows-1250" << "WINSAMI2";
 
-			encodingMenu->setTitle( tr("Reopen File with other Encoding") );
-			QList<QAction *> encodingActionList = encodingActionGroup->actions();
-			for ( int i = 0; i < encodingActionList.size(); i++ ) {
-				encodingActionList.at(i)->setStatusTip( tr("Reopen the currently opened source code file by using the text encoding scheme ") + encodingsList.at(i) );
-			}
+	encodingMenu->setTitle( tr("Reopen File with other Encoding") );
+	QList<QAction *> encodingActionList = encodingActionGroup->actions();
+	for ( int i = 0; i < encodingActionList.size(); i++ ) {
+		encodingActionList.at(i)->setStatusTip( tr("Reopen the currently opened source code file by using the text encoding scheme ") + encodingsList.at(i) );
+	}
 
-			// Translate the about dialog.
-            aboutDialog->retranslate();
+	retranslateUi(this);
+	toolBarWidget->retranslateUi(toolBar);
 
-            // Translate the highlighter menue.
-            highlighter->retranslate();
-        }
-    }
+	// Translate the about dialog.
+	aboutDialog->retranslate();
+
+	// Translate the highlighter menu.
+	highlighter->retranslate();
+
 }
 
 

@@ -94,15 +94,6 @@ private:
     Ui::toolBarWidget *toolBarWidget;
     IndentHandler *indentHandler;
 
-    //! Stores info about a language, like the full name, mnemonic and a reference to its menu action
-    struct LanguageInfo
-    {
-        QString languageName;
-        QString languageShort;
-        QAction *languageAction;
-    };
-    QVector<LanguageInfo> languageInfos;
-
     QString loadFile(QString filePath);
     QString openFileDialog(QString dialogHeaderStr, QString startPath, QString fileMaskStr);
     void updateWindowTitle();
