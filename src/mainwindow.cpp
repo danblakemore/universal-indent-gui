@@ -71,7 +71,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     connect( toolBarWidget->pbAbout, SIGNAL(clicked()), aboutDialog, SLOT(exec()) );
 
 	// generate settings dialog box
-	settingsDialog = new UiGuiSettingsDialog(this);
+	settingsDialog = new UiGuiSettingsDialog(this, settings);
     connect( actionShowSettings, SIGNAL(activated()), settingsDialog, SLOT(showDialog()) );
 
     // Loads the last opened file, if this is enabled in the settings.
@@ -207,6 +207,7 @@ void MainWindow::initTextEditor() {
     // Connect the text editor to dependent functions.
     connect( txtedSourceCode, SIGNAL(textChanged()), this, SLOT(sourceCodeChangedHelperSlot()) );
 	connect( txtedSourceCode, SIGNAL(linesChanged()), this, SLOT(numberOfLinesChanged()) );
+    connect( settings, SIGNAL(tabWidth(int)), txtedSourceCode, SLOT(setTabWidth(int)) );
 }
 
 

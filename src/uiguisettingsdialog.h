@@ -22,13 +22,14 @@
 
 #include <QDialog>
 #include "ui_UiGuiSettingsDialog.h"
+#include "uiguisettings.h"
 
 class UiGuiSettingsDialog : public QDialog, private Ui::SettingsDialog
 {
 	Q_OBJECT
 
 public:
-	UiGuiSettingsDialog(QWidget *parent);
+	UiGuiSettingsDialog(QWidget* parent, UiGuiSettings* settings);
 	void retranslate();
 
 public slots:
@@ -36,6 +37,11 @@ public slots:
 
 private slots:
     void handleAccepted();
+
+private:
+    UiGuiSettings* settings;
+    QList<QCheckBox*> checkBoxes;
+    QList<QSpinBox*> spinBoxes;
 };
 
 #endif // UIGUISETTINGSDIALOG_H
