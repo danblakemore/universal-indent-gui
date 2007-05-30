@@ -149,7 +149,7 @@ void UiGuiSettings::emitSignalForSetting(QString settingName) {
     else if ( settingName == "WhiteSpaceIsVisible" ) emit whiteSpaceIsVisible( settings[settingName].toBool() );
     else if ( settingName == "IndenterParameterTooltipsEnabled" ) emit indenterParameterTooltipsEnabled( settings[settingName].toBool() );
     else if ( settingName == "TabWidth" ) emit tabWidth( settings[settingName].toInt() );
-    else if ( settingName == "Language" ) emit language( settings[settingName].toString() );
+    else if ( settingName == "Language" ) emit language( settings[settingName].toInt() );
     else if ( settingName == "all" ) {
         emit versionInSettingsFile( settings["VersionInSettingsFile"].toString() );
         emit windowIsMaximized( settings["WindowIsMaximized"].toBool() );
@@ -163,7 +163,7 @@ void UiGuiSettings::emitSignalForSetting(QString settingName) {
         emit whiteSpaceIsVisible( settings["WhiteSpaceIsVisible"].toBool() );
         emit indenterParameterTooltipsEnabled( settings["IndenterParameterTooltipsEnabled"].toBool() );
         emit tabWidth( settings["TabWidth"].toInt() );
-        emit language( settings["Language"].toString() );
+        emit language( settings["Language"].toInt() );
     }
 }
 
@@ -232,7 +232,7 @@ bool UiGuiSettings::loadSettings() {
 	settings["TabWidth"] = qsettings->value("UniversalIndentGUI/tabWidth", 4).toInt();
 
 	// Read the last selected language.
-	settings["Language"] = qsettings->value("UniversalIndentGUI/language", "").toString();
+	settings["Language"] = availableTranslations.indexOf( qsettings->value("UniversalIndentGUI/language", "").toString() );
 
 	return true;
 }
@@ -247,7 +247,7 @@ bool UiGuiSettings::saveSettings() {
 	qsettings->setValue( "UniversalIndentGUI/loadLastSourceCodeFileOnStartup", settings["LoadLastOpenedFileOnStartup"] );
     qsettings->setValue( "UniversalIndentGUI/lastSelectedIndenter", settings["LastSelectedIndenterID"] );
     qsettings->setValue( "UniversalIndentGUI/indenterParameterTooltipsEnabled", settings["IndenterParameterTooltipsEnabled"] );
-    qsettings->setValue( "UniversalIndentGUI/language", settings["Language"] );
+    qsettings->setValue( "UniversalIndentGUI/language", availableTranslations[settings["Language"].toInt()] );
 	qsettings->setValue( "UniversalIndentGUI/encoding", settings["FileEncoding"] );
     qsettings->setValue( "UniversalIndentGUI/version", settings["VersionInSettingsFile"] );
 	qsettings->setValue( "UniversalIndentGUI/maximized", settings["WindowIsMaximized"] );

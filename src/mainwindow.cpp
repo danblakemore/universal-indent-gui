@@ -238,7 +238,8 @@ void MainWindow::initSyntaxHighlighter() {
  */
 bool MainWindow::initApplicationLanguage() {
     // Get the language settings from the settings object.
-    language = settings->getValueByName("Language").toString();
+	int languageIndex = settings->getValueByName("Language").toInt();
+    language = settings->getAvailableTranslations().at(languageIndex);
 
     // If no language was set use the system language
     if ( language.isEmpty() ) {

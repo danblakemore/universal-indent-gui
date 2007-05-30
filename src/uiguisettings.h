@@ -62,7 +62,7 @@ signals:
     void whiteSpaceIsVisible(bool value);
     void indenterParameterTooltipsEnabled(bool value);
     void tabWidth(int value);
-    void language(QString value);
+    void language(int value);
 
 private:
     void emitSignalForSetting(QString settingName);
