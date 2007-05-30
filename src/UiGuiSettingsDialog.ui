@@ -39,7 +39,7 @@
         <number>6</number>
        </property>
        <item>
-        <widget class="QCheckBox" name="uiGuiAutoOpenLastFile" >
+        <widget class="QCheckBox" name="uiGuiLoadLastOpenedFileOnStartup" >
          <property name="text" >
           <string>Automatically open last file on startup</string>
          </property>
@@ -82,7 +82,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="label" >
+          <widget class="QLabel" name="uiGuiRecentlyOpenedListSize" >
            <property name="text" >
             <string>Number of files in recently opened list.</string>
            </property>
@@ -117,7 +117,7 @@
         <number>6</number>
        </property>
        <item>
-        <widget class="QCheckBox" name="uiGuiWhiteSpaceVisible" >
+        <widget class="QCheckBox" name="uiGuiWhiteSpaceIsVisible" >
          <property name="text" >
           <string>Display white space character (tabs, spaces, etc.).</string>
          </property>
@@ -153,7 +153,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="label_2" >
+          <widget class="QLabel" name="uiGuiTabWidth" >
            <property name="text" >
             <string>Displayed width of tabs.</string>
            </property>
@@ -188,7 +188,7 @@
         <number>6</number>
        </property>
        <item>
-        <widget class="QCheckBox" name="uiGuiEnableSyntaxHighlightning" >
+        <widget class="QCheckBox" name="uiGuiSyntaxHighlightningEnabled" >
          <property name="text" >
           <string>Enable syntax highlightning.</string>
          </property>
