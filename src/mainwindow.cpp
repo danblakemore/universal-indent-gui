@@ -50,7 +50,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     // Create toolbar and insert it into the main window.
     initToolBar();
 
-    // Create the textedit component using the QScintilla widget.
+    // Create the text edit component using the QScintilla widget.
     initTextEditor();
 
     // Create and init the syntax highlighter.
@@ -62,7 +62,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     // Create some menus.
     createLanguageMenu();
     createEncodingMenu();
-    // Let the highlighter create a menu for selecting the language specific highlightning.
+    // Let the highlighter create a menu for selecting the language specific highlighting.
 	menuSettings->insertMenu(uiGuiSyntaxHighlightningEnabled, highlighter->getHighlighterMenu() );
 
     // generate about dialog box
@@ -234,7 +234,7 @@ void MainWindow::initSyntaxHighlighter() {
     file will be loaded and set for the application. If not set there, the system
     default language will be set, if a translation file for that language exists.
     Returns true, if the translation file could be loaded. Otherwise it returns
-    false and uses the default language, which is english.
+    false and uses the default language, which is English.
  */
 bool MainWindow::initApplicationLanguage() {
     // Get the language settings from the settings object.
@@ -841,7 +841,7 @@ void MainWindow::exportToHTML() {
     Loads the last opened file if this option is enabled in the settings. If the file
     does not exist, the default example file is tried to be loaded. If even that
     fails a very small code example is shown.
-    If the setting for openening the last file is disabled, the editor is empty on startup.
+    If the setting for opening the last file is disabled, the editor is empty on startup.
 */
 void MainWindow::loadLastOpenedFile() {
     // Get setting for last opened source code file
