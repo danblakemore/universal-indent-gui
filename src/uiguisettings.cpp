@@ -43,129 +43,40 @@ UiGuiSettings::~UiGuiSettings() {
 
 
 /*!
-    Extern widgets can connect to this slot to change settings. The type of the
-    object by whom the connected signal was emitted is identified and the
-    name and value of the object acquired. By the name the corresponding
-    setting is set.
+    Extern widgets can connect to this slot to change settings. 
+    According to the objects name the corresponding setting is known and set.
  */
-void UiGuiSettings::handleValueChangeFromExtern() {
+void UiGuiSettings::handleValueChangeFromExtern(int value) {
     if ( sender() ) {
         // Get the objects name and remove "uiGui" from its beginning.
         QString objectName = sender()->objectName();
         objectName.remove(0,5);
 
         // Set the value of the setting to the objects value.
-        setValueByName( objectName, getValueOfQObject(sender()) );
+        setValueByName( objectName, value );
     }
 }
 
 
 /*!
-	Registers the \a qobject to be updated if the setting with the name \a settingName
-	changes its value. Also it immediatly sets the value of \a qobject to the current
-    value of \a settingName.
+    Extern widgets can connect to this slot to change settings. 
+    According to the objects name the corresponding setting is known and set.
  */
-void UiGuiSettings::registerForUpdateOnValueChange( QObject* qobject, QString settingName ) {
-	// Test if the named setting really exists.
-	if ( settings.contains(settingName) ) {
-        // Add the object to the list for the setting to be updated on value change.
-		forOnValueChangeRegisteredObjects[settingName].append(qobject);
-        // Set the objects value to the current value of the setting.
-        setValueOfQObject( qobject, settings[settingName], settingName );
-	}
+void UiGuiSettings::handleValueChangeFromExtern(bool value) {
+    if ( sender() ) {
+        // Get the objects name and remove "uiGui" from its beginning.
+        QString objectName = sender()->objectName();
+        objectName.remove(0,5);
+
+        // Set the value of the setting to the objects value.
+        setValueByName( objectName, value );
+    }
 }
 
-
-/*!
-    Gets the value of the \a qobject, if it is either a QCheckBox, QSpinBox or QAction,
-    and returns it as QVariant.
- */
-QVariant UiGuiSettings::getValueOfQObject(QObject* qobject) {
-    // Get the objects class name.
-    QString className( qobject->metaObject()->className() );
-
-    if ( className == "QCheckBox" ) {
-        QCheckBox* checkBox = dynamic_cast<QCheckBox *>(qobject);
-        if ( checkBox != NULL ) {
-            return checkBox->isChecked();
-        }
-    }
-    else if ( className == "QSpinBox" ) {
-        QSpinBox* spinBox = dynamic_cast<QSpinBox *>(qobject);
-        if ( spinBox != NULL ) {
-            return spinBox->value();
-        }
-    }
-    else if ( className == "QAction" ) {
-        QAction* action = dynamic_cast<QAction *>(qobject);
-        if ( action != NULL ) {
-            return action->isChecked();
-        }
-    }
-
-    return -1;
-}
-
-
-/*!
-    Sets the value of the \a qobject, if it is either a QCheckBox, QSpinBox or QAction,
-    to \a value. The parameter \a settingName is used to call more than always one function
-    of an object, depending on the settings name.
- */
-bool UiGuiSettings::setValueOfQObject(QObject* qobject, QVariant value, QString settingName) {
-    bool couldSetValue = true;
-
-    // Get the objects class name.
-    QString className( qobject->metaObject()->className() );
-
-    if ( className == "QCheckBox" ) {
-        QCheckBox* checkBox = dynamic_cast<QCheckBox *>(qobject);
-        if ( checkBox != NULL ) {
-            checkBox->setChecked( value.toBool() );
-        }
-    }
-    else if ( className == "QSpinBox" ) {
-        QSpinBox* spinBox = dynamic_cast<QSpinBox *>(qobject);
-        if ( spinBox != NULL ) {
-            spinBox->setValue( value.toInt() );
-        }
-    }
-    else if ( className == "QAction" ) {
-        QAction* action = dynamic_cast<QAction *>(qobject);
-        if ( action != NULL ) {
-            action->setChecked( value.toBool() );
-        }
-    }
-    // Handle QsciScintilla to set its value depending on the connected/registered setting name.
-    else if ( className == "QsciScintilla" ) {
-        QsciScintilla* qsciScintilla = dynamic_cast<QsciScintilla *>(qobject);
-        if ( qsciScintilla != NULL ) {
-            if ( settingName == "TabWidth" ) {
-                qsciScintilla->setTabWidth( value.toInt() );
-            }
-            else if ( settingName == "WhiteSpaceIsVisible" ) {
-                if ( value.toBool() ) {
-                    qsciScintilla->setWhitespaceVisibility( QsciScintilla::WsVisible );
-                }
-                else {
-                    qsciScintilla->setWhitespaceVisibility( QsciScintilla::WsInvisible );
-                }
-            }
-        }
-    }
-    // The object type was none of ones this function can handle.
-    else {
-        couldSetValue = false;
-    }
-
-    return couldSetValue;
-}
 
 /*!
 	Sets the value of the by \a settingsName defined setting to the value \a value.
-    Also behaves like a signal, because if a value is changed to a value other than
-    it has been before, all registered objects for the setting \a settingName
-    in the map \sa forOnValueChangeRegisteredObjects will get their values updated.
+    The to \a settingsName corresponding signal is emitted, if the value has changed.
  */
 bool UiGuiSettings::setValueByName(QString settingName, QVariant value) {
 	// Test if the named setting really exists.
@@ -174,15 +85,59 @@ bool UiGuiSettings::setValueByName(QString settingName, QVariant value) {
         if ( settings[settingName] != value ) {
             // Set the new value.
 		    settings[settingName] = value;
-
-            // Update all objects that are registered for an update on this settings value change.
-            foreach( QObject* qobject, forOnValueChangeRegisteredObjects[settingName] ) {
-                setValueOfQObject(qobject, value, settingName);
-            }
+            // Emit the signal for the changed setting.
+            emitSignalForSetting(settingName);
         }
 		return true;
 	}
     return false;
+}
+
+
+/*!
+    Emits the correct signal for the given \a settingName. If \a settingName
+    equals "all", all signals are emitted. This can be used to update all
+    dependend widgets. \a value is the new value that is emitted along with the signal.
+ */
+void UiGuiSettings::emitSignalForSetting(QString settingName) {
+    // Emit the signal for the changed value.
+    if ( settingName == "VersionInSettingsFile" ) emit versionInSettingsFile( settings[settingName].toString() );
+    else if ( settingName == "WindowIsMaximized" ) emit windowIsMaximized( settings[settingName].toBool() );
+    else if ( settingName == "WindowPosition" ) emit windowPosition( settings[settingName].toPoint() );
+    else if ( settingName == "WindowSize" ) emit windowSize( settings[settingName].toSize() );
+    else if ( settingName == "FileEncoding" ) emit fileEncoding( settings[settingName].toString() );
+    else if ( settingName == "LoadLastOpenedFileOnStartup" ) emit loadLastOpenedFileOnStartup( settings[settingName].toBool() );
+    else if ( settingName == "LastOpenedFile" ) emit lastOpenedFile( settings[settingName].toString() );
+    else if ( settingName == "LastSelectedIndenterID" ) emit lastSelectedIndenterID( settings[settingName].toInt() );
+    else if ( settingName == "SyntaxHighlightningEnabled" ) emit syntaxHighlightningEnabled( settings[settingName].toBool() );
+    else if ( settingName == "WhiteSpaceIsVisible" ) emit whiteSpaceIsVisible( settings[settingName].toBool() );
+    else if ( settingName == "IndenterParameterTooltipsEnabled" ) emit indenterParameterTooltipsEnabled( settings[settingName].toBool() );
+    else if ( settingName == "TabWidth" ) emit tabWidth( settings[settingName].toInt() );
+    else if ( settingName == "Language" ) emit language( settings[settingName].toString() );
+    else if ( settingName == "all" ) {
+        emit versionInSettingsFile( settings["VersionInSettingsFile"].toString() );
+        emit windowIsMaximized( settings["WindowIsMaximized"].toBool() );
+        emit windowPosition( settings["WindowPosition"].toPoint() );
+        emit windowSize( settings["WindowSize"].toSize() );
+        emit fileEncoding( settings["FileEncoding"].toString() );
+        emit loadLastOpenedFileOnStartup( settings["LoadLastOpenedFileOnStartup"].toBool() );
+        emit lastOpenedFile( settings["LastOpenedFile"].toString() );
+        emit lastSelectedIndenterID( settings["LastSelectedIndenterID"].toInt() );
+        emit syntaxHighlightningEnabled( settings["SyntaxHighlightningEnabled"].toBool() );
+        emit whiteSpaceIsVisible( settings["WhiteSpaceIsVisible"].toBool() );
+        emit indenterParameterTooltipsEnabled( settings["IndenterParameterTooltipsEnabled"].toBool() );
+        emit tabWidth( settings["TabWidth"].toInt() );
+        emit language( settings["Language"].toString() );
+    }
+}
+
+
+/*!
+    Calls \sa emitSignalForSetting with settingName "all" to update all widgets or whatever
+    is connceted to each setting.
+ */
+void UiGuiSettings::updatedAllDependend() {
+    emitSignalForSetting("all");
 }
 
 

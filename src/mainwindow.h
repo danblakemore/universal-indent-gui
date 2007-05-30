@@ -113,6 +113,7 @@ private:
     void createEncodingMenu();
     bool initApplicationLanguage();
     void initMainWindow();
+    void initToolBar();
     void initTextEditor();
     void initSyntaxHighlighter();
     void initIndenter();

@@ -49,13 +49,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     initMainWindow();
 
     // Create toolbar and insert it into the main window.
-    toolBarWidget = new Ui::toolBarWidget();
-    QWidget* helpWidget = new QWidget();
-    toolBarWidget->setupUi(helpWidget);
-    toolBar->addWidget(helpWidget);
-    toolBar->setAllowedAreas( Qt::TopToolBarArea | Qt::BottomToolBarArea );
-    connect( toolBarWidget->uiGuiSyntaxHighlightningEnabled, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern()) );
-    settings->registerForUpdateOnValueChange( toolBarWidget->uiGuiSyntaxHighlightningEnabled, "SyntaxHighlightningEnabled" );
+    initToolBar();
 
     // Create the textedit component using the QScintilla widget.
     initTextEditor();
@@ -74,45 +68,25 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 
     // generate about dialog box
     aboutDialog = new AboutDialog(this, version, revision, buildDateStr);
+    connect( actionAbout_UniversalIndentGUI, SIGNAL(activated()), aboutDialog, SLOT(exec()) );
+    connect( toolBarWidget->pbAbout, SIGNAL(clicked()), aboutDialog, SLOT(exec()) );
 
 	// generate settings dialog box
 	settingsDialog = new UiGuiSettingsDialog(this);
+    connect( actionShowSettings, SIGNAL(activated()), settingsDialog, SLOT(showDialog()) );
 
     // Loads the last opened file, if this is enabled in the settings.
     loadLastOpenedFile();
 
+    // This call updates all widgets, or whatever is connected to the settings, to the current settings value-
+    settings->updatedAllDependend();
+
     updateSourceView();
     txtedSourceCode->setModified(false);
 
-    connect( toolBarWidget->pbOpen_Source_File, SIGNAL(clicked()), this, SLOT(openSourceFileDialog()) );
-    connect( actionOpen_Source_File, SIGNAL(activated()), this, SLOT(openSourceFileDialog()) );
-    connect( actionSave_Source_File_As, SIGNAL(activated()), this, SLOT(saveasSourceFileDialog()) );
-    connect( actionSave_Source_File, SIGNAL(activated()), this, SLOT(saveSourceFile()) );
-    connect( actionExportPDF, SIGNAL(activated()), this, SLOT(exportToPDF()) );
-    connect( actionExportHTML, SIGNAL(activated()), this, SLOT(exportToHTML()) );
-
-    connect( actionLoad_Indenter_Config_File, SIGNAL(activated()), this, SLOT(openConfigFileDialog()) );
-    connect( actionSave_Indenter_Config_File, SIGNAL(activated()), this, SLOT(saveasIndentCfgFileDialog()) );
-
-	connect( actionShowSettings, SIGNAL(activated()), settingsDialog, SLOT(showDialog()) );
-    connect( actionAbout_UniversalIndentGUI, SIGNAL(activated()), aboutDialog, SLOT(exec()) );
-    connect( toolBarWidget->pbAbout, SIGNAL(clicked()), aboutDialog, SLOT(exec()) );
-    connect( toolBarWidget->pbExit, SIGNAL(clicked()), this, SLOT(close()));
-
-    connect( toolBarWidget->cmbBoxIndenters, SIGNAL(activated(int)), this, SLOT(selectIndenter(int)) );
-
-	connect( txtedSourceCode, SIGNAL(textChanged()), this, SLOT(sourceCodeChangedHelperSlot()) );
-	connect( txtedSourceCode, SIGNAL(linesChanged()), this, SLOT(numberOfLinesChanged()) );
-
-    connect( toolBarWidget->cbLivePreview, SIGNAL(toggled(bool)), this, SLOT(previewTurnedOnOff(bool)) );
-    connect( toolBarWidget->cbLivePreview, SIGNAL(toggled(bool)), actionLive_Indent_Preview, SLOT(setChecked(bool)) );
-    connect( actionLive_Indent_Preview, SIGNAL(toggled(bool)), toolBarWidget->cbLivePreview, SLOT(setChecked(bool)) );
-    
     // Connections that concern settings.
     connect( languageActionGroup, SIGNAL(triggered(QAction*)), this, SLOT(languageChanged(QAction*)) );
     connect( encodingActionGroup, SIGNAL(triggered(QAction*)), this, SLOT(encodingChanged(QAction*)) );
-
-
 }
 
 
@@ -149,26 +123,59 @@ void MainWindow::initMainWindow() {
 	// -------------------------------
 	currentEncoding = settings->getValueByName("FileEncoding").toString();
 
+
     // Register the syntax highlightning setting in the menu to the settings object.
-    connect( uiGuiSyntaxHighlightningEnabled, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern()) );
-    settings->registerForUpdateOnValueChange( uiGuiSyntaxHighlightningEnabled, "SyntaxHighlightningEnabled" );
+    connect( uiGuiSyntaxHighlightningEnabled, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern(bool)) );
+    connect( settings, SIGNAL(syntaxHighlightningEnabled(bool)), uiGuiSyntaxHighlightningEnabled, SLOT(setChecked(bool)) );
     // Tell the highlighter if it has to be enabled or disabled.
-    connect( uiGuiSyntaxHighlightningEnabled, SIGNAL(toggled(bool)), this, SLOT(turnHighlightOnOff(bool)) );
+    connect( settings, SIGNAL(syntaxHighlightningEnabled(bool)), this, SLOT(turnHighlightOnOff(bool)) );
 
     // Register the load last file setting in the menu to the settings object.
-    connect( uiGuiLoadLastOpenedFileOnStartup, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern()) );
-    settings->registerForUpdateOnValueChange( uiGuiLoadLastOpenedFileOnStartup, "LoadLastOpenedFileOnStartup" );
+    connect( uiGuiLoadLastOpenedFileOnStartup, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern(bool)) );
+    connect( settings, SIGNAL(loadLastOpenedFileOnStartup(bool)), uiGuiLoadLastOpenedFileOnStartup, SLOT(setChecked(bool)) );
 
     // Register the white space setting in the menu to the settings object.
-    connect( uiGuiWhiteSpaceIsVisible, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern()) );
-    settings->registerForUpdateOnValueChange( uiGuiWhiteSpaceIsVisible, "WhiteSpaceIsVisible" );
+    connect( uiGuiWhiteSpaceIsVisible, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern(bool)) );
+    connect( settings, SIGNAL(whiteSpaceIsVisible(bool)), uiGuiWhiteSpaceIsVisible, SLOT(setChecked(bool)) );
     // Tell the QScintilla editor if it has to show white space.
-    connect( uiGuiWhiteSpaceIsVisible, SIGNAL(toggled(bool)), this, SLOT(setWhiteSpaceVisibility(bool)) );
+    connect( settings, SIGNAL(whiteSpaceIsVisible(bool)), this, SLOT(setWhiteSpaceVisibility(bool)) );
+
+    // Connect the remaining menue items.
+    connect( actionOpen_Source_File, SIGNAL(activated()), this, SLOT(openSourceFileDialog()) );
+    connect( actionSave_Source_File_As, SIGNAL(activated()), this, SLOT(saveasSourceFileDialog()) );
+    connect( actionSave_Source_File, SIGNAL(activated()), this, SLOT(saveSourceFile()) );
+    connect( actionExportPDF, SIGNAL(activated()), this, SLOT(exportToPDF()) );
+    connect( actionExportHTML, SIGNAL(activated()), this, SLOT(exportToHTML()) );
+    connect( actionLoad_Indenter_Config_File, SIGNAL(activated()), this, SLOT(openConfigFileDialog()) );
+    connect( actionSave_Indenter_Config_File, SIGNAL(activated()), this, SLOT(saveasIndentCfgFileDialog()) );
 
     // Init of some variables.
     dataDirctoryStr = "./data/";
     sourceCodeChanged = false;
     scrollPositionChanged = false;
+}
+
+
+/*!
+    Creates and inits the tool bar. It is added to the main window.
+ */
+void MainWindow::initToolBar() {
+    // Create the tool bar and add it to the main window.
+    toolBarWidget = new Ui::toolBarWidget();
+    QWidget* helpWidget = new QWidget();
+    toolBarWidget->setupUi(helpWidget);
+    toolBar->addWidget(helpWidget);
+    toolBar->setAllowedAreas( Qt::TopToolBarArea | Qt::BottomToolBarArea );
+
+    // Connect the tool bar widgets to their functions.
+    connect( toolBarWidget->uiGuiSyntaxHighlightningEnabled, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern(bool)) );
+    connect( settings, SIGNAL(syntaxHighlightningEnabled(bool)), toolBarWidget->uiGuiSyntaxHighlightningEnabled, SLOT(setChecked(bool)) );
+    connect( toolBarWidget->pbOpen_Source_File, SIGNAL(clicked()), this, SLOT(openSourceFileDialog()) );
+    connect( toolBarWidget->pbExit, SIGNAL(clicked()), this, SLOT(close()));
+    connect( toolBarWidget->cmbBoxIndenters, SIGNAL(activated(int)), this, SLOT(selectIndenter(int)) );
+    connect( toolBarWidget->cbLivePreview, SIGNAL(toggled(bool)), this, SLOT(previewTurnedOnOff(bool)) );
+    connect( toolBarWidget->cbLivePreview, SIGNAL(toggled(bool)), actionLive_Indent_Preview, SLOT(setChecked(bool)) );
+    connect( actionLive_Indent_Preview, SIGNAL(toggled(bool)), toolBarWidget->cbLivePreview, SLOT(setChecked(bool)) );
 }
 
 
@@ -201,6 +208,10 @@ void MainWindow::initTextEditor() {
     // Remember a pointer to the scrollbar of the QScintilla widget used to keep
     // on the same line as before when turning preview on/off.
     textEditVScrollBar = txtedSourceCode->verticalScrollBar();
+
+    // Connect the text editor to dependent functions.
+    connect( txtedSourceCode, SIGNAL(textChanged()), this, SLOT(sourceCodeChangedHelperSlot()) );
+	connect( txtedSourceCode, SIGNAL(linesChanged()), this, SLOT(numberOfLinesChanged()) );
 }
 
 
@@ -285,8 +296,8 @@ void MainWindow::initIndenter() {
     previewToggled = true;
 
     // Handle if indenter parameter tool tips are enabled
-    connect( uiGuiIndenterParameterTooltipsEnabled, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern()) );
-    settings->registerForUpdateOnValueChange( uiGuiIndenterParameterTooltipsEnabled, "IndenterParameterTooltipsEnabled" );
+    connect( uiGuiIndenterParameterTooltipsEnabled, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern(bool)) );
+    connect( settings, SIGNAL(indenterParameterTooltipsEnabled(bool)), uiGuiIndenterParameterTooltipsEnabled, SLOT(setChecked(bool)) );
 }
 
 
@@ -839,7 +850,6 @@ void MainWindow::exportToHTML() {
 void MainWindow::loadLastOpenedFile() {
     // Get setting for last opened source code file
 	loadLastSourceCodeFileOnStartup = settings->getValueByName("LoadLastOpenedFileOnStartup").toBool();
-	uiGuiLoadLastOpenedFileOnStartup->setChecked( loadLastSourceCodeFileOnStartup );
 
 	// Only load last source code file if set to do so
 	if ( loadLastSourceCodeFileOnStartup ) {

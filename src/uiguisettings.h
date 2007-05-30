@@ -25,11 +25,6 @@
 #include <QSettings>
 #include <QPoint>
 #include <QSize>
-#include <QPushButton>
-#include <QSpinBox>
-#include <QCheckBox>
-#include <QAction>
-#include <Qsci/qsciscintilla.h>
 
 class UiGuiSettings : public QObject
 {
@@ -42,23 +37,38 @@ public:
     bool saveSettings();
     bool setValueByName(QString settingName, QVariant value);
 	QVariant getValueByName(QString settingName);
-	void registerForUpdateOnValueChange(QObject* qobject, QString settingName);
+    void updatedAllDependend();
 
+// Only one slot per possible value needed, because wanted setting
+// is recognized by the sender objects name.
 public slots:
-	void handleValueChangeFromExtern();
+	void handleValueChangeFromExtern(int value);
+    void handleValueChangeFromExtern(bool value);
+
+// Each possible setting needs an own signal.
+signals:
+    void versionInSettingsFile(QString value);
+    void windowIsMaximized(bool value);
+    void windowPosition(QPoint value);
+    void windowSize(QSize value);
+    void fileEncoding(QString value);
+    void loadLastOpenedFileOnStartup(bool value);
+    void lastOpenedFile(QString value);
+    void lastSelectedIndenterID(int value);
+    void syntaxHighlightningEnabled(bool value);
+    void whiteSpaceIsVisible(bool value);
+    void indenterParameterTooltipsEnabled(bool value);
+    void tabWidth(int value);
+    void language(QString value);
 
 private:
-    QVariant getValueOfQObject(QObject* qobject);
-    bool setValueOfQObject(QObject* qobject, QVariant value, QString settingName);
+    void emitSignalForSetting(QString settingName);
 
+    //! The settings file.
     QSettings *qsettings;
 
 	//! This map holds all possible settings defined by their name as QString. The value is of the type QVariant.
 	QMap<QString, QVariant> settings;
-
-	//! This map associates the settings name to an object pointer list. 
-	//! Each object in this list gets its value updated if the setting changes.
-	QMap<QString, QList<QObject*>> forOnValueChangeRegisteredObjects;
 };
 
 #endif // UIGUISETTINGS_H
