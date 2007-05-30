@@ -380,6 +380,11 @@ void Highlighter::setLexerForExtension( QString extension ) {
         indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("LUA");
         highlighterActionGroup->actions().at(indexOfHighlighter)->setChecked(true);
 	}
+    else if ( extension == "makefile" ) {
+		lexer = new QsciLexerMakefile();
+        indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("Makefile");
+        highlighterActionGroup->actions().at(indexOfHighlighter)->setChecked(true);
+	}
 	else if ( extension == "perl" ) {
 		lexer = new QsciLexerPerl();
         indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("Perl");
