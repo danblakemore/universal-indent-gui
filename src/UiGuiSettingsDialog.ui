@@ -15,6 +15,9 @@
   <property name="windowTitle" >
    <string>Settings</string>
   </property>
+  <property name="windowIcon" >
+   <iconset resource="../resources/Icons.qrc" >:/mainWindow/preferences-system.png</iconset>
+  </property>
   <layout class="QVBoxLayout" >
    <property name="margin" >
     <number>9</number>
@@ -30,6 +33,9 @@
      <widget class="QWidget" name="tab" >
       <attribute name="title" >
        <string>Common</string>
+      </attribute>
+      <attribute name="icon" >
+       <iconset resource="../resources/Icons.qrc" >:/settingsDialog/applications-system.png</iconset>
       </attribute>
       <layout class="QVBoxLayout" >
        <property name="margin" >
@@ -62,6 +68,9 @@
          </property>
          <item>
           <widget class="QSpinBox" name="uiGuiRecentlyOpenedListSize" >
+           <property name="enabled" >
+            <bool>false</bool>
+           </property>
            <property name="sizePolicy" >
             <sizepolicy>
              <hsizetype>0</hsizetype>
@@ -83,6 +92,9 @@
          </item>
          <item>
           <widget class="QLabel" name="labelRecentlyOpenedListSize" >
+           <property name="enabled" >
+            <bool>false</bool>
+           </property>
            <property name="text" >
             <string>Number of files in recently opened list.</string>
            </property>
@@ -109,6 +121,9 @@
       <attribute name="title" >
        <string>Editor</string>
       </attribute>
+      <attribute name="icon" >
+       <iconset resource="../resources/Icons.qrc" >:/settingsDialog/accessories-text-editor.png</iconset>
+      </attribute>
       <layout class="QVBoxLayout" >
        <property name="margin" >
         <number>9</number>
@@ -119,7 +134,7 @@
        <item>
         <widget class="QCheckBox" name="uiGuiWhiteSpaceIsVisible" >
          <property name="text" >
-          <string>Display white space character (tabs, spaces, etc.).</string>
+          <string>Display white space character (tabs, spaces, etc.)</string>
          </property>
         </widget>
        </item>
@@ -155,7 +170,7 @@
          <item>
           <widget class="QLabel" name="labelTabWidth" >
            <property name="text" >
-            <string>Displayed width of tabs.</string>
+            <string>Displayed width of tabs</string>
            </property>
           </widget>
          </item>
@@ -180,6 +195,9 @@
       <attribute name="title" >
        <string>Syntax Highlighter</string>
       </attribute>
+      <attribute name="icon" >
+       <iconset resource="../resources/Icons.qrc" >:/settingsDialog/syntax-highlight.png</iconset>
+      </attribute>
       <layout class="QVBoxLayout" >
        <property name="margin" >
         <number>9</number>
@@ -190,12 +208,15 @@
        <item>
         <widget class="QCheckBox" name="uiGuiSyntaxHighlightningEnabled" >
          <property name="text" >
-          <string>Enable syntax highlightning.</string>
+          <string>Enable syntax highlightning</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QGroupBox" name="groupBox" >
+         <property name="enabled" >
+          <bool>false</bool>
+         </property>
          <property name="title" >
           <string>Highlighter settings</string>
          </property>
@@ -339,7 +360,9 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../resources/Icons.qrc" />
+ </resources>
  <connections>
   <connection>
    <sender>buttonBox</sender>

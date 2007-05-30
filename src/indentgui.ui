@@ -351,6 +351,9 @@
    </property>
   </action>
   <action name="actionShowSettings" >
+   <property name="icon" >
+    <iconset resource="../resources/Icons.qrc" >:/mainWindow/preferences-system.png</iconset>
+   </property>
    <property name="text" >
     <string>ShowSettings</string>
    </property>

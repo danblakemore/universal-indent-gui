@@ -16,10 +16,17 @@
         <file>info.png</file>
         <file>live-preview.png</file>
         <file>load_indent_cfg.png</file>
+        <file>preferences-system.png</file>
         <file>save_indent_cfg.png</file>
         <file>syntax-highlight.png</file>
         <file>system-log-out.png</file>
         <file>tooltip.png</file>
         <file>view-refresh.png</file>
+    </qresource>
+    <qresource prefix="/settingsDialog" >
+        <file>accessories-text-editor.png</file>
+        <file>applications-system.png</file>
+        <file>icon3.png</file>
+        <file>syntax-highlight.png</file>
     </qresource>
 </RCC>
