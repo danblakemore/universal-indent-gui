@@ -896,7 +896,7 @@ void MainWindow::saveSettings() {
 	//settings->setValueByName( "LoadLastOpenedFileOnStartup", uiGuiLoadLastOpenedFileOnStartup->isChecked() );
     settings->setValueByName( "LastSelectedIndenterID", currentIndenterID );
     //settings->setValueByName( "IndenterParameterTooltipsEnabled", uiGuiIndenterParameterTooltipsEnabled->isChecked() );
-    settings->setValueByName( "Language", language );
+    //settings->setValueByName( "Language", language );
 	settings->setValueByName( "FileEncoding", currentEncoding );
     settings->setValueByName( "VersionInSettingsFile", version );
 	settings->setValueByName( "WindowIsMaximized", isMaximized() );
@@ -1021,7 +1021,18 @@ void MainWindow::createLanguageMenu() {
 
     languageMenu->addActions( languageActionGroup->actions() );
 
+	connect( settings, SIGNAL(language(int)), this, SLOT(languageChanged(int)) );
     connect( languageActionGroup, SIGNAL(triggered(QAction*)), this, SLOT(languageChanged(QAction*)) );
+}
+
+
+/*!
+	This slot is called whenever a language is selected in the menu. It tries to find the
+	corresponding action in the languageInfoList and sets the language.
+*/
+void MainWindow::languageChanged(QAction* languageAction) {
+	int languageIndex = languageActionGroup->actions().indexOf(languageAction);
+	settings->setValueByName("Language", languageIndex);
 }
 
 
@@ -1029,10 +1040,9 @@ void MainWindow::createLanguageMenu() {
     This slot is called whenever a language is selected in the menu. It tries to find the
     corresponding action in the languageInfoList and sets the language.
  */
-void MainWindow::languageChanged(QAction* languageAction) {
+void MainWindow::languageChanged(int languageIndex) {
 	QString languageName;
 
-	int languageIndex = languageActionGroup->actions().indexOf(languageAction);
 	language = settings->getAvailableTranslations().at(languageIndex);
 
 	// Remove the old translation.
@@ -1065,29 +1075,28 @@ void MainWindow::languageChanged(QAction* languageAction) {
 			languageName = tr("Unknown language mnemonic ") + language;
 		}
 		languageAction->setText( languageName );
-		//languageAction->setIcon( QIcon(QString(":/language/language-"+languageShort+".png")) );
 		languageAction->setStatusTip( languageName + tr(" as user interface language.") );
 		i++;
 	}
 
 	// Translate the encoding menu.
-	QStringList encodingsList = QStringList() << "UTF-8" << "UTF-16" << "UTF-16BE" << "UTF-16LE"
-		<< "Apple Roman" << "Big5" << "Big5-HKSCS" << "EUC-JP" << "EUC-KR" << "GB18030-0"
-		<< "IBM 850" << "IBM 866" << "IBM 874" << "ISO 2022-JP" << "ISO 8859-1" << "ISO 8859-13"
-		<< "Iscii-Bng" << "JIS X 0201" << "JIS X 0208" << "KOI8-R" << "KOI8-U" << "MuleLao-1"
-		<< "ROMAN8" << "Shift-JIS" << "TIS-620" << "TSCII" << "Windows-1250" << "WINSAMI2";
-
 	encodingMenu->setTitle( tr("Reopen File with other Encoding") );
 	QList<QAction *> encodingActionList = encodingActionGroup->actions();
 	for ( int i = 0; i < encodingActionList.size(); i++ ) {
 		encodingActionList.at(i)->setStatusTip( tr("Reopen the currently opened source code file by using the text encoding scheme ") + encodingsList.at(i) );
 	}
 
+	// Translate the main window.
 	retranslateUi(this);
+
+	// Translate the toolbar.
 	toolBarWidget->retranslateUi(toolBar);
 
 	// Translate the about dialog.
 	aboutDialog->retranslate();
+
+	// Translate the settings dialog.
+	settingsDialog->retranslate();
 
 	// Translate the highlighter menu.
 	highlighter->retranslate();
@@ -1104,7 +1113,7 @@ void MainWindow::createEncodingMenu() {
 
     encodingActionGroup = new QActionGroup(this);
 
-    QStringList encodingsList = QStringList() << "UTF-8" << "UTF-16" << "UTF-16BE" << "UTF-16LE"
+    encodingsList = QStringList() << "UTF-8" << "UTF-16" << "UTF-16BE" << "UTF-16LE"
             << "Apple Roman" << "Big5" << "Big5-HKSCS" << "EUC-JP" << "EUC-KR" << "GB18030-0"
             << "IBM 850" << "IBM 866" << "IBM 874" << "ISO 2022-JP" << "ISO 8859-1" << "ISO 8859-13"
             << "Iscii-Bng" << "JIS X 0201" << "JIS X 0208" << "KOI8-R" << "KOI8-U" << "MuleLao-1"

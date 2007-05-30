@@ -57,7 +57,7 @@ void UiGuiSettingsDialog::initTranslationSelection() {
 	uiGuiLanguage->clear();
 	
 	// Now add an entry into the box for every language short.
-	foreach(QString languageShort, settings->getAvailableTranslations() ) {
+	foreach (QString languageShort, settings->getAvailableTranslations() ) {
 		// Identify the language mnemonic and set the full name.
 		if ( languageShort == "en" ) {
 			uiGuiLanguage->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("English") );
@@ -84,7 +84,7 @@ void UiGuiSettingsDialog::initTranslationSelection() {
  */
 int UiGuiSettingsDialog::showDialog() {
     // Get the values for the check boxes from the settings object.
-    foreach(QCheckBox* checkBox, checkBoxes) {
+    foreach (QCheckBox* checkBox, checkBoxes) {
         // Get the objects name and remove "uiGui" from its beginning.
         QString objectName = checkBox->objectName();
         objectName.remove(0,5);
@@ -95,7 +95,7 @@ int UiGuiSettingsDialog::showDialog() {
     }
 
     // Get the values for the spin boxes from the settings object.
-    foreach(QSpinBox* spinBox, spinBoxes) {
+    foreach (QSpinBox* spinBox, spinBoxes) {
         // Get the objects name and remove "uiGui" from its beginning.
         QString objectName = spinBox->objectName();
         objectName.remove(0,5);
@@ -116,7 +116,7 @@ int UiGuiSettingsDialog::showDialog() {
  */
 void UiGuiSettingsDialog::handleAccepted() {
     // Write the values of the check boxes to the settings object.
-    foreach(QCheckBox* checkBox, checkBoxes) {
+    foreach (QCheckBox* checkBox, checkBoxes) {
         // Get the objects name and remove "uiGui" from its beginning.
         QString objectName = checkBox->objectName();
         objectName.remove(0,5);
@@ -126,7 +126,7 @@ void UiGuiSettingsDialog::handleAccepted() {
     }
 
     // Write the values for the spin boxes to the settings object.
-    foreach(QSpinBox* spinBox, spinBoxes) {
+    foreach (QSpinBox* spinBox, spinBoxes) {
         // Get the objects name and remove "uiGui" from its beginning.
         QString objectName = spinBox->objectName();
         objectName.remove(0,5);
@@ -142,4 +142,28 @@ void UiGuiSettingsDialog::handleAccepted() {
  */
 void UiGuiSettingsDialog::retranslate() {
 	retranslateUi(this);
+
+	QStringList languageShortList = settings->getAvailableTranslations();
+
+	// Now retranslate every entry in the language selection box.
+	for (int i = 0; i < languageShortList.size(); i++ ) {
+		QString languageShort = languageShortList.at(i);
+
+		// Identify the language mnemonic and set the full name.
+		if ( languageShort == "en" ) {
+			uiGuiLanguage->setItemText( i, tr("English") );
+		}
+		else if ( languageShort == "de" ) {
+			uiGuiLanguage->setItemText( i, tr("German") );
+		}
+		else if ( languageShort == "zh" ) {
+			uiGuiLanguage->setItemText( i, tr("Chinese") );
+		}
+		else if ( languageShort == "ja" ) {
+			uiGuiLanguage->setItemText( i, tr("Japanese") );
+		}
+		else {
+			uiGuiLanguage->setItemText( i, tr("Unknown language mnemonic ") + languageShort );
+		}
+	}
 }

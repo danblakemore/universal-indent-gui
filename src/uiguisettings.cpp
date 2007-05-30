@@ -133,7 +133,7 @@ bool UiGuiSettings::setValueByName(QString settingName, QVariant value) {
 /*!
     Emits the correct signal for the given \a settingName. If \a settingName
     equals "all", all signals are emitted. This can be used to update all
-    dependend widgets. \a value is the new value that is emitted along with the signal.
+    dependent widgets. \a value is the new value that is emitted along with the signal.
  */
 void UiGuiSettings::emitSignalForSetting(QString settingName) {
     // Emit the signal for the changed value.
@@ -170,7 +170,7 @@ void UiGuiSettings::emitSignalForSetting(QString settingName) {
 
 /*!
     Calls \sa emitSignalForSetting with settingName "all" to update all widgets or whatever
-    is connceted to each setting.
+    is connected to each setting.
  */
 void UiGuiSettings::updatedAllDependend() {
     emitSignalForSetting("all");

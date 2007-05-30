@@ -90,6 +90,7 @@ private:
     bool scrollPositionChanged;
     bool indentSettingsChanged;
     bool previewToggled;
+	QStringList encodingsList;
 
     Ui::toolBarWidget *toolBarWidget;
     IndentHandler *indentHandler;
@@ -131,6 +132,7 @@ private slots:
     void exportToPDF();
     void exportToHTML();
     void languageChanged(QAction *languageAction);
+	void languageChanged(int languageIndex);
     void encodingChanged(QAction *encodingAction);
 	void numberOfLinesChanged();
 };
