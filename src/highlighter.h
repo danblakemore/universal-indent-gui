@@ -68,9 +68,9 @@ private:
     QMap<int, QColor> colorForStyles;
 	QsciLexer* lexer;
 	QSettings *settings;
-	QStringList highlighterList;
     QMenu *highlighterMenu;
     QActionGroup *highlighterActionGroup;
+    QMap<QString, QStringList> mapHighlighternameToExtension;
 
     void createHighlighterMenu();
 
