@@ -3,11 +3,11 @@
         <file>banner.png</file>
     </qresource>
     <qresource prefix="/language" >
-        <file>language-chinese.png</file>
-        <file>language-english.png</file>
-        <file>language-german.png</file>
-        <file>language-japanese.png</file>
-        <file>language-taiwanese.png</file>
+        <file>language-de.png</file>
+        <file>language-en.png</file>
+        <file>language-ja.png</file>
+        <file>language-tw.png</file>
+        <file>language-zh.png</file>
     </qresource>
     <qresource prefix="/mainWindow" >
         <file>Icon1.png</file>

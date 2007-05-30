@@ -29,6 +29,7 @@
 */
 UiGuiSettings::UiGuiSettings(QString settingFilePath) : QObject() {
     qsettings = new QSettings(settingFilePath, QSettings::IniFormat, this);
+	readAvailableTranslations();
 	loadSettings();
 }
 
@@ -39,6 +40,41 @@ UiGuiSettings::UiGuiSettings(QString settingFilePath) : QObject() {
 UiGuiSettings::~UiGuiSettings() {
 	//FIXME: Is never called!!
     saveSettings();
+}
+
+
+/*!
+	Scans the translations directory for available translation files and stores them in the QList \a availableTranslations.
+ */
+void UiGuiSettings::readAvailableTranslations() {
+	QString languageShort;
+	QStringList languageFileList;
+
+	// English is the default language. A translation file does not exist but to have a menu entry, added here.
+	languageFileList << "universalindent_en.qm";
+
+	// Find all translation files in the "translations" directory.
+	QDir translationDirectory = QDir("./translations");
+	languageFileList << translationDirectory.entryList( QStringList("universalindent_*.qm") );
+
+	// Loop for each found translation file
+	foreach ( languageShort, languageFileList ) {
+		// Remove the leading string "universalindent_" from the filename.
+		languageShort.remove(0,16);
+		// Remove trailing file extension ".qm".
+		languageShort.chop(3);
+		languageShort = languageShort.toLower();
+
+		availableTranslations.append(languageShort);
+	}
+}
+
+
+/*!
+	Returns a list of the mnemonics of the available translations.
+ */
+QStringList UiGuiSettings::getAvailableTranslations() {
+	return availableTranslations;
 }
 
 

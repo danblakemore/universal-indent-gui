@@ -31,6 +31,7 @@ UiGuiSettingsDialog::UiGuiSettingsDialog(QWidget* parent, UiGuiSettings* setting
 {
     // Remember pointer to the UiGuiSettings object.
     this->settings = settings;
+
     // Init the user interface created by the UIC.
 	setupUi(this);
 
@@ -42,6 +43,35 @@ UiGuiSettingsDialog::UiGuiSettingsDialog(QWidget* parent, UiGuiSettings* setting
 
     // Connect the accepted signal to own function, to write values back to the UiGuiSettings object.
     connect(this, SIGNAL(accepted()), this, SLOT(handleAccepted()) );
+
+	// Init the language selection combobox.
+	initTranslationSelection();
+}
+
+/*!
+	By calling this function the combobox for selecting the application language will
+	be initialized. Also the translation itself will be reinitialized.
+ */
+void UiGuiSettingsDialog::initTranslationSelection() {
+	
+	foreach(QString languageShort, settings->getAvailableTranslations() ) {
+		// Identify the language mnemonic and set the full name.
+		if ( languageShort == "en" ) {
+			uiGuiLanguage->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("English") );
+		}
+		else if ( languageShort == "de" ) {
+			uiGuiLanguage->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("German") );
+		}
+		else if ( languageShort == "zh" ) {
+			uiGuiLanguage->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("Chinese") );
+		}
+		else if ( languageShort == "ja" ) {
+			uiGuiLanguage->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("Japanese") );
+		}
+		else {
+			uiGuiLanguage->addItem( tr("Unknown language mnemonic ") + languageShort );
+		}
+	}
 }
 
 

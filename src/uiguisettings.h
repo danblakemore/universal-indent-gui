@@ -25,6 +25,8 @@
 #include <QSettings>
 #include <QPoint>
 #include <QSize>
+#include <QDir>
+#include <QStringList>
 
 class UiGuiSettings : public QObject
 {
@@ -38,6 +40,7 @@ public:
     bool setValueByName(QString settingName, QVariant value);
 	QVariant getValueByName(QString settingName);
     void updatedAllDependend();
+	QStringList getAvailableTranslations();
 
 // Only one slot per possible value needed, because wanted setting
 // is recognized by the sender objects name.
@@ -63,6 +66,10 @@ signals:
 
 private:
     void emitSignalForSetting(QString settingName);
+	void readAvailableTranslations();
+
+	//! Stores the mnemonics of the available translations.
+	QStringList availableTranslations;
 
     //! The settings file.
     QSettings *qsettings;

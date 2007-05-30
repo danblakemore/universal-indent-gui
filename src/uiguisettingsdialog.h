@@ -39,6 +39,8 @@ private slots:
     void handleAccepted();
 
 private:
+	void initTranslationSelection();
+
     UiGuiSettings* settings;
     QList<QCheckBox*> checkBoxes;
     QList<QSpinBox*> spinBoxes;
