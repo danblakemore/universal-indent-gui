@@ -53,7 +53,10 @@ UiGuiSettingsDialog::UiGuiSettingsDialog(QWidget* parent, UiGuiSettings* setting
 	be initialized. Also the translation itself will be reinitialized.
  */
 void UiGuiSettingsDialog::initTranslationSelection() {
+	// First empty the combo box.
+	uiGuiLanguage->clear();
 	
+	// Now add an entry into the box for every language short.
 	foreach(QString languageShort, settings->getAvailableTranslations() ) {
 		// Identify the language mnemonic and set the full name.
 		if ( languageShort == "en" ) {
