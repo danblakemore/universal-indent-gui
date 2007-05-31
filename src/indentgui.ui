@@ -301,6 +301,9 @@
    <property name="shortcut" >
     <string>Ctrl+L</string>
    </property>
+   <property name="visible" >
+    <bool>false</bool>
+   </property>
   </action>
   <action name="uiGuiSyntaxHighlightningEnabled" >
    <property name="checkable" >
@@ -314,6 +317,9 @@
    </property>
    <property name="text" >
     <string>Syntax Highlight</string>
+   </property>
+   <property name="statusTip" >
+    <string>By enabling special key words of the source code are highlighted.</string>
    </property>
   </action>
   <action name="uiGuiWhiteSpaceIsVisible" >
@@ -332,6 +338,9 @@
    <property name="statusTip" >
     <string>Enables or disables diplaying of white space characters in the editor.</string>
    </property>
+   <property name="visible" >
+    <bool>false</bool>
+   </property>
   </action>
   <action name="uiGuiLoadLastOpenedFileOnStartup" >
    <property name="checkable" >
@@ -349,13 +358,25 @@
    <property name="statusTip" >
     <string>If selected opens last source code file on startup</string>
    </property>
+   <property name="visible" >
+    <bool>false</bool>
+   </property>
   </action>
   <action name="actionShowSettings" >
    <property name="icon" >
     <iconset resource="../resources/Icons.qrc" >:/mainWindow/preferences-system.png</iconset>
    </property>
    <property name="text" >
-    <string>ShowSettings</string>
+    <string>Settings</string>
+   </property>
+   <property name="iconText" >
+    <string>Settings</string>
+   </property>
+   <property name="toolTip" >
+    <string>Opens the settings dialog</string>
+   </property>
+   <property name="statusTip" >
+    <string>Opens the settings dialog, to set language etc.</string>
    </property>
   </action>
  </widget>

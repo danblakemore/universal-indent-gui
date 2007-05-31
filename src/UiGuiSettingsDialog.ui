@@ -62,6 +62,12 @@
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="toolTip" >
+            <string>Displays all available translations for UniversalIndentGui</string>
+           </property>
+           <property name="statusTip" >
+            <string>Displays all available translations for UniversalIndentGui</string>
+           </property>
           </widget>
          </item>
          <item>
@@ -75,6 +81,12 @@
        </item>
        <item>
         <widget class="QCheckBox" name="uiGuiLoadLastOpenedFileOnStartup" >
+         <property name="toolTip" >
+          <string>Auto open last source file on startup</string>
+         </property>
+         <property name="statusTip" >
+          <string>If selected opens last source code file on startup</string>
+         </property>
          <property name="text" >
           <string>Automatically open last file on startup</string>
          </property>
@@ -82,6 +94,12 @@
        </item>
        <item>
         <widget class="QCheckBox" name="uiGuiIndenterParameterTooltipsEnabled" >
+         <property name="toolTip" >
+          <string>Parameter Tooltips</string>
+         </property>
+         <property name="statusTip" >
+          <string>If checked, tool tips will show up if the mouse cursor remains over an indenter parameter for a while.</string>
+         </property>
          <property name="text" >
           <string>Enable Parameter Tooltips</string>
          </property>
@@ -108,6 +126,12 @@
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="toolTip" >
+            <string>How many files are remembered in the recent list.</string>
+           </property>
+           <property name="statusTip" >
+            <string>Sets how many files should be remembered in the list of recently opened files.</string>
+           </property>
            <property name="maximum" >
             <number>30</number>
            </property>
@@ -126,6 +150,9 @@
            </property>
            <property name="text" >
             <string>Number of files in recently opened list.</string>
+           </property>
+           <property name="buddy" >
+            <cstring>uiGuiRecentlyOpenedListSize</cstring>
            </property>
           </widget>
          </item>
@@ -162,6 +189,12 @@
        </property>
        <item>
         <widget class="QCheckBox" name="uiGuiWhiteSpaceIsVisible" >
+         <property name="toolTip" >
+          <string>Set white space visible</string>
+         </property>
+         <property name="statusTip" >
+          <string>Enables or disables diplaying of white space characters in the editor.</string>
+         </property>
          <property name="text" >
           <string>Display white space character (tabs, spaces, etc.)</string>
          </property>
@@ -185,6 +218,12 @@
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="toolTip" >
+            <string>Sets width in single spaces used for tabs</string>
+           </property>
+           <property name="statusTip" >
+            <string>Defines how many spaces should be displayed in the editor for one tab.</string>
+           </property>
            <property name="maximum" >
             <number>99</number>
            </property>
@@ -198,8 +237,17 @@
          </item>
          <item>
           <widget class="QLabel" name="labelTabWidth" >
+           <property name="toolTip" >
+            <string>Sets width in single spaces used for tabs</string>
+           </property>
+           <property name="statusTip" >
+            <string>Defines how many spaces should be displayed in the editor for one tab.</string>
+           </property>
            <property name="text" >
             <string>Displayed width of tabs</string>
+           </property>
+           <property name="buddy" >
+            <cstring>uiGuiTabWidth</cstring>
            </property>
           </widget>
          </item>
@@ -236,6 +284,12 @@
        </property>
        <item>
         <widget class="QCheckBox" name="uiGuiSyntaxHighlightningEnabled" >
+         <property name="toolTip" >
+          <string>Syntax Highlight</string>
+         </property>
+         <property name="statusTip" >
+          <string>By enabling special key words of the source code are highlighted.</string>
+         </property>
          <property name="text" >
           <string>Enable syntax highlighting</string>
          </property>
@@ -400,12 +454,12 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>248</x>
-     <y>254</y>
+     <x>244</x>
+     <y>224</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>157</x>
-     <y>274</y>
+     <x>153</x>
+     <y>236</y>
     </hint>
    </hints>
   </connection>
@@ -416,12 +470,12 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>316</x>
-     <y>260</y>
+     <x>321</x>
+     <y>227</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>286</x>
-     <y>274</y>
+     <x>282</x>
+     <y>236</y>
     </hint>
    </hints>
   </connection>

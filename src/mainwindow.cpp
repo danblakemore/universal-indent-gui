@@ -63,7 +63,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     createLanguageMenu();
     createEncodingMenu();
     // Let the highlighter create a menu for selecting the language specific highlighting.
-	menuSettings->insertMenu(uiGuiSyntaxHighlightningEnabled, highlighter->getHighlighterMenu() );
+	menuSettings->insertMenu(uiGuiIndenterParameterTooltipsEnabled, highlighter->getHighlighterMenu() );
 
     // generate about dialog box
     aboutDialog = new AboutDialog(this, version, revision, buildDateStr);
@@ -166,6 +166,7 @@ void MainWindow::initToolBar() {
     connect( toolBarWidget->uiGuiSyntaxHighlightningEnabled, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern(bool)) );
     connect( settings, SIGNAL(syntaxHighlightningEnabled(bool)), toolBarWidget->uiGuiSyntaxHighlightningEnabled, SLOT(setChecked(bool)) );
     toolBarWidget->uiGuiSyntaxHighlightningEnabled->setChecked( settings->getValueByName("SyntaxHighlightningEnabled").toBool() );
+    toolBarWidget->uiGuiSyntaxHighlightningEnabled->hide();
     connect( toolBarWidget->pbOpen_Source_File, SIGNAL(clicked()), this, SLOT(openSourceFileDialog()) );
     connect( toolBarWidget->pbExit, SIGNAL(clicked()), this, SLOT(close()));
     connect( toolBarWidget->cmbBoxIndenters, SIGNAL(activated(int)), this, SLOT(selectIndenter(int)) );
@@ -1039,9 +1040,10 @@ void MainWindow::createLanguageMenu() {
         }
     }
 
-    languageMenu = menuSettings->addMenu( tr("Language") );
+    QString languageString =  tr("Language");
+    //languageMenu = menuSettings->addMenu( languageString );
 
-    languageMenu->addActions( languageActionGroup->actions() );
+    //languageMenu->addActions( languageActionGroup->actions() );
 
 	connect( settings, SIGNAL(language(int)), this, SLOT(languageChanged(int)) );
     connect( languageActionGroup, SIGNAL(triggered(QAction*)), this, SLOT(languageChanged(QAction*)) );
@@ -1175,7 +1177,7 @@ void MainWindow::changeEvent(QEvent *event) {
         toolBarWidget->retranslateUi(toolBar);
 
         // Translate the language menu.
-        languageMenu->setTitle( tr("Language") );
+        //languageMenu->setTitle( tr("Language") );
         int i = 0;
         foreach ( QAction* languageAction, languageActionGroup->actions() ) {
             QString languageShort = settings->getAvailableTranslations().at(i);
