@@ -1065,7 +1065,7 @@ void MainWindow::languageChanged(QAction* languageAction) {
     corresponding action in the languageInfoList and sets the language.
  */
 void MainWindow::languageChanged(int languageIndex) {
-    // Set the language in the menue to the new selected language.
+    // Set the language in the menu to the new selected language.
     languageActionGroup->actions().at(languageIndex)->setChecked(true);
 
     // Get the mnemonic of the new selected language.
