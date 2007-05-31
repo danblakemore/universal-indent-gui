@@ -316,7 +316,13 @@
     <iconset resource="../resources/Icons.qrc" >:/mainWindow/syntax-highlight.png</iconset>
    </property>
    <property name="text" >
-    <string>Syntax Highlight</string>
+    <string>Syntax Highlighting</string>
+   </property>
+   <property name="iconText" >
+    <string>Syntax Highlighting</string>
+   </property>
+   <property name="toolTip" >
+    <string>Enables or disables syntax highlighting for the source code.</string>
    </property>
    <property name="statusTip" >
     <string>By enabling special key words of the source code are highlighted.</string>
