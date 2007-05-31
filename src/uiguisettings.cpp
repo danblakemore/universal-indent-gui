@@ -172,7 +172,7 @@ void UiGuiSettings::emitSignalForSetting(QString settingName) {
     Calls \sa emitSignalForSetting with settingName "all" to update all widgets or whatever
     is connected to each setting.
  */
-void UiGuiSettings::updatedAllDependend() {
+void UiGuiSettings::updateAllDependend() {
     emitSignalForSetting("all");
 }
 
@@ -231,7 +231,7 @@ bool UiGuiSettings::loadSettings() {
 	// Read the tab width from the settings file.
 	settings["TabWidth"] = qsettings->value("UniversalIndentGUI/tabWidth", 4).toInt();
 
-	// Read the last selected language.
+	// Read the last selected language and stores the index it has in the list of available translations.
 	settings["Language"] = availableTranslations.indexOf( qsettings->value("UniversalIndentGUI/language", "").toString() );
 
 	return true;
@@ -247,7 +247,7 @@ bool UiGuiSettings::saveSettings() {
 	qsettings->setValue( "UniversalIndentGUI/loadLastSourceCodeFileOnStartup", settings["LoadLastOpenedFileOnStartup"] );
     qsettings->setValue( "UniversalIndentGUI/lastSelectedIndenter", settings["LastSelectedIndenterID"] );
     qsettings->setValue( "UniversalIndentGUI/indenterParameterTooltipsEnabled", settings["IndenterParameterTooltipsEnabled"] );
-    qsettings->setValue( "UniversalIndentGUI/language", availableTranslations[settings["Language"].toInt()] );
+    qsettings->setValue( "UniversalIndentGUI/language", availableTranslations[ settings["Language"].toInt() ] );
 	qsettings->setValue( "UniversalIndentGUI/encoding", settings["FileEncoding"] );
     qsettings->setValue( "UniversalIndentGUI/version", settings["VersionInSettingsFile"] );
 	qsettings->setValue( "UniversalIndentGUI/maximized", settings["WindowIsMaximized"] );

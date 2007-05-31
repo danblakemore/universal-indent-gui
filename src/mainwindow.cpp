@@ -77,9 +77,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     // Loads the last opened file, if this is enabled in the settings.
     loadLastOpenedFile();
 
-    // This call updates all widgets, or whatever is connected to the settings, to the current settings value-
-    settings->updatedAllDependend();
-
     updateSourceView();
     txtedSourceCode->setModified(false);
 }
@@ -122,16 +119,19 @@ void MainWindow::initMainWindow() {
     // Register the syntax highlightning setting in the menu to the settings object.
     connect( uiGuiSyntaxHighlightningEnabled, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern(bool)) );
     connect( settings, SIGNAL(syntaxHighlightningEnabled(bool)), uiGuiSyntaxHighlightningEnabled, SLOT(setChecked(bool)) );
+    uiGuiSyntaxHighlightningEnabled->setChecked( settings->getValueByName("SyntaxHighlightningEnabled").toBool() );
     // Tell the highlighter if it has to be enabled or disabled.
     connect( settings, SIGNAL(syntaxHighlightningEnabled(bool)), this, SLOT(turnHighlightOnOff(bool)) );
 
     // Register the load last file setting in the menu to the settings object.
     connect( uiGuiLoadLastOpenedFileOnStartup, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern(bool)) );
     connect( settings, SIGNAL(loadLastOpenedFileOnStartup(bool)), uiGuiLoadLastOpenedFileOnStartup, SLOT(setChecked(bool)) );
+    uiGuiLoadLastOpenedFileOnStartup->setChecked( settings->getValueByName("LoadLastOpenedFileOnStartup").toBool() );
 
     // Register the white space setting in the menu to the settings object.
     connect( uiGuiWhiteSpaceIsVisible, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern(bool)) );
     connect( settings, SIGNAL(whiteSpaceIsVisible(bool)), uiGuiWhiteSpaceIsVisible, SLOT(setChecked(bool)) );
+    uiGuiWhiteSpaceIsVisible->setChecked( settings->getValueByName("WhiteSpaceIsVisible").toBool() );
     // Tell the QScintilla editor if it has to show white space.
     connect( settings, SIGNAL(whiteSpaceIsVisible(bool)), this, SLOT(setWhiteSpaceVisibility(bool)) );
 
@@ -165,6 +165,7 @@ void MainWindow::initToolBar() {
     // Connect the tool bar widgets to their functions.
     connect( toolBarWidget->uiGuiSyntaxHighlightningEnabled, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern(bool)) );
     connect( settings, SIGNAL(syntaxHighlightningEnabled(bool)), toolBarWidget->uiGuiSyntaxHighlightningEnabled, SLOT(setChecked(bool)) );
+    toolBarWidget->uiGuiSyntaxHighlightningEnabled->setChecked( settings->getValueByName("SyntaxHighlightningEnabled").toBool() );
     connect( toolBarWidget->pbOpen_Source_File, SIGNAL(clicked()), this, SLOT(openSourceFileDialog()) );
     connect( toolBarWidget->pbExit, SIGNAL(clicked()), this, SLOT(close()));
     connect( toolBarWidget->cmbBoxIndenters, SIGNAL(activated(int)), this, SLOT(selectIndenter(int)) );
@@ -208,6 +209,7 @@ void MainWindow::initTextEditor() {
     connect( txtedSourceCode, SIGNAL(textChanged()), this, SLOT(sourceCodeChangedHelperSlot()) );
 	connect( txtedSourceCode, SIGNAL(linesChanged()), this, SLOT(numberOfLinesChanged()) );
     connect( settings, SIGNAL(tabWidth(int)), txtedSourceCode, SLOT(setTabWidth(int)) );
+    txtedSourceCode->setTabWidth( settings->getValueByName("TabWidth").toInt() );
 }
 
 
@@ -237,18 +239,32 @@ void MainWindow::initSyntaxHighlighter() {
     false and uses the default language, which is English.
  */
 bool MainWindow::initApplicationLanguage() {
+    QString languageShort;
+    // Create a translator
+    translator = new QTranslator();
+
     // Get the language settings from the settings object.
 	int languageIndex = settings->getValueByName("Language").toInt();
-    language = settings->getAvailableTranslations().at(languageIndex);
 
-    // If no language was set use the system language
-    if ( language.isEmpty() ) {
-        language = QLocale::system().name();
-        language.truncate(2);
+    // If no language was set, indicated by a negative index, use the system language.
+    if ( languageIndex < 0 ) {
+        languageShort = QLocale::system().name();
+        languageShort.truncate(2);
+
+        // If no translation file for the systems local language exist, fall back to English.
+        if ( settings->getAvailableTranslations().indexOf( languageShort ) < 0 ) {
+            languageShort = "en";
+            settings->setValueByName("Language", 0);
+        }
     }
-    // Load the translation file and set it for the application
+    // If a language was defined in the settings, get this language mnemonic.
+    else {
+        languageShort = settings->getAvailableTranslations().at(languageIndex);
+    }
+
+    // Load the translation file and set it for the application.
     translator = new QTranslator();
-    bool translationFileLoaded = translator->load( QString("./translations/universalindent_") + language );
+    bool translationFileLoaded = translator->load( QString("./translations/universalindent_") + languageShort );
     if ( translationFileLoaded ) {
         qApp->installTranslator(translator);
     }
@@ -295,6 +311,7 @@ void MainWindow::initIndenter() {
     // Handle if indenter parameter tool tips are enabled
     connect( uiGuiIndenterParameterTooltipsEnabled, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern(bool)) );
     connect( settings, SIGNAL(indenterParameterTooltipsEnabled(bool)), uiGuiIndenterParameterTooltipsEnabled, SLOT(setChecked(bool)) );
+    uiGuiIndenterParameterTooltipsEnabled->setChecked( settings->getValueByName("IndenterParameterTooltipsEnabled").toBool() );
 }
 
 
@@ -983,10 +1000,14 @@ void MainWindow::createLanguageMenu() {
 	QString languageName;
     QAction *languageAction;
 
+    // Get the language settings from the settings object.
+	int languageIndex = settings->getValueByName("Language").toInt();
+
     languageActionGroup = new QActionGroup(this);
 
     // Loop for each found translation file
-    foreach ( languageShort, settings->getAvailableTranslations() ) {
+    for ( int i = 0; i < settings->getAvailableTranslations().count(); i++ ) {
+        languageShort = settings->getAvailableTranslations().at(i);
 
         // Identify the language mnemonic and set the full name.
         if ( languageShort == "en" ) {
@@ -1012,7 +1033,7 @@ void MainWindow::createLanguageMenu() {
 
         // If the language selected in the ini file or no ini exists the system locale is
         // equal to the current language mnemonic set this menu entry checked.
-        if ( languageShort == language ) {
+        if ( i == languageIndex ) {
             languageAction->setChecked(true);
         }
     }
@@ -1029,7 +1050,7 @@ void MainWindow::createLanguageMenu() {
 /*!
 	This slot is called whenever a language is selected in the menu. It tries to find the
 	corresponding action in the languageInfoList and sets the language.
-*/
+ */
 void MainWindow::languageChanged(QAction* languageAction) {
 	int languageIndex = languageActionGroup->actions().indexOf(languageAction);
 	settings->setValueByName("Language", languageIndex);
@@ -1041,66 +1062,18 @@ void MainWindow::languageChanged(QAction* languageAction) {
     corresponding action in the languageInfoList and sets the language.
  */
 void MainWindow::languageChanged(int languageIndex) {
-	QString languageName;
+    // Set the language in the menue to the new selected language.
+    languageActionGroup->actions().at(languageIndex)->setChecked(true);
 
-	language = settings->getAvailableTranslations().at(languageIndex);
+    // Get the mnemonic of the new selected language.
+	QString languageShort = settings->getAvailableTranslations().at(languageIndex);
 
 	// Remove the old translation.
 	qApp->removeTranslator( translator );
 
 	// Load the new translation file and add it to the translation list.
-	translator->load( QString("./translations/universalindent_") + language );
+	translator->load( QString("./translations/universalindent_") + languageShort );
 	qApp->installTranslator( translator );
-	
-	// Translate the language menu.
-	languageMenu->setTitle( tr("Language") );
-	int i = 0;
-	foreach ( QAction* languageAction, languageActionGroup->actions() ) {
-		QString languageShort = settings->getAvailableTranslations().at(i);
-
-		// Identify the language mnemonic and set the full name
-		if ( languageShort == "en" ) {
-			languageName = tr("English");
-		}
-		else if ( languageShort == "de" ) {
-			languageName = tr("German");
-		}
-		else if ( languageShort == "zh" ) {
-			languageName = tr("Chinese");
-		}
-		else if ( languageShort == "ja" ) {
-			languageName = tr("Japanese");
-		}
-		else {
-			languageName = tr("Unknown language mnemonic ") + language;
-		}
-		languageAction->setText( languageName );
-		languageAction->setStatusTip( languageName + tr(" as user interface language.") );
-		i++;
-	}
-
-	// Translate the encoding menu.
-	encodingMenu->setTitle( tr("Reopen File with other Encoding") );
-	QList<QAction *> encodingActionList = encodingActionGroup->actions();
-	for ( int i = 0; i < encodingActionList.size(); i++ ) {
-		encodingActionList.at(i)->setStatusTip( tr("Reopen the currently opened source code file by using the text encoding scheme ") + encodingsList.at(i) );
-	}
-
-	// Translate the main window.
-	retranslateUi(this);
-
-	// Translate the toolbar.
-	toolBarWidget->retranslateUi(toolBar);
-
-	// Translate the about dialog.
-	aboutDialog->retranslate();
-
-	// Translate the settings dialog.
-	settingsDialog->retranslate();
-
-	// Translate the highlighter menu.
-	highlighter->retranslate();
-
 }
 
 
@@ -1184,4 +1157,60 @@ void MainWindow::numberOfLinesChanged() {
 	QString lineNumbers;
 	lineNumbers.setNum( txtedSourceCode->lines()*10 );
 	txtedSourceCode->setMarginWidth(1, lineNumbers);
+}
+
+
+/*!
+    Catches language change events and retranslates all needed widgets.
+ */
+void MainWindow::changeEvent(QEvent *event) {
+    if (event->type() == QEvent::LanguageChange) {
+        QString languageName;
+
+        // Translate the main window.
+        retranslateUi(this);
+
+        // Translate the toolbar.
+        toolBarWidget->retranslateUi(toolBar);
+
+        // Translate the language menu.
+        languageMenu->setTitle( tr("Language") );
+        int i = 0;
+        foreach ( QAction* languageAction, languageActionGroup->actions() ) {
+            QString languageShort = settings->getAvailableTranslations().at(i);
+
+            // Identify the language mnemonic and set the full name
+            if ( languageShort == "en" ) {
+                languageName = tr("English");
+            }
+            else if ( languageShort == "de" ) {
+                languageName = tr("German");
+            }
+            else if ( languageShort == "zh" ) {
+                languageName = tr("Chinese");
+            }
+            else if ( languageShort == "ja" ) {
+                languageName = tr("Japanese");
+            }
+            else {
+                languageName = tr("Unknown language mnemonic ") + languageShort;
+            }
+            languageAction->setText( languageName );
+            languageAction->setStatusTip( languageName + tr(" as user interface language.") );
+            i++;
+        }
+
+        // Translate the encoding menu.
+        encodingMenu->setTitle( tr("Reopen File with other Encoding") );
+        QList<QAction *> encodingActionList = encodingActionGroup->actions();
+        for ( int i = 0; i < encodingActionList.size(); i++ ) {
+            encodingActionList.at(i)->setStatusTip( tr("Reopen the currently opened source code file by using the text encoding scheme ") + encodingsList.at(i) );
+        }
+
+        // Translate the highlighter menu.
+        highlighter->retranslate();
+    } 
+    else {
+        QWidget::changeEvent(event);
+    }
 }

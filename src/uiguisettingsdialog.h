@@ -30,7 +30,6 @@ class UiGuiSettingsDialog : public QDialog, private Ui::SettingsDialog
 
 public:
 	UiGuiSettingsDialog(QWidget* parent, UiGuiSettings* settings);
-	void retranslate();
 
 public slots:
     int showDialog();
@@ -39,11 +38,13 @@ private slots:
     void handleAccepted();
 
 private:
+    void changeEvent(QEvent *event);
 	void initTranslationSelection();
 
     UiGuiSettings* settings;
     QList<QCheckBox*> checkBoxes;
     QList<QSpinBox*> spinBoxes;
+    QList<QComboBox*> comboBoxes;
 };
 
 #endif // UIGUISETTINGSDIALOG_H

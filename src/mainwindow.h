@@ -64,7 +64,7 @@ private:
     QString revision;
     QString buildDateStr;
 	QString dataDirctoryStr;
-    QString language;
+    //QString language;
 	QString currentEncoding;
     QString sourceFileContent;
     QString sourceFormattedContent;
@@ -109,6 +109,7 @@ private:
     void initTextEditor();
     void initSyntaxHighlighter();
     void initIndenter();
+    void changeEvent(QEvent *event);
 
 protected:
     void closeEvent( QCloseEvent *event );

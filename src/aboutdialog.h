@@ -31,10 +31,14 @@ class AboutDialog : public QDialog, private Ui::AboutDialog
 
 public:
     AboutDialog(QWidget *parent, QString version, QString revision, QString buildDate);
-    void retranslate();
+
 private slots:
     void linkClicked(const QUrl &link);
+
 private:
+    void changeEvent(QEvent *event);
+
+    QString gplText;
     QString textBrowserSavedContent;
     QString version;
     QString revision;

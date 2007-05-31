@@ -39,7 +39,7 @@ public:
     bool saveSettings();
     bool setValueByName(QString settingName, QVariant value);
 	QVariant getValueByName(QString settingName);
-    void updatedAllDependend();
+    void updateAllDependend();
 	QStringList getAvailableTranslations();
 
 // Only one slot per possible value needed, because wanted setting
