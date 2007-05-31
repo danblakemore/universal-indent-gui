@@ -252,10 +252,11 @@ bool MainWindow::initApplicationLanguage() {
         languageShort.truncate(2);
 
         // If no translation file for the systems local language exist, fall back to English.
-        if ( settings->getAvailableTranslations().indexOf( languageShort ) < 0 ) {
+        if ( settings->getAvailableTranslations().indexOf(languageShort) < 0 ) {
             languageShort = "en";
-            settings->setValueByName("Language", 0);
         }
+        // Set the language setting to the new language.
+        settings->setValueByName("Language", settings->getAvailableTranslations().indexOf(languageShort) );
     }
     // If a language was defined in the settings, get this language mnemonic.
     else {
