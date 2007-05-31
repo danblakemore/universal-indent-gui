@@ -63,17 +63,20 @@
             </sizepolicy>
            </property>
            <property name="toolTip" >
-            <string>Displays all available translations for UniversalIndentGui</string>
-           </property>
-           <property name="statusTip" >
-            <string>Displays all available translations for UniversalIndentGui</string>
+            <string>Displays all available translations for UniversalIndentGui and lets you choose one.</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QLabel" name="label" >
+           <property name="toolTip" >
+            <string>Displays all available translations for UniversalIndentGui and lets you choose one.</string>
+           </property>
            <property name="text" >
             <string>Application language</string>
+           </property>
+           <property name="buddy" >
+            <cstring>uiGuiLanguage</cstring>
            </property>
           </widget>
          </item>
@@ -82,10 +85,7 @@
        <item>
         <widget class="QCheckBox" name="uiGuiLoadLastOpenedFileOnStartup" >
          <property name="toolTip" >
-          <string>Auto open last source file on startup</string>
-         </property>
-         <property name="statusTip" >
-          <string>If selected opens last source code file on startup</string>
+          <string>If selected opens the source code file on startup that was opened last time.</string>
          </property>
          <property name="text" >
           <string>Automatically open last file on startup</string>
@@ -95,9 +95,6 @@
        <item>
         <widget class="QCheckBox" name="uiGuiIndenterParameterTooltipsEnabled" >
          <property name="toolTip" >
-          <string>Parameter Tooltips</string>
-         </property>
-         <property name="statusTip" >
           <string>If checked, tool tips will show up if the mouse cursor remains over an indenter parameter for a while.</string>
          </property>
          <property name="text" >
@@ -127,9 +124,6 @@
             </sizepolicy>
            </property>
            <property name="toolTip" >
-            <string>How many files are remembered in the recent list.</string>
-           </property>
-           <property name="statusTip" >
             <string>Sets how many files should be remembered in the list of recently opened files.</string>
            </property>
            <property name="maximum" >
@@ -147,6 +141,9 @@
           <widget class="QLabel" name="labelRecentlyOpenedListSize" >
            <property name="enabled" >
             <bool>false</bool>
+           </property>
+           <property name="toolTip" >
+            <string>Sets how many files should be remembered in the list of recently opened files.</string>
            </property>
            <property name="text" >
             <string>Number of files in recently opened list.</string>
@@ -190,10 +187,7 @@
        <item>
         <widget class="QCheckBox" name="uiGuiWhiteSpaceIsVisible" >
          <property name="toolTip" >
-          <string>Set white space visible</string>
-         </property>
-         <property name="statusTip" >
-          <string>Enables or disables diplaying of white space characters in the editor.</string>
+          <string>Enables or disables displaying of white space characters in the editor.</string>
          </property>
          <property name="text" >
           <string>Display white space character (tabs, spaces, etc.)</string>
@@ -219,10 +213,7 @@
             </sizepolicy>
            </property>
            <property name="toolTip" >
-            <string>Sets width in single spaces used for tabs</string>
-           </property>
-           <property name="statusTip" >
-            <string>Defines how many spaces should be displayed in the editor for one tab.</string>
+            <string>Defines how many spaces should be displayed in the editor for one tab character.</string>
            </property>
            <property name="maximum" >
             <number>99</number>
@@ -285,9 +276,6 @@
        <item>
         <widget class="QCheckBox" name="uiGuiSyntaxHighlightningEnabled" >
          <property name="toolTip" >
-          <string>Syntax Highlight</string>
-         </property>
-         <property name="statusTip" >
           <string>By enabling special key words of the source code are highlighted.</string>
          </property>
          <property name="text" >
@@ -296,9 +284,12 @@
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="groupBox" >
+        <widget class="QGroupBox" name="groupBoxSyntaxHighlighterProperties" >
          <property name="enabled" >
           <bool>false</bool>
+         </property>
+         <property name="toolTip" >
+          <string>Lets you make settings for all properties of the available syntax highlighters, like font and color.</string>
          </property>
          <property name="title" >
           <string>Highlighter settings</string>
@@ -313,65 +304,15 @@
           <item>
            <widget class="QListWidget" name="listWidget" >
             <property name="currentRow" >
-             <number>0</number>
+             <number>-1</number>
             </property>
-            <item>
-             <property name="text" >
-              <string>C++</string>
-             </property>
-            </item>
-            <item>
-             <property name="text" >
-              <string>C#</string>
-             </property>
-            </item>
-            <item>
-             <property name="text" >
-              <string>HTML</string>
-             </property>
-            </item>
-            <item>
-             <property name="text" >
-              <string>TeX</string>
-             </property>
-            </item>
-            <item>
-             <property name="text" >
-              <string>Ruby</string>
-             </property>
-            </item>
            </widget>
           </item>
           <item>
            <widget class="QListWidget" name="listWidget_2" >
             <property name="currentRow" >
-             <number>0</number>
+             <number>-1</number>
             </property>
-            <item>
-             <property name="text" >
-              <string>Comment</string>
-             </property>
-            </item>
-            <item>
-             <property name="text" >
-              <string>Number</string>
-             </property>
-            </item>
-            <item>
-             <property name="text" >
-              <string>Preprocessor</string>
-             </property>
-            </item>
-            <item>
-             <property name="text" >
-              <string>Reserved word</string>
-             </property>
-            </item>
-            <item>
-             <property name="text" >
-              <string>Normal text</string>
-             </property>
-            </item>
            </widget>
           </item>
           <item>
@@ -384,6 +325,9 @@
             </property>
             <item>
              <widget class="QPushButton" name="pushButton_2" >
+              <property name="toolTip" >
+               <string>Set the font for the current selected highlighter property.</string>
+              </property>
               <property name="text" >
                <string>Set Font</string>
               </property>
@@ -391,6 +335,9 @@
             </item>
             <item>
              <widget class="QPushButton" name="pushButton" >
+              <property name="toolTip" >
+               <string>Set the color for the current selected highlighter property.</string>
+              </property>
               <property name="text" >
                <string>Set Color</string>
               </property>
