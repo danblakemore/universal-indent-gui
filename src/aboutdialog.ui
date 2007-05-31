@@ -154,6 +154,19 @@ p, li { white-space: pre-wrap; }
     </widget>
    </item>
    <item>
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" >
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
     <widget class="QLabel" name="label_2" >
      <property name="text" >
       <string>License:</string>
