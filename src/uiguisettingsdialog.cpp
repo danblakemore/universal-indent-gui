@@ -34,6 +34,9 @@ UiGuiSettingsDialog::UiGuiSettingsDialog(QWidget* parent, UiGuiSettings* setting
 
     // Init the user interface created by the UIC.
 	setupUi(this);
+	//TODO: This has to be removed when the properties for the highlighters can be set.
+	groupBoxSyntaxHighlighterProperties->setToolTip( "(Will be implemented soon)" + groupBoxSyntaxHighlighterProperties->toolTip() );
+	uiGuiRecentlyOpenedListSize->setToolTip( "(Will be implemented soon)" + uiGuiRecentlyOpenedListSize->toolTip() );
 
     // Get all check boxes that are used for settings.
     checkBoxes = findChildren<QCheckBox*>( QRegExp("uiGui*") );
@@ -167,6 +170,9 @@ void UiGuiSettingsDialog::handleAccepted() {
 void UiGuiSettingsDialog::changeEvent(QEvent *event) {
     if (event->type() == QEvent::LanguageChange) {
         retranslateUi(this);
+		//TODO: This has to be removed when the properties for the highlighters can be set.
+		groupBoxSyntaxHighlighterProperties->setToolTip( "(Will be implemented soon)" + groupBoxSyntaxHighlighterProperties->toolTip() );
+		uiGuiRecentlyOpenedListSize->setToolTip( "(Will be implemented soon)" + uiGuiRecentlyOpenedListSize->toolTip() );
 
         QStringList languageShortList = settings->getAvailableTranslations();
 
