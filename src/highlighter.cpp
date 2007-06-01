@@ -109,6 +109,8 @@ QMenu *Highlighter::getHighlighterMenu() {
 void Highlighter::highlighterChanged(QAction* highlighterAction) {
 	QString highlighterName = highlighterAction->text();
     setLexerForExtension( mapHighlighternameToExtension[highlighterName].first() );
+    // Need to do this "text update" to update the syntax highlighting. Otherwise highlighting is wrong.
+    parent->setText( parent->text() );
 }
 
 
