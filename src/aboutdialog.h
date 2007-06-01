@@ -25,6 +25,9 @@
 #include <QDesktopServices>
 #include "ui_aboutdialog.h"
 
+#include <QLocale>
+
+
 class AboutDialog : public QDialog, private Ui::AboutDialog
 {
     Q_OBJECT

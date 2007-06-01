@@ -48,7 +48,7 @@ AboutDialog::AboutDialog(QWidget *parent, QString version, QString revision, QSt
     textEdit->setHtml(gplText);
 	*/
 	textEdit->hide();
-	label_2->hide();
+    label_2->setText( "The System Locale is : " + QLocale::system().name() );
     connect( textBrowser, SIGNAL(anchorClicked (const QUrl)), this, SLOT(linkClicked(const QUrl)) );
     textBrowserSavedContent = textBrowser->toHtml();
 
@@ -79,6 +79,7 @@ void AboutDialog::changeEvent(QEvent *event) {
 		
 		//TODO: Setting the whole GPL here slows down the program too much. Should write something else.
         //textEdit->setHtml(gplText);
+        label_2->setText( "The System Locale is : " + QLocale::system().name() );
 
         QString versionString = textBrowser_2->toHtml();
         versionString = versionString.arg(version).arg(revision).arg(buildDate);
