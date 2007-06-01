@@ -62,8 +62,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     // Create some menus.
     createLanguageMenu();
     createEncodingMenu();
-    // Let the highlighter create a menu for selecting the language specific highlighting.
-	menuSettings->insertMenu(uiGuiIndenterParameterTooltipsEnabled, highlighter->getHighlighterMenu() );
+    createHighlighterMenu();
+	
 
     // generate about dialog box
     aboutDialog = new AboutDialog(this, version, revision, buildDateStr);
@@ -1144,6 +1144,44 @@ void MainWindow::encodingChanged(QAction* encodingAction) {
 			txtedSourceCode->setModified(false);
         }
     }
+}
+
+
+/*!
+	Creates a menu entry under the settings menu for all available text encodings.
+*/
+void MainWindow::createHighlighterMenu() {
+	QAction *highlighterAction;
+    QMenu *highlighterMenu;
+	QString highlighterName;
+
+	highlighterActionGroup = new QActionGroup(this);
+
+	// Loop for each known highlighter
+    foreach ( highlighterName, highlighter->getAvailableHighlighters() ) {
+		highlighterAction = new QAction(highlighterName, highlighterActionGroup);
+		highlighterAction->setStatusTip( tr("Set the syntax highlightning to ") + highlighterName );
+		highlighterAction->setCheckable(true);
+	}
+	//encodingActionGroup->actions().first()->setChecked(true);
+	highlighterMenu = new QMenu( tr("Set Syntax Highlighter") );
+	highlighterMenu->addActions( highlighterActionGroup->actions() );
+    menuSettings->insertMenu(uiGuiIndenterParameterTooltipsEnabled, highlighterMenu );
+
+	connect( highlighterActionGroup, SIGNAL(triggered(QAction*)), this, SLOT(highlighterChanged(QAction*)) );
+}
+
+
+/*!
+    This slot handles signals coming from selecting another syntax highlighter.
+ */
+void MainWindow::highlighterChanged(QAction* highlighterAction) {
+	QString highlighterName = highlighterAction->text();
+    highlighter->setLexerByName( highlighterName );
+    //TODO: This is really no nice way. How do it better?
+    // Need to do this "text update" to update the syntax highlighting. Otherwise highlighting is wrong.
+    previewToggled = true;
+    updateSourceView();
 }
 
 

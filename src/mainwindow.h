@@ -81,6 +81,7 @@ private:
     QString savedSourceContent;
     QActionGroup *languageActionGroup;
     QActionGroup *encodingActionGroup;
+    QActionGroup *highlighterActionGroup;
     QTranslator *translator;
     QMenu *languageMenu;
     QMenu *encodingMenu;
@@ -103,6 +104,7 @@ private:
     bool maybeSave();
     void createLanguageMenu();
     void createEncodingMenu();
+    void createHighlighterMenu();
     bool initApplicationLanguage();
     void initMainWindow();
     void initToolBar();
@@ -135,6 +137,7 @@ private slots:
     void languageChanged(QAction *languageAction);
 	void languageChanged(int languageIndex);
     void encodingChanged(QAction *encodingAction);
+    void highlighterChanged(QAction* highlighterAction);
 	void numberOfLinesChanged();
 };
 

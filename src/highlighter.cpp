@@ -103,6 +103,14 @@ void Highlighter::createHighlighterMenu() {
 
 
 /*!
+    Returns the available highlighters as QStringList.
+ */
+QStringList Highlighter::getAvailableHighlighters() {
+    return mapHighlighternameToExtension.keys();
+}
+
+
+/*!
     Returns the menu for selecting the highlighter.
  */
 QMenu *Highlighter::getHighlighterMenu() {
@@ -116,8 +124,11 @@ QMenu *Highlighter::getHighlighterMenu() {
 void Highlighter::highlighterChanged(QAction* highlighterAction) {
 	QString highlighterName = highlighterAction->text();
     setLexerForExtension( mapHighlighternameToExtension[highlighterName].first() );
+    //TODO: This is really no nice way. How do it better?
     // Need to do this "text update" to update the syntax highlighting. Otherwise highlighting is wrong.
+    int scrollPos = parent->verticalScrollBar()->value();
     parent->setText( parent->text() );
+    parent->verticalScrollBar()->setValue(scrollPos);
 }
 
 
@@ -313,6 +324,11 @@ void Highlighter::setColor(const QColor &color, int style) {
 void Highlighter::setFont(const QFont &font, int style) {
     fontForStyles[style] = font;
     lexer->setFont( font, style );
+}
+
+
+void Highlighter::setLexerByName( QString lexerName ) {
+    setLexerForExtension( mapHighlighternameToExtension[lexerName].first() );
 }
 
 

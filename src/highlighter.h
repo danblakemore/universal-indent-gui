@@ -60,6 +60,7 @@ public:
 	void writeCurrentSettings(const char *prefix);
     void retranslate();
     QMenu* getHighlighterMenu();
+    QStringList getAvailableHighlighters();
 
 private:
     bool highlightningIsOn;
@@ -85,6 +86,8 @@ public slots:
 
 	//! Sets the lexer that is responsible for the given \a extension.
 	void setLexerForExtension( QString extension );
+
+    void setLexerByName( QString lexerName );
 
 	void highlighterChanged(QAction* highlighterAction);
 };
