@@ -40,23 +40,25 @@ RCC_DIR = $${DESTDIR}/tmp/qrc
 #message ( destdir is $${DESTDIR}. uic is $${UI_DIR}. moc is $${MOC_DIR})
 
 # Input
-HEADERS += src/highlighter.h \
+HEADERS += src/aboutdialog.h \
+           src/highlighter.h \
            src/indenthandler.h \
            src/mainwindow.h \
-           src/uiguisettingsdialog.h \
-           src/aboutdialog.h
+           src/uiguisettings.h \
+           src/uiguisettingsdialog.h
 
 FORMS += src/indentgui.ui \
          src/toolBarWidget.ui \
          src/UiGuiSettingsDialog.ui \
          src/aboutdialog.ui
 
-SOURCES += src/highlighter.cpp \
+SOURCES += src/aboutdialog.cpp \
+           src/highlighter.cpp \
            src/indenthandler.cpp \
            src/main.cpp \
            src/mainwindow.cpp \
-           src/uiguisettingsdialog.cpp \
-           src/aboutdialog.cpp
+           src/uiguisettings.cpp \
+           src/uiguisettingsdialog.cpp
 
 RESOURCES += resources/Icons.qrc
 RC_FILE    = resources/programicon.rc
