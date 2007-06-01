@@ -33,6 +33,7 @@ Highlighter::Highlighter(QsciScintilla *parent, QSettings *settings)
 : QObject(parent)
 {
     this->parent = parent;
+
     // If a settings file/object is given along with the constructor parameters, use it...
     if (settings) {
 	    this->settings = settings;
@@ -41,6 +42,7 @@ Highlighter::Highlighter(QsciScintilla *parent, QSettings *settings)
     else {
         this->settings = new QSettings("./data/highlighter.ini", QSettings::IniFormat, this);
     }
+
     highlightningIsOn = true;
 
     mapHighlighternameToExtension["Bash"] = QStringList() << "sh";
@@ -66,7 +68,12 @@ Highlighter::Highlighter(QsciScintilla *parent, QSettings *settings)
 
     createHighlighterMenu();
 
-	lexer = 0;
+    lexer = 0;
+
+    foreach(QStringList extensionList, mapHighlighternameToExtension.values() ) {
+        setLexerForExtension( extensionList.at(0) );
+    }
+
     // Set default highlighter to C++ highlighter.
     setLexerForExtension( "cpp" );
 }
@@ -137,6 +144,7 @@ void Highlighter::retranslate() {
 void Highlighter::turnHighlightOn() {
     highlightningIsOn = true;
 	parent->setLexer(lexer);
+    readCurrentSettings("");
 }
 
 /*!
@@ -431,5 +439,6 @@ void Highlighter::setLexerForExtension( QString extension ) {
     if ( highlightningIsOn ) {
 	    parent->setLexer(lexer);
     }
+
 	readCurrentSettings("");
 }
