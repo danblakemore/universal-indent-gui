@@ -605,6 +605,9 @@ void MainWindow::turnHighlightOnOff(bool turnOn) {
 }
 
 
+/*!
+    Added this slot to avoid multiple calls because of changed text.
+ */
 void MainWindow::sourceCodeChangedHelperSlot() {
 	QTimer::singleShot(0, this, SLOT(sourceCodeChangedSlot()));
 }
@@ -718,6 +721,10 @@ void MainWindow::sourceCodeChangedSlot() {
         txtedSourceCode->setModified( true );
         setWindowModified( txtedSourceCode->isModified() );
     }
+
+    // Could set cursor this way and use normal linear search in text instead of columns and rows.
+    //txtedSourceCode->SendScintilla(QsciScintillaBase::SCI_SETCURRENTPOS, 50);
+    //txtedSourceCode->SendScintilla(QsciScintillaBase::SCI_SETANCHOR, 50);
 }
 
 
