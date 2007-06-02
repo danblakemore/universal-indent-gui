@@ -71,8 +71,8 @@ void UiGuiSettingsDialog::initTranslationSelection() {
 		else if ( languageShort == "de" ) {
 			uiGuiLanguage->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("German") );
 		}
-		else if ( languageShort == "zh" ) {
-			uiGuiLanguage->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("Chinese") );
+		else if ( languageShort == "tw" ) {
+			uiGuiLanguage->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("Chinese (Taiwan)") );
 		}
 		else if ( languageShort == "ja" ) {
 			uiGuiLanguage->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("Japanese") );
@@ -187,8 +187,8 @@ void UiGuiSettingsDialog::changeEvent(QEvent *event) {
             else if ( languageShort == "de" ) {
                 uiGuiLanguage->setItemText( i, tr("German") );
             }
-            else if ( languageShort == "zh" ) {
-                uiGuiLanguage->setItemText( i, tr("Chinese") );
+            else if ( languageShort == "tw" ) {
+                uiGuiLanguage->setItemText( i, tr("Chinese (Taiwan)") );
             }
             else if ( languageShort == "ja" ) {
                 uiGuiLanguage->setItemText( i, tr("Japanese") );
