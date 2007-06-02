@@ -6,13 +6,13 @@
     <x>0</x>
     <y>0</y>
     <width>588</width>
-    <height>499</height>
+    <height>333</height>
    </rect>
   </property>
   <property name="sizePolicy" >
    <sizepolicy>
     <hsizetype>0</hsizetype>
-    <vsizetype>1</vsizetype>
+    <vsizetype>5</vsizetype>
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
@@ -20,13 +20,13 @@
   <property name="minimumSize" >
    <size>
     <width>588</width>
-    <height>499</height>
+    <height>333</height>
    </size>
   </property>
   <property name="maximumSize" >
    <size>
-    <width>588</width>
-    <height>16777215</height>
+    <width>16777215</width>
+    <height>333</height>
    </size>
   </property>
   <property name="windowTitle" >
@@ -154,43 +154,12 @@ p, li { white-space: pre-wrap; }
     </widget>
    </item>
    <item>
-    <spacer>
-     <property name="orientation" >
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" >
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item>
     <widget class="QLabel" name="label_2" >
      <property name="text" >
-      <string>License:</string>
+      <string>License: UniveralIndentGui is released under the GPL 2. For details read the included file LICENSE.GPL visit http://www.gnu.org/licenses/gpl.html</string>
      </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QTextEdit" name="textEdit" >
-     <property name="sizePolicy" >
-      <sizepolicy>
-       <hsizetype>7</hsizetype>
-       <vsizetype>7</vsizetype>
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="readOnly" >
+     <property name="wordWrap" >
       <bool>true</bool>
-     </property>
-     <property name="html" >
-      <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
-p, li { white-space: pre-wrap; }
-&lt;/style>&lt;/head>&lt;body style=" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;">
-&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Courier New'; font-size:8pt;">&lt;/p>&lt;/body>&lt;/html></string>
      </property>
     </widget>
    </item>
