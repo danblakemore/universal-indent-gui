@@ -23,20 +23,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.ui" line="159"/>
-        <source>License:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/aboutdialog.ui" line="177"/>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Courier New&apos;; font-size:8pt;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/aboutdialog.ui" line="208"/>
+        <location filename="../src/aboutdialog.ui" line="190"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
@@ -48,16 +35,21 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:12pt;&quot;&gt;Version %1 rev.%2, %3 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../src/aboutdialog.ui" line="159"/>
+        <source>License: UniveralIndentGui is released under the GPL 2. For details read the included file LICENSE.GPL visit http://www.gnu.org/licenses/gpl.html</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Highlighter</name>
     <message>
-        <location filename="../src/highlighter.cpp" line="108"/>
+        <location filename="../src/highlighter.cpp" line="145"/>
         <source>Set the syntax highlightning to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/highlighter.cpp" line="103"/>
+        <location filename="../src/highlighter.cpp" line="140"/>
         <source>Set Syntax Highlighter</source>
         <translation type="unfinished"></translation>
     </message>
@@ -85,7 +77,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished">ヘルプ</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="81"/>
+        <location filename="../src/indentgui.ui" line="379"/>
         <source>Settings</source>
         <translation type="unfinished">設定</translation>
     </message>
@@ -120,158 +112,178 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="182"/>
+        <location filename="../src/indentgui.ui" line="179"/>
         <source>Save Source File</source>
         <translation type="unfinished">ソースファイルを保存</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="185"/>
+        <location filename="../src/indentgui.ui" line="182"/>
         <source>Saves the currently shown source code to the last opened or saved source file.</source>
         <translation type="unfinished">現在開いているソースコードを最後に開いたファイルまたは保存したファイルに保存します。</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="188"/>
+        <location filename="../src/indentgui.ui" line="185"/>
         <source>Ctrl+S</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="199"/>
+        <location filename="../src/indentgui.ui" line="193"/>
         <source>Save Source File As</source>
         <translation type="unfinished">名前を付けてソースファイルを保存</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="202"/>
+        <location filename="../src/indentgui.ui" line="196"/>
         <source>Opens a file dialog to save the currently shown source code.</source>
         <translation type="unfinished">現在開いているソースコードを保存するためのダイアログを開きます。</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="210"/>
+        <location filename="../src/indentgui.ui" line="204"/>
         <source>Load Indenter Config File</source>
         <translation type="unfinished">インデントツールの設定ファイルを開く</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="213"/>
+        <location filename="../src/indentgui.ui" line="207"/>
         <source>Opens a file dialog to load the original config file of the indenter.</source>
         <translation type="unfinished">インデントツールの設定ファイルの読み込みダイアログを開きます。</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="216"/>
+        <location filename="../src/indentgui.ui" line="210"/>
         <source>Alt+O</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="227"/>
+        <location filename="../src/indentgui.ui" line="218"/>
         <source>Save Indenter Config File</source>
         <translation type="unfinished">インデントツールの設定ファイルを保存</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="230"/>
+        <location filename="../src/indentgui.ui" line="221"/>
         <source>Opens a dialog to save the current indenter configuration to a file.</source>
         <translation type="unfinished">現在のインデントツールの設定をファイルに保存するためのダイアログを開きます。</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="233"/>
+        <location filename="../src/indentgui.ui" line="224"/>
         <source>Alt+S</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="241"/>
+        <location filename="../src/indentgui.ui" line="232"/>
         <source>About UniversalIndentGUI</source>
         <translation type="unfinished">UniversalIndentGUI について</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="244"/>
+        <location filename="../src/indentgui.ui" line="235"/>
         <source>Shows info about UniversalIndentGUI.</source>
         <translation type="unfinished">UniversalIndentGUI についての情報を表示します。</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="252"/>
+        <location filename="../src/indentgui.ui" line="243"/>
         <source>Exit</source>
         <translation type="unfinished">終了</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="255"/>
+        <location filename="../src/indentgui.ui" line="246"/>
         <source>Quits the UniversalIndentGUI.</source>
         <translation type="unfinished">UniversalIndentGUI を終了します。</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="258"/>
+        <location filename="../src/indentgui.ui" line="249"/>
         <source>Ctrl+Q</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="266"/>
+        <location filename="../src/indentgui.ui" line="257"/>
         <source>PDF</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="269"/>
+        <location filename="../src/indentgui.ui" line="260"/>
         <source>Export the currently visible source code as PDF document</source>
         <translation type="unfinished">表示されているソースコードを PDF ファイルとして出力します。</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="280"/>
+        <location filename="../src/indentgui.ui" line="268"/>
         <source>HTML</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="283"/>
+        <location filename="../src/indentgui.ui" line="271"/>
         <source>Export the currently visible source code as HTML document</source>
         <translation type="unfinished">表示されているソースコードを HTML として出力します。</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="297"/>
+        <location filename="../src/indentgui.ui" line="285"/>
         <source>Parameter Tooltips</source>
         <translation type="unfinished">パラメータ ツールチップ</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="300"/>
+        <location filename="../src/indentgui.ui" line="288"/>
         <source>If checked, tool tips will show up if the mouse cursor remains over an indenter parameter for a while.</source>
         <translation type="unfinished">チェックすると、インデントツールのパラメータの上にしばらくマウスカーソルを置くとツールチップを表示するようにします。</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="311"/>
+        <location filename="../src/indentgui.ui" line="299"/>
         <source>Live Indent Preview</source>
         <translation type="unfinished">インデントの即時プレビュー</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="325"/>
-        <source>Syntax Highlight</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/indentgui.ui" line="336"/>
+        <location filename="../src/indentgui.ui" line="339"/>
         <source>White Space Visible</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="339"/>
+        <location filename="../src/indentgui.ui" line="342"/>
         <source>Set white space visible</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="342"/>
+        <location filename="../src/indentgui.ui" line="345"/>
         <source>Enables or disables diplaying of white space characters in the editor.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="353"/>
+        <location filename="../src/indentgui.ui" line="359"/>
         <source>Auto Open Last File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="356"/>
+        <location filename="../src/indentgui.ui" line="362"/>
         <source>Auto open last source file on startup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="359"/>
+        <location filename="../src/indentgui.ui" line="365"/>
         <source>If selected opens last source code file on startup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="364"/>
-        <source>ShowSettings</source>
+        <location filename="../src/indentgui.ui" line="302"/>
+        <source>Ctrl+L</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/indentgui.ui" line="322"/>
+        <source>Syntax Highlighting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/indentgui.ui" line="325"/>
+        <source>Enables or disables syntax highlighting for the source code.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/indentgui.ui" line="328"/>
+        <source>By enabling special key words of the source code are highlighted.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/indentgui.ui" line="382"/>
+        <source>Opens the settings dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/indentgui.ui" line="385"/>
+        <source>Opens the settings dialog, to set language etc.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -341,142 +353,295 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1136"/>
+        <location filename="../src/mainwindow.cpp" line="1137"/>
         <source>Error opening file</source>
         <translation type="unfinished">ファイルの読み込みエラーが発生しました</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1136"/>
+        <location filename="../src/mainwindow.cpp" line="1137"/>
         <source>Cannot read the file </source>
         <translation type="unfinished">次のファイルを開けませんでした。: </translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="252"/>
+        <location filename="../src/mainwindow.cpp" line="449"/>
         <source>Supported by indenter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="312"/>
+        <location filename="../src/mainwindow.cpp" line="509"/>
         <source>All files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="221"/>
+        <location filename="../src/mainwindow.cpp" line="418"/>
         <source>Choose source code file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="256"/>
+        <location filename="../src/mainwindow.cpp" line="453"/>
         <source>Save source code file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="315"/>
+        <location filename="../src/mainwindow.cpp" line="512"/>
         <source>Save indent config file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="334"/>
+        <location filename="../src/mainwindow.cpp" line="531"/>
         <source>Choose indenter config file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="621"/>
+        <location filename="../src/mainwindow.cpp" line="830"/>
         <source>PDF Document</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="650"/>
+        <location filename="../src/mainwindow.cpp" line="859"/>
         <source>Export source code file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="643"/>
+        <location filename="../src/mainwindow.cpp" line="852"/>
         <source>HTML Document</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="946"/>
+        <location filename="../src/mainwindow.cpp" line="992"/>
         <source>Modified code</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="948"/>
+        <location filename="../src/mainwindow.cpp" line="994"/>
         <source>The source code has been modified.
 Do you want to save your changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1055"/>
+        <location filename="../src/mainwindow.cpp" line="1237"/>
         <source>English</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1058"/>
+        <location filename="../src/mainwindow.cpp" line="1240"/>
         <source>German</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1067"/>
+        <location filename="../src/mainwindow.cpp" line="1249"/>
         <source>Unknown language mnemonic </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1070"/>
+        <location filename="../src/mainwindow.cpp" line="1252"/>
         <source> as user interface language.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1051"/>
+        <location filename="../src/mainwindow.cpp" line="1055"/>
         <source>Language</source>
         <translation type="unfinished">言語</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1120"/>
+        <location filename="../src/mainwindow.cpp" line="1257"/>
         <source>Reopen File with other Encoding</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1114"/>
+        <location filename="../src/mainwindow.cpp" line="1260"/>
         <source>Reopen the currently opened source code file by using the text encoding scheme </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="796"/>
+        <location filename="../src/mainwindow.cpp" line="305"/>
         <source>No indenter ini files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="796"/>
+        <location filename="../src/mainwindow.cpp" line="305"/>
         <source>There exists no indenter ini files in the directory &quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1064"/>
+        <location filename="../src/mainwindow.cpp" line="1246"/>
         <source>Japanese</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1061"/>
-        <source>Chinese</source>
+        <location filename="../src/mainwindow.cpp" line="1168"/>
+        <source>Set the syntax highlightning to </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1172"/>
+        <source>Set Syntax Highlighter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1243"/>
+        <source>Chinese (Taiwan)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SettingsDialog</name>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="16"/>
-        <source>Dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="28"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="35"/>
         <source>Common</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="35"/>
-        <source>Source Code Edit</source>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="16"/>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="91"/>
+        <source>Automatically open last file on startup</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="101"/>
+        <source>Enable Parameter Tooltips</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="149"/>
+        <source>Number of files in recently opened list.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="175"/>
+        <source>Editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="295"/>
+        <source>Highlighter settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="332"/>
+        <source>Set Font</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="342"/>
+        <source>Set Color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="73"/>
+        <source>Displays all available translations for UniversalIndentGui and lets you choose one.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="76"/>
+        <source>Application language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="88"/>
+        <source>If selected opens the source code file on startup that was opened last time.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="98"/>
+        <source>If checked, tool tips will show up if the mouse cursor remains over an indenter parameter for a while.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="146"/>
+        <source>Sets how many files should be remembered in the list of recently opened files.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="190"/>
+        <source>Enables or disables displaying of white space characters in the editor.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="193"/>
+        <source>Display white space character (tabs, spaces, etc.)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="216"/>
+        <source>Defines how many spaces should be displayed in the editor for one tab character.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="232"/>
+        <source>Sets width in single spaces used for tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="235"/>
+        <source>Defines how many spaces should be displayed in the editor for one tab.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="238"/>
+        <source>Displayed width of tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="264"/>
+        <source>Syntax Highlighting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="279"/>
+        <source>By enabling special key words of the source code are highlighted.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="282"/>
+        <source>Enable syntax highlighting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="292"/>
+        <source>Lets you make settings for all properties of the available syntax highlighters, like font and color.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="329"/>
+        <source>Set the font for the current selected highlighter property.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="339"/>
+        <source>Set the color for the current selected highlighter property.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>UiGuiSettingsDialog</name>
+    <message>
+        <location filename="../src/uiguisettingsdialog.cpp" line="185"/>
+        <source>English</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/uiguisettingsdialog.cpp" line="188"/>
+        <source>German</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/uiguisettingsdialog.cpp" line="194"/>
+        <source>Japanese</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/uiguisettingsdialog.cpp" line="197"/>
+        <source>Unknown language mnemonic </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/uiguisettingsdialog.cpp" line="191"/>
+        <source>Chinese (Taiwan)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -503,54 +668,49 @@ Do you want to save your changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/toolBarWidget.ui" line="45"/>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg 2; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;Turns the preview of the reformatted source code on and off.&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;In other words it switches between formatted and nonformatted code. (Strg+P)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/toolBarWidget.ui" line="48"/>
         <source>Live Indent Preview</source>
         <translation type="unfinished">インデントの即時プレビュー</translation>
     </message>
     <message>
-        <location filename="../src/toolBarWidget.ui" line="54"/>
-        <source>Ctrl+P</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/toolBarWidget.ui" line="61"/>
+        <location filename="../src/toolBarWidget.ui" line="58"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg 2; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;Enables and disables the highlightning of the source&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;code shown below. (Still needs some performance improvements) (Strg+H)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/toolBarWidget.ui" line="64"/>
+        <location filename="../src/toolBarWidget.ui" line="61"/>
         <source>Syntax Highlight</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/toolBarWidget.ui" line="70"/>
+        <location filename="../src/toolBarWidget.ui" line="67"/>
         <source>Ctrl+H</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/toolBarWidget.ui" line="93"/>
+        <location filename="../src/toolBarWidget.ui" line="90"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Shows info about UniversalIndentGUI&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/toolBarWidget.ui" line="96"/>
+        <location filename="../src/toolBarWidget.ui" line="93"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/toolBarWidget.ui" line="106"/>
+        <location filename="../src/toolBarWidget.ui" line="103"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Quits the UniversalIndentGUI&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/toolBarWidget.ui" line="109"/>
+        <location filename="../src/toolBarWidget.ui" line="106"/>
         <source>Exit</source>
         <translation type="unfinished">終了</translation>
+    </message>
+    <message>
+        <location filename="../src/toolBarWidget.ui" line="45"/>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg 2; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;Turns the preview of the reformatted source code on and off.&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;In other words it switches between formatted and nonformatted code. (Ctrl+L)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
