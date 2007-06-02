@@ -252,6 +252,11 @@ bool MainWindow::initApplicationLanguage() {
         languageShort = QLocale::system().name();
         languageShort.truncate(2);
 
+		// In case of Chinese language choose the country code to differ more specific whether traditional or simplified Chinese.
+		if ( languageShort == "zh" ) {
+			 languageShort = QLocale::system().name().right(2).toLower();
+		}
+
         // If no translation file for the systems local language exist, fall back to English.
         if ( settings->getAvailableTranslations().indexOf(languageShort) < 0 ) {
             languageShort = "en";
@@ -1025,8 +1030,8 @@ void MainWindow::createLanguageMenu() {
         else if ( languageShort == "de" ) {
             languageName = tr("German");
         }
-		else if ( languageShort == "zh" ) {
-			languageName = tr("Chinese");
+		else if ( languageShort == "tw" ) {
+			languageName = tr("Chinese (Taiwan)");
 		}
 		else if ( languageShort == "ja" ) {
 			languageName = tr("Japanese");
@@ -1234,8 +1239,8 @@ void MainWindow::changeEvent(QEvent *event) {
             else if ( languageShort == "de" ) {
                 languageName = tr("German");
             }
-            else if ( languageShort == "zh" ) {
-                languageName = tr("Chinese");
+            else if ( languageShort == "tw" ) {
+                languageName = tr("Chinese (Taiwan)");
             }
             else if ( languageShort == "ja" ) {
                 languageName = tr("Japanese");

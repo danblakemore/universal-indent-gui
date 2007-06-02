@@ -1,5 +1,5 @@
 lupdate src -ts .\translations\universalindent_de.ts
-lupdate src -ts .\translations\universalindent_zh.ts
+lupdate src -ts .\translations\universalindent_tw.ts
 lupdate src -ts .\translations\universalindent_ja.ts
 lupdate src -ts .\translations\universalindent.ts
 linguist .\translations\universalindent_de.ts

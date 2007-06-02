@@ -5,7 +5,7 @@ set PATH=%PATH%;D:\Programme\Informat\MinGW\bin;D:\Programme\Tools\7-Zip
 set PATH=%PATH%;%SystemRoot%\System32
 set QMAKESPEC=win32-g++
 lrelease .\translations\universalindent_de.ts -qm .\translations\universalindent_de.qm
-lrelease .\translations\universalindent_zh.ts -qm .\translations\universalindent_zh.qm
+lrelease .\translations\universalindent_tw.ts -qm .\translations\universalindent_tw.qm
 lrelease .\translations\universalindent_ja.ts -qm .\translations\universalindent_ja.qm
 qmake
 make release
@@ -50,6 +50,6 @@ copy .\translations\*.qm .\UniversalIndentGUI_win32\translations\
 copy .\doc\iniFileFormat.html .\UniversalIndentGUI_win32\doc\
 copy .\release\UniversalIndentGUI.exe .\UniversalIndentGUI_win32\
 cd UniversalIndentGUI_win32
-7z.exe a -tzip UniversalIndentGUI_0.5.1_Beta_win32.zip
+7z.exe a -tzip UniversalIndentGUI_0.5.2_Beta_win32.zip
 cd ..
 pause
