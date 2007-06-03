@@ -1,5 +1,6 @@
 @echo off
-set QTDIR=%QTDIR%_static
+rem set QTDIR=%QTDIR%_static
+set QTDIR=F:\Qt\qt.4.3.0_gpl_static
 set PATH=%QTDIR%\bin
 set PATH=%PATH%;D:\Programme\Informat\MinGW\bin;D:\Programme\Tools\7-Zip
 set PATH=%PATH%;%SystemRoot%\System32
