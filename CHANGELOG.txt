@@ -1,8 +1,24 @@
+2007-05-03 Version 0.6.0 Beta
+[add] Feature Request ID 1700557 : Added a settings dialog for handling more possible settings with better usabiltiy.
+[add] Feature Request ID 1700556 : Added option to load last file or not on startup.
+[add] Feature Request ID 1684011 : Added option to set the width used to display tabs (default is four spaces).
+[add] Feature Request ID 1651718 : Added multiple choices, for the indenter configuration, with for the user readable text. Before the text inside of the combo boxes for the indenter parameters was exactly the same text as the command line parameter of the indenter. Now with "ChoicesReadable" a list with the same length as "Choices" can be used to insert readable text into the combo box. If this list is not set, the content of "Choices" will be used.
+[add] Partly Japanese translation. Thanks to Nirvash.
+[add] The language selection show the countries flag in front of its name to identify the language faster.
+[add] Feature Request ID 1657253 : If now configuration ini file for any indenter can be found, a warning will be displayed.
+[change] Feature Request ID 1723228 : The default font for all syntax highlighters is now mono spaced, Courier.
+[change] Along with the settings dialog cleaned up the user interface. Moved some not that often needed settings away to the settings dialog.
+[change] The full text of the GPL in the about dialog did slow down the program startup and translation. Now only a hint and link to the GPL is given in the about dialog.
+[fix] Bug ID 1692511 : UniversalIndentGui crashed, if a by the syntax highlighter unsupported file extension was opened.
+[fix] Bug ID 1727538 : The setting for syntax highlighting was allways enabled on startup, even if disabled on closing.
+[fix] Bug ID 1729026 : The highlighting style was not correct when changed to another highlighter than the current. Only after toggling preview for example the style was correct.
+[fix] The editors column showing the line numbers did not adapt its width to the maximum line number.
+
 2007-03-19 Version 0.5.1 Beta
 [add] Supporting syntax highlightning for the programming language D.
 [change] The live typing and indenting feature was not adapted to QScintilla. Now works again (depending on the used indenter).
-[fix] Bug ID 1678783: Files other encoded than ascii were not displayed correctly. Now allways displaying files using UTF-8 encoding.
-[fix] Bug ID 1678783: The new syntax highlighter selection menu was not translated.
+[fix] Bug ID 1678783 : Files other encoded than ascii were not displayed correctly. Now allways displaying files using UTF-8 encoding.
+[fix] Bug ID 1678783 : The new syntax highlighter selection menu was not translated.
 [fix] When file was reloaded with other encoding the file was allways set to be modified even if it wasn't.
 
 2007-03-14 Version 0.5.0 Beta

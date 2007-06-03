@@ -1,7 +1,7 @@
 UniversalIndentGUI
 ==================
 
-This application is released under the GPL. Read the file "LICENSE.GPL" in the same directory as this readme for more information!
+This application is released under the GPL version 2. Read the file "LICENSE.GPL" in the same directory as this readme for more information or have a look at http://www.gnu.org/licenses/gpl.html!
 
 
 1. About UniversalIndentGUI

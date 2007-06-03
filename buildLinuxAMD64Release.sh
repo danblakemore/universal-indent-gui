@@ -1,7 +1,7 @@
 #!/bin/bash
-echo setting Qt path to /usr/local/Trolltech/Qt-4.2.2/bin
+echo setting Qt path to /usr/local/Trolltech/Qt-4.2.3/bin
 echo ----------------------------------------------------
-PATH=/usr/local/Trolltech/Qt-4.2.2/bin:$PATH
+PATH=/usr/local/Trolltech/Qt-4.2.3/bin:$PATH
 export PATH
 echo calling rm -r release/debug
 echo ---------------------------
@@ -59,6 +59,7 @@ cp ./data/uigui_greatcode.ini ./UniversalIndentGUI_linuxAMD64/data/
 cp ./data/uigui_phpCB.ini ./UniversalIndentGUI_linuxAMD64/data/
 cp ./data/uigui_gnuindent.ini ./UniversalIndentGUI_linuxAMD64/data/
 cp ./data/uigui_uncrustify.ini ./UniversalIndentGUI_linuxAMD64/data/
+cp ./data/highlighter.ini ./UniversalIndentGUI_linuxAMD64/data/
 cp ./data/example.cpp ./UniversalIndentGUI_linuxAMD64/data/
 cp ./translations/*.qm ./UniversalIndentGUI_linuxAMD64/translations/
 cp ./doc/iniFileFormat.html ./UniversalIndentGUI_linuxAMD64/doc/
@@ -66,6 +67,6 @@ cp ./release/UniversalIndentGUI ./UniversalIndentGUI_linuxAMD64/
 cd UniversalIndentGUI_linuxAMD64
 echo compressing UniversalIndentGUI_linuxAMD64
 echo ----------------------------------------
-tar czf UniversalIndentGUI_0.5.1_Beta_linuxAMD64.tgz *
+tar czf UniversalIndentGUI_0.6.0_Beta_linuxAMD64.tgz *
 cd ..
 read -p "press any key to continue"

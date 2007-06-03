@@ -33,9 +33,9 @@
  */
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     // set the program version, revision and date, which is shown in the main window title and in the about dialog.
-    version = "0.5.1 Beta";
-    revision = "300";
-    QDate buildDate(2007, 3, 21);
+    version = "0.6.0 Beta";
+    revision = "370";
+    QDate buildDate(2007, 6, 3);
     buildDateStr = buildDate.toString("d. MMMM yyyy");
 
     // Create the settings object, which loads all UiGui settings from a file.

@@ -41,6 +41,7 @@ copy .\data\uigui_gnuindent.ini .\UniversalIndentGUI_win32\data
 copy .\data\uigui_greatcode.ini .\UniversalIndentGUI_win32\data
 copy .\data\uigui_phpCB.ini .\UniversalIndentGUI_win32\data
 copy .\data\uigui_uncrustify.ini .\UniversalIndentGUI_win32\data
+copy .\data\highlighter.ini .\UniversalIndentGUI_win32\data
 copy .\data\example.cpp .\UniversalIndentGUI_win32\data
 copy .\CHANGELOG.txt .\UniversalIndentGUI_win32\
 copy .\LICENSE.GPL .\UniversalIndentGUI_win32\
@@ -50,6 +51,6 @@ copy .\translations\*.qm .\UniversalIndentGUI_win32\translations\
 copy .\doc\iniFileFormat.html .\UniversalIndentGUI_win32\doc\
 copy .\release\UniversalIndentGUI.exe .\UniversalIndentGUI_win32\
 cd UniversalIndentGUI_win32
-7z.exe a -tzip UniversalIndentGUI_0.5.2_Beta_win32.zip
+7z.exe a -tzip UniversalIndentGUI_0.6.0_Beta_win32.zip
 cd ..
 pause
