@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="zh_TW">
+<defaultcodec></defaultcodec>
 <context>
     <name>AboutDialog</name>
     <message>
@@ -94,7 +95,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/highlighter.cpp" line="145"/>
         <source>Set the syntax highlightning to </source>
-        <translation>將語法高亮度方式設為 </translation>
+        <translation>將語法高亮度設為 </translation>
     </message>
     <message>
         <location filename="../src/highlighter.cpp" line="140"/>
@@ -147,12 +148,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/indentgui.ui" line="271"/>
         <source>Export the currently visible source code as HTML document</source>
-        <translation>匯出目前看到的程式碼到 HTML 文件</translation>
+        <translation>匯出目前顯示的程式碼到 HTML 文件</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="260"/>
         <source>Export the currently visible source code as PDF document</source>
-        <translation>匯出目前看到的程式碼到 PDF 文件</translation>
+        <translation>匯出目前顯示的程式碼到 PDF 文件</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="51"/>
@@ -257,7 +258,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/indentgui.ui" line="182"/>
         <source>Saves the currently shown source code to the last opened or saved source file.</source>
-        <translation>儲存目前顯示的程式碼到最後開啟的或已儲存的檔案</translation>
+        <translation>儲存目前顯示的程式碼</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="379"/>
@@ -458,7 +459,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/mainwindow.cpp" line="1055"/>
         <source>Language</source>
-        <translation>語言</translation>
+        <translation>選擇語系</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="992"/>
@@ -493,7 +494,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/mainwindow.cpp" line="449"/>
         <source>Supported by indenter</source>
-        <translation>支援的重整工具 </translation>
+        <translation>重整工具支援的檔案類型</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="994"/>
@@ -505,7 +506,7 @@ Do you want to save your changes?</source>
     <message>
         <location filename="../src/mainwindow.cpp" line="1249"/>
         <source>Unknown language mnemonic </source>
-        <translation>將未知語言 </translation>
+        <translation>未知語言 </translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="1061"/>
@@ -528,24 +529,24 @@ Do you want to save your changes?</source>
         <translation>Japanese</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1238"/>
+        <location filename="../src/mainwindow.cpp" line="1193"/>
         <source>Chinese</source>
         <translation type="obsolete">Chinese</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1243"/>
+        <source>Chinese (Taiwan)</source>
+        <translation>Chinese (Taiwan)</translation>
+    </message>
+    <message>
         <location filename="../src/mainwindow.cpp" line="1168"/>
         <source>Set the syntax highlightning to </source>
-        <translation type="unfinished">將語法高亮度方式設為 </translation>
+        <translation>將語法高亮度方式設為 </translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="1172"/>
         <source>Set Syntax Highlighter</source>
-        <translation type="unfinished">選擇語法高亮度</translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="1243"/>
-        <source>Chinese (Taiwan)</source>
-        <translation type="unfinished"></translation>
+        <translation>選擇語法高亮度</translation>
     </message>
 </context>
 <context>
@@ -608,7 +609,7 @@ Do you want to save your changes?</source>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="76"/>
         <source>Application language</source>
-        <translation>語言</translation>
+        <translation>選擇語系</translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="88"/>
@@ -638,7 +639,7 @@ Do you want to save your changes?</source>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="216"/>
         <source>Defines how many spaces should be displayed in the editor for one tab character.</source>
-        <translation>設定 Tab 要用幾個空白取代</translation>
+        <translation>設定 Tab 要用幾個空白顯示</translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="232"/>
@@ -648,7 +649,7 @@ Do you want to save your changes?</source>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="235"/>
         <source>Defines how many spaces should be displayed in the editor for one tab.</source>
-        <translation>設定 Tab 要用幾個空白取代</translation>
+        <translation>設定 Tab 要用幾個空白顯示</translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="238"/>
@@ -711,12 +712,12 @@ Do you want to save your changes?</source>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="197"/>
         <source>Unknown language mnemonic </source>
-        <translation>將未知語言 </translation>
+        <translation>未知語言 </translation>
     </message>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="191"/>
         <source>Chinese (Taiwan)</source>
-        <translation type="unfinished"></translation>
+        <translation>Chinese (Taiwan)</translation>
     </message>
 </context>
 <context>
