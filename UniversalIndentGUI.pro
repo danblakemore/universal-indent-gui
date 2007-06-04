@@ -26,6 +26,26 @@ for(parameter, parameters) {
 QMAKE_LFLAGS = $${newFlags}
 #message(new flags:$${QMAKE_LFLAGS})
 
+parameters = $${QMAKE_LFLAGS_EXCEPTIONS_ON}
+newFlags =
+for(parameter, parameters) {
+    !contains(parameter, -mthreads) {
+        newFlags += $${parameter}
+    }
+}
+QMAKE_LFLAGS_EXCEPTIONS_ON = $${newFlags}
+
+parameters = $${QMAKE_CXXFLAGS_EXCEPTIONS_ON}
+newFlags =
+for(parameter, parameters) {
+    !contains(parameter, -mthreads) {
+        newFlags += $${parameter}
+    }
+}
+QMAKE_CXXFLAGS_EXCEPTIONS_ON = $${newFlags}
+
+
+
 CONFIG(debug, debug|release) {
     DESTDIR = ./debug
 } else {
