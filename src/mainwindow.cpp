@@ -143,6 +143,7 @@ void MainWindow::initMainWindow() {
     connect( actionExportHTML, SIGNAL(activated()), this, SLOT(exportToHTML()) );
     connect( actionLoad_Indenter_Config_File, SIGNAL(activated()), this, SLOT(openConfigFileDialog()) );
     connect( actionSave_Indenter_Config_File, SIGNAL(activated()), this, SLOT(saveasIndentCfgFileDialog()) );
+    connect( actionCreateShellScript, SIGNAL(activated()), this, SLOT(createIndenterCallShellScript()) );
 
     // Init of some variables.
     dataDirctoryStr = "./data/";
@@ -1266,4 +1267,36 @@ void MainWindow::changeEvent(QEvent *event) {
     else {
         QWidget::changeEvent(event);
     }
+}
+
+
+/*!
+    Lets the indenter create a shell script for calling the indenter out of any
+    other application and open a save dialog for saving the shell script.
+ */
+void MainWindow::createIndenterCallShellScript() {
+    QString indenterCallShellScript = indentHandler->generateCommandlineCall(currentSourceFileExtension);
+
+    QString shellScriptExtension;
+#if defined(Q_OS_WIN32)
+        shellScriptExtension = "bat";
+#else
+        shellScriptExtension = "sh";
+#endif
+
+    QString fileExtensions = tr("Shell Script")+" (*."+shellScriptExtension+");;"+tr("All files")+" (*.*)";
+
+    //QString openedSourceFileContent = openFileDialog( tr("Choose source code file"), "./", fileExtensions );
+    QString fileName = QFileDialog::getSaveFileName( this, tr("Save chell script"), "callIndenter."+shellScriptExtension, fileExtensions);
+
+    // Saving has been canceled if the filename is empty
+    if ( fileName.isEmpty() ) {
+        return;
+    }
+
+    QFile::remove(fileName);
+    QFile outSrcFile(fileName);
+    outSrcFile.open( QFile::ReadWrite | QFile::Text );
+    outSrcFile.write( indenterCallShellScript.toAscii() );
+    outSrcFile.close();
 }

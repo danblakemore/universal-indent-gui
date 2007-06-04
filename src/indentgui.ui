@@ -63,13 +63,6 @@
     <addaction name="menuExport" />
     <addaction name="actionExit" />
    </widget>
-   <widget class="QMenu" name="menuIndenter" >
-    <property name="title" >
-     <string>Indenter</string>
-    </property>
-    <addaction name="actionLoad_Indenter_Config_File" />
-    <addaction name="actionSave_Indenter_Config_File" />
-   </widget>
    <widget class="QMenu" name="menuHelp" >
     <property name="title" >
      <string>Help</string>
@@ -86,6 +79,14 @@
     <addaction name="uiGuiIndenterParameterTooltipsEnabled" />
     <addaction name="uiGuiLoadLastOpenedFileOnStartup" />
     <addaction name="actionShowSettings" />
+   </widget>
+   <widget class="QMenu" name="menuIndenter" >
+    <property name="title" >
+     <string>Indenter</string>
+    </property>
+    <addaction name="actionLoad_Indenter_Config_File" />
+    <addaction name="actionSave_Indenter_Config_File" />
+    <addaction name="actionCreateShellScript" />
    </widget>
    <addaction name="menuFile" />
    <addaction name="menuIndenter" />
@@ -383,6 +384,14 @@
    </property>
    <property name="statusTip" >
     <string>Opens the settings dialog, to set language etc.</string>
+   </property>
+  </action>
+  <action name="actionCreateShellScript" >
+   <property name="icon" >
+    <iconset resource="../resources/Icons.qrc" >:/mainWindow/shell.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Create Indenter Call Shell Script</string>
    </property>
   </action>
  </widget>

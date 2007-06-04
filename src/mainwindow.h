@@ -139,6 +139,7 @@ private slots:
     void encodingChanged(QAction *encodingAction);
     void highlighterChanged(QAction* highlighterAction);
 	void numberOfLinesChanged();
+    void createIndenterCallShellScript();
 };
 
 #endif // MAINWINDOW_H

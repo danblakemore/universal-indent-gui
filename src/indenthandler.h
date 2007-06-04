@@ -48,17 +48,12 @@ class IndentHandler : public QWidget
 public:
     IndentHandler(QString dataDirPathStr, int indenterID, QMainWindow *mainWindow = 0, QWidget *parent = 0);
 
-    //! Format source code with the currently selected indenter
+    QString generateCommandlineCall(QString inputFileExtension);
     QString callIndenter(QString sourceCode, QString inputFileExtension);
-
     void loadConfigFile(QString filePathName);
-
     QStringList getAvailableIndenters();
-
     QString getPossibleIndenterFileExtensions();
-
     QString getParameterString();
-
     QString getIndenterCfgFile();
 
 private:

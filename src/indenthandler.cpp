@@ -79,6 +79,100 @@ IndentHandler::IndentHandler(QString dataDirPathStr, int indenterID, QMainWindow
 
 
 /*!
+    Creates the content for a shell script that can be used as a external too call
+    to indent a as parameter defined file.
+ */
+QString IndentHandler::generateCommandlineCall(QString inputFileExtension) {
+
+	QString indentCallString;
+	QString parameterInputFile;
+	QString parameterOuputFile;
+	QString parameterParameterFile;
+    QString replaceInputFileCommand;
+
+    // Define the placeholder for variable either in batch or bash programming.
+#if defined(Q_OS_WIN32)
+    QString shellPlaceholder = "%1";
+#else
+    QString shellPlaceholder = "$1";
+#endif
+
+    // Generate the parameter string that will be save to the indenters config file.
+    QString parameterString = getParameterString();
+
+	if ( !configFilename.isEmpty() ) {
+		writeConfigFile( parameterString );
+	}
+
+    // Only add point to file extension if the string is not empty.
+    if ( !inputFileExtension.isEmpty() ) {
+        inputFileExtension = "." + inputFileExtension;
+    }
+
+    parameterInputFile = " " + inputFileParameter + "\"" + shellPlaceholder + "\"";
+
+    if ( outputFileParameter != "none" && outputFileParameter != "stdout" ) {
+        if ( outputFileName == inputFileName ) {
+            parameterOuputFile = " " + outputFileParameter + "\"" + shellPlaceholder + "\"";
+        }
+        else {
+            parameterOuputFile = " " + outputFileParameter + outputFileName + inputFileExtension;
+        }
+    }
+
+	// If the config file name is empty it is assumed that all parameters are sent via command line call
+	if ( configFilename.isEmpty() ) {
+		parameterParameterFile = " " + parameterString;
+	}
+	// Else if needed add the parameter to the indenter call string where the config file can be found.
+	else if (useCfgFileParameter != "none") {
+		parameterParameterFile = " " + useCfgFileParameter + "\"" + QFileInfo(dataDirctoryStr).absoluteFilePath() + "/" + configFilename + "\"";
+	}
+
+	// Assemble indenter call string for parameters according to the set order.
+	if ( parameterOrder == "ipo" ) {
+		indentCallString = parameterInputFile + parameterParameterFile + parameterOuputFile;
+	} 
+	else if ( parameterOrder == "pio" ) {
+		indentCallString = parameterParameterFile + parameterInputFile + parameterOuputFile;
+	}
+	else {
+		indentCallString = parameterInputFile + parameterOuputFile + parameterParameterFile;
+	}
+
+    // Generate the indenter call string either for win32 or other systems.
+#if defined(Q_OS_WIN32)
+    indentCallString = "\"" + QFileInfo(dataDirctoryStr).absoluteFilePath() + "/" + indenterFileName +".exe\""+ indentCallString;
+#else
+    indentCallString = "\"" + QFileInfo(dataDirctoryStr).absoluteFilePath() + "/" + indenterFileName + "\"" + indentCallString;
+#endif
+
+#if defined(Q_OS_LINUX)
+    // If no Linux binary exists to run the indenter, use wine to run the Windows exe and test if wine is installed.
+    if ( !QFile::exists(dataDirctoryStr + indenterFileName) ) {
+        indentCallString = "wine " + indentCallString;
+    }
+#endif
+
+    // If the indenter writes to stdout pipe the output into a file
+    if ( outputFileParameter == "stdout" ) {
+        indentCallString = indentCallString + " >" + outputFileName + inputFileExtension;
+    }
+
+    // If the output filename is not the same as the input filename copy the output over the input.
+    if ( outputFileName != inputFileName ) {
+#if defined(Q_OS_WIN32)
+        replaceInputFileCommand = "move /Y " + outputFileName + inputFileExtension + " \"" + shellPlaceholder + "\"\n";
+#else
+        replaceInputFileCommand = "mv " + outputFileName + inputFileExtension + " \"" + shellPlaceholder + "\"\n";
+#endif
+    }
+
+    return indentCallString + "\n" + replaceInputFileCommand;
+}
+
+
+/*!
    Format \a sourceCode by calling the indenter. The \a inputFileExtension has to be given as parameter
    so the called indenter can identify the programming language if needed.
  */
@@ -122,7 +216,7 @@ QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtensi
 	}
 	// if needed add the parameter to the indenter call string where the config file can be found
 	else if (useCfgFileParameter != "none") {
-		parameterParamterFile = " " + useCfgFileParameter + configFilename;
+		parameterParamterFile = " " + useCfgFileParameter + "\"" + QFileInfo(dataDirctoryStr).absoluteFilePath() + "/" + configFilename + "\"";
 	}
 
 	// Assemble indenter call string for parameters according to the set order.
@@ -154,9 +248,9 @@ QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtensi
 
     // generate the indenter call string either for win32 or other systems
 #if defined(Q_OS_WIN32)
-    indentCallString = dataDirctoryStr + indenterFileName +".exe"+ indentCallString;
+    indentCallString = "\"" + QFileInfo(dataDirctoryStr).absoluteFilePath() + "/" + indenterFileName +".exe\""+ indentCallString;
 #else
-    indentCallString = "./" + indenterFileName + indentCallString;
+    indentCallString = "\"" + QFileInfo(dataDirctoryStr).absoluteFilePath() + "/" + indenterFileName + "\"" + indentCallString;
 #endif
 
     // write the source code to the input file for the indenter
@@ -240,11 +334,12 @@ QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtensi
     }
 
 
+    // If the indenter results are written to stdout, read them from there.
 	if ( indentProcess.exitCode() == 0 && outputFileParameter == "stdout"  ) {
 		formattedSourceCode = processReturnString;
 	}
+    // Else read the output file generated by the indenter call.
 	else {
-		// read the output file generated by the indenter call
 		outSrcFile.setFileName(dataDirctoryStr + outputFileName + inputFileExtension);
 		outSrcFile.open(QFile::ReadOnly | QFile::Text);
 		QTextStream outSrcStrm(&outSrcFile);
@@ -253,7 +348,7 @@ QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtensi
 		outSrcFile.close();
 	}
 
-    // delete the temporary input and output files
+    // Delete the temporary input and output files.
     QFile::remove(dataDirctoryStr + outputFileName + inputFileExtension);
     QFile::remove(dataDirctoryStr + inputFileName + inputFileExtension);
 
