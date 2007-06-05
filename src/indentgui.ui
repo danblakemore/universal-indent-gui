@@ -393,6 +393,12 @@
    <property name="text" >
     <string>Create Indenter Call Shell Script</string>
    </property>
+   <property name="toolTip" >
+    <string>Create a shell script that calls the current selected indenter for formatting an as parameter given file with the current indent settings</string>
+   </property>
+   <property name="statusTip" >
+    <string>Create a shell script that calls the current selected indenter for formatting an as parameter given file with the current indent settings</string>
+   </property>
   </action>
  </widget>
  <resources>

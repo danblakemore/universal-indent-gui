@@ -55,8 +55,9 @@ signals:
     void windowPosition(QPoint value);
     void windowSize(QSize value);
     void fileEncoding(QString value);
+    void recentlyOpenedListSize(int value);
     void loadLastOpenedFileOnStartup(bool value);
-    void lastOpenedFile(QString value);
+    void lastOpenedFiles(QString value);
     void lastSelectedIndenterID(int value);
     void syntaxHighlightningEnabled(bool value);
     void whiteSpaceIsVisible(bool value);

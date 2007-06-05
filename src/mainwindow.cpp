@@ -877,12 +877,13 @@ void MainWindow::exportToHTML() {
     If the setting for opening the last file is disabled, the editor is empty on startup.
 */
 void MainWindow::loadLastOpenedFile() {
-    // Get setting for last opened source code file
+    // Get setting for last opened source code file.
 	loadLastSourceCodeFileOnStartup = settings->getValueByName("LoadLastOpenedFileOnStartup").toBool();
 
 	// Only load last source code file if set to do so
 	if ( loadLastSourceCodeFileOnStartup ) {
-		currentSourceFile = settings->getValueByName("LastOpenedFile").toString();
+        // From the list of last opened files get the first one.
+        currentSourceFile = settings->getValueByName("LastOpenedFiles").toString().split("|").first();
 
 		// If source file exist load it.
 		if ( QFile::exists(currentSourceFile) ) {
@@ -923,7 +924,7 @@ void MainWindow::loadLastOpenedFile() {
 void MainWindow::saveSettings() {
     QFileInfo fileInfo(currentSourceFile);
     if ( fileInfo.isFile() ) {
-        settings->setValueByName( "LastOpenedFile", currentSourceFile );
+        settings->setValueByName( "LastOpenedFiles", currentSourceFile );
     }
 	//settings->setValueByName( "LoadLastOpenedFileOnStartup", uiGuiLoadLastOpenedFileOnStartup->isChecked() );
     settings->setValueByName( "LastSelectedIndenterID", currentIndenterID );

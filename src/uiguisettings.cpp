@@ -142,8 +142,9 @@ void UiGuiSettings::emitSignalForSetting(QString settingName) {
     else if ( settingName == "WindowPosition" ) emit windowPosition( settings[settingName].toPoint() );
     else if ( settingName == "WindowSize" ) emit windowSize( settings[settingName].toSize() );
     else if ( settingName == "FileEncoding" ) emit fileEncoding( settings[settingName].toString() );
+    else if ( settingName == "RecentlyOpenedListSize" ) emit recentlyOpenedListSize( settings[settingName].toInt() );
     else if ( settingName == "LoadLastOpenedFileOnStartup" ) emit loadLastOpenedFileOnStartup( settings[settingName].toBool() );
-    else if ( settingName == "LastOpenedFile" ) emit lastOpenedFile( settings[settingName].toString() );
+    else if ( settingName == "LastOpenedFiles" ) emit lastOpenedFiles( settings[settingName].toString() );
     else if ( settingName == "LastSelectedIndenterID" ) emit lastSelectedIndenterID( settings[settingName].toInt() );
     else if ( settingName == "SyntaxHighlightningEnabled" ) emit syntaxHighlightningEnabled( settings[settingName].toBool() );
     else if ( settingName == "WhiteSpaceIsVisible" ) emit whiteSpaceIsVisible( settings[settingName].toBool() );
@@ -156,8 +157,9 @@ void UiGuiSettings::emitSignalForSetting(QString settingName) {
         emit windowPosition( settings["WindowPosition"].toPoint() );
         emit windowSize( settings["WindowSize"].toSize() );
         emit fileEncoding( settings["FileEncoding"].toString() );
+        emit recentlyOpenedListSize( settings["RecentlyOpenedListSize"].toInt() );
         emit loadLastOpenedFileOnStartup( settings["LoadLastOpenedFileOnStartup"].toBool() );
-        emit lastOpenedFile( settings["LastOpenedFile"].toString() );
+        emit lastOpenedFiles( settings["LastOpenedFiles"].toString() );
         emit lastSelectedIndenterID( settings["LastSelectedIndenterID"].toInt() );
         emit syntaxHighlightningEnabled( settings["SyntaxHighlightningEnabled"].toBool() );
         emit whiteSpaceIsVisible( settings["WhiteSpaceIsVisible"].toBool() );
@@ -206,11 +208,14 @@ bool UiGuiSettings::loadSettings() {
 	// Read last selected encoding for the opened source code file.
 	settings["FileEncoding"] = qsettings->value( "UniversalIndentGUI/encoding", "UTF-8" ).toString();
 
+    // Read maximum length of list for recently opened files.
+	settings["RecentlyOpenedListSize"] = qsettings->value("UniversalIndentGUI/recentlyOpenedListSize", 5).toInt();
+
 	// Read if last opened source code file should be loaded on startup.
 	settings["LoadLastOpenedFileOnStartup"] = qsettings->value("UniversalIndentGUI/loadLastSourceCodeFileOnStartup", true).toBool();
 
 	// Read last opened source code file from the settings file.
-	settings["LastOpenedFile"] = qsettings->value("UniversalIndentGUI/lastSourceCodeFile", settings["IndenterExecutableDir"].toString()+"example.cpp").toString();
+	settings["LastOpenedFiles"] = qsettings->value("UniversalIndentGUI/lastSourceCodeFile", settings["IndenterExecutableDir"].toString()+"example.cpp").toString();
 
 	// Read last selected indenter from the settings file.
 	int LastSelectedIndenterID = qsettings->value("UniversalIndentGUI/lastSelectedIndenter", 0).toInt();
@@ -243,7 +248,8 @@ bool UiGuiSettings::loadSettings() {
     Settings are for example last selected indenter, last loaded source code file and so on.
 */
 bool UiGuiSettings::saveSettings() {
-    qsettings->setValue( "UniversalIndentGUI/lastSourceCodeFile", settings["LastOpenedFile"] );
+	qsettings->setValue( "UniversalIndentGUI/recentlyOpenedListSize", settings["RecentlyOpenedListSize"] );
+    qsettings->setValue( "UniversalIndentGUI/lastSourceCodeFile", settings["LastOpenedFiles"] );
 	qsettings->setValue( "UniversalIndentGUI/loadLastSourceCodeFileOnStartup", settings["LoadLastOpenedFileOnStartup"] );
     qsettings->setValue( "UniversalIndentGUI/lastSelectedIndenter", settings["LastSelectedIndenterID"] );
     qsettings->setValue( "UniversalIndentGUI/indenterParameterTooltipsEnabled", settings["IndenterParameterTooltipsEnabled"] );

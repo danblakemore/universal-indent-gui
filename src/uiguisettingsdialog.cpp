@@ -36,7 +36,6 @@ UiGuiSettingsDialog::UiGuiSettingsDialog(QWidget* parent, UiGuiSettings* setting
 	setupUi(this);
 	//TODO: This has to be removed when the properties for the highlighters can be set.
 	groupBoxSyntaxHighlighterProperties->setToolTip( "(Will be implemented soon)" + groupBoxSyntaxHighlighterProperties->toolTip() );
-	uiGuiRecentlyOpenedListSize->setToolTip( "(Will be implemented soon)" + uiGuiRecentlyOpenedListSize->toolTip() );
 
     // Get all check boxes that are used for settings.
     checkBoxes = findChildren<QCheckBox*>( QRegExp("uiGui*") );
