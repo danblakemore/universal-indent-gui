@@ -78,7 +78,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     loadLastOpenedFile();
 
     updateSourceView();
-    txtedSourceCode->setModified(false);
 }
 
 
@@ -437,7 +436,7 @@ void MainWindow::openSourceFileDialog() {
 
         savedSourceContent = openedSourceFileContent;
         txtedSourceCode->setModified( false );
-        setWindowModified( txtedSourceCode->isModified() );
+        setWindowModified( false );
     }
 }
 
@@ -1224,6 +1223,7 @@ void MainWindow::changeEvent(QEvent *event) {
 
         // Translate the main window.
         retranslateUi(this);
+        updateWindowTitle();
 
         // Translate the toolbar.
         toolBarWidget->retranslateUi(toolBar);
