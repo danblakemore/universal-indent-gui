@@ -408,7 +408,7 @@ QString MainWindow::loadFile(QString filePath) {
     Calls the source file open dialog to load a source file for the formatting preview.
     If the file was successfully loaded the indenter will be called to generate the formatted source code.
  */
-void MainWindow::openSourceFileDialog() {
+void MainWindow::openSourceFileDialog(QString fileName) {
     // If the source code file is changed and the shown dialog for saving the file
     // is canceled, also stop opening another source file.
     if ( !maybeSave() ) {
@@ -419,7 +419,9 @@ void MainWindow::openSourceFileDialog() {
                              ");;"+tr("All files")+" (*.*)";
 
     //QString openedSourceFileContent = openFileDialog( tr("Choose source code file"), "./", fileExtensions );
-    QString fileName = QFileDialog::getOpenFileName( this, tr("Choose source code file"), currentSourceFile, fileExtensions);
+	if ( fileName.isEmpty() ) {
+		fileName = QFileDialog::getOpenFileName( this, tr("Choose source code file"), currentSourceFile, fileExtensions);
+	}
 
     if (fileName != "") {
         currentSourceFile = fileName;
@@ -1333,26 +1335,38 @@ void MainWindow::updateRecentlyOpenedList() {
         recentlyOpenedList.insert(0, currentSourceFile);
     }
 
-    // Trim the list to its in the settings allowed maximum size.
-    int recentlyOpenedListSize = settings->getValueByName("RecentlyOpenedListSize").toInt();
-    while ( recentlyOpenedList.size() > recentlyOpenedListSize ) {
-        recentlyOpenedList.takeLast();
-    }
-
-
     // Delete all old actions of the recently opened files menu.
     foreach ( recentlyOpenedAction, menuRecently_Opened_Files->actions() ) {
         menuRecently_Opened_Files->removeAction(recentlyOpenedAction);
         delete recentlyOpenedAction;
     }
 
-	// Loop for each filepath in the rectnly opened list.
-    foreach ( filePath, recentlyOpenedList ) {
+	// Get the maximum recently opened list size.
+	int recentlyOpenedListSize = settings->getValueByName("RecentlyOpenedListSize").toInt();
+
+	// Loop for each filepath in the recently opened list, remove non existing files and
+	// loop only as long as maximum allowed list entries are set.
+    for ( int i = 0; i < recentlyOpenedList.size() && i < recentlyOpenedListSize; ) {
+		filePath = recentlyOpenedList.at(i);
         QFileInfo fileInfo(filePath);
-        fileName = fileInfo.fileName();
-		recentlyOpenedAction = new QAction(fileName, menuRecently_Opened_Files);
-		recentlyOpenedAction->setStatusTip( tr("Open the file ") + fileName );
-        menuRecently_Opened_Files->addAction(recentlyOpenedAction);
+
+		// If the file exists, add it to the menu of recently opened files.
+		if ( fileInfo.exists() ) {
+			fileName = fileInfo.fileName();
+			recentlyOpenedAction = new QAction(fileName, menuRecently_Opened_Files);
+			recentlyOpenedAction->setStatusTip( tr("Open the file ") + fileName );
+			menuRecently_Opened_Files->addAction(recentlyOpenedAction);
+			i++;
+		}
+		// If the file does no longer exist, remove it from the list.
+		else {
+			recentlyOpenedList.takeAt(i);
+		}
+	}
+
+	// Trim the list to its in the settings allowed maximum size.
+	while ( recentlyOpenedList.size() > recentlyOpenedListSize ) {
+		recentlyOpenedList.takeLast();
 	}
 
     // Write the new recently opened list to the settings.
@@ -1369,4 +1383,15 @@ void MainWindow::openFileFromRecentlyOpenedList(QAction* recentlyOpenedAction) {
     int indexOfSelectedFile = menuRecently_Opened_Files->actions().indexOf( recentlyOpenedAction );
     QStringList recentlyOpenedList = settings->getValueByName("LastOpenedFiles").toString().split("|");
     QString filePath = recentlyOpenedList.at(indexOfSelectedFile);
+	QFileInfo fileInfo(filePath);
+
+	// If the file exists, open it.
+	if ( fileInfo.exists() ) {
+		openSourceFileDialog(filePath);
+	}
+	// If it does not exist, show a warning message and update the list of recently opened files.
+	else {
+		QMessageBox::warning(NULL, tr("File no longer exists"), tr("The file %1 in the list of recently opened files does no longer exist.") );
+		updateRecentlyOpenedList();
+	}
 }

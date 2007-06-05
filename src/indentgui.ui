@@ -86,7 +86,6 @@
      <property name="title" >
       <string>Recently Opened Files</string>
      </property>
-     <addaction name="actionDummyAction" />
     </widget>
     <addaction name="actionOpen_Source_File" />
     <addaction name="menuRecently_Opened_Files" />

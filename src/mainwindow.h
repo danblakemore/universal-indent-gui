@@ -119,7 +119,7 @@ protected:
 
 private slots:
     void openConfigFileDialog();
-    void openSourceFileDialog();
+    void openSourceFileDialog(QString fileName = "");
     bool saveasSourceFileDialog();
     bool saveSourceFile();
     void saveasIndentCfgFileDialog();
