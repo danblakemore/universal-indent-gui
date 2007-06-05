@@ -140,6 +140,8 @@ private slots:
     void highlighterChanged(QAction* highlighterAction);
 	void numberOfLinesChanged();
     void createIndenterCallShellScript();
+    void updateRecentlyOpenedList();
+    void openFileFromRecentlyOpenedList(QAction* recentlyOpenedAction);
 };
 
 #endif // MAINWINDOW_H

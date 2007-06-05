@@ -144,6 +144,10 @@ void MainWindow::initMainWindow() {
     connect( actionSave_Indenter_Config_File, SIGNAL(activated()), this, SLOT(saveasIndentCfgFileDialog()) );
     connect( actionCreateShellScript, SIGNAL(activated()), this, SLOT(createIndenterCallShellScript()) );
 
+    // Init the menue for selecting one of the recently opened files.
+    updateRecentlyOpenedList();
+    connect( menuRecently_Opened_Files, SIGNAL(triggered(QAction*)), this, SLOT(openFileFromRecentlyOpenedList(QAction*)) );
+
     // Init of some variables.
     dataDirctoryStr = "./data/";
     sourceCodeChanged = false;
@@ -431,6 +435,7 @@ void MainWindow::openSourceFileDialog() {
         previewToggled = true;
         updateSourceView();
         updateWindowTitle();
+        updateRecentlyOpenedList();
         textEditLastScrollPos = 0;
         textEditVScrollBar->setValue( textEditLastScrollPos );
 
@@ -921,10 +926,10 @@ void MainWindow::loadLastOpenedFile() {
     Settings are for example last selected indenter, last loaded config file and so on.
 */
 void MainWindow::saveSettings() {
-    QFileInfo fileInfo(currentSourceFile);
-    if ( fileInfo.isFile() ) {
-        settings->setValueByName( "LastOpenedFiles", currentSourceFile );
-    }
+    //QFileInfo fileInfo(currentSourceFile);
+    //if ( fileInfo.isFile() ) {
+    //    settings->setValueByName( "LastOpenedFiles", currentSourceFile );
+    //}
 	//settings->setValueByName( "LoadLastOpenedFileOnStartup", uiGuiLoadLastOpenedFileOnStartup->isChecked() );
     settings->setValueByName( "LastSelectedIndenterID", currentIndenterID );
     //settings->setValueByName( "IndenterParameterTooltipsEnabled", uiGuiIndenterParameterTooltipsEnabled->isChecked() );
@@ -1300,4 +1305,68 @@ void MainWindow::createIndenterCallShellScript() {
     outSrcFile.open( QFile::ReadWrite | QFile::Text );
     outSrcFile.write( indenterCallShellScript.toAscii() );
     outSrcFile.close();
+}
+
+
+/*!
+    Updates the list of recently opened files. Therefore the currently open file
+    is set at the lists first position regarding the in the settings set maximum
+    list length. Overheads of the list will be cut off. The new list will be
+    updated to the settings and the recently opened menu will be updated too.
+ */
+void MainWindow::updateRecentlyOpenedList() {
+
+    QAction *recentlyOpenedAction;
+	QString fileName;
+    QString filePath;
+    QStringList recentlyOpenedList = settings->getValueByName("LastOpenedFiles").toString().split("|");
+
+    // Check if the currently open file is in the list of recently opened.
+    int indexOfCurrentFile = recentlyOpenedList.indexOf( currentSourceFile );
+
+    // If it is in the list of recently opened files and not at the first position, remove it from there.
+    if ( indexOfCurrentFile > 0 ) {
+        recentlyOpenedList.move(indexOfCurrentFile, 0);
+    }
+    // Put the current file at the first position if it is not empty.
+    else if ( !currentSourceFile.isEmpty() ) {
+        recentlyOpenedList.insert(0, currentSourceFile);
+    }
+
+    // Trim the list to its in the settings allowed maximum size.
+    int recentlyOpenedListSize = settings->getValueByName("RecentlyOpenedListSize").toInt();
+    while ( recentlyOpenedList.size() > recentlyOpenedListSize ) {
+        recentlyOpenedList.takeLast();
+    }
+
+
+    // Delete all old actions of the recently opened files menu.
+    foreach ( recentlyOpenedAction, menuRecently_Opened_Files->actions() ) {
+        menuRecently_Opened_Files->removeAction(recentlyOpenedAction);
+        delete recentlyOpenedAction;
+    }
+
+	// Loop for each filepath in the rectnly opened list.
+    foreach ( filePath, recentlyOpenedList ) {
+        QFileInfo fileInfo(filePath);
+        fileName = fileInfo.fileName();
+		recentlyOpenedAction = new QAction(fileName, menuRecently_Opened_Files);
+		recentlyOpenedAction->setStatusTip( tr("Open the file ") + fileName );
+        menuRecently_Opened_Files->addAction(recentlyOpenedAction);
+	}
+
+    // Write the new recently opened list to the settings.
+    settings->setValueByName( "LastOpenedFiles", recentlyOpenedList.join("|") );
+}
+
+
+/*!
+    This slot is called if an entry from the list of recently opened files is
+    being selected.
+ */
+void MainWindow::openFileFromRecentlyOpenedList(QAction* recentlyOpenedAction) {
+    QString fileName = recentlyOpenedAction->text();
+    int indexOfSelectedFile = menuRecently_Opened_Files->actions().indexOf( recentlyOpenedAction );
+    QStringList recentlyOpenedList = settings->getValueByName("LastOpenedFiles").toString().split("|");
+    QString filePath = recentlyOpenedList.at(indexOfSelectedFile);
 }

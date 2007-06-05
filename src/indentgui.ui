@@ -46,23 +46,6 @@
      <height>21</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuFile" >
-    <property name="title" >
-     <string>File</string>
-    </property>
-    <widget class="QMenu" name="menuExport" >
-     <property name="title" >
-      <string>Export</string>
-     </property>
-     <addaction name="actionExportPDF" />
-     <addaction name="actionExportHTML" />
-    </widget>
-    <addaction name="actionOpen_Source_File" />
-    <addaction name="actionSave_Source_File" />
-    <addaction name="actionSave_Source_File_As" />
-    <addaction name="menuExport" />
-    <addaction name="actionExit" />
-   </widget>
    <widget class="QMenu" name="menuHelp" >
     <property name="title" >
      <string>Help</string>
@@ -87,6 +70,32 @@
     <addaction name="actionLoad_Indenter_Config_File" />
     <addaction name="actionSave_Indenter_Config_File" />
     <addaction name="actionCreateShellScript" />
+   </widget>
+   <widget class="QMenu" name="menuFile" >
+    <property name="title" >
+     <string>File</string>
+    </property>
+    <widget class="QMenu" name="menuExport" >
+     <property name="title" >
+      <string>Export</string>
+     </property>
+     <addaction name="actionExportPDF" />
+     <addaction name="actionExportHTML" />
+    </widget>
+    <widget class="QMenu" name="menuRecently_Opened_Files" >
+     <property name="title" >
+      <string>Recently Opened Files</string>
+     </property>
+     <addaction name="actionDummyAction" />
+    </widget>
+    <addaction name="actionOpen_Source_File" />
+    <addaction name="menuRecently_Opened_Files" />
+    <addaction name="separator" />
+    <addaction name="actionSave_Source_File" />
+    <addaction name="actionSave_Source_File_As" />
+    <addaction name="separator" />
+    <addaction name="menuExport" />
+    <addaction name="actionExit" />
    </widget>
    <addaction name="menuFile" />
    <addaction name="menuIndenter" />
@@ -398,6 +407,11 @@
    </property>
    <property name="statusTip" >
     <string>Create a shell script that calls the current selected indenter for formatting an as parameter given file with the current indent settings</string>
+   </property>
+  </action>
+  <action name="actionDummyAction" >
+   <property name="text" >
+    <string>dummyAction</string>
    </property>
   </action>
  </widget>
