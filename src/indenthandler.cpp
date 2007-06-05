@@ -126,7 +126,11 @@ QString IndentHandler::generateCommandlineCall(QString inputFileExtension) {
 	}
 	// Else if needed add the parameter to the indenter call string where the config file can be found.
 	else if (useCfgFileParameter != "none") {
+#if defined(Q_OS_WIN32)
 		parameterParameterFile = " " + useCfgFileParameter + "\"" + QFileInfo(dataDirctoryStr).absoluteFilePath() + "/" + configFilename + "\"";
+#else
+        parameterParameterFile = " " + useCfgFileParameter + "\"" + QFileInfo(dataDirctoryStr).absoluteFilePath() + configFilename + "\"";
+#endif
 	}
 
 	// Assemble indenter call string for parameters according to the set order.
@@ -144,10 +148,10 @@ QString IndentHandler::generateCommandlineCall(QString inputFileExtension) {
 #if defined(Q_OS_WIN32)
     indentCallString = "\"" + QFileInfo(dataDirctoryStr).absoluteFilePath() + "/" + indenterFileName +".exe\""+ indentCallString;
 #else
-    indentCallString = "\"" + QFileInfo(dataDirctoryStr).absoluteFilePath() + "/" + indenterFileName + "\"" + indentCallString;
+    indentCallString = "#!/bin/bash\n\"" + QFileInfo(dataDirctoryStr).absoluteFilePath() + indenterFileName + "\"" + indentCallString;
 #endif
 
-#if defined(Q_OS_LINUX)
+#ifndef Q_OS_WIN32
     // If no Linux binary exists to run the indenter, use wine to run the Windows exe and test if wine is installed.
     if ( !QFile::exists(dataDirctoryStr + indenterFileName) ) {
         indentCallString = "wine " + indentCallString;
@@ -246,7 +250,7 @@ QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtensi
         return sourceCode;
     }
 
-    // generate the indenter call string either for win32 or other systems
+    // Generate the indenter call string either for win32 or other systems.
 #if defined(Q_OS_WIN32)
     indentCallString = "\"" + QFileInfo(dataDirctoryStr).absoluteFilePath() + "/" + indenterFileName +".exe\""+ indentCallString;
 #else
@@ -261,7 +265,7 @@ QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtensi
     // errors and standard outputs from the process call are merged together
     indentProcess.setReadChannelMode(QProcess::MergedChannels);
 
-#if defined(Q_OS_LINUX)
+#ifndef Q_OS_WIN32
     // if no linux binary exists to run the indenter, use wine to run the windows exe and test if wine is installed
     if ( !QFile::exists(dataDirctoryStr + indenterFileName) ) {
         QProcess wineTestProcess;
