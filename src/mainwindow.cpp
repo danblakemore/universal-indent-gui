@@ -1322,23 +1322,25 @@ void MainWindow::updateRecentlyOpenedList() {
 	QString fileName;
     QString filePath;
     QStringList recentlyOpenedList = settings->getValueByName("LastOpenedFiles").toString().split("|");
+    QList<QAction*> recentlyOpenedActionList = menuRecently_Opened_Files->actions();
+
+    // Clear the recently opened menu without deleting the actions.
+    foreach( recentlyOpenedAction, recentlyOpenedActionList) {
+        menuRecently_Opened_Files->removeAction(recentlyOpenedAction);
+    }
 
     // Check if the currently open file is in the list of recently opened.
     int indexOfCurrentFile = recentlyOpenedList.indexOf( currentSourceFile );
 
-    // If it is in the list of recently opened files and not at the first position, remove it from there.
+    // If it is in the list of recently opened files and not at the first position, move it to the first pos.
     if ( indexOfCurrentFile > 0 ) {
         recentlyOpenedList.move(indexOfCurrentFile, 0);
+        recentlyOpenedActionList.move(indexOfCurrentFile, 0);
     }
-    // Put the current file at the first position if it is not empty.
-    else if ( !currentSourceFile.isEmpty() ) {
+    // Put the current file at the first position if it not already is and is not empty.
+    else if ( indexOfCurrentFile == -1 && !currentSourceFile.isEmpty() ) {
         recentlyOpenedList.insert(0, currentSourceFile);
-    }
-
-    // Delete all old actions of the recently opened files menu.
-    foreach ( recentlyOpenedAction, menuRecently_Opened_Files->actions() ) {
-        menuRecently_Opened_Files->removeAction(recentlyOpenedAction);
-        delete recentlyOpenedAction;
+        recentlyOpenedActionList.insert(0, new QAction(QFileInfo(currentSourceFile).fileName(), menuRecently_Opened_Files) );
     }
 
 	// Get the maximum recently opened list size.
@@ -1350,24 +1352,30 @@ void MainWindow::updateRecentlyOpenedList() {
 		filePath = recentlyOpenedList.at(i);
         QFileInfo fileInfo(filePath);
 
-		// If the file exists, add it to the menu of recently opened files.
-		if ( fileInfo.exists() ) {
-			fileName = fileInfo.fileName();
-			recentlyOpenedAction = new QAction(fileName, menuRecently_Opened_Files);
-			recentlyOpenedAction->setStatusTip( tr("Open the file ") + fileName );
-			menuRecently_Opened_Files->addAction(recentlyOpenedAction);
-			i++;
-		}
 		// If the file does no longer exist, remove it from the list.
-		else {
+		if ( !fileInfo.exists() ) {
 			recentlyOpenedList.takeAt(i);
+            QAction* action = recentlyOpenedActionList.takeAt(i);
+            delete action;
 		}
+        // else if its not already in the menu, add it to the menu.
+        else {
+            if ( i >= recentlyOpenedActionList.size() ) {
+                recentlyOpenedActionList.append( new QAction(fileInfo.fileName(), menuRecently_Opened_Files) );
+            }
+            i++;
+        }
 	}
 
 	// Trim the list to its in the settings allowed maximum size.
 	while ( recentlyOpenedList.size() > recentlyOpenedListSize ) {
 		recentlyOpenedList.takeLast();
+        QAction* action = recentlyOpenedActionList.takeLast();
+        delete action;
 	}
+
+    // Add all actions to the menu.
+    menuRecently_Opened_Files->addActions(recentlyOpenedActionList);
 
     // Write the new recently opened list to the settings.
     settings->setValueByName( "LastOpenedFiles", recentlyOpenedList.join("|") );
@@ -1392,6 +1400,10 @@ void MainWindow::openFileFromRecentlyOpenedList(QAction* recentlyOpenedAction) {
 	// If it does not exist, show a warning message and update the list of recently opened files.
 	else {
 		QMessageBox::warning(NULL, tr("File no longer exists"), tr("The file %1 in the list of recently opened files does no longer exist.") );
-		updateRecentlyOpenedList();
+        // The function updateRecentlyOpenedList() has to be called via a singleShot so it is executed after this
+        // function (openFileFromRecentlyOpenedList) has already been left. This has to be done because
+        // a Qt3Support function tries to emit a signal based on the existing actions and deleting
+        // any of these actions in updateRecentlyOpenedList() causes an error.
+		QTimer::singleShot(0, this, SLOT(updateRecentlyOpenedList()) );
 	}
 }
