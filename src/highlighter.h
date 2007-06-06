@@ -79,7 +79,7 @@ public slots:
     void setFont(const QFont &font, int style = -1);
 
 	//! Sets the lexer that is responsible for the given \a extension.
-	void setLexerForExtension( QString extension );
+	int setLexerForExtension( QString extension );
 
     void setLexerByName( QString lexerName );
 

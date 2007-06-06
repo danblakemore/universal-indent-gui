@@ -399,7 +399,8 @@ QString MainWindow::loadFile(QString filePath) {
 
 		QFileInfo fileInfo(filePath);
 		currentSourceFileExtension = fileInfo.suffix();
-		highlighter->setLexerForExtension( currentSourceFileExtension );
+		int indexOfHighlighter = highlighter->setLexerForExtension( currentSourceFileExtension );
+        highlighterActionGroup->actions().at(indexOfHighlighter)->setChecked(true);
     }
     return fileContent;
 }

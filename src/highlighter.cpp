@@ -282,7 +282,10 @@ void Highlighter::setLexerByName( QString lexerName ) {
 }
 
 
-void Highlighter::setLexerForExtension( QString extension ) {
+/*!
+    Sets the proper highlighter / lexer for the given file \a extension. Returns the index of the used lexer in the list.
+ */
+int Highlighter::setLexerForExtension( QString extension ) {
     int indexOfHighlighter = 0;
 	extension = extension.toLower();
 
@@ -385,4 +388,6 @@ void Highlighter::setLexerForExtension( QString extension ) {
     }
 
 	readCurrentSettings("");
+
+    return indexOfHighlighter;
 }
