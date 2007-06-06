@@ -140,6 +140,9 @@ QString IndentHandler::generateCommandlineCall(QString inputFileExtension) {
 	else if ( parameterOrder == "pio" ) {
 		indentCallString = parameterParameterFile + parameterInputFile + parameterOuputFile;
 	}
+    else if ( parameterOrder == "poi" ) {
+		indentCallString = parameterParameterFile + parameterOuputFile + parameterInputFile;
+	}
 	else {
 		indentCallString = parameterInputFile + parameterOuputFile + parameterParameterFile;
 	}
@@ -190,7 +193,7 @@ QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtensi
 	QString indentCallString;
 	QString parameterInputFile;
 	QString parameterOuputFile;
-	QString parameterParamterFile;
+	QString parameterParameterFile;
 	QProcess indentProcess;
 	QString processReturnString;
 	bool indenterExecutableExists = false;
@@ -216,22 +219,25 @@ QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtensi
 
 	// If the config file name is empty it is assumed that all parameters are sent via command line call
 	if ( configFilename.isEmpty() ) {
-		parameterParamterFile = " " + parameterString;
+		parameterParameterFile = " " + parameterString;
 	}
 	// if needed add the parameter to the indenter call string where the config file can be found
 	else if (useCfgFileParameter != "none") {
-		parameterParamterFile = " " + useCfgFileParameter + "\"" + QFileInfo(dataDirctoryStr).absoluteFilePath() + "/" + configFilename + "\"";
+		parameterParameterFile = " " + useCfgFileParameter + "\"" + QFileInfo(dataDirctoryStr).absoluteFilePath() + "/" + configFilename + "\"";
 	}
 
 	// Assemble indenter call string for parameters according to the set order.
 	if ( parameterOrder == "ipo" ) {
-		indentCallString = parameterInputFile + parameterParamterFile + parameterOuputFile;
+		indentCallString = parameterInputFile + parameterParameterFile + parameterOuputFile;
 	} 
 	else if ( parameterOrder == "pio" ) {
-		indentCallString = parameterParamterFile + parameterInputFile + parameterOuputFile;
+		indentCallString = parameterParameterFile + parameterInputFile + parameterOuputFile;
+	}
+    else if ( parameterOrder == "poi" ) {
+		indentCallString = parameterParameterFile + parameterOuputFile + parameterInputFile;
 	}
 	else {
-		indentCallString = parameterInputFile + parameterOuputFile + parameterParamterFile;
+		indentCallString = parameterInputFile + parameterOuputFile + parameterParameterFile;
 	}
 
     // Test if the indenter executable exists. If not show a dialog box once and return
