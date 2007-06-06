@@ -64,7 +64,6 @@ private:
     QString revision;
     QString buildDateStr;
 	QString dataDirctoryStr;
-    //QString language;
 	QString currentEncoding;
     QString sourceFileContent;
     QString sourceFormattedContent;
@@ -79,12 +78,9 @@ private:
     QString currentSourceFile;
     QString currentSourceFileExtension;
     QString savedSourceContent;
-    QActionGroup *languageActionGroup;
     QActionGroup *encodingActionGroup;
     QActionGroup *highlighterActionGroup;
     QTranslator *translator;
-    QMenu *languageMenu;
-    QMenu *encodingMenu;
     bool isFirstRunOfThisVersion;
 
     bool sourceCodeChanged;
@@ -102,7 +98,6 @@ private:
     void loadLastOpenedFile();
     void saveSettings();
     bool maybeSave();
-    void createLanguageMenu();
     void createEncodingMenu();
     void createHighlighterMenu();
     bool initApplicationLanguage();
@@ -134,7 +129,6 @@ private slots:
     void previewTurnedOnOff(bool turnOn);
     void exportToPDF();
     void exportToHTML();
-    void languageChanged(QAction *languageAction);
 	void languageChanged(int languageIndex);
     void encodingChanged(QAction *encodingAction);
     void highlighterChanged(QAction* highlighterAction);

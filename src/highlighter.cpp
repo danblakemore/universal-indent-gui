@@ -66,8 +66,6 @@ Highlighter::Highlighter(QsciScintilla *parent, QSettings *settings)
     mapHighlighternameToExtension["SQL"] = QStringList() << "sql";
     mapHighlighternameToExtension["TeX"] = QStringList() << "tex";
 
-    createHighlighterMenu();
-
     lexer = 0;
 
     foreach(QStringList extensionList, mapHighlighternameToExtension.values() ) {
@@ -80,41 +78,10 @@ Highlighter::Highlighter(QsciScintilla *parent, QSettings *settings)
 
 
 /*!
-	Creates a menu entry under the settings menu for all available text encodings.
-*/
-void Highlighter::createHighlighterMenu() {
-	QAction *highlighterAction;
-	QString highlighterName;
-
-	highlighterActionGroup = new QActionGroup(this);
-
-	// Loop for each known highlighter
-	foreach ( highlighterName, mapHighlighternameToExtension.keys() ) {
-		highlighterAction = new QAction(highlighterName, highlighterActionGroup);
-		highlighterAction->setStatusTip( tr("Set the syntax highlightning to ") + highlighterName );
-		highlighterAction->setCheckable(true);
-	}
-	//encodingActionGroup->actions().first()->setChecked(true);
-	highlighterMenu = new QMenu( tr("Set Syntax Highlighter") );
-	highlighterMenu->addActions( highlighterActionGroup->actions() );
-
-	connect( highlighterActionGroup, SIGNAL(triggered(QAction*)), this, SLOT(highlighterChanged(QAction*)) );
-}
-
-
-/*!
     Returns the available highlighters as QStringList.
  */
 QStringList Highlighter::getAvailableHighlighters() {
     return mapHighlighternameToExtension.keys();
-}
-
-
-/*!
-    Returns the menu for selecting the highlighter.
- */
-QMenu *Highlighter::getHighlighterMenu() {
-    return highlighterMenu;
 }
 
 
@@ -129,23 +96,6 @@ void Highlighter::highlighterChanged(QAction* highlighterAction) {
     int scrollPos = parent->verticalScrollBar()->value();
     parent->setText( parent->text() );
     parent->verticalScrollBar()->setValue(scrollPos);
-}
-
-
-/*!
-    Retranslates the highlighter menu.
- */
-void Highlighter::retranslate() {
-    if ( highlighterMenu ) {
-        highlighterMenu->setTitle( tr("Set Syntax Highlighter") );
-        QList<QAction *> actionList = highlighterMenu->actions();
-        int i = 0;
-        foreach ( QString highlighterName, mapHighlighternameToExtension.keys() ) {
-            QAction *highlighterAction = actionList.at(i);
-            highlighterAction->setStatusTip( tr("Set the syntax highlightning to ") + highlighterName );
-            i++;
-        }
-    }
 }
 
 
@@ -344,112 +294,90 @@ void Highlighter::setLexerForExtension( QString extension ) {
 	if ( extension == "cpp" || extension == "hpp" || extension == "c" || extension == "h" || extension == "cxx" || extension == "hxx" ) {
 		lexer = new QsciLexerCPP();
         indexOfHighlighter =  mapHighlighternameToExtension.keys().indexOf("C++");
-        highlighterActionGroup->actions().at(indexOfHighlighter)->setChecked(true);
 	} 
 	else if ( extension == "sh" ) {
 		lexer = new QsciLexerBash();
         indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("Bash");
-        highlighterActionGroup->actions().at(indexOfHighlighter)->setChecked(true);
 	}
 	else if ( extension == "bat" ) {
 		lexer = new QsciLexerBatch();
         indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("Batch");
-        highlighterActionGroup->actions().at(indexOfHighlighter)->setChecked(true);
 	}
 	else if ( extension == "cs" ) {
 		lexer = new QsciLexerCSharp();
         indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("C#");
-        highlighterActionGroup->actions().at(indexOfHighlighter)->setChecked(true);
 	}
 	else if ( extension == "css" ) {
 		lexer = new QsciLexerCSS();
         indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("CSS");
-        highlighterActionGroup->actions().at(indexOfHighlighter)->setChecked(true);
 	}
 	else if ( extension == "d" ) {
 		lexer = new QsciLexerD();
         indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("D");
-        highlighterActionGroup->actions().at(indexOfHighlighter)->setChecked(true);
 	}
 	else if ( extension == "diff" ) {
 		lexer = new QsciLexerDiff();
         indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("Diff");
-        highlighterActionGroup->actions().at(indexOfHighlighter)->setChecked(true);
 	}
 	else if ( extension == "html" ) {
 		lexer = new QsciLexerHTML();
         indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("HTML");
-        highlighterActionGroup->actions().at(indexOfHighlighter)->setChecked(true);
 	}
 	else if ( extension == "php" ) {
 		lexer = new QsciLexerHTML();
         indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("HTML");
-        highlighterActionGroup->actions().at(indexOfHighlighter)->setChecked(true);
 	}
 	else if ( extension == "idl" ) {
 		lexer = new QsciLexerIDL();
         indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("IDL");
-        highlighterActionGroup->actions().at(indexOfHighlighter)->setChecked(true);
 	}
 	else if ( extension == "java" ) {
 		lexer = new QsciLexerJava();
         indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("Java");
-        highlighterActionGroup->actions().at(indexOfHighlighter)->setChecked(true);
 	}
 	else if ( extension == "js" ) {
 		lexer = new QsciLexerJavaScript();
         indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("JavaScript");
-        highlighterActionGroup->actions().at(indexOfHighlighter)->setChecked(true);
 	}
 	else if ( extension == "lua" ) {
 		lexer = new QsciLexerLua();
         indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("LUA");
-        highlighterActionGroup->actions().at(indexOfHighlighter)->setChecked(true);
 	}
     else if ( extension == "makefile" ) {
 		lexer = new QsciLexerMakefile();
         indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("Makefile");
-        highlighterActionGroup->actions().at(indexOfHighlighter)->setChecked(true);
 	}
 	else if ( extension == "perl" ) {
 		lexer = new QsciLexerPerl();
         indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("Perl");
-        highlighterActionGroup->actions().at(indexOfHighlighter)->setChecked(true);
 	}
 	else if ( extension == "pov" ) {
 		lexer = new QsciLexerPOV();
         indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("POV");
-        highlighterActionGroup->actions().at(indexOfHighlighter)->setChecked(true);
 	}
 	else if ( extension == "ini" ) {
 		lexer = new QsciLexerProperties();
         indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("Ini");
-        highlighterActionGroup->actions().at(indexOfHighlighter)->setChecked(true);
 	}
 	else if ( extension == "py" ) {
 		lexer = new QsciLexerPython();
         indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("Python");
-        highlighterActionGroup->actions().at(indexOfHighlighter)->setChecked(true);
 	}
 	else if ( extension == "rub" ) {
 		lexer = new QsciLexerRuby();
         indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("Ruby");
-        highlighterActionGroup->actions().at(indexOfHighlighter)->setChecked(true);
 	}
 	else if ( extension == "sql" ) {
 		lexer = new QsciLexerSQL();
         indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("SQL");
-        highlighterActionGroup->actions().at(indexOfHighlighter)->setChecked(true);
 	}
 	else if ( extension == "tex" ) {
 		lexer = new QsciLexerTeX();
         indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("TeX");
-        highlighterActionGroup->actions().at(indexOfHighlighter)->setChecked(true);
 	}
 	else {
 		lexer = new QsciLexerCPP();
         indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("C++");
-        highlighterActionGroup->actions().at(indexOfHighlighter)->setChecked(true);
 	}
 
     if ( highlightningIsOn ) {

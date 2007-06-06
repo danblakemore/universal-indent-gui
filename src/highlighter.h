@@ -58,8 +58,6 @@ public:
 	
 	bool readCurrentSettings(const char *prefix);
 	void writeCurrentSettings(const char *prefix);
-    void retranslate();
-    QMenu* getHighlighterMenu();
     QStringList getAvailableHighlighters();
 
 private:
@@ -69,11 +67,7 @@ private:
     QMap<int, QColor> colorForStyles;
 	QsciLexer* lexer;
 	QSettings *settings;
-    QMenu *highlighterMenu;
-    QActionGroup *highlighterActionGroup;
     QMap<QString, QStringList> mapHighlighternameToExtension;
-
-    void createHighlighterMenu();
 
 public slots:
     //! The foreground color for style number \a style is set to \a color.  If

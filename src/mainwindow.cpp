@@ -60,7 +60,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     initIndenter();
 
     // Create some menus.
-    createLanguageMenu();
     createEncodingMenu();
     createHighlighterMenu();
 	
@@ -279,6 +278,8 @@ bool MainWindow::initApplicationLanguage() {
     if ( translationFileLoaded ) {
         qApp->installTranslator(translator);
     }
+
+    connect( settings, SIGNAL(language(int)), this, SLOT(languageChanged(int)) );
 
     return translationFileLoaded;
 }
@@ -1015,79 +1016,10 @@ bool MainWindow::maybeSave()
 
 
 /*!
-    Searches for available translation files and adds a menu entry for each.
- */
-void MainWindow::createLanguageMenu() {
-	QString languageShort;
-	QString languageName;
-    QAction *languageAction;
-
-    // Get the language settings from the settings object.
-	int languageIndex = settings->getValueByName("Language").toInt();
-
-    languageActionGroup = new QActionGroup(this);
-
-    // Loop for each found translation file
-    for ( int i = 0; i < settings->getAvailableTranslations().count(); i++ ) {
-        languageShort = settings->getAvailableTranslations().at(i);
-
-        // Identify the language mnemonic and set the full name.
-        if ( languageShort == "en" ) {
-            languageName = tr("English");
-        }
-        else if ( languageShort == "de" ) {
-            languageName = tr("German");
-        }
-		else if ( languageShort == "tw" ) {
-			languageName = tr("Chinese (Taiwan)");
-		}
-		else if ( languageShort == "ja" ) {
-			languageName = tr("Japanese");
-		}
-        else {
-            languageName = tr("Unknown language mnemonic ") + languageShort;
-        }
-
-        languageAction = new QAction(languageName, languageActionGroup);
-        languageAction->setStatusTip(languageName + tr(" as user interface language."));
-		languageAction->setIcon( QIcon(QString(":/language/language-"+languageShort+".png")) );
-        languageAction->setCheckable(true);
-
-        // If the language selected in the ini file or no ini exists the system locale is
-        // equal to the current language mnemonic set this menu entry checked.
-        if ( i == languageIndex ) {
-            languageAction->setChecked(true);
-        }
-    }
-
-    QString languageString =  tr("Language");
-    //languageMenu = menuSettings->addMenu( languageString );
-
-    //languageMenu->addActions( languageActionGroup->actions() );
-
-	connect( settings, SIGNAL(language(int)), this, SLOT(languageChanged(int)) );
-    connect( languageActionGroup, SIGNAL(triggered(QAction*)), this, SLOT(languageChanged(QAction*)) );
-}
-
-
-/*!
-	This slot is called whenever a language is selected in the menu. It tries to find the
-	corresponding action in the languageInfoList and sets the language.
- */
-void MainWindow::languageChanged(QAction* languageAction) {
-	int languageIndex = languageActionGroup->actions().indexOf(languageAction);
-	settings->setValueByName("Language", languageIndex);
-}
-
-
-/*!
     This slot is called whenever a language is selected in the menu. It tries to find the
     corresponding action in the languageInfoList and sets the language.
  */
 void MainWindow::languageChanged(int languageIndex) {
-    // Set the language in the menu to the new selected language.
-    languageActionGroup->actions().at(languageIndex)->setChecked(true);
-
     // Get the mnemonic of the new selected language.
 	QString languageShort = settings->getAvailableTranslations().at(languageIndex);
 
@@ -1124,8 +1056,6 @@ void MainWindow::createEncodingMenu() {
 				encodingAction->setChecked(true);
 			}
     }
-    encodingMenu = new QMenu( tr("Reopen File with other Encoding") );
-    menuFile->insertMenu(actionSave_Source_File, encodingMenu);
 
     encodingMenu->addActions( encodingActionGroup->actions() );
 
@@ -1165,7 +1095,6 @@ void MainWindow::encodingChanged(QAction* encodingAction) {
 */
 void MainWindow::createHighlighterMenu() {
 	QAction *highlighterAction;
-    QMenu *highlighterMenu;
 	QString highlighterName;
 
 	highlighterActionGroup = new QActionGroup(this);
@@ -1176,8 +1105,6 @@ void MainWindow::createHighlighterMenu() {
 		highlighterAction->setStatusTip( tr("Set the syntax highlightning to ") + highlighterName );
 		highlighterAction->setCheckable(true);
 	}
-	//encodingActionGroup->actions().first()->setChecked(true);
-	highlighterMenu = new QMenu( tr("Set Syntax Highlighter") );
 	highlighterMenu->addActions( highlighterActionGroup->actions() );
     menuSettings->insertMenu(uiGuiIndenterParameterTooltipsEnabled, highlighterMenu );
 
@@ -1235,42 +1162,20 @@ void MainWindow::changeEvent(QEvent *event) {
         // Translate the toolbar.
         toolBarWidget->retranslateUi(toolBar);
 
-        // Translate the language menu.
-        //languageMenu->setTitle( tr("Language") );
-        int i = 0;
-        foreach ( QAction* languageAction, languageActionGroup->actions() ) {
-            QString languageShort = settings->getAvailableTranslations().at(i);
-
-            // Identify the language mnemonic and set the full name
-            if ( languageShort == "en" ) {
-                languageName = tr("English");
-            }
-            else if ( languageShort == "de" ) {
-                languageName = tr("German");
-            }
-            else if ( languageShort == "tw" ) {
-                languageName = tr("Chinese (Taiwan)");
-            }
-            else if ( languageShort == "ja" ) {
-                languageName = tr("Japanese");
-            }
-            else {
-                languageName = tr("Unknown language mnemonic ") + languageShort;
-            }
-            languageAction->setText( languageName );
-            languageAction->setStatusTip( languageName + tr(" as user interface language.") );
-            i++;
-        }
-
-        // Translate the encoding menu.
-        encodingMenu->setTitle( tr("Reopen File with other Encoding") );
+         // Translate the encoding menu.
         QList<QAction *> encodingActionList = encodingActionGroup->actions();
         for ( int i = 0; i < encodingActionList.size(); i++ ) {
             encodingActionList.at(i)->setStatusTip( tr("Reopen the currently opened source code file by using the text encoding scheme ") + encodingsList.at(i) );
         }
 
         // Translate the highlighter menu.
-        highlighter->retranslate();
+        QList<QAction *> actionList = highlighterMenu->actions();
+        int i = 0;
+        foreach ( QString highlighterName, highlighter->getAvailableHighlighters() ) {
+            QAction *highlighterAction = actionList.at(i);
+            highlighterAction->setStatusTip( tr("Set the syntax highlightning to ") + highlighterName );
+            i++;
+        }
     } 
     else {
         QWidget::changeEvent(event);
@@ -1323,11 +1228,6 @@ void MainWindow::updateRecentlyOpenedList() {
     QString filePath;
     QStringList recentlyOpenedList = settings->getValueByName("LastOpenedFiles").toString().split("|");
     QList<QAction*> recentlyOpenedActionList = menuRecently_Opened_Files->actions();
-
-    // Clear the recently opened menu without deleting the actions.
-    foreach( recentlyOpenedAction, recentlyOpenedActionList) {
-        menuRecently_Opened_Files->removeAction(recentlyOpenedAction);
-    }
 
     // Check if the currently open file is in the list of recently opened.
     int indexOfCurrentFile = recentlyOpenedList.indexOf( currentSourceFile );

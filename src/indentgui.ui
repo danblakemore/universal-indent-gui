@@ -52,17 +52,6 @@
     </property>
     <addaction name="actionAbout_UniversalIndentGUI" />
    </widget>
-   <widget class="QMenu" name="menuSettings" >
-    <property name="title" >
-     <string>Settings</string>
-    </property>
-    <addaction name="actionLive_Indent_Preview" />
-    <addaction name="uiGuiSyntaxHighlightningEnabled" />
-    <addaction name="uiGuiWhiteSpaceIsVisible" />
-    <addaction name="uiGuiIndenterParameterTooltipsEnabled" />
-    <addaction name="uiGuiLoadLastOpenedFileOnStartup" />
-    <addaction name="actionShowSettings" />
-   </widget>
    <widget class="QMenu" name="menuIndenter" >
     <property name="title" >
      <string>Indenter</string>
@@ -87,14 +76,37 @@
       <string>Recently Opened Files</string>
      </property>
     </widget>
+    <widget class="QMenu" name="encodingMenu" >
+     <property name="title" >
+      <string>Reopen File with other Encoding</string>
+     </property>
+    </widget>
     <addaction name="actionOpen_Source_File" />
     <addaction name="menuRecently_Opened_Files" />
+    <addaction name="encodingMenu" />
     <addaction name="separator" />
     <addaction name="actionSave_Source_File" />
     <addaction name="actionSave_Source_File_As" />
     <addaction name="separator" />
     <addaction name="menuExport" />
     <addaction name="actionExit" />
+   </widget>
+   <widget class="QMenu" name="menuSettings" >
+    <property name="title" >
+     <string>Settings</string>
+    </property>
+    <widget class="QMenu" name="highlighterMenu" >
+     <property name="title" >
+      <string>Set Syntax Highlighter</string>
+     </property>
+    </widget>
+    <addaction name="actionLive_Indent_Preview" />
+    <addaction name="uiGuiSyntaxHighlightningEnabled" />
+    <addaction name="uiGuiWhiteSpaceIsVisible" />
+    <addaction name="highlighterMenu" />
+    <addaction name="uiGuiIndenterParameterTooltipsEnabled" />
+    <addaction name="uiGuiLoadLastOpenedFileOnStartup" />
+    <addaction name="actionShowSettings" />
    </widget>
    <addaction name="menuFile" />
    <addaction name="menuIndenter" />
@@ -406,11 +418,6 @@
    </property>
    <property name="statusTip" >
     <string>Create a shell script that calls the current selected indenter for formatting an as parameter given file with the current indent settings</string>
-   </property>
-  </action>
-  <action name="actionDummyAction" >
-   <property name="text" >
-    <string>dummyAction</string>
    </property>
   </action>
  </widget>
