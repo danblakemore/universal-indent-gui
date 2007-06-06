@@ -146,6 +146,7 @@ void MainWindow::initMainWindow() {
     // Init the menue for selecting one of the recently opened files.
     updateRecentlyOpenedList();
     connect( menuRecently_Opened_Files, SIGNAL(triggered(QAction*)), this, SLOT(openFileFromRecentlyOpenedList(QAction*)) );
+    connect( settings, SIGNAL(recentlyOpenedListSize(int)), this, SLOT(updateRecentlyOpenedList()) );
 
     // Init of some variables.
     dataDirctoryStr = "./data/";
@@ -1224,7 +1225,6 @@ void MainWindow::createIndenterCallShellScript() {
  */
 void MainWindow::updateRecentlyOpenedList() {
 
-    QAction *recentlyOpenedAction;
 	QString fileName;
     QString filePath;
     QStringList recentlyOpenedList = settings->getValueByName("LastOpenedFiles").toString().split("|");
@@ -1245,11 +1245,11 @@ void MainWindow::updateRecentlyOpenedList() {
     }
 
 	// Get the maximum recently opened list size.
-	int recentlyOpenedListSize = settings->getValueByName("RecentlyOpenedListSize").toInt();
+	int recentlyOpenedListMaxSize = settings->getValueByName("RecentlyOpenedListSize").toInt();
 
 	// Loop for each filepath in the recently opened list, remove non existing files and
 	// loop only as long as maximum allowed list entries are set.
-    for ( int i = 0; i < recentlyOpenedList.size() && i < recentlyOpenedListSize; ) {
+    for ( int i = 0; i < recentlyOpenedList.size() && i < recentlyOpenedListMaxSize; ) {
 		filePath = recentlyOpenedList.at(i);
         QFileInfo fileInfo(filePath);
 
@@ -1269,7 +1269,7 @@ void MainWindow::updateRecentlyOpenedList() {
 	}
 
 	// Trim the list to its in the settings allowed maximum size.
-	while ( recentlyOpenedList.size() > recentlyOpenedListSize ) {
+	while ( recentlyOpenedList.size() > recentlyOpenedListMaxSize ) {
 		recentlyOpenedList.takeLast();
         QAction* action = recentlyOpenedActionList.takeLast();
         delete action;
