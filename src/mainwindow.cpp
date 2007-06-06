@@ -1124,6 +1124,9 @@ void MainWindow::highlighterChanged(QAction* highlighterAction) {
     // Need to do this "text update" to update the syntax highlighting. Otherwise highlighting is wrong.
     previewToggled = true;
     updateSourceView();
+
+    
+    
 }
 
 

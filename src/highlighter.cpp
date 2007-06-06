@@ -59,12 +59,14 @@ Highlighter::Highlighter(QsciScintilla *parent, QSettings *settings)
     mapHighlighternameToExtension["LUA"] = QStringList() << "lua";
     mapHighlighternameToExtension["Makefile"] = QStringList() << "makefile";
     mapHighlighternameToExtension["Perl"] = QStringList() << "perl";
+    mapHighlighternameToExtension["PHP"] = QStringList() << "php";
     mapHighlighternameToExtension["POV"] = QStringList() << "pov";
     mapHighlighternameToExtension["Ini"] = QStringList() << "ini";
     mapHighlighternameToExtension["Python"] = QStringList() << "py";
     mapHighlighternameToExtension["Ruby"] = QStringList() << "rub";
     mapHighlighternameToExtension["SQL"] = QStringList() << "sql";
     mapHighlighternameToExtension["TeX"] = QStringList() << "tex";
+    mapHighlighternameToExtension["XML"] = QStringList() << "xml";
 
     lexer = 0;
 
@@ -296,97 +298,87 @@ int Highlighter::setLexerForExtension( QString extension ) {
 
 	if ( extension == "cpp" || extension == "hpp" || extension == "c" || extension == "h" || extension == "cxx" || extension == "hxx" ) {
 		lexer = new QsciLexerCPP();
-        indexOfHighlighter =  mapHighlighternameToExtension.keys().indexOf("C++");
 	} 
 	else if ( extension == "sh" ) {
 		lexer = new QsciLexerBash();
-        indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("Bash");
 	}
 	else if ( extension == "bat" ) {
 		lexer = new QsciLexerBatch();
-        indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("Batch");
 	}
 	else if ( extension == "cs" ) {
 		lexer = new QsciLexerCSharp();
-        indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("C#");
 	}
 	else if ( extension == "css" ) {
 		lexer = new QsciLexerCSS();
-        indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("CSS");
 	}
 	else if ( extension == "d" ) {
 		lexer = new QsciLexerD();
-        indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("D");
 	}
 	else if ( extension == "diff" ) {
 		lexer = new QsciLexerDiff();
-        indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("Diff");
 	}
 	else if ( extension == "html" ) {
 		lexer = new QsciLexerHTML();
-        indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("HTML");
-	}
-	else if ( extension == "php" ) {
-		lexer = new QsciLexerHTML();
-        indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("HTML");
 	}
 	else if ( extension == "idl" ) {
 		lexer = new QsciLexerIDL();
-        indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("IDL");
 	}
 	else if ( extension == "java" ) {
 		lexer = new QsciLexerJava();
-        indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("Java");
 	}
 	else if ( extension == "js" ) {
 		lexer = new QsciLexerJavaScript();
-        indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("JavaScript");
 	}
 	else if ( extension == "lua" ) {
 		lexer = new QsciLexerLua();
-        indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("LUA");
 	}
     else if ( extension == "makefile" ) {
 		lexer = new QsciLexerMakefile();
-        indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("Makefile");
 	}
 	else if ( extension == "perl" ) {
 		lexer = new QsciLexerPerl();
-        indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("Perl");
+	}
+    else if ( extension == "php" ) {
+		lexer = new QsciLexerHTML();
 	}
 	else if ( extension == "pov" ) {
 		lexer = new QsciLexerPOV();
-        indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("POV");
 	}
 	else if ( extension == "ini" ) {
 		lexer = new QsciLexerProperties();
-        indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("Ini");
 	}
 	else if ( extension == "py" ) {
 		lexer = new QsciLexerPython();
-        indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("Python");
 	}
 	else if ( extension == "rub" ) {
 		lexer = new QsciLexerRuby();
-        indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("Ruby");
 	}
 	else if ( extension == "sql" ) {
 		lexer = new QsciLexerSQL();
-        indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("SQL");
 	}
 	else if ( extension == "tex" ) {
 		lexer = new QsciLexerTeX();
-        indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("TeX");
+	}
+    else if ( extension == "xml" ) {
+		lexer = new QsciLexerHTML();
 	}
 	else {
 		lexer = new QsciLexerCPP();
-        indexOfHighlighter = mapHighlighternameToExtension.keys().indexOf("C++");
+        extension = "cpp";
 	}
 
+    // Find the index of the selected lexer.
+    indexOfHighlighter = 0;
+    while ( !mapHighlighternameToExtension.values().at(indexOfHighlighter).contains(extension) ) {
+        indexOfHighlighter++;
+    }
+
+    // Set the lexer for the QScintilla widget.
     if ( highlightningIsOn ) {
 	    parent->setLexer(lexer);
     }
 
+    // Read the settings for the lexer properties from file.
 	readCurrentSettings("");
 
     return indexOfHighlighter;
