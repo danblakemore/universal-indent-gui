@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>588</width>
-    <height>333</height>
+    <height>348</height>
    </rect>
   </property>
   <property name="sizePolicy" >
@@ -20,12 +20,6 @@
   <property name="minimumSize" >
    <size>
     <width>588</width>
-    <height>333</height>
-   </size>
-  </property>
-  <property name="maximumSize" >
-   <size>
-    <width>16777215</width>
     <height>333</height>
    </size>
   </property>
@@ -162,6 +156,19 @@ p, li { white-space: pre-wrap; }
       <bool>true</bool>
      </property>
     </widget>
+   </item>
+   <item>
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" >
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
    </item>
    <item>
     <layout class="QHBoxLayout" >
