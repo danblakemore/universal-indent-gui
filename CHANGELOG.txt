@@ -1,3 +1,8 @@
+2007-05-03 Version 0.6.1 Beta
+[add] Feature Request ID 1729433 : Added a recently opened file menu.
+[add] Feature Request ID 1704290 : Added possibiltiy to integrate into an IDE, editor or other as external tool. This is donw by creating a batch/shell script which accepts a file as parameter and calls the indenter with the in UniversalIndentGUI made settings.
+[add] Added support for HTML Tidy.
+
 2007-05-03 Version 0.6.0 Beta
 [add] Feature Request ID 1700557 : Added a settings dialog for handling more possible settings with better usabiltiy.
 [add] Feature Request ID 1700556 : Added option to load last file or not on startup.
