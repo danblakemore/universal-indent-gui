@@ -1205,7 +1205,7 @@ void MainWindow::createIndenterCallShellScript() {
     QString fileExtensions = tr("Shell Script")+" (*."+shellScriptExtension+");;"+tr("All files")+" (*.*)";
 
     //QString openedSourceFileContent = openFileDialog( tr("Choose source code file"), "./", fileExtensions );
-    QString fileName = QFileDialog::getSaveFileName( this, tr("Save chell script"), "callIndenter."+shellScriptExtension, fileExtensions);
+    QString fileName = QFileDialog::getSaveFileName( this, tr("Save shell script"), "callIndenter."+shellScriptExtension, fileExtensions);
 
     // Saving has been canceled if the filename is empty
     if ( fileName.isEmpty() ) {
@@ -1265,7 +1265,9 @@ void MainWindow::updateRecentlyOpenedList() {
         // else if its not already in the menu, add it to the menu.
         else {
             if ( i >= recentlyOpenedActionList.size() ) {
-                recentlyOpenedActionList.append( new QAction(fileInfo.fileName(), menuRecently_Opened_Files) );
+                QAction *recentlyOpenedAction = new QAction(fileInfo.fileName(), menuRecently_Opened_Files);
+                recentlyOpenedAction->setStatusTip(filePath);
+                recentlyOpenedActionList.append( recentlyOpenedAction );
             }
             i++;
         }
