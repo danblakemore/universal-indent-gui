@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="zh_TW">
-<defaultcodec></defaultcodec>
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="../src/aboutdialog.ui" line="111"/>
+        <location filename="../src/aboutdialog.ui" line="105"/>
         <source>... is a cross platform compatible GUI for several code formatter, beautifier and indenter like GreatCode, AStyle (Artistic Styler), GNU Indent, BCPP and so on. Main feature is a live preview to directly see how the selected formatting option affects the source code.</source>
         <translation>這是一套給眾多程式碼重整及美化工具（例如 GreatCode，AStyle (Artistic Styler)，GNU Indent，BCPP 及其他類似工具）使用的 GUI 界面，它最主要的特點在於可以即時預覽程式碼被處理後的樣子。</translation>
     </message>
@@ -20,7 +19,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:12pt;&quot;&gt;Version 0.4.1 Beta rev.225, 11th February 2007 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.ui" line="147"/>
+        <location filename="../src/aboutdialog.ui" line="141"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
@@ -46,7 +45,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Courier New&apos;; font-size:8pt;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.ui" line="33"/>
+        <location filename="../src/aboutdialog.ui" line="27"/>
         <source>About UniversalIndentGUI</source>
         <translation>關於 UniversalIndentGUI</translation>
     </message>
@@ -56,12 +55,12 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">授權協議：</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.ui" line="190"/>
+        <location filename="../src/aboutdialog.ui" line="197"/>
         <source>OK</source>
         <translation>確定</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.ui" line="101"/>
+        <location filename="../src/aboutdialog.ui" line="95"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
@@ -72,7 +71,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:12pt;&quot;&gt;Version %1 rev.%2, %3 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.ui" line="159"/>
+        <location filename="../src/aboutdialog.ui" line="153"/>
         <source>License: UniveralIndentGui is released under the GPL 2. For details read the included file LICENSE.GPL visit http://www.gnu.org/licenses/gpl.html</source>
         <translation type="unfinished"></translation>
     </message>
@@ -95,12 +94,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/highlighter.cpp" line="144"/>
         <source>Set the syntax highlightning to </source>
-        <translation>將語法高亮度設為 </translation>
+        <translation type="obsolete">將語法高亮度設為 </translation>
     </message>
     <message>
         <location filename="../src/highlighter.cpp" line="98"/>
         <source>Set Syntax Highlighter</source>
-        <translation>選擇語法高亮度</translation>
+        <translation type="obsolete">選擇語法高亮度</translation>
     </message>
 </context>
 <context>
@@ -369,62 +368,62 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>IndentHandler</name>
     <message>
-        <location filename="../src/indenthandler.cpp" line="247"/>
+        <location filename="../src/indenthandler.cpp" line="253"/>
         <source>&quot; in the directory &quot;</source>
         <translation>&quot; 於目錄 &quot;</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="334"/>
+        <location filename="../src/indenthandler.cpp" line="340"/>
         <source>&lt;b&gt;Callstring was:&lt;/b&gt; </source>
         <translation>&lt;b&gt;呼叫字串是：&lt;/b&gt; </translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="333"/>
+        <location filename="../src/indenthandler.cpp" line="339"/>
         <source>&lt;b&gt;Indent console output was:&lt;/b&gt; </source>
         <translation>&lt;b&gt;重整工具命令列輸出為：&lt;/b&gt; </translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="332"/>
+        <location filename="../src/indenthandler.cpp" line="338"/>
         <source>&lt;b&gt;Indenter returned with exit code:&lt;/b&gt; </source>
         <translation>&lt;b&gt;重整工具傳回的錯誤代碼：&lt;/b&gt; </translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="299"/>
+        <location filename="../src/indenthandler.cpp" line="305"/>
         <source>&lt;b&gt;Reason could be:&lt;/b&gt; </source>
         <translation>&lt;b&gt;原因可能是：&lt;/b&gt; </translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="295"/>
+        <location filename="../src/indenthandler.cpp" line="301"/>
         <source>&lt;b&gt;Returned error message:&lt;/b&gt; </source>
         <translation>&lt;b&gt;傳回的錯誤訊息：&lt;/b&gt; </translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="321"/>
+        <location filename="../src/indenthandler.cpp" line="327"/>
         <source>Error calling Indenter</source>
         <translation>呼叫重整工具時發生錯誤</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="336"/>
+        <location filename="../src/indenthandler.cpp" line="342"/>
         <source>Indenter returned error</source>
         <translation>重整工具傳回錯誤</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="246"/>
+        <location filename="../src/indenthandler.cpp" line="252"/>
         <source>No indenter executable</source>
         <translation>找不到重整工具</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="247"/>
+        <location filename="../src/indenthandler.cpp" line="253"/>
         <source>There exists no indenter executable with the name &quot;</source>
         <translation>找不到重整工具 &quot;</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="283"/>
+        <location filename="../src/indenthandler.cpp" line="289"/>
         <source>There exists only a win32 executable of the indenter and wine does not seem to be installed. Please install wine to be able to run the indenter.</source>
         <translation>該重整工具只有 Win32 版本，而你似乎尚未安裝 wine。請安裝 wine 以便執行該重整工具。</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="283"/>
+        <location filename="../src/indenthandler.cpp" line="289"/>
         <source>wine not installed</source>
         <translation>尚未安裝 wine</translation>
     </message>
@@ -432,67 +431,67 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1256"/>
+        <location filename="../src/data/mainwindow.cpp" line="1264"/>
         <source> as user interface language.</source>
         <translation> 套用到程式界面</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1289"/>
+        <location filename="../src/mainwindow.cpp" line="1205"/>
         <source>All files</source>
         <translation>所有檔案</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1143"/>
+        <location filename="../src/mainwindow.cpp" line="1077"/>
         <source>Cannot read the file </source>
         <translation>無法讀取檔案</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="538"/>
+        <location filename="../src/mainwindow.cpp" line="541"/>
         <source>Choose indenter config file</source>
         <translation>選擇重整工具設定檔</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="423"/>
+        <location filename="../src/mainwindow.cpp" line="426"/>
         <source>Choose source code file</source>
         <translation>選擇檔案</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1241"/>
+        <location filename="../src/data/mainwindow.cpp" line="1249"/>
         <source>English</source>
         <translation>English</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1143"/>
+        <location filename="../src/mainwindow.cpp" line="1077"/>
         <source>Error opening file</source>
         <translation>開啟檔案時發生錯誤</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="866"/>
+        <location filename="../src/mainwindow.cpp" line="869"/>
         <source>Export source code file</source>
         <translation>匯出檔案</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1244"/>
+        <location filename="../src/data/mainwindow.cpp" line="1252"/>
         <source>German</source>
         <translation>German</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="859"/>
+        <location filename="../src/mainwindow.cpp" line="862"/>
         <source>HTML Document</source>
         <translation>HTML 文件</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1063"/>
+        <location filename="../src/data/mainwindow.cpp" line="1065"/>
         <source>Language</source>
         <translation>選擇語系</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1000"/>
+        <location filename="../src/mainwindow.cpp" line="1003"/>
         <source>Modified code</source>
         <translation>修改後的檔案</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="837"/>
+        <location filename="../src/mainwindow.cpp" line="840"/>
         <source>PDF Document</source>
         <translation>PDF 文件</translation>
     </message>
@@ -502,34 +501,34 @@ p, li { white-space: pre-wrap; }
         <translation>用別的編碼方式重新開啟</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1263"/>
+        <location filename="../src/mainwindow.cpp" line="1173"/>
         <source>Reopen the currently opened source code file by using the text encoding scheme </source>
         <translation>重新開啟目前的檔案，編碼使用 </translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="519"/>
+        <location filename="../src/mainwindow.cpp" line="522"/>
         <source>Save indent config file</source>
         <translation>儲存重整工具的設定</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="460"/>
+        <location filename="../src/mainwindow.cpp" line="463"/>
         <source>Save source code file</source>
         <translation>儲存檔案</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="456"/>
+        <location filename="../src/mainwindow.cpp" line="459"/>
         <source>Supported by indenter</source>
         <translation>重整工具支援的檔案類型</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1002"/>
+        <location filename="../src/mainwindow.cpp" line="1005"/>
         <source>The source code has been modified.
 Do you want to save your changes?</source>
         <translation>程式碼已被修改。
 你要儲存嗎？</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1253"/>
+        <location filename="../src/data/mainwindow.cpp" line="1261"/>
         <source>Unknown language mnemonic </source>
         <translation>未知語言 </translation>
     </message>
@@ -539,17 +538,17 @@ Do you want to save your changes?</source>
         <translation type="obsolete">Taiwan (Chinese)</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="309"/>
+        <location filename="../src/mainwindow.cpp" line="311"/>
         <source>No indenter ini files</source>
         <translation>找不到重整工具需要的 INI 檔</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="309"/>
+        <location filename="../src/mainwindow.cpp" line="311"/>
         <source>There exists no indenter ini files in the directory &quot;</source>
         <translation>本目錄下找不到重整工具所需的 INI 檔 &quot;</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1250"/>
+        <location filename="../src/data/mainwindow.cpp" line="1258"/>
         <source>Japanese</source>
         <translation>Japanese</translation>
     </message>
@@ -559,12 +558,12 @@ Do you want to save your changes?</source>
         <translation type="obsolete">Chinese</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1247"/>
+        <location filename="../src/data/mainwindow.cpp" line="1255"/>
         <source>Chinese (Taiwan)</source>
         <translation>Chinese (Taiwan)</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1173"/>
+        <location filename="../src/mainwindow.cpp" line="1181"/>
         <source>Set the syntax highlightning to </source>
         <translation>將語法高亮度方式設為 </translation>
     </message>
@@ -579,23 +578,28 @@ Do you want to save your changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1289"/>
+        <location filename="../src/mainwindow.cpp" line="1205"/>
         <source>Shell Script</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1292"/>
+        <location filename="../src/data/mainwindow.cpp" line="1301"/>
         <source>Save chell script</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1391"/>
+        <location filename="../src/mainwindow.cpp" line="1306"/>
         <source>File no longer exists</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1391"/>
+        <location filename="../src/mainwindow.cpp" line="1306"/>
         <source>The file %1 in the list of recently opened files does no longer exist.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1208"/>
+        <source>Save shell script</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

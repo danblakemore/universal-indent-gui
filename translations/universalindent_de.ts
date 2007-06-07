@@ -4,7 +4,7 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="../src/aboutdialog.ui" line="33"/>
+        <location filename="../src/aboutdialog.ui" line="27"/>
         <source>About UniversalIndentGUI</source>
         <translation>Über UniversalIndentGUI</translation>
     </message>
@@ -24,7 +24,7 @@
         <translation type="obsolete">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:Courier New; font-size:8pt;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.ui" line="190"/>
+        <location filename="../src/aboutdialog.ui" line="197"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -67,12 +67,12 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:12pt;&quot;&gt;Version 0.4.1 Beta rev.225, 11. Februar 2007 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.ui" line="111"/>
+        <location filename="../src/aboutdialog.ui" line="105"/>
         <source>... is a cross platform compatible GUI for several code formatter, beautifier and indenter like GreatCode, AStyle (Artistic Styler), GNU Indent, BCPP and so on. Main feature is a live preview to directly see how the selected formatting option affects the source code.</source>
         <translation>... ist eine Betriebssystem unabhängige, grafische Benutzeroberfläche für nahezu beliebige Quellcode Formatierer wie GreatCode, AStyle (Artistic Styler), GNU Indent, BCPP und weitere. Hauptmerkmal ist eine Vorschau, welche es ermöglicht direkt zu sehen, welche Auswirkungen eine Änderung der Einstellungen des Quellcode Formatierers auf den Code haben.</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.ui" line="147"/>
+        <location filename="../src/aboutdialog.ui" line="141"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
@@ -98,7 +98,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:12pt;&quot;&gt;Version 0.4.2 Beta rev.250, 25. Februar 2007 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt; {1&quot;?} {2&apos;?} {8.25p?} {400;?} {12p?} {12p?} {0p?} {0p?} {0;?} {0p?} {12p?} {0.4.2 ?} {250, 25t?} {2007 ?}</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.ui" line="101"/>
+        <location filename="../src/aboutdialog.ui" line="95"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
@@ -109,9 +109,9 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:12pt;&quot;&gt;Version %1 rev.%2, %3 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.ui" line="159"/>
+        <location filename="../src/aboutdialog.ui" line="153"/>
         <source>License: UniveralIndentGui is released under the GPL 2. For details read the included file LICENSE.GPL visit http://www.gnu.org/licenses/gpl.html</source>
-        <translation type="unfinished"></translation>
+        <translation>Lizenz: UniveralIndentGui wird unter der Lizenz GPL 2 veröffentlicht. Details können in der Datei LICENSE.GPL oder auf http://www.gnu.org/licenses/gpl.html nachgelesen werden.</translation>
     </message>
 </context>
 <context>
@@ -132,12 +132,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/highlighter.cpp" line="144"/>
         <source>Set the syntax highlightning to </source>
-        <translation>Setzte Syntax-Hervorhebung für </translation>
+        <translation type="obsolete">Setzte Syntax-Hervorhebung für </translation>
     </message>
     <message>
         <location filename="../src/highlighter.cpp" line="98"/>
         <source>Set Syntax Highlighter</source>
-        <translation>Setze Syntax Highlighter</translation>
+        <translation type="obsolete">Setze Syntax Highlighter</translation>
     </message>
 </context>
 <context>
@@ -430,17 +430,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/indentgui.ui" line="414"/>
         <source>Create Indenter Call Shell Script</source>
-        <translation type="unfinished"></translation>
+        <translation>Formatierer Shell Skript erzeugen</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="420"/>
         <source>Create a shell script that calls the current selected indenter for formatting an as parameter given file with the current indent settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Erzeugt ein Shell Skript mit dem sich der momentan gewählte Formatierer mit den momentanen Einstellungen zum Formatieren einer Datei aufrufen lässt.</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="76"/>
         <source>Recently Opened Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Zuletzt geöffnete Dateien</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="81"/>
@@ -456,22 +456,22 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>IndentHandler</name>
     <message>
-        <location filename="../src/indenthandler.cpp" line="246"/>
+        <location filename="../src/indenthandler.cpp" line="252"/>
         <source>No indenter executable</source>
         <translation>Keine ausführbare Formatierer Datei</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="247"/>
+        <location filename="../src/indenthandler.cpp" line="253"/>
         <source>There exists no indenter executable with the name &quot;</source>
         <translation>Es existiert keine ausführbare Datei mit dem Namen &quot;</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="247"/>
+        <location filename="../src/indenthandler.cpp" line="253"/>
         <source>&quot; in the directory &quot;</source>
         <translation>&quot; in dem Verzeichnis &quot;</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="321"/>
+        <location filename="../src/indenthandler.cpp" line="327"/>
         <source>Error calling Indenter</source>
         <translation>Fehler beim Aufruf des Formatierers</translation>
     </message>
@@ -482,7 +482,7 @@ Callstring was: </source>
         <translation type="obsolete">Der Aufruf lautete:</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="336"/>
+        <location filename="../src/indenthandler.cpp" line="342"/>
         <source>Indenter returned error</source>
         <translation>Fehler beim Ausführen des Formatierers</translation>
     </message>
@@ -501,37 +501,37 @@ Indent console output was:
 </translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="283"/>
+        <location filename="../src/indenthandler.cpp" line="289"/>
         <source>wine not installed</source>
         <translation>wine nicht installiert</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="283"/>
+        <location filename="../src/indenthandler.cpp" line="289"/>
         <source>There exists only a win32 executable of the indenter and wine does not seem to be installed. Please install wine to be able to run the indenter.</source>
         <translation>Es existiert nur eine Win32 Version des Formatierers, für dessen Ausführung wine benötigt wird. Wine scheint nicht installiert zu sein. Bitte installieren Sie es.</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="295"/>
+        <location filename="../src/indenthandler.cpp" line="301"/>
         <source>&lt;b&gt;Returned error message:&lt;/b&gt; </source>
         <translation>&lt;b&gt;Zurückgegebene Fehlermeldung:&lt;/b&gt; </translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="299"/>
+        <location filename="../src/indenthandler.cpp" line="305"/>
         <source>&lt;b&gt;Reason could be:&lt;/b&gt; </source>
         <translation>&lt;b&gt;Grund könnte sein:&lt;/b&gt; </translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="334"/>
+        <location filename="../src/indenthandler.cpp" line="340"/>
         <source>&lt;b&gt;Callstring was:&lt;/b&gt; </source>
         <translation>&lt;b&gt;Der Aufruf lautete:&lt;/b&gt; </translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="332"/>
+        <location filename="../src/indenthandler.cpp" line="338"/>
         <source>&lt;b&gt;Indenter returned with exit code:&lt;/b&gt; </source>
         <translation>&lt;b&gt;Zurückgegebener Exit Code ist:&lt;/b&gt; </translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="333"/>
+        <location filename="../src/indenthandler.cpp" line="339"/>
         <source>&lt;b&gt;Indent console output was:&lt;/b&gt; </source>
         <translation>&lt;b&gt;Ausgabe des Formatierers war:&lt;/b&gt; </translation>
     </message>
@@ -539,84 +539,84 @@ Indent console output was:
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1143"/>
+        <location filename="../src/mainwindow.cpp" line="1077"/>
         <source>Error opening file</source>
         <translation>Fehler beim Dateiöffnen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1143"/>
+        <location filename="../src/mainwindow.cpp" line="1077"/>
         <source>Cannot read the file </source>
         <translation> Kann folgende Datei nicht lesen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="423"/>
+        <location filename="../src/mainwindow.cpp" line="426"/>
         <source>Choose source code file</source>
         <translation>Quellcodedatei wählen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="460"/>
+        <location filename="../src/mainwindow.cpp" line="463"/>
         <source>Save source code file</source>
         <translation>Quellcodedatei speichern</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="519"/>
+        <location filename="../src/mainwindow.cpp" line="522"/>
         <source>Save indent config file</source>
         <translation>Formatierer Konfiguration speichern</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="538"/>
+        <location filename="../src/mainwindow.cpp" line="541"/>
         <source>Choose indenter config file</source>
         <translation>Formatierer Konfigurationsdatei wählen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="866"/>
+        <location filename="../src/mainwindow.cpp" line="869"/>
         <source>Export source code file</source>
         <translation>Quellcode exportieren</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1002"/>
+        <location filename="../src/mainwindow.cpp" line="1005"/>
         <source>The source code has been modified.
 Do you want to save your changes?</source>
         <translation>Die Quellcodedatei wurde geändert.
 Möchten Sie die Änderungen speichern?</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="456"/>
+        <location filename="../src/mainwindow.cpp" line="459"/>
         <source>Supported by indenter</source>
         <translation>Von Formatierer unterstützt</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1289"/>
+        <location filename="../src/mainwindow.cpp" line="1205"/>
         <source>All files</source>
         <translation>Alle Dateien</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="837"/>
+        <location filename="../src/mainwindow.cpp" line="840"/>
         <source>PDF Document</source>
         <translation>PDF Dokument</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="859"/>
+        <location filename="../src/mainwindow.cpp" line="862"/>
         <source>HTML Document</source>
         <translation>HTML Dokument</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1000"/>
+        <location filename="../src/mainwindow.cpp" line="1003"/>
         <source>Modified code</source>
         <translation>Geänderter Quellcode</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1241"/>
+        <location filename="../src/data/mainwindow.cpp" line="1249"/>
         <source>English</source>
         <translation>Englisch</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1244"/>
+        <location filename="../src/data/mainwindow.cpp" line="1252"/>
         <source>German</source>
         <translation>Deutsch</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1253"/>
+        <location filename="../src/data/mainwindow.cpp" line="1261"/>
         <source>Unknown language mnemonic </source>
         <translation>Unbekanntes Sprachkürzel </translation>
     </message>
@@ -626,17 +626,17 @@ Möchten Sie die Änderungen speichern?</translation>
         <translation type="obsolete"> als Programmsprache verwenden. (Nach Neustart aktiv.)</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1063"/>
+        <location filename="../src/data/mainwindow.cpp" line="1065"/>
         <source>Language</source>
         <translation>Sprache</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1256"/>
+        <location filename="../src/data/mainwindow.cpp" line="1264"/>
         <source> as user interface language.</source>
         <translation> als Programmsprache verwenden.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1263"/>
+        <location filename="../src/mainwindow.cpp" line="1173"/>
         <source>Reopen the currently opened source code file by using the text encoding scheme </source>
         <translation>Die momentan geöffnete Quellcodedatei erneut öffnen, unter Verwendung der Textcordierung </translation>
     </message>
@@ -651,17 +651,17 @@ Möchten Sie die Änderungen speichern?</translation>
         <translation type="obsolete">Taiwanisch (Chinesisch)</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="309"/>
+        <location filename="../src/mainwindow.cpp" line="311"/>
         <source>No indenter ini files</source>
         <translation>Keine Indenter ini-Dateien</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="309"/>
+        <location filename="../src/mainwindow.cpp" line="311"/>
         <source>There exists no indenter ini files in the directory &quot;</source>
         <translation>Es wurden keine ini-Dateien für Indenter gefunden. Suchpfad war &quot;</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1250"/>
+        <location filename="../src/data/mainwindow.cpp" line="1258"/>
         <source>Japanese</source>
         <translation>Japanisch</translation>
     </message>
@@ -671,7 +671,7 @@ Möchten Sie die Änderungen speichern?</translation>
         <translation type="obsolete">Chinesisch</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1173"/>
+        <location filename="../src/mainwindow.cpp" line="1181"/>
         <source>Set the syntax highlightning to </source>
         <translation>Setzte Syntax-Hervorhebung für </translation>
     </message>
@@ -681,34 +681,39 @@ Möchten Sie die Änderungen speichern?</translation>
         <translation>Setze Syntax Highlighter</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1247"/>
+        <location filename="../src/data/mainwindow.cpp" line="1255"/>
         <source>Chinese (Taiwan)</source>
         <translation>Chinesisch (Taiwan)</translation>
     </message>
     <message>
         <location filename="../src/data/mainwindow.cpp" line="1236"/>
         <source>Recently Opened Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Zuletzt geöffnete Dateien</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1289"/>
+        <location filename="../src/mainwindow.cpp" line="1205"/>
         <source>Shell Script</source>
-        <translation type="unfinished"></translation>
+        <translation>Shell SKript</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1292"/>
+        <location filename="../src/data/mainwindow.cpp" line="1301"/>
         <source>Save chell script</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1391"/>
+        <location filename="../src/mainwindow.cpp" line="1306"/>
         <source>File no longer exists</source>
-        <translation type="unfinished"></translation>
+        <translation>Datei existiert nicht mehr</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1391"/>
+        <location filename="../src/mainwindow.cpp" line="1306"/>
         <source>The file %1 in the list of recently opened files does no longer exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Datei %1 in der Liste der zuletzt geöffneten Dateien existiert nicht mehr.</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1208"/>
+        <source>Save shell script</source>
+        <translation>Shell Skript speichern</translation>
     </message>
 </context>
 <context>
