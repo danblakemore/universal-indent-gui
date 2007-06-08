@@ -636,6 +636,10 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
     // read the categories names which are separated by "|"
     QString categoriesStr = indenterSettings->value(" header/categories").toString();
     categories = categoriesStr.split("|");
+	// Assure that the category list is never empty. At least contain a "general" section.
+	if ( categories.isEmpty() ) {
+		categories.append("General");
+	}
 
     ToolBoxPage toolBoxPage;
 
@@ -671,6 +675,10 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
         if ( indenterParameter != " header") {
             // read to which category the parameter belongs
             int category = indenterSettings->value(indenterParameter + "/Category").toInt();
+			// Assure that the category number is never greater than the available categories.
+            if ( category > toolBoxPages.size()-1 ) {
+                category = toolBoxPages.size()-1;
+            }
             // read which type of input field the parameter needs
             QString editType = indenterSettings->value(indenterParameter + "/EditorType").toString();
 
