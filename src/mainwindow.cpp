@@ -1244,7 +1244,9 @@ void MainWindow::updateRecentlyOpenedList() {
     // Put the current file at the first position if it not already is and is not empty.
     else if ( indexOfCurrentFile == -1 && !currentSourceFile.isEmpty() ) {
         recentlyOpenedList.insert(0, currentSourceFile);
-        recentlyOpenedActionList.insert(0, new QAction(QFileInfo(currentSourceFile).fileName(), menuRecently_Opened_Files) );
+		QAction *recentlyOpenedAction = new QAction(QFileInfo(currentSourceFile).fileName(), menuRecently_Opened_Files);
+		recentlyOpenedAction->setStatusTip(currentSourceFile);
+        recentlyOpenedActionList.insert(0, recentlyOpenedAction );
     }
 
 	// Get the maximum recently opened list size.
