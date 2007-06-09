@@ -23,6 +23,8 @@
 #include <QDialog>
 #include <QUrl>
 #include <QDesktopServices>
+#include <QScrollBar>
+#include <QTimer>
 #include "ui_aboutdialog.h"
 
 #include <QLocale>
@@ -35,8 +37,12 @@ class AboutDialog : public QDialog, private Ui::AboutDialog
 public:
     AboutDialog(QWidget *parent, QString version, QString revision, QString buildDate);
 
+public slots:
+    int exec();
+
 private slots:
     void linkClicked(const QUrl &link);
+    void scroll();
 
 private:
     void changeEvent(QEvent *event);
@@ -46,6 +52,9 @@ private:
     QString version;
     QString revision;
     QString buildDate;
+    int scrollDirection;
+    int scrollSpeed;
+    QTimer *timer;
 };
 
 #endif // ABOUTDIALOG_H
