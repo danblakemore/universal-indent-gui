@@ -77,6 +77,42 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     loadLastOpenedFile();
 
     updateSourceView();
+
+    QTimer::singleShot(0, this, SLOT(checkForUpdates()));
+    http = new QHttp(this);
+}
+
+
+/*!
+    This function checks whether updates for UniversalIndentGUI are available. But it only executes the
+    online check if the setting for that is enabled and today not already a check has been done.
+ */
+void MainWindow::checkForUpdates() {
+    if ( settings->getValueByName("CheckForUpdate").toBool() && QDate::currentDate() != settings->getValueByName("LastUpdateCheck").toDate() ) {
+        connect( http, SIGNAL(done(bool)), this, SLOT(checkForUpdatedReturned(bool)) );
+        http->setHost("universalindent.sourceforge.net");
+        http->get("/universalindentgui_pad.xml");
+    }    
+}
+
+
+/*!
+    This slot is called after the update check has returned. Shows a message if check was successful or not.
+    Offers to go to the download page if a newer version exists.
+ */
+void MainWindow::checkForUpdatedReturned(bool errorOccurred) {
+    if ( !errorOccurred ) {
+        QString returnedString = http->readAll();
+        int ret = QMessageBox::warning(this, tr("Update available"), tr("A newer version of UniversalIndentGUI is available.\nDo you want to go to the download website?" + returnedString.toLatin1() ),
+            QMessageBox::Yes | QMessageBox::Default,
+            QMessageBox::No);
+        if (ret == QMessageBox::Yes) {
+            ret = 2;
+        }
+    }
+    else {
+        QMessageBox::warning(this, tr("Update check error"), tr("There was an error while trying to check for an update! Error was : ") + http->errorString() );
+    }
 }
 
 

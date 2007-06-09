@@ -44,6 +44,7 @@
 #include <QLocale>
 #include <QTextCodec>
 #include <QDate>
+#include <QHttp>
 
 #include <Qsci/qsciscintilla.h>
 #include <Qsci/qsciprinter.h>
@@ -91,6 +92,7 @@ private:
 
     Ui::toolBarWidget *toolBarWidget;
     IndentHandler *indentHandler;
+    QHttp *http;
 
     QString loadFile(QString filePath);
     QString openFileDialog(QString dialogHeaderStr, QString startPath, QString fileMaskStr);
@@ -136,6 +138,8 @@ private slots:
     void createIndenterCallShellScript();
     void updateRecentlyOpenedList();
     void openFileFromRecentlyOpenedList(QAction* recentlyOpenedAction);
+    void checkForUpdates();
+    void checkForUpdatedReturned(bool errorOccurred);
 };
 
 #endif // MAINWINDOW_H

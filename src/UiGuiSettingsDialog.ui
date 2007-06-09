@@ -153,7 +153,7 @@
             <string>Sets how many files should be remembered in the list of recently opened files.</string>
            </property>
            <property name="text" >
-            <string>Number of files in recently opened list.</string>
+            <string>Number of files in recently opened list</string>
            </property>
            <property name="buddy" >
             <cstring>uiGuiRecentlyOpenedListSize</cstring>
@@ -161,6 +161,16 @@
           </widget>
          </item>
         </layout>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="uiGuiCheckForUpdate" >
+         <property name="toolTip" >
+          <string>Checks whether a new version of UniversalIndentGUI exists on program start, but only once a day.</string>
+         </property>
+         <property name="text" >
+          <string>Check online for update on program start</string>
+         </property>
+        </widget>
        </item>
        <item>
         <spacer>

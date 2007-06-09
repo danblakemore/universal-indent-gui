@@ -4,6 +4,7 @@
 ######################################################################
 CONFIG += debug_and_release
 TEMPLATE = app
+QT += network
 TARGET += 
 DEPENDPATH += resources \
               src \

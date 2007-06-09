@@ -26,6 +26,7 @@
 #include <QPoint>
 #include <QSize>
 #include <QDir>
+#include <QDate>
 #include <QStringList>
 
 class UiGuiSettings : public QObject
@@ -47,6 +48,7 @@ public:
 public slots:
 	void handleValueChangeFromExtern(int value);
     void handleValueChangeFromExtern(bool value);
+    void handleValueChangeFromExtern(QDate value);
 
 // Each possible setting needs an own signal.
 signals:
@@ -64,6 +66,8 @@ signals:
     void indenterParameterTooltipsEnabled(bool value);
     void tabWidth(int value);
     void language(int value);
+    void checkForUpdate(bool value);
+    void lastUpdateCheck(QDate value);
 
 private:
     void emitSignalForSetting(QString settingName);

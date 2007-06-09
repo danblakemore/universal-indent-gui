@@ -109,6 +109,21 @@ void UiGuiSettings::handleValueChangeFromExtern(bool value) {
     }
 }
 
+/*!
+    Extern widgets can connect to this slot to change settings. 
+    According to the objects name the corresponding setting is known and set.
+*/
+void UiGuiSettings::handleValueChangeFromExtern(QDate value) {
+    if ( sender() ) {
+        // Get the objects name and remove "uiGui" from its beginning.
+        QString objectName = sender()->objectName();
+        objectName.remove(0,5);
+
+        // Set the value of the setting to the objects value.
+        setValueByName( objectName, value );
+    }
+}
+
 
 /*!
 	Sets the value of the by \a settingsName defined setting to the value \a value.
@@ -151,6 +166,8 @@ void UiGuiSettings::emitSignalForSetting(QString settingName) {
     else if ( settingName == "IndenterParameterTooltipsEnabled" ) emit indenterParameterTooltipsEnabled( settings[settingName].toBool() );
     else if ( settingName == "TabWidth" ) emit tabWidth( settings[settingName].toInt() );
     else if ( settingName == "Language" ) emit language( settings[settingName].toInt() );
+    else if ( settingName == "CheckForUpdate" ) emit checkForUpdate( settings[settingName].toBool() );
+    else if ( settingName == "LastUpdateCheck" ) emit lastUpdateCheck( settings[settingName].toDate() );
     else if ( settingName == "all" ) {
         emit versionInSettingsFile( settings["VersionInSettingsFile"].toString() );
         emit windowIsMaximized( settings["WindowIsMaximized"].toBool() );
@@ -166,6 +183,8 @@ void UiGuiSettings::emitSignalForSetting(QString settingName) {
         emit indenterParameterTooltipsEnabled( settings["IndenterParameterTooltipsEnabled"].toBool() );
         emit tabWidth( settings["TabWidth"].toInt() );
         emit language( settings["Language"].toInt() );
+        emit checkForUpdate( settings["CheckForUpdate"].toBool() );
+        emit lastUpdateCheck( settings["LastUpdateCheck"].toDate() );
     }
 }
 
@@ -224,7 +243,7 @@ bool UiGuiSettings::loadSettings() {
 	}
 	settings["LastSelectedIndenterID"] = LastSelectedIndenterID;
 
-    // Read if syntax highlightning is enabled.
+    // Read if syntax highlighting is enabled.
 	settings["SyntaxHighlightningEnabled"] = qsettings->value( "UniversalIndentGUI/SyntaxHighlightningEnabled", true ).toBool();
 
 	// Read if white space characters should be displayed.
@@ -238,6 +257,10 @@ bool UiGuiSettings::loadSettings() {
 
 	// Read the last selected language and stores the index it has in the list of available translations.
 	settings["Language"] = availableTranslations.indexOf( qsettings->value("UniversalIndentGUI/language", "").toString() );
+
+    // Read the update check settings from the settings file.
+    settings["CheckForUpdate"] = qsettings->value("UniversalIndentGUI/CheckForUpdate", false).toBool();
+    settings["LastUpdateCheck"] = qsettings->value("UniversalIndentGUI/LastUpdateCheck", QDate(1900,1,1)).toDate();
 
 	return true;
 }
@@ -264,6 +287,9 @@ bool UiGuiSettings::saveSettings() {
     qsettings->setValue( "UniversalIndentGUI/SyntaxHighlightningEnabled", settings["SyntaxHighlightningEnabled"] );
     qsettings->setValue( "UniversalIndentGUI/whiteSpaceIsVisible", settings["WhiteSpaceIsVisible"] );
     qsettings->setValue( "UniversalIndentGUI/tabWidth", settings["TabWidth"] );
+    // Write the update check settings to the settings file.
+    qsettings->setValue("UniversalIndentGUI/CheckForUpdate", settings["CheckForUpdate"].toBool() );
+    qsettings->setValue("UniversalIndentGUI/LastUpdateCheck", settings["LastUpdateCheck"].toDate() );
 
     return true;
 }
