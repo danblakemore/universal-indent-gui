@@ -1297,8 +1297,10 @@ void MainWindow::updateRecentlyOpenedList() {
 		// If the file does no longer exist, remove it from the list.
 		if ( !fileInfo.exists() ) {
 			recentlyOpenedList.takeAt(i);
-            QAction* action = recentlyOpenedActionList.takeAt(i);
-            delete action;
+            if ( i < recentlyOpenedActionList.count() ) {
+                QAction* action = recentlyOpenedActionList.takeAt(i);
+                delete action;
+            }
 		}
         // else if its not already in the menu, add it to the menu.
         else {
