@@ -28,6 +28,7 @@
         <file>shell.png</file>
         <file>syntax-highlight.png</file>
         <file>system-log-out.png</file>
+        <file>system-software-update.png</file>
         <file>tooltip.png</file>
         <file>view-refresh.png</file>
     </qresource>

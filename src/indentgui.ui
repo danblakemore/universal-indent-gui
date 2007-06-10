@@ -46,12 +46,6 @@
      <height>21</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuHelp" >
-    <property name="title" >
-     <string>Help</string>
-    </property>
-    <addaction name="actionAbout_UniversalIndentGUI" />
-   </widget>
    <widget class="QMenu" name="menuIndenter" >
     <property name="title" >
      <string>Indenter</string>
@@ -107,6 +101,14 @@
     <addaction name="uiGuiIndenterParameterTooltipsEnabled" />
     <addaction name="uiGuiLoadLastOpenedFileOnStartup" />
     <addaction name="actionShowSettings" />
+   </widget>
+   <widget class="QMenu" name="menuHelp" >
+    <property name="title" >
+     <string>Help</string>
+    </property>
+    <addaction name="actionCheck_for_update" />
+    <addaction name="separator" />
+    <addaction name="actionAbout_UniversalIndentGUI" />
    </widget>
    <addaction name="menuFile" />
    <addaction name="menuIndenter" />
@@ -418,6 +420,20 @@
    </property>
    <property name="statusTip" >
     <string>Create a shell script that calls the current selected indenter for formatting an as parameter given file with the current indent settings</string>
+   </property>
+  </action>
+  <action name="actionCheck_for_update" >
+   <property name="icon" >
+    <iconset resource="../resources/Icons.qrc" >:/mainWindow/system-software-update.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Check for update</string>
+   </property>
+   <property name="toolTip" >
+    <string>Checks online whether a new version of UniversalIndentGUI is available.</string>
+   </property>
+   <property name="statusTip" >
+    <string>Checks online whether a new version of UniversalIndentGUI is available.</string>
    </property>
   </action>
  </widget>

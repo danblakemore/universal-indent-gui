@@ -200,6 +200,7 @@ void MainWindow::initMainWindow() {
     connect( actionLoad_Indenter_Config_File, SIGNAL(activated()), this, SLOT(openConfigFileDialog()) );
     connect( actionSave_Indenter_Config_File, SIGNAL(activated()), this, SLOT(saveasIndentCfgFileDialog()) );
     connect( actionCreateShellScript, SIGNAL(activated()), this, SLOT(createIndenterCallShellScript()) );
+    connect( actionCheck_for_update, SIGNAL(activated()), this, SLOT(checkForUpdates()) );
 
     // Init the menue for selecting one of the recently opened files.
     updateRecentlyOpenedList();
