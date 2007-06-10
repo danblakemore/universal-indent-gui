@@ -78,21 +78,24 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 
     updateSourceView();
 
-    QTimer::singleShot(0, this, SLOT(checkForUpdates()));
-    http = new QHttp(this);
+    // Check if a newer version is available but only if the setting for that is enabled and today not already a check has been done.
+    http = 0;
+    if ( settings->getValueByName("CheckForUpdate").toBool() && QDate::currentDate() != settings->getValueByName("LastUpdateCheck").toDate() ) {
+        checkForUpdates();
+    }
 }
 
 
 /*!
-    This function checks whether updates for UniversalIndentGUI are available. But it only executes the
-    online check if the setting for that is enabled and today not already a check has been done.
+    This function checks whether updates for UniversalIndentGUI are available.
  */
 void MainWindow::checkForUpdates() {
-    if ( settings->getValueByName("CheckForUpdate").toBool() && QDate::currentDate() != settings->getValueByName("LastUpdateCheck").toDate() ) {
-        connect( http, SIGNAL(done(bool)), this, SLOT(checkForUpdatedReturned(bool)) );
-        http->setHost("universalindent.sourceforge.net");
-        http->get("/universalindentgui_pad.xml");
-    }    
+    if ( http == 0 ) {
+        http = new QHttp(this);
+    }
+    connect( http, SIGNAL(done(bool)), this, SLOT(checkForUpdatedReturned(bool)) );
+    http->setHost("universalindent.sourceforge.net");
+    http->get("/universalindentgui_pad.xml");
 }
 
 
@@ -101,15 +104,34 @@ void MainWindow::checkForUpdates() {
     Offers to go to the download page if a newer version exists.
  */
 void MainWindow::checkForUpdatedReturned(bool errorOccurred) {
+    disconnect( http, SIGNAL(done(bool)), this, SLOT(checkForUpdatedReturned(bool)) );
     if ( !errorOccurred ) {
         QString returnedString = http->readAll();
-        int ret = QMessageBox::warning(this, tr("Update available"), tr("A newer version of UniversalIndentGUI is available.\nDo you want to go to the download website?" + returnedString.toLatin1() ),
-            QMessageBox::Yes | QMessageBox::Default,
-            QMessageBox::No);
-        if (ret == QMessageBox::Yes) {
-            ret = 2;
+        // Try to find the version string.
+        int leftPosition = returnedString.indexOf("<Program_Version>");
+        int rightPosition = returnedString.indexOf("</Program_Version>");
+        // If the version string could be found in the returned string, show an update dialog and set last update check date.
+        if ( leftPosition != -1 && rightPosition != -1 ) {
+            // Get the pure version string from returned string.
+            returnedString = returnedString.mid( leftPosition+17, rightPosition-(leftPosition+17) );
+            // Show message box whether to download the new version.
+            int ret = QMessageBox::question(this, tr("Update available"), 
+                tr("A newer version of UniversalIndentGUI is available.\nYour version is %1. New version is %2.\nDo you want to go to the download website?").arg(version).arg(returnedString),
+                QMessageBox::Yes | QMessageBox::Default,
+                QMessageBox::No);
+            // If yes clicked, open the download url in the default browser.
+            if (ret == QMessageBox::Yes) {
+                QDesktopServices::openUrl( QUrl("http://sourceforge.net/project/showfiles.php?group_id=167482") );
+            }
+            // Set last update check date.
+            settings->setValueByName("LastUpdateCheck", QDate::currentDate());
+        }
+        // In the returned string, the version string could not be found.
+        else {
+            QMessageBox::warning(this, tr("Update check error"), tr("There was an error while trying to check for an update! The retrieved file did not contain expected content.") );
         }
     }
+    // There was some error while trying to retireve the update info from server.
     else {
         QMessageBox::warning(this, tr("Update check error"), tr("There was an error while trying to check for an update! Error was : ") + http->errorString() );
     }
