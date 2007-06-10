@@ -81,6 +81,8 @@ private:
 
 	//! This map holds all possible settings defined by their name as QString. The value is of the type QVariant.
 	QMap<QString, QVariant> settings;
+
+    QString indenterExecutablePath;
 };
 
 #endif // UIGUISETTINGS_H

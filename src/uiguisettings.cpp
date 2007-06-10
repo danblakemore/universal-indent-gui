@@ -29,6 +29,7 @@
 */
 UiGuiSettings::UiGuiSettings(QString settingFilePath) : QObject() {
     qsettings = new QSettings(settingFilePath, QSettings::IniFormat, this);
+    indenterExecutablePath = "./data/";
 	readAvailableTranslations();
 	loadSettings();
 }
@@ -234,7 +235,7 @@ bool UiGuiSettings::loadSettings() {
 	settings["LoadLastOpenedFileOnStartup"] = qsettings->value("UniversalIndentGUI/loadLastSourceCodeFileOnStartup", true).toBool();
 
 	// Read last opened source code file from the settings file.
-	settings["LastOpenedFiles"] = qsettings->value("UniversalIndentGUI/lastSourceCodeFile", settings["IndenterExecutableDir"].toString()+"example.cpp").toString();
+	settings["LastOpenedFiles"] = qsettings->value("UniversalIndentGUI/lastSourceCodeFile", indenterExecutablePath+"example.cpp").toString();
 
 	// Read last selected indenter from the settings file.
 	int LastSelectedIndenterID = qsettings->value("UniversalIndentGUI/lastSelectedIndenter", 0).toInt();
