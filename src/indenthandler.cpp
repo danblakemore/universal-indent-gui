@@ -365,6 +365,7 @@ QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtensi
     return formattedSourceCode;
 }
 
+
 /*!
     Generates and returns a string with all parameters needed to call the indenter.
  */
@@ -399,8 +400,11 @@ QString IndentHandler::getParameterString() {
 
     // generate parameter string for all string values
     foreach (ParamString pString, paramStrings) {
-        if ( pString.lineEdit->text() != "" && pString.valueEnabledChkBox->isChecked() ) {
-            parameterString += pString.paramCallName + pString.lineEdit->text() + cfgFileParameterEnding;
+        if ( !pString.lineEdit->text().isEmpty() && pString.valueEnabledChkBox->isChecked() ) {
+            // Create parameter definition for each value devided by a | sign.
+            foreach (QString paramValue, pString.lineEdit->text().split("|")) {
+                parameterString += pString.paramCallName + paramValue + cfgFileParameterEnding;
+            }
         }
         indenterSettings->setValue( pString.paramName + "/Value", pString.lineEdit->text() );
         indenterSettings->setValue( pString.paramName + "/Enabled", pString.valueEnabledChkBox->isChecked() );
@@ -432,6 +436,7 @@ void IndentHandler::writeConfigFile(QString paramString) {
     cfgFile.write( paramString.toAscii() );
     cfgFile.close();
 }
+
 
 /*!
     Load the config file for the indenter and apply the settings made there.
@@ -539,29 +544,45 @@ void IndentHandler::loadConfigFile(QString filePathName) {
 
     // search for name of each string parameter and set it
     foreach (ParamString pString, paramStrings) {
+        paramValueStr = "";
+        // The number of the found values for this parameter name.
+        int numberOfValues = 0;
         index = cfgFileData.indexOf( pString.paramCallName, 0 );
         // parameter was found in config file
         if ( index != -1 ) {
-            // set index after the parameter name, so in front of the string
-            index += pString.paramCallName.length();
+            while ( index != -1 ) {
+                numberOfValues++;
 
-            // find the line end by searching for carriage return
-            crPos = cfgFileData.indexOf( cfgFileParameterEnding, index+1 );
+                // set index after the parameter name, so in front of the string
+                index += pString.paramCallName.length();
 
-            // get the number and convert it to int
-            paramValueStr = QString( cfgFileData.mid( index, crPos - index ) );
+                // find the line end by searching for carriage return
+                crPos = cfgFileData.indexOf( cfgFileParameterEnding, index+1 );
+
+                // Get the string and eventually add it to the line edit.
+                if ( numberOfValues < 2 ) {
+                    paramValueStr = QString( cfgFileData.mid( index, crPos - index ) );
+                }
+                else {
+                    paramValueStr = paramValueStr + "|" + QString( cfgFileData.mid( index, crPos - index ) );
+                }
+                
+                // Get next value for this setting, if one exists.
+                index = cfgFileData.indexOf( pString.paramCallName, crPos+1 );
+            }
+            // Set the text for the line edit.
             pString.lineEdit->setText( paramValueStr );
         }
         // parameter was not found in config file
         else {
-            QString defaultValue = indenterSettings->value(pString.paramName + "/ValueDefault").toString();
+            paramValueStr = indenterSettings->value(pString.paramName + "/ValueDefault").toString();
             // a value of -1 means that this parameter is disabled
-            if ( defaultValue == "-1" ) {
+            if ( paramValueStr == "-1" ) {
                 pString.valueEnabledChkBox->setChecked( false );
             }
             // if not disabled use the given default value
             else {
-                pString.lineEdit->setText( defaultValue );
+                pString.lineEdit->setText( paramValueStr );
             }
         }
     }

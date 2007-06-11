@@ -1,7 +1,9 @@
 2007-05-03 Version 0.6.1 Beta
 [add] Feature Request ID 1729433 : Added a recently opened file menu.
 [add] Feature Request ID 1704290 : Added possibiltiy to integrate into an IDE, editor or other as external tool. This is donw by creating a batch/shell script which accepts a file as parameter and calls the indenter with the in UniversalIndentGUI made settings.
-[add] Added support for HTML Tidy.
+[add] Feature Request ID 1673659 : The string parameter in the uigui ini files for each indenter can now also be a list of strings divided by "|" sign. As result the parameter name with value will be written to the indenter config file for each of the values.
+[add] Feature Request ID 1730180 : UniversalIndentGUI can automatically check on start, whether a new version is available. This setting is disabled by default and can be enabled in the settings.
+[add] Added support for HTML Tidy. The executable is contained in the release package.
 
 2007-05-03 Version 0.6.0 Beta
 [add] Feature Request ID 1700557 : Added a settings dialog for handling more possible settings with better usabiltiy.

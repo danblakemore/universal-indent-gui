@@ -120,7 +120,12 @@ Value=*
 ValueDefault=*
 </pre>
 
-The "CallName" is the parameter as string as it will be written to the indenters config file. At its ending "Value" will be appended.<br>
+The "CallName" is the parameter as string as it will be written to the indenters config file. At its ending "Value" will be appended. Value can also be a list of strings separated by the "|" sign. By this the parameter is written to the config file with each value in the list. <br>
+In the upper example value could be "C|c|K". The result in the ouput file would be:<br>
+-cmt_sep_char_4-C
+-cmt_sep_char_4-c
+-cmt_sep_char_4-K
+<br>
 <br>
 <br>
 3.4. Multiple parameters<br>
