@@ -45,6 +45,24 @@ AboutDialog::AboutDialog(QWidget *parent, QString version, QString revision, QSt
     versionString = versionString.arg(version).arg(revision).arg(buildDate);
     versionTextBrowser->setHtml(versionString);
 
+    creditsTextBrowser->setHtml("<html><head></head><body>"
+        "<h1></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></h1>"
+        "<h3 align='center'>Thanks go out to</h3>"
+        "<p align='center'><b>Nelson Tai</b> for chinese translation, good ideas and always fast answers.</p></br>"
+        "<p align='center'><b>Riverbank</b> for their Scinitlla Qt wrapper QScintilla.</p></br>"
+        "<p align='center'>The <b>Artistic Styler</b> project.</p></br>"
+        "<p align='center'>The <b>BCPP</b> project.</p></br>"
+        "<p align='center'>The <b>GNU Indent</b> project.</p></br>"
+        "<p align='center'>The <b>GreatCode</b> project.</p></br>"
+        "<p align='center'>The <b>HTML Tidy</b> project.</p></br>"
+        "<p align='center'>The <b>Uncrustify</b> project, specially <b>Ben Gardner</b>.</p></br>"
+        "<p align='center'><b>Nirvash</b> for the japanese translation.</p></br>"
+        "<p align='center'>The <b>Tango Project</b> for their icons.</p></br>"
+        "<p align='center'><b>famfamfam</b> for the flag icons.</p></br>"
+        "<p align='center'><b>Trolltech</b> for their Qt.</p></br>"
+        "<h3 align='center'>My girlfriend for putting my head right and not sit all the time in front of my computer ;-)</h3>"
+        "</body></html>");
+
     scrollDirection = 1;
     scrollSpeed = 100;
     timer = new QTimer(this);
