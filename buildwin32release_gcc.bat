@@ -1,63 +1,139 @@
 @echo off
+
+echo Making some environment settings
+echo --------------------------------
 rem set QTDIR=%QTDIR%_static
-set QTDIR=F:\Qt\qt.4.3.0_gpl_static
+set QTDIR=C:\Programmierung\qt.4.2.3_gcc_static
 set PATH=%QTDIR%\bin
-set PATH=%PATH%;D:\Programme\Informat\MinGW\bin;D:\Programme\Tools\7-Zip
+set PATH=%PATH%;C:\Programmierung\MingW\bin;C:\Programme\7-Zip
 set PATH=%PATH%;%SystemRoot%\System32
 set QMAKESPEC=win32-g++
-lrelease .\translations\universalindent_de.ts -qm .\translations\universalindent_de.qm
-lrelease .\translations\universalindent_tw.ts -qm .\translations\universalindent_tw.qm
-lrelease .\translations\universalindent_ja.ts -qm .\translations\universalindent_ja.qm
+echo Done.
+echo.
+
+echo Generating the translation binaries
+echo -----------------------------------
+for %%A in ( de, tw, ja) do (
+    lrelease .\translations\universalindent_%%A.ts -qm .\translations\universalindent_%%A.qm -silent
+    IF ERRORLEVEL 1 goto ERROR
+)
+echo Done.
+echo.
+
+echo Calling qmake
+echo -------------
 qmake
-make release
-rd UniversalIndentGUI_win32 /S /Q
+IF ERRORLEVEL 1 goto ERROR
+echo Done.
+echo.
+
+echo Calling make release
+echo --------------------
+make release >NUL
+IF ERRORLEVEL 1 goto ERROR
+echo Done.
+echo.
+
+echo Delete old release dir and create new one
+echo -----------------------------------------
+rmdir UniversalIndentGUI_win32 /S /Q
+IF ERRORLEVEL 1 goto ERROR
 md UniversalIndentGUI_win32
+IF ERRORLEVEL 1 goto ERROR
 cd UniversalIndentGUI_win32
+IF ERRORLEVEL 1 goto ERROR
 md translations
+IF ERRORLEVEL 1 goto ERROR
 md data
+IF ERRORLEVEL 1 goto ERROR
 md doc
+IF ERRORLEVEL 1 goto ERROR
 cd ..
-rem copy .\data\.astylerc .\UniversalIndentGUI_win32\data
-copy .\data\astyle.exe .\UniversalIndentGUI_win32\data
-copy .\data\astyle.html .\UniversalIndentGUI_win32\data
-copy .\data\indent.exe .\UniversalIndentGUI_win32\data
-copy .\data\indent.html .\UniversalIndentGUI_win32\data
-copy .\data\libintl-2.dll .\UniversalIndentGUI_win32\data
-copy .\data\libiconv-2.dll .\UniversalIndentGUI_win32\data
-rem copy .\data\.indent.pro .\UniversalIndentGUI_win32\data
-rem copy .\data\bcpp.cfg .\UniversalIndentGUI_win32\data
-copy .\data\bcpp.exe .\UniversalIndentGUI_win32\data
-copy .\data\bcpp.txt .\UniversalIndentGUI_win32\data
-copy .\data\csstidy.exe .\UniversalIndentGUI_win32\data
-rem copy .\data\gc.cfg .\UniversalIndentGUI_win32\data
-copy .\data\gc.exe .\UniversalIndentGUI_win32\data
-copy .\data\gc.txt .\UniversalIndentGUI_win32\data
-rem copy .\data\uncrustify.cfg .\UniversalIndentGUI_win32\data
-copy .\data\uncrustify.exe .\UniversalIndentGUI_win32\data
-copy .\data\uncrustify.txt .\UniversalIndentGUI_win32\data
-copy .\data\uigui_astyle.ini .\UniversalIndentGUI_win32\data
-copy .\data\uigui_bcpp.ini .\UniversalIndentGUI_win32\data
-copy .\data\uigui_csstidy.ini .\UniversalIndentGUI_win32\data
-copy .\data\uigui_gnuindent.ini .\UniversalIndentGUI_win32\data
-copy .\data\uigui_greatcode.ini .\UniversalIndentGUI_win32\data
-copy .\data\uigui_phpCB.ini .\UniversalIndentGUI_win32\data
-copy .\data\uigui_uncrustify.ini .\UniversalIndentGUI_win32\data
-copy .\data\highlighter.ini .\UniversalIndentGUI_win32\data
-copy .\data\example.cpp .\UniversalIndentGUI_win32\data
-copy .\CHANGELOG.txt .\UniversalIndentGUI_win32\
-copy .\LICENSE.GPL .\UniversalIndentGUI_win32\
-copy .\INSTALL.txt .\UniversalIndentGUI_win32\
-copy .\README.txt .\UniversalIndentGUI_win32\
+echo Done.
+echo.
 
-rem Copy the translation files
-copy %QTDIR%\translations\qt_de.qm .\translations\
-copy %QTDIR%\translations\qt_ja_jp.qm .\translations\qt_ja.qm
-copy %QTDIR%\translations\qt_zh_CN.qm .\translations\qt_tw.qm
-copy .\translations\*.qm .\UniversalIndentGUI_win32\translations\
+echo Copying the indenter executables and example file to the release data dir
+echo -------------------------------------------------------------------------
+FOR %%A IN ( astyle.exe, astyle.html, bcpp.exe, bcpp.txt, csstidy.exe, gc.exe, gc.txt, htmltidy.exe, htmltidy.html, indent.exe, indent.html, uncrustify.exe, uncrustify.txt, example.cpp ) DO (
+    if not exist .\data\%%A (
+        echo File .\data\%%A not found!
+        goto ERROR
+    )
+    copy .\data\%%A .\UniversalIndentGUI_win32\data\ >NUL
+    IF ERRORLEVEL 1 goto ERROR
+)
+echo Done.
+echo.
 
-copy .\doc\iniFileFormat.html .\UniversalIndentGUI_win32\doc\
-copy .\release\UniversalIndentGUI.exe .\UniversalIndentGUI_win32\
+echo Copying the indenter uigui ini files to the release data dir
+echo ------------------------------------------------------------
+FOR %%A IN ( uigui_astyle.ini, uigui_bcpp.ini, uigui_csstidy.ini, uigui_gnuindent.ini, uigui_greatcode.ini, uigui_phpCB.ini, uigui_uncrustify.ini, highlighter.ini ) DO (
+    if not exist .\data\%%A (
+        echo File .\data\%%A not found!
+        goto ERROR
+    )
+    copy .\data\%%A .\UniversalIndentGUI_win32\data\ >NUL
+    IF ERRORLEVEL 1 goto ERROR
+)
+echo Done.
+echo.
+
+echo Copying some other files (README, CHANGELOG etc)
+echo ------------------------------------------------
+FOR %%A IN ( CHANGELOG.txt, LICENSE.GPL, INSTALL.txt, README.txt ) DO (
+    if not exist .\%%A (
+        echo File .\data\%%A not found!
+        goto ERROR
+    )
+    copy .\%%A .\UniversalIndentGUI_win32\ >NUL
+    IF ERRORLEVEL 1 goto ERROR
+)
+echo Done.
+echo.
+
+echo Copying the translation files to the release translation dir
+echo ------------------------------------------------------------
+copy %QTDIR%\translations\qt_de.qm .\translations\ >NUL
+copy %QTDIR%\translations\qt_ja_jp.qm .\translations\qt_ja.qm >NUL
+copy %QTDIR%\translations\qt_zh_CN.qm .\translations\qt_tw.qm >NUL
+for %%A in ( de, tw, ja) do (
+    if not exist .\translations\universalindent_%%A.qm (
+        echo File .\translations\universalindent_%%A.qm not found!
+        goto ERROR
+    )
+    copy .\translations\universalindent_%%A.qm .\UniversalIndentGUI_win32\translations\ >NUL
+    IF ERRORLEVEL 1 goto ERROR
+)
+echo Done.
+echo.
+
+echo Copying doc and UniversalIndentGUI.exe to release dir
+echo -----------------------------------------------------
+copy .\doc\iniFileFormat.html .\UniversalIndentGUI_win32\doc\ >NUL
+IF ERRORLEVEL 1 goto ERROR
+copy .\release\UniversalIndentGUI.exe .\UniversalIndentGUI_win32\ >NUL
+IF ERRORLEVEL 1 goto ERROR
+echo Done.
+echo.
+
+echo Packing the whole release dir content
+echo -------------------------------------
 cd UniversalIndentGUI_win32
-7z.exe a -tzip UniversalIndentGUI_0.6.0_Beta_win32.zip
+7z.exe a -tzip UniversalIndentGUI_0.6.1_Beta_win32.zip >NUL
+IF ERRORLEVEL 1 goto ERROR
 cd ..
+echo Done.
+echo.
+
+
+:SUCCESS
+echo Everything completed successfull!
+goto END
+
+:ERROR
+echo.
+echo Something during the above step went wrong! See output error message, if any.
+goto END
+
+:END
 pause
