@@ -81,7 +81,8 @@ private:
     QString savedSourceContent;
     QActionGroup *encodingActionGroup;
     QActionGroup *highlighterActionGroup;
-    QTranslator *translator;
+    QTranslator *uiGuiTranslator;
+    QTranslator *qTTranslator;
     bool isFirstRunOfThisVersion;
 
     bool sourceCodeChanged;

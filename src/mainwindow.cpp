@@ -304,8 +304,6 @@ void MainWindow::initSyntaxHighlighter() {
  */
 bool MainWindow::initApplicationLanguage() {
     QString languageShort;
-    // Create a translator
-    translator = new QTranslator();
 
     // Get the language settings from the settings object.
 	int languageIndex = settings->getValueByName("Language").toInt();
@@ -332,11 +330,18 @@ bool MainWindow::initApplicationLanguage() {
         languageShort = settings->getAvailableTranslations().at(languageIndex);
     }
 
-    // Load the translation file and set it for the application.
-    translator = new QTranslator();
-    bool translationFileLoaded = translator->load( QString("./translations/universalindent_") + languageShort );
+    // Load the Qt own translation file and set it for the application.
+    qTTranslator = new QTranslator();
+    bool translationFileLoaded = qTTranslator->load( QString("./translations/qt_") + languageShort );
     if ( translationFileLoaded ) {
-        qApp->installTranslator(translator);
+        qApp->installTranslator(qTTranslator);
+    }
+
+    // Load the uigui translation file and set it for the application.
+    uiGuiTranslator = new QTranslator();
+    translationFileLoaded = uiGuiTranslator->load( QString("./translations/universalindent_") + languageShort );
+    if ( translationFileLoaded ) {
+        qApp->installTranslator(uiGuiTranslator);
     }
 
     connect( settings, SIGNAL(language(int)), this, SLOT(languageChanged(int)) );
@@ -1084,12 +1089,23 @@ void MainWindow::languageChanged(int languageIndex) {
     // Get the mnemonic of the new selected language.
 	QString languageShort = settings->getAvailableTranslations().at(languageIndex);
 
-	// Remove the old translation.
-	qApp->removeTranslator( translator );
+	// Remove the old qt translation.
+	qApp->removeTranslator( qTTranslator );
 
-	// Load the new translation file and add it to the translation list.
-	translator->load( QString("./translations/universalindent_") + languageShort );
-	qApp->installTranslator( translator );
+    // Remove the old uigui translation.
+	qApp->removeTranslator( uiGuiTranslator );
+
+    // Load the Qt own translation file and set it for the application.
+    bool translationFileLoaded = qTTranslator->load( QString("./translations/qt_") + languageShort );
+    if ( translationFileLoaded ) {
+        qApp->installTranslator(qTTranslator);
+    }
+
+    // Load the uigui translation file and set it for the application.
+    translationFileLoaded = uiGuiTranslator->load( QString("./translations/universalindent_") + languageShort );
+    if ( translationFileLoaded ) {
+        qApp->installTranslator(uiGuiTranslator);
+    }
 }
 
 

@@ -48,7 +48,13 @@ copy .\CHANGELOG.txt .\UniversalIndentGUI_win32\
 copy .\LICENSE.GPL .\UniversalIndentGUI_win32\
 copy .\INSTALL.txt .\UniversalIndentGUI_win32\
 copy .\README.txt .\UniversalIndentGUI_win32\
+
+rem Copy the translation files
+copy %QTDIR%\translations\qt_de.qm .\translations\
+copy %QTDIR%\translations\qt_ja_jp.qm .\translations\qt_ja.qm
+copy %QTDIR%\translations\qt_zh_CN.qm .\translations\qt_tw.qm
 copy .\translations\*.qm .\UniversalIndentGUI_win32\translations\
+
 copy .\doc\iniFileFormat.html .\UniversalIndentGUI_win32\doc\
 copy .\release\UniversalIndentGUI.exe .\UniversalIndentGUI_win32\
 cd UniversalIndentGUI_win32

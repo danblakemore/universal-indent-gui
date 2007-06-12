@@ -61,7 +61,13 @@ cp ./data/uigui_gnuindent.ini ./UniversalIndentGUI_linux32/data/
 cp ./data/uigui_uncrustify.ini ./UniversalIndentGUI_linux32/data/
 cp ./data/highlighter.ini ./UniversalIndentGUI_linux32/data/
 cp ./data/example.cpp ./UniversalIndentGUI_linux32/data/
+
+# Copy the translation files.
+cp %QTDIR%/translations/qt_de.qm ./translations/
+cp %QTDIR%/translations/qt_ja_jp.qm ./translations/qt_ja.qm
+cp %QTDIR%/translations/qt_zh_CN.qm ./translations/qt_tw.qm
 cp ./translations/*.qm ./UniversalIndentGUI_linux32/translations/
+
 cp ./doc/iniFileFormat.html ./UniversalIndentGUI_linux32/doc/
 cp ./release/UniversalIndentGUI ./UniversalIndentGUI_linux32/
 cd UniversalIndentGUI_linux32
