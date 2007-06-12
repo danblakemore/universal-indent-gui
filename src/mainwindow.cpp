@@ -698,7 +698,7 @@ void MainWindow::sourceCodeChangedHelperSlot() {
  */
 void MainWindow::sourceCodeChangedSlot() {
     QChar enteredCharacter;
-	int cursorPos,cursorPosAbsolut, cursorLine;
+	int cursorPos, cursorPosAbsolut, cursorLine;
 	QString text;
 
     sourceCodeChanged = true;
@@ -706,10 +706,17 @@ void MainWindow::sourceCodeChangedSlot() {
         scrollPositionChanged = false;
     }
 
+    // Get the content text of the text editor.
     sourceFileContent = txtedSourceCode->text();
 	
+    // Get the position of the cursor in the unindented text.
     if ( sourceFileContent.count() == 0 ) {
+        // Add this line feed, because AStyle has problems with a totally emtpy file.
         sourceFileContent += "\n";
+        cursorPosAbsolut = 0;
+        cursorPos = 0;
+        cursorLine = 0;
+        enteredCharacter = sourceFileContent.at(cursorPosAbsolut);
     }
     else {
         txtedSourceCode->getCursorPosition(&cursorLine, &cursorPos);
@@ -724,10 +731,13 @@ void MainWindow::sourceCodeChangedSlot() {
         enteredCharacter = sourceFileContent.at(cursorPosAbsolut);
     }
 
+    // Call the indenter to reformat the text.
     if ( toolBarWidget->cbLivePreview->isChecked() ) {
         callIndenter();
         previewToggled = true;
     }
+
+    // Update the text editor.
     updateSourceView();
 
     if ( !enteredCharacter.isNull() ) {
@@ -794,11 +804,11 @@ void MainWindow::sourceCodeChangedSlot() {
 
     if ( savedSourceContent == txtedSourceCode->text() ) {
         txtedSourceCode->setModified( false );
-        setWindowModified( txtedSourceCode->isModified() );
+        setWindowModified( false );
     }
     else {
         txtedSourceCode->setModified( true );
-        setWindowModified( txtedSourceCode->isModified() );
+        setWindowModified( true );
     }
 
     // Could set cursor this way and use normal linear search in text instead of columns and rows.
