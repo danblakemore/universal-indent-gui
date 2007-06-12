@@ -33,9 +33,9 @@
  */
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     // set the program version, revision and date, which is shown in the main window title and in the about dialog.
-    version = "0.6.0 Beta";
-    revision = "370";
-    QDate buildDate(2007, 6, 3);
+    version = "0.6.1 Beta";
+    revision = "425";
+    QDate buildDate(2007, 6, 13);
     buildDateStr = buildDate.toString("d. MMMM yyyy");
 
     // Create the settings object, which loads all UiGui settings from a file.
@@ -128,12 +128,12 @@ void MainWindow::checkForUpdatedReturned(bool errorOccurred) {
         }
         // In the returned string, the version string could not be found.
         else {
-            QMessageBox::warning(this, tr("Update check error"), tr("There was an error while trying to check for an update! The retrieved file did not contain expected content.") );
+            QMessageBox::warning(this, "Update check error", "There was an error while trying to check for an update! The retrieved file did not contain expected content." );
         }
     }
-    // There was some error while trying to retireve the update info from server.
+    // There was some error while trying to retrieve the update info from server.
     else {
-        QMessageBox::warning(this, tr("Update check error"), tr("There was an error while trying to check for an update! Error was : ") + http->errorString() );
+        QMessageBox::warning(this, "Update check error", "There was an error while trying to check for an update! Error was : " + http->errorString() );
     }
 }
 
