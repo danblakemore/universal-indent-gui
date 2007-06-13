@@ -96,9 +96,9 @@ echo ------------------------------------------------------------
 copy %QTDIR%\translations\qt_de.qm .\translations\ >NUL
 copy %QTDIR%\translations\qt_ja_jp.qm .\translations\qt_ja.qm >NUL
 copy %QTDIR%\translations\qt_zh_CN.qm .\translations\qt_tw.qm >NUL
-copy %QTDIR%\translations\qt_de.qm .\UniversalIndentGUI_win32\translations\ >NUL
-copy %QTDIR%\translations\qt_ja_jp.qm .\UniversalIndentGUI_win32\translations\qt_ja.qm >NUL
-copy %QTDIR%\translations\qt_zh_CN.qm .\UniversalIndentGUI_win32\translations\qt_tw.qm >NUL
+copy .\translations\qt_de.qm .\UniversalIndentGUI_win32\translations\ >NUL
+copy .\translations\qt_ja.qm .\UniversalIndentGUI_win32\translations\ >NUL
+copy .\translations\qt_tw.qm .\UniversalIndentGUI_win32\translations\ >NUL
 for %%A in ( de, tw, ja ) do (
     if not exist .\translations\universalindent_%%A.qm (
         echo File .\translations\universalindent_%%A.qm not found!
