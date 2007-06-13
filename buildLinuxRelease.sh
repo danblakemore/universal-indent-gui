@@ -1,7 +1,9 @@
 #!/bin/bash
-echo setting Qt path to /usr/local/Trolltech/Qt-4.2.3/bin
+echo setting Qt path to /usr/local/Trolltech/Qt-4.2.1/bin
 echo ----------------------------------------------------
-PATH=/usr/local/Trolltech/Qt-4.2.3/bin:$PATH
+QTDIR=/usr/local/Trolltech/Qt-4.2.1
+export QTDIR
+PATH=$QTDIR/bin:$PATH
 export PATH
 echo calling rm -r release/debug
 echo ---------------------------
@@ -46,6 +48,7 @@ cp ./data/csstidy ./UniversalIndentGUI_linux32/data/
 #cp ./data/gc.cfg ./UniversalIndentGUI_linux32/data/
 cp ./data/gc.exe ./UniversalIndentGUI_linux32/data/
 cp ./data/gc.txt ./UniversalIndentGUI_linux32/data/
+cp ./data/htmltidy ./UniversalIndentGUI_linux32/data/
 #cp ./data/.indent.pro ./UniversalIndentGUI_linux32/data/
 cp ./data/indent ./UniversalIndentGUI_linux32/data/
 cp ./data/indent.html ./UniversalIndentGUI_linux32/data/
@@ -59,13 +62,14 @@ cp ./data/uigui_greatcode.ini ./UniversalIndentGUI_linux32/data/
 cp ./data/uigui_phpCB.ini ./UniversalIndentGUI_linux32/data/
 cp ./data/uigui_gnuindent.ini ./UniversalIndentGUI_linux32/data/
 cp ./data/uigui_uncrustify.ini ./UniversalIndentGUI_linux32/data/
+cp ./data/uigui_htmltidy.ini ./UniversalIndentGUI_linux32/data/
 cp ./data/highlighter.ini ./UniversalIndentGUI_linux32/data/
 cp ./data/example.cpp ./UniversalIndentGUI_linux32/data/
 
 # Copy the translation files.
-cp %QTDIR%/translations/qt_de.qm ./translations/
-cp %QTDIR%/translations/qt_ja_jp.qm ./translations/qt_ja.qm
-cp %QTDIR%/translations/qt_zh_CN.qm ./translations/qt_tw.qm
+cp $QTDIR/translations/qt_de.qm ./translations/
+cp $QTDIR/translations/qt_ja_jp.qm ./translations/qt_ja.qm
+cp $QTDIR/translations/qt_zh_CN.qm ./translations/qt_tw.qm
 cp ./translations/*.qm ./UniversalIndentGUI_linux32/translations/
 
 cp ./doc/iniFileFormat.html ./UniversalIndentGUI_linux32/doc/
@@ -73,6 +77,6 @@ cp ./release/UniversalIndentGUI ./UniversalIndentGUI_linux32/
 cd UniversalIndentGUI_linux32
 echo compressing UniversalIndentGUI_linux32
 echo ----------------------------------------
-tar czf UniversalIndentGUI_0.6.0_Beta_linux32.tgz *
+tar czf UniversalIndentGUI_0.6.1_Beta_linux32.tgz *
 cd ..
 read -p "press any key to continue"
