@@ -33,6 +33,7 @@ AboutDialog::AboutDialog(QWidget *parent, QString version, QString revision, QSt
 {
 	qApp->setStyleSheet("QTextBrowser{background-color:transparent}");
     setupUi(this);
+    creditsTextBrowser->setStyleSheet("QTextBrowser#creditsTextBrowser{background-color:white}");
 
     //licenseLabel->setText( "The System Locale is : " + QLocale::system().name() );
     connect( authorTextBrowser, SIGNAL(anchorClicked (const QUrl)), this, SLOT(linkClicked(const QUrl)) );
