@@ -6,6 +6,7 @@
 [add] Added support for HTML Tidy. The executable is contained in the release package.
 [change] The about dialog shows now a credits scroller to say thanks to all people, who have helped me somehow.
 [fix] Bug ID 1733499 : UniversalIndentGui crashed if inside of an indenter ini file the category number of one parameter was higher than the available categories.
+[fix] Bug ID 1735586 : Some dialogs had untranslated buttons. For example yes, no, cancel were not translated.
 
 2007-05-03 Version 0.6.0 Beta
 [add] Feature Request ID 1700557 : Added a settings dialog for handling more possible settings with better usabiltiy.

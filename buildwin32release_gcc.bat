@@ -67,7 +67,7 @@ echo.
 
 echo Copying the indenter uigui ini files to the release data dir
 echo ------------------------------------------------------------
-FOR %%A IN ( uigui_astyle.ini, uigui_bcpp.ini, uigui_csstidy.ini, uigui_gnuindent.ini, uigui_greatcode.ini, uigui_phpCB.ini, uigui_uncrustify.ini, highlighter.ini ) DO (
+FOR %%A IN ( uigui_astyle.ini, uigui_bcpp.ini, uigui_csstidy.ini, uigui_gnuindent.ini, uigui_greatcode.ini, uigui_htmltidy.ini, uigui_phpCB.ini, uigui_uncrustify.ini, highlighter.ini ) DO (
     if not exist .\data\%%A (
         echo File .\data\%%A not found!
         goto ERROR
@@ -96,7 +96,10 @@ echo ------------------------------------------------------------
 copy %QTDIR%\translations\qt_de.qm .\translations\ >NUL
 copy %QTDIR%\translations\qt_ja_jp.qm .\translations\qt_ja.qm >NUL
 copy %QTDIR%\translations\qt_zh_CN.qm .\translations\qt_tw.qm >NUL
-for %%A in ( de, tw, ja) do (
+copy %QTDIR%\translations\qt_de.qm .\UniversalIndentGUI_win32\translations\ >NUL
+copy %QTDIR%\translations\qt_ja_jp.qm .\UniversalIndentGUI_win32\translations\qt_ja.qm >NUL
+copy %QTDIR%\translations\qt_zh_CN.qm .\UniversalIndentGUI_win32\translations\qt_tw.qm >NUL
+for %%A in ( de, tw, ja ) do (
     if not exist .\translations\universalindent_%%A.qm (
         echo File .\translations\universalindent_%%A.qm not found!
         goto ERROR
