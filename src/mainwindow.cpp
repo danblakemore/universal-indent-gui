@@ -114,14 +114,16 @@ void MainWindow::checkForUpdatedReturned(bool errorOccurred) {
         if ( leftPosition != -1 && rightPosition != -1 ) {
             // Get the pure version string from returned string.
             returnedString = returnedString.mid( leftPosition+17, rightPosition-(leftPosition+17) );
-            // Show message box whether to download the new version.
-            int ret = QMessageBox::question(this, tr("Update available"), 
-                tr("A newer version of UniversalIndentGUI is available.\nYour version is %1. New version is %2.\nDo you want to go to the download website?").arg(version).arg(returnedString),
-                QMessageBox::Yes | QMessageBox::Default,
-                QMessageBox::No);
-            // If yes clicked, open the download url in the default browser.
-            if (ret == QMessageBox::Yes) {
-                QDesktopServices::openUrl( QUrl("http://sourceforge.net/project/showfiles.php?group_id=167482") );
+            if ( returnedString != version ) {
+                // Show message box whether to download the new version.
+                int ret = QMessageBox::question(this, tr("Update available"), 
+                    tr("A newer version of UniversalIndentGUI is available.\nYour version is %1. New version is %2.\nDo you want to go to the download website?").arg(version).arg(returnedString),
+                    QMessageBox::Yes | QMessageBox::Default,
+                    QMessageBox::No);
+                // If yes clicked, open the download url in the default browser.
+                if (ret == QMessageBox::Yes) {
+                    QDesktopServices::openUrl( QUrl("http://sourceforge.net/project/showfiles.php?group_id=167482") );
+                }
             }
             // Set last update check date.
             settings->setValueByName("LastUpdateCheck", QDate::currentDate());
