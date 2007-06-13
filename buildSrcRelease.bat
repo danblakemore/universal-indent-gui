@@ -35,7 +35,7 @@ FOR %%A IN ( uigui_astyle.ini, uigui_bcpp.ini, uigui_csstidy.ini, uigui_gnuinden
         echo File .\data\%%A not found!
         goto ERROR
     )
-    copy .\data\%%A .\UniversalIndentGUI_win32\data\ >NUL
+    copy .\data\%%A .\UniversalIndentGUI_src\data\ >NUL
     IF ERRORLEVEL 1 goto ERROR
 )
 echo Done.
