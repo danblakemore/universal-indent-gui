@@ -1289,8 +1289,11 @@ void MainWindow::createIndenterCallShellScript() {
 
     QString fileExtensions = tr("Shell Script")+" (*."+shellScriptExtension+");;"+tr("All files")+" (*.*)";
 
+    QString currentIndenterName = toolBarWidget->cmbBoxIndenters->currentText();
+    currentIndenterName = currentIndenterName.replace(" ", "_");
+
     //QString openedSourceFileContent = openFileDialog( tr("Choose source code file"), "./", fileExtensions );
-    QString fileName = QFileDialog::getSaveFileName( this, tr("Save shell script"), "callIndenter."+shellScriptExtension, fileExtensions);
+    QString fileName = QFileDialog::getSaveFileName( this, tr("Save shell script"), "call_"+currentIndenterName+"."+shellScriptExtension, fileExtensions);
 
     // Saving has been canceled if the filename is empty
     if ( fileName.isEmpty() ) {
