@@ -155,6 +155,7 @@ void MainWindow::initMainWindow() {
 	if ( maximized ) {
 		showMaximized();
 	}
+    restoreState( settings->getValueByName("MainWindowState").toByteArray() );
 
     // Handle if first run of this version
     // -----------------------------------
@@ -1020,6 +1021,7 @@ void MainWindow::saveSettings() {
 		settings->setValueByName( "WindowPosition", pos() );
 		settings->setValueByName( "WindowSize", size() );
 	}
+    settings->setValueByName( "MainWindowState", saveState() );
     //settings->setValueByName( "SyntaxHighlightningEnabled", uiGuiSyntaxHighlightningEnabled->isChecked() );
     //settings->setValueByName( "WhiteSpaceIsVisible", uiGuiWhiteSpaceIsVisible->isChecked() );
     //settings->setValueByName( "TabWidth", txtedSourceCode->tabWidth() );

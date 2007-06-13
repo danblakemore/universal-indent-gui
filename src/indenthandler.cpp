@@ -43,7 +43,7 @@ IndentHandler::IndentHandler(QString dataDirPathStr, int indenterID, QMainWindow
     this->mainWindow = mainWindow;
 
     // define this widgets size and resize behavior
-    this->setMaximumWidth(263);
+    //this->setMaximumWidth(263);
     this->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
 
     // create vertical layout box, into which the toolbox will be added

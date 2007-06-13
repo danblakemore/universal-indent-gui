@@ -127,6 +127,22 @@ void UiGuiSettings::handleValueChangeFromExtern(QDate value) {
 
 
 /*!
+    Extern widgets can connect to this slot to change settings. 
+    According to the objects name the corresponding setting is known and set.
+*/
+void UiGuiSettings::handleValueChangeFromExtern(QByteArray value) {
+    if ( sender() ) {
+        // Get the objects name and remove "uiGui" from its beginning.
+        QString objectName = sender()->objectName();
+        objectName.remove(0,5);
+
+        // Set the value of the setting to the objects value.
+        setValueByName( objectName, value );
+    }
+}
+
+
+/*!
 	Sets the value of the by \a settingsName defined setting to the value \a value.
     The to \a settingsName corresponding signal is emitted, if the value has changed.
  */
@@ -169,6 +185,7 @@ void UiGuiSettings::emitSignalForSetting(QString settingName) {
     else if ( settingName == "Language" ) emit language( settings[settingName].toInt() );
     else if ( settingName == "CheckForUpdate" ) emit checkForUpdate( settings[settingName].toBool() );
     else if ( settingName == "LastUpdateCheck" ) emit lastUpdateCheck( settings[settingName].toDate() );
+    else if ( settingName == "MainWindowState" ) emit mainWindowState( settings[settingName].toByteArray() );
     else if ( settingName == "all" ) {
         emit versionInSettingsFile( settings["VersionInSettingsFile"].toString() );
         emit windowIsMaximized( settings["WindowIsMaximized"].toBool() );
@@ -186,6 +203,7 @@ void UiGuiSettings::emitSignalForSetting(QString settingName) {
         emit language( settings["Language"].toInt() );
         emit checkForUpdate( settings["CheckForUpdate"].toBool() );
         emit lastUpdateCheck( settings["LastUpdateCheck"].toDate() );
+        emit mainWindowState( settings["MainWindowState"].toByteArray() );
     }
 }
 
@@ -263,6 +281,9 @@ bool UiGuiSettings::loadSettings() {
     settings["CheckForUpdate"] = qsettings->value("UniversalIndentGUI/CheckForUpdate", false).toBool();
     settings["LastUpdateCheck"] = qsettings->value("UniversalIndentGUI/LastUpdateCheck", QDate(1900,1,1)).toDate();
 
+    // Read the main window state.
+    settings["MainWindowState"] = qsettings->value("UniversalIndentGUI/MainWindowState", QByteArray()).toByteArray();
+
 	return true;
 }
 
@@ -291,6 +312,8 @@ bool UiGuiSettings::saveSettings() {
     // Write the update check settings to the settings file.
     qsettings->setValue("UniversalIndentGUI/CheckForUpdate", settings["CheckForUpdate"].toBool() );
     qsettings->setValue("UniversalIndentGUI/LastUpdateCheck", settings["LastUpdateCheck"].toDate() );
+    // Write the main window state.
+    qsettings->setValue("UniversalIndentGUI/MainWindowState", settings["MainWindowState"].toByteArray() );
 
     return true;
 }

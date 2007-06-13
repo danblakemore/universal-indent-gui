@@ -49,6 +49,7 @@ public slots:
 	void handleValueChangeFromExtern(int value);
     void handleValueChangeFromExtern(bool value);
     void handleValueChangeFromExtern(QDate value);
+    void handleValueChangeFromExtern(QByteArray value);
 
 // Each possible setting needs an own signal.
 signals:
@@ -68,6 +69,7 @@ signals:
     void language(int value);
     void checkForUpdate(bool value);
     void lastUpdateCheck(QDate value);
+    void mainWindowState(QByteArray value);
 
 private:
     void emitSignalForSetting(QString settingName);

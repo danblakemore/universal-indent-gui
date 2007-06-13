@@ -4,6 +4,7 @@
 [add] Feature Request ID 1673659 : The string parameter in the uigui ini files for each indenter can now also be a list of strings divided by "|" sign. As result the parameter name with value will be written to the indenter config file for each of the values.
 [add] Feature Request ID 1730180 : UniversalIndentGUI can automatically check on start, whether a new version is available. This setting is disabled by default and can be enabled in the settings.
 [add] Added support for HTML Tidy. The executable is contained in the release package.
+[add] Feature Request ID 1736432 : The width of the dock widget containing  the indenter parameters is now restored on program start.
 [change] The about dialog shows now a credits scroller to say thanks to all people, who have helped me somehow.
 [fix] Bug ID 1733499 : UniversalIndentGui crashed if inside of an indenter ini file the category number of one parameter was higher than the available categories.
 [fix] Bug ID 1735586 : Some dialogs had untranslated buttons. For example yes, no, cancel were not translated.
