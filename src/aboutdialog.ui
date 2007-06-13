@@ -147,7 +147,7 @@ p, li { white-space: pre-wrap; }
    <item>
     <widget class="QLabel" name="licenseLabel" >
      <property name="text" >
-      <string>License: UniveralIndentGui is released under the GPL 2. For details read the included file LICENSE.GPL visit http://www.gnu.org/licenses/gpl.html</string>
+      <string>License: UniversalIndentGui is released under the GPL 2. For details read the included file LICENSE.GPL visit http://www.gnu.org/licenses/gpl.html</string>
      </property>
      <property name="wordWrap" >
       <bool>true</bool>

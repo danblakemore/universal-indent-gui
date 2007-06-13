@@ -26,7 +26,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;&quot;&gt;&lt;br /&gt;Written by : Thomas Schweitzer&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;&quot;&gt;Project Homepage : &lt;a href=&quot;http://universalindent.sourceforge.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://universalindent.sourceforge.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;&quot;&gt;    &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+        <translation type="unfinished">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;&quot;&gt;&lt;br /&gt;作者：Thomas Schweitzer&lt;/p&gt;
@@ -65,7 +65,7 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:12pt;&quot;&gt;Version %1 rev.%2, %3 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+        <translation type="unfinished">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:12pt;&quot;&gt;Version %1 rev.%2, %3 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
@@ -73,12 +73,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/aboutdialog.ui" line="150"/>
         <source>License: UniveralIndentGui is released under the GPL 2. For details read the included file LICENSE.GPL visit http://www.gnu.org/licenses/gpl.html</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">授權協議：UniversalIndentGUI 是以 GPL 2 釋出，詳情請看安裝目錄下的 LICENSE 檔案。你可以拜訪 http://www.gnu.org/licenses/gpl.html 獲得更多關於 GPL 的細節。</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.ui" line="160"/>
         <source>
 Credits:</source>
+        <translation>致謝名單：</translation>
+    </message>
+    <message>
+        <location filename="../src/aboutdialog.ui" line="150"/>
+        <source>License: UniversalIndentGui is released under the GPL 2. For details read the included file LICENSE.GPL visit http://www.gnu.org/licenses/gpl.html</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -348,17 +353,17 @@ Credits:</source>
     <message>
         <location filename="../src/indentgui.ui" line="416"/>
         <source>Create Indenter Call Shell Script</source>
-        <translation type="unfinished"></translation>
+        <translation>建立重整工具批次檔</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="422"/>
         <source>Create a shell script that calls the current selected indenter for formatting an as parameter given file with the current indent settings</source>
-        <translation type="unfinished"></translation>
+        <translation>建立批次檔呼叫目前的重整工具。它會接受檔案路徑作為參數，接著呼叫重整工具並套用目前的重整設定，適合讓 IDE 作為外部工具呼叫。</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="70"/>
         <source>Recently Opened Files</source>
-        <translation type="unfinished"></translation>
+        <translation>最近開啟的檔案</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="75"/>
@@ -373,12 +378,12 @@ Credits:</source>
     <message>
         <location filename="../src/indentgui.ui" line="430"/>
         <source>Check for update</source>
-        <translation type="unfinished"></translation>
+        <translation>檢查是否有更新檔</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="436"/>
         <source>Checks online whether a new version of UniversalIndentGUI is available.</source>
-        <translation type="unfinished"></translation>
+        <translation>上網檢查是否有新版的 UniversalIndentGUI</translation>
     </message>
 </context>
 <context>
@@ -591,34 +596,36 @@ Do you want to save your changes?</source>
     <message>
         <location filename="../src/mainwindow.cpp" line="1290"/>
         <source>Shell Script</source>
-        <translation type="unfinished"></translation>
+        <translation>批次檔</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1397"/>
+        <location filename="../src/mainwindow.cpp" line="1400"/>
         <source>File no longer exists</source>
-        <translation type="unfinished"></translation>
+        <translation>檔案不存在</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1397"/>
+        <location filename="../src/mainwindow.cpp" line="1400"/>
         <source>The file %1 in the list of recently opened files does no longer exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>找不到檔案清單裡的「%1」</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1293"/>
+        <location filename="../src/mainwindow.cpp" line="1296"/>
         <source>Save shell script</source>
-        <translation type="unfinished"></translation>
+        <translation>儲存批次檔</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="118"/>
         <source>Update available</source>
-        <translation type="unfinished"></translation>
+        <translation>找到新版本</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="119"/>
         <source>A newer version of UniversalIndentGUI is available.
 Your version is %1. New version is %2.
 Do you want to go to the download website?</source>
-        <translation type="unfinished"></translation>
+        <translation>找到新版本
+你使用的版本是 %1，新版本是 %2
+你想要開啟下載頁面嗎？</translation>
     </message>
 </context>
 <context>
@@ -761,28 +768,28 @@ Do you want to go to the download website?</source>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="156"/>
         <source>Number of files in recently opened list</source>
-        <translation type="unfinished"></translation>
+        <translation>最近開啟的檔案清單裡要顯示的檔案個數</translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="168"/>
         <source>Checks whether a new version of UniversalIndentGUI exists on program start, but only once a day.</source>
-        <translation type="unfinished"></translation>
+        <translation>程式啟動時自動檢查是否有新版本，一天只會檢查一次。</translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="171"/>
         <source>Check online for update on program start</source>
-        <translation type="unfinished"></translation>
+        <translation>程式啟動時自動檢查更新</translation>
     </message>
 </context>
 <context>
     <name>UiGuiSettingsDialog</name>
     <message>
-        <location filename="../src/uiguisettingsdialog.cpp" line="184"/>
+        <location filename="../src/uiguisettingsdialog.cpp" line="187"/>
         <source>English</source>
         <translation>English</translation>
     </message>
     <message>
-        <location filename="../src/uiguisettingsdialog.cpp" line="187"/>
+        <location filename="../src/uiguisettingsdialog.cpp" line="190"/>
         <source>German</source>
         <translation>German</translation>
     </message>
@@ -792,17 +799,17 @@ Do you want to go to the download website?</source>
         <translation type="obsolete">Chinese</translation>
     </message>
     <message>
-        <location filename="../src/uiguisettingsdialog.cpp" line="193"/>
+        <location filename="../src/uiguisettingsdialog.cpp" line="196"/>
         <source>Japanese</source>
         <translation>Japanese</translation>
     </message>
     <message>
-        <location filename="../src/uiguisettingsdialog.cpp" line="196"/>
+        <location filename="../src/uiguisettingsdialog.cpp" line="199"/>
         <source>Unknown language mnemonic </source>
         <translation>未知語言 </translation>
     </message>
     <message>
-        <location filename="../src/uiguisettingsdialog.cpp" line="190"/>
+        <location filename="../src/uiguisettingsdialog.cpp" line="193"/>
         <source>Chinese (Taiwan)</source>
         <translation>Chinese (Taiwan)</translation>
     </message>
