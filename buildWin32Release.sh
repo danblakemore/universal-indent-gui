@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "Making some environment settings"
 echo "--------------------------------"
-QTDIR=/c/Programmierung/qt.4.2.3_gcc_static
+QTDIR=/f/Qt/qt.4.3.0_gpl_static
 export QTDIR
 PATH=$QTDIR/bin:$PATH
 export PATH
@@ -26,12 +26,12 @@ echo ""
 
 echo "Cleaning up release/debug dirs"
 echo "------------------------------"
-rm -r release
+rm -r release &> /dev/null
 if [ $? -gt 0 ]; then
     echo "ERROR: Could not delete release dir!"
     exit 1
 fi
-rm -r debug
+rm -r debug &> /dev/null
 if [ $? -gt 0 ]; then
     echo "ERROR: Could not delete debug dir!"
     exit 1
@@ -51,7 +51,7 @@ echo ""
 
 echo "Calling qmake"
 echo "-------------"
-qmake
+qmake &> /dev/null
 if [ $? -gt 0 ]; then
     echo "ERROR: Calling qmake failed!"
     exit 1
@@ -61,7 +61,7 @@ echo ""
 
 echo "Calling make release"
 echo "--------------------"
-make release
+make release &> /dev/null
 if [ $? -gt 0 ]; then
     echo "ERROR: Calling make release failed!"
     exit 1
@@ -71,27 +71,27 @@ echo ""
 
 echo "Delete old release dir and create new one"
 echo "-----------------------------------------"
-rm -r UniversalIndentGUI_win32
+rm -r UniversalIndentGUI_win32 &> /dev/null
 if [ $? -gt 0 ]; then
     echo "ERROR: Deleting dir UniversalIndentGUI_win32 failed!"
     exit 1
 fi
-mkdir UniversalIndentGUI_win32
+mkdir UniversalIndentGUI_win32 &> /dev/null
 if [ $? -gt 0 ]; then
     echo "ERROR: Creating dir UniversalIndentGUI_win32 failed!"
     exit 1
 fi
-mkdir UniversalIndentGUI_win32/data
+mkdir UniversalIndentGUI_win32/data &> /dev/null
 if [ $? -gt 0 ]; then
     echo "ERROR: Creating dir data failed!"
     exit 1
 fi
-mkdir UniversalIndentGUI_win32/doc
+mkdir UniversalIndentGUI_win32/doc &> /dev/null
 if [ $? -gt 0 ]; then
     echo "ERROR: Creating dir doc failed!"
     exit 1
 fi
-mkdir UniversalIndentGUI_win32/translations
+mkdir UniversalIndentGUI_win32/translations &> /dev/null
 if [ $? -gt 0 ]; then
     echo "ERROR: Creating dir translations failed!"
     exit 1
@@ -143,12 +143,12 @@ echo ""
 
 echo "Copying the translation files to the release translation dir"
 echo "------------------------------------------------------------"
-cp $QTDIR/translations/qt_de.qm ./translations/  &> /dev/null
-cp $QTDIR/translations/qt_ja_jp.qm ./translations/qt_ja.qm  &> /dev/null
-cp $QTDIR/translations/qt_zh_CN.qm ./translations/qt_tw.qm  &> /dev/null
-cp .\translations\qt_de.qm .\UniversalIndentGUI_win32\translations\  &> /dev/null
-cp .\translations\qt_ja.qm .\UniversalIndentGUI_win32\translations\  &> /dev/null
-cp .\translations\qt_tw.qm .\UniversalIndentGUI_win32\translations\  &> /dev/null
+cp $QTDIR/translations/qt_de.qm ./translations/ &> /dev/null
+cp $QTDIR/translations/qt_ja_jp.qm ./translations/qt_ja.qm &> /dev/null
+cp $QTDIR/translations/qt_zh_CN.qm ./translations/qt_tw.qm &> /dev/null
+cp .\translations\qt_de.qm .\UniversalIndentGUI_win32\translations\ &> /dev/null
+cp .\translations\qt_ja.qm .\UniversalIndentGUI_win32\translations\ &> /dev/null
+cp .\translations\qt_tw.qm .\UniversalIndentGUI_win32\translations\ &> /dev/null
 for i in $languages
 do
     cp ./translations/universalindent_$i.qm ./UniversalIndentGUI_win32/translations/ &> /dev/null
