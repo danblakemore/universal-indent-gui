@@ -169,6 +169,9 @@ void UiGuiSettingsDialog::handleAccepted() {
 void UiGuiSettingsDialog::changeEvent(QEvent *event) {
     if (event->type() == QEvent::LanguageChange) {
         retranslateUi(this);
+        // If this is not explicit set here, Qt < 4.3.0 does not translate the buttons.
+        buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::NoButton|QDialogButtonBox::Ok);
+
 		//TODO: This has to be removed when the properties for the highlighters can be set.
 		groupBoxSyntaxHighlighterProperties->setToolTip( "(Will be implemented soon)" + groupBoxSyntaxHighlighterProperties->toolTip() );
 		uiGuiRecentlyOpenedListSize->setToolTip( "(Will be implemented soon)" + uiGuiRecentlyOpenedListSize->toolTip() );
