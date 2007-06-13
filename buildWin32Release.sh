@@ -71,11 +71,12 @@ echo ""
 
 echo "Delete old release dir and create new one"
 echo "-----------------------------------------"
+#todo check if exist and only then try to delete
 rm -r UniversalIndentGUI_win32 &> /dev/null
-if [ $? -gt 0 ]; then
-    echo "ERROR: Deleting dir UniversalIndentGUI_win32 failed!"
-    exit 1
-fi
+#if [ $? -gt 0 ]; then
+#    echo "ERROR: Deleting dir UniversalIndentGUI_win32 failed!"
+#    exit 1
+#fi
 mkdir UniversalIndentGUI_win32 &> /dev/null
 if [ $? -gt 0 ]; then
     echo "ERROR: Creating dir UniversalIndentGUI_win32 failed!"
