@@ -84,6 +84,7 @@ private:
     QTranslator *uiGuiTranslator;
     QTranslator *qTTranslator;
     bool isFirstRunOfThisVersion;
+    bool manualUpdateRequested;
 
     bool sourceCodeChanged;
     bool scrollPositionChanged;
