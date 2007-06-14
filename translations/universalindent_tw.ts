@@ -457,22 +457,22 @@ Credits:</source>
         <translation type="obsolete"> 套用到程式界面</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1290"/>
+        <location filename="../src/mainwindow.cpp" line="1308"/>
         <source>All files</source>
         <translation>所有檔案</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1162"/>
+        <location filename="../src/mainwindow.cpp" line="1180"/>
         <source>Cannot read the file </source>
         <translation>無法讀取檔案</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="605"/>
+        <location filename="../src/mainwindow.cpp" line="622"/>
         <source>Choose indenter config file</source>
         <translation>選擇重整工具設定檔</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="490"/>
+        <location filename="../src/mainwindow.cpp" line="507"/>
         <source>Choose source code file</source>
         <translation>選擇檔案</translation>
     </message>
@@ -482,12 +482,12 @@ Credits:</source>
         <translation type="obsolete">English</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1162"/>
+        <location filename="../src/mainwindow.cpp" line="1180"/>
         <source>Error opening file</source>
         <translation>開啟檔案時發生錯誤</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="943"/>
+        <location filename="../src/mainwindow.cpp" line="960"/>
         <source>Export source code file</source>
         <translation>匯出檔案</translation>
     </message>
@@ -497,7 +497,7 @@ Credits:</source>
         <translation type="obsolete">German</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="936"/>
+        <location filename="../src/mainwindow.cpp" line="953"/>
         <source>HTML Document</source>
         <translation>HTML 文件</translation>
     </message>
@@ -507,12 +507,12 @@ Credits:</source>
         <translation type="obsolete">選擇語系</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1077"/>
+        <location filename="../src/mainwindow.cpp" line="1095"/>
         <source>Modified code</source>
         <translation>修改後的檔案</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="914"/>
+        <location filename="../src/mainwindow.cpp" line="931"/>
         <source>PDF Document</source>
         <translation>PDF 文件</translation>
     </message>
@@ -522,27 +522,27 @@ Credits:</source>
         <translation type="obsolete">用別的編碼方式重新開啟</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1258"/>
+        <location filename="../src/mainwindow.cpp" line="1276"/>
         <source>Reopen the currently opened source code file by using the text encoding scheme </source>
         <translation>重新開啟目前的檔案，編碼使用 </translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="586"/>
+        <location filename="../src/mainwindow.cpp" line="603"/>
         <source>Save indent config file</source>
         <translation>儲存重整工具的設定</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="527"/>
+        <location filename="../src/mainwindow.cpp" line="544"/>
         <source>Save source code file</source>
         <translation>儲存檔案</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="523"/>
+        <location filename="../src/mainwindow.cpp" line="540"/>
         <source>Supported by indenter</source>
         <translation>重整工具支援的檔案類型</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1079"/>
+        <location filename="../src/mainwindow.cpp" line="1097"/>
         <source>The source code has been modified.
 Do you want to save your changes?</source>
         <translation>程式碼已被修改。
@@ -559,12 +559,12 @@ Do you want to save your changes?</source>
         <translation type="obsolete">Taiwan (Chinese)</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="375"/>
+        <location filename="../src/mainwindow.cpp" line="392"/>
         <source>No indenter ini files</source>
         <translation>找不到重整工具需要的 INI 檔</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="375"/>
+        <location filename="../src/mainwindow.cpp" line="392"/>
         <source>There exists no indenter ini files in the directory &quot;</source>
         <translation>本目錄下找不到重整工具所需的 INI 檔 &quot;</translation>
     </message>
@@ -584,7 +584,7 @@ Do you want to save your changes?</source>
         <translation type="obsolete">Chinese (Taiwan)</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1266"/>
+        <location filename="../src/mainwindow.cpp" line="1284"/>
         <source>Set the syntax highlightning to </source>
         <translation>將語法高亮度方式設為 </translation>
     </message>
@@ -594,38 +594,48 @@ Do you want to save your changes?</source>
         <translation type="obsolete">選擇語法高亮度</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1290"/>
+        <location filename="../src/mainwindow.cpp" line="1308"/>
         <source>Shell Script</source>
         <translation>批次檔</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1400"/>
+        <location filename="../src/mainwindow.cpp" line="1418"/>
         <source>File no longer exists</source>
         <translation>檔案不存在</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1400"/>
+        <location filename="../src/mainwindow.cpp" line="1418"/>
         <source>The file %1 in the list of recently opened files does no longer exist.</source>
         <translation>找不到檔案清單裡的「%1」</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1296"/>
+        <location filename="../src/mainwindow.cpp" line="1314"/>
         <source>Save shell script</source>
         <translation>儲存批次檔</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="118"/>
+        <location filename="../src/mainwindow.cpp" line="128"/>
         <source>Update available</source>
         <translation>找到新版本</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="119"/>
+        <location filename="../src/mainwindow.cpp" line="129"/>
         <source>A newer version of UniversalIndentGUI is available.
 Your version is %1. New version is %2.
 Do you want to go to the download website?</source>
         <translation>找到新版本
 你使用的版本是 %1，新版本是 %2
 你想要開啟下載頁面嗎？</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="138"/>
+        <source>No new update available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="139"/>
+        <source>You already have the latest version of UniversalIndentGUI.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

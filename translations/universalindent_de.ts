@@ -580,69 +580,69 @@ Indent console output was:
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1162"/>
+        <location filename="../src/mainwindow.cpp" line="1180"/>
         <source>Error opening file</source>
         <translation>Fehler beim Dateiöffnen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1162"/>
+        <location filename="../src/mainwindow.cpp" line="1180"/>
         <source>Cannot read the file </source>
         <translation> Kann folgende Datei nicht lesen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="490"/>
+        <location filename="../src/mainwindow.cpp" line="507"/>
         <source>Choose source code file</source>
         <translation>Quellcodedatei wählen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="527"/>
+        <location filename="../src/mainwindow.cpp" line="544"/>
         <source>Save source code file</source>
         <translation>Quellcodedatei speichern</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="586"/>
+        <location filename="../src/mainwindow.cpp" line="603"/>
         <source>Save indent config file</source>
         <translation>Formatierer Konfiguration speichern</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="605"/>
+        <location filename="../src/mainwindow.cpp" line="622"/>
         <source>Choose indenter config file</source>
         <translation>Formatierer Konfigurationsdatei wählen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="943"/>
+        <location filename="../src/mainwindow.cpp" line="960"/>
         <source>Export source code file</source>
         <translation>Quellcode exportieren</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1079"/>
+        <location filename="../src/mainwindow.cpp" line="1097"/>
         <source>The source code has been modified.
 Do you want to save your changes?</source>
         <translation>Die Quellcodedatei wurde geändert.
 Möchten Sie die Änderungen speichern?</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="523"/>
+        <location filename="../src/mainwindow.cpp" line="540"/>
         <source>Supported by indenter</source>
         <translation>Von Formatierer unterstützt</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1290"/>
+        <location filename="../src/mainwindow.cpp" line="1308"/>
         <source>All files</source>
         <translation>Alle Dateien</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="914"/>
+        <location filename="../src/mainwindow.cpp" line="931"/>
         <source>PDF Document</source>
         <translation>PDF Dokument</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="936"/>
+        <location filename="../src/mainwindow.cpp" line="953"/>
         <source>HTML Document</source>
         <translation>HTML Dokument</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1077"/>
+        <location filename="../src/mainwindow.cpp" line="1095"/>
         <source>Modified code</source>
         <translation>Geänderter Quellcode</translation>
     </message>
@@ -677,7 +677,7 @@ Möchten Sie die Änderungen speichern?</translation>
         <translation type="obsolete"> als Programmsprache verwenden.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1258"/>
+        <location filename="../src/mainwindow.cpp" line="1276"/>
         <source>Reopen the currently opened source code file by using the text encoding scheme </source>
         <translation>Die momentan geöffnete Quellcodedatei erneut öffnen, unter Verwendung der Textcordierung </translation>
     </message>
@@ -692,12 +692,12 @@ Möchten Sie die Änderungen speichern?</translation>
         <translation type="obsolete">Taiwanisch (Chinesisch)</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="375"/>
+        <location filename="../src/mainwindow.cpp" line="392"/>
         <source>No indenter ini files</source>
         <translation>Keine Indenter ini-Dateien</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="375"/>
+        <location filename="../src/mainwindow.cpp" line="392"/>
         <source>There exists no indenter ini files in the directory &quot;</source>
         <translation>Es wurden keine ini-Dateien für Indenter gefunden. Suchpfad war &quot;</translation>
     </message>
@@ -712,7 +712,7 @@ Möchten Sie die Änderungen speichern?</translation>
         <translation type="obsolete">Chinesisch</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1266"/>
+        <location filename="../src/mainwindow.cpp" line="1284"/>
         <source>Set the syntax highlightning to </source>
         <translation>Setzte Syntax-Hervorhebung für </translation>
     </message>
@@ -732,32 +732,32 @@ Möchten Sie die Änderungen speichern?</translation>
         <translation type="obsolete">Zuletzt geöffnete Dateien</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1290"/>
+        <location filename="../src/mainwindow.cpp" line="1308"/>
         <source>Shell Script</source>
         <translation>Shell SKript</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1400"/>
+        <location filename="../src/mainwindow.cpp" line="1418"/>
         <source>File no longer exists</source>
         <translation>Datei existiert nicht mehr</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1400"/>
+        <location filename="../src/mainwindow.cpp" line="1418"/>
         <source>The file %1 in the list of recently opened files does no longer exist.</source>
         <translation>Die Datei %1 in der Liste der zuletzt geöffneten Dateien existiert nicht mehr.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1296"/>
+        <location filename="../src/mainwindow.cpp" line="1314"/>
         <source>Save shell script</source>
         <translation>Shell Skript speichern</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="118"/>
+        <location filename="../src/mainwindow.cpp" line="128"/>
         <source>Update available</source>
         <translation>Update verfügbar</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="119"/>
+        <location filename="../src/mainwindow.cpp" line="129"/>
         <source>A newer version of UniversalIndentGUI is available.
 Your version is %1. New version is %2.
 Do you want to go to the download website?</source>
@@ -769,6 +769,16 @@ Wollen Sie zu Download Website geleitet werden?</translation>
         <location filename="../src/mainwindow.cpp" line="136"/>
         <source>Update check error</source>
         <translation type="obsolete">Updateprüfungsfehler</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="138"/>
+        <source>No new update available</source>
+        <translation>Kein Update verfügbar</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="139"/>
+        <source>You already have the latest version of UniversalIndentGUI.</source>
+        <translation>Sie haben bereits die aktuellste Version von UniversalIndentGUI.</translation>
     </message>
 </context>
 <context>
