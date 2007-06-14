@@ -1,37 +1,136 @@
 #!/bin/bash
+
+# Configuration
+# -------------
+ext=.exe
+targetSystem=win32
+targetDir=UniversalIndentGUI_$targetSystem
+version=0.6.1_Beta
+doSVNUpdate=false
+QTDIR=/c/Programmierung/qt.4.3.0_gcc_static
+QMAKESPEC=win32-g++
+languages="de tw ja"
+
 echo "Making some environment settings"
 echo "--------------------------------"
-QTDIR=/f/Qt/qt.4.3.0_gpl_static
 export QTDIR
 PATH=$QTDIR/bin:$PATH
 export PATH
-QMAKESPEC=win32-g++
 export QMAKESPEC
 echo "Done"
 echo ""
 
-echo "Generating the translation binaries"
-echo "-----------------------------------"
-languages='de tw ja'
+
+echo "Delete old target dir and create new one"
+echo "----------------------------------------"
+if test -e "$targetDir"; then
+    rm -r $targetDir &> /dev/null
+fi
+if [ $? -gt 0 ]; then
+    echo "ERROR: Deleting dir $targetDir failed!"
+    exit 1
+fi
+mkdir $targetDir &> /dev/null
+if [ $? -gt 0 ]; then
+    echo "ERROR: Creating dir $targetDir failed!"
+    exit 1
+fi
+mkdir $targetDir/data &> /dev/null
+if [ $? -gt 0 ]; then
+    echo "ERROR: Creating dir data failed!"
+    exit 1
+fi
+mkdir $targetDir/doc &> /dev/null
+if [ $? -gt 0 ]; then
+    echo "ERROR: Creating dir doc failed!"
+    exit 1
+fi
+mkdir $targetDir/translations &> /dev/null
+if [ $? -gt 0 ]; then
+    echo "ERROR: Creating dir translations failed!"
+    exit 1
+fi
+# In case of source files as target system, create additional dir.
+if [ $targetSystem = "src" ]; then
+    mkdir $targetDir/resources &> /dev/null
+    if [ $? -gt 0 ]; then
+        echo "ERROR: Creating dir resources failed!"
+        exit 1
+    fi
+    mkdir $targetDir/src &> /dev/null
+    if [ $? -gt 0 ]; then
+        echo "ERROR: Creating dir src failed!"
+        exit 1
+    fi
+fi
+echo "Done"
+echo ""
+
+
+if [ $doSVNUpdate = "true" ]; then
+    echo "Calling svn update"
+    echo "------------------"
+    svn update
+    if [ $? -gt 0 ]; then
+        echo "ERROR: Calling svn update failed!"
+        exit 1
+    fi
+    echo "Done"
+    echo ""
+fi
+
+###################### source release begin ########################
+if [ $targetSystem = "src" ]; then
+
+echo "Copying the translation files to the target translation dir"
+echo "-----------------------------------------------------------"
+cp ./translations/universalindent.ts ./$targetDir/translations/ &> /dev/null
+if [ $? -gt 0 ]; then
+    echo "ERROR: Could not copy file \"universalindent.ts\"!"
+    exit 1
+fi
 for i in $languages
 do
-    lrelease ./translations/universalindent_$i.ts -qm ./translations/universalindent_$i.qm -silent
+    cp ./translations/universalindent_$i.ts ./$targetDir/translations/ &> /dev/null
     if [ $? -gt 0 ]; then
-        echo "ERROR: Could not create translation file \"universalindent_$i.qm\"!"
+        echo "ERROR: Could not copy file \"universalindent_$i.ts\"!"
         exit 1
     fi
 done
 echo "Done"
 echo ""
 
+
+echo "Copying the resources and src files to the target dir"
+echo "-----------------------------------------------------"
+cp ./resources/* ./$targetDir/resources/ &> /dev/null
+if [ $? -gt 0 ]; then
+    echo "ERROR: Could not copy dir \"resources\"!"
+    exit 1
+fi
+cp ./src/* ./$targetDir/src/ &> /dev/null
+if [ $? -gt 0 ]; then
+    echo "ERROR: Could not copy dir \"src\"!"
+    exit 1
+fi
+
+
+###################### source release end ########################
+else
+###################### binary release begin ########################
+
 echo "Cleaning up release/debug dirs"
 echo "------------------------------"
-rm -r release &> /dev/null
+if [ -e "release" ]; then
+    rm -r release &> /dev/null
+fi
 if [ $? -gt 0 ]; then
     echo "ERROR: Could not delete release dir!"
     exit 1
 fi
-rm -r debug &> /dev/null
+if [ -e "debug" ]; then
+    rm -r debug &> /dev/null
+fi
 if [ $? -gt 0 ]; then
     echo "ERROR: Could not delete debug dir!"
     exit 1
@@ -39,25 +138,17 @@ fi
 echo "Done"
 echo ""
 
-#echo "Calling svn update"
-#echo "------------------"
-#svn update
-#if [ $? -gt 0 ]; then
-#    echo "ERROR: Calling svn update failed!"
-#    exit 1
-#fi
-#echo "Done"
-#echo ""
 
 echo "Calling qmake"
 echo "-------------"
-qmake &> /dev/null
+qmake
 if [ $? -gt 0 ]; then
     echo "ERROR: Calling qmake failed!"
     exit 1
 fi
 echo "Done"
 echo ""
+
 
 echo "Calling make release"
 echo "--------------------"
@@ -69,43 +160,24 @@ fi
 echo "Done"
 echo ""
 
-echo "Delete old release dir and create new one"
-echo "-----------------------------------------"
-#todo check if exist and only then try to delete
-rm -r UniversalIndentGUI_win32 &> /dev/null
-#if [ $? -gt 0 ]; then
-#    echo "ERROR: Deleting dir UniversalIndentGUI_win32 failed!"
-#    exit 1
-#fi
-mkdir UniversalIndentGUI_win32 &> /dev/null
+
+echo "Copying UniversalIndentGUI$ext to target dir"
+echo "--------------------------------------------"
+cp ./release/UniversalIndentGUI$ext ./$targetDir/ &> /dev/null
 if [ $? -gt 0 ]; then
-    echo "ERROR: Creating dir UniversalIndentGUI_win32 failed!"
-    exit 1
-fi
-mkdir UniversalIndentGUI_win32/data &> /dev/null
-if [ $? -gt 0 ]; then
-    echo "ERROR: Creating dir data failed!"
-    exit 1
-fi
-mkdir UniversalIndentGUI_win32/doc &> /dev/null
-if [ $? -gt 0 ]; then
-    echo "ERROR: Creating dir doc failed!"
-    exit 1
-fi
-mkdir UniversalIndentGUI_win32/translations &> /dev/null
-if [ $? -gt 0 ]; then
-    echo "ERROR: Creating dir translations failed!"
+    echo "ERROR: Could not copy file \"UniversalIndentGUI$ext\"!"
     exit 1
 fi
 echo "Done"
 echo ""
 
-echo "Copying the indenter executables and example file to the release data dir"
-echo "-------------------------------------------------------------------------"
-indenters='astyle.exe astyle.html bcpp.exe bcpp.txt csstidy.exe gc.exe gc.txt htmltidy.exe htmltidy.html indent.exe indent.html uncrustify.exe uncrustify.txt example.cpp'
+
+echo "Copying the indenter executables and example file to the target data dir"
+echo "------------------------------------------------------------------------"
+indenters="astyle$ext astyle.html bcpp$ext bcpp.txt csstidy$ext gc.exe gc.txt htmltidy$ext htmltidy.html indent$ext indent.html uncrustify$ext uncrustify.txt example.cpp"
 for i in $indenters
 do
-    cp ./data/$i ./UniversalIndentGUI_win32/data/ &> /dev/null
+    cp ./data/$i ./$targetDir/data/ &> /dev/null
     if [ $? -gt 0 ]; then
         echo "ERROR: Could not copy file \"$i\"!"
         exit 1
@@ -114,45 +186,50 @@ done
 echo "Done"
 echo ""
 
-echo "Copying the indenter uigui ini files to the release data dir"
-echo "------------------------------------------------------------"
-inifiles='uigui_astyle.ini uigui_bcpp.ini uigui_csstidy.ini uigui_gnuindent.ini uigui_greatcode.ini uigui_htmltidy.ini uigui_phpCB.ini uigui_uncrustify.ini highlighter.ini'
-for i in $inifiles
+
+echo "Generating the translation binaries"
+echo "-----------------------------------"
+for i in $languages
 do
-    cp ./data/$i ./UniversalIndentGUI_win32/data/ &> /dev/null
+    lrelease ./translations/universalindent_$i.ts -qm ./translations/universalindent_$i.qm -silent
     if [ $? -gt 0 ]; then
-        echo "ERROR: Could not copy file \"$i\"!"
+        echo "ERROR: Could not create translation file \"universalindent_$i.qm\"!"
         exit 1
     fi
 done
 echo "Done"
 echo ""
 
-echo "Copying some other files (README, CHANGELOG etc)"
-echo "------------------------------------------------"
-otherfiles='CHANGELOG.txt LICENSE.GPL INSTALL.txt README.txt'
-for i in $otherfiles
-do
-    cp ./$i ./UniversalIndentGUI_win32/ &> /dev/null
-    if [ $? -gt 0 ]; then
-        echo "ERROR: Could not copy file \"$i\"!"
-        exit 1
-    fi
-done
-echo "Done"
-echo ""
 
-echo "Copying the translation files to the release translation dir"
-echo "------------------------------------------------------------"
+echo "Copying the translation binaries to the target translation dir"
+echo "--------------------------------------------------------------"
 cp $QTDIR/translations/qt_de.qm ./translations/ &> /dev/null
 cp $QTDIR/translations/qt_ja_jp.qm ./translations/qt_ja.qm &> /dev/null
 cp $QTDIR/translations/qt_zh_CN.qm ./translations/qt_tw.qm &> /dev/null
-cp .\translations\qt_de.qm .\UniversalIndentGUI_win32\translations\ &> /dev/null
-cp .\translations\qt_ja.qm .\UniversalIndentGUI_win32\translations\ &> /dev/null
-cp .\translations\qt_tw.qm .\UniversalIndentGUI_win32\translations\ &> /dev/null
+cp ./translations/qt_de.qm ./$targetDir/translations/ &> /dev/null
+cp ./translations/qt_ja.qm ./$targetDir/translations/ &> /dev/null
+cp ./translations/qt_tw.qm ./$targetDir/translations/ &> /dev/null
 for i in $languages
 do
-    cp ./translations/universalindent_$i.qm ./UniversalIndentGUI_win32/translations/ &> /dev/null
+    cp ./translations/universalindent_$i.qm ./$targetDir/translations/ &> /dev/null
+    if [ $? -gt 0 ]; then
+        echo "ERROR: Could not copy file \"universalindent_$i.qm\"!"
+        exit 1
+    fi
+done
+echo "Done"
+echo ""
+
+fi
+###################### binary release end ########################
+
+
+echo "Copying the indenter uigui ini files to the target data dir"
+echo "-----------------------------------------------------------"
+inifiles="uigui_astyle.ini uigui_bcpp.ini uigui_csstidy.ini uigui_gnuindent.ini uigui_greatcode.ini uigui_htmltidy.ini uigui_phpCB.ini uigui_uncrustify.ini highlighter.ini"
+for i in $inifiles
+do
+    cp ./data/$i ./$targetDir/data/ &> /dev/null
     if [ $? -gt 0 ]; then
         echo "ERROR: Could not copy file \"$i\"!"
         exit 1
@@ -161,32 +238,45 @@ done
 echo "Done"
 echo ""
 
-echo "Copying doc and UniversalIndentGUI.exe to release dir"
-echo "-----------------------------------------------------"
-cp ./doc/iniFileFormat.html ./UniversalIndentGUI_win32/doc/ &> /dev/null
+
+echo "Copying some other files (README, CHANGELOG etc)"
+echo "------------------------------------------------"
+otherfiles="CHANGELOG.txt LICENSE.GPL INSTALL.txt README.txt"
+for i in $otherfiles
+do
+    cp ./$i ./$targetDir/ &> /dev/null
+    if [ $? -gt 0 ]; then
+        echo "ERROR: Could not copy file \"$i\"!"
+        exit 1
+    fi
+done
+echo "Done"
+echo ""
+
+
+echo "Copying doc to target dir"
+echo "-------------------------"
+cp ./doc/iniFileFormat.html ./$targetDir/doc/ &> /dev/null
 if [ $? -gt 0 ]; then
     echo "ERROR: Could not copy file \"iniFileFormat.html\"!"
     exit 1
 fi
-cp ./release/UniversalIndentGUI.exe ./UniversalIndentGUI_win32/ &> /dev/null
-if [ $? -gt 0 ]; then
-    echo "ERROR: Could not copy file \"UniversalIndentGUI.exe\"!"
-    exit 1
-fi
 echo "Done"
 echo ""
 
-echo "Packing the whole release dir content"
-echo "-------------------------------------"
-cd UniversalIndentGUI_win32
-tar czf UniversalIndentGUI_0.6.1_Beta_win32.tgz *
+
+echo "Packing the whole target dir content"
+echo "------------------------------------"
+cd $targetDir
+tar czf UniversalIndentGUI_$version_$targetSystem.tgz *
 if [ $? -gt 0 ]; then
-    echo "ERROR: Could not create the archive!"
+    echo "ERROR: Could not create the archive \"UniversalIndentGUI_$version_$targetSystem.tgz\"!"
     exit 1
 fi
 cd ..
 echo "Done"
 echo ""
 
+
 echo "Everything completed successfull!"
-read -p "press any key to continue"
+#read -p "press any key to continue"
