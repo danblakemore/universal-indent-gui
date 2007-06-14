@@ -1,13 +1,19 @@
 #!/bin/bash
+# 1. param is target system
+if [ $1 -z ]; then
+    targetSystem=$1
+else
+    targetSystem=src
+fi
+
 
 # Configuration
 # -------------
 ext=.exe
-targetSystem=win32
 targetDir=UniversalIndentGUI_$targetSystem
 version=0.6.1_Beta
 doSVNUpdate=false
-QTDIR=/c/Programmierung/qt.4.3.0_gcc_static
+QTDIR=/f/Qt/qt.4.3.0_gpl_static
 QMAKESPEC=win32-g++
 languages="de tw ja"
 
@@ -23,7 +29,7 @@ echo ""
 
 echo "Delete old target dir and create new one"
 echo "----------------------------------------"
-if test -e "$targetDir"; then
+if [ $targetDir -d ]; then
     rm -r $targetDir &> /dev/null
 fi
 if [ $? -gt 0 ]; then
@@ -79,6 +85,24 @@ if [ $doSVNUpdate = "true" ]; then
     echo ""
 fi
 
+echo "Updating the translation files"
+echo "------------------------------"
+lupdate src -ts ./translations/universalindent.ts &> /dev/null
+if [ $? -gt 0 ]; then
+    echo "ERROR: Could not update file \"universalindent.ts\"!"
+    exit 1
+fi
+for i in $languages
+do
+    lupdate src -ts ./translations/universalindent_$i.ts &> /dev/null
+    if [ $? -gt 0 ]; then
+        echo "ERROR: Could not update file \"universalindent_$i.ts\"!"
+        exit 1
+    fi
+done
+echo "Done"
+echo ""
+
 ###################### source release begin ########################
 if [ $targetSystem = "src" ]; then
 
@@ -113,7 +137,8 @@ if [ $? -gt 0 ]; then
     echo "ERROR: Could not copy dir \"src\"!"
     exit 1
 fi
-
+echo "Done"
+echo ""
 
 ###################### source release end ########################
 else
