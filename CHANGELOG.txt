@@ -1,3 +1,6 @@
+2007-06-13 Version 0.6.2 Beta
+[add] Feature Request ID 1736932 : The user gets shown a dialog if he has manually checked for an update and no new one is available.
+
 2007-06-13 Version 0.6.1 Beta
 [add] Feature Request ID 1729433 : Added a recently opened file menu.
 [add] Feature Request ID 1704290 : Added possibiltiy to integrate into an IDE, editor or other as external tool. This is donw by creating a batch/shell script which accepts a file as parameter and calls the indenter with the in UniversalIndentGUI made settings.
