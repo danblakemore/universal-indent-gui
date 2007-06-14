@@ -1,6 +1,6 @@
 #!/bin/bash
 # 1. param is target system
-if [ $1 -z ]; then
+if [ -n $1 ]; then
     targetSystem=$1
 else
     targetSystem=src
@@ -29,7 +29,7 @@ echo ""
 
 echo "Delete old target dir and create new one"
 echo "----------------------------------------"
-if [ $targetDir -d ]; then
+if [ -d $targetDir ]; then
     rm -r $targetDir &> /dev/null
 fi
 if [ $? -gt 0 ]; then
