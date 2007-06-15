@@ -1,9 +1,10 @@
+#!/bin/sh
 #!/bin/bash
 # 1. param is target system
-if [ -n $1 ]; then
+if [ -n "$1" ]; then
     targetSystem=$1
 else
-    targetSystem=src
+    targetSystem="src"
 fi
 
 
@@ -13,9 +14,12 @@ ext=.exe
 targetDir=UniversalIndentGUI_$targetSystem
 version=0.6.1_Beta
 doSVNUpdate=false
-QTDIR=/f/Qt/qt.4.3.0_gpl_static
-QMAKESPEC=win32-g++
 languages="de tw ja"
+
+# Qt specific settings
+QTDIR=/c/Programmierung/qt.4.3.0_gcc_static
+#QTDIR=/f/Qt/qt.4.3.0_gpl_static
+QMAKESPEC=win32-g++
 
 echo "Making some environment settings"
 echo "--------------------------------"
@@ -29,7 +33,7 @@ echo ""
 
 echo "Delete old target dir and create new one"
 echo "----------------------------------------"
-if [ -d $targetDir ]; then
+if [ -d "$targetDir" ]; then
     rm -r $targetDir &> /dev/null
 fi
 if [ $? -gt 0 ]; then
@@ -57,7 +61,7 @@ if [ $? -gt 0 ]; then
     exit 1
 fi
 # In case of source files as target system, create additional dir.
-if [ $targetSystem = "src" ]; then
+if [ "$targetSystem" = "src" ]; then
     mkdir $targetDir/resources &> /dev/null
     if [ $? -gt 0 ]; then
         echo "ERROR: Creating dir resources failed!"
@@ -73,7 +77,7 @@ echo "Done"
 echo ""
 
 
-if [ $doSVNUpdate = "true" ]; then
+if [ "$doSVNUpdate" = "true" ]; then
     echo "Calling svn update"
     echo "------------------"
     svn update
@@ -104,7 +108,7 @@ echo "Done"
 echo ""
 
 ###################### source release begin ########################
-if [ $targetSystem = "src" ]; then
+if [ "$targetSystem" = "src" ]; then
 
 echo "Copying the translation files to the target translation dir"
 echo "-----------------------------------------------------------"
@@ -146,14 +150,14 @@ else
 
 echo "Cleaning up release/debug dirs"
 echo "------------------------------"
-if [ -e "release" ]; then
+if [ -d "release" ]; then
     rm -r release &> /dev/null
 fi
 if [ $? -gt 0 ]; then
     echo "ERROR: Could not delete release dir!"
     exit 1
 fi
-if [ -e "debug" ]; then
+if [ -d "debug" ]; then
     rm -r debug &> /dev/null
 fi
 if [ $? -gt 0 ]; then
@@ -177,7 +181,7 @@ echo ""
 
 echo "Calling make release"
 echo "--------------------"
-make release &> /dev/null
+make release --silent
 if [ $? -gt 0 ]; then
     echo "ERROR: Calling make release failed!"
     exit 1
