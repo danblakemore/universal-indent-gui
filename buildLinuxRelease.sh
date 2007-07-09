@@ -1,19 +1,19 @@
 #!/bin/bash
-echo setting Qt path to /usr/local/Trolltech/Qt-4.2.1/bin
-echo ----------------------------------------------------
+echo "setting Qt path to /usr/local/Trolltech/Qt-4.2.1/bin"
+echo "----------------------------------------------------"
 QTDIR=/usr/local/Trolltech/Qt-4.2.1
 export QTDIR
 PATH=$QTDIR/bin:$PATH
 export PATH
-echo calling rm -r release/debug
-echo ---------------------------
+echo "calling rm -r release/debug"
+echo "---------------------------"
 rm -r release
 rm -r debug
-echo calling svn update
-echo ------------------
+echo "calling svn update"
+echo "------------------"
 #svn update
-echo calling qmake
-echo -------------
+echo "calling qmake"
+echo "-------------"
 qmake
 echo calling lrelease release
 echo ------------------------
