@@ -17,8 +17,8 @@ doSVNUpdate=false
 languages="de tw ja"
 
 # Qt specific settings
-QTDIR=/c/Programmierung/qt.4.3.0_gcc_static
-#QTDIR=/f/Qt/qt.4.3.0_gpl_static
+#QTDIR=/c/Programmierung/qt.4.3.0_gcc_static
+QTDIR=/f/Qt/qt.4.3.0_gpl_static
 QMAKESPEC=win32-g++
 
 echo "Making some environment settings"
@@ -232,12 +232,8 @@ echo ""
 
 echo "Copying the translation binaries to the target translation dir"
 echo "--------------------------------------------------------------"
-cp $QTDIR/translations/qt_de.qm ./translations/ &> /dev/null
-cp $QTDIR/translations/qt_ja_jp.qm ./translations/qt_ja.qm &> /dev/null
-cp $QTDIR/translations/qt_zh_CN.qm ./translations/qt_tw.qm &> /dev/null
-cp ./translations/qt_de.qm ./$targetDir/translations/ &> /dev/null
-cp ./translations/qt_ja.qm ./$targetDir/translations/ &> /dev/null
-cp ./translations/qt_tw.qm ./$targetDir/translations/ &> /dev/null
+cp $QTDIR/translations/qt_de.qm ./$targetDir/translations/ &> /dev/null
+cp $QTDIR/translations/qt_ja_jp.qm ./$targetDir/translations/qt_ja.qm &> /dev/null
 for i in $languages
 do
     cp ./translations/universalindent_$i.qm ./$targetDir/translations/ &> /dev/null
@@ -251,7 +247,6 @@ echo ""
 
 fi
 ###################### binary release end ########################
-
 
 echo "Copying the indenter uigui ini files to the target data dir"
 echo "-----------------------------------------------------------"
