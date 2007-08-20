@@ -23,27 +23,24 @@ UpdateCheckDialog::UpdateCheckDialog(QString currentVersion, UiGuiSettings *sett
     setupUi(this);
 
     manualUpdateRequested = false;
+    roleOfClickedButton = QDialogButtonBox::InvalidRole;
 
     http = new QHttp(this);
     connect( http, SIGNAL(done(bool)), this, SLOT(checkForUpdatedReturned(bool)) );
+
+    connect( buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(handleDialogButtonClicked(QAbstractButton*)) );
 
     this->currentVersion = currentVersion;
     this->settings = settings;
 
     setModal(true);
-    checkingWidget->show();
-    newVersionAvailableWidget->hide();
-    noNewVersionAvailableWidget->hide();
 }
 
 
 void UpdateCheckDialog::updateCheckManuallyInvoked() {
     manualUpdateRequested = true;
-    checkingWidget->show();
-    newVersionAvailableWidget->hide();
-    noNewVersionAvailableWidget->hide();
+    showCheckingForUpdateDialog();
     show();
-    adjustSize();
     checkForUpdate();
 }
 
@@ -82,29 +79,17 @@ void UpdateCheckDialog::checkForUpdatedReturned(bool errorOccurred) {
 
             // Only show update dialog, if the current version string is not equal to the received one.
             if ( returnedString != currentVersion ) {
-                checkingWidget->hide();
-                newVersionAvailableWidget->show();
-                noNewVersionAvailableWidget->hide();
-                adjustSize();
-
                 // Show message box whether to download the new version.
-                int ret = QMessageBox::question(this, tr("Update available"), 
-                    tr("A newer version of UniversalIndentGUI is available.\nYour version is %1. New version is %2.\nDo you want to go to the download website?").arg(currentVersion).arg(returnedString),
-                    QMessageBox::Yes | QMessageBox::Default,
-                    QMessageBox::No);
+                showNewVersionAvailableDialog(returnedString);
+
                 // If yes clicked, open the download url in the default browser.
-                if (ret == QMessageBox::Yes) {
+                if ( roleOfClickedButton == QDialogButtonBox::YesRole ) {
                     QDesktopServices::openUrl( QUrl("http://sourceforge.net/project/showfiles.php?group_id=167482") );
                 }
             }
             else if ( manualUpdateRequested ) {
-                checkingWidget->hide();
-                newVersionAvailableWidget->hide();
-                noNewVersionAvailableWidget->show();
-                adjustSize();
+                showNoNewVersionAvailableDialog();
 
-                QMessageBox::information(this, tr("No new update available"), 
-                    tr("You already have the latest version of UniversalIndentGUI."), QMessageBox::Ok | QMessageBox::Default);
             }
             // Set last update check date.
             settings->setValueByName("LastUpdateCheck", QDate::currentDate());
@@ -119,4 +104,36 @@ void UpdateCheckDialog::checkForUpdatedReturned(bool errorOccurred) {
         QMessageBox::warning(this, "Update check error", "There was an error while trying to check for an update! Error was : " + http->errorString() );
     }
     manualUpdateRequested = false;
+}
+
+
+void UpdateCheckDialog::showCheckingForUpdateDialog() {
+    progressBar->show();
+    setWindowTitle( tr("Checking for update...") );
+    label->setText( tr("Checking whether a newer version is available") );
+    buttonBox->setStandardButtons(QDialogButtonBox::Cancel);
+}
+
+
+void UpdateCheckDialog::showNewVersionAvailableDialog(QString newVersion) {
+    progressBar->hide();
+    setWindowTitle( tr("Update available") );
+    label->setText( tr("A newer version of UniversalIndentGUI is available.\nYour version is %1. \
+        New version is %2.\nDo you want to go to the download website?").arg(currentVersion).arg(newVersion) );
+    buttonBox->setStandardButtons(QDialogButtonBox::No|QDialogButtonBox::NoButton|QDialogButtonBox::Yes);
+}
+
+
+void UpdateCheckDialog::showNoNewVersionAvailableDialog() {
+    progressBar->hide();
+    setWindowTitle( tr("No new update available") );
+    label->setText( tr("You already have the latest version of UniversalIndentGUI.") );
+    buttonBox->setStandardButtons(QDialogButtonBox::Ok);
+    exec();
+}
+
+
+void UpdateCheckDialog::handleDialogButtonClicked(QAbstractButton *clickedButton) {
+    roleOfClickedButton = buttonBox->buttonRole(clickedButton);
+    accept();
 }

@@ -45,14 +45,19 @@ public slots:
 
 private:
     void checkForUpdate();
+    void showCheckingForUpdateDialog();
+    void showNewVersionAvailableDialog(QString newVersion);
+    void showNoNewVersionAvailableDialog();
 
     UiGuiSettings *settings;
     bool manualUpdateRequested;
     QHttp *http;
     QString currentVersion;
+    QDialogButtonBox::ButtonRole roleOfClickedButton;
 
 private slots:
     void checkForUpdatedReturned(bool errorOccurred);
+    void handleDialogButtonClicked(QAbstractButton *clickedButton);
 };
 
 #endif // UPDATECHECKDIALOG_H

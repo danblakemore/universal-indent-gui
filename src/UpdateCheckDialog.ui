@@ -8,8 +8,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>299</width>
-    <height>247</height>
+    <width>317</width>
+    <height>91</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -17,82 +17,30 @@
   </property>
   <layout class="QVBoxLayout" >
    <item>
-    <widget class="QWidget" native="1" name="checkingWidget" >
-     <layout class="QVBoxLayout" >
-      <item>
-       <widget class="QLabel" name="label" >
-        <property name="text" >
-         <string>Checking for available update</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QProgressBar" name="progressBar" >
-        <property name="value" >
-         <number>24</number>
-        </property>
-        <property name="textVisible" >
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QDialogButtonBox" name="buttonBox" >
-        <property name="standardButtons" >
-         <set>QDialogButtonBox::Cancel</set>
-        </property>
-        <property name="centerButtons" >
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-     </layout>
+    <widget class="QLabel" name="label" >
+     <property name="text" >
+      <string>Checking whether a newer version is available</string>
+     </property>
     </widget>
    </item>
    <item>
-    <widget class="QWidget" native="1" name="newVersionAvailableWidget" >
-     <layout class="QVBoxLayout" >
-      <item>
-       <widget class="QLabel" name="label_2" >
-        <property name="text" >
-         <string>A newer version is available. Go to download web site?</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QDialogButtonBox" name="buttonBox_2" >
-        <property name="standardButtons" >
-         <set>QDialogButtonBox::No|QDialogButtonBox::NoButton|QDialogButtonBox::Yes</set>
-        </property>
-        <property name="centerButtons" >
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-     </layout>
+    <widget class="QProgressBar" name="progressBar" >
+     <property name="value" >
+      <number>24</number>
+     </property>
+     <property name="textVisible" >
+      <bool>false</bool>
+     </property>
     </widget>
    </item>
    <item>
-    <widget class="QWidget" native="1" name="noNewVersionAvailableWidget" >
-     <layout class="QVBoxLayout" >
-      <item>
-       <widget class="QLabel" name="label_3" >
-        <property name="text" >
-         <string>No new version available.</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QDialogButtonBox" name="buttonBox_3" >
-        <property name="standardButtons" >
-         <set>QDialogButtonBox::Ok</set>
-        </property>
-        <property name="centerButtons" >
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-     </layout>
+    <widget class="QDialogButtonBox" name="buttonBox" >
+     <property name="standardButtons" >
+      <set>QDialogButtonBox::Cancel</set>
+     </property>
+     <property name="centerButtons" >
+      <bool>true</bool>
+     </property>
     </widget>
    </item>
   </layout>
