@@ -28,6 +28,7 @@
 #include <QDate>
 #include <QHBoxLayout>
 #include <QLabel>
+#include <QTimer>
 
 #include "ui_UpdateCheckDialog.h"
 #include "uiguisettings.h"
@@ -54,10 +55,13 @@ private:
     QHttp *http;
     QString currentVersion;
     QDialogButtonBox::ButtonRole roleOfClickedButton;
+    QTimer *updateCheckProgressTimer;
+    int updateCheckProgressCounter;
 
 private slots:
     void checkForUpdatedReturned(bool errorOccurred);
     void handleDialogButtonClicked(QAbstractButton *clickedButton);
+    void updateUpdateCheckProgressBar();
 };
 
 #endif // UPDATECHECKDIALOG_H

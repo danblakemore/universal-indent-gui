@@ -28,6 +28,11 @@ UpdateCheckDialog::UpdateCheckDialog(QString currentVersion, UiGuiSettings *sett
     http = new QHttp(this);
     connect( http, SIGNAL(done(bool)), this, SLOT(checkForUpdatedReturned(bool)) );
 
+    updateCheckProgressTimer = new QTimer(this);
+    updateCheckProgressTimer->setInterval(100);
+    connect( updateCheckProgressTimer, SIGNAL(timeout()), this, SLOT(updateUpdateCheckProgressBar()) );
+    updateCheckProgressCounter = 0;
+
     connect( buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(handleDialogButtonClicked(QAbstractButton*)) );
 
     this->currentVersion = currentVersion;
@@ -65,6 +70,9 @@ void UpdateCheckDialog::checkForUpdate() {
     Offers to go to the download page if a newer version exists.
  */
 void UpdateCheckDialog::checkForUpdatedReturned(bool errorOccurred) {
+    // Stop the progressbar timer.
+    updateCheckProgressTimer->stop();
+
     if ( !errorOccurred ) {
         // Try to find the version string.
         QString returnedString = http->readAll();
@@ -78,7 +86,7 @@ void UpdateCheckDialog::checkForUpdatedReturned(bool errorOccurred) {
             returnedString = returnedString.mid( leftPosition+17, rightPosition-(leftPosition+17) );
 
             // Only show update dialog, if the current version string is not equal to the received one.
-            if ( returnedString != currentVersion ) {
+            if ( returnedString == currentVersion ) {
                 // Show message box whether to download the new version.
                 showNewVersionAvailableDialog(returnedString);
 
@@ -89,7 +97,6 @@ void UpdateCheckDialog::checkForUpdatedReturned(bool errorOccurred) {
             }
             else if ( manualUpdateRequested ) {
                 showNoNewVersionAvailableDialog();
-
             }
             // Set last update check date.
             settings->setValueByName("LastUpdateCheck", QDate::currentDate());
@@ -108,6 +115,7 @@ void UpdateCheckDialog::checkForUpdatedReturned(bool errorOccurred) {
 
 
 void UpdateCheckDialog::showCheckingForUpdateDialog() {
+    updateCheckProgressTimer->start();
     progressBar->show();
     setWindowTitle( tr("Checking for update...") );
     label->setText( tr("Checking whether a newer version is available") );
@@ -118,9 +126,9 @@ void UpdateCheckDialog::showCheckingForUpdateDialog() {
 void UpdateCheckDialog::showNewVersionAvailableDialog(QString newVersion) {
     progressBar->hide();
     setWindowTitle( tr("Update available") );
-    label->setText( tr("A newer version of UniversalIndentGUI is available.\nYour version is %1. \
-        New version is %2.\nDo you want to go to the download website?").arg(currentVersion).arg(newVersion) );
+    label->setText( tr("A newer version of UniversalIndentGUI is available.\nYour version is %1. New version is %2.\nDo you want to go to the download website?").arg(currentVersion).arg(newVersion) );
     buttonBox->setStandardButtons(QDialogButtonBox::No|QDialogButtonBox::NoButton|QDialogButtonBox::Yes);
+    exec();
 }
 
 
@@ -136,4 +144,11 @@ void UpdateCheckDialog::showNoNewVersionAvailableDialog() {
 void UpdateCheckDialog::handleDialogButtonClicked(QAbstractButton *clickedButton) {
     roleOfClickedButton = buttonBox->buttonRole(clickedButton);
     accept();
+}
+
+
+void UpdateCheckDialog::updateUpdateCheckProgressBar() {
+    progressBar->setValue(updateCheckProgressCounter);
+    updateCheckProgressCounter++;
+    //updateCheckProgressCounter = updateCheckProgressCounter % 100;
 }
