@@ -79,78 +79,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     updateSourceView();
 
     // Check if a newer version is available but only if the setting for that is enabled and today not already a check has been done.
-    http = 0;
-    manualUpdateRequested = false;
     if ( settings->getValueByName("CheckForUpdate").toBool() && QDate::currentDate() != settings->getValueByName("LastUpdateCheck").toDate() ) {
-        checkForUpdates();
+        updateCheckDialog->updateCheckAutomaticallyInvoked();
     }
-}
-
-
-/*!
-    This function checks whether updates for UniversalIndentGUI are available.
- */
-void MainWindow::checkForUpdates() {
-    // If the sender can be cast to a QAction, the update check has been manually requested.
-    if ( qobject_cast<QAction*>( sender() ) ) {
-        manualUpdateRequested = true;
-    }
-    if ( http == 0 ) {
-        http = new QHttp(this);
-    }
-    connect( http, SIGNAL(done(bool)), this, SLOT(checkForUpdatedReturned(bool)) );
-    http->setHost("universalindent.sourceforge.net");
-    http->get("/universalindentgui_pad.xml");
-}
-
-
-/*!
-    This slot is called after the update check has returned. Shows a message if check was successful or not.
-    Offers to go to the download page if a newer version exists.
- */
-void MainWindow::checkForUpdatedReturned(bool errorOccurred) {
-    disconnect( http, SIGNAL(done(bool)), this, SLOT(checkForUpdatedReturned(bool)) );
-    if ( !errorOccurred ) {
-        // Try to find the version string.
-        QString returnedString = http->readAll();
-        int leftPosition = returnedString.indexOf("<Program_Version>");
-        int rightPosition = returnedString.indexOf("</Program_Version>");
-
-        // If the version string could be found in the returned string, show an update dialog and set last update check date.
-        if ( leftPosition != -1 && rightPosition != -1 ) {
-
-            // Get the pure version string from returned string.
-            returnedString = returnedString.mid( leftPosition+17, rightPosition-(leftPosition+17) );
-
-            // Only show update dialog, if the current version string is not equal to the received one.
-            if ( returnedString != version ) {
-                // Show message box whether to download the new version.
-                int ret = QMessageBox::question(this, tr("Update available"), 
-                    tr("A newer version of UniversalIndentGUI is available.\nYour version is %1. New version is %2.\nDo you want to go to the download website?").arg(version).arg(returnedString),
-                    QMessageBox::Yes | QMessageBox::Default,
-                    QMessageBox::No);
-                // If yes clicked, open the download url in the default browser.
-                if (ret == QMessageBox::Yes) {
-                    QDesktopServices::openUrl( QUrl("http://sourceforge.net/project/showfiles.php?group_id=167482") );
-                }
-            }
-            else if ( manualUpdateRequested ) {
-                QMessageBox::information(this, tr("No new update available"), 
-                    tr("You already have the latest version of UniversalIndentGUI."), QMessageBox::Ok | QMessageBox::Default);
-            }
-            // Set last update check date.
-            settings->setValueByName("LastUpdateCheck", QDate::currentDate());
-        }
-        // In the returned string, the version string could not be found.
-        else {
-            QMessageBox::warning(this, "Update check error", "There was an error while trying to check for an update! The retrieved file did not contain expected content." );
-        }
-    }
-    // There was some error while trying to retrieve the update info from server.
-    else {
-        QMessageBox::warning(this, "Update check error", "There was an error while trying to check for an update! Error was : " + http->errorString() );
-    }
-    manualUpdateRequested = false;
 }
 
 
@@ -188,6 +119,7 @@ void MainWindow::initMainWindow() {
 	// -------------------------------
 	currentEncoding = settings->getValueByName("FileEncoding").toString();
 
+    updateCheckDialog = new UpdateCheckDialog(version, settings, this);
 
     // Register the syntax highlightning setting in the menu to the settings object.
     connect( uiGuiSyntaxHighlightningEnabled, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern(bool)) );
@@ -217,7 +149,7 @@ void MainWindow::initMainWindow() {
     connect( actionLoad_Indenter_Config_File, SIGNAL(activated()), this, SLOT(openConfigFileDialog()) );
     connect( actionSave_Indenter_Config_File, SIGNAL(activated()), this, SLOT(saveasIndentCfgFileDialog()) );
     connect( actionCreateShellScript, SIGNAL(activated()), this, SLOT(createIndenterCallShellScript()) );
-    connect( actionCheck_for_update, SIGNAL(activated()), this, SLOT(checkForUpdates()) );
+    connect( actionCheck_for_update, SIGNAL(activated()), updateCheckDialog, SLOT(updateCheckManuallyInvoked()) );
 
     // Init the menue for selecting one of the recently opened files.
     updateRecentlyOpenedList();

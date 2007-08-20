@@ -235,6 +235,10 @@
 				RelativePath=".\uiguisettingsdialog.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\updatecheckdialog.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -263,6 +267,10 @@
 			</File>
 			<File
 				RelativePath=".\uiguisettingsdialog.h"
+				>
+			</File>
+			<File
+				RelativePath=".\updatecheckdialog.h"
 				>
 			</File>
 		</Filter>
@@ -299,6 +307,10 @@
 				RelativePath=".\UiGuiSettingsDialog.ui"
 				>
 			</File>
+			<File
+				RelativePath=".\UpdateCheckDialog.ui"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Generated"
@@ -325,6 +337,10 @@
 			</File>
 			<File
 				RelativePath="$(OutDir)\tmp\moc\moc_uiguisettingsdialog.cpp"
+				>
+			</File>
+			<File
+				RelativePath="$(OutDir)\tmp\moc\moc_updatecheckdialog.cpp"
 				>
 			</File>
 			<File
@@ -393,6 +409,26 @@
 			</File>
 			<File
 				RelativePath="$(OutDir)\tmp\uic\ui_UiGuiSettingsDialog.h"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="MOC"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="MOC"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="$(OutDir)\tmp\uic\ui_UpdateCheckDialog.h"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"

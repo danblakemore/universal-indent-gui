@@ -29,6 +29,8 @@
 #include "uiguisettingsdialog.h"
 #include "highlighter.h"
 #include "indenthandler.h"
+#include "updatecheckdialog.h"
+
 #include <QWidget>
 #include <QString>
 #include <QScrollBar>
@@ -44,7 +46,6 @@
 #include <QLocale>
 #include <QTextCodec>
 #include <QDate>
-#include <QHttp>
 
 #include <Qsci/qsciscintilla.h>
 #include <Qsci/qsciprinter.h>
@@ -84,7 +85,6 @@ private:
     QTranslator *uiGuiTranslator;
     QTranslator *qTTranslator;
     bool isFirstRunOfThisVersion;
-    bool manualUpdateRequested;
 
     bool sourceCodeChanged;
     bool scrollPositionChanged;
@@ -94,7 +94,7 @@ private:
 
     Ui::toolBarWidget *toolBarWidget;
     IndentHandler *indentHandler;
-    QHttp *http;
+    UpdateCheckDialog *updateCheckDialog;
 
     QString loadFile(QString filePath);
     QString openFileDialog(QString dialogHeaderStr, QString startPath, QString fileMaskStr);
@@ -140,8 +140,6 @@ private slots:
     void createIndenterCallShellScript();
     void updateRecentlyOpenedList();
     void openFileFromRecentlyOpenedList(QAction* recentlyOpenedAction);
-    void checkForUpdates();
-    void checkForUpdatedReturned(bool errorOccurred);
 };
 
 #endif // MAINWINDOW_H
