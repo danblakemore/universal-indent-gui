@@ -22,7 +22,7 @@
 
 
 /*!
-    Entry point to UniversalIndentGUI application. Does not evaluate any command line parameters.
+    \brief Entry point to UniversalIndentGUI application. Does not evaluate any command line parameters.
  */
 int main(int argc, char *argv[])
 {

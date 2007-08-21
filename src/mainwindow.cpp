@@ -32,7 +32,7 @@
  */
 
 /*!
-    Constructs the main window.
+    \brief Constructs the main window.
  */
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     // set the program version, revision and date, which is shown in the main window title and in the about dialog.
@@ -89,7 +89,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 
 
 /*!
-    Initializes the main window by creating the main gui and make some settings.
+    \brief Initializes the main window by creating the main gui and make some settings.
  */
 void MainWindow::initMainWindow() {
     // Generate gui as it is build in the file "indentgui.ui"
@@ -167,7 +167,7 @@ void MainWindow::initMainWindow() {
 
 
 /*!
-    Creates and inits the tool bar. It is added to the main window.
+    \brief Creates and inits the tool bar. It is added to the main window.
  */
 void MainWindow::initToolBar() {
     // Create the tool bar and add it to the main window.
@@ -192,7 +192,7 @@ void MainWindow::initToolBar() {
 
 
 /*!
-   Create and initialize the text editor component. It uses the QScintilla widget.
+    \brief Create and initialize the text editor component. It uses the QScintilla widget.
  */
 void MainWindow::initTextEditor() {
     // Create the QScintilla widget and add it to the layout.
@@ -230,7 +230,7 @@ void MainWindow::initTextEditor() {
 
 
 /*!
-    Create and init the syntax highlighter and set it to use the QScintilla edit component.
+    \brief Create and init the syntax highlighter and set it to use the QScintilla edit component.
  */
 void MainWindow::initSyntaxHighlighter() {
     // Create the highlighter.
@@ -248,6 +248,8 @@ void MainWindow::initSyntaxHighlighter() {
 
 
 /*!
+    \brief Initializes the language of UniversalIndentGUI.
+
     If the program language is defined in the settings, the corresponding language
     file will be loaded and set for the application. If not set there, the system
     default language will be set, if a translation file for that language exists.
@@ -303,7 +305,7 @@ bool MainWindow::initApplicationLanguage() {
 
 
 /*!
-    Creates and initializes the indenter.
+    \brief Creates and initializes the indenter.
  */
 void MainWindow::initIndenter() {
     // Get Id of last selected indenter.
@@ -345,7 +347,7 @@ void MainWindow::initIndenter() {
 
 
 /*!
-    Creates the by \a indenterID selected indent handler object and adds the indent widget to its layout.
+    \brief Creates the by \a indenterID selected indent handler object and adds the indent widget to its layout.
  */
 void MainWindow::selectIndenter(int indenterID) {
     IndentHandler *oldIndentHandler = indentHandler;
@@ -395,7 +397,8 @@ void MainWindow::selectIndenter(int indenterID) {
 
 
 /*!
-    Tries to load the by \a filePath defined file and returns its content as QString.
+    \brief Tries to load the by \a filePath defined file and returns its content as QString.
+
     If the file could not be loaded a error dialog will be shown.
  */
 QString MainWindow::loadFile(QString filePath) {
@@ -424,7 +427,8 @@ QString MainWindow::loadFile(QString filePath) {
 
 
 /*!
-    Calls the source file open dialog to load a source file for the formatting preview.
+    \brief Calls the source file open dialog to load a source file for the formatting preview.
+
     If the file was successfully loaded the indenter will be called to generate the formatted source code.
  */
 void MainWindow::openSourceFileDialog(QString fileName) {
@@ -468,7 +472,8 @@ void MainWindow::openSourceFileDialog(QString fileName) {
 
 
 /*!
-    Calls the source file save as dialog to save a source file under a chosen name.
+    \brief Calls the source file save as dialog to save a source file under a chosen name.
+
     If the file already exists and it should be overwritten, a warning is shown before.
  */
 bool MainWindow::saveasSourceFileDialog() {
@@ -504,7 +509,8 @@ bool MainWindow::saveasSourceFileDialog() {
 
 
 /*!
-    Saves the currently shown source code to the last save or opened source file.
+    \brief Saves the currently shown source code to the last save or opened source file.
+
     If no source file has been opened, because only the static example has been loaded,
     the save as file dialog will be shown.
  */
@@ -528,7 +534,8 @@ bool MainWindow::saveSourceFile() {
 
 
 /*!
-    Calls the indenter config file save as dialog to save the config file under a chosen name.
+    \brief Calls the indenter config file save as dialog to save the config file under a chosen name.
+
     If the file already exists and it should be overwritten, a warning is shown before.
  */
 void MainWindow::saveasIndentCfgFileDialog() {
@@ -548,7 +555,8 @@ void MainWindow::saveasIndentCfgFileDialog() {
 
 
 /*!
-    Shows a file open dialog to open an existing config file for the currently selected indenter.
+    \brief Shows a file open dialog to open an existing config file for the currently selected indenter.
+
     If the file was successfully opened the indent handler is called to load the settings and update itself.
  */
 void MainWindow::openConfigFileDialog() {
@@ -563,6 +571,8 @@ void MainWindow::openConfigFileDialog() {
 
 
 /*!
+    \brief Shows a file open dialog.
+
     Shows a file open dialog with the title \a dialogHeaderStr starting in the directory \a startPath
     and with a file mask defined by \a fileMaskStr. Returns the contents of the file as QString.
  */
@@ -581,6 +591,8 @@ QString MainWindow::openFileDialog(QString dialogHeaderStr, QString startPath, Q
 
 
 /*!
+    \brief Updates the displaying of the source code.
+
     Updates the text edit field, which is showing the loaded, and if preview is enabled formatted, source code.
     Reassigns the line numbers and in case of switch between preview and none preview keeps the text field
     at the same line number.
@@ -610,7 +622,8 @@ void MainWindow::updateSourceView()
 
 
 /*!
-    Calls the selected indenter with the currently loaded source code to retrieve the formatted source code.
+    \brief Calls the selected indenter with the currently loaded source code to retrieve the formatted source code.
+
     The original loaded source code file will not be changed.
  */
 void MainWindow::callIndenter() {
@@ -622,7 +635,7 @@ void MainWindow::callIndenter() {
 
 
 /*!
-    Switches the syntax highlighting corresponding to the value \a turnOn either on or off.
+    \brief Switches the syntax highlighting corresponding to the value \a turnOn either on or off.
  */
 void MainWindow::turnHighlightOnOff(bool turnOn) {
     if ( turnOn ) {
@@ -637,7 +650,7 @@ void MainWindow::turnHighlightOnOff(bool turnOn) {
 
 
 /*!
-    Added this slot to avoid multiple calls because of changed text.
+    \brief Added this slot to avoid multiple calls because of changed text.
  */
 void MainWindow::sourceCodeChangedHelperSlot() {
 	QTimer::singleShot(0, this, SLOT(sourceCodeChangedSlot()));
@@ -645,7 +658,7 @@ void MainWindow::sourceCodeChangedHelperSlot() {
 
 
 /*!
-    Is emitted whenever the text inside the source view window changes. Calls the indenter
+    \brief Is emitted whenever the text inside the source view window changes. Calls the indenter
     to format the changed source code.
  */
 void MainWindow::sourceCodeChangedSlot() {
@@ -770,7 +783,8 @@ void MainWindow::sourceCodeChangedSlot() {
 
 
 /*!
-    This slot is called whenever one of the indenter settings are changed.
+    \brief This slot is called whenever one of the indenter settings are changed.
+
     It calls the selected indenter if the preview is turned on. If preview
     is not active a flag is set, that the settings have changed.
  */
@@ -813,7 +827,8 @@ void MainWindow::indentSettingsChangedSlot() {
 
 
 /*!
-    This slot is called whenever the preview button is turned on or off.
+    \brief This slot is called whenever the preview button is turned on or off.
+
     It calls the selected indenter to format the current source code if
     the code has been changed since the last indenter call.
  */
@@ -851,7 +866,7 @@ void MainWindow::previewTurnedOnOff(bool turnOn) {
 
 
 /*!
-    This slot updates the main window title to show the currently opened
+    \brief This slot updates the main window title to show the currently opened
     source code filename.
  */
 void MainWindow::updateWindowTitle() {
@@ -860,7 +875,7 @@ void MainWindow::updateWindowTitle() {
 
 
 /*!
-    Opens a dialog to save the current source code as a PDF document.
+    \brief Opens a dialog to save the current source code as a PDF document.
  */
 void MainWindow::exportToPDF() {
     QString fileExtensions = tr("PDF Document")+" (*.pdf)";
@@ -882,7 +897,7 @@ void MainWindow::exportToPDF() {
 
 
 /*!
-    Opens a dialog to save the current source code as a HTML document.
+    \brief Opens a dialog to save the current source code as a HTML document.
  */
 void MainWindow::exportToHTML() {
 	QString fileExtensions = tr("HTML Document")+" (*.html)";
@@ -906,8 +921,9 @@ void MainWindow::exportToHTML() {
 
 
 /*!
-    Loads the last opened file if this option is enabled in the settings. If the file
-    does not exist, the default example file is tried to be loaded. If even that
+    \brief Loads the last opened file if this option is enabled in the settings. 
+    
+    If the file does not exist, the default example file is tried to be loaded. If even that
     fails a very small code example is shown.
     If the setting for opening the last file is disabled, the editor is empty on startup.
 */
@@ -953,7 +969,8 @@ void MainWindow::loadLastOpenedFile() {
 
 
 /*!
-    Saves the settings for the main application to the file "UniversalIndentGUI.ini".
+    \brief Saves the settings for the main application to the file "UniversalIndentGUI.ini".
+
     Settings are for example last selected indenter, last loaded config file and so on.
 */
 void MainWindow::saveSettings() {
@@ -985,7 +1002,7 @@ void MainWindow::saveSettings() {
 
 
 /*!
-    Is always called when the program is quit. Calls the saveSettings function before really quits.
+    \brief Is always called when the program is quit. Calls the saveSettings function before really quits.
 */
 void MainWindow::closeEvent( QCloseEvent *event ) {
     if ( maybeSave() ) {
@@ -999,10 +1016,11 @@ void MainWindow::closeEvent( QCloseEvent *event ) {
 
 
 /*!
-    This function is setup to capture tooltip events. All widgets that are created by the
-    indentHandler object and are responsible for indenter parameters are connected with
-    this event filter. So depending on the settings the tooltips can be enabled and
-    disabled for these widgets.
+    \brief This function is setup to capture tooltip events. 
+    
+    All widgets that are created by the indentHandler object and are responsible 
+    for indenter parameters are connected with this event filter. 
+    So depending on the settings the tooltips can be enabled and disabled for these widgets.
  */
 bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 {
@@ -1022,7 +1040,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 
 
 /*!
-    Is called at application exit and asks whether to save the source code file, if it has been changed.
+    \brief Is called at application exit and asks whether to save the source code file, if it has been changed.
  */
 bool MainWindow::maybeSave()
 {
@@ -1045,7 +1063,7 @@ bool MainWindow::maybeSave()
 
 
 /*!
-    This slot is called whenever a language is selected in the menu. It tries to find the
+    \brief This slot is called whenever a language is selected in the menu. It tries to find the
     corresponding action in the languageInfoList and sets the language.
  */
 void MainWindow::languageChanged(int languageIndex) {
@@ -1073,7 +1091,7 @@ void MainWindow::languageChanged(int languageIndex) {
 
 
 /*!
-    Creates a menu entry under the settings menu for all available text encodings.
+    \brief Creates a menu entry under the settings menu for all available text encodings.
 */
 void MainWindow::createEncodingMenu() {
     QAction *encodingAction;
@@ -1104,7 +1122,7 @@ void MainWindow::createEncodingMenu() {
 
 
 /*!
-    This slot is called whenever an encoding is selected in the settings menu.
+    \brief This slot is called whenever an encoding is selected in the settings menu.
 */
 void MainWindow::encodingChanged(QAction* encodingAction) {
     if ( maybeSave() ) {
@@ -1131,7 +1149,7 @@ void MainWindow::encodingChanged(QAction* encodingAction) {
 
 
 /*!
-	Creates a menu entry under the settings menu for all available text encodings.
+	\brief Creates a menu entry under the settings menu for all available text encodings.
 */
 void MainWindow::createHighlighterMenu() {
 	QAction *highlighterAction;
@@ -1153,7 +1171,7 @@ void MainWindow::createHighlighterMenu() {
 
 
 /*!
-    This slot handles signals coming from selecting another syntax highlighter.
+    \brief This slot handles signals coming from selecting another syntax highlighter.
  */
 void MainWindow::highlighterChanged(QAction* highlighterAction) {
 	QString highlighterName = highlighterAction->text();
@@ -1162,14 +1180,11 @@ void MainWindow::highlighterChanged(QAction* highlighterAction) {
     // Need to do this "text update" to update the syntax highlighting. Otherwise highlighting is wrong.
     previewToggled = true;
     updateSourceView();
-
-    
-    
 }
 
 
 /*!
-	Is called whenever the white space visibility is being changed in the menu.
+	\brief Is called whenever the white space visibility is being changed in the menu.
  */
 void MainWindow::setWhiteSpaceVisibility(bool visible) {
 	if ( visible ) {
@@ -1181,7 +1196,7 @@ void MainWindow::setWhiteSpaceVisibility(bool visible) {
 }
 
 /*!
-	This slot is called whenever the number of lines in the editor changes
+	\brief This slot is called whenever the number of lines in the editor changes
 	and adapts the margin for the displayed line numbers.
 */
 void MainWindow::numberOfLinesChanged() {
@@ -1192,7 +1207,7 @@ void MainWindow::numberOfLinesChanged() {
 
 
 /*!
-    Catches language change events and retranslates all needed widgets.
+    \brief Catches language change events and retranslates all needed widgets.
  */
 void MainWindow::changeEvent(QEvent *event) {
     if (event->type() == QEvent::LanguageChange) {
@@ -1227,6 +1242,8 @@ void MainWindow::changeEvent(QEvent *event) {
 
 
 /*!
+    \brief Invokes the indenter to create a shell script.
+
     Lets the indenter create a shell script for calling the indenter out of any
     other application and open a save dialog for saving the shell script.
  */
@@ -1262,10 +1279,12 @@ void MainWindow::createIndenterCallShellScript() {
 
 
 /*!
-    Updates the list of recently opened files. Therefore the currently open file
-    is set at the lists first position regarding the in the settings set maximum
-    list length. Overheads of the list will be cut off. The new list will be
-    updated to the settings and the recently opened menu will be updated too.
+    \brief Updates the list of recently opened files. 
+    
+    Therefore the currently open file is set at the lists first position 
+    regarding the in the settings set maximum list length. Overheads of the 
+    list will be cut off. The new list will be updated to the settings and 
+    the recently opened menu will be updated too.
  */
 void MainWindow::updateRecentlyOpenedList() {
 
@@ -1334,7 +1353,7 @@ void MainWindow::updateRecentlyOpenedList() {
 
 
 /*!
-    This slot is called if an entry from the list of recently opened files is
+    \brief This slot is called if an entry from the list of recently opened files is
     being selected.
  */
 void MainWindow::openFileFromRecentlyOpenedList(QAction* recentlyOpenedAction) {

@@ -21,11 +21,12 @@
 
 /*!
 	\class UiGuiSettingsDialog
+    \ingroup grp_Settings
 	\brief Displays a dialog window with settings for UniversalIndentGUI
 */
 
 /*!
-	The constructor calls the setup function for the ui created by uic. and adds
+	\brief The constructor calls the setup function for the ui created by uic. and adds
 */
 UiGuiSettingsDialog::UiGuiSettingsDialog(QWidget* parent, UiGuiSettings* settings) : QDialog(parent)
 {
@@ -54,8 +55,10 @@ UiGuiSettingsDialog::UiGuiSettingsDialog(QWidget* parent, UiGuiSettings* setting
 }
 
 /*!
-	By calling this function the combobox for selecting the application language will
-	be initialized. Also the translation itself will be reinitialized.
+	\brief By calling this function the combobox for selecting the application language will
+	be initialized. 
+    
+    Also the translation itself will be reinitialized.
  */
 void UiGuiSettingsDialog::initTranslationSelection() {
 	// First empty the combo box.
@@ -84,8 +87,9 @@ void UiGuiSettingsDialog::initTranslationSelection() {
 
 
 /*!
-    Displays the dialog by calling the dialogs exec function. Before it
-    gets all the values needed from the UiGuiSettings object.
+    \brief Displays the dialog by calling the dialogs exec function. 
+    
+    Before it gets all the values needed from the UiGuiSettings object.
  */
 int UiGuiSettingsDialog::showDialog() {
     // Get the values for the check boxes from the settings object.
@@ -127,7 +131,8 @@ int UiGuiSettingsDialog::showDialog() {
 
 
 /*!
-    This slot is called when the dialog box is closed by pressing the Ok button.
+    \brief This slot is called when the dialog box is closed by pressing the Ok button.
+
     Writes all settings to the UiGuiSettings object.
  */
 void UiGuiSettingsDialog::handleAccepted() {
@@ -164,7 +169,7 @@ void UiGuiSettingsDialog::handleAccepted() {
 
 
 /*!
-    Catches language change events and retranslates all needed widgets.
+    \brief Catches language change events and retranslates all needed widgets.
  */
 void UiGuiSettingsDialog::changeEvent(QEvent *event) {
     if (event->type() == QEvent::LanguageChange) {

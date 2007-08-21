@@ -21,13 +21,16 @@
 
 #include "highlighter.h"
 
+//! \defgroup grp_EditorComponent All concerning editor widget.
+
 /*!
     \class Highlighter
+    \ingroup grp_EditorComponent
     \brief Highlighter used by QTextEdit fields to syntax highlight cpp source code
 */
 
 /*!
-    The constructor initializes some regular expressions and keywords to identify cpp tokens
+    \brief The constructor initializes some regular expressions and keywords to identify cpp tokens
  */
 Highlighter::Highlighter(QsciScintilla *parent, QSettings *settings)
 : QObject(parent)
@@ -80,7 +83,7 @@ Highlighter::Highlighter(QsciScintilla *parent, QSettings *settings)
 
 
 /*!
-    Returns the available highlighters as QStringList.
+    \brief Returns the available highlighters as QStringList.
  */
 QStringList Highlighter::getAvailableHighlighters() {
     return mapHighlighternameToExtension.keys();
@@ -88,7 +91,7 @@ QStringList Highlighter::getAvailableHighlighters() {
 
 
 /*!
-    This slot handles signals coming from selecting another syntax highlighter.
+    \brief This slot handles signals coming from selecting another syntax highlighter.
  */
 void Highlighter::highlighterChanged(QAction* highlighterAction) {
 	QString highlighterName = highlighterAction->text();
@@ -102,7 +105,7 @@ void Highlighter::highlighterChanged(QAction* highlighterAction) {
 
 
 /*!
-    Turns the syntax parser on.
+    \brief Turns the syntax parser on.
 */
 void Highlighter::turnHighlightOn() {
     highlightningIsOn = true;
@@ -111,7 +114,7 @@ void Highlighter::turnHighlightOn() {
 }
 
 /*!
-    Turns the syntax parser off.
+    \brief Turns the syntax parser off.
 */
 void Highlighter::turnHighlightOff() {
     highlightningIsOn = false;
@@ -120,7 +123,7 @@ void Highlighter::turnHighlightOff() {
 
 
 /*!
-    Read the settings for the current lexer from the settings file.
+    \brief Read the settings for the current lexer from the settings file.
  */
 bool Highlighter::readCurrentSettings( const char *prefix )
 {
@@ -201,7 +204,7 @@ bool Highlighter::readCurrentSettings( const char *prefix )
 
 
 /*!
-    Write the settings for the current lexer to the settings file.
+    \brief Write the settings for the current lexer to the settings file.
  */
 void Highlighter::writeCurrentSettings( const char *prefix )
 {
@@ -285,7 +288,7 @@ void Highlighter::setLexerByName( QString lexerName ) {
 
 
 /*!
-    Sets the proper highlighter / lexer for the given file \a extension. Returns the index of the used lexer in the list.
+    \brief Sets the proper highlighter / lexer for the given file \a extension. Returns the index of the used lexer in the list.
  */
 int Highlighter::setLexerForExtension( QString extension ) {
     int indexOfHighlighter = 0;

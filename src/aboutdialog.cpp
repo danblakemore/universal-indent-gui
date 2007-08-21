@@ -25,7 +25,7 @@
 */
 
 /*!
-    The constructor calls the setup function for the ui created by uic and adds
+    \brief The constructor calls the setup function for the ui created by uic and adds
     the GPL text to the text edit.
  */
 AboutDialog::AboutDialog(QWidget *parent, QString version, QString revision, QString buildDate) :
@@ -73,7 +73,7 @@ AboutDialog::AboutDialog(QWidget *parent, QString version, QString revision, QSt
 
 
 /*!
-    This slot is being called, when the link in the about dialog is being clicked.
+    \brief This slot is being called, when the link in the about dialog is being clicked.
  */
 void AboutDialog::linkClicked(const QUrl &link) {
     authorTextBrowser->setHtml(textBrowserSavedContent);
@@ -82,7 +82,7 @@ void AboutDialog::linkClicked(const QUrl &link) {
 
 
 /*!
-    Catches language change events and retranslates all needed widgets.
+    \brief Catches language change events and retranslates all needed widgets.
  */
 void AboutDialog::changeEvent(QEvent *event) {
     if (event->type() == QEvent::LanguageChange) {
@@ -99,7 +99,7 @@ void AboutDialog::changeEvent(QEvent *event) {
 
 
 /*!
-    Reimplements the dialog execution function to init the credits scroller.
+    \brief Reimplements the dialog execution function to init the credits scroller.
  */
 int AboutDialog::exec() {
     //creditsTextBrowser->verticalScrollBar()->setValue(0);
@@ -109,7 +109,7 @@ int AboutDialog::exec() {
 
 
 /*!
-    This slot is called each timer timeout to scroll the credits textbrowser.
+    \brief This slot is called each timer timeout to scroll the credits textbrowser.
     Also changes the scroll direction and speed when reaching the start or end.
  */
 void AboutDialog::scroll() {

@@ -19,8 +19,11 @@
 
 #include "indenthandler.h"
 
+//! \defgroup grp_Indenter All concerning handling of the indenter.
+
 /*!
     \class IndentHandler
+    \ingroup grp_Indenter
     \brief A widget for handling many indenters that are configured by an ini file.
 
     This is a widget that is used by the main window. It handles access to the
@@ -31,9 +34,11 @@
 
 
 /*!
-    Constructor of the indent handler. By calling this constructor the indenter
-    to be loaded, can be selected by setting its \a indenterID, which is the number
-    of found indenter ini files in alphabetic order starting at index 0.
+    \brief Constructor of the indent handler. 
+    
+    By calling this constructor the indenter to be loaded, can be selected by setting 
+    its \a indenterID, which is the number of found indenter ini files in alphabetic 
+    order starting at index 0.
  */
 IndentHandler::IndentHandler(QString dataDirPathStr, int indenterID, QMainWindow *mainWindow, QWidget *parent)
     : QWidget(parent)
@@ -79,7 +84,7 @@ IndentHandler::IndentHandler(QString dataDirPathStr, int indenterID, QMainWindow
 
 
 /*!
-    Creates the content for a shell script that can be used as a external too call
+    \brief Creates the content for a shell script that can be used as a external too call
     to indent a as parameter defined file.
  */
 QString IndentHandler::generateCommandlineCall(QString inputFileExtension) {
@@ -180,8 +185,10 @@ QString IndentHandler::generateCommandlineCall(QString inputFileExtension) {
 
 
 /*!
-   Format \a sourceCode by calling the indenter. The \a inputFileExtension has to be given as parameter
-   so the called indenter can identify the programming language if needed.
+   \brief Format \a sourceCode by calling the indenter. 
+   
+   The \a inputFileExtension has to be given as parameter so the called indenter 
+   can identify the programming language if needed.
  */
 QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtension) {
     Q_ASSERT_X( !inputFileName.isEmpty(), "callIndenter", "inputFileName is empty" );
@@ -367,7 +374,7 @@ QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtensi
 
 
 /*!
-    Generates and returns a string with all parameters needed to call the indenter.
+    \brief Generates and returns a string with all parameters needed to call the indenter.
  */
 QString IndentHandler::getParameterString() {
 
@@ -424,7 +431,7 @@ QString IndentHandler::getParameterString() {
 
 
 /*!
-    Write settings for the indenter to a config file.
+    \brief Write settings for the indenter to a config file.
  */
 void IndentHandler::writeConfigFile(QString paramString) {
     Q_ASSERT_X( !configFilename.isEmpty(), "writeConfigFile", "configFilename is empty" );
@@ -439,7 +446,7 @@ void IndentHandler::writeConfigFile(QString paramString) {
 
 
 /*!
-    Load the config file for the indenter and apply the settings made there.
+    \brief Load the config file for the indenter and apply the settings made there.
  */
 void IndentHandler::loadConfigFile(QString filePathName) {
     Q_ASSERT_X( !filePathName.isEmpty(), "loadConfigFile", "filePathName is empty" );
@@ -618,7 +625,7 @@ void IndentHandler::loadConfigFile(QString filePathName) {
 }
 
 /*!
-    Opens and parses the indenter ini file that is declared by \a iniFilePath.
+    \brief Opens and parses the indenter ini file that is declared by \a iniFilePath.
  */
 void IndentHandler::readIndentIniFile(QString iniFilePath) {
     Q_ASSERT_X( !iniFilePath.isEmpty(), "readIndentIniFile", "iniFilePath is empty" );
@@ -896,8 +903,10 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
 
 
 /*!
+    \brief Searches and returns all indenters a configuration file is found for.
+
     Opens all uigui ini files found in the list \a indenterIniFileList, opens each ini file
-    and reads the there defined real name of the indenter. These names are being returned as QStringList
+    and reads the there defined real name of the indenter. These names are being returned as QStringList.
  */
 QStringList IndentHandler::getAvailableIndenters() {
     QStringList indenterNamesList;
@@ -927,7 +936,7 @@ QStringList IndentHandler::getAvailableIndenters() {
 
 
 /*!
-    Deletes all elements in the toolbox and initializes the indenter selected by \a indenterID.
+    \brief Deletes all elements in the toolbox and initializes the indenter selected by \a indenterID.
  */
 void IndentHandler::setIndenter(int indenterID) {
     // TODO: This function is never called because out of the mainwindow object a new indenthandler object is created if another indenter is selected.
@@ -962,14 +971,14 @@ void IndentHandler::setIndenter(int indenterID) {
 
 
 /*!
-    Returns a string containing by the indenter supported file types/extensions devided by a space.
+    \brief Returns a string containing by the indenter supported file types/extensions devided by a space.
  */
 QString IndentHandler::getPossibleIndenterFileExtensions() {
     return fileTypes;
 }
 
 /*!
-    Returns the path and filename of the current indenter config file.
+    \brief Returns the path and filename of the current indenter config file.
  */
 QString IndentHandler::getIndenterCfgFile() {
     QFileInfo fileInfo( dataDirctoryStr + configFilename );

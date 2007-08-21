@@ -19,13 +19,16 @@
 
 #include "uiguisettings.h"
 
+//! \defgroup grp_Settings All concerning the settings.
+
 /*!
 	\class UiGuiSettings
+    \ingroup grp_Settings
 	\brief Handles the settings of the program. Reads them on startup and saves them on exit.
 */
 
 /*!
-	The constructor for the settings.
+	\brief The constructor for the settings.
 */
 UiGuiSettings::UiGuiSettings(QString settingFilePath) : QObject() {
     qsettings = new QSettings(settingFilePath, QSettings::IniFormat, this);
@@ -36,7 +39,7 @@ UiGuiSettings::UiGuiSettings(QString settingFilePath) : QObject() {
 
 
 /*!
-    The destructor saves the settings to a file.
+    \brief The destructor saves the settings to a file.
  */
 UiGuiSettings::~UiGuiSettings() {
 	//FIXME: Is never called!!
@@ -45,7 +48,8 @@ UiGuiSettings::~UiGuiSettings() {
 
 
 /*!
-	Scans the translations directory for available translation files and stores them in the QList \a availableTranslations.
+	\brief Scans the translations directory for available translation files and 
+    stores them in the QList \a availableTranslations.
  */
 void UiGuiSettings::readAvailableTranslations() {
 	QString languageShort;
@@ -72,7 +76,7 @@ void UiGuiSettings::readAvailableTranslations() {
 
 
 /*!
-	Returns a list of the mnemonics of the available translations.
+	\brief Returns a list of the mnemonics of the available translations.
  */
 QStringList UiGuiSettings::getAvailableTranslations() {
 	return availableTranslations;
@@ -80,7 +84,8 @@ QStringList UiGuiSettings::getAvailableTranslations() {
 
 
 /*!
-    Extern widgets can connect to this slot to change settings. 
+    \brief Extern widgets can connect to this slot to change settings.
+
     According to the objects name the corresponding setting is known and set.
  */
 void UiGuiSettings::handleValueChangeFromExtern(int value) {
@@ -96,7 +101,8 @@ void UiGuiSettings::handleValueChangeFromExtern(int value) {
 
 
 /*!
-    Extern widgets can connect to this slot to change settings. 
+    \brief Extern widgets can connect to this slot to change settings. 
+
     According to the objects name the corresponding setting is known and set.
  */
 void UiGuiSettings::handleValueChangeFromExtern(bool value) {
@@ -111,7 +117,8 @@ void UiGuiSettings::handleValueChangeFromExtern(bool value) {
 }
 
 /*!
-    Extern widgets can connect to this slot to change settings. 
+    \brief Extern widgets can connect to this slot to change settings. 
+
     According to the objects name the corresponding setting is known and set.
 */
 void UiGuiSettings::handleValueChangeFromExtern(QDate value) {
@@ -127,7 +134,8 @@ void UiGuiSettings::handleValueChangeFromExtern(QDate value) {
 
 
 /*!
-    Extern widgets can connect to this slot to change settings. 
+    \brief Extern widgets can connect to this slot to change settings. 
+
     According to the objects name the corresponding setting is known and set.
 */
 void UiGuiSettings::handleValueChangeFromExtern(QByteArray value) {
@@ -143,7 +151,8 @@ void UiGuiSettings::handleValueChangeFromExtern(QByteArray value) {
 
 
 /*!
-	Sets the value of the by \a settingsName defined setting to the value \a value.
+	\brief Sets the value of the by \a settingsName defined setting to the value \a value.
+
     The to \a settingsName corresponding signal is emitted, if the value has changed.
  */
 bool UiGuiSettings::setValueByName(QString settingName, QVariant value) {
@@ -163,8 +172,9 @@ bool UiGuiSettings::setValueByName(QString settingName, QVariant value) {
 
 
 /*!
-    Emits the correct signal for the given \a settingName. If \a settingName
-    equals "all", all signals are emitted. This can be used to update all
+    \brief Emits the correct signal for the given \a settingName. 
+    
+    If \a settingName equals "all", all signals are emitted. This can be used to update all
     dependent widgets. \a value is the new value that is emitted along with the signal.
  */
 void UiGuiSettings::emitSignalForSetting(QString settingName) {
@@ -209,7 +219,7 @@ void UiGuiSettings::emitSignalForSetting(QString settingName) {
 
 
 /*!
-    Calls \sa emitSignalForSetting with settingName "all" to update all widgets or whatever
+    \brief Calls \sa emitSignalForSetting with settingName "all" to update all widgets or whatever
     is connected to each setting.
  */
 void UiGuiSettings::updateAllDependend() {
@@ -218,7 +228,8 @@ void UiGuiSettings::updateAllDependend() {
 
 
 /*!
-	Returns the value of the by \a settingsName defined setting as QVariant. 
+	\brief Returns the value of the by \a settingsName defined setting as QVariant. 
+
 	If the named setting does not exist, 0 is being returned.
 */
 QVariant UiGuiSettings::getValueByName(QString settingName) {
@@ -231,7 +242,8 @@ QVariant UiGuiSettings::getValueByName(QString settingName) {
 
 
 /*!
-    Loads the settings for the main application.
+    \brief Loads the settings for the main application.
+
 	Settings are for example last selected indenter, last loaded source code file and so on.
 */
 bool UiGuiSettings::loadSettings() {
@@ -289,7 +301,8 @@ bool UiGuiSettings::loadSettings() {
 
 
 /*!
-    Saves the settings for the main application.
+    \brief Saves the settings for the main application.
+
     Settings are for example last selected indenter, last loaded source code file and so on.
 */
 bool UiGuiSettings::saveSettings() {
