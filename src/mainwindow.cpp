@@ -19,8 +19,11 @@
 
 #include "mainwindow.h"
 
+//! \defgroup grp_MainWindow All concerning main window functionality.
+
 /*!
     \class MainWindow
+    \ingroup grp_MainWindow
     \brief Is the main window of UniversalIndentGUI
 
     The MainWindow class is responsible for generating and displaying most of the gui elements.
