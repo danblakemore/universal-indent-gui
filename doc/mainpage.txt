@@ -1,0 +1,6 @@
+/*!
+    \mainpage
+
+    \image html http://universalindent.sourceforge.net/images/banner.jpg
+    <h4><a href="http://universalindent.sourceforge.net/index.html">Back to UniversalIndentGUI homepage</a></h4>
+*/
