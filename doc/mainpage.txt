@@ -2,5 +2,7 @@
     \mainpage
 
     \image html http://universalindent.sourceforge.net/images/banner.jpg
-    <h4><a href="http://universalindent.sourceforge.net/index.html">Back to UniversalIndentGUI homepage</a></h4>
+    <br>This is the documentation of the UniversalIndentGUI source code based on the current content
+    of the subversion main trunk.
+    <h4><a href="http://universalindent.sourceforge.net">Back to UniversalIndentGUI homepage</a></h4>
 */
