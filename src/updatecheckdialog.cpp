@@ -19,37 +19,62 @@
 
 #include "updatecheckdialog.h"
 
+/*!
+    \class UpdateCheckDialog
+    \ingroup grp_MainWindow
+    \brief UpdateCheckDialog is a dialog widget that contains functions
+    for online checking for a new version of UniversalIndentGUI.
+*/
+
+/*!
+    \brief Initializes member variables and stores the version of UiGui and a pointer to the settings object.
+ */
 UpdateCheckDialog::UpdateCheckDialog(QString currentVersion, UiGuiSettings *settings, QWidget *parent) : QDialog(parent) {
     setupUi(this);
 
     manualUpdateRequested = false;
     roleOfClickedButton = QDialogButtonBox::InvalidRole;
 
+    // Create object for http request and connect it with the request return handler.
     http = new QHttp(this);
     connect( http, SIGNAL(done(bool)), this, SLOT(checkForUpdatedReturned(bool)) );
 
+    // Create a timer object used for the progress bar.
     updateCheckProgressTimer = new QTimer(this);
-    updateCheckProgressTimer->setInterval(100);
+    updateCheckProgressTimer->setInterval(5);
     connect( updateCheckProgressTimer, SIGNAL(timeout()), this, SLOT(updateUpdateCheckProgressBar()) );
     updateCheckProgressCounter = 0;
 
+    // Connect the dialogs buttonbox with a button click handler.
     connect( buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(handleDialogButtonClicked(QAbstractButton*)) );
 
     this->currentVersion = currentVersion;
     this->settings = settings;
 
+    // This dialog is allways modal.
     setModal(true);
 }
 
 
+/*!
+    \brief This slot should be called, if an update check is manually invoked.
+
+    In difference to the automatic update check, during manual update check request
+    a modal progress indicator dialog will be shown.
+ */
 void UpdateCheckDialog::updateCheckManuallyInvoked() {
     manualUpdateRequested = true;
-    showCheckingForUpdateDialog();
-    show();
     checkForUpdate();
+    showCheckingForUpdateDialog();
 }
 
 
+/*!
+    \brief This slot should be called, if an update check is automatically invoked.
+
+    An automatic invoked update check should run in background, so the user
+    gets not interrupted by a dialog box.
+ */
 void UpdateCheckDialog::updateCheckAutomaticallyInvoked() {
     manualUpdateRequested = false;
     checkForUpdate();
@@ -57,7 +82,9 @@ void UpdateCheckDialog::updateCheckAutomaticallyInvoked() {
 
 
 /*!
-    This function checks whether updates for UniversalIndentGUI are available.
+    \brief This function checks whether updates for UniversalIndentGUI are available.
+
+    It is tried to download the UniversalIndentGui pad file from the SourceForge server.
  */
 void UpdateCheckDialog::checkForUpdate() {
     http->setHost("universalindent.sourceforge.net");
@@ -66,8 +93,12 @@ void UpdateCheckDialog::checkForUpdate() {
 
 
 /*!
-    This slot is called after the update check has returned. Shows a message if check was successful or not.
-    Offers to go to the download page if a newer version exists.
+    \brief This slot is called after the update check has returned, either by successfully
+    retreiving the pad file, or on any kind of network error.
+    
+    Shows a message if check was successful or not. Offers the user to go to the 
+    download page if a newer version exists. In case of an error during update
+    check, a message box with the error will be displayed.
  */
 void UpdateCheckDialog::checkForUpdatedReturned(bool errorOccurred) {
     // Stop the progressbar timer.
@@ -106,23 +137,39 @@ void UpdateCheckDialog::checkForUpdatedReturned(bool errorOccurred) {
             QMessageBox::warning(this, "Update check error", "There was an error while trying to check for an update! The retrieved file did not contain expected content." );
         }
     }
-    // There was some error while trying to retrieve the update info from server.
-    else {
+    // If there was some error while trying to retrieve the update info from server and not cancel was pressed.
+    else if ( roleOfClickedButton != QDialogButtonBox::RejectRole ) {
         QMessageBox::warning(this, "Update check error", "There was an error while trying to check for an update! Error was : " + http->errorString() );
     }
     manualUpdateRequested = false;
 }
 
 
+/*!
+    \brief Displays the progress bar during update check.
+
+    For displaying activity during update check, a timer is startet to
+    updated the progressbar. The user can press a cancel button to
+    stop the update check.
+ */
 void UpdateCheckDialog::showCheckingForUpdateDialog() {
+    // Reset the progress bar.
+    updateCheckProgressCounter = 0;
+    progressBar->setValue(updateCheckProgressCounter);
+    progressBar->setInvertedAppearance( false );
+
     updateCheckProgressTimer->start();
     progressBar->show();
     setWindowTitle( tr("Checking for update...") );
     label->setText( tr("Checking whether a newer version is available") );
     buttonBox->setStandardButtons(QDialogButtonBox::Cancel);
+    show();
 }
 
 
+/*!
+    \brief Displays the dialog with info about the new available version.
+ */
 void UpdateCheckDialog::showNewVersionAvailableDialog(QString newVersion) {
     progressBar->hide();
     setWindowTitle( tr("Update available") );
@@ -132,6 +179,9 @@ void UpdateCheckDialog::showNewVersionAvailableDialog(QString newVersion) {
 }
 
 
+/*!
+    \brief Displays the dialog, that no new version is available.
+ */
 void UpdateCheckDialog::showNoNewVersionAvailableDialog() {
     progressBar->hide();
     setWindowTitle( tr("No new update available") );
@@ -141,14 +191,46 @@ void UpdateCheckDialog::showNoNewVersionAvailableDialog() {
 }
 
 
+/*!
+    \brief This slot is called, when a button in the dialog is clicked.
+
+    If the clicked button was the cancel button, the user wants to cancel
+    the update check. So the http request is aborted and the timer for the
+    progress bar animation is stopped.
+
+    In any case if a button is clicked, the dialog box will be closed.
+ */
 void UpdateCheckDialog::handleDialogButtonClicked(QAbstractButton *clickedButton) {
     roleOfClickedButton = buttonBox->buttonRole(clickedButton);
+
+    if ( roleOfClickedButton == QDialogButtonBox::RejectRole ) {
+        // Abort the http request.
+        http->abort();
+        // Stop the progressbar timer.
+        updateCheckProgressTimer->stop();
+    }
+
     accept();
 }
 
 
+/*!
+    \brief This slot is responsible for the animation of the update check progress bar.
+ */
 void UpdateCheckDialog::updateUpdateCheckProgressBar() {
+    // Depending on the progress bar direction, decrease or increase the progressbar value.
+    if ( progressBar->invertedAppearance() ) {
+        updateCheckProgressCounter--;
+    }
+    else {
+        updateCheckProgressCounter++;
+    }
+
+    // If the progress bar reaches 0 or 100 as value, swap the animation direction.
+    if ( updateCheckProgressCounter == 0 || updateCheckProgressCounter == 100 ) {
+        progressBar->setInvertedAppearance( !progressBar->invertedAppearance() );
+    }
+
+    // Update the progress bar value.
     progressBar->setValue(updateCheckProgressCounter);
-    updateCheckProgressCounter++;
-    //updateCheckProgressCounter = updateCheckProgressCounter % 100;
 }
