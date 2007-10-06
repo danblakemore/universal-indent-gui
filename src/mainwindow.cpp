@@ -143,7 +143,7 @@ void MainWindow::initMainWindow() {
     // Tell the QScintilla editor if it has to show white space.
     connect( settings, SIGNAL(whiteSpaceIsVisible(bool)), this, SLOT(setWhiteSpaceVisibility(bool)) );
 
-    // Connect the remaining menue items.
+    // Connect the remaining menu items.
     connect( actionOpen_Source_File, SIGNAL(activated()), this, SLOT(openSourceFileDialog()) );
     connect( actionSave_Source_File_As, SIGNAL(activated()), this, SLOT(saveasSourceFileDialog()) );
     connect( actionSave_Source_File, SIGNAL(activated()), this, SLOT(saveSourceFile()) );
@@ -154,7 +154,7 @@ void MainWindow::initMainWindow() {
     connect( actionCreateShellScript, SIGNAL(activated()), this, SLOT(createIndenterCallShellScript()) );
     connect( actionCheck_for_update, SIGNAL(activated()), updateCheckDialog, SLOT(updateCheckManuallyInvoked()) );
 
-    // Init the menue for selecting one of the recently opened files.
+    // Init the menu for selecting one of the recently opened files.
     updateRecentlyOpenedList();
     connect( menuRecently_Opened_Files, SIGNAL(triggered(QAction*)), this, SLOT(openFileFromRecentlyOpenedList(QAction*)) );
     connect( settings, SIGNAL(recentlyOpenedListSize(int)), this, SLOT(updateRecentlyOpenedList()) );
