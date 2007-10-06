@@ -94,14 +94,14 @@ void UpdateCheckDialog::checkForUpdate() {
 
 /*!
     \brief This slot is called after the update check has returned, either by successfully
-    retreiving the pad file, or on any kind of network error.
+    retrieving the pad file, or on any kind of network error.
     
     Shows a message if check was successful or not. Offers the user to go to the 
     download page if a newer version exists. In case of an error during update
     check, a message box with the error will be displayed.
  */
 void UpdateCheckDialog::checkForUpdatedReturned(bool errorOccurred) {
-    // Stop the progressbar timer.
+    // Stop the progress bar timer.
     updateCheckProgressTimer->stop();
 
     if ( !errorOccurred ) {
@@ -117,7 +117,7 @@ void UpdateCheckDialog::checkForUpdatedReturned(bool errorOccurred) {
             returnedString = returnedString.mid( leftPosition+17, rightPosition-(leftPosition+17) );
 
             // Only show update dialog, if the current version string is not equal to the received one.
-            if ( returnedString == currentVersion ) {
+            if ( returnedString != currentVersion ) {
                 // Show message box whether to download the new version.
                 showNewVersionAvailableDialog(returnedString);
 
@@ -148,8 +148,8 @@ void UpdateCheckDialog::checkForUpdatedReturned(bool errorOccurred) {
 /*!
     \brief Displays the progress bar during update check.
 
-    For displaying activity during update check, a timer is startet to
-    updated the progressbar. The user can press a cancel button to
+    For displaying activity during update check, a timer is started to
+    updated the progress bar. The user can press a cancel button to
     stop the update check.
  */
 void UpdateCheckDialog::showCheckingForUpdateDialog() {
