@@ -290,7 +290,7 @@ bool UiGuiSettings::loadSettings() {
 	settings["Language"] = availableTranslations.indexOf( qsettings->value("UniversalIndentGUI/language", "").toString() );
 
     // Read the update check settings from the settings file.
-    settings["CheckForUpdate"] = qsettings->value("UniversalIndentGUI/CheckForUpdate", false).toBool();
+    settings["CheckForUpdate"] = qsettings->value("UniversalIndentGUI/CheckForUpdate", true).toBool();
     settings["LastUpdateCheck"] = qsettings->value("UniversalIndentGUI/LastUpdateCheck", QDate(1900,1,1)).toDate();
 
     // Read the main window state.
