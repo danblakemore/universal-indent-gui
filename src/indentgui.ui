@@ -18,19 +18,37 @@
   </property>
   <widget class="QWidget" name="centralwidget" >
    <layout class="QHBoxLayout" >
-    <property name="margin" >
-     <number>0</number>
-    </property>
     <property name="spacing" >
      <number>6</number>
     </property>
+    <property name="leftMargin" >
+     <number>0</number>
+    </property>
+    <property name="topMargin" >
+     <number>0</number>
+    </property>
+    <property name="rightMargin" >
+     <number>0</number>
+    </property>
+    <property name="bottomMargin" >
+     <number>0</number>
+    </property>
     <item>
      <layout class="QHBoxLayout" >
-      <property name="margin" >
-       <number>2</number>
-      </property>
       <property name="spacing" >
        <number>0</number>
+      </property>
+      <property name="leftMargin" >
+       <number>2</number>
+      </property>
+      <property name="topMargin" >
+       <number>2</number>
+      </property>
+      <property name="rightMargin" >
+       <number>2</number>
+      </property>
+      <property name="bottomMargin" >
+       <number>2</number>
       </property>
      </layout>
     </item>
@@ -69,6 +87,8 @@
      <property name="title" >
       <string>Recently Opened Files</string>
      </property>
+     <addaction name="separator" />
+     <addaction name="actionClear_Recently_Opened_List" />
     </widget>
     <widget class="QMenu" name="encodingMenu" >
      <property name="title" >
@@ -117,9 +137,7 @@
   </widget>
   <widget class="QDockWidget" name="dockWidget" >
    <property name="sizePolicy" >
-    <sizepolicy>
-     <hsizetype>3</hsizetype>
-     <vsizetype>5</vsizetype>
+    <sizepolicy vsizetype="Preferred" hsizetype="MinimumExpanding" >
      <horstretch>0</horstretch>
      <verstretch>0</verstretch>
     </sizepolicy>
@@ -138,18 +156,36 @@
    </attribute>
    <widget class="QWidget" name="dockWidgetContents" >
     <layout class="QHBoxLayout" >
-     <property name="margin" >
-      <number>0</number>
-     </property>
      <property name="spacing" >
       <number>6</number>
      </property>
+     <property name="leftMargin" >
+      <number>0</number>
+     </property>
+     <property name="topMargin" >
+      <number>0</number>
+     </property>
+     <property name="rightMargin" >
+      <number>0</number>
+     </property>
+     <property name="bottomMargin" >
+      <number>0</number>
+     </property>
      <item>
       <layout class="QVBoxLayout" >
-       <property name="margin" >
+       <property name="spacing" >
         <number>0</number>
        </property>
-       <property name="spacing" >
+       <property name="leftMargin" >
+        <number>0</number>
+       </property>
+       <property name="topMargin" >
+        <number>0</number>
+       </property>
+       <property name="rightMargin" >
+        <number>0</number>
+       </property>
+       <property name="bottomMargin" >
         <number>0</number>
        </property>
       </layout>
@@ -177,7 +213,10 @@
     <enum>Qt::ToolButtonTextBesideIcon</enum>
    </property>
    <attribute name="toolBarArea" >
-    <number>4</number>
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak" >
+    <bool>false</bool>
    </attribute>
   </widget>
   <action name="actionOpen_Source_File" >
@@ -434,6 +473,14 @@
    </property>
    <property name="statusTip" >
     <string>Checks online whether a new version of UniversalIndentGUI is available.</string>
+   </property>
+  </action>
+  <action name="actionClear_Recently_Opened_List" >
+   <property name="icon" >
+    <iconset resource="../resources/Icons.qrc" >:/mainWindow/edit-clear.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Clear Recently Opened List</string>
    </property>
   </action>
  </widget>

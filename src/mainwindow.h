@@ -140,6 +140,7 @@ private slots:
     void createIndenterCallShellScript();
     void updateRecentlyOpenedList();
     void openFileFromRecentlyOpenedList(QAction* recentlyOpenedAction);
+    void clearRecentlyOpenedList();
 };
 
 #endif // MAINWINDOW_H

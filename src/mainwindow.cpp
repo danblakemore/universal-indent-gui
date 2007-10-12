@@ -1321,17 +1321,17 @@ void MainWindow::updateRecentlyOpenedList() {
 		// If the file does no longer exist, remove it from the list.
 		if ( !fileInfo.exists() ) {
 			recentlyOpenedList.takeAt(i);
-            if ( i < recentlyOpenedActionList.count() ) {
+            if ( i < recentlyOpenedActionList.size()-2 ) {
                 QAction* action = recentlyOpenedActionList.takeAt(i);
                 delete action;
             }
 		}
         // else if its not already in the menu, add it to the menu.
         else {
-            if ( i >= recentlyOpenedActionList.size() ) {
+            if ( i >= recentlyOpenedActionList.size()-2 ) {
                 QAction *recentlyOpenedAction = new QAction(fileInfo.fileName(), menuRecently_Opened_Files);
                 recentlyOpenedAction->setStatusTip(filePath);
-                recentlyOpenedActionList.append( recentlyOpenedAction );
+                recentlyOpenedActionList.insert( recentlyOpenedActionList.size()-2, recentlyOpenedAction );
             }
             i++;
         }
@@ -1340,7 +1340,7 @@ void MainWindow::updateRecentlyOpenedList() {
 	// Trim the list to its in the settings allowed maximum size.
 	while ( recentlyOpenedList.size() > recentlyOpenedListMaxSize ) {
 		recentlyOpenedList.takeLast();
-        QAction* action = recentlyOpenedActionList.takeLast();
+        QAction* action = recentlyOpenedActionList.takeAt( recentlyOpenedActionList.size()-3 );
         delete action;
 	}
 
@@ -1349,6 +1349,35 @@ void MainWindow::updateRecentlyOpenedList() {
 
     // Write the new recently opened list to the settings.
     settings->setValueByName( "LastOpenedFiles", recentlyOpenedList.join("|") );
+
+    // Enable or disable "actionClear_Recently_Opened_List" if list is [not] emtpy
+    if ( recentlyOpenedList.isEmpty() ) {
+        actionClear_Recently_Opened_List->setEnabled(false);
+    }
+    else {
+        actionClear_Recently_Opened_List->setEnabled(true);
+    }
+}
+
+
+/*!
+    \brief This slot empties the list of recently opened files.
+ */
+void MainWindow::clearRecentlyOpenedList() {
+    QStringList recentlyOpenedList = settings->getValueByName("LastOpenedFiles").toString().split("|");
+    QList<QAction*> recentlyOpenedActionList = menuRecently_Opened_Files->actions();
+
+    while ( recentlyOpenedList.size() > 0 ) {
+		recentlyOpenedList.takeLast();
+        QAction* action = recentlyOpenedActionList.takeAt( recentlyOpenedActionList.size()-3 );
+        delete action;
+	}
+
+    // Write the new recently opened list to the settings.
+    settings->setValueByName( "LastOpenedFiles", recentlyOpenedList.join("|") );
+
+    // Disable "actionClear_Recently_Opened_List"
+    actionClear_Recently_Opened_List->setEnabled(false);
 }
 
 
@@ -1357,6 +1386,13 @@ void MainWindow::updateRecentlyOpenedList() {
     being selected.
  */
 void MainWindow::openFileFromRecentlyOpenedList(QAction* recentlyOpenedAction) {
+    // If the selected action from the recently opened list menu is the clear action
+    // call the slot to clear the list and then leave.
+    if ( recentlyOpenedAction == actionClear_Recently_Opened_List ) {
+        clearRecentlyOpenedList();
+        return;
+    }
+
     QString fileName = recentlyOpenedAction->text();
     int indexOfSelectedFile = menuRecently_Opened_Files->actions().indexOf( recentlyOpenedAction );
     QStringList recentlyOpenedList = settings->getValueByName("LastOpenedFiles").toString().split("|");
