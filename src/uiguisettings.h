@@ -43,7 +43,7 @@ public:
     void updateAllDependend();
 	QStringList getAvailableTranslations();
 
-// Only one slot per possible value needed, because wanted setting
+// Only one slot per possible value type needed, because wanted setting
 // is recognized by the sender objects name.
 public slots:
 	void handleValueChangeFromExtern(int value);
