@@ -66,12 +66,14 @@ HEADERS += src/aboutdialog.h \
            src/indenthandler.h \
            src/mainwindow.h \
            src/uiguisettings.h \
-           src/uiguisettingsdialog.h
+           src/uiguisettingsdialog.h \
+           src/updatecheckdialog.h
 
 FORMS += src/indentgui.ui \
          src/toolBarWidget.ui \
          src/UiGuiSettingsDialog.ui \
-         src/aboutdialog.ui
+         src/aboutdialog.ui \
+         src/UpdateCheckDialog.ui
 
 SOURCES += src/aboutdialog.cpp \
            src/highlighter.cpp \
@@ -79,7 +81,8 @@ SOURCES += src/aboutdialog.cpp \
            src/main.cpp \
            src/mainwindow.cpp \
            src/uiguisettings.cpp \
-           src/uiguisettingsdialog.cpp
+           src/uiguisettingsdialog.cpp \
+           src/updatecheckdialog.cpp
 
 RESOURCES += resources/Icons.qrc
 RC_FILE    = resources/programicon.rc
