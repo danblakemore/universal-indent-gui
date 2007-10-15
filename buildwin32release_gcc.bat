@@ -54,7 +54,7 @@ echo.
 
 echo Copying the indenter executables and example file to the release data dir
 echo -------------------------------------------------------------------------
-FOR %%A IN ( astyle.exe, astyle.html, bcpp.exe, bcpp.txt, csstidy.exe, gc.exe, gc.txt, htmltidy.exe, htmltidy.html, indent.exe, indent.html, uncrustify.exe, uncrustify.txt, example.cpp ) DO (
+FOR %%A IN ( astyle.exe, astyle.html, bcpp.exe, bcpp.txt, csstidy.exe, gc.exe, gc.txt, htmltidy.exe, htmltidy.html, indent.exe, libiconv-2.dll, libintl-2.dll, indent.html, uncrustify.exe, uncrustify.txt, example.cpp ) DO (
     if not exist .\data\%%A (
         echo File .\data\%%A not found!
         goto ERROR

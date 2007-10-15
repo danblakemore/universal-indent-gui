@@ -204,6 +204,9 @@ echo ""
 echo "Copying the indenter executables and example file to the target data dir"
 echo "------------------------------------------------------------------------"
 indenters="astyle$ext astyle.html bcpp$ext bcpp.txt csstidy$ext gc.exe gc.txt htmltidy$ext htmltidy.html indent$ext indent.html uncrustify$ext uncrustify.txt example.cpp"
+if [ "$ext" = "exe" ]; then
+    indenters = $indenters + " libiconv-2.dll libintl-2.dll";
+fi
 for i in $indenters
 do
     cp ./data/$i ./$targetDir/data/ &> /dev/null
