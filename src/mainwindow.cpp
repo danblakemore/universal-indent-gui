@@ -265,17 +265,12 @@ bool MainWindow::initApplicationLanguage() {
     // If no language was set, indicated by a negative index, use the system language.
     if ( languageIndex < 0 ) {
         languageShort = QLocale::system().name();
-        languageShort.truncate(2);
-
-		// In case of Chinese language choose the country code to differ more specific whether traditional or simplified Chinese.
-		if ( languageShort == "zh" ) {
-			 languageShort = QLocale::system().name().right(2).toLower();
-		}
 
         // If no translation file for the systems local language exist, fall back to English.
         if ( settings->getAvailableTranslations().indexOf(languageShort) < 0 ) {
             languageShort = "en";
         }
+
         // Set the language setting to the new language.
         settings->setValueByName("Language", settings->getAvailableTranslations().indexOf(languageShort) );
     }
