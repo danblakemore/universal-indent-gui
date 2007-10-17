@@ -68,7 +68,6 @@ void UiGuiSettings::readAvailableTranslations() {
 		languageShort.remove(0,16);
 		// Remove trailing file extension ".qm".
 		languageShort.chop(3);
-		languageShort = languageShort.toLower();
 
 		availableTranslations.append(languageShort);
 	}
