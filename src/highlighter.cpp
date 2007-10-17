@@ -119,6 +119,8 @@ void Highlighter::turnHighlightOn() {
 void Highlighter::turnHighlightOff() {
     highlightningIsOn = false;
 	parent->setLexer();
+    parent->setFont( QFont("Courier", 10, QFont::Normal) );
+    parent->setMarginsFont( QFont("Courier", 10, QFont::Normal) );
 }
 
 
