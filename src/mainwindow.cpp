@@ -910,12 +910,19 @@ void MainWindow::exportToHTML() {
     fileName = QFileDialog::getSaveFileName( this, tr("Export source code file"), fileName, fileExtensions);
 
     if ( !fileName.isEmpty() ) {
-/*        QFile::remove(fileName);
+        // Create a document from which HTML code can be generated.
+        QTextDocument sourceCodeDocument( txtedSourceCode->text() );
+        sourceCodeDocument.setDefaultFont( QFont("Courier", 12, QFont::Normal) );
+        QString sourceCodeAsHTML = sourceCodeDocument.toHtml();
+        // To ensure that empty lines are kept in the HTML code make this replacement.
+        sourceCodeAsHTML.replace("\"></p>", "\"><br /></p>");
+
+        // Write the HTML file.
+        QFile::remove(fileName);
         QFile outSrcFile(fileName);
         outSrcFile.open( QFile::ReadWrite | QFile::Text );
-        syntaxHighlightCPP(txtedSourceCode);
-        outSrcFile.write( txtedSourceCode->toHtml().toAscii() );
-        outSrcFile.close(); */
+        outSrcFile.write( sourceCodeAsHTML.toAscii() );
+        outSrcFile.close();
     }
 }
 
