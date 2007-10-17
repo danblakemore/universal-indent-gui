@@ -40,6 +40,8 @@
 #include <QTextStream>
 #include <QTextCodec>
 
+#include "uiguierrormessage.h"
+
 
 class IndentHandler : public QWidget
 {
@@ -47,6 +49,7 @@ class IndentHandler : public QWidget
 
 public:
     IndentHandler(QString dataDirPathStr, int indenterID, QMainWindow *mainWindow = 0, QWidget *parent = 0);
+    ~IndentHandler();
 
     QString generateCommandlineCall(QString inputFileExtension);
     QString callIndenter(QString sourceCode, QString inputFileExtension);
@@ -129,6 +132,8 @@ private:
     QString useCfgFileParameter;
     bool noIndenterExecExistDialogAlreadyShown;
     QMainWindow *mainWindow;
+
+    UiGuiErrorMessage *errorMessageDialog;
 
 public slots:
     void setIndenter(int indenterID);

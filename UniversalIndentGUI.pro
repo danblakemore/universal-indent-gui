@@ -65,6 +65,7 @@ HEADERS += src/aboutdialog.h \
            src/highlighter.h \
            src/indenthandler.h \
            src/mainwindow.h \
+           src/uiguierrormessage.h \
            src/uiguisettings.h \
            src/uiguisettingsdialog.h \
            src/updatecheckdialog.h
@@ -80,6 +81,7 @@ SOURCES += src/aboutdialog.cpp \
            src/indenthandler.cpp \
            src/main.cpp \
            src/mainwindow.cpp \
+           src/uiguierrormessage.cpp \
            src/uiguisettings.cpp \
            src/uiguisettingsdialog.cpp \
            src/updatecheckdialog.cpp

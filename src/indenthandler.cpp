@@ -80,6 +80,13 @@ IndentHandler::IndentHandler(QString dataDirPathStr, int indenterID, QMainWindow
         readIndentIniFile( dataDirctoryStr + indenterIniFileList.at(indenterID) );
     }
     noIndenterExecExistDialogAlreadyShown = false;
+
+    errorMessageDialog = new UiGuiErrorMessage(mainWindow);
+}
+
+
+IndentHandler::~IndentHandler() {
+    delete errorMessageDialog;
 }
 
 
@@ -346,7 +353,8 @@ QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtensi
                                 tr("<b>Indent console output was:</b> ") + processReturnString + "<br>" +
                                 tr("<b>Callstring was:</b> ") + indentCallString + "</html></body>";
             QApplication::restoreOverrideCursor();
-            QMessageBox::warning(NULL, tr("Indenter returned error"), processReturnString);
+            //QMessageBox::warning(NULL, tr("Indenter returned error"), processReturnString);
+            errorMessageDialog->showMessage(processReturnString);
         }
     }
 

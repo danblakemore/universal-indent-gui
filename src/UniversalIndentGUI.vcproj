@@ -228,6 +228,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\uiguierrormessage.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\uiguisettings.cpp"
 				>
 			</File>
@@ -259,6 +263,10 @@
 			</File>
 			<File
 				RelativePath=".\mainwindow.h"
+				>
+			</File>
+			<File
+				RelativePath=".\uiguierrormessage.h"
 				>
 			</File>
 			<File
