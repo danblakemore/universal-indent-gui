@@ -18,8 +18,8 @@ qmake
 echo calling lrelease release
 echo ------------------------
 lrelease ./translations/universalindent_de.ts -qm ./translations/universalindent_de.qm
-lrelease ./translations/universalindent_tw.ts -qm ./translations/universalindent_tw.qm
-lrelease ./translations/universalindent_ja.ts -qm ./translations/universalindent_ja.qm
+lrelease ./translations/universalindent_zh_TW.ts -qm ./translations/universalindent_zh_TW.qm
+lrelease ./translations/universalindent_ja_JP.ts -qm ./translations/universalindent_ja_JP.qm
 echo calling make release
 echo --------------------
 make release
@@ -68,8 +68,7 @@ cp ./data/example.cpp ./UniversalIndentGUI_linux32/data/
 
 # Copy the translation files.
 cp $QTDIR/translations/qt_de.qm ./translations/
-cp $QTDIR/translations/qt_ja_jp.qm ./translations/qt_ja.qm
-cp $QTDIR/translations/qt_zh_CN.qm ./translations/qt_tw.qm
+cp $QTDIR/translations/qt_ja_jp.qm ./translations/qt_ja_JP.qm
 cp ./translations/*.qm ./UniversalIndentGUI_linux32/translations/
 
 cp ./doc/iniFileFormat.html ./UniversalIndentGUI_linux32/doc/

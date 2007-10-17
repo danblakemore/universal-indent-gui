@@ -14,7 +14,7 @@ ext=.exe
 targetDir=UniversalIndentGUI_$targetSystem
 version=0.6.1_Beta
 doSVNUpdate=false
-languages="de tw ja"
+languages="de zh_TW ja_JP"
 
 # Qt specific settings
 #QTDIR=/c/Programmierung/qt.4.3.0_gcc_static
@@ -236,7 +236,7 @@ echo ""
 echo "Copying the translation binaries to the target translation dir"
 echo "--------------------------------------------------------------"
 cp $QTDIR/translations/qt_de.qm ./$targetDir/translations/ &> /dev/null
-cp $QTDIR/translations/qt_ja_jp.qm ./$targetDir/translations/qt_ja.qm &> /dev/null
+cp $QTDIR/translations/qt_ja_jp.qm ./$targetDir/translations/qt_ja_JP.qm &> /dev/null
 for i in $languages
 do
     cp ./translations/universalindent_$i.qm ./$targetDir/translations/ &> /dev/null

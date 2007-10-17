@@ -3,9 +3,9 @@
 echo Making some environment settings
 echo --------------------------------
 rem set QTDIR=%QTDIR%_static
-set QTDIR=F:\Qt\qt.4.3.0_gpl_static
+set QTDIR=C:\Programmierung\qt.4.3.0_gcc_static
 set PATH=%QTDIR%\bin
-set PATH=%PATH%;D:\Programme\Informat\MinGW\bin;D:\Programme\Tools\7-Zip
+set PATH=%PATH%;C:\Programmierung\MingW\bin;D:\Programme\Tools\7-Zip
 set PATH=%PATH%;%SystemRoot%\System32
 set QMAKESPEC=win32-g++
 echo Done.
@@ -13,7 +13,7 @@ echo.
 
 echo Generating the translation binaries
 echo -----------------------------------
-for %%A in ( de, tw, ja) do (
+for %%A in ( de, zh_TW, ja_JP) do (
     lrelease .\translations\universalindent_%%A.ts -qm .\translations\universalindent_%%A.qm -silent
     IF ERRORLEVEL 1 goto ERROR
 )
@@ -94,12 +94,10 @@ echo.
 echo Copying the translation files to the release translation dir
 echo ------------------------------------------------------------
 copy %QTDIR%\translations\qt_de.qm .\translations\ >NUL
-copy %QTDIR%\translations\qt_ja_jp.qm .\translations\qt_ja.qm >NUL
-copy %QTDIR%\translations\qt_zh_CN.qm .\translations\qt_tw.qm >NUL
+copy %QTDIR%\translations\qt_ja_jp.qm .\translations\qt_ja_JP.qm >NUL
 copy .\translations\qt_de.qm .\UniversalIndentGUI_win32\translations\ >NUL
-copy .\translations\qt_ja.qm .\UniversalIndentGUI_win32\translations\ >NUL
-copy .\translations\qt_tw.qm .\UniversalIndentGUI_win32\translations\ >NUL
-for %%A in ( de, tw, ja ) do (
+copy .\translations\qt_ja_JP.qm .\UniversalIndentGUI_win32\translations\ >NUL
+for %%A in ( de, zh_TW, ja_JP ) do (
     if not exist .\translations\universalindent_%%A.qm (
         echo File .\translations\universalindent_%%A.qm not found!
         goto ERROR
