@@ -336,7 +336,7 @@ QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtensi
                 default :
                     break;
             }
-            processReturnString += tr("<b>Callstring was:</b> ") + indentCallString + "</html></body>";
+            processReturnString += tr("<br><b>Callstring was:</b> ") + indentCallString + "</html></body>";
             QApplication::restoreOverrideCursor();
             QMessageBox::warning(NULL, tr("Error calling Indenter"), processReturnString);
         }
@@ -351,7 +351,7 @@ QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtensi
             exitCode.setNum(indentProcess.exitCode());
             processReturnString = tr("<b>Indenter returned with exit code:</b> ") + exitCode + "<br>" +
                                 tr("<b>Indent console output was:</b> ") + processReturnString + "<br>" +
-                                tr("<b>Callstring was:</b> ") + indentCallString + "</html></body>";
+                                tr("<br><b>Callstring was:</b> ") + indentCallString + "</html></body>";
             QApplication::restoreOverrideCursor();
             //QMessageBox::warning(NULL, tr("Indenter returned error"), processReturnString);
             errorMessageDialog->showMessage(processReturnString);
