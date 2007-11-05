@@ -18,7 +18,7 @@ languages="de zh_TW ja_JP"
 
 # Qt specific settings
 #QTDIR=/c/Programmierung/qt.4.3.0_gcc_static
-QTDIR=/f/Qt/qt.4.3.0_gpl_static
+QTDIR=/f/Qt/qt.4.3.2_gpl_static
 QMAKESPEC=win32-g++
 
 echo "Making some environment settings"
@@ -204,8 +204,8 @@ echo ""
 echo "Copying the indenter executables and example file to the target data dir"
 echo "------------------------------------------------------------------------"
 indenters="astyle$ext astyle.html bcpp$ext bcpp.txt csstidy$ext gc.exe gc.txt htmltidy$ext htmltidy.html indent$ext indent.html uncrustify$ext uncrustify.txt example.cpp"
-if [ "$ext" = "exe" ]; then
-    indenters = $indenters + " libiconv-2.dll libintl-2.dll";
+if [ "$ext" = ".exe" ]; then
+    indenters="$indenters libiconv-2.dll libintl-2.dll"
 fi
 for i in $indenters
 do
