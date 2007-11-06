@@ -6,8 +6,8 @@
         <file>language-de.png</file>
         <file>language-en.png</file>
         <file>language-ja_JP.png</file>
-        <file>language-zh_TW.png</file>
         <file>language-zh_CN.png</file>
+        <file>language-zh_TW.png</file>
     </qresource>
     <qresource prefix="/mainWindow" >
         <file>Icon1.png</file>
