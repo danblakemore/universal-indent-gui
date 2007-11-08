@@ -6,7 +6,7 @@
     <message>
         <location filename="../src/aboutdialog.ui" line="105"/>
         <source>... is a cross platform compatible GUI for several code formatter, beautifier and indenter like GreatCode, AStyle (Artistic Styler), GNU Indent, BCPP and so on. Main feature is a live preview to directly see how the selected formatting option affects the source code.</source>
-        <translation>這是一套給眾多程式碼重整及美化工具（例如 GreatCode，AStyle (Artistic Styler)，GNU Indent，BCPP 及其他類似工具）使用的 GUI 界面，它最主要的特點在於可以即時預覽程式碼被處理後的樣子。</translation>
+        <translation>這是一套給眾多程式碼重整及美化工具（例如 GreatCode、AStyle (Artistic Styler)、GNU Indent、BCPP 及其他類似工具）使用的 GUI 界面，它最主要的特點在於可以即時預覽程式碼被重整後的樣子。</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.ui" line="101"/>
@@ -199,7 +199,7 @@ Credits:</source>
     <message>
         <location filename="../src/indentgui.ui" line="361"/>
         <source>Live Indent Preview</source>
-        <translation>即時重整預覽</translation>
+        <translation>即時預覽重整效果</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="266"/>
@@ -389,7 +389,7 @@ Credits:</source>
     <message>
         <location filename="../src/indentgui.ui" line="483"/>
         <source>Clear Recently Opened List</source>
-        <translation type="unfinished"></translation>
+        <translation>清空最近開啟的檔案清單</translation>
     </message>
 </context>
 <context>
@@ -457,7 +457,7 @@ Credits:</source>
     <message>
         <location filename="../src/indenthandler.cpp" line="354"/>
         <source>&lt;br&gt;&lt;b&gt;Callstring was:&lt;/b&gt; </source>
-        <translation>&lt;br&gt;&lt;b&gt;呼叫字串是：&lt;/b&gt; </translation>
+        <translation>&lt;br&gt;&lt;b&gt;呼叫方式是：&lt;/b&gt; </translation>
     </message>
 </context>
 <context>
@@ -830,12 +830,12 @@ Do you want to go to the download website?</source>
     <message>
         <location filename="../src/UpdateCheckDialog.ui" line="16"/>
         <source>Checking for update...</source>
-        <translation type="unfinished"></translation>
+        <translation>正在檢查是否有更新檔</translation>
     </message>
     <message>
         <location filename="../src/UpdateCheckDialog.ui" line="22"/>
         <source>Checking whether a newer version is available</source>
-        <translation type="unfinished"></translation>
+        <translation>正在檢查是否有新版本</translation>
     </message>
     <message>
         <location filename="../src/updatecheckdialog.cpp" line="175"/>
@@ -854,12 +854,12 @@ Do you want to go to the download website?</source>
     <message>
         <location filename="../src/updatecheckdialog.cpp" line="187"/>
         <source>No new update available</source>
-        <translation type="unfinished"></translation>
+        <translation>沒有找到新版本</translation>
     </message>
     <message>
         <location filename="../src/updatecheckdialog.cpp" line="188"/>
         <source>You already have the latest version of UniversalIndentGUI.</source>
-        <translation type="unfinished"></translation>
+        <translation>你使用的是最新版的 UniversalIndentGUI</translation>
     </message>
 </context>
 <context>
@@ -927,7 +927,7 @@ Do you want to go to the download website?</source>
     <message>
         <location filename="../src/toolBarWidget.ui" line="48"/>
         <source>Live Indent Preview</source>
-        <translation>即時重整預覽</translation>
+        <translation>即時預覽重整效果</translation>
     </message>
     <message>
         <location filename="../src/toolBarWidget.ui" line="61"/>
