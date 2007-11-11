@@ -3,9 +3,10 @@
 echo Making some environment settings
 echo --------------------------------
 rem set QTDIR=%QTDIR%_static
-set QTDIR=C:\Programmierung\qt.4.3.0_gcc_static
+rem set QTDIR=C:\Programmierung\qt.4.3.0_gcc_static
+set QTDIR=F:\Qt\qt.4.3.2_gpl_static
 set PATH=%QTDIR%\bin
-set PATH=%PATH%;C:\Programmierung\MingW\bin;D:\Programme\Tools\7-Zip
+set PATH=%PATH%;D:\Programme\Informat\MingW\bin;D:\Programme\Tools\7-Zip
 set PATH=%PATH%;%SystemRoot%\System32
 set QMAKESPEC=win32-g++
 echo Done.
@@ -120,7 +121,7 @@ echo.
 echo Packing the whole release dir content
 echo -------------------------------------
 cd UniversalIndentGUI_win32
-7z.exe a -tzip UniversalIndentGUI_0.6.1_Beta_win32.zip >NUL
+7z.exe a -tzip UniversalIndentGUI_0.7.0_Beta_win32.zip >NUL
 IF ERRORLEVEL 1 goto ERROR
 cd ..
 echo Done.
