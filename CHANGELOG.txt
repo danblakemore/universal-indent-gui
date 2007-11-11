@@ -1,10 +1,11 @@
-2007-11-07 Version 0.7.0 Beta
+2007-11-11 Version 0.7.0 Beta
 [add] Feature Request ID 1826733 : If the called indenter returns an error message, you can chose to not show the same error again. Helpful for HTMLtidy since it often shows a long, repeating error list.
 [add] Feature Request ID 1805974 : Added an option to clear the list of recently opened files.
 [add] Feature Request ID 1760997 : Added some code lines to example.cpp to test whether an indenter correctly handles preprocessor defines.
 [add] Feature Request ID 1752551 : If the user manually checks for updates a progress/busy dialog will be shown.
 [add] Feature Request ID 1736932 : The user gets shown a dialog if he has manually checked for an update and no new one is available.
-[change] The update check is no enabled by default.
+[change] The update check is now enabled by default.
+[change] Slighty changes made to the settings dialog; put texts in front of the changed value.
 [fix] Bug ID 1807179 : GNU Indent didn't work properly on Windows system, after the dlls libiconv-2.dll and libintl-2.dll were removed. Readded them.
 [fix] Bug ID 1805976 : The HTML export didn't produce any output. Fixed that, but still has not syntax formatting.
 [fix] Bug ID 1815023 : Mixed traditional with simplified chinese translation. Now preferring to use english text instead of mixing if no traditional translation is available.
