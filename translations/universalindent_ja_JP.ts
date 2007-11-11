@@ -495,7 +495,7 @@ Do you want to save your changes?</source>
 <context>
     <name>SettingsDialog</name>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="35"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="44"/>
         <source>Common</source>
         <translation type="unfinished"></translation>
     </message>
@@ -505,132 +505,132 @@ Do you want to save your changes?</source>
         <translation type="unfinished">設定</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="104"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="129"/>
         <source>Automatically open last file on startup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="114"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="139"/>
         <source>Enable Parameter Tooltips</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="192"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="234"/>
         <source>Editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="312"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="389"/>
         <source>Highlighter settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="349"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="444"/>
         <source>Set Font</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="359"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="454"/>
         <source>Set Color</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="79"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="104"/>
         <source>Displays all available translations for UniversalIndentGui and lets you choose one.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="61"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="88"/>
         <source>Application language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="101"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="126"/>
         <source>If selected opens the source code file on startup that was opened last time.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="111"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="136"/>
         <source>If checked, tool tips will show up if the mouse cursor remains over an indenter parameter for a while.</source>
         <translation type="unfinished">チェックすると、インデントツールのパラメータの上にしばらくマウスカーソルを置くとツールチップを表示するようにします。</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="153"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="179"/>
         <source>Sets how many files should be remembered in the list of recently opened files.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="207"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="258"/>
         <source>Enables or disables displaying of white space characters in the editor.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="210"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="261"/>
         <source>Display white space character (tabs, spaces, etc.)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="233"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="304"/>
         <source>Defines how many spaces should be displayed in the editor for one tab character.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="249"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="285"/>
         <source>Sets width in single spaces used for tabs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="252"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="288"/>
         <source>Defines how many spaces should be displayed in the editor for one tab.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="255"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="291"/>
         <source>Displayed width of tabs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="281"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="349"/>
         <source>Syntax Highlighting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="296"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="373"/>
         <source>By enabling special key words of the source code are highlighted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="299"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="376"/>
         <source>Enable syntax highlighting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="309"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="386"/>
         <source>Lets you make settings for all properties of the available syntax highlighters, like font and color.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="346"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="441"/>
         <source>Set the font for the current selected highlighter property.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="356"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="451"/>
         <source>Set the color for the current selected highlighter property.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="156"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="166"/>
         <source>Number of files in recently opened list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="168"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="210"/>
         <source>Checks whether a new version of UniversalIndentGUI exists on program start, but only once a day.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="171"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="213"/>
         <source>Check online for update on program start</source>
         <translation type="unfinished"></translation>
     </message>

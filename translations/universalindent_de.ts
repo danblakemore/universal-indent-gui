@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
-<defaultcodec></defaultcodec>
 <context>
     <name>AboutDialog</name>
     <message>
@@ -795,7 +794,7 @@ Wollen Sie zu Download Website geleitet werden?</translation>
 <context>
     <name>SettingsDialog</name>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="35"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="44"/>
         <source>Common</source>
         <translation>Allgemein</translation>
     </message>
@@ -805,12 +804,12 @@ Wollen Sie zu Download Website geleitet werden?</translation>
         <translation>Einstellungen</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="104"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="129"/>
         <source>Automatically open last file on startup</source>
         <translation>Letzte Datei automatisch öffnen</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="114"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="139"/>
         <source>Enable Parameter Tooltips</source>
         <translation>Parameter Tooltips aktivieren</translation>
     </message>
@@ -820,12 +819,12 @@ Wollen Sie zu Download Website geleitet werden?</translation>
         <translation type="obsolete">Anzahl Dateien in Liste zuletzt geöffneter Dateien.</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="192"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="234"/>
         <source>Editor</source>
         <translation>Editor</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="312"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="389"/>
         <source>Highlighter settings</source>
         <translation>Syntaxhervorhebung</translation>
     </message>
@@ -835,112 +834,112 @@ Wollen Sie zu Download Website geleitet werden?</translation>
         <translation type="obsolete">HTML</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="349"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="444"/>
         <source>Set Font</source>
         <translation>Schriftart</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="359"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="454"/>
         <source>Set Color</source>
         <translation>Farbe</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="79"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="104"/>
         <source>Displays all available translations for UniversalIndentGui and lets you choose one.</source>
         <translation>Zeigt alle für UniversalIndentGui zum Auswählen verfügbaren Übersetzungen an.</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="61"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="88"/>
         <source>Application language</source>
         <translation>Programmsprache</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="101"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="126"/>
         <source>If selected opens the source code file on startup that was opened last time.</source>
         <translation>Wenn aktiviert, dann wird die zuletzt geöffnete Datei bei Progrannstart automatisch geladen.</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="111"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="136"/>
         <source>If checked, tool tips will show up if the mouse cursor remains over an indenter parameter for a while.</source>
         <translation>Zeigt Tooltips zu den Formatierer Einstellungen an, wenn aktiviert.</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="153"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="179"/>
         <source>Sets how many files should be remembered in the list of recently opened files.</source>
         <translation>Legt fest wieviele Einträge in der Liste der zuletzt geöffneten Dateien möglich sein sollen.</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="207"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="258"/>
         <source>Enables or disables displaying of white space characters in the editor.</source>
         <translation>Aktiviert oder deaktiviert die Darstellung von Leerzeichen, Tbs usw. im Editor.</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="210"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="261"/>
         <source>Display white space character (tabs, spaces, etc.)</source>
         <translation>Leerzeichen, Tabs usw. darstellen</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="233"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="304"/>
         <source>Defines how many spaces should be displayed in the editor for one tab character.</source>
         <translation>Legt fest wie viele Zeichen breit ein Tabulator dargestellt werden soll.</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="249"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="285"/>
         <source>Sets width in single spaces used for tabs</source>
         <translation>Legt die Breite eines Tabs fest</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="252"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="288"/>
         <source>Defines how many spaces should be displayed in the editor for one tab.</source>
         <translation>Legt fest wie viele Zeichen breit ein Tabulator dargestellt werden soll.</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="255"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="291"/>
         <source>Displayed width of tabs</source>
         <translation>Breite eines Tabs</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="281"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="349"/>
         <source>Syntax Highlighting</source>
         <translation>Syntax Hervorhebung</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="296"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="373"/>
         <source>By enabling special key words of the source code are highlighted.</source>
         <translation>Aktiviert oder deaktiviert die Syntaxhervorhebung des Quellcodes.</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="299"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="376"/>
         <source>Enable syntax highlighting</source>
         <translation>Syntaxhervorhebung aktivieren</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="309"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="386"/>
         <source>Lets you make settings for all properties of the available syntax highlighters, like font and color.</source>
         <translation>Einstellungen für die verschiedenen Syntaxhervorhebungen, wie Schriftart und Farbe.</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="346"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="441"/>
         <source>Set the font for the current selected highlighter property.</source>
         <translation>Schriftart für die gewählte Syntaxeigenschaft festlegen.</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="356"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="451"/>
         <source>Set the color for the current selected highlighter property.</source>
         <translation>Farbe für die gewählte Syntaxeigenschaft festlegen.</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="156"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="166"/>
         <source>Number of files in recently opened list</source>
         <translation>Anzahl der Einträge in zuletzt geöffnet Liste</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="168"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="210"/>
         <source>Checks whether a new version of UniversalIndentGUI exists on program start, but only once a day.</source>
         <translation>Prüft bei Programmstart ob eine neue Version von UniversalIndentGUI zum Download verfügbar ist, prüft aber nur einmal täglich.</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="171"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="213"/>
         <source>Check online for update on program start</source>
         <translation>Auf Update bei Programmstart prüfen</translation>
     </message>

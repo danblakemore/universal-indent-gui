@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="zh_TW">
-<defaultcodec></defaultcodec>
 <context>
     <name>AboutDialog</name>
     <message>
@@ -642,7 +641,7 @@ Do you want to go to the download website?</source>
 <context>
     <name>SettingsDialog</name>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="35"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="44"/>
         <source>Common</source>
         <translation>一般</translation>
     </message>
@@ -652,12 +651,12 @@ Do you want to go to the download website?</source>
         <translation>設定</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="104"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="129"/>
         <source>Automatically open last file on startup</source>
         <translation>啟動程式後，自動載入上次使用的檔案</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="114"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="139"/>
         <source>Enable Parameter Tooltips</source>
         <translation>顯示參數的提示訊息</translation>
     </message>
@@ -667,12 +666,12 @@ Do you want to go to the download website?</source>
         <translation type="obsolete">最近開啟的檔案清單裡要顯示的檔案個數</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="192"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="234"/>
         <source>Editor</source>
         <translation>編輯器</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="312"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="389"/>
         <source>Highlighter settings</source>
         <translation>高亮度設定</translation>
     </message>
@@ -682,112 +681,112 @@ Do you want to go to the download website?</source>
         <translation type="obsolete">HTML</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="349"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="444"/>
         <source>Set Font</source>
         <translation>選擇字型</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="359"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="454"/>
         <source>Set Color</source>
         <translation>選擇顏色</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="79"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="104"/>
         <source>Displays all available translations for UniversalIndentGui and lets you choose one.</source>
         <translation>顯示所有可用的翻譯，讓我自行挑選</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="61"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="88"/>
         <source>Application language</source>
         <translation>選擇語系</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="101"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="126"/>
         <source>If selected opens the source code file on startup that was opened last time.</source>
         <translation>若你啟用這個選項，程式啟動後將會自動載入上次使用的檔案</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="111"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="136"/>
         <source>If checked, tool tips will show up if the mouse cursor remains over an indenter parameter for a while.</source>
         <translation>滑鼠移到重整工具的各項參數設定時，會顯示該參數的相關提示</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="153"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="179"/>
         <source>Sets how many files should be remembered in the list of recently opened files.</source>
         <translation>設定在最近開啟的檔案清單裡要顯示幾筆檔案</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="207"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="258"/>
         <source>Enables or disables displaying of white space characters in the editor.</source>
         <translation>選擇是否在編輯視窗裡頭顯示空白字元</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="210"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="261"/>
         <source>Display white space character (tabs, spaces, etc.)</source>
         <translation>顯示空白字元 (Tab, 空白, 其他)</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="233"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="304"/>
         <source>Defines how many spaces should be displayed in the editor for one tab character.</source>
         <translation>設定 Tab 要用幾個空白顯示</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="249"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="285"/>
         <source>Sets width in single spaces used for tabs</source>
         <translation>設定 Tab 相當於幾個空白的寬度</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="252"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="288"/>
         <source>Defines how many spaces should be displayed in the editor for one tab.</source>
         <translation>設定 Tab 要用幾個空白顯示</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="255"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="291"/>
         <source>Displayed width of tabs</source>
         <translation>Tab 的寬度</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="281"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="349"/>
         <source>Syntax Highlighting</source>
         <translation>語法高亮度</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="296"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="373"/>
         <source>By enabling special key words of the source code are highlighted.</source>
         <translation>啟用之後，程式碼會比較容易閱讀</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="299"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="376"/>
         <source>Enable syntax highlighting</source>
         <translation>啟用語法高亮度</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="309"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="386"/>
         <source>Lets you make settings for all properties of the available syntax highlighters, like font and color.</source>
         <translation>讓你設定語法高亮度屬性，例如字型跟顏色</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="346"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="441"/>
         <source>Set the font for the current selected highlighter property.</source>
         <translation>設定字型</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="356"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="451"/>
         <source>Set the color for the current selected highlighter property.</source>
         <translation>設定顏色</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="156"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="166"/>
         <source>Number of files in recently opened list</source>
         <translation>最近開啟的檔案清單裡要顯示的檔案個數</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="168"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="210"/>
         <source>Checks whether a new version of UniversalIndentGUI exists on program start, but only once a day.</source>
         <translation>程式啟動時自動檢查是否有新版本，一天只會檢查一次。</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="171"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="213"/>
         <source>Check online for update on program start</source>
         <translation>程式啟動時自動檢查更新</translation>
     </message>
