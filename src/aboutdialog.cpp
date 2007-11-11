@@ -47,7 +47,7 @@ AboutDialog::AboutDialog(QWidget *parent, QString version, QString revision, QSt
     versionTextBrowser->setHtml(versionString);
 
     creditsTextBrowser->setHtml("<html><head></head><body>"
-        "<h1></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></h1>"
+        "<pre> </br></pre>"
         "<h3 align='center'>Thanks go out to</h3>"
         "<p align='center'><b>Nelson Tai</b> for chinese translation, good ideas and always fast answers.</p></br>"
         "<p align='center'><b>Riverbank</b> for their Scinitlla Qt wrapper QScintilla.</p></br>"
