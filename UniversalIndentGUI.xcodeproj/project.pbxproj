@@ -1,0 +1,992 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+		D7BA7D76DAB5DD13389D6332 = {
+			buildActionMask = 2147483647;
+			files = (
+				);
+			generatedFileNames = (
+				);
+			isa = PBXShellScriptBuildPhase;
+			name = "Qt Qmake";
+			neededFileNames = (
+				);
+			shellPath = "/bin/sh";
+			shellScript = "make\ -C\ /Users/thomas/Documents/Informatik/universalindent\ -f\ UniversalIndentGUI.xcodeproj/qt_makeqmake.mak";
+		};
+		1D0DD7E076E1A653C5ADA836 = {
+			isa = PBXFileReference;
+			name = "aboutdialog.cpp";
+			path = "src/aboutdialog.cpp";
+			refType = 4;
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		86A67DD779C853CEF6A8D015 = {
+			fileRef = "1D0DD7E076E1A653C5ADA836";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		D8B009120E336EEAB175ED22 = {
+			isa = PBXFileReference;
+			name = "highlighter.cpp";
+			path = "src/highlighter.cpp";
+			refType = 4;
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		27D5ABEF9D35DD864BB485E9 = {
+			fileRef = "D8B009120E336EEAB175ED22";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		6D1AD0AC2581C9346952C1AE = {
+			isa = PBXFileReference;
+			name = "indenthandler.cpp";
+			path = "src/indenthandler.cpp";
+			refType = 4;
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		D9D01E696ABE1F0ECDDED0C5 = {
+			fileRef = "6D1AD0AC2581C9346952C1AE";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		7EC3C68A81EFFF79B6CA22AC = {
+			isa = PBXFileReference;
+			name = "main.cpp";
+			path = "src/main.cpp";
+			refType = 4;
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		FD1638E377D97C82BDB438FB = {
+			fileRef = "7EC3C68A81EFFF79B6CA22AC";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		585CFECF0CE15AC75BE3038E = {
+			isa = PBXFileReference;
+			name = "mainwindow.cpp";
+			path = "src/mainwindow.cpp";
+			refType = 4;
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		72224D8B8032363B160DB2F4 = {
+			fileRef = "585CFECF0CE15AC75BE3038E";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		79F947E978D31E3EE78A3CA3 = {
+			isa = PBXFileReference;
+			name = "uiguierrormessage.cpp";
+			path = "src/uiguierrormessage.cpp";
+			refType = 4;
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		DC78F47D1155B9D5F6AD9FE2 = {
+			fileRef = "79F947E978D31E3EE78A3CA3";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		CCA6F3C7D091FAF3F0192950 = {
+			isa = PBXFileReference;
+			name = "uiguisettings.cpp";
+			path = "src/uiguisettings.cpp";
+			refType = 4;
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		ED1C6BDDD90C246A4B296AF9 = {
+			fileRef = "CCA6F3C7D091FAF3F0192950";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		EFAA99570EB8729CF49B8242 = {
+			isa = PBXFileReference;
+			name = "uiguisettingsdialog.cpp";
+			path = "src/uiguisettingsdialog.cpp";
+			refType = 4;
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		F1B05587B803785E09220177 = {
+			fileRef = "EFAA99570EB8729CF49B8242";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		8BE8AF423371D6CAE24BA96C = {
+			isa = PBXFileReference;
+			name = "updatecheckdialog.cpp";
+			path = "src/updatecheckdialog.cpp";
+			refType = 4;
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		C9DD2E2DB3BAE010A93788AE = {
+			fileRef = "8BE8AF423371D6CAE24BA96C";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		0F617A0F6F84610A27A87E30 = {
+			isa = PBXFileReference;
+			name = "programicon.rc";
+			path = "resources/programicon.rc";
+			refType = 4;
+		};
+		512A4F378730360D85751954 = {
+			fileRef = "0F617A0F6F84610A27A87E30";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		680E697BA2A6B89981ABDBF4 = {
+			isa = PBXFileReference;
+			name = "moc_aboutdialog.cpp";
+			path = "debug/tmp/moc/moc_aboutdialog.cpp";
+			refType = 4;
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		1AAC96ADB30D70BFA6D5E546 = {
+			fileRef = "680E697BA2A6B89981ABDBF4";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		438EBE2AD33F069CF17386EF = {
+			isa = PBXFileReference;
+			name = "moc_highlighter.cpp";
+			path = "debug/tmp/moc/moc_highlighter.cpp";
+			refType = 4;
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		05DD18D2D66A2ADDD607897C = {
+			fileRef = "438EBE2AD33F069CF17386EF";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		111F467408ECADEF1412E4E1 = {
+			isa = PBXFileReference;
+			name = "moc_indenthandler.cpp";
+			path = "debug/tmp/moc/moc_indenthandler.cpp";
+			refType = 4;
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		C0A25E811255ADB7048898AA = {
+			fileRef = "111F467408ECADEF1412E4E1";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		9AA0F0369B7B9DA998B3BF45 = {
+			isa = PBXFileReference;
+			name = "moc_mainwindow.cpp";
+			path = "debug/tmp/moc/moc_mainwindow.cpp";
+			refType = 4;
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		A24C51CF6F70FE9F9917E286 = {
+			fileRef = "9AA0F0369B7B9DA998B3BF45";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		3D22F3CD2345E6DB3D52C755 = {
+			isa = PBXFileReference;
+			name = "moc_uiguisettings.cpp";
+			path = "debug/tmp/moc/moc_uiguisettings.cpp";
+			refType = 4;
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		F61789CD91C257CB91760C5F = {
+			fileRef = "3D22F3CD2345E6DB3D52C755";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		B619BAE8E88A415D93D5DA15 = {
+			isa = PBXFileReference;
+			name = "moc_uiguisettingsdialog.cpp";
+			path = "debug/tmp/moc/moc_uiguisettingsdialog.cpp";
+			refType = 4;
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		A4FD5A96CF247A25C080F5EB = {
+			fileRef = "B619BAE8E88A415D93D5DA15";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		43664F2C938C9A185E1354D4 = {
+			isa = PBXFileReference;
+			name = "moc_updatecheckdialog.cpp";
+			path = "debug/tmp/moc/moc_updatecheckdialog.cpp";
+			refType = 4;
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		1306BAAF620805D3FD99E13A = {
+			fileRef = "43664F2C938C9A185E1354D4";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		1B8174BC5491D614E763FE42 = {
+			isa = PBXFileReference;
+			name = "qrc_Icons.cpp";
+			path = "debug/tmp/qrc/qrc_Icons.cpp";
+			refType = 4;
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		81182B2FFAF2215E94F657D1 = {
+			fileRef = "1B8174BC5491D614E763FE42";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		A672645B08E6E5E1A2670CC5 = {
+			isa = PBXFileReference;
+			name = "ui_indentgui.h";
+			path = "debug/tmp/uic/ui_indentgui.h";
+			refType = 4;
+		};
+		DD115EBA3017E8DB497F54EC = {
+			isa = PBXFileReference;
+			name = "ui_toolBarWidget.h";
+			path = "debug/tmp/uic/ui_toolBarWidget.h";
+			refType = 4;
+		};
+		8163C4EE8E0558A71520BBB0 = {
+			isa = PBXFileReference;
+			name = "ui_UiGuiSettingsDialog.h";
+			path = "debug/tmp/uic/ui_UiGuiSettingsDialog.h";
+			refType = 4;
+		};
+		6BBC4F52F275DC2218177743 = {
+			isa = PBXFileReference;
+			name = "ui_aboutdialog.h";
+			path = "debug/tmp/uic/ui_aboutdialog.h";
+			refType = 4;
+		};
+		00A3F229C56EE328EC857B50 = {
+			isa = PBXFileReference;
+			name = "ui_UpdateCheckDialog.h";
+			path = "debug/tmp/uic/ui_UpdateCheckDialog.h";
+			refType = 4;
+		};
+		2E67BEE5A9F88B1264F21E7A = {
+			isa = PBXFileReference;
+			name = "aboutdialog.h";
+			path = "src/aboutdialog.h";
+			refType = 4;
+		};
+		9E5FE3E007D1516848BC5E2E = {
+			isa = PBXFileReference;
+			name = "highlighter.h";
+			path = "src/highlighter.h";
+			refType = 4;
+		};
+		D2E76D1E4F45AD5E32A1348F = {
+			isa = PBXFileReference;
+			name = "indenthandler.h";
+			path = "src/indenthandler.h";
+			refType = 4;
+		};
+		E53FC39EBC111E4E73935122 = {
+			isa = PBXFileReference;
+			name = "mainwindow.h";
+			path = "src/mainwindow.h";
+			refType = 4;
+		};
+		8C2BAFA061B71DC50BFD2EE6 = {
+			isa = PBXFileReference;
+			name = "uiguierrormessage.h";
+			path = "src/uiguierrormessage.h";
+			refType = 4;
+		};
+		D924CAFCDA4353AEA9423A47 = {
+			isa = PBXFileReference;
+			name = "uiguisettings.h";
+			path = "src/uiguisettings.h";
+			refType = 4;
+		};
+		79B4B914FF340011E0D11A92 = {
+			isa = PBXFileReference;
+			name = "uiguisettingsdialog.h";
+			path = "src/uiguisettingsdialog.h";
+			refType = 4;
+		};
+		0AF78DFFDB598C40F9DEE03C = {
+			isa = PBXFileReference;
+			name = "updatecheckdialog.h";
+			path = "src/updatecheckdialog.h";
+			refType = 4;
+		};
+		E457C7C0F6FE92258C9ABDE6 = {
+			isa = PBXFileReference;
+			name = "UniversalIndentGUI.pro";
+			path = "UniversalIndentGUI.pro";
+			refType = 4;
+		};
+		7DBF76AABA74FE9F8ACD5DB5 = {
+			isa = PBXFileReference;
+			name = "Icons.qrc";
+			path = "resources/Icons.qrc";
+			refType = 4;
+		};
+		689FBC1A2B5948A24C13C6C1 = {
+			fileRef = "7DBF76AABA74FE9F8ACD5DB5";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		35102B3E3654DD2295E49D43 = {
+			isa = PBXFileReference;
+			name = "indentgui.ui";
+			path = "src/indentgui.ui";
+			refType = 4;
+		};
+		0D38464ACB2A5655FFE14467 = {
+			fileRef = "35102B3E3654DD2295E49D43";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		E5B4982021E70D198AF38D74 = {
+			isa = PBXFileReference;
+			name = "toolBarWidget.ui";
+			path = "src/toolBarWidget.ui";
+			refType = 4;
+		};
+		44E188B8A308EE12E55E2B51 = {
+			fileRef = "E5B4982021E70D198AF38D74";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		B3201EB1AA113D49631A1BC2 = {
+			isa = PBXFileReference;
+			name = "UiGuiSettingsDialog.ui";
+			path = "src/UiGuiSettingsDialog.ui";
+			refType = 4;
+		};
+		C630CA0D2B2F14B8B6B99EDD = {
+			fileRef = "B3201EB1AA113D49631A1BC2";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		DDCD93CEBC73250DA1DA1579 = {
+			isa = PBXFileReference;
+			name = "aboutdialog.ui";
+			path = "src/aboutdialog.ui";
+			refType = 4;
+		};
+		175E97C6B5F0115032E432F5 = {
+			fileRef = "DDCD93CEBC73250DA1DA1579";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		290E702759265E2A11910569 = {
+			isa = PBXFileReference;
+			name = "UpdateCheckDialog.ui";
+			path = "src/UpdateCheckDialog.ui";
+			refType = 4;
+		};
+		F8EE96E7CD396B04BE8662CA = {
+			fileRef = "290E702759265E2A11910569";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		883D7615C4D2DE3FA1218F12 = {
+			isa = PBXGroup;
+			children = (
+				"F4AF6147B42623F6B3284738");
+			name = "Headers";
+			refType = 4;
+		};
+		F4AF6147B42623F6B3284738 = {
+			isa = PBXGroup;
+			children = (
+				"2E67BEE5A9F88B1264F21E7A",
+				"9E5FE3E007D1516848BC5E2E",
+				"D2E76D1E4F45AD5E32A1348F",
+				"E53FC39EBC111E4E73935122",
+				"8C2BAFA061B71DC50BFD2EE6",
+				"D924CAFCDA4353AEA9423A47",
+				"79B4B914FF340011E0D11A92",
+				"0AF78DFFDB598C40F9DEE03C");
+			name = "src";
+			refType = 4;
+		};
+		16A82DA2701971900CCC9274 = {
+			isa = PBXGroup;
+			children = (
+				"7DBF76AABA74FE9F8ACD5DB5");
+			name = "resources";
+			refType = 4;
+		};
+		A1B6D1488110DA0868414A40 = {
+			isa = PBXGroup;
+			children = (
+				"35102B3E3654DD2295E49D43",
+				"E5B4982021E70D198AF38D74",
+				"B3201EB1AA113D49631A1BC2",
+				"DDCD93CEBC73250DA1DA1579",
+				"290E702759265E2A11910569");
+			name = "src";
+			refType = 4;
+		};
+		B06B937E4E5DB1B571475081 = {
+			isa = PBXGroup;
+			children = (
+				"0F617A0F6F84610A27A87E30");
+			name = "resources";
+			refType = 4;
+		};
+		06674E1DE8D3EB6E763DFFDA = {
+			isa = PBXGroup;
+			children = (
+				"1D0DD7E076E1A653C5ADA836",
+				"D8B009120E336EEAB175ED22",
+				"6D1AD0AC2581C9346952C1AE",
+				"7EC3C68A81EFFF79B6CA22AC",
+				"585CFECF0CE15AC75BE3038E",
+				"79F947E978D31E3EE78A3CA3",
+				"CCA6F3C7D091FAF3F0192950",
+				"EFAA99570EB8729CF49B8242",
+				"8BE8AF423371D6CAE24BA96C");
+			name = "src";
+			refType = 4;
+		};
+		41B364AB2E400AB39150ABBF = {
+			isa = PBXGroup;
+			children = (
+				"216DE10A8FE6E4D790A542E3");
+			name = "debug";
+			refType = 4;
+		};
+		216DE10A8FE6E4D790A542E3 = {
+			isa = PBXGroup;
+			children = (
+				"70A43B188FDBE60EE01FD089",
+				"030D086A1096AA4CA81C3492",
+				"06233F48F68F353781CB2488");
+			name = "tmp";
+			refType = 4;
+		};
+		70A43B188FDBE60EE01FD089 = {
+			isa = PBXGroup;
+			children = (
+				"680E697BA2A6B89981ABDBF4",
+				"438EBE2AD33F069CF17386EF",
+				"111F467408ECADEF1412E4E1",
+				"9AA0F0369B7B9DA998B3BF45",
+				"3D22F3CD2345E6DB3D52C755",
+				"B619BAE8E88A415D93D5DA15",
+				"43664F2C938C9A185E1354D4");
+			name = "moc";
+			refType = 4;
+		};
+		030D086A1096AA4CA81C3492 = {
+			isa = PBXGroup;
+			children = (
+				"1B8174BC5491D614E763FE42");
+			name = "qrc";
+			refType = 4;
+		};
+		06233F48F68F353781CB2488 = {
+			isa = PBXGroup;
+			children = (
+				"A672645B08E6E5E1A2670CC5",
+				"DD115EBA3017E8DB497F54EC",
+				"8163C4EE8E0558A71520BBB0",
+				"6BBC4F52F275DC2218177743",
+				"00A3F229C56EE328EC857B50");
+			name = "uic";
+			refType = 4;
+		};
+		FB61758D0F0FDA4BA867C3D5 = {
+			isa = PBXGroup;
+			children = (
+				"06674E1DE8D3EB6E763DFFDA",
+				"B06B937E4E5DB1B571475081");
+			name = "Sources";
+			refType = 4;
+		};
+		52C235EBF1C9B07808119459 = {
+			isa = PBXGroup;
+			children = (
+				"16A82DA2701971900CCC9274");
+			name = "Sources [RCC]";
+			refType = 4;
+		};
+		EEC299C65D5017EB9DD513B0 = {
+			isa = PBXGroup;
+			children = (
+				"A1B6D1488110DA0868414A40");
+			name = "Sources [UIC]";
+			refType = 4;
+		};
+		7CABE3C80E79AD2B307756D2 = {
+			isa = PBXGroup;
+			children = (
+				"E457C7C0F6FE92258C9ABDE6");
+			name = "Sources [qmake]";
+			refType = 4;
+		};
+		46E892BBB6BB6952967E0561 = {
+			isa = PBXGroup;
+			children = (
+				"41B364AB2E400AB39150ABBF");
+			name = "Temporary Sources";
+			refType = 4;
+		};
+		A0A52A2ADF7A1E2A99738674 = {
+			buildActionMask = 2147483647;
+			files = (
+				);
+			generatedFileNames = (
+				"86A67DD779C853CEF6A8D015",
+				"27D5ABEF9D35DD864BB485E9",
+				"D9D01E696ABE1F0ECDDED0C5",
+				"FD1638E377D97C82BDB438FB",
+				"72224D8B8032363B160DB2F4",
+				"DC78F47D1155B9D5F6AD9FE2",
+				"ED1C6BDDD90C246A4B296AF9",
+				"F1B05587B803785E09220177",
+				"C9DD2E2DB3BAE010A93788AE",
+				"1AAC96ADB30D70BFA6D5E546",
+				"05DD18D2D66A2ADDD607897C",
+				"C0A25E811255ADB7048898AA",
+				"A24C51CF6F70FE9F9917E286",
+				"F61789CD91C257CB91760C5F",
+				"A4FD5A96CF247A25C080F5EB",
+				"1306BAAF620805D3FD99E13A",
+				"81182B2FFAF2215E94F657D1");
+			isa = PBXShellScriptBuildPhase;
+			name = "Qt Preprocessors";
+			neededFileNames = (
+				"86A67DD779C853CEF6A8D015",
+				"27D5ABEF9D35DD864BB485E9",
+				"D9D01E696ABE1F0ECDDED0C5",
+				"FD1638E377D97C82BDB438FB",
+				"72224D8B8032363B160DB2F4",
+				"DC78F47D1155B9D5F6AD9FE2",
+				"ED1C6BDDD90C246A4B296AF9",
+				"F1B05587B803785E09220177",
+				"C9DD2E2DB3BAE010A93788AE",
+				"1AAC96ADB30D70BFA6D5E546",
+				"05DD18D2D66A2ADDD607897C",
+				"C0A25E811255ADB7048898AA",
+				"A24C51CF6F70FE9F9917E286",
+				"F61789CD91C257CB91760C5F",
+				"A4FD5A96CF247A25C080F5EB",
+				"1306BAAF620805D3FD99E13A",
+				"81182B2FFAF2215E94F657D1");
+			shellPath = "/bin/sh";
+			shellScript = "make\ -C\ /Users/thomas/Documents/Informatik/universalindent\ -f\ UniversalIndentGUI.xcodeproj/qt_preprocess.mak";
+		};
+		C29B8785722055ED95EF7B57 = {
+			buildActionMask = 2147483647;
+			files = (
+				"86A67DD779C853CEF6A8D015",
+				"27D5ABEF9D35DD864BB485E9",
+				"D9D01E696ABE1F0ECDDED0C5",
+				"FD1638E377D97C82BDB438FB",
+				"72224D8B8032363B160DB2F4",
+				"DC78F47D1155B9D5F6AD9FE2",
+				"ED1C6BDDD90C246A4B296AF9",
+				"F1B05587B803785E09220177",
+				"C9DD2E2DB3BAE010A93788AE",
+				"1AAC96ADB30D70BFA6D5E546",
+				"05DD18D2D66A2ADDD607897C",
+				"C0A25E811255ADB7048898AA",
+				"A24C51CF6F70FE9F9917E286",
+				"F61789CD91C257CB91760C5F",
+				"A4FD5A96CF247A25C080F5EB",
+				"1306BAAF620805D3FD99E13A",
+				"81182B2FFAF2215E94F657D1");
+			isa = PBXSourcesBuildPhase;
+			name = "Build Sources";
+		};
+		156EDC359F7629703759AEE0 = {
+			isa = PBXFileReference;
+			name = "qscintilla2";
+			path = "../../../Downloads/qt_installed/lib/libqscintilla2.a";
+			refType = 4;
+		};
+		11C52D78F106C6F52D203206 = {
+			fileRef = "156EDC359F7629703759AEE0";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F71B30EF7686AAA75A14E4F8 = {
+			isa = PBXFileReference;
+			name = "QtGui_debug";
+			path = "../../../Downloads/qt_installed/lib/libQtGui_debug.a";
+			refType = 4;
+		};
+		C7F1C60CE6419BEC02B58F90 = {
+			fileRef = "F71B30EF7686AAA75A14E4F8";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		DA138F75C9F545CDAE7FB264 = {
+			isa = PBXFrameworkReference;
+			name = "Carbon.framework";
+			path = "/System/Library/Frameworks/Carbon.framework";
+			refType = 0;
+		};
+		C8FD4A1AAA37CF2CA2824CCF = {
+			fileRef = "DA138F75C9F545CDAE7FB264";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		821416211D63F190AAAD016A = {
+			isa = PBXFrameworkReference;
+			name = "AppKit.framework";
+			path = "/System/Library/Frameworks/AppKit.framework";
+			refType = 0;
+		};
+		51D4DBF7CB8537BE86EBD055 = {
+			fileRef = "821416211D63F190AAAD016A";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		5321EE800901BA7055D53D05 = {
+			isa = PBXFileReference;
+			name = "QtNetwork_debug";
+			path = "../../../Downloads/qt_installed/lib/libQtNetwork_debug.a";
+			refType = 4;
+		};
+		DD46C4420B82863EFB155CBE = {
+			fileRef = "5321EE800901BA7055D53D05";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		42D5C905C738815DE632DC2F = {
+			isa = PBXFileReference;
+			name = "QtCore_debug";
+			path = "../../../Downloads/qt_installed/lib/libQtCore_debug.a";
+			refType = 4;
+		};
+		A507E80BF7A918F0159FED5A = {
+			fileRef = "42D5C905C738815DE632DC2F";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		27AE7A480FD6C52FCA80FECD = {
+			isa = PBXFrameworkReference;
+			name = "ApplicationServices.framework";
+			path = "/System/Library/Frameworks/ApplicationServices.framework";
+			refType = 0;
+		};
+		F9E76E570E10AF14870553A7 = {
+			fileRef = "27AE7A480FD6C52FCA80FECD";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		ED1E82605DD74B483AF3C982 = {
+			children = (
+				"156EDC359F7629703759AEE0",
+				"F71B30EF7686AAA75A14E4F8",
+				"DA138F75C9F545CDAE7FB264",
+				"821416211D63F190AAAD016A",
+				"5321EE800901BA7055D53D05",
+				"42D5C905C738815DE632DC2F",
+				"27AE7A480FD6C52FCA80FECD");
+			isa = PBXGroup;
+			name = "External Frameworks and Libraries";
+			path = "";
+			refType = 4;
+		};
+		2A1043669E6E5A7426EA502A = {
+			buildActionMask = 2147483647;
+			files = (
+				"11C52D78F106C6F52D203206",
+				"C7F1C60CE6419BEC02B58F90",
+				"C8FD4A1AAA37CF2CA2824CCF",
+				"51D4DBF7CB8537BE86EBD055",
+				"DD46C4420B82863EFB155CBE",
+				"A507E80BF7A918F0159FED5A",
+				"F9E76E570E10AF14870553A7");
+			isa = PBXFrameworksBuildPhase;
+			name = "Frameworks & Libraries";
+		};
+		3787F99312C85FF0073FD7BA = {
+			buildActionMask = 2147483647;
+			files = (
+				512A4F378730360D85751954,
+			);
+			isa = PBXResourcesBuildPhase;
+			name = "Bundle Resources";
+		};
+		F6069D5A5DA8AA28EDB8B3C6 = {
+			name = "Project Copy";
+			buildActionMask = 2147483647;
+			dstPath = "/Users/thomas/Documents/Informatik/universalindent/debug";
+			dstSubfolderSpec = 0;
+			files = (
+"07E0DFA73EB56DCB9E28CDD9");
+			isa = PBXCopyFilesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		07E0DFA73EB56DCB9E28CDD9 = {
+			fileRef = "8C2476588C6FEBA528B87005";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		05596AB53D8D521C69802C27 = {
+			children = (
+				"FB61758D0F0FDA4BA867C3D5",
+				"46E892BBB6BB6952967E0561",
+				"883D7615C4D2DE3FA1218F12",
+				"7CABE3C80E79AD2B307756D2",
+				"52C235EBF1C9B07808119459",
+				"EEC299C65D5017EB9DD513B0",
+				"ED1E82605DD74B483AF3C982");
+			isa = PBXGroup;
+			name = "UniversalIndentGUI";
+			path = "";
+			refType = 4;
+		};
+		8C2476588C6FEBA528B87005 = {
+			isa = PBXFileReference;
+			explicitFileType = "wrapper.application";
+			path = "UniversalIndentGUI.app";
+			refType = 3;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		068F80C7519D0528FB08E821 = {
+			children = (
+				"8C2476588C6FEBA528B87005");
+			isa = PBXGroup;
+			name = "Products";
+			refType = 4;
+		};
+		4573339B43E481DE09A4C0CD = {
+			buildPhases = (
+				"D7BA7D76DAB5DD13389D6332",
+				"A0A52A2ADF7A1E2A99738674",
+				"F6069D5A5DA8AA28EDB8B3C6",
+				"C29B8785722055ED95EF7B57",
+				"2A1043669E6E5A7426EA502A",
+				"3787F99312C85FF0073FD7BA");
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"../../../Downloads/qt_installed/include/QtCore",
+					"../../../Downloads/qt_installed/include/QtCore",
+					"../../../Downloads/qt_installed/include/QtNetwork",
+					"../../../Downloads/qt_installed/include/QtNetwork",
+					"../../../Downloads/qt_installed/include/QtGui",
+					"../../../Downloads/qt_installed/include/QtGui",
+					"../../../Downloads/qt_installed/include",
+					"src",
+					"debug/tmp/moc",
+					"debug/tmp/uic",
+					"/usr/local/include",
+					"/System/Library/Frameworks/CarbonCore.framework/Headers",
+					"../../../Downloads/qt_installed/mkspecs/macx-xcode");
+				LIBRARY_SEARCH_PATHS = (
+					"/Users/thomas/Downloads/qt_installed/lib",
+					"/Users/thomas/Downloads/qt_installed/lib",
+					"/System/Library/Frameworks/");
+				OPTIMIZATION_CFLAGS = (
+					);
+				OTHER_CFLAGS = (
+					"-pipe",
+					"-g",
+					"-Wall",
+					"-W",
+					"-DQT_GUI_LIB",
+					"-DQT_NETWORK_LIB",
+					"-DQT_CORE_LIB");
+				OTHER_CPLUSPLUSFLAGS = (
+					"-pipe",
+					"-g",
+					"-Wall",
+					"-W",
+					"-DQT_GUI_LIB",
+					"-DQT_NETWORK_LIB",
+					"-DQT_CORE_LIB");
+				LEXFLAGS = "";
+				YACCFLAGS = "-d";
+				OTHER_REZFLAGS = "";
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "";
+				PREBINDING = NO;
+				INFOPLIST_FILE = "Info.plist";
+				BUILD_ROOT = "/Users/thomas/Documents/Informatik/universalindent";
+				OTHER_LDFLAGS = (
+					"-headerpad_max_install_names",
+					"-L/Users/thomas/Downloads/qt_installed/lib",
+					"-L/Users/thomas/Downloads/qt_installed/lib",
+					"-lssl",
+					"-lcrypto",
+					"-lz",
+					"-lm");
+				INSTALL_DIR = "/Users/thomas/Documents/Informatik/universalindent/debug/";
+				DYLIB_CURRENT_VERSION = "1.0.0";
+				DYLIB_COMPATIBILITY_VERSION = "1.0";
+				OBJROOT = "debug/tmp/obj/";
+				PRODUCT_NAME = "UniversalIndentGUI";
+			};
+			conditionalBuildSettings = {
+			};
+			dependencies = (
+				);
+			productReference = "8C2476588C6FEBA528B87005";
+			shouldUseHeadermap = 1;
+			isa = PBXNativeTarget;
+			productType = "com.apple.product-type.application";
+			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<!DOCTYPE plist SYSTEM \"file://localhost/System/Library/DTDs/PropertyList.dtd\">
+<plist version=\"0.9\">
+<dict>
+	<key>CFBundleIconFile</key>
+	<string>programicon.rc</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+        <key>CFBundleGetInfoString</key>
+	<string>Created by Qt/QMake</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleExecutable</key>
+	<string>UniversalIndentGUI</string>
+	<key>NOTE</key>
+	<string>Please, do NOT change this file -- It was generated by Qt/QMake.</string>
+</dict>
+</plist>
+";
+			name = "UniversalIndentGUI";
+			productName = "UniversalIndentGUI";
+			startupPath = "<<ProjectDirectory>>";
+			productInstallPath = "debug/";
+		};
+		8DB1DD96F65B1BF1FFC506E0 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = "NO";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = "YES";
+				GCC_OPTIMIZATION_LEVEL = "0";
+			};
+			name = "Debug";
+		};
+		2C641C3335766025DD51B7BD = {
+			buildRules = (
+				);
+			buildSettings = {
+				COPY_PHASE_STRIP = "NO";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = "YES";
+				GCC_OPTIMIZATION_LEVEL = "0";
+			};
+			isa = "PBXBuildStyle";
+			name = "Debug";
+		};
+		95E1EB2E5DDD587BE5B3E548 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = "YES";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = "NO";
+			};
+			name = "Release";
+		};
+		26DE8D2AEA4B3714B41E931F = {
+			buildRules = (
+				);
+			buildSettings = {
+				COPY_PHASE_STRIP = "YES";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = "NO";
+			};
+			isa = "PBXBuildStyle";
+			name = "Release";
+		};
+		2A951308CDB28F104D0A4BD2 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"8DB1DD96F65B1BF1FFC506E0",
+				"95E1EB2E5DDD587BE5B3E548");
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationIsName = "Debug";
+		};
+		91B15E841AA80083484172DE = {
+			buildStyles = (
+				"2C641C3335766025DD51B7BD",
+				"26DE8D2AEA4B3714B41E931F");
+			hasScannedForEncodings = 1;
+			isa = PBXProject;
+			mainGroup = "05596AB53D8D521C69802C27";
+			buildConfigurationList = "2A951308CDB28F104D0A4BD2";
+			projectDirPath = "";
+			targets = (
+				"4573339B43E481DE09A4C0CD");
+		};
+	};
+	rootObject = "91B15E841AA80083484172DE";
+}
