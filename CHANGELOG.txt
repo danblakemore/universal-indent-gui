@@ -1,3 +1,8 @@
+2007-11-22 Version 0.7.1 Beta
+[add] Feature Request ID 1833814 : Added support for building on MacOSX.
+[change] Feature Request ID 1836486 : Update to latest version of Uncrustify.
+[change] Update to latest version of Artistic Styler.
+
 2007-11-11 Version 0.7.0 Beta
 [add] Feature Request ID 1826733 : If the called indenter returns an error message, you can chose to not show the same error again. Helpful for HTMLtidy since it often shows a long, repeating error list.
 [add] Feature Request ID 1805974 : Added an option to clear the list of recently opened files.
