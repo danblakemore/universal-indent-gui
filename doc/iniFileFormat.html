@@ -31,6 +31,7 @@ outputFileParameter=none
 parameterOrder=ipo
 stringparaminquotes=false
 useCfgFileParameter="--options="
+version=1.21
 </pre>
 
 "categories" defines the categories, where each parameter can be assigned to. It is a list of strings, with each category name divied by a "|" from the other.<br>
@@ -59,6 +60,8 @@ useCfgFileParameter="--options="
 <br>
 "useCfgFileParameter" is the parameter for the indenter used to tell the indenter where to find the config file, set in "configFilename", that it should use. If this parameter is left empty you should read the indenters manual where it searches by default for the config file.<br>
 <br>
+"version" is not evaluated by UiGUI, but by this it is easier to see for which version of the indenter the configuration file has been written for.<br>
+<br>
 3. The indenters parameters<br>
 ---------------------------<br>
 After the header definition the paramters used by the indenter are defined. Each paramter name is written in brackets [] again, but the name is only descriptive and not functional. Each parameter consists of keys with values (same as in header). There are four types of parameters: boolean, numeric, string and multiple. All have the following keys in common:<br>
@@ -81,7 +84,7 @@ Example:<br>
 <pre>
 [ANSI_style_formatting]
 Category=0
-Description=&lt;html&gt;ANSI style formatting/indenting.&lt;/html&gt;
+Description="&lt;html&gt;ANSI style formatting/indenting.&lt;/html&gt;"
 EditorType=boolean
 TrueFalse="--style=ansi|"
 Value=0
@@ -93,10 +96,10 @@ The only special here is the key "TrueFalse". The string is a parameter list alw
 <br>
 3.2. Numeric parameters<br>
 <pre>
-[indent_spaces]
+[Indent spaces]
 CallName="--indent=spaces="
 Category=1
-Description=&lt;html&gt;Indent using # spaces per indent&lt;/html&gt;
+Description="&lt;html&gt;Indent using # spaces per indent&lt;/html&gt;"
 EditorType=numeric
 Enabled=false
 MaxVal=20
@@ -110,7 +113,7 @@ Numeric parameters have defined a maximum value "MaxVal" and a minimum value "Mi
 <br>
 3.3. String parameters<br>
 <pre>
-[cmt_sep_char_4]
+[Comment separation char]
 CallName=-cmt_sep_char_4-
 Category=5
 Description="&lt;html&gt;Set the special character to fill automatic comments.&lt;/html&gt;"
@@ -130,11 +133,11 @@ In the upper example value could be "C|c|K". The result in the ouput file would 
 <br>
 3.4. Multiple parameters<br>
 <pre>
-[bracket_style]
+[Bracket style]
 Category=1
 Choices="--brackets=break|--brackets=attach|--brackets=linux|--brackets=break-closing-headers"
 ChoicesReadable="Break brackets|Attach brackets|Break brackets Linux like|Break closing headers"
-Description=&lt;html&gt;Sets the bracket style.&lt;/html&gt;
+Description="&lt;html&gt;Sets the bracket style.&lt;/html&gt;"
 EditorType=multiple
 Enabled=false
 Value=1
