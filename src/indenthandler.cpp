@@ -258,6 +258,7 @@ QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtensi
     // the unformatted source code. Else continue calling the indenter.
 #if defined(Q_OS_WIN32)
     indenterExecutableExists = QFile::exists(dataDirctoryStr + indenterFileName+".exe");
+    indenterExecutableExists |= QFile::exists(dataDirctoryStr + indenterFileName+".bat");
 #else
     indenterExecutableExists = QFile::exists(dataDirctoryStr + indenterFileName) || QFile::exists(dataDirctoryStr + indenterFileName+".exe");
 #endif
