@@ -204,7 +204,6 @@ QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtensi
 	QString parameterParameterFile;
 	QProcess indentProcess;
 	QString processReturnString;
-	bool indenterExecutableExists = false;
 
     // generate the parameter string that will be save to the indenters config file
     QString parameterString = getParameterString();
