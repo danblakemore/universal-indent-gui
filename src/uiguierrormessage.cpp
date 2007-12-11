@@ -26,12 +26,14 @@ UiGuiErrorMessage::UiGuiErrorMessage(QWidget *parent) : QErrorMessage(parent) {
 UiGuiErrorMessage::~UiGuiErrorMessage(void) {
 }
 
-void UiGuiErrorMessage::showMessage( const QString &message ) {
+void UiGuiErrorMessage::showMessage( const QString &title, const QString &message ) {
     bool showAgain = true;
 
     if ( showAgainCheckBox != 0 ) {
         showAgain = showAgainCheckBox->isChecked();
     }
+
+    setWindowTitle(title);
 
     if ( !errorMessageList.contains(message) ) {
         errorMessageList << message;
@@ -43,5 +45,8 @@ void UiGuiErrorMessage::showMessage( const QString &message ) {
     else if ( showAgain ) {
         QErrorMessage::showMessage( message );
     }
-    
+}
+
+void UiGuiErrorMessage::showMessage( const QString &message ) {
+    showMessage( "UniversalIndentGUI", message );
 }

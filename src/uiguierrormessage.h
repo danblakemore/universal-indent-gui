@@ -29,6 +29,7 @@ public:
     UiGuiErrorMessage(QWidget *parent = 0);
     ~UiGuiErrorMessage(void);
     void showMessage( const QString &message );
+    void showMessage( const QString &title, const QString &message );
 
 private:
     QCheckBox *showAgainCheckBox;

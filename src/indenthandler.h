@@ -130,9 +130,7 @@ private:
     QString outputFileName;
     QString fileTypes;
     QString useCfgFileParameter;
-    bool noIndenterExecExistDialogAlreadyShown;
     QMainWindow *mainWindow;
-
     UiGuiErrorMessage *errorMessageDialog;
 
 public slots:

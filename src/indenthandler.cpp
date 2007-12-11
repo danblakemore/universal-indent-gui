@@ -76,10 +76,9 @@ IndentHandler::IndentHandler(QString dataDirPathStr, int indenterID, QMainWindow
             indenterID = indenterIniFileList.count() - 1;
         }
 
-        // reads and parses first found indent ini file and creates toolbox entries
+        // reads and parses the by indenterID defined indent ini file and creates toolbox entries
         readIndentIniFile( dataDirctoryStr + indenterIniFileList.at(indenterID) );
     }
-    noIndenterExecExistDialogAlreadyShown = false;
 
     errorMessageDialog = new UiGuiErrorMessage(mainWindow);
 }
@@ -258,16 +257,13 @@ QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtensi
     // the unformatted source code. Else continue calling the indenter.
 #if defined(Q_OS_WIN32)
     indenterExecutableExists = QFile::exists(dataDirctoryStr + indenterFileName+".exe");
-    indenterExecutableExists |= QFile::exists(dataDirctoryStr + indenterFileName+".bat");
+    //indenterExecutableExists |= QFile::exists(dataDirctoryStr + indenterFileName+".bat");
 #else
     indenterExecutableExists = QFile::exists(dataDirctoryStr + indenterFileName) || QFile::exists(dataDirctoryStr + indenterFileName+".exe");
 #endif
     if ( !indenterExecutableExists ) {
-        if ( !noIndenterExecExistDialogAlreadyShown ) {
-            QMessageBox::warning(NULL, tr("No indenter executable"), tr("There exists no indenter executable with the name \"")
-                +indenterFileName+ tr("\" in the directory \"") +dataDirctoryStr+"\".");
-            noIndenterExecExistDialogAlreadyShown = true;
-        }
+        errorMessageDialog->showMessage(tr("No indenter executable"), tr("There exists no indenter executable with the name \"")
+            +indenterFileName+ tr("\" in the directory \"") +dataDirctoryStr+"\".");
         return sourceCode;
     }
 
@@ -301,7 +297,7 @@ QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtensi
 
     if ( !wineInstalled ) {
         QApplication::restoreOverrideCursor();
-        QMessageBox::warning(NULL, tr("wine not installed"), tr("There exists only a win32 executable of the indenter and wine does not seem to be installed. Please install wine to be able to run the indenter.") );
+        errorMessageDialog->showMessage(tr("wine not installed"), tr("There exists only a win32 executable of the indenter and wine does not seem to be installed. Please install wine to be able to run the indenter.") );
     }
     else {
         // set the directory for the indenter execution
@@ -339,7 +335,7 @@ QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtensi
             }
             processReturnString += tr("<br><b>Callstring was:</b> ") + indentCallString + "</html></body>";
             QApplication::restoreOverrideCursor();
-            QMessageBox::warning(NULL, tr("Error calling Indenter"), processReturnString);
+            errorMessageDialog->showMessage(tr("Error calling Indenter"), processReturnString);
         }
         // there was no problem starting the process/indenter so fetch, what it returned
         else {
@@ -354,8 +350,7 @@ QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtensi
                                 tr("<b>Indent console output was:</b> ") + processReturnString + "<br>" +
                                 tr("<br><b>Callstring was:</b> ") + indentCallString + "</html></body>";
             QApplication::restoreOverrideCursor();
-            //QMessageBox::warning(NULL, tr("Indenter returned error"), processReturnString);
-            errorMessageDialog->showMessage(processReturnString);
+            errorMessageDialog->showMessage( tr("Indenter returned error"), processReturnString );
         }
     }
 
@@ -985,6 +980,7 @@ void IndentHandler::setIndenter(int indenterID) {
 QString IndentHandler::getPossibleIndenterFileExtensions() {
     return fileTypes;
 }
+
 
 /*!
     \brief Returns the path and filename of the current indenter config file.
