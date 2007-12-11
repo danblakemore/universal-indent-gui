@@ -62,6 +62,7 @@ public:
 private:
     void writeConfigFile(QString parameterString);
     void readIndentIniFile(QString iniFilePath);
+    bool createIndenterCallString();
 
     //! Holds a reference to all created pages of the toolbox and the pages boxlayout
     struct ToolBoxPage {
@@ -130,8 +131,10 @@ private:
     QString outputFileName;
     QString fileTypes;
     QString useCfgFileParameter;
+    QString indenterShowHelpParameter;
     QMainWindow *mainWindow;
     UiGuiErrorMessage *errorMessageDialog;
+    QString indenterExecutableCallString;
 
 public slots:
     void setIndenter(int indenterID);
