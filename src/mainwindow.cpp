@@ -670,7 +670,7 @@ void MainWindow::sourceCodeChangedSlot() {
     sourceFileContent = txtedSourceCode->text();
 	
     // Get the position of the cursor in the unindented text.
-    if ( sourceFileContent.count() == 0 ) {
+    if ( sourceFileContent.isEmpty() ) {
         // Add this line feed, because AStyle has problems with a totally emtpy file.
         sourceFileContent += "\n";
         cursorPosAbsolut = 0;
@@ -700,7 +700,7 @@ void MainWindow::sourceCodeChangedSlot() {
     // Update the text editor.
     updateSourceView();
 
-    if ( !enteredCharacter.isNull() ) {
+    if ( toolBarWidget->cbLivePreview->isChecked() && !enteredCharacter.isNull() && enteredCharacter != 10 ) {
         //const char ch = enteredCharacter.toAscii();
 
         int saveCursorLine = cursorLine;
@@ -755,6 +755,10 @@ void MainWindow::sourceCodeChangedSlot() {
         else {
             txtedSourceCode->setCursorPosition( saveCursorLine, saveCursorPos+1 );
         }
+    }
+    // set the previous cursor position.
+    else if ( enteredCharacter == 10 ) {
+        txtedSourceCode->setCursorPosition( cursorLine, cursorPos );
     }
 
 
