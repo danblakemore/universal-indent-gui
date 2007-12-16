@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 package main;
-
+use lib "./";
 use PerlTidyLib;
 
 my $arg_string = undef;
