@@ -39,7 +39,7 @@
 #include <QMainWindow>
 #include <QTextStream>
 #include <QTextCodec>
-#include <QtScript\QtScript> 
+#include <QtScript> 
 
 #include "uiguierrormessage.h"
 
