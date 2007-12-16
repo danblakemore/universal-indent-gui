@@ -1216,6 +1216,8 @@ void MainWindow::numberOfLinesChanged() {
     \brief Catches language change events and retranslates all needed widgets.
  */
 void MainWindow::changeEvent(QEvent *event) {
+    int i = 0;
+
     if (event->type() == QEvent::LanguageChange) {
         QString languageName;
 
@@ -1228,13 +1230,13 @@ void MainWindow::changeEvent(QEvent *event) {
 
          // Translate the encoding menu.
         QList<QAction *> encodingActionList = encodingActionGroup->actions();
-        for ( int i = 0; i < encodingActionList.size(); i++ ) {
+        for ( i = 0; i < encodingActionList.size(); i++ ) {
             encodingActionList.at(i)->setStatusTip( tr("Reopen the currently opened source code file by using the text encoding scheme ") + encodingsList.at(i) );
         }
 
         // Translate the highlighter menu.
         QList<QAction *> actionList = highlighterMenu->actions();
-        int i = 0;
+        i = 0;
         foreach ( QString highlighterName, highlighter->getAvailableHighlighters() ) {
             QAction *highlighterAction = actionList.at(i);
             highlighterAction->setStatusTip( tr("Set the syntax highlightning to ") + highlighterName );
