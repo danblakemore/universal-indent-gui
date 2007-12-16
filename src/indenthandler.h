@@ -39,6 +39,7 @@
 #include <QMainWindow>
 #include <QTextStream>
 #include <QTextCodec>
+#include <QtScript\QtScript> 
 
 #include "uiguierrormessage.h"
 
@@ -60,6 +61,8 @@ public:
     QString getIndenterCfgFile();
 
 private:
+    QString callExecutableIndenter(QString sourceCode, QString inputFileExtension);
+    QString callJavaScriptIndenter(QString sourceCode, QString inputFileExtension);
     void writeConfigFile(QString parameterString);
     void readIndentIniFile(QString iniFilePath);
     bool createIndenterCallString();
@@ -135,6 +138,7 @@ private:
     QMainWindow *mainWindow;
     UiGuiErrorMessage *errorMessageDialog;
     QString indenterExecutableCallString;
+    QString indenterExecutableSuffix;
 
 public slots:
     void setIndenter(int indenterID);

@@ -5,6 +5,7 @@
 CONFIG += debug_and_release
 TEMPLATE = app
 QT += network
+QT += script 
 TARGET += 
 DEPENDPATH += resources \
               src \

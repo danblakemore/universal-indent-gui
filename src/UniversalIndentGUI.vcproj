@@ -76,7 +76,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="qtmaind.lib QtGuid4.lib QtCored4.lib QtNetworkd4.lib qscintilla2.lib"
+				AdditionalDependencies="qtmaind.lib QtGuid4.lib QtCored4.lib QtNetworkd4.lib QtScriptd4.lib qscintilla2.lib"
 				LinkIncremental="2"
 				IgnoreAllDefaultLibraries="false"
 				GenerateDebugInformation="true"
@@ -164,7 +164,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="qtmain.lib QtGui4.lib QtCore4.lib QtNetwork4.lib"
+				AdditionalDependencies="qtmain.lib QtGui4.lib QtCore4.lib QtNetwork4.lib QtScript4.lib qscintilla2.lib"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
 				SubSystem="2"

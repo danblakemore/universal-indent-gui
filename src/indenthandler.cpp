@@ -83,6 +83,7 @@ IndentHandler::IndentHandler(QString dataDirPathStr, int indenterID, QMainWindow
     errorMessageDialog = new UiGuiErrorMessage(mainWindow);
 
     indenterExecutableCallString = "";
+    indenterExecutableSuffix = "";
     createIndenterCallString();
 }
 
@@ -187,12 +188,52 @@ QString IndentHandler::generateCommandlineCall(QString inputFileExtension) {
 
 
 /*!
-   \brief Format \a sourceCode by calling the indenter. 
+    \brief Format \a sourceCode by calling the indenter. 
    
-   The \a inputFileExtension has to be given as parameter so the called indenter 
-   can identify the programming language if needed.
+    The \a inputFileExtension has to be given as parameter so the called indenter 
+    can identify the programming language if needed.
  */
 QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtension) {
+    if ( indenterExecutableSuffix == ".js" ) {
+        return callJavaScriptIndenter(sourceCode, inputFileExtension);
+    } 
+    else {
+        return callExecutableIndenter(sourceCode, inputFileExtension);
+    }
+}
+
+
+/*!
+    \brief Format \a sourceCode by calling the interpreted JavaScript code of the indenter. 
+
+    The \a inputFileExtension has to be given as parameter so the called indenter 
+    can identify the programming language if needed.
+*/
+QString IndentHandler::callJavaScriptIndenter(QString sourceCode, QString inputFileExtension) {
+    QScriptEngine engine;
+
+    QScriptValue unformattedCode(&engine, sourceCode);
+    engine.globalObject().setProperty("unformattedCode", unformattedCode);
+
+    QFile jsDecoderFile( indenterExecutableCallString );
+    QString jsDecoderCode;
+    if (jsDecoderFile.open(QFile::ReadOnly)) {
+        jsDecoderCode = jsDecoderFile.readAll();
+    }
+    jsDecoderFile.close();
+
+    QScriptValue value = engine.evaluate(jsDecoderCode);
+    return value.toString();
+}
+
+
+/*!
+    \brief Format \a sourceCode by calling the binary exeutable of the indenter. 
+
+    The \a inputFileExtension has to be given as parameter so the called indenter 
+    can identify the programming language if needed.
+*/
+QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputFileExtension) {
     Q_ASSERT_X( !inputFileName.isEmpty(), "callIndenter", "inputFileName is empty" );
 //    Q_ASSERT_X( !outputFileName.isEmpty(), "callIndenter", "outputFileName is empty" );
     Q_ASSERT_X( !indenterFileName.isEmpty(), "callIndenter", "indenterFileName is empty" );
@@ -968,6 +1009,7 @@ bool IndentHandler::createIndenterCallString() {
     indentProcess.setWorkingDirectory( QFileInfo(dataDirctoryStr).absoluteFilePath() );
 
     foreach ( QString suffix, QStringList() << "" << ".exe" << ".bat" << ".com" << ".sh" ) {
+        indenterExecutableSuffix = suffix;
         indenterExecutableCallString = "\"" + QFileInfo(dataDirctoryStr).absoluteFilePath() + "/" + indenterFileName;
         indenterExecutableCallString += suffix + "\"";
         indentProcess.start( indenterExecutableCallString + " " + indenterShowHelpParameter );
@@ -980,9 +1022,20 @@ bool IndentHandler::createIndenterCallString() {
     }
 
 
+    // If unsuccessful try if the indenter executable is a JavaScript file
+    // -------------------------------------------------------------------
+    indenterExecutableSuffix = ".js";
+    indenterExecutableCallString = QFileInfo(dataDirctoryStr).absoluteFilePath() + "/" + indenterFileName;
+    indenterExecutableCallString += indenterExecutableSuffix;
+    if ( QFile::exists(indenterExecutableCallString) ) {
+        return true;
+    }
+
+
     // If unsuccessful try to call the indenter global, using some suffix
     // ------------------------------------------------------------------
     foreach ( QString suffix, QStringList() << "" << ".exe" << ".bat" << ".com" << ".sh" ) {
+        indenterExecutableSuffix = suffix;
         indenterExecutableCallString = indenterFileName + suffix;
         indentProcess.start( indenterExecutableCallString + " " + indenterShowHelpParameter );
         if ( indentProcess.waitForFinished(2000) ) {
@@ -999,6 +1052,7 @@ bool IndentHandler::createIndenterCallString() {
     indenterExecutableCallString = "\"" + QFileInfo(dataDirctoryStr).absoluteFilePath() + "/" + indenterFileName;
 
     foreach ( QString suffix, QStringList() << ".exe" << ".com" ) {
+        indenterExecutableSuffix = suffix;
         if ( QFile::exists(dataDirctoryStr + indenterFileName + suffix) ) {
             QProcess wineTestProcess;
             wineTestProcess.start("wine --version");
@@ -1019,5 +1073,6 @@ bool IndentHandler::createIndenterCallString() {
     }
 
     indenterExecutableCallString = "";
+    indenterExecutableSuffix = "";
     return false;
 }
