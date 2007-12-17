@@ -54,7 +54,7 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/D &quot;QT_LARGEFILE_SUPPORT&quot; /D &quot;QT_DLL&quot; /D &quot;QT_GUI_LIB&quot; /D &quot;QT_CORE_LIB&quot; /D &quot;QT_THREAD_SUPPORT&quot;"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(OutDir)\tmp\uic\&quot;"
+				AdditionalIncludeDirectories="&quot;$(OutDir)\tmp\uic\&quot;;&quot;$(QTDIR)\include\QtScript&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -144,7 +144,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="&quot;$(OutDir)\tmp\uic\&quot;"
+				AdditionalIncludeDirectories="&quot;$(OutDir)\tmp\uic\&quot;;&quot;$(QTDIR)\include\QtScript&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
