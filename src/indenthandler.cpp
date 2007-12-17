@@ -339,7 +339,8 @@ QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputF
             default :
                 break;
         }
-        processReturnString += tr("<br><b>Callstring was:</b> ") + indenterCompleteCallString + "</html></body>";
+        processReturnString += tr("<br><b>Callstring was:</b> ") + indenterCompleteCallString;
+        processReturnString += tr("<br><br><b>Indenter output was:</b><pre> ") + indentProcess.readAll() + "</pre></html></body>";
         QApplication::restoreOverrideCursor();
         errorMessageDialog->showMessage(tr("Error calling Indenter"), processReturnString);
     }
