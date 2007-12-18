@@ -36,7 +36,7 @@ AboutDialog::AboutDialog(QWidget *parent, QString version, QString revision, QSt
     creditsTextBrowser->setStyleSheet("QTextBrowser#creditsTextBrowser{background-color:white}");
 
     //licenseLabel->setText( "The System Locale is : " + QLocale::system().name() );
-    connect( authorTextBrowser, SIGNAL(anchorClicked (const QUrl)), this, SLOT(linkClicked(const QUrl)) );
+    connect( authorTextBrowser, SIGNAL(anchorClicked (const QUrl)), this, SLOT(restoreTextBrowserContentAndOpenLink(const QUrl)) );
     textBrowserSavedContent = authorTextBrowser->toHtml();
 
     this->version = version;
@@ -75,7 +75,7 @@ AboutDialog::AboutDialog(QWidget *parent, QString version, QString revision, QSt
 /*!
     \brief This slot is being called, when the link in the about dialog is being clicked.
  */
-void AboutDialog::linkClicked(const QUrl &link) {
+void AboutDialog::restoreTextBrowserContentAndOpenLink(const QUrl &link) {
     authorTextBrowser->setHtml(textBrowserSavedContent);
     QDesktopServices::openUrl(link);
 }

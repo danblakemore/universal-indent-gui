@@ -48,7 +48,7 @@ UiGuiSettingsDialog::UiGuiSettingsDialog(QWidget* parent, UiGuiSettings* setting
     comboBoxes = findChildren<QComboBox*>( QRegExp("uiGui*") );
 
     // Connect the accepted signal to own function, to write values back to the UiGuiSettings object.
-    connect(this, SIGNAL(accepted()), this, SLOT(handleAccepted()) );
+    connect(this, SIGNAL(accepted()), this, SLOT(writeWidgetValuesToSettings()) );
 
 	// Init the language selection combobox.
 	initTranslationSelection();
@@ -135,7 +135,7 @@ int UiGuiSettingsDialog::showDialog() {
 
     Writes all settings to the UiGuiSettings object.
  */
-void UiGuiSettingsDialog::handleAccepted() {
+void UiGuiSettingsDialog::writeWidgetValuesToSettings() {
     // Write the values of the check boxes to the settings object.
     foreach (QCheckBox* checkBox, checkBoxes) {
         // Get the objects name and remove "uiGui" from its beginning.

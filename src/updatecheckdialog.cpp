@@ -37,7 +37,7 @@ UpdateCheckDialog::UpdateCheckDialog(QString currentVersion, UiGuiSettings *sett
 
     // Create object for http request and connect it with the request return handler.
     http = new QHttp(this);
-    connect( http, SIGNAL(done(bool)), this, SLOT(checkForUpdatedReturned(bool)) );
+    connect( http, SIGNAL(done(bool)), this, SLOT(checkResultsOfFetchedPadXMLFile(bool)) );
 
     // Create a timer object used for the progress bar.
     updateCheckProgressTimer = new QTimer(this);
@@ -46,7 +46,7 @@ UpdateCheckDialog::UpdateCheckDialog(QString currentVersion, UiGuiSettings *sett
     updateCheckProgressCounter = 0;
 
     // Connect the dialogs buttonbox with a button click handler.
-    connect( buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(handleDialogButtonClicked(QAbstractButton*)) );
+    connect( buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(handleUpdateCheckDialogButtonClicked(QAbstractButton*)) );
 
     this->currentVersion = currentVersion;
     this->settings = settings;
@@ -62,9 +62,9 @@ UpdateCheckDialog::UpdateCheckDialog(QString currentVersion, UiGuiSettings *sett
     In difference to the automatic update check, during manual update check request
     a modal progress indicator dialog will be shown.
  */
-void UpdateCheckDialog::updateCheckManuallyInvoked() {
+void UpdateCheckDialog::checkForUpdateAndShowDialog() {
     manualUpdateRequested = true;
-    checkForUpdate();
+    getPadXMLFile();
     showCheckingForUpdateDialog();
 }
 
@@ -75,18 +75,16 @@ void UpdateCheckDialog::updateCheckManuallyInvoked() {
     An automatic invoked update check should run in background, so the user
     gets not interrupted by a dialog box.
  */
-void UpdateCheckDialog::updateCheckAutomaticallyInvoked() {
+void UpdateCheckDialog::checkForUpdate() {
     manualUpdateRequested = false;
-    checkForUpdate();
+    getPadXMLFile();
 }
 
 
 /*!
-    \brief This function checks whether updates for UniversalIndentGUI are available.
-
-    It is tried to download the UniversalIndentGui pad file from the SourceForge server.
+    \brief This function tries to download the UniversalIndentGui pad file from the SourceForge server
  */
-void UpdateCheckDialog::checkForUpdate() {
+void UpdateCheckDialog::getPadXMLFile() {
     http->setHost("universalindent.sourceforge.net");
     http->get("/universalindentgui_pad.xml");
 }
@@ -100,7 +98,7 @@ void UpdateCheckDialog::checkForUpdate() {
     download page if a newer version exists. In case of an error during update
     check, a message box with the error will be displayed.
  */
-void UpdateCheckDialog::checkForUpdatedReturned(bool errorOccurred) {
+void UpdateCheckDialog::checkResultsOfFetchedPadXMLFile(bool errorOccurred) {
     // Stop the progress bar timer.
     updateCheckProgressTimer->stop();
 
@@ -200,13 +198,13 @@ void UpdateCheckDialog::showNoNewVersionAvailableDialog() {
 
     In any case if a button is clicked, the dialog box will be closed.
  */
-void UpdateCheckDialog::handleDialogButtonClicked(QAbstractButton *clickedButton) {
+void UpdateCheckDialog::handleUpdateCheckDialogButtonClicked(QAbstractButton *clickedButton) {
     roleOfClickedButton = buttonBox->buttonRole(clickedButton);
 
     if ( roleOfClickedButton == QDialogButtonBox::RejectRole ) {
         // Abort the http request.
         http->abort();
-        // Stop the progressbar timer.
+        // Stop the progress bar timer.
         updateCheckProgressTimer->stop();
     }
 

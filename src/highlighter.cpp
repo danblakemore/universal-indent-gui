@@ -93,7 +93,7 @@ QStringList Highlighter::getAvailableHighlighters() {
 /*!
     \brief This slot handles signals coming from selecting another syntax highlighter.
  */
-void Highlighter::highlighterChanged(QAction* highlighterAction) {
+void Highlighter::setHighlighterByAction(QAction* highlighterAction) {
 	QString highlighterName = highlighterAction->text();
     setLexerForExtension( mapHighlighternameToExtension[highlighterName].first() );
     //TODO: This is really no nice way. How do it better?

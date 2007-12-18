@@ -41,7 +41,7 @@ public slots:
     int exec();
 
 private slots:
-    void linkClicked(const QUrl &link);
+    void restoreTextBrowserContentAndOpenLink(const QUrl &link);
     void scroll();
 
 private:

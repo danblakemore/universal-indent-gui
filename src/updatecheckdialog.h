@@ -41,11 +41,11 @@ public:
     UpdateCheckDialog(QString currentVersion, UiGuiSettings *settings, QWidget *parent=0);
 
 public slots:
-    void updateCheckManuallyInvoked();
-    void updateCheckAutomaticallyInvoked();
+    void checkForUpdateAndShowDialog();
+    void checkForUpdate();
 
 private:
-    void checkForUpdate();
+    void getPadXMLFile();
     void showCheckingForUpdateDialog();
     void showNewVersionAvailableDialog(QString newVersion);
     void showNoNewVersionAvailableDialog();
@@ -59,8 +59,8 @@ private:
     int updateCheckProgressCounter;
 
 private slots:
-    void checkForUpdatedReturned(bool errorOccurred);
-    void handleDialogButtonClicked(QAbstractButton *clickedButton);
+    void checkResultsOfFetchedPadXMLFile(bool errorOccurred);
+    void handleUpdateCheckDialogButtonClicked(QAbstractButton *clickedButton);
     void updateUpdateCheckProgressBar();
 };
 

@@ -83,7 +83,7 @@ public slots:
 
     void setLexerByName( QString lexerName );
 
-	void highlighterChanged(QAction* highlighterAction);
+	void setHighlighterByAction(QAction* highlighterAction);
 };
 
 #endif  // HIGHLIGHTER_H

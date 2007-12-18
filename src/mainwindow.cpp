@@ -83,7 +83,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 
     // Check if a newer version is available but only if the setting for that is enabled and today not already a check has been done.
     if ( settings->getValueByName("CheckForUpdate").toBool() && QDate::currentDate() != settings->getValueByName("LastUpdateCheck").toDate() ) {
-        updateCheckDialog->updateCheckAutomaticallyInvoked();
+        updateCheckDialog->checkForUpdate();
     }
 }
 
@@ -152,7 +152,7 @@ void MainWindow::initMainWindow() {
     connect( actionLoad_Indenter_Config_File, SIGNAL(activated()), this, SLOT(openConfigFileDialog()) );
     connect( actionSave_Indenter_Config_File, SIGNAL(activated()), this, SLOT(saveasIndentCfgFileDialog()) );
     connect( actionCreateShellScript, SIGNAL(activated()), this, SLOT(createIndenterCallShellScript()) );
-    connect( actionCheck_for_update, SIGNAL(activated()), updateCheckDialog, SLOT(updateCheckManuallyInvoked()) );
+    connect( actionCheck_for_update, SIGNAL(activated()), updateCheckDialog, SLOT(checkForUpdateAndShowDialog()) );
 
     // Init the menu for selecting one of the recently opened files.
     updateRecentlyOpenedList();

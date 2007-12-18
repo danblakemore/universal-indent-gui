@@ -35,7 +35,7 @@ public slots:
     int showDialog();
 
 private slots:
-    void handleAccepted();
+    void writeWidgetValuesToSettings();
 
 private:
     void changeEvent(QEvent *event);
