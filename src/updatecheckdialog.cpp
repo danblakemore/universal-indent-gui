@@ -51,7 +51,7 @@ UpdateCheckDialog::UpdateCheckDialog(QString currentVersion, UiGuiSettings *sett
     this->currentVersion = currentVersion;
     this->settings = settings;
 
-    // This dialog is allways modal.
+    // This dialog is always modal.
     setModal(true);
 }
 
