@@ -228,7 +228,7 @@ QString IndentHandler::callJavaScriptIndenter(QString sourceCode, QString inputF
 
 
 /*!
-    \brief Format \a sourceCode by calling the binary exeutable of the indenter. 
+    \brief Format \a sourceCode by calling the binary executable of the indenter. 
 
     The \a inputFileExtension has to be given as parameter so the called indenter 
     can identify the programming language if needed.
@@ -290,9 +290,8 @@ QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputF
 
     // If no indenter executable call string could be created before, show an error message.
     if ( indenterExecutableCallString.isEmpty() ) {
-        //TODO: assemble this string to an easy translateable string!
-        errorMessageDialog->showMessage(tr("No indenter executable"), tr("There exists no indenter executable with the name \"")
-            +indenterFileName+ tr("\" in the directory \"") +dataDirctoryStr+"\""+tr(" nor on global environment.") );
+        errorMessageDialog->showMessage(tr("No indenter executable"), 
+            tr("There exists no indenter executable with the name \"%1\" in the directory \"%2\" nor in the global environment.").arg(indenterFileName).arg(dataDirctoryStr) );
         return sourceCode;
     }
 
@@ -1042,13 +1041,12 @@ bool IndentHandler::createIndenterCallString() {
 
                         // Try to call the interpreter, if it exists.
                         if ( !interpreterName.isEmpty() ) {
+                            indenterExecutableCallString = interpreterName + " \"" + indenterExecutableCallString + "\"";
                             indentProcess.start( interpreterName + " -h");
                             if ( indentProcess.waitForFinished(2000) ) {
-                                indenterExecutableCallString = interpreterName + " \"" + indenterExecutableCallString + "\"";
                                 return true;
                             }
                             else if ( indentProcess.error() == QProcess::Timedout ) {
-                                indenterExecutableCallString = interpreterName + " \"" + indenterExecutableCallString + "\"";
                                 return true;
                             }
                             // now we know an interpreter is needed but it could not be called, so inform the user.
