@@ -313,7 +313,7 @@ QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputF
 
     processReturnString = "<html><body>";
     // test if there was an error during starting the process of the indenter
-    if ( !indentProcess.waitForFinished(5000) ) {
+    if ( !indentProcess.waitForFinished(10000) ) {
         processReturnString += tr("<b>Returned error message:</b> ") + indentProcess.errorString() + "<br>";
 
         switch ( indentProcess.error() ) {
@@ -324,7 +324,7 @@ QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputF
                 processReturnString += "The process crashed some time after starting successfully.<br>";
                 break;
             case QProcess::Timedout :
-                processReturnString += "The last waitFor...() function timed out. The state of QProcess is unchanged, and you can try calling waitFor...() again.<br>";
+                processReturnString += "The called indenter did not response for over 10 seconds, so aborted its execution.<br>";
                 break;
             case QProcess::WriteError :
                 processReturnString += "An error occurred when attempting to write to the process. For example, the process may not be running, or it may have closed its input channel.<br>";
