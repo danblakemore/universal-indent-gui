@@ -61,7 +61,7 @@ Highlighter::Highlighter(QsciScintilla *parent, QSettings *settings)
     mapHighlighternameToExtension["JavaScript"] = QStringList() << "js";
     mapHighlighternameToExtension["LUA"] = QStringList() << "lua";
     mapHighlighternameToExtension["Makefile"] = QStringList() << "makefile";
-    mapHighlighternameToExtension["Perl"] = QStringList() << "perl";
+    mapHighlighternameToExtension["Perl"] = QStringList() << "perl" << "pl" << "pm";
     mapHighlighternameToExtension["PHP"] = QStringList() << "php";
     mapHighlighternameToExtension["POV"] = QStringList() << "pov";
     mapHighlighternameToExtension["Ini"] = QStringList() << "ini";
@@ -73,9 +73,12 @@ Highlighter::Highlighter(QsciScintilla *parent, QSettings *settings)
 
     lexer = 0;
 
+    // This code is only for testing.
+    /*
     foreach(QStringList extensionList, mapHighlighternameToExtension.values() ) {
         setLexerForExtension( extensionList.at(0) );
     }
+    */
 
     // Set default highlighter to C++ highlighter.
     setLexerForExtension( "cpp" );
@@ -340,7 +343,7 @@ int Highlighter::setLexerForExtension( QString extension ) {
     else if ( extension == "makefile" ) {
 		lexer = new QsciLexerMakefile();
 	}
-	else if ( extension == "perl" ) {
+	else if ( extension == "perl" || extension == "pl" || extension == "pm" ) {
 		lexer = new QsciLexerPerl();
 	}
     else if ( extension == "php" ) {
