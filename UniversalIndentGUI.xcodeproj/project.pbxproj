@@ -5,884 +5,497 @@
 	};
 	objectVersion = 42;
 	objects = {
-		D7BA7D76DAB5DD13389D6332 = {
+
+/* Begin PBXBuildFile section */
+		05DD18D2D66A2ADDD607897C /* moc_highlighter.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 438EBE2AD33F069CF17386EF /* moc_highlighter.cpp */; settings = {ATTRIBUTES = (); }; };
+		11C52D78F106C6F52D203206 /* qscintilla2 in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = 156EDC359F7629703759AEE0 /* qscintilla2 */; };
+		1306BAAF620805D3FD99E13A /* moc_updatecheckdialog.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 43664F2C938C9A185E1354D4 /* moc_updatecheckdialog.cpp */; settings = {ATTRIBUTES = (); }; };
+		1AAC96ADB30D70BFA6D5E546 /* moc_aboutdialog.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 680E697BA2A6B89981ABDBF4 /* moc_aboutdialog.cpp */; settings = {ATTRIBUTES = (); }; };
+		27D5ABEF9D35DD864BB485E9 /* highlighter.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = D8B009120E336EEAB175ED22 /* highlighter.cpp */; settings = {ATTRIBUTES = (); }; };
+		512A4F378730360D85751954 /* programicon.rc in Bundle Resources */ = {isa = PBXBuildFile; fileRef = 0F617A0F6F84610A27A87E30 /* programicon.rc */; settings = {ATTRIBUTES = (); }; };
+		51D4DBF7CB8537BE86EBD055 /* AppKit.framework in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = 821416211D63F190AAAD016A /* AppKit.framework */; };
+		72224D8B8032363B160DB2F4 /* mainwindow.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 585CFECF0CE15AC75BE3038E /* mainwindow.cpp */; settings = {ATTRIBUTES = (); }; };
+		81182B2FFAF2215E94F657D1 /* qrc_Icons.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 1B8174BC5491D614E763FE42 /* qrc_Icons.cpp */; settings = {ATTRIBUTES = (); }; };
+		86A67DD779C853CEF6A8D015 /* aboutdialog.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 1D0DD7E076E1A653C5ADA836 /* aboutdialog.cpp */; settings = {ATTRIBUTES = (); }; };
+		A24C51CF6F70FE9F9917E286 /* moc_mainwindow.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 9AA0F0369B7B9DA998B3BF45 /* moc_mainwindow.cpp */; settings = {ATTRIBUTES = (); }; };
+		A4FD5A96CF247A25C080F5EB /* moc_uiguisettingsdialog.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = B619BAE8E88A415D93D5DA15 /* moc_uiguisettingsdialog.cpp */; settings = {ATTRIBUTES = (); }; };
+		A507E80BF7A918F0159FED5A /* QtCore_debug in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = 42D5C905C738815DE632DC2F /* QtCore_debug */; };
+		C0A25E811255ADB7048898AA /* moc_indenthandler.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 111F467408ECADEF1412E4E1 /* moc_indenthandler.cpp */; settings = {ATTRIBUTES = (); }; };
+		C7F1C60CE6419BEC02B58F90 /* QtGui_debug in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = F71B30EF7686AAA75A14E4F8 /* QtGui_debug */; };
+		C8FD4A1AAA37CF2CA2824CCF /* Carbon.framework in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = DA138F75C9F545CDAE7FB264 /* Carbon.framework */; };
+		C9DD2E2DB3BAE010A93788AE /* updatecheckdialog.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 8BE8AF423371D6CAE24BA96C /* updatecheckdialog.cpp */; settings = {ATTRIBUTES = (); }; };
+		CB875E074F339E4BE79673AD /* QtScript_debug in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = AD869907509F615C41D703F5 /* QtScript_debug */; };
+		D9D01E696ABE1F0ECDDED0C5 /* indenthandler.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 6D1AD0AC2581C9346952C1AE /* indenthandler.cpp */; settings = {ATTRIBUTES = (); }; };
+		DC78F47D1155B9D5F6AD9FE2 /* uiguierrormessage.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 79F947E978D31E3EE78A3CA3 /* uiguierrormessage.cpp */; settings = {ATTRIBUTES = (); }; };
+		DD46C4420B82863EFB155CBE /* QtNetwork_debug in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = 5321EE800901BA7055D53D05 /* QtNetwork_debug */; };
+		E99EE6160D292292001E12FF /* UniversalIndentGUI.app in Project Copy */ = {isa = PBXBuildFile; fileRef = E99EE6130D292292001E12FF /* UniversalIndentGUI.app */; };
+		ED1C6BDDD90C246A4B296AF9 /* uiguisettings.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = CCA6F3C7D091FAF3F0192950 /* uiguisettings.cpp */; settings = {ATTRIBUTES = (); }; };
+		F1B05587B803785E09220177 /* uiguisettingsdialog.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = EFAA99570EB8729CF49B8242 /* uiguisettingsdialog.cpp */; settings = {ATTRIBUTES = (); }; };
+		F61789CD91C257CB91760C5F /* moc_uiguisettings.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 3D22F3CD2345E6DB3D52C755 /* moc_uiguisettings.cpp */; settings = {ATTRIBUTES = (); }; };
+		F9E76E570E10AF14870553A7 /* ApplicationServices.framework in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = 27AE7A480FD6C52FCA80FECD /* ApplicationServices.framework */; };
+		FD1638E377D97C82BDB438FB /* main.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 7EC3C68A81EFFF79B6CA22AC /* main.cpp */; settings = {ATTRIBUTES = (); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F6069D5A5DA8AA28EDB8B3C6 /* Project Copy */ = {
+			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			files = (
-				);
-			generatedFileNames = (
-				);
-			isa = PBXShellScriptBuildPhase;
-			name = "Qt Qmake";
-			neededFileNames = (
-				);
-			shellPath = "/bin/sh";
-			shellScript = "make\ -C\ /Users/thomas/Documents/Informatik/universalindent\ -f\ UniversalIndentGUI.xcodeproj/qt_makeqmake.mak";
-		};
-		1D0DD7E076E1A653C5ADA836 = {
-			isa = PBXFileReference;
-			name = "aboutdialog.cpp";
-			path = "src/aboutdialog.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		86A67DD779C853CEF6A8D015 = {
-			fileRef = "1D0DD7E076E1A653C5ADA836";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		D8B009120E336EEAB175ED22 = {
-			isa = PBXFileReference;
-			name = "highlighter.cpp";
-			path = "src/highlighter.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		27D5ABEF9D35DD864BB485E9 = {
-			fileRef = "D8B009120E336EEAB175ED22";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		6D1AD0AC2581C9346952C1AE = {
-			isa = PBXFileReference;
-			name = "indenthandler.cpp";
-			path = "src/indenthandler.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		D9D01E696ABE1F0ECDDED0C5 = {
-			fileRef = "6D1AD0AC2581C9346952C1AE";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		7EC3C68A81EFFF79B6CA22AC = {
-			isa = PBXFileReference;
-			name = "main.cpp";
-			path = "src/main.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		FD1638E377D97C82BDB438FB = {
-			fileRef = "7EC3C68A81EFFF79B6CA22AC";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		585CFECF0CE15AC75BE3038E = {
-			isa = PBXFileReference;
-			name = "mainwindow.cpp";
-			path = "src/mainwindow.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		72224D8B8032363B160DB2F4 = {
-			fileRef = "585CFECF0CE15AC75BE3038E";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		79F947E978D31E3EE78A3CA3 = {
-			isa = PBXFileReference;
-			name = "uiguierrormessage.cpp";
-			path = "src/uiguierrormessage.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		DC78F47D1155B9D5F6AD9FE2 = {
-			fileRef = "79F947E978D31E3EE78A3CA3";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		CCA6F3C7D091FAF3F0192950 = {
-			isa = PBXFileReference;
-			name = "uiguisettings.cpp";
-			path = "src/uiguisettings.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		ED1C6BDDD90C246A4B296AF9 = {
-			fileRef = "CCA6F3C7D091FAF3F0192950";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		EFAA99570EB8729CF49B8242 = {
-			isa = PBXFileReference;
-			name = "uiguisettingsdialog.cpp";
-			path = "src/uiguisettingsdialog.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		F1B05587B803785E09220177 = {
-			fileRef = "EFAA99570EB8729CF49B8242";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		8BE8AF423371D6CAE24BA96C = {
-			isa = PBXFileReference;
-			name = "updatecheckdialog.cpp";
-			path = "src/updatecheckdialog.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		C9DD2E2DB3BAE010A93788AE = {
-			fileRef = "8BE8AF423371D6CAE24BA96C";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		0F617A0F6F84610A27A87E30 = {
-			isa = PBXFileReference;
-			name = "programicon.rc";
-			path = "resources/programicon.rc";
-			refType = 4;
-		};
-		512A4F378730360D85751954 = {
-			fileRef = "0F617A0F6F84610A27A87E30";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		680E697BA2A6B89981ABDBF4 = {
-			isa = PBXFileReference;
-			name = "moc_aboutdialog.cpp";
-			path = "debug/tmp/moc/moc_aboutdialog.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		1AAC96ADB30D70BFA6D5E546 = {
-			fileRef = "680E697BA2A6B89981ABDBF4";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		438EBE2AD33F069CF17386EF = {
-			isa = PBXFileReference;
-			name = "moc_highlighter.cpp";
-			path = "debug/tmp/moc/moc_highlighter.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		05DD18D2D66A2ADDD607897C = {
-			fileRef = "438EBE2AD33F069CF17386EF";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		111F467408ECADEF1412E4E1 = {
-			isa = PBXFileReference;
-			name = "moc_indenthandler.cpp";
-			path = "debug/tmp/moc/moc_indenthandler.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		C0A25E811255ADB7048898AA = {
-			fileRef = "111F467408ECADEF1412E4E1";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		9AA0F0369B7B9DA998B3BF45 = {
-			isa = PBXFileReference;
-			name = "moc_mainwindow.cpp";
-			path = "debug/tmp/moc/moc_mainwindow.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		A24C51CF6F70FE9F9917E286 = {
-			fileRef = "9AA0F0369B7B9DA998B3BF45";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		3D22F3CD2345E6DB3D52C755 = {
-			isa = PBXFileReference;
-			name = "moc_uiguisettings.cpp";
-			path = "debug/tmp/moc/moc_uiguisettings.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		F61789CD91C257CB91760C5F = {
-			fileRef = "3D22F3CD2345E6DB3D52C755";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		B619BAE8E88A415D93D5DA15 = {
-			isa = PBXFileReference;
-			name = "moc_uiguisettingsdialog.cpp";
-			path = "debug/tmp/moc/moc_uiguisettingsdialog.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		A4FD5A96CF247A25C080F5EB = {
-			fileRef = "B619BAE8E88A415D93D5DA15";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		43664F2C938C9A185E1354D4 = {
-			isa = PBXFileReference;
-			name = "moc_updatecheckdialog.cpp";
-			path = "debug/tmp/moc/moc_updatecheckdialog.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		1306BAAF620805D3FD99E13A = {
-			fileRef = "43664F2C938C9A185E1354D4";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		1B8174BC5491D614E763FE42 = {
-			isa = PBXFileReference;
-			name = "qrc_Icons.cpp";
-			path = "debug/tmp/qrc/qrc_Icons.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		81182B2FFAF2215E94F657D1 = {
-			fileRef = "1B8174BC5491D614E763FE42";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		A672645B08E6E5E1A2670CC5 = {
-			isa = PBXFileReference;
-			name = "ui_indentgui.h";
-			path = "debug/tmp/uic/ui_indentgui.h";
-			refType = 4;
-		};
-		DD115EBA3017E8DB497F54EC = {
-			isa = PBXFileReference;
-			name = "ui_toolBarWidget.h";
-			path = "debug/tmp/uic/ui_toolBarWidget.h";
-			refType = 4;
-		};
-		8163C4EE8E0558A71520BBB0 = {
-			isa = PBXFileReference;
-			name = "ui_UiGuiSettingsDialog.h";
-			path = "debug/tmp/uic/ui_UiGuiSettingsDialog.h";
-			refType = 4;
-		};
-		6BBC4F52F275DC2218177743 = {
-			isa = PBXFileReference;
-			name = "ui_aboutdialog.h";
-			path = "debug/tmp/uic/ui_aboutdialog.h";
-			refType = 4;
-		};
-		00A3F229C56EE328EC857B50 = {
-			isa = PBXFileReference;
-			name = "ui_UpdateCheckDialog.h";
-			path = "debug/tmp/uic/ui_UpdateCheckDialog.h";
-			refType = 4;
-		};
-		2E67BEE5A9F88B1264F21E7A = {
-			isa = PBXFileReference;
-			name = "aboutdialog.h";
-			path = "src/aboutdialog.h";
-			refType = 4;
-		};
-		9E5FE3E007D1516848BC5E2E = {
-			isa = PBXFileReference;
-			name = "highlighter.h";
-			path = "src/highlighter.h";
-			refType = 4;
-		};
-		D2E76D1E4F45AD5E32A1348F = {
-			isa = PBXFileReference;
-			name = "indenthandler.h";
-			path = "src/indenthandler.h";
-			refType = 4;
-		};
-		E53FC39EBC111E4E73935122 = {
-			isa = PBXFileReference;
-			name = "mainwindow.h";
-			path = "src/mainwindow.h";
-			refType = 4;
-		};
-		8C2BAFA061B71DC50BFD2EE6 = {
-			isa = PBXFileReference;
-			name = "uiguierrormessage.h";
-			path = "src/uiguierrormessage.h";
-			refType = 4;
-		};
-		D924CAFCDA4353AEA9423A47 = {
-			isa = PBXFileReference;
-			name = "uiguisettings.h";
-			path = "src/uiguisettings.h";
-			refType = 4;
-		};
-		79B4B914FF340011E0D11A92 = {
-			isa = PBXFileReference;
-			name = "uiguisettingsdialog.h";
-			path = "src/uiguisettingsdialog.h";
-			refType = 4;
-		};
-		0AF78DFFDB598C40F9DEE03C = {
-			isa = PBXFileReference;
-			name = "updatecheckdialog.h";
-			path = "src/updatecheckdialog.h";
-			refType = 4;
-		};
-		E457C7C0F6FE92258C9ABDE6 = {
-			isa = PBXFileReference;
-			name = "UniversalIndentGUI.pro";
-			path = "UniversalIndentGUI.pro";
-			refType = 4;
-		};
-		7DBF76AABA74FE9F8ACD5DB5 = {
-			isa = PBXFileReference;
-			name = "Icons.qrc";
-			path = "resources/Icons.qrc";
-			refType = 4;
-		};
-		689FBC1A2B5948A24C13C6C1 = {
-			fileRef = "7DBF76AABA74FE9F8ACD5DB5";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		35102B3E3654DD2295E49D43 = {
-			isa = PBXFileReference;
-			name = "indentgui.ui";
-			path = "src/indentgui.ui";
-			refType = 4;
-		};
-		0D38464ACB2A5655FFE14467 = {
-			fileRef = "35102B3E3654DD2295E49D43";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		E5B4982021E70D198AF38D74 = {
-			isa = PBXFileReference;
-			name = "toolBarWidget.ui";
-			path = "src/toolBarWidget.ui";
-			refType = 4;
-		};
-		44E188B8A308EE12E55E2B51 = {
-			fileRef = "E5B4982021E70D198AF38D74";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		B3201EB1AA113D49631A1BC2 = {
-			isa = PBXFileReference;
-			name = "UiGuiSettingsDialog.ui";
-			path = "src/UiGuiSettingsDialog.ui";
-			refType = 4;
-		};
-		C630CA0D2B2F14B8B6B99EDD = {
-			fileRef = "B3201EB1AA113D49631A1BC2";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		DDCD93CEBC73250DA1DA1579 = {
-			isa = PBXFileReference;
-			name = "aboutdialog.ui";
-			path = "src/aboutdialog.ui";
-			refType = 4;
-		};
-		175E97C6B5F0115032E432F5 = {
-			fileRef = "DDCD93CEBC73250DA1DA1579";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		290E702759265E2A11910569 = {
-			isa = PBXFileReference;
-			name = "UpdateCheckDialog.ui";
-			path = "src/UpdateCheckDialog.ui";
-			refType = 4;
-		};
-		F8EE96E7CD396B04BE8662CA = {
-			fileRef = "290E702759265E2A11910569";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		883D7615C4D2DE3FA1218F12 = {
-			isa = PBXGroup;
-			children = (
-				"F4AF6147B42623F6B3284738");
-			name = "Headers";
-			refType = 4;
-		};
-		F4AF6147B42623F6B3284738 = {
-			isa = PBXGroup;
-			children = (
-				"2E67BEE5A9F88B1264F21E7A",
-				"9E5FE3E007D1516848BC5E2E",
-				"D2E76D1E4F45AD5E32A1348F",
-				"E53FC39EBC111E4E73935122",
-				"8C2BAFA061B71DC50BFD2EE6",
-				"D924CAFCDA4353AEA9423A47",
-				"79B4B914FF340011E0D11A92",
-				"0AF78DFFDB598C40F9DEE03C");
-			name = "src";
-			refType = 4;
-		};
-		16A82DA2701971900CCC9274 = {
-			isa = PBXGroup;
-			children = (
-				"7DBF76AABA74FE9F8ACD5DB5");
-			name = "resources";
-			refType = 4;
-		};
-		A1B6D1488110DA0868414A40 = {
-			isa = PBXGroup;
-			children = (
-				"35102B3E3654DD2295E49D43",
-				"E5B4982021E70D198AF38D74",
-				"B3201EB1AA113D49631A1BC2",
-				"DDCD93CEBC73250DA1DA1579",
-				"290E702759265E2A11910569");
-			name = "src";
-			refType = 4;
-		};
-		B06B937E4E5DB1B571475081 = {
-			isa = PBXGroup;
-			children = (
-				"0F617A0F6F84610A27A87E30");
-			name = "resources";
-			refType = 4;
-		};
-		06674E1DE8D3EB6E763DFFDA = {
-			isa = PBXGroup;
-			children = (
-				"1D0DD7E076E1A653C5ADA836",
-				"D8B009120E336EEAB175ED22",
-				"6D1AD0AC2581C9346952C1AE",
-				"7EC3C68A81EFFF79B6CA22AC",
-				"585CFECF0CE15AC75BE3038E",
-				"79F947E978D31E3EE78A3CA3",
-				"CCA6F3C7D091FAF3F0192950",
-				"EFAA99570EB8729CF49B8242",
-				"8BE8AF423371D6CAE24BA96C");
-			name = "src";
-			refType = 4;
-		};
-		41B364AB2E400AB39150ABBF = {
-			isa = PBXGroup;
-			children = (
-				"216DE10A8FE6E4D790A542E3");
-			name = "debug";
-			refType = 4;
-		};
-		216DE10A8FE6E4D790A542E3 = {
-			isa = PBXGroup;
-			children = (
-				"70A43B188FDBE60EE01FD089",
-				"030D086A1096AA4CA81C3492",
-				"06233F48F68F353781CB2488");
-			name = "tmp";
-			refType = 4;
-		};
-		70A43B188FDBE60EE01FD089 = {
-			isa = PBXGroup;
-			children = (
-				"680E697BA2A6B89981ABDBF4",
-				"438EBE2AD33F069CF17386EF",
-				"111F467408ECADEF1412E4E1",
-				"9AA0F0369B7B9DA998B3BF45",
-				"3D22F3CD2345E6DB3D52C755",
-				"B619BAE8E88A415D93D5DA15",
-				"43664F2C938C9A185E1354D4");
-			name = "moc";
-			refType = 4;
-		};
-		030D086A1096AA4CA81C3492 = {
-			isa = PBXGroup;
-			children = (
-				"1B8174BC5491D614E763FE42");
-			name = "qrc";
-			refType = 4;
-		};
-		06233F48F68F353781CB2488 = {
-			isa = PBXGroup;
-			children = (
-				"A672645B08E6E5E1A2670CC5",
-				"DD115EBA3017E8DB497F54EC",
-				"8163C4EE8E0558A71520BBB0",
-				"6BBC4F52F275DC2218177743",
-				"00A3F229C56EE328EC857B50");
-			name = "uic";
-			refType = 4;
-		};
-		FB61758D0F0FDA4BA867C3D5 = {
-			isa = PBXGroup;
-			children = (
-				"06674E1DE8D3EB6E763DFFDA",
-				"B06B937E4E5DB1B571475081");
-			name = "Sources";
-			refType = 4;
-		};
-		52C235EBF1C9B07808119459 = {
-			isa = PBXGroup;
-			children = (
-				"16A82DA2701971900CCC9274");
-			name = "Sources [RCC]";
-			refType = 4;
-		};
-		EEC299C65D5017EB9DD513B0 = {
-			isa = PBXGroup;
-			children = (
-				"A1B6D1488110DA0868414A40");
-			name = "Sources [UIC]";
-			refType = 4;
-		};
-		7CABE3C80E79AD2B307756D2 = {
-			isa = PBXGroup;
-			children = (
-				"E457C7C0F6FE92258C9ABDE6");
-			name = "Sources [qmake]";
-			refType = 4;
-		};
-		46E892BBB6BB6952967E0561 = {
-			isa = PBXGroup;
-			children = (
-				"41B364AB2E400AB39150ABBF");
-			name = "Temporary Sources";
-			refType = 4;
-		};
-		A0A52A2ADF7A1E2A99738674 = {
-			buildActionMask = 2147483647;
-			files = (
-				);
-			generatedFileNames = (
-				"86A67DD779C853CEF6A8D015",
-				"27D5ABEF9D35DD864BB485E9",
-				"D9D01E696ABE1F0ECDDED0C5",
-				"FD1638E377D97C82BDB438FB",
-				"72224D8B8032363B160DB2F4",
-				"DC78F47D1155B9D5F6AD9FE2",
-				"ED1C6BDDD90C246A4B296AF9",
-				"F1B05587B803785E09220177",
-				"C9DD2E2DB3BAE010A93788AE",
-				"1AAC96ADB30D70BFA6D5E546",
-				"05DD18D2D66A2ADDD607897C",
-				"C0A25E811255ADB7048898AA",
-				"A24C51CF6F70FE9F9917E286",
-				"F61789CD91C257CB91760C5F",
-				"A4FD5A96CF247A25C080F5EB",
-				"1306BAAF620805D3FD99E13A",
-				"81182B2FFAF2215E94F657D1");
-			isa = PBXShellScriptBuildPhase;
-			name = "Qt Preprocessors";
-			neededFileNames = (
-				"86A67DD779C853CEF6A8D015",
-				"27D5ABEF9D35DD864BB485E9",
-				"D9D01E696ABE1F0ECDDED0C5",
-				"FD1638E377D97C82BDB438FB",
-				"72224D8B8032363B160DB2F4",
-				"DC78F47D1155B9D5F6AD9FE2",
-				"ED1C6BDDD90C246A4B296AF9",
-				"F1B05587B803785E09220177",
-				"C9DD2E2DB3BAE010A93788AE",
-				"1AAC96ADB30D70BFA6D5E546",
-				"05DD18D2D66A2ADDD607897C",
-				"C0A25E811255ADB7048898AA",
-				"A24C51CF6F70FE9F9917E286",
-				"F61789CD91C257CB91760C5F",
-				"A4FD5A96CF247A25C080F5EB",
-				"1306BAAF620805D3FD99E13A",
-				"81182B2FFAF2215E94F657D1");
-			shellPath = "/bin/sh";
-			shellScript = "make\ -C\ /Users/thomas/Documents/Informatik/universalindent\ -f\ UniversalIndentGUI.xcodeproj/qt_preprocess.mak";
-		};
-		C29B8785722055ED95EF7B57 = {
-			buildActionMask = 2147483647;
-			files = (
-				"86A67DD779C853CEF6A8D015",
-				"27D5ABEF9D35DD864BB485E9",
-				"D9D01E696ABE1F0ECDDED0C5",
-				"FD1638E377D97C82BDB438FB",
-				"72224D8B8032363B160DB2F4",
-				"DC78F47D1155B9D5F6AD9FE2",
-				"ED1C6BDDD90C246A4B296AF9",
-				"F1B05587B803785E09220177",
-				"C9DD2E2DB3BAE010A93788AE",
-				"1AAC96ADB30D70BFA6D5E546",
-				"05DD18D2D66A2ADDD607897C",
-				"C0A25E811255ADB7048898AA",
-				"A24C51CF6F70FE9F9917E286",
-				"F61789CD91C257CB91760C5F",
-				"A4FD5A96CF247A25C080F5EB",
-				"1306BAAF620805D3FD99E13A",
-				"81182B2FFAF2215E94F657D1");
-			isa = PBXSourcesBuildPhase;
-			name = "Build Sources";
-		};
-		156EDC359F7629703759AEE0 = {
-			isa = PBXFileReference;
-			name = "qscintilla2";
-			path = "../../../Downloads/qt_installed/lib/libqscintilla2.a";
-			refType = 4;
-		};
-		11C52D78F106C6F52D203206 = {
-			fileRef = "156EDC359F7629703759AEE0";
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F71B30EF7686AAA75A14E4F8 = {
-			isa = PBXFileReference;
-			name = "QtGui_debug";
-			path = "../../../Downloads/qt_installed/lib/libQtGui_debug.a";
-			refType = 4;
-		};
-		C7F1C60CE6419BEC02B58F90 = {
-			fileRef = "F71B30EF7686AAA75A14E4F8";
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		DA138F75C9F545CDAE7FB264 = {
-			isa = PBXFrameworkReference;
-			name = "Carbon.framework";
-			path = "/System/Library/Frameworks/Carbon.framework";
-			refType = 0;
-		};
-		C8FD4A1AAA37CF2CA2824CCF = {
-			fileRef = "DA138F75C9F545CDAE7FB264";
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		821416211D63F190AAAD016A = {
-			isa = PBXFrameworkReference;
-			name = "AppKit.framework";
-			path = "/System/Library/Frameworks/AppKit.framework";
-			refType = 0;
-		};
-		51D4DBF7CB8537BE86EBD055 = {
-			fileRef = "821416211D63F190AAAD016A";
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		5321EE800901BA7055D53D05 = {
-			isa = PBXFileReference;
-			name = "QtNetwork_debug";
-			path = "../../../Downloads/qt_installed/lib/libQtNetwork_debug.a";
-			refType = 4;
-		};
-		DD46C4420B82863EFB155CBE = {
-			fileRef = "5321EE800901BA7055D53D05";
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		42D5C905C738815DE632DC2F = {
-			isa = PBXFileReference;
-			name = "QtCore_debug";
-			path = "../../../Downloads/qt_installed/lib/libQtCore_debug.a";
-			refType = 4;
-		};
-		A507E80BF7A918F0159FED5A = {
-			fileRef = "42D5C905C738815DE632DC2F";
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		27AE7A480FD6C52FCA80FECD = {
-			isa = PBXFrameworkReference;
-			name = "ApplicationServices.framework";
-			path = "/System/Library/Frameworks/ApplicationServices.framework";
-			refType = 0;
-		};
-		F9E76E570E10AF14870553A7 = {
-			fileRef = "27AE7A480FD6C52FCA80FECD";
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		ED1E82605DD74B483AF3C982 = {
-			children = (
-				"156EDC359F7629703759AEE0",
-				"F71B30EF7686AAA75A14E4F8",
-				"DA138F75C9F545CDAE7FB264",
-				"821416211D63F190AAAD016A",
-				"5321EE800901BA7055D53D05",
-				"42D5C905C738815DE632DC2F",
-				"27AE7A480FD6C52FCA80FECD");
-			isa = PBXGroup;
-			name = "External Frameworks and Libraries";
-			path = "";
-			refType = 4;
-		};
-		2A1043669E6E5A7426EA502A = {
-			buildActionMask = 2147483647;
-			files = (
-				"11C52D78F106C6F52D203206",
-				"C7F1C60CE6419BEC02B58F90",
-				"C8FD4A1AAA37CF2CA2824CCF",
-				"51D4DBF7CB8537BE86EBD055",
-				"DD46C4420B82863EFB155CBE",
-				"A507E80BF7A918F0159FED5A",
-				"F9E76E570E10AF14870553A7");
-			isa = PBXFrameworksBuildPhase;
-			name = "Frameworks & Libraries";
-		};
-		3787F99312C85FF0073FD7BA = {
-			buildActionMask = 2147483647;
-			files = (
-				512A4F378730360D85751954,
-			);
-			isa = PBXResourcesBuildPhase;
-			name = "Bundle Resources";
-		};
-		F6069D5A5DA8AA28EDB8B3C6 = {
-			name = "Project Copy";
-			buildActionMask = 2147483647;
-			dstPath = "/Users/thomas/Documents/Informatik/universalindent/debug";
+			dstPath = /Users/thomas/Documents/Informatik/universalindent/debug;
 			dstSubfolderSpec = 0;
 			files = (
-"07E0DFA73EB56DCB9E28CDD9");
-			isa = PBXCopyFilesBuildPhase;
+				E99EE6160D292292001E12FF /* UniversalIndentGUI.app in Project Copy */,
+			);
+			name = "Project Copy";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		07E0DFA73EB56DCB9E28CDD9 = {
-			fileRef = "8C2476588C6FEBA528B87005";
-			isa = PBXBuildFile;
-			settings = {
-			};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		00A3F229C56EE328EC857B50 /* ui_UpdateCheckDialog.h */ = {isa = PBXFileReference; lastKnownFileType = file; name = ui_UpdateCheckDialog.h; path = debug/tmp/uic/ui_UpdateCheckDialog.h; sourceTree = "<group>"; };
+		0AF78DFFDB598C40F9DEE03C /* updatecheckdialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = updatecheckdialog.h; path = src/updatecheckdialog.h; sourceTree = "<group>"; };
+		0F617A0F6F84610A27A87E30 /* programicon.rc */ = {isa = PBXFileReference; lastKnownFileType = text; name = programicon.rc; path = resources/programicon.rc; sourceTree = "<group>"; };
+		111F467408ECADEF1412E4E1 /* moc_indenthandler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = moc_indenthandler.cpp; path = debug/tmp/moc/moc_indenthandler.cpp; sourceTree = "<group>"; };
+		156EDC359F7629703759AEE0 /* qscintilla2 */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = qscintilla2; path = ../../../Downloads/qt_installed/lib/libqscintilla2.a; sourceTree = "<group>"; };
+		1B8174BC5491D614E763FE42 /* qrc_Icons.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = qrc_Icons.cpp; path = debug/tmp/qrc/qrc_Icons.cpp; sourceTree = "<group>"; };
+		1D0DD7E076E1A653C5ADA836 /* aboutdialog.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = aboutdialog.cpp; path = src/aboutdialog.cpp; sourceTree = "<group>"; };
+		27AE7A480FD6C52FCA80FECD /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = /System/Library/Frameworks/ApplicationServices.framework; sourceTree = "<absolute>"; };
+		290E702759265E2A11910569 /* UpdateCheckDialog.ui */ = {isa = PBXFileReference; lastKnownFileType = text; name = UpdateCheckDialog.ui; path = src/UpdateCheckDialog.ui; sourceTree = "<group>"; };
+		2E67BEE5A9F88B1264F21E7A /* aboutdialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = aboutdialog.h; path = src/aboutdialog.h; sourceTree = "<group>"; };
+		35102B3E3654DD2295E49D43 /* indentgui.ui */ = {isa = PBXFileReference; lastKnownFileType = text; name = indentgui.ui; path = src/indentgui.ui; sourceTree = "<group>"; };
+		3D22F3CD2345E6DB3D52C755 /* moc_uiguisettings.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = moc_uiguisettings.cpp; path = debug/tmp/moc/moc_uiguisettings.cpp; sourceTree = "<group>"; };
+		42D5C905C738815DE632DC2F /* QtCore_debug */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = QtCore_debug; path = ../../../Downloads/qt_installed/lib/libQtCore_debug.a; sourceTree = "<group>"; };
+		43664F2C938C9A185E1354D4 /* moc_updatecheckdialog.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = moc_updatecheckdialog.cpp; path = debug/tmp/moc/moc_updatecheckdialog.cpp; sourceTree = "<group>"; };
+		438EBE2AD33F069CF17386EF /* moc_highlighter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = moc_highlighter.cpp; path = debug/tmp/moc/moc_highlighter.cpp; sourceTree = "<group>"; };
+		5321EE800901BA7055D53D05 /* QtNetwork_debug */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = QtNetwork_debug; path = ../../../Downloads/qt_installed/lib/libQtNetwork_debug.a; sourceTree = "<group>"; };
+		585CFECF0CE15AC75BE3038E /* mainwindow.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = mainwindow.cpp; path = src/mainwindow.cpp; sourceTree = "<group>"; };
+		680E697BA2A6B89981ABDBF4 /* moc_aboutdialog.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = moc_aboutdialog.cpp; path = debug/tmp/moc/moc_aboutdialog.cpp; sourceTree = "<group>"; };
+		6BBC4F52F275DC2218177743 /* ui_aboutdialog.h */ = {isa = PBXFileReference; lastKnownFileType = file; name = ui_aboutdialog.h; path = debug/tmp/uic/ui_aboutdialog.h; sourceTree = "<group>"; };
+		6D1AD0AC2581C9346952C1AE /* indenthandler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = indenthandler.cpp; path = src/indenthandler.cpp; sourceTree = "<group>"; };
+		79B4B914FF340011E0D11A92 /* uiguisettingsdialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = uiguisettingsdialog.h; path = src/uiguisettingsdialog.h; sourceTree = "<group>"; };
+		79F947E978D31E3EE78A3CA3 /* uiguierrormessage.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = uiguierrormessage.cpp; path = src/uiguierrormessage.cpp; sourceTree = "<group>"; };
+		7DBF76AABA74FE9F8ACD5DB5 /* Icons.qrc */ = {isa = PBXFileReference; lastKnownFileType = text; name = Icons.qrc; path = resources/Icons.qrc; sourceTree = "<group>"; };
+		7EC3C68A81EFFF79B6CA22AC /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = src/main.cpp; sourceTree = "<group>"; };
+		8163C4EE8E0558A71520BBB0 /* ui_UiGuiSettingsDialog.h */ = {isa = PBXFileReference; lastKnownFileType = file; name = ui_UiGuiSettingsDialog.h; path = debug/tmp/uic/ui_UiGuiSettingsDialog.h; sourceTree = "<group>"; };
+		821416211D63F190AAAD016A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		8BE8AF423371D6CAE24BA96C /* updatecheckdialog.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = updatecheckdialog.cpp; path = src/updatecheckdialog.cpp; sourceTree = "<group>"; };
+		8C2BAFA061B71DC50BFD2EE6 /* uiguierrormessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = uiguierrormessage.h; path = src/uiguierrormessage.h; sourceTree = "<group>"; };
+		9AA0F0369B7B9DA998B3BF45 /* moc_mainwindow.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = moc_mainwindow.cpp; path = debug/tmp/moc/moc_mainwindow.cpp; sourceTree = "<group>"; };
+		9E5FE3E007D1516848BC5E2E /* highlighter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = highlighter.h; path = src/highlighter.h; sourceTree = "<group>"; };
+		A672645B08E6E5E1A2670CC5 /* ui_indentgui.h */ = {isa = PBXFileReference; lastKnownFileType = file; name = ui_indentgui.h; path = debug/tmp/uic/ui_indentgui.h; sourceTree = "<group>"; };
+		AD869907509F615C41D703F5 /* QtScript_debug */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = QtScript_debug; path = ../../../Downloads/qt_installed/lib/libQtScript_debug.a; sourceTree = "<group>"; };
+		B3201EB1AA113D49631A1BC2 /* UiGuiSettingsDialog.ui */ = {isa = PBXFileReference; lastKnownFileType = text; name = UiGuiSettingsDialog.ui; path = src/UiGuiSettingsDialog.ui; sourceTree = "<group>"; };
+		B619BAE8E88A415D93D5DA15 /* moc_uiguisettingsdialog.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = moc_uiguisettingsdialog.cpp; path = debug/tmp/moc/moc_uiguisettingsdialog.cpp; sourceTree = "<group>"; };
+		CCA6F3C7D091FAF3F0192950 /* uiguisettings.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = uiguisettings.cpp; path = src/uiguisettings.cpp; sourceTree = "<group>"; };
+		D2E76D1E4F45AD5E32A1348F /* indenthandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = indenthandler.h; path = src/indenthandler.h; sourceTree = "<group>"; };
+		D8B009120E336EEAB175ED22 /* highlighter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = highlighter.cpp; path = src/highlighter.cpp; sourceTree = "<group>"; };
+		D924CAFCDA4353AEA9423A47 /* uiguisettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = uiguisettings.h; path = src/uiguisettings.h; sourceTree = "<group>"; };
+		DA138F75C9F545CDAE7FB264 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
+		DD115EBA3017E8DB497F54EC /* ui_toolBarWidget.h */ = {isa = PBXFileReference; lastKnownFileType = file; name = ui_toolBarWidget.h; path = debug/tmp/uic/ui_toolBarWidget.h; sourceTree = "<group>"; };
+		DDCD93CEBC73250DA1DA1579 /* aboutdialog.ui */ = {isa = PBXFileReference; lastKnownFileType = text; name = aboutdialog.ui; path = src/aboutdialog.ui; sourceTree = "<group>"; };
+		E457C7C0F6FE92258C9ABDE6 /* UniversalIndentGUI.pro */ = {isa = PBXFileReference; lastKnownFileType = text; path = UniversalIndentGUI.pro; sourceTree = "<group>"; };
+		E53FC39EBC111E4E73935122 /* mainwindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = mainwindow.h; path = src/mainwindow.h; sourceTree = "<group>"; };
+		E5B4982021E70D198AF38D74 /* toolBarWidget.ui */ = {isa = PBXFileReference; lastKnownFileType = text; name = toolBarWidget.ui; path = src/toolBarWidget.ui; sourceTree = "<group>"; };
+		E99EE6130D292292001E12FF /* UniversalIndentGUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniversalIndentGUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFAA99570EB8729CF49B8242 /* uiguisettingsdialog.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = uiguisettingsdialog.cpp; path = src/uiguisettingsdialog.cpp; sourceTree = "<group>"; };
+		F71B30EF7686AAA75A14E4F8 /* QtGui_debug */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = QtGui_debug; path = ../../../Downloads/qt_installed/lib/libQtGui_debug.a; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2A1043669E6E5A7426EA502A /* Frameworks & Libraries */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11C52D78F106C6F52D203206 /* qscintilla2 in Frameworks & Libraries */,
+				CB875E074F339E4BE79673AD /* QtScript_debug in Frameworks & Libraries */,
+				C7F1C60CE6419BEC02B58F90 /* QtGui_debug in Frameworks & Libraries */,
+				C8FD4A1AAA37CF2CA2824CCF /* Carbon.framework in Frameworks & Libraries */,
+				51D4DBF7CB8537BE86EBD055 /* AppKit.framework in Frameworks & Libraries */,
+				DD46C4420B82863EFB155CBE /* QtNetwork_debug in Frameworks & Libraries */,
+				A507E80BF7A918F0159FED5A /* QtCore_debug in Frameworks & Libraries */,
+				F9E76E570E10AF14870553A7 /* ApplicationServices.framework in Frameworks & Libraries */,
+			);
+			name = "Frameworks & Libraries";
+			runOnlyForDeploymentPostprocessing = 0;
 		};
-		05596AB53D8D521C69802C27 = {
-			children = (
-				"FB61758D0F0FDA4BA867C3D5",
-				"46E892BBB6BB6952967E0561",
-				"883D7615C4D2DE3FA1218F12",
-				"7CABE3C80E79AD2B307756D2",
-				"52C235EBF1C9B07808119459",
-				"EEC299C65D5017EB9DD513B0",
-				"ED1E82605DD74B483AF3C982");
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		030D086A1096AA4CA81C3492 /* qrc */ = {
 			isa = PBXGroup;
-			name = "UniversalIndentGUI";
-			path = "";
-			refType = 4;
-		};
-		8C2476588C6FEBA528B87005 = {
-			isa = PBXFileReference;
-			explicitFileType = "wrapper.application";
-			path = "UniversalIndentGUI.app";
-			refType = 3;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		068F80C7519D0528FB08E821 = {
 			children = (
-				"8C2476588C6FEBA528B87005");
-			isa = PBXGroup;
-			name = "Products";
-			refType = 4;
+				1B8174BC5491D614E763FE42 /* qrc_Icons.cpp */,
+			);
+			name = qrc;
+			sourceTree = "<group>";
 		};
-		4573339B43E481DE09A4C0CD = {
+		05596AB53D8D521C69802C27 /* UniversalIndentGUI */ = {
+			isa = PBXGroup;
+			children = (
+				FB61758D0F0FDA4BA867C3D5 /* Sources */,
+				46E892BBB6BB6952967E0561 /* Temporary Sources */,
+				883D7615C4D2DE3FA1218F12 /* Headers */,
+				7CABE3C80E79AD2B307756D2 /* Sources [qmake] */,
+				52C235EBF1C9B07808119459 /* Sources [RCC] */,
+				EEC299C65D5017EB9DD513B0 /* Sources [UIC] */,
+				ED1E82605DD74B483AF3C982 /* External Frameworks and Libraries */,
+				E99EE6140D292292001E12FF /* Products */,
+			);
+			name = UniversalIndentGUI;
+			sourceTree = "<group>";
+		};
+		06233F48F68F353781CB2488 /* uic */ = {
+			isa = PBXGroup;
+			children = (
+				A672645B08E6E5E1A2670CC5 /* ui_indentgui.h */,
+				DD115EBA3017E8DB497F54EC /* ui_toolBarWidget.h */,
+				8163C4EE8E0558A71520BBB0 /* ui_UiGuiSettingsDialog.h */,
+				6BBC4F52F275DC2218177743 /* ui_aboutdialog.h */,
+				00A3F229C56EE328EC857B50 /* ui_UpdateCheckDialog.h */,
+			);
+			name = uic;
+			sourceTree = "<group>";
+		};
+		06674E1DE8D3EB6E763DFFDA /* src */ = {
+			isa = PBXGroup;
+			children = (
+				1D0DD7E076E1A653C5ADA836 /* aboutdialog.cpp */,
+				D8B009120E336EEAB175ED22 /* highlighter.cpp */,
+				6D1AD0AC2581C9346952C1AE /* indenthandler.cpp */,
+				7EC3C68A81EFFF79B6CA22AC /* main.cpp */,
+				585CFECF0CE15AC75BE3038E /* mainwindow.cpp */,
+				79F947E978D31E3EE78A3CA3 /* uiguierrormessage.cpp */,
+				CCA6F3C7D091FAF3F0192950 /* uiguisettings.cpp */,
+				EFAA99570EB8729CF49B8242 /* uiguisettingsdialog.cpp */,
+				8BE8AF423371D6CAE24BA96C /* updatecheckdialog.cpp */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		16A82DA2701971900CCC9274 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				7DBF76AABA74FE9F8ACD5DB5 /* Icons.qrc */,
+			);
+			name = resources;
+			sourceTree = "<group>";
+		};
+		216DE10A8FE6E4D790A542E3 /* tmp */ = {
+			isa = PBXGroup;
+			children = (
+				70A43B188FDBE60EE01FD089 /* moc */,
+				030D086A1096AA4CA81C3492 /* qrc */,
+				06233F48F68F353781CB2488 /* uic */,
+			);
+			name = tmp;
+			sourceTree = "<group>";
+		};
+		41B364AB2E400AB39150ABBF /* debug */ = {
+			isa = PBXGroup;
+			children = (
+				216DE10A8FE6E4D790A542E3 /* tmp */,
+			);
+			name = debug;
+			sourceTree = "<group>";
+		};
+		46E892BBB6BB6952967E0561 /* Temporary Sources */ = {
+			isa = PBXGroup;
+			children = (
+				41B364AB2E400AB39150ABBF /* debug */,
+			);
+			name = "Temporary Sources";
+			sourceTree = "<group>";
+		};
+		52C235EBF1C9B07808119459 /* Sources [RCC] */ = {
+			isa = PBXGroup;
+			children = (
+				16A82DA2701971900CCC9274 /* resources */,
+			);
+			name = "Sources [RCC]";
+			sourceTree = "<group>";
+		};
+		70A43B188FDBE60EE01FD089 /* moc */ = {
+			isa = PBXGroup;
+			children = (
+				680E697BA2A6B89981ABDBF4 /* moc_aboutdialog.cpp */,
+				438EBE2AD33F069CF17386EF /* moc_highlighter.cpp */,
+				111F467408ECADEF1412E4E1 /* moc_indenthandler.cpp */,
+				9AA0F0369B7B9DA998B3BF45 /* moc_mainwindow.cpp */,
+				3D22F3CD2345E6DB3D52C755 /* moc_uiguisettings.cpp */,
+				B619BAE8E88A415D93D5DA15 /* moc_uiguisettingsdialog.cpp */,
+				43664F2C938C9A185E1354D4 /* moc_updatecheckdialog.cpp */,
+			);
+			name = moc;
+			sourceTree = "<group>";
+		};
+		7CABE3C80E79AD2B307756D2 /* Sources [qmake] */ = {
+			isa = PBXGroup;
+			children = (
+				E457C7C0F6FE92258C9ABDE6 /* UniversalIndentGUI.pro */,
+			);
+			name = "Sources [qmake]";
+			sourceTree = "<group>";
+		};
+		883D7615C4D2DE3FA1218F12 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				F4AF6147B42623F6B3284738 /* src */,
+			);
+			name = Headers;
+			sourceTree = "<group>";
+		};
+		A1B6D1488110DA0868414A40 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				35102B3E3654DD2295E49D43 /* indentgui.ui */,
+				E5B4982021E70D198AF38D74 /* toolBarWidget.ui */,
+				B3201EB1AA113D49631A1BC2 /* UiGuiSettingsDialog.ui */,
+				DDCD93CEBC73250DA1DA1579 /* aboutdialog.ui */,
+				290E702759265E2A11910569 /* UpdateCheckDialog.ui */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		B06B937E4E5DB1B571475081 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				0F617A0F6F84610A27A87E30 /* programicon.rc */,
+			);
+			name = resources;
+			sourceTree = "<group>";
+		};
+		E99EE6140D292292001E12FF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E99EE6130D292292001E12FF /* UniversalIndentGUI.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ED1E82605DD74B483AF3C982 /* External Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				156EDC359F7629703759AEE0 /* qscintilla2 */,
+				AD869907509F615C41D703F5 /* QtScript_debug */,
+				F71B30EF7686AAA75A14E4F8 /* QtGui_debug */,
+				DA138F75C9F545CDAE7FB264 /* Carbon.framework */,
+				821416211D63F190AAAD016A /* AppKit.framework */,
+				5321EE800901BA7055D53D05 /* QtNetwork_debug */,
+				42D5C905C738815DE632DC2F /* QtCore_debug */,
+				27AE7A480FD6C52FCA80FECD /* ApplicationServices.framework */,
+			);
+			name = "External Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		EEC299C65D5017EB9DD513B0 /* Sources [UIC] */ = {
+			isa = PBXGroup;
+			children = (
+				A1B6D1488110DA0868414A40 /* src */,
+			);
+			name = "Sources [UIC]";
+			sourceTree = "<group>";
+		};
+		F4AF6147B42623F6B3284738 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				2E67BEE5A9F88B1264F21E7A /* aboutdialog.h */,
+				9E5FE3E007D1516848BC5E2E /* highlighter.h */,
+				D2E76D1E4F45AD5E32A1348F /* indenthandler.h */,
+				E53FC39EBC111E4E73935122 /* mainwindow.h */,
+				8C2BAFA061B71DC50BFD2EE6 /* uiguierrormessage.h */,
+				D924CAFCDA4353AEA9423A47 /* uiguisettings.h */,
+				79B4B914FF340011E0D11A92 /* uiguisettingsdialog.h */,
+				0AF78DFFDB598C40F9DEE03C /* updatecheckdialog.h */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		FB61758D0F0FDA4BA867C3D5 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				06674E1DE8D3EB6E763DFFDA /* src */,
+				B06B937E4E5DB1B571475081 /* resources */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4573339B43E481DE09A4C0CD /* UniversalIndentGUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E99EE61E0D2922C7001E12FF /* Build configuration list for PBXNativeTarget "UniversalIndentGUI" */;
 			buildPhases = (
-				"D7BA7D76DAB5DD13389D6332",
-				"A0A52A2ADF7A1E2A99738674",
-				"F6069D5A5DA8AA28EDB8B3C6",
-				"C29B8785722055ED95EF7B57",
-				"2A1043669E6E5A7426EA502A",
-				"3787F99312C85FF0073FD7BA");
+				D7BA7D76DAB5DD13389D6332 /* Qt Qmake */,
+				A0A52A2ADF7A1E2A99738674 /* Qt Preprocessors */,
+				F6069D5A5DA8AA28EDB8B3C6 /* Project Copy */,
+				C29B8785722055ED95EF7B57 /* Build Sources */,
+				2A1043669E6E5A7426EA502A /* Frameworks & Libraries */,
+				3787F99312C85FF0073FD7BA /* Bundle Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UniversalIndentGUI;
+			productInstallPath = debug/;
+			productName = UniversalIndentGUI;
+			productReference = E99EE6130D292292001E12FF /* UniversalIndentGUI.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		91B15E841AA80083484172DE /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 2A951308CDB28F104D0A4BD2 /* Build configuration list for PBXProject "UniversalIndentGUI" */;
+			compatibilityVersion = "Xcode 2.4";
+			hasScannedForEncodings = 1;
+			mainGroup = 05596AB53D8D521C69802C27 /* UniversalIndentGUI */;
+			productRefGroup = E99EE6140D292292001E12FF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4573339B43E481DE09A4C0CD /* UniversalIndentGUI */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3787F99312C85FF0073FD7BA /* Bundle Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				512A4F378730360D85751954 /* programicon.rc in Bundle Resources */,
+			);
+			name = "Bundle Resources";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A0A52A2ADF7A1E2A99738674 /* Qt Preprocessors */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "Qt Preprocessors";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/thomas/Documents/Informatik/universalindent -f UniversalIndentGUI.xcodeproj/qt_preprocess.mak";
+		};
+		D7BA7D76DAB5DD13389D6332 /* Qt Qmake */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "Qt Qmake";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/thomas/Documents/Informatik/universalindent -f UniversalIndentGUI.xcodeproj/qt_makeqmake.mak";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C29B8785722055ED95EF7B57 /* Build Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86A67DD779C853CEF6A8D015 /* aboutdialog.cpp in Build Sources */,
+				27D5ABEF9D35DD864BB485E9 /* highlighter.cpp in Build Sources */,
+				D9D01E696ABE1F0ECDDED0C5 /* indenthandler.cpp in Build Sources */,
+				FD1638E377D97C82BDB438FB /* main.cpp in Build Sources */,
+				72224D8B8032363B160DB2F4 /* mainwindow.cpp in Build Sources */,
+				DC78F47D1155B9D5F6AD9FE2 /* uiguierrormessage.cpp in Build Sources */,
+				ED1C6BDDD90C246A4B296AF9 /* uiguisettings.cpp in Build Sources */,
+				F1B05587B803785E09220177 /* uiguisettingsdialog.cpp in Build Sources */,
+				C9DD2E2DB3BAE010A93788AE /* updatecheckdialog.cpp in Build Sources */,
+				1AAC96ADB30D70BFA6D5E546 /* moc_aboutdialog.cpp in Build Sources */,
+				05DD18D2D66A2ADDD607897C /* moc_highlighter.cpp in Build Sources */,
+				C0A25E811255ADB7048898AA /* moc_indenthandler.cpp in Build Sources */,
+				A24C51CF6F70FE9F9917E286 /* moc_mainwindow.cpp in Build Sources */,
+				F61789CD91C257CB91760C5F /* moc_uiguisettings.cpp in Build Sources */,
+				A4FD5A96CF247A25C080F5EB /* moc_uiguisettingsdialog.cpp in Build Sources */,
+				1306BAAF620805D3FD99E13A /* moc_updatecheckdialog.cpp in Build Sources */,
+				81182B2FFAF2215E94F657D1 /* qrc_Icons.cpp in Build Sources */,
+			);
+			name = "Build Sources";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		8DB1DD96F65B1BF1FFC506E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
 			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+			};
+			name = Debug;
+		};
+		95E1EB2E5DDD587BE5B3E548 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+			};
+			name = Release;
+		};
+		E99EE6190D292293001E12FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_ROOT = /Users/thomas/Documents/Informatik/universalindent;
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1.0;
+				DYLIB_CURRENT_VERSION = 1.0.0;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				HEADER_SEARCH_PATHS = (
-					"../../../Downloads/qt_installed/include/QtCore",
-					"../../../Downloads/qt_installed/include/QtCore",
-					"../../../Downloads/qt_installed/include/QtNetwork",
-					"../../../Downloads/qt_installed/include/QtNetwork",
-					"../../../Downloads/qt_installed/include/QtGui",
-					"../../../Downloads/qt_installed/include/QtGui",
-					"../../../Downloads/qt_installed/include",
-					"src",
-					"debug/tmp/moc",
-					"debug/tmp/uic",
-					"/usr/local/include",
-					"/System/Library/Frameworks/CarbonCore.framework/Headers",
-					"../../../Downloads/qt_installed/mkspecs/macx-xcode");
+					../../../Downloads/qt_installed/include/QtCore,
+					../../../Downloads/qt_installed/include/QtCore,
+					../../../Downloads/qt_installed/include/QtNetwork,
+					../../../Downloads/qt_installed/include/QtNetwork,
+					../../../Downloads/qt_installed/include/QtGui,
+					../../../Downloads/qt_installed/include/QtGui,
+					../../../Downloads/qt_installed/include/QtScript,
+					../../../Downloads/qt_installed/include/QtScript,
+					../../../Downloads/qt_installed/include,
+					src,
+					debug/tmp/moc,
+					debug/tmp/uic,
+					/usr/local/include,
+					/System/Library/Frameworks/CarbonCore.framework/Headers,
+					"../../../Downloads/qt_installed/mkspecs/macx-xcode",
+				);
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_DIR = /Users/thomas/Documents/Informatik/universalindent/debug/;
+				LEXFLAGS = "";
 				LIBRARY_SEARCH_PATHS = (
-					"/Users/thomas/Downloads/qt_installed/lib",
-					"/Users/thomas/Downloads/qt_installed/lib",
-					"/System/Library/Frameworks/");
-				OPTIMIZATION_CFLAGS = (
-					);
+					/Users/thomas/Downloads/qt_installed/lib,
+					/Users/thomas/Downloads/qt_installed/lib,
+					/System/Library/Frameworks/,
+				);
+				OBJROOT = debug/tmp/obj/;
 				OTHER_CFLAGS = (
 					"-pipe",
 					"-g",
 					"-Wall",
 					"-W",
+					"-DQT_SCRIPT_LIB",
 					"-DQT_GUI_LIB",
 					"-DQT_NETWORK_LIB",
-					"-DQT_CORE_LIB");
+					"-DQT_CORE_LIB",
+				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"-pipe",
 					"-g",
 					"-Wall",
 					"-W",
+					"-DQT_SCRIPT_LIB",
 					"-DQT_GUI_LIB",
 					"-DQT_NETWORK_LIB",
-					"-DQT_CORE_LIB");
-				LEXFLAGS = "";
-				YACCFLAGS = "-d";
-				OTHER_REZFLAGS = "";
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = "";
-				PREBINDING = NO;
-				INFOPLIST_FILE = "Info.plist";
-				BUILD_ROOT = "/Users/thomas/Documents/Informatik/universalindent";
+					"-DQT_CORE_LIB",
+				);
 				OTHER_LDFLAGS = (
 					"-headerpad_max_install_names",
 					"-L/Users/thomas/Downloads/qt_installed/lib",
@@ -890,103 +503,182 @@
 					"-lssl",
 					"-lcrypto",
 					"-lz",
-					"-lm");
-				INSTALL_DIR = "/Users/thomas/Documents/Informatik/universalindent/debug/";
-				DYLIB_CURRENT_VERSION = "1.0.0";
-				DYLIB_COMPATIBILITY_VERSION = "1.0";
-				OBJROOT = "debug/tmp/obj/";
-				PRODUCT_NAME = "UniversalIndentGUI";
-			};
-			conditionalBuildSettings = {
-			};
-			dependencies = (
+					"-lm",
 				);
-			productReference = "8C2476588C6FEBA528B87005";
-			shouldUseHeadermap = 1;
-			isa = PBXNativeTarget;
-			productType = "com.apple.product-type.application";
-			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-<!DOCTYPE plist SYSTEM \"file://localhost/System/Library/DTDs/PropertyList.dtd\">
-<plist version=\"0.9\">
-<dict>
-	<key>CFBundleIconFile</key>
-	<string>programicon.rc</string>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
-        <key>CFBundleGetInfoString</key>
-	<string>Created by Qt/QMake</string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>CFBundleExecutable</key>
-	<string>UniversalIndentGUI</string>
-	<key>NOTE</key>
-	<string>Please, do NOT change this file -- It was generated by Qt/QMake.</string>
-</dict>
-</plist>
-";
-			name = "UniversalIndentGUI";
-			productName = "UniversalIndentGUI";
-			startupPath = "<<ProjectDirectory>>";
-			productInstallPath = "debug/";
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = UniversalIndentGUI;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "";
+				YACCFLAGS = "-d";
+			};
+			name = Debug;
 		};
-		8DB1DD96F65B1BF1FFC506E0 = {
+		E99EE61A0D292293001E12FF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COPY_PHASE_STRIP = "NO";
-				GCC_GENERATE_DEBUGGING_SYMBOLS = "YES";
-				GCC_OPTIMIZATION_LEVEL = "0";
-			};
-			name = "Debug";
-		};
-		2C641C3335766025DD51B7BD = {
-			buildRules = (
+				BUILD_ROOT = /Users/thomas/Documents/Informatik/universalindent;
+				COPY_PHASE_STRIP = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1.0;
+				DYLIB_CURRENT_VERSION = 1.0.0;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				HEADER_SEARCH_PATHS = (
+					../../../Downloads/qt_installed/include/QtCore,
+					../../../Downloads/qt_installed/include/QtCore,
+					../../../Downloads/qt_installed/include/QtNetwork,
+					../../../Downloads/qt_installed/include/QtNetwork,
+					../../../Downloads/qt_installed/include/QtGui,
+					../../../Downloads/qt_installed/include/QtGui,
+					../../../Downloads/qt_installed/include/QtScript,
+					../../../Downloads/qt_installed/include/QtScript,
+					../../../Downloads/qt_installed/include,
+					src,
+					debug/tmp/moc,
+					debug/tmp/uic,
+					/usr/local/include,
+					/System/Library/Frameworks/CarbonCore.framework/Headers,
+					"../../../Downloads/qt_installed/mkspecs/macx-xcode",
 				);
-			buildSettings = {
-				COPY_PHASE_STRIP = "NO";
-				GCC_GENERATE_DEBUGGING_SYMBOLS = "YES";
-				GCC_OPTIMIZATION_LEVEL = "0";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_DIR = /Users/thomas/Documents/Informatik/universalindent/debug/;
+				LEXFLAGS = "";
+				LIBRARY_SEARCH_PATHS = (
+					/Users/thomas/Downloads/qt_installed/lib,
+					/Users/thomas/Downloads/qt_installed/lib,
+					/System/Library/Frameworks/,
+				);
+				OBJROOT = debug/tmp/obj/;
+				OTHER_CFLAGS = (
+					"-pipe",
+					"-g",
+					"-Wall",
+					"-W",
+					"-DQT_SCRIPT_LIB",
+					"-DQT_GUI_LIB",
+					"-DQT_NETWORK_LIB",
+					"-DQT_CORE_LIB",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-pipe",
+					"-g",
+					"-Wall",
+					"-W",
+					"-DQT_SCRIPT_LIB",
+					"-DQT_GUI_LIB",
+					"-DQT_NETWORK_LIB",
+					"-DQT_CORE_LIB",
+				);
+				OTHER_LDFLAGS = (
+					"-headerpad_max_install_names",
+					"-L/Users/thomas/Downloads/qt_installed/lib",
+					"-L/Users/thomas/Downloads/qt_installed/lib",
+					"-lssl",
+					"-lcrypto",
+					"-lz",
+					"-lm",
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = UniversalIndentGUI;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "";
+				YACCFLAGS = "-d";
 			};
-			isa = "PBXBuildStyle";
-			name = "Debug";
+			name = Release;
 		};
-		95E1EB2E5DDD587BE5B3E548 = {
+		E99EE61B0D292293001E12FF /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COPY_PHASE_STRIP = "YES";
-				GCC_GENERATE_DEBUGGING_SYMBOLS = "NO";
-			};
-			name = "Release";
-		};
-		26DE8D2AEA4B3714B41E931F = {
-			buildRules = (
+				BUILD_ROOT = /Users/thomas/Documents/Informatik/universalindent;
+				DYLIB_COMPATIBILITY_VERSION = 1.0;
+				DYLIB_CURRENT_VERSION = 1.0.0;
+				HEADER_SEARCH_PATHS = (
+					../../../Downloads/qt_installed/include/QtCore,
+					../../../Downloads/qt_installed/include/QtCore,
+					../../../Downloads/qt_installed/include/QtNetwork,
+					../../../Downloads/qt_installed/include/QtNetwork,
+					../../../Downloads/qt_installed/include/QtGui,
+					../../../Downloads/qt_installed/include/QtGui,
+					../../../Downloads/qt_installed/include/QtScript,
+					../../../Downloads/qt_installed/include/QtScript,
+					../../../Downloads/qt_installed/include,
+					src,
+					debug/tmp/moc,
+					debug/tmp/uic,
+					/usr/local/include,
+					/System/Library/Frameworks/CarbonCore.framework/Headers,
+					"../../../Downloads/qt_installed/mkspecs/macx-xcode",
 				);
-			buildSettings = {
-				COPY_PHASE_STRIP = "YES";
-				GCC_GENERATE_DEBUGGING_SYMBOLS = "NO";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_DIR = /Users/thomas/Documents/Informatik/universalindent/debug/;
+				LEXFLAGS = "";
+				LIBRARY_SEARCH_PATHS = (
+					/Users/thomas/Downloads/qt_installed/lib,
+					/Users/thomas/Downloads/qt_installed/lib,
+					/System/Library/Frameworks/,
+				);
+				OBJROOT = debug/tmp/obj/;
+				OTHER_CFLAGS = (
+					"-pipe",
+					"-g",
+					"-Wall",
+					"-W",
+					"-DQT_SCRIPT_LIB",
+					"-DQT_GUI_LIB",
+					"-DQT_NETWORK_LIB",
+					"-DQT_CORE_LIB",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-pipe",
+					"-g",
+					"-Wall",
+					"-W",
+					"-DQT_SCRIPT_LIB",
+					"-DQT_GUI_LIB",
+					"-DQT_NETWORK_LIB",
+					"-DQT_CORE_LIB",
+				);
+				OTHER_LDFLAGS = (
+					"-headerpad_max_install_names",
+					"-L/Users/thomas/Downloads/qt_installed/lib",
+					"-L/Users/thomas/Downloads/qt_installed/lib",
+					"-lssl",
+					"-lcrypto",
+					"-lz",
+					"-lm",
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = UniversalIndentGUI;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "";
+				YACCFLAGS = "-d";
 			};
-			isa = "PBXBuildStyle";
-			name = "Release";
+			name = Default;
 		};
-		2A951308CDB28F104D0A4BD2 = {
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2A951308CDB28F104D0A4BD2 /* Build configuration list for PBXProject "UniversalIndentGUI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				"8DB1DD96F65B1BF1FFC506E0",
-				"95E1EB2E5DDD587BE5B3E548");
+				8DB1DD96F65B1BF1FFC506E0 /* Debug */,
+				95E1EB2E5DDD587BE5B3E548 /* Release */,
+			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationIsName = "Debug";
+			defaultConfigurationName = Release;
 		};
-		91B15E841AA80083484172DE = {
-			buildStyles = (
-				"2C641C3335766025DD51B7BD",
-				"26DE8D2AEA4B3714B41E931F");
-			hasScannedForEncodings = 1;
-			isa = PBXProject;
-			mainGroup = "05596AB53D8D521C69802C27";
-			buildConfigurationList = "2A951308CDB28F104D0A4BD2";
-			projectDirPath = "";
-			targets = (
-				"4573339B43E481DE09A4C0CD");
+		E99EE61E0D2922C7001E12FF /* Build configuration list for PBXNativeTarget "UniversalIndentGUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E99EE6190D292293001E12FF /* Debug */,
+				E99EE61A0D292293001E12FF /* Release */,
+				E99EE61B0D292293001E12FF /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
 		};
+/* End XCConfigurationList section */
 	};
-	rootObject = "91B15E841AA80083484172DE";
+	rootObject = 91B15E841AA80083484172DE /* Project object */;
 }
