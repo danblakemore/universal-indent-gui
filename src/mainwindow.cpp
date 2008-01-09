@@ -338,6 +338,9 @@ void MainWindow::initIndenter() {
     connect( uiGuiIndenterParameterTooltipsEnabled, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern(bool)) );
     connect( settings, SIGNAL(indenterParameterTooltipsEnabled(bool)), uiGuiIndenterParameterTooltipsEnabled, SLOT(setChecked(bool)) );
     uiGuiIndenterParameterTooltipsEnabled->setChecked( settings->getValueByName("IndenterParameterTooltipsEnabled").toBool() );
+
+    // Handle if the indenter help/manual button is pressed
+    connect( toolBarWidget->indenterManualButton, SIGNAL(clicked()), this, SLOT(showIndenterManual()) );
 }
 
 
@@ -1420,4 +1423,13 @@ void MainWindow::openFileFromRecentlyOpenedList(QAction* recentlyOpenedAction) {
         // any of these actions in updateRecentlyOpenedList() causes an error.
 		QTimer::singleShot(0, this, SLOT(updateRecentlyOpenedList()) );
 	}
+}
+
+
+/*!
+    \brief This slot gets the reference to the indenters manual from the indenter handler and opens it.
+ */
+void MainWindow::showIndenterManual() {
+    QString manualReference = indentHandler->getManual();
+    QDesktopServices::openUrl( manualReference );
 }

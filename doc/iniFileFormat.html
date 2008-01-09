@@ -26,6 +26,7 @@ indenterFileName=astyle
 indenterName=Artistic Style
 inputFileName=indentinput
 inputFileParameter=
+manual="http://website.of.onlinemanual"
 outputFileName=indentinput
 outputFileParameter=none
 parameterOrder=ipo
@@ -49,6 +50,8 @@ version=1.21
 "inputFileName" defines the file used as input file for the called indenter. It is a copy of the previous opened source code file.<br>
 <br>
 "inputFileParameter" sets the eventually needed parameter in front of "inputFileName" to tell the indenter and the command line call that the following string is the input file. If set to "none" no special output file will be set.<br>
+<br>
+"manual" is a string that points to a website that hosts the indenters online manual.<br>
 <br>
 "outputFileName" the file name where the indenter writes its formatted source code to. Also the file UniversalIndentGUI reads after the indenter call to show it in the preview. Some times an indenter overwrites the content of the inputfile by default and creates a backup (as AStyle does). In this case "outputFileName" is equal to "inputFileName" but the parameter "outputFileParameter" has to be set to "none". No  output file name will be selected for the indenter but UniversalIndentGUI knows where the output was written to.<br>
 <br>

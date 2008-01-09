@@ -1145,3 +1145,11 @@ bool IndentHandler::createIndenterCallString() {
     indenterExecutableSuffix = "";
     return false;
 }
+
+
+/*!
+    \brief Returns a string that points to where the indenters manual can be found.
+ */
+QString IndentHandler::getManual() {
+    return indenterSettings->value(" header/manual").toString();
+}

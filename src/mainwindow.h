@@ -141,6 +141,7 @@ private slots:
     void updateRecentlyOpenedList();
     void openFileFromRecentlyOpenedList(QAction* recentlyOpenedAction);
     void clearRecentlyOpenedList();
+    void showIndenterManual();
 };
 
 #endif // MAINWINDOW_H

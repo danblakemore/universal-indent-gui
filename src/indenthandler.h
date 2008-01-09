@@ -59,6 +59,13 @@ public:
     QString getPossibleIndenterFileExtensions();
     QString getParameterString();
     QString getIndenterCfgFile();
+    QString getManual();
+
+signals:
+    void indenterSettingsChanged();
+    
+private slots:
+    void setIndenter(int indenterID);
 
 private:
     QString callExecutableIndenter(QString sourceCode, QString inputFileExtension);
@@ -140,13 +147,6 @@ private:
     UiGuiErrorMessage *errorMessageDialog;
     QString indenterExecutableCallString;
     QString indenterExecutableSuffix;
-
-private slots:
-    void setIndenter(int indenterID);
-
-signals:
-    void indenterSettingsChanged();
-
 };
 
 #endif // INDENTHANDLER_H
