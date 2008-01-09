@@ -1,3 +1,6 @@
+2007-11-22 Version 0.8.0 Beta
+[fix] Bug ID 1855460 : The parameter settings of the indenter were only saved, if preview is turned on. Now the settings are always remembered.
+
 2007-11-22 Version 0.7.1 Beta
 [add] Feature Request ID 1833814 : Added support for building on MacOSX.
 [change] Feature Request ID 1836486 : Update to latest version of Uncrustify.
