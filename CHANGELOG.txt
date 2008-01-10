@@ -1,4 +1,5 @@
 2007-11-22 Version 0.8.0 Beta
+[add] Added support for a simple shell code indenter written in awk.
 [add] Feature Request ID 1867628 : Added a button to the toolbar near the indenter selection that opens the indenters online manual.
 [fix] Bug ID 1855460 : The parameter settings of the indenter were only saved, if preview is turned on. Now the settings are always remembered.
 
