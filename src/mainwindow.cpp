@@ -55,7 +55,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
         commonAppBasePathComponents.replace( commonAppBasePathComponents.count()-2, "All Users" );
         QString commonAppBasePath = commonAppBasePathComponents.join("/");
 #else
-        QString commonAppBasePath = "/etc/xdg/UniversalIndentGUI";
+        QString commonAppBasePath = "/etc/xdg";
 #endif
         indenterDirctoryStr = commonAppBasePath + "/UniversalIndentGUI/indenters";
         tempDirctoryStr = QDir::temp().absolutePath();
