@@ -55,7 +55,7 @@ version=1.21
 <br>
 "outputFileName" the file name where the indenter writes its formatted source code to. Also the file UniversalIndentGUI reads after the indenter call to show it in the preview. Some times an indenter overwrites the content of the inputfile by default and creates a backup (as AStyle does). In this case "outputFileName" is equal to "inputFileName" but the parameter "outputFileParameter" has to be set to "none". No  output file name will be selected for the indenter but UniversalIndentGUI knows where the output was written to.<br>
 <br>
-"outputFileParameter" same as for "inputFileParameter" with respect to the special case mentioned for "inputFileParameter" if the input file will be overwritten.<br>
+"outputFileParameter" same as for "inputFileParameter" with respect to the special case mentioned for "inputFileParameter" if the input file will be overwritten. If the indenter only writes to standard output (stdout) this value has to be set to "stdout" (see uigui_phpCB.ini). In that case "outputFileName" can be left empty. It will be ignored anyway.<br>
 <br>
 "parameterOrder" Some indenters need a strict order of the command line parameters for input file, output file and eventually indent settings. "parameterOrder" can be set to "iop", "ipo" and "pio" to define the order of input, ouput and paramters at the commandline call.<br>
 <br>
