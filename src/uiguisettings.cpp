@@ -31,7 +31,16 @@
 	\brief The constructor for the settings.
 */
 UiGuiSettings::UiGuiSettings(QString indenterDirctoryStr) : QObject() {
-    qsettings = new QSettings(QSettings::IniFormat, QSettings::UserScope, QCoreApplication::organizationName(), QCoreApplication::applicationName(), this);
+    QString settingsSubDir = QCoreApplication::applicationDirPath() + "/config/UniversalIndentGUI.ini";
+    // If a "indenters" subdir in the applications binary path exists, use local config files (portable mode)
+    if ( QFile::exists( QCoreApplication::applicationDirPath() + "/indenters" ) ) {
+        qsettings = new QSettings(settingsSubDir, QSettings::IniFormat, this);
+    } 
+    // ... otherwise use the users application data default dir.
+    else {
+        qsettings = new QSettings(QSettings::IniFormat, QSettings::UserScope, QCoreApplication::organizationName(), QCoreApplication::applicationName(), this);
+    }
+
     indenterExecutablePath = indenterDirctoryStr;
 	readAvailableTranslations();
 	loadSettings();
@@ -250,12 +259,12 @@ bool UiGuiSettings::loadSettings() {
 	settings["VersionInSettingsFile"] = qsettings->value("UniversalIndentGUI/version", "").toString();
 
 	// Read windows last size and position from the settings file.
-	settings["WindowIsMaximized"] = qsettings->value( "UniversalIndentGUI/maximized", false ).toBool();
-	settings["WindowPosition"] = qsettings->value( "UniversalIndentGUI/position", QPoint(0, 0) ).toPoint();
-	settings["WindowSize"] = qsettings->value( "UniversalIndentGUI/size", QSize(800, 600) ).toSize();
+	settings["WindowIsMaximized"] = qsettings->value("UniversalIndentGUI/maximized", false).toBool();
+	settings["WindowPosition"] = qsettings->value("UniversalIndentGUI/position", QPoint(0, 0)).toPoint();
+	settings["WindowSize"] = qsettings->value("UniversalIndentGUI/size", QSize(800, 600)).toSize();
 
 	// Read last selected encoding for the opened source code file.
-	settings["FileEncoding"] = qsettings->value( "UniversalIndentGUI/encoding", "UTF-8" ).toString();
+	settings["FileEncoding"] = qsettings->value("UniversalIndentGUI/encoding", "UTF-8").toString();
 
     // Read maximum length of list for recently opened files.
 	settings["RecentlyOpenedListSize"] = qsettings->value("UniversalIndentGUI/recentlyOpenedListSize", 5).toInt();
@@ -264,7 +273,7 @@ bool UiGuiSettings::loadSettings() {
 	settings["LoadLastOpenedFileOnStartup"] = qsettings->value("UniversalIndentGUI/loadLastSourceCodeFileOnStartup", true).toBool();
 
 	// Read last opened source code file from the settings file.
-	settings["LastOpenedFiles"] = qsettings->value("UniversalIndentGUI/lastSourceCodeFile", indenterExecutablePath+"example.cpp").toString();
+	settings["LastOpenedFiles"] = qsettings->value("UniversalIndentGUI/lastSourceCodeFile", indenterExecutablePath+"/example.cpp").toString();
 
 	// Read last selected indenter from the settings file.
 	int LastSelectedIndenterID = qsettings->value("UniversalIndentGUI/lastSelectedIndenter", 0).toInt();
@@ -274,10 +283,10 @@ bool UiGuiSettings::loadSettings() {
 	settings["LastSelectedIndenterID"] = LastSelectedIndenterID;
 
     // Read if syntax highlighting is enabled.
-	settings["SyntaxHighlightningEnabled"] = qsettings->value( "UniversalIndentGUI/SyntaxHighlightningEnabled", true ).toBool();
+	settings["SyntaxHighlightningEnabled"] = qsettings->value("UniversalIndentGUI/SyntaxHighlightningEnabled", true).toBool();
 
 	// Read if white space characters should be displayed.
-	settings["WhiteSpaceIsVisible"] = qsettings->value( "UniversalIndentGUI/whiteSpaceIsVisible", false ).toBool();
+	settings["WhiteSpaceIsVisible"] = qsettings->value("UniversalIndentGUI/whiteSpaceIsVisible", false).toBool();
 
 	// Read if indenter parameter tool tips are enabled.
 	settings["IndenterParameterTooltipsEnabled"] = qsettings->value("UniversalIndentGUI/indenterParameterTooltipsEnabled", true).toBool();

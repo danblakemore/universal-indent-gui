@@ -38,12 +38,20 @@ Highlighter::Highlighter(QsciScintilla *parent, QSettings *settings)
     this->parent = parent;
 
     // If a settings file/object is given along with the constructor parameters, use it...
-    if (settings) {
+    if ( settings != NULL ) {
 	    this->settings = settings;
     }
     // ... else create a new own one.
     else {
-        this->settings = new QSettings("./data/highlighter.ini", QSettings::IniFormat, this);
+        QString settingsSubDir = QCoreApplication::applicationDirPath() + "/config/UiGuiSyntaxHighlightConfig.ini";
+        // If a "indenters" subdir in the applications binary path exists, use local config files (portable mode)
+        if ( QFile::exists( QCoreApplication::applicationDirPath() + "/indenters" ) ) {
+            this->settings = new QSettings(settingsSubDir, QSettings::IniFormat, this);
+        } 
+        // ... otherwise use the users application data default dir.
+        else {
+            this->settings = new QSettings(QSettings::IniFormat, QSettings::UserScope, QCoreApplication::organizationName(), "UiGuiSyntaxHighlightConfig", this);
+        }
     }
 
     highlightningIsOn = true;

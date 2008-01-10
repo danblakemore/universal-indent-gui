@@ -83,6 +83,7 @@ private:
     QString revision;
     QString buildDateStr;
 	QString indenterDirctoryStr;
+    QString tempDirctoryStr;
 	QString currentEncoding;
     QString sourceFileContent;
     QString sourceFormattedContent;

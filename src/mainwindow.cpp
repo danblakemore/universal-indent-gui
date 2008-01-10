@@ -41,8 +41,27 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     QDate buildDate(2007, 11, 22);
     buildDateStr = buildDate.toString("d. MMMM yyyy");
 
+    // If a settings file in the subdir of the applications dir exists, use this one (portable mode)
+    indenterDirctoryStr = QCoreApplication::applicationDirPath() + "/indenters";
+    // ... otherwise use the system specific global application data path.
+    if ( QFile::exists( indenterDirctoryStr ) ) {
+        tempDirctoryStr = QCoreApplication::applicationDirPath() + "/temp";
+        QDir tempDirCreator;
+        tempDirCreator.mkpath( tempDirctoryStr );
+    }
+    else {
+#ifdef Q_OS_WIN
+        QStringList commonAppBasePathComponents =  QDir::fromNativeSeparators( qgetenv("APPDATA") ).split("/");
+        commonAppBasePathComponents.replace( commonAppBasePathComponents.count()-2, "All Users" );
+        QString commonAppBasePath = commonAppBasePathComponents.join("/");
+#else
+        QString commonAppBasePath = "/etc/xdg/UniversalIndentGUI";
+#endif
+        indenterDirctoryStr = commonAppBasePath + "/UniversalIndentGUI/indenters";
+        tempDirctoryStr = QDir::temp().absolutePath();
+    }
+
     // Init of some variables.
-    indenterDirctoryStr = "./data/";
     sourceCodeChanged = false;
     scrollPositionChanged = false;
 
@@ -244,7 +263,7 @@ void MainWindow::initSyntaxHighlighter() {
     // Create the highlighter.
     highlighter = new Highlighter(txtedSourceCode);
 
-    // Handle if syntax highlightning is enabled
+    // Handle if syntax highlighting is enabled
 	bool syntaxHighlightningEnabled = settings->getValueByName("SyntaxHighlightningEnabled").toBool();
 	if ( syntaxHighlightningEnabled ) {
         highlighter->turnHighlightOn();
@@ -315,7 +334,7 @@ void MainWindow::initIndenter() {
 	currentIndenterID = settings->getValueByName("LastSelectedIndenterID").toInt();
 
     // Create the indenter widget with the ID and add it to the layout.
-    indentHandler = new IndentHandler(indenterDirctoryStr, currentIndenterID, this, centralwidget);
+    indentHandler = new IndentHandler(indenterDirctoryStr, tempDirctoryStr, currentIndenterID, this, centralwidget);
     vboxLayout->addWidget(indentHandler);
 
     // Check whether indenters are available.
@@ -329,7 +348,6 @@ void MainWindow::initIndenter() {
     // If no indenter are found, show a warning message.
 	else {
 		currentIndenterID = 0;
-		QMessageBox::warning(NULL, tr("No indenter ini files"), tr("There exists no indenter ini files in the directory \"") + QDir(indenterDirctoryStr).absolutePath() + "\".");
 	}
 
     // Set the combobox in the toolbar to show the selected indenter.
@@ -368,7 +386,7 @@ void MainWindow::selectIndenter(int indenterID) {
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
-    indentHandler = new IndentHandler(indenterDirctoryStr, indenterID, this, centralwidget);
+    indentHandler = new IndentHandler(indenterDirctoryStr, tempDirctoryStr, indenterID, this, centralwidget);
     indentHandler->hide();
     vboxLayout->insertWidget(0, indentHandler);
     oldIndentHandler->hide();
@@ -960,8 +978,8 @@ void MainWindow::loadLastOpenedFile() {
 			sourceFileContent = loadFile(currentSourceFile);
 		}
         // If the last opened source code file does not exist, try to load the default example.cpp file.
-        else if ( QFile::exists(indenterDirctoryStr + "example.cpp") ) {
-			QFileInfo fileInfo(indenterDirctoryStr + "example.cpp");
+        else if ( QFile::exists(indenterDirctoryStr + "/example.cpp") ) {
+			QFileInfo fileInfo(indenterDirctoryStr + "/example.cpp");
 			currentSourceFile = fileInfo.absoluteFilePath();
 			sourceFileContent = loadFile(currentSourceFile);
 		}

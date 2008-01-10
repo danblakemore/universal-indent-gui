@@ -23,6 +23,7 @@
 #include <QObject>
 #include <QMap>
 #include <QMenu>
+#include <QCoreApplication>
 #include <Qsci/qsciscintilla.h>
 #include <Qsci/qscilexer.h>
 #include <Qsci/qscilexerbash.h>
