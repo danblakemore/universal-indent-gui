@@ -35,10 +35,11 @@ class AboutDialog : public QDialog, private Ui::AboutDialog
     Q_OBJECT
 
 public:
-    AboutDialog(QWidget *parent, QString version, QString revision, QString buildDate);
+    AboutDialog(QWidget *parent = 0, Qt::WindowFlags flags = 0, QString version = "", QString revision = "", QString buildDate = "");
 
 public slots:
     int exec();
+    void show();
 
 private slots:
     void restoreTextBrowserContentAndOpenLink(const QUrl &link);
@@ -55,6 +56,7 @@ private:
     int scrollDirection;
     int scrollSpeed;
     QTimer *timer;
+    QWidget *parent;
 };
 
 #endif // ABOUTDIALOG_H

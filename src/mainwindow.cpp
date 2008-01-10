@@ -78,9 +78,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 	
 
     // generate about dialog box
-    aboutDialog = new AboutDialog(this, version, revision, buildDateStr);
-    connect( actionAbout_UniversalIndentGUI, SIGNAL(activated()), aboutDialog, SLOT(exec()) );
-    connect( toolBarWidget->pbAbout, SIGNAL(clicked()), aboutDialog, SLOT(exec()) );
+    aboutDialog = new AboutDialog(this, Qt::SplashScreen, version, revision, buildDateStr);
+    aboutDialogGraphicsView = new AboutDialogGraphicsView(aboutDialog, this);
+    connect( toolBarWidget->pbAbout, SIGNAL(clicked()), aboutDialogGraphicsView, SLOT(show()) );
+    connect( actionAbout_UniversalIndentGUI, SIGNAL(activated()), aboutDialogGraphicsView, SLOT(show()) );
+    //connect( actionAbout_UniversalIndentGUI, SIGNAL(activated()), aboutDialog, SLOT(exec()) );
+    //connect( toolBarWidget->pbAbout, SIGNAL(clicked()), aboutDialog, SLOT(exec()) );
 
 	// generate settings dialog box
 	settingsDialog = new UiGuiSettingsDialog(this, settings);

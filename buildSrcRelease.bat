@@ -14,6 +14,8 @@ md UniversalIndentGUI_src
 IF ERRORLEVEL 1 goto ERROR
 cd UniversalIndentGUI_src
 IF ERRORLEVEL 1 goto ERROR
+md UniversalIndentGUI.xcodeproj
+IF ERRORLEVEL 1 goto ERROR
 md data
 IF ERRORLEVEL 1 goto ERROR
 md resources
@@ -67,6 +69,23 @@ FOR %%A IN ( CHANGELOG.txt, LICENSE.GPL, INSTALL.txt, README.txt, UniversalInden
 echo Done.
 echo.
 
+echo Copying XCode files
+echo -------------------
+rem qmake -spec macx-xcode UniversalIndentGUI.pro >NUL
+rem IF ERRORLEVEL 1 goto ERROR
+cd UniversalIndentGUI.xcodeproj
+FOR %%A IN ( project.pbxproj, qt_makeqmake.mak, qt_preprocess.mak ) DO (
+    if not exist .\%%A (
+        echo File .\data\%%A not found!
+        goto ERROR
+    )
+    copy .\%%A ..\UniversalIndentGUI_src\UniversalIndentGUI.xcodeproj\ >NUL
+    IF ERRORLEVEL 1 goto ERROR
+)
+cd ..
+echo Done.
+echo.
+
 echo Copying doc and UniversalIndentGUI.exe to release dir
 echo -----------------------------------------------------
 copy .\doc\iniFileFormat.html .\UniversalIndentGUI_src\doc\ >NUL
@@ -77,7 +96,7 @@ echo.
 echo Packing the whole release dir content
 echo -------------------------------------
 cd UniversalIndentGUI_src
-7z.exe a -tzip UniversalIndentGUI_0.6.1_Beta_src.zip >NUL
+7z.exe a -tzip UniversalIndentGUI_0.7.1_Beta_src.zip >NUL
 IF ERRORLEVEL 1 goto ERROR
 cd ..
 echo Done.

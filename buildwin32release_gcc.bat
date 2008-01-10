@@ -121,7 +121,7 @@ echo.
 echo Packing the whole release dir content
 echo -------------------------------------
 cd UniversalIndentGUI_win32
-7z.exe a -tzip UniversalIndentGUI_0.7.0_Beta_win32.zip >NUL
+7z.exe a -tzip UniversalIndentGUI_0.7.1_Beta_win32.zip >NUL
 IF ERRORLEVEL 1 goto ERROR
 cd ..
 echo Done.

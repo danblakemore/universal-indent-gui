@@ -25,6 +25,7 @@
 #include "ui_indentgui.h"
 #include "ui_toolBarWidget.h"
 #include "aboutdialog.h"
+#include "AboutDialogGraphicsView.h"
 #include "uiguisettings.h"
 #include "uiguisettingsdialog.h"
 #include "highlighter.h"
@@ -59,6 +60,22 @@ public:
     MainWindow(QWidget *parent = 0);
 
 private:
+    QString loadFile(QString filePath);
+    QString openFileDialog(QString dialogHeaderStr, QString startPath, QString fileMaskStr);
+    void updateWindowTitle();
+    void loadLastOpenedFile();
+    void saveSettings();
+    bool maybeSave();
+    void createEncodingMenu();
+    void createHighlighterMenu();
+    bool initApplicationLanguage();
+    void initMainWindow();
+    void initToolBar();
+    void initTextEditor();
+    void initSyntaxHighlighter();
+    void initIndenter();
+    void changeEvent(QEvent *event);
+
 	QsciScintilla *txtedSourceCode;
 	UiGuiSettings *settings;
 
@@ -73,6 +90,7 @@ private:
     Highlighter *highlighter;
     QScrollBar *textEditVScrollBar;
     AboutDialog *aboutDialog;
+    AboutDialogGraphicsView *aboutDialogGraphicsView;
 	UiGuiSettingsDialog *settingsDialog;
     int textEditLastScrollPos;
     int currentIndenterID;
@@ -95,22 +113,6 @@ private:
     Ui::toolBarWidget *toolBarWidget;
     IndentHandler *indentHandler;
     UpdateCheckDialog *updateCheckDialog;
-
-    QString loadFile(QString filePath);
-    QString openFileDialog(QString dialogHeaderStr, QString startPath, QString fileMaskStr);
-    void updateWindowTitle();
-    void loadLastOpenedFile();
-    void saveSettings();
-    bool maybeSave();
-    void createEncodingMenu();
-    void createHighlighterMenu();
-    bool initApplicationLanguage();
-    void initMainWindow();
-    void initToolBar();
-    void initTextEditor();
-    void initSyntaxHighlighter();
-    void initIndenter();
-    void changeEvent(QEvent *event);
 
 protected:
     void closeEvent( QCloseEvent *event );

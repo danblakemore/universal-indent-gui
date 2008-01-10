@@ -212,6 +212,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\AboutDialogGraphicsView.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\highlighter.cpp"
 				>
 			</File>
@@ -251,6 +255,10 @@
 			>
 			<File
 				RelativePath=".\aboutdialog.h"
+				>
+			</File>
+			<File
+				RelativePath=".\AboutDialogGraphicsView.h"
 				>
 			</File>
 			<File
@@ -325,6 +333,10 @@
 			>
 			<File
 				RelativePath="$(OutDir)\tmp\moc\moc_aboutdialog.cpp"
+				>
+			</File>
+			<File
+				RelativePath="$(OutDir)\tmp\moc\moc_AboutDialogGraphicsView.cpp"
 				>
 			</File>
 			<File
