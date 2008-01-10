@@ -29,7 +29,7 @@ rm -r UniversalIndentGUI_linux32
 echo calling mkdir UniversalIndentGUI_linux32
 echo ----------------------------------------
 mkdir UniversalIndentGUI_linux32
-mkdir UniversalIndentGUI_linux32/data
+mkdir UniversalIndentGUI_linux32/indenters
 mkdir UniversalIndentGUI_linux32/doc
 mkdir UniversalIndentGUI_linux32/translations
 echo copying files to UniversalIndentGUI_linux32
@@ -38,33 +38,33 @@ cp ./CHANGELOG.txt ./UniversalIndentGUI_linux32/
 cp ./LICENSE.GPL ./UniversalIndentGUI_linux32/
 cp ./README.txt ./UniversalIndentGUI_linux32/
 cp ./INSTALL.txt ./UniversalIndentGUI_linux32/
-#cp ./data/.astylerc ./UniversalIndentGUI_linux32/data/
-cp ./data/astyle ./UniversalIndentGUI_linux32/data/
-cp ./data/astyle.html ./UniversalIndentGUI_linux32/data/
-#cp ./data/bcpp.cfg ./UniversalIndentGUI_linux32/data/
-cp ./data/bcpp ./UniversalIndentGUI_linux32/data/
-cp ./data/bcpp.txt ./UniversalIndentGUI_linux32/data/
-cp ./data/csstidy ./UniversalIndentGUI_linux32/data/
-#cp ./data/gc.cfg ./UniversalIndentGUI_linux32/data/
-cp ./data/gc.exe ./UniversalIndentGUI_linux32/data/
-cp ./data/gc.txt ./UniversalIndentGUI_linux32/data/
-cp ./data/htmltidy ./UniversalIndentGUI_linux32/data/
-#cp ./data/.indent.pro ./UniversalIndentGUI_linux32/data/
-cp ./data/indent ./UniversalIndentGUI_linux32/data/
-cp ./data/indent.html ./UniversalIndentGUI_linux32/data/
-#cp ./data/uncrustify.cfg ./UniversalIndentGUI_linux32/data/
-cp ./data/uncrustify ./UniversalIndentGUI_linux32/data/
-cp ./data/uncrustify.txt ./UniversalIndentGUI_linux32/data/
-cp ./data/uigui_astyle.ini ./UniversalIndentGUI_linux32/data/
-cp ./data/uigui_bcpp.ini ./UniversalIndentGUI_linux32/data/
-cp ./data/uigui_csstidy.ini ./UniversalIndentGUI_linux32/data/
-cp ./data/uigui_greatcode.ini ./UniversalIndentGUI_linux32/data/
-cp ./data/uigui_phpCB.ini ./UniversalIndentGUI_linux32/data/
-cp ./data/uigui_gnuindent.ini ./UniversalIndentGUI_linux32/data/
-cp ./data/uigui_uncrustify.ini ./UniversalIndentGUI_linux32/data/
-cp ./data/uigui_htmltidy.ini ./UniversalIndentGUI_linux32/data/
-cp ./data/highlighter.ini ./UniversalIndentGUI_linux32/data/
-cp ./data/example.cpp ./UniversalIndentGUI_linux32/data/
+#cp ./indenters/.astylerc ./UniversalIndentGUI_linux32/indenters/
+cp ./indenters/astyle ./UniversalIndentGUI_linux32/indenters/
+cp ./indenters/astyle.html ./UniversalIndentGUI_linux32/indenters/
+#cp ./indenters/bcpp.cfg ./UniversalIndentGUI_linux32/indenters/
+cp ./indenters/bcpp ./UniversalIndentGUI_linux32/indenters/
+cp ./indenters/bcpp.txt ./UniversalIndentGUI_linux32/indenters/
+cp ./indenters/csstidy ./UniversalIndentGUI_linux32/indenters/
+#cp ./indenters/gc.cfg ./UniversalIndentGUI_linux32/indenters/
+cp ./indenters/gc.exe ./UniversalIndentGUI_linux32/indenters/
+cp ./indenters/gc.txt ./UniversalIndentGUI_linux32/indenters/
+cp ./indenters/htmltidy ./UniversalIndentGUI_linux32/indenters/
+#cp ./indenters/.indent.pro ./UniversalIndentGUI_linux32/indenters/
+cp ./indenters/indent ./UniversalIndentGUI_linux32/indenters/
+cp ./indenters/indent.html ./UniversalIndentGUI_linux32/indenters/
+#cp ./indenters/uncrustify.cfg ./UniversalIndentGUI_linux32/indenters/
+cp ./indenters/uncrustify ./UniversalIndentGUI_linux32/indenters/
+cp ./indenters/uncrustify.txt ./UniversalIndentGUI_linux32/indenters/
+cp ./indenters/uigui_astyle.ini ./UniversalIndentGUI_linux32/indenters/
+cp ./indenters/uigui_bcpp.ini ./UniversalIndentGUI_linux32/indenters/
+cp ./indenters/uigui_csstidy.ini ./UniversalIndentGUI_linux32/indenters/
+cp ./indenters/uigui_greatcode.ini ./UniversalIndentGUI_linux32/indenters/
+cp ./indenters/uigui_phpCB.ini ./UniversalIndentGUI_linux32/indenters/
+cp ./indenters/uigui_gnuindent.ini ./UniversalIndentGUI_linux32/indenters/
+cp ./indenters/uigui_uncrustify.ini ./UniversalIndentGUI_linux32/indenters/
+cp ./indenters/uigui_htmltidy.ini ./UniversalIndentGUI_linux32/indenters/
+cp ./indenters/highlighter.ini ./UniversalIndentGUI_linux32/indenters/
+cp ./indenters/example.cpp ./UniversalIndentGUI_linux32/indenters/
 
 # Copy the translation files.
 cp $QTDIR/translations/qt_de.qm ./translations/

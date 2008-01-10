@@ -45,7 +45,7 @@ if [ $? -gt 0 ]; then
     echo "ERROR: Creating dir $targetDir failed!"
     exit 1
 fi
-mkdir $targetDir/data &> /dev/null
+mkdir $targetDir/indenters &> /dev/null
 if [ $? -gt 0 ]; then
     echo "ERROR: Creating dir data failed!"
     exit 1
@@ -209,7 +209,7 @@ if [ "$ext" = ".exe" ]; then
 fi
 for i in $indenters
 do
-    cp ./data/$i ./$targetDir/data/ &> /dev/null
+    cp ./indenters/$i ./$targetDir/indenters/ &> /dev/null
     if [ $? -gt 0 ]; then
         echo "ERROR: Could not copy file \"$i\"!"
         exit 1
@@ -256,7 +256,7 @@ echo "-----------------------------------------------------------"
 inifiles="uigui_astyle.ini uigui_bcpp.ini uigui_csstidy.ini uigui_gnuindent.ini uigui_greatcode.ini uigui_htmltidy.ini uigui_phpCB.ini uigui_uncrustify.ini highlighter.ini"
 for i in $inifiles
 do
-    cp ./data/$i ./$targetDir/data/ &> /dev/null
+    cp ./indenters/$i ./$targetDir/indenters/ &> /dev/null
     if [ $? -gt 0 ]; then
         echo "ERROR: Could not copy file \"$i\"!"
         exit 1

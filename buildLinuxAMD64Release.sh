@@ -27,7 +27,7 @@ rm -r UniversalIndentGUI_linuxAMD64
 echo calling mkdir UniversalIndentGUI_linuxAMD64
 echo ----------------------------------------
 mkdir UniversalIndentGUI_linuxAMD64
-mkdir UniversalIndentGUI_linuxAMD64/data
+mkdir UniversalIndentGUI_linuxAMD64/indenters
 mkdir UniversalIndentGUI_linuxAMD64/doc
 mkdir UniversalIndentGUI_linuxAMD64/translations
 echo copying files to UniversalIndentGUI_linuxAMD64
@@ -36,31 +36,31 @@ cp ./CHANGELOG.txt ./UniversalIndentGUI_linuxAMD64/
 cp ./LICENSE.GPL ./UniversalIndentGUI_linuxAMD64/
 cp ./README.txt ./UniversalIndentGUI_linuxAMD64/
 cp ./INSTALL.txt ./UniversalIndentGUI_linuxAMD64/
-#cp ./data/.astylerc ./UniversalIndentGUI_linuxAMD64/data/
-cp ./data/astyle ./UniversalIndentGUI_linuxAMD64/data/
-cp ./data/astyle.html ./UniversalIndentGUI_linuxAMD64/data/
-#cp ./data/bcpp.cfg ./UniversalIndentGUI_linuxAMD64/data/
-cp ./data/bcpp ./UniversalIndentGUI_linuxAMD64/data/
-cp ./data/bcpp.txt ./UniversalIndentGUI_linuxAMD64/data/
-cp ./data/csstidy ./UniversalIndentGUI_linuxAMD64/data/
-#cp ./data/gc.cfg ./UniversalIndentGUI_linuxAMD64/data/
-cp ./data/gc.exe ./UniversalIndentGUI_linuxAMD64/data/
-cp ./data/gc.txt ./UniversalIndentGUI_linuxAMD64/data/
-#cp ./data/.indent.pro ./UniversalIndentGUI_linuxAMD64/data/
-cp ./data/indent ./UniversalIndentGUI_linuxAMD64/data/
-cp ./data/indent.html ./UniversalIndentGUI_linuxAMD64/data/
-#cp ./data/uncrustify.cfg ./UniversalIndentGUI_linuxAMD64/data/
-cp ./data/uncrustify ./UniversalIndentGUI_linuxAMD64/data/
-cp ./data/uncrustify.txt ./UniversalIndentGUI_linuxAMD64/data/
-cp ./data/uigui_astyle.ini ./UniversalIndentGUI_linuxAMD64/data/
-cp ./data/uigui_bcpp.ini ./UniversalIndentGUI_linuxAMD64/data/
-cp ./data/uigui_csstidy.ini ./UniversalIndentGUI_linuxAMD64/data/
-cp ./data/uigui_greatcode.ini ./UniversalIndentGUI_linuxAMD64/data/
-cp ./data/uigui_phpCB.ini ./UniversalIndentGUI_linuxAMD64/data/
-cp ./data/uigui_gnuindent.ini ./UniversalIndentGUI_linuxAMD64/data/
-cp ./data/uigui_uncrustify.ini ./UniversalIndentGUI_linuxAMD64/data/
-cp ./data/highlighter.ini ./UniversalIndentGUI_linuxAMD64/data/
-cp ./data/example.cpp ./UniversalIndentGUI_linuxAMD64/data/
+#cp ./indenters/.astylerc ./UniversalIndentGUI_linuxAMD64/indenters/
+cp ./indenters/astyle ./UniversalIndentGUI_linuxAMD64/indenters/
+cp ./indenters/astyle.html ./UniversalIndentGUI_linuxAMD64/indenters/
+#cp ./indenters/bcpp.cfg ./UniversalIndentGUI_linuxAMD64/indenters/
+cp ./indenters/bcpp ./UniversalIndentGUI_linuxAMD64/indenters/
+cp ./indenters/bcpp.txt ./UniversalIndentGUI_linuxAMD64/indenters/
+cp ./indenters/csstidy ./UniversalIndentGUI_linuxAMD64/indenters/
+#cp ./indenters/gc.cfg ./UniversalIndentGUI_linuxAMD64/indenters/
+cp ./indenters/gc.exe ./UniversalIndentGUI_linuxAMD64/indenters/
+cp ./indenters/gc.txt ./UniversalIndentGUI_linuxAMD64/indenters/
+#cp ./indenters/.indent.pro ./UniversalIndentGUI_linuxAMD64/indenters/
+cp ./indenters/indent ./UniversalIndentGUI_linuxAMD64/indenters/
+cp ./indenters/indent.html ./UniversalIndentGUI_linuxAMD64/indenters/
+#cp ./indenters/uncrustify.cfg ./UniversalIndentGUI_linuxAMD64/indenters/
+cp ./indenters/uncrustify ./UniversalIndentGUI_linuxAMD64/indenters/
+cp ./indenters/uncrustify.txt ./UniversalIndentGUI_linuxAMD64/indenters/
+cp ./indenters/uigui_astyle.ini ./UniversalIndentGUI_linuxAMD64/indenters/
+cp ./indenters/uigui_bcpp.ini ./UniversalIndentGUI_linuxAMD64/indenters/
+cp ./indenters/uigui_csstidy.ini ./UniversalIndentGUI_linuxAMD64/indenters/
+cp ./indenters/uigui_greatcode.ini ./UniversalIndentGUI_linuxAMD64/indenters/
+cp ./indenters/uigui_phpCB.ini ./UniversalIndentGUI_linuxAMD64/indenters/
+cp ./indenters/uigui_gnuindent.ini ./UniversalIndentGUI_linuxAMD64/indenters/
+cp ./indenters/uigui_uncrustify.ini ./UniversalIndentGUI_linuxAMD64/indenters/
+cp ./indenters/highlighter.ini ./UniversalIndentGUI_linuxAMD64/indenters/
+cp ./indenters/example.cpp ./UniversalIndentGUI_linuxAMD64/indenters/
 
 # Copy the translation files.
 cp %QTDIR%/translations/qt_de.qm ./translations/

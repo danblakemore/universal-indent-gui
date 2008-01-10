@@ -33,11 +33,11 @@ echo.
 echo Copying the indenter uigui ini files to the release data dir
 echo ------------------------------------------------------------
 FOR %%A IN ( uigui_astyle.ini, uigui_bcpp.ini, uigui_csstidy.ini, uigui_gnuindent.ini, uigui_greatcode.ini, uigui_htmltidy.ini, uigui_phpCB.ini, uigui_uncrustify.ini, highlighter.ini ) DO (
-    if not exist .\data\%%A (
-        echo File .\data\%%A not found!
+    if not exist .\indenters\%%A (
+        echo File .\indenters\%%A not found!
         goto ERROR
     )
-    copy .\data\%%A .\UniversalIndentGUI_src\data\ >NUL
+    copy .\indenters\%%A .\UniversalIndentGUI_src\indenters\ >NUL
     IF ERRORLEVEL 1 goto ERROR
 )
 echo Done.
@@ -60,7 +60,7 @@ echo Copying some other files (README, CHANGELOG etc)
 echo ------------------------------------------------
 FOR %%A IN ( CHANGELOG.txt, LICENSE.GPL, INSTALL.txt, README.txt, UniversalIndentGUI.pro, UniversalIndentGUI.sln, VS8QtRules.rules ) DO (
     if not exist .\%%A (
-        echo File .\data\%%A not found!
+        echo File .\indenters\%%A not found!
         goto ERROR
     )
     copy .\%%A .\UniversalIndentGUI_src\ >NUL
@@ -76,7 +76,7 @@ rem IF ERRORLEVEL 1 goto ERROR
 cd UniversalIndentGUI.xcodeproj
 FOR %%A IN ( project.pbxproj, qt_makeqmake.mak, qt_preprocess.mak ) DO (
     if not exist .\%%A (
-        echo File .\data\%%A not found!
+        echo File .\indenters\%%A not found!
         goto ERROR
     )
     copy .\%%A ..\UniversalIndentGUI_src\UniversalIndentGUI.xcodeproj\ >NUL

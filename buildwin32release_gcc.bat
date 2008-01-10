@@ -56,11 +56,11 @@ echo.
 echo Copying the indenter executables and example file to the release data dir
 echo -------------------------------------------------------------------------
 FOR %%A IN ( astyle.exe, astyle.html, bcpp.exe, bcpp.txt, csstidy.exe, gc.exe, gc.txt, htmltidy.exe, htmltidy.html, indent.exe, libiconv-2.dll, libintl-2.dll, indent.html, uncrustify.exe, uncrustify.txt, example.cpp ) DO (
-    if not exist .\data\%%A (
-        echo File .\data\%%A not found!
+    if not exist .\indenters\%%A (
+        echo File .\indenters\%%A not found!
         goto ERROR
     )
-    copy .\data\%%A .\UniversalIndentGUI_win32\data\ >NUL
+    copy .\indenters\%%A .\UniversalIndentGUI_win32\indenters\ >NUL
     IF ERRORLEVEL 1 goto ERROR
 )
 echo Done.
@@ -69,11 +69,11 @@ echo.
 echo Copying the indenter uigui ini files to the release data dir
 echo ------------------------------------------------------------
 FOR %%A IN ( uigui_astyle.ini, uigui_bcpp.ini, uigui_csstidy.ini, uigui_gnuindent.ini, uigui_greatcode.ini, uigui_htmltidy.ini, uigui_phpCB.ini, uigui_uncrustify.ini, highlighter.ini ) DO (
-    if not exist .\data\%%A (
-        echo File .\data\%%A not found!
+    if not exist .\indenters\%%A (
+        echo File .\indenters\%%A not found!
         goto ERROR
     )
-    copy .\data\%%A .\UniversalIndentGUI_win32\data\ >NUL
+    copy .\indenters\%%A .\UniversalIndentGUI_win32\indenters\ >NUL
     IF ERRORLEVEL 1 goto ERROR
 )
 echo Done.
@@ -83,7 +83,7 @@ echo Copying some other files (README, CHANGELOG etc)
 echo ------------------------------------------------
 FOR %%A IN ( CHANGELOG.txt, LICENSE.GPL, INSTALL.txt, README.txt ) DO (
     if not exist .\%%A (
-        echo File .\data\%%A not found!
+        echo File .\indenters\%%A not found!
         goto ERROR
     )
     copy .\%%A .\UniversalIndentGUI_win32\ >NUL

@@ -29,7 +29,7 @@ rm -r UniversalIndentGUI_mac
 echo calling mkdir UniversalIndentGUI_mac
 echo ----------------------------------------
 mkdir UniversalIndentGUI_mac
-mkdir UniversalIndentGUI_mac/data
+mkdir UniversalIndentGUI_mac/indenters
 mkdir UniversalIndentGUI_mac/doc
 mkdir UniversalIndentGUI_mac/translations
 echo copying files to UniversalIndentGUI_mac
@@ -38,33 +38,33 @@ cp ./CHANGELOG.txt ./UniversalIndentGUI_mac/
 cp ./LICENSE.GPL ./UniversalIndentGUI_mac/
 cp ./README.txt ./UniversalIndentGUI_mac/
 cp ./INSTALL.txt ./UniversalIndentGUI_mac/
-#cp ./data/.astylerc ./UniversalIndentGUI_mac/data/
-cp ./data/astyle ./UniversalIndentGUI_mac/data/
-cp ./data/astyle.html ./UniversalIndentGUI_mac/data/
-#cp ./data/bcpp.cfg ./UniversalIndentGUI_mac/data/
-cp ./data/bcpp ./UniversalIndentGUI_mac/data/
-cp ./data/bcpp.txt ./UniversalIndentGUI_mac/data/
-cp ./data/csstidy ./UniversalIndentGUI_mac/data/
-#cp ./data/gc.cfg ./UniversalIndentGUI_mac/data/
-cp ./data/gc.exe ./UniversalIndentGUI_mac/data/
-cp ./data/gc.txt ./UniversalIndentGUI_mac/data/
-cp ./data/htmltidy ./UniversalIndentGUI_mac/data/
-#cp ./data/.indent.pro ./UniversalIndentGUI_mac/data/
-cp ./data/indent ./UniversalIndentGUI_mac/data/
-cp ./data/indent.html ./UniversalIndentGUI_mac/data/
-#cp ./data/uncrustify.cfg ./UniversalIndentGUI_mac/data/
-cp ./data/uncrustify ./UniversalIndentGUI_mac/data/
-cp ./data/uncrustify.txt ./UniversalIndentGUI_mac/data/
-cp ./data/uigui_astyle.ini ./UniversalIndentGUI_mac/data/
-cp ./data/uigui_bcpp.ini ./UniversalIndentGUI_mac/data/
-cp ./data/uigui_csstidy.ini ./UniversalIndentGUI_mac/data/
-cp ./data/uigui_greatcode.ini ./UniversalIndentGUI_mac/data/
-cp ./data/uigui_phpCB.ini ./UniversalIndentGUI_mac/data/
-cp ./data/uigui_gnuindent.ini ./UniversalIndentGUI_mac/data/
-cp ./data/uigui_uncrustify.ini ./UniversalIndentGUI_mac/data/
-cp ./data/uigui_htmltidy.ini ./UniversalIndentGUI_mac/data/
-cp ./data/highlighter.ini ./UniversalIndentGUI_mac/data/
-cp ./data/example.cpp ./UniversalIndentGUI_mac/data/
+#cp ./indenters/.astylerc ./UniversalIndentGUI_mac/indenters/
+cp ./indenters/astyle ./UniversalIndentGUI_mac/indenters/
+cp ./indenters/astyle.html ./UniversalIndentGUI_mac/indenters/
+#cp ./indenters/bcpp.cfg ./UniversalIndentGUI_mac/indenters/
+cp ./indenters/bcpp ./UniversalIndentGUI_mac/indenters/
+cp ./indenters/bcpp.txt ./UniversalIndentGUI_mac/indenters/
+cp ./indenters/csstidy ./UniversalIndentGUI_mac/indenters/
+#cp ./indenters/gc.cfg ./UniversalIndentGUI_mac/indenters/
+cp ./indenters/gc.exe ./UniversalIndentGUI_mac/indenters/
+cp ./indenters/gc.txt ./UniversalIndentGUI_mac/indenters/
+cp ./indenters/htmltidy ./UniversalIndentGUI_mac/indenters/
+#cp ./indenters/.indent.pro ./UniversalIndentGUI_mac/indenters/
+cp ./indenters/indent ./UniversalIndentGUI_mac/indenters/
+cp ./indenters/indent.html ./UniversalIndentGUI_mac/indenters/
+#cp ./indenters/uncrustify.cfg ./UniversalIndentGUI_mac/indenters/
+cp ./indenters/uncrustify ./UniversalIndentGUI_mac/indenters/
+cp ./indenters/uncrustify.txt ./UniversalIndentGUI_mac/indenters/
+cp ./indenters/uigui_astyle.ini ./UniversalIndentGUI_mac/indenters/
+cp ./indenters/uigui_bcpp.ini ./UniversalIndentGUI_mac/indenters/
+cp ./indenters/uigui_csstidy.ini ./UniversalIndentGUI_mac/indenters/
+cp ./indenters/uigui_greatcode.ini ./UniversalIndentGUI_mac/indenters/
+cp ./indenters/uigui_phpCB.ini ./UniversalIndentGUI_mac/indenters/
+cp ./indenters/uigui_gnuindent.ini ./UniversalIndentGUI_mac/indenters/
+cp ./indenters/uigui_uncrustify.ini ./UniversalIndentGUI_mac/indenters/
+cp ./indenters/uigui_htmltidy.ini ./UniversalIndentGUI_mac/indenters/
+cp ./indenters/highlighter.ini ./UniversalIndentGUI_mac/indenters/
+cp ./indenters/example.cpp ./UniversalIndentGUI_mac/indenters/
 
 # Copy the translation files.
 cp $QTDIR/translations/qt_de.qm ./translations/
