@@ -1065,7 +1065,7 @@ bool IndentHandler::createIndenterCallString() {
                     // If the initial shebang is found, read the named intepreter. e.g. perl
                     if ( firstLineOfIndenterExe.startsWith("#!") ) {
                         // Get the rightmost word. by splitting the string into only full words.
-                        QString interpreterName = firstLineOfIndenterExe.split( QRegExp("\\W+") ).last();
+                        QString interpreterName = firstLineOfIndenterExe.split( "/" ).last();
 
                         // Try to call the interpreter, if it exists.
                         if ( !interpreterName.isEmpty() ) {
