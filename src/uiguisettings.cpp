@@ -30,9 +30,9 @@
 /*!
 	\brief The constructor for the settings.
 */
-UiGuiSettings::UiGuiSettings(QString settingFilePath) : QObject() {
-    qsettings = new QSettings(settingFilePath, QSettings::IniFormat, this);
-    indenterExecutablePath = "./data/";
+UiGuiSettings::UiGuiSettings(QString indenterDirctoryStr) : QObject() {
+    qsettings = new QSettings(QSettings::IniFormat, QSettings::UserScope, QCoreApplication::organizationName(), QCoreApplication::applicationName(), this);
+    indenterExecutablePath = indenterDirctoryStr;
 	readAvailableTranslations();
 	loadSettings();
 }

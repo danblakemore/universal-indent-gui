@@ -40,7 +40,7 @@
     its \a indenterID, which is the number of found indenter ini files in alphabetic 
     order starting at index 0.
  */
-IndentHandler::IndentHandler(QString dataDirPathStr, int indenterID, QMainWindow *mainWindow, QWidget *parent)
+IndentHandler::IndentHandler(QString indenterDirPathStr, int indenterID, QMainWindow *mainWindow, QWidget *parent)
     : QWidget(parent)
 {
     Q_ASSERT_X( indenterID >= 0, "IndentHandler", "the selected indenterID is < 0" );
@@ -63,10 +63,11 @@ IndentHandler::IndentHandler(QString dataDirPathStr, int indenterID, QMainWindow
     // insert the toolbox into the vlayout
     vboxLayout->addWidget(toolBox);
 
-    dataDirctoryStr = dataDirPathStr;
-    QDir dataDirctory = QDir(dataDirPathStr);
+    indenterDirctoryStr = indenterDirPathStr;
+    tempDirctoryStr = indenterDirPathStr;
+    QDir indenterDirctory = QDir(indenterDirPathStr);
 
-    indenterIniFileList = dataDirctory.entryList( QStringList("uigui_*.ini") );
+    indenterIniFileList = indenterDirctory.entryList( QStringList("uigui_*.ini") );
     if ( indenterIniFileList.count() > 0 ) {
         // Take care if the selected indenterID is smaller or greater than the number of existing indenters
         if ( indenterID < 0 ) {
@@ -77,7 +78,7 @@ IndentHandler::IndentHandler(QString dataDirPathStr, int indenterID, QMainWindow
         }
 
         // reads and parses the by indenterID defined indent ini file and creates toolbox entries
-        readIndentIniFile( dataDirctoryStr + indenterIniFileList.at(indenterID) );
+        readIndentIniFile( indenterDirctoryStr + indenterIniFileList.at(indenterID) );
     }
 
     errorMessageDialog = new UiGuiErrorMessage(mainWindow);
@@ -143,9 +144,9 @@ QString IndentHandler::generateCommandlineCall(QString inputFileExtension) {
 	// else if needed add the parameter to the indenter call string where the config file can be found.
 	else if (useCfgFileParameter != "none") {
 #if defined(Q_OS_WIN32)
-		parameterParameterFile = " " + useCfgFileParameter + "\"" + QFileInfo(dataDirctoryStr).absoluteFilePath() + "/" + configFilename + "\"";
+		parameterParameterFile = " " + useCfgFileParameter + "\"" + QFileInfo(indenterDirctoryStr).absoluteFilePath() + "/" + configFilename + "\"";
 #else
-        parameterParameterFile = " " + useCfgFileParameter + "\"" + QFileInfo(dataDirctoryStr).absoluteFilePath() + configFilename + "\"";
+        parameterParameterFile = " " + useCfgFileParameter + "\"" + QFileInfo(indenterDirctoryStr).absoluteFilePath() + configFilename + "\"";
 #endif
 	}
 
@@ -254,12 +255,14 @@ QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputF
 		writeConfigFile( parameterString );
 	}
 
-    // only add point to file extension if the string is not empty
+    // Only add a dot to file extension if the string is not empty
     if ( !inputFileExtension.isEmpty() ) {
         inputFileExtension = "." + inputFileExtension;
     }
-	QFile::remove(dataDirctoryStr + inputFileName + inputFileExtension);
-	QFile outSrcFile(dataDirctoryStr + inputFileName + inputFileExtension);
+
+    // Delete any previously used input src file and create a new input src file.
+	QFile::remove(tempDirctoryStr + inputFileName + inputFileExtension);
+	QFile inputSrcFile(tempDirctoryStr + inputFileName + inputFileExtension);
 	parameterInputFile = " " + inputFileParameter + inputFileName + inputFileExtension;
 
     if ( outputFileParameter != "none" && outputFileParameter != "stdout" ) {
@@ -272,7 +275,7 @@ QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputF
 	}
 	// if needed add the parameter to the indenter call string where the config file can be found
 	else if (useCfgFileParameter != "none") {
-		parameterParameterFile = " " + useCfgFileParameter + "\"" + QFileInfo(dataDirctoryStr).absoluteFilePath() + "/" + configFilename + "\"";
+		parameterParameterFile = " " + useCfgFileParameter + "\"" + QFileInfo(indenterDirctoryStr).absoluteFilePath() + "/" + configFilename + "\"";
 	}
 
 	// Assemble indenter call string for parameters according to the set order.
@@ -292,23 +295,23 @@ QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputF
     // If no indenter executable call string could be created before, show an error message.
     if ( indenterExecutableCallString.isEmpty() ) {
         errorMessageDialog->showMessage(tr("No indenter executable"), 
-            tr("There exists no indenter executable with the name \"%1\" in the directory \"%2\" nor in the global environment.").arg(indenterFileName).arg(dataDirctoryStr) );
+            tr("There exists no indenter executable with the name \"%1\" in the directory \"%2\" nor in the global environment.").arg(indenterFileName).arg(indenterDirctoryStr) );
         return sourceCode;
     }
 
     // Generate the indenter call string either for win32 or other systems.
     indenterCompleteCallString = indenterExecutableCallString + indenterCompleteCallString;
 
-    // write the source code to the input file for the indenter
-    outSrcFile.open( QFile::ReadWrite | QFile::Text );
-    outSrcFile.write( sourceCode.toUtf8() );
-    outSrcFile.close();
+    // Write the source code to the input file for the indenter
+    inputSrcFile.open( QFile::ReadWrite | QFile::Text );
+    inputSrcFile.write( sourceCode.toUtf8() );
+    inputSrcFile.close();
 
     // errors and standard outputs from the process call are merged together
     indentProcess.setReadChannelMode(QProcess::MergedChannels);
 
-    // set the directory for the indenter execution
-    indentProcess.setWorkingDirectory( QFileInfo(dataDirctoryStr).absoluteFilePath() );
+    // Set the directory for the indenter execution
+    indentProcess.setWorkingDirectory( QFileInfo(tempDirctoryStr).absoluteFilePath() );
 
     indentProcess.start(indenterCompleteCallString);
 
@@ -360,13 +363,13 @@ QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputF
         errorMessageDialog->showMessage( tr("Indenter returned error"), processReturnString );
     }
 
-    // If the indenter results are written to stdout, read them from there.
+    // If the indenter results are written to stdout, read them from there...
 	if ( indentProcess.exitCode() == 0 && outputFileParameter == "stdout"  ) {
 		formattedSourceCode = processReturnString;
 	}
-    // Else read the output file generated by the indenter call.
+    // ... else read the output file generated by the indenter call.
 	else {
-		outSrcFile.setFileName(dataDirctoryStr + outputFileName + inputFileExtension);
+		QFile outSrcFile(tempDirctoryStr + outputFileName + inputFileExtension);
 		outSrcFile.open(QFile::ReadOnly | QFile::Text);
 		QTextStream outSrcStrm(&outSrcFile);
 		outSrcStrm.setCodec( QTextCodec::codecForName("UTF-8") );
@@ -375,8 +378,8 @@ QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputF
 	}
 
     // Delete the temporary input and output files.
-    QFile::remove(dataDirctoryStr + outputFileName + inputFileExtension);
-    QFile::remove(dataDirctoryStr + inputFileName + inputFileExtension);
+    QFile::remove(tempDirctoryStr + outputFileName + inputFileExtension);
+    QFile::remove(tempDirctoryStr + inputFileName + inputFileExtension);
 
     return formattedSourceCode;
 }
@@ -472,8 +475,8 @@ void IndentHandler::writeParameterWidgetValues2IniSettings() {
 void IndentHandler::writeConfigFile(QString paramString) {
     Q_ASSERT_X( !configFilename.isEmpty(), "writeConfigFile", "configFilename is empty" );
 
-    QFile::remove( dataDirctoryStr + configFilename );
-    QFile cfgFile( dataDirctoryStr + configFilename );
+    QFile::remove( indenterDirctoryStr + configFilename );
+    QFile cfgFile( indenterDirctoryStr + configFilename );
 
     cfgFile.open( QFile::ReadWrite | QFile::Text );
     cfgFile.write( paramString.toAscii() );
@@ -952,7 +955,7 @@ QStringList IndentHandler::getAvailableIndenters() {
     foreach (QString indenterIniFile, indenterIniFileList) {
 
         // Open the ini file and search for the indenter name
-        QFile file(dataDirctoryStr + indenterIniFile);
+        QFile file(indenterDirctoryStr + indenterIniFile);
         if ( file.open(QIODevice::ReadOnly | QIODevice::Text) ) {
             int index = -1;
             QByteArray line;
@@ -1003,7 +1006,7 @@ void IndentHandler::setIndenter(int indenterID) {
     paramBooleans.clear();
     delete indenterSettings;
 
-    readIndentIniFile( dataDirctoryStr + indenterIniFileList.at(indenterID) );
+    readIndentIniFile( indenterDirctoryStr + indenterIniFileList.at(indenterID) );
 }
 
 
@@ -1019,7 +1022,7 @@ QString IndentHandler::getPossibleIndenterFileExtensions() {
     \brief Returns the path and filename of the current indenter config file.
  */
 QString IndentHandler::getIndenterCfgFile() {
-    QFileInfo fileInfo( dataDirctoryStr + configFilename );
+    QFileInfo fileInfo( indenterDirctoryStr + configFilename );
     return fileInfo.absoluteFilePath();
 }
 
@@ -1034,11 +1037,11 @@ bool IndentHandler::createIndenterCallString() {
     // ------------------------------------------------------------------------
 
     // Set the directory for the indenter execution
-    indentProcess.setWorkingDirectory( QFileInfo(dataDirctoryStr).absoluteFilePath() );
+    indentProcess.setWorkingDirectory( QFileInfo(indenterDirctoryStr).absoluteFilePath() );
 
     foreach ( QString suffix, QStringList() << "" << ".exe" << ".bat" << ".com" << ".sh" ) {
         indenterExecutableSuffix = suffix;
-        indenterExecutableCallString = QFileInfo(dataDirctoryStr).absoluteFilePath() + "/" + indenterFileName;
+        indenterExecutableCallString = QFileInfo(indenterDirctoryStr).absoluteFilePath() + "/" + indenterFileName;
         indenterExecutableCallString += suffix;
 
         // Only try to call the indenter, if the file exists.
@@ -1094,7 +1097,7 @@ bool IndentHandler::createIndenterCallString() {
     // If unsuccessful try if the indenter executable is a JavaScript file
     // -------------------------------------------------------------------
     indenterExecutableSuffix = ".js";
-    indenterExecutableCallString = QFileInfo(dataDirctoryStr).absoluteFilePath() + "/" + indenterFileName;
+    indenterExecutableCallString = QFileInfo(indenterDirctoryStr).absoluteFilePath() + "/" + indenterFileName;
     indenterExecutableCallString += indenterExecutableSuffix;
     if ( QFile::exists(indenterExecutableCallString) ) {
         return true;
@@ -1118,11 +1121,11 @@ bool IndentHandler::createIndenterCallString() {
 
     // If even globally calling the indenter fails, try calling .com and .exe via wine
     // -------------------------------------------------------------------------------
-    indenterExecutableCallString = "\"" + QFileInfo(dataDirctoryStr).absoluteFilePath() + "/" + indenterFileName;
+    indenterExecutableCallString = "\"" + QFileInfo(indenterDirctoryStr).absoluteFilePath() + "/" + indenterFileName;
 
     foreach ( QString suffix, QStringList() << ".exe" << ".com" ) {
         indenterExecutableSuffix = suffix;
-        if ( QFile::exists(dataDirctoryStr + indenterFileName + suffix) ) {
+        if ( QFile::exists(indenterDirctoryStr + indenterFileName + suffix) ) {
             QProcess wineTestProcess;
             wineTestProcess.start("wine --version");
             // if the process of wine was not callable assume that wine is not installed
@@ -1132,7 +1135,7 @@ bool IndentHandler::createIndenterCallString() {
                 return false;
             }
             else {
-                indenterExecutableCallString = "\"" + QFileInfo(dataDirctoryStr).absoluteFilePath() + "/";
+                indenterExecutableCallString = "\"" + QFileInfo(indenterDirctoryStr).absoluteFilePath() + "/";
                 indenterExecutableCallString += indenterFileName + suffix + "\"";
                 indenterExecutableCallString = "wine " + indenterExecutableCallString;
 

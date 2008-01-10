@@ -28,13 +28,14 @@
 #include <QDir>
 #include <QDate>
 #include <QStringList>
+#include <QCoreApplication>
 
 class UiGuiSettings : public QObject
 {
 	Q_OBJECT
 
 public:
-	UiGuiSettings(QString settingFilePath = "./UniversalIndentGUI.ini");
+	UiGuiSettings(QString indenterDirctoryStr);
     virtual ~UiGuiSettings();
     bool loadSettings();
     bool saveSettings();

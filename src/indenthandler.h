@@ -49,7 +49,7 @@ class IndentHandler : public QWidget
     Q_OBJECT
 
 public:
-    IndentHandler(QString dataDirPathStr, int indenterID, QMainWindow *mainWindow = 0, QWidget *parent = 0);
+    IndentHandler(QString indenterDirPathStr, int indenterID, QMainWindow *mainWindow = 0, QWidget *parent = 0);
     ~IndentHandler();
 
     QString generateCommandlineCall(QString inputFileExtension);
@@ -131,7 +131,8 @@ private:
     QString indenterName;
     //! The indenters file name (w/o extension), that is being called
     QString indenterFileName;
-    QString dataDirctoryStr;
+    QString indenterDirctoryStr;
+    QString tempDirctoryStr;
     QStringList indenterIniFileList;
 	QString parameterOrder;
     QString configFilename;

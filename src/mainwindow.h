@@ -65,7 +65,7 @@ private:
     QString version;
     QString revision;
     QString buildDateStr;
-	QString dataDirctoryStr;
+	QString indenterDirctoryStr;
 	QString currentEncoding;
     QString sourceFileContent;
     QString sourceFormattedContent;

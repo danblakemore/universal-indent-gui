@@ -41,8 +41,18 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     QDate buildDate(2007, 11, 22);
     buildDateStr = buildDate.toString("d. MMMM yyyy");
 
+    // Init of some variables.
+    indenterDirctoryStr = "./data/";
+    sourceCodeChanged = false;
+    scrollPositionChanged = false;
+
+    // Set default values for all by UniversalIndentGUI used settings objects.
+    QCoreApplication::setOrganizationName("UniversalIndentGUI");
+    QCoreApplication::setOrganizationDomain("universalindent.sf.net");
+    QCoreApplication::setApplicationName("UniversalIndentGUI");
+
     // Create the settings object, which loads all UiGui settings from a file.
-	settings = new UiGuiSettings();
+	settings = new UiGuiSettings( indenterDirctoryStr );
 
     // Initialize the language of the application.
     initApplicationLanguage();
@@ -158,11 +168,6 @@ void MainWindow::initMainWindow() {
     updateRecentlyOpenedList();
     connect( menuRecently_Opened_Files, SIGNAL(triggered(QAction*)), this, SLOT(openFileFromRecentlyOpenedList(QAction*)) );
     connect( settings, SIGNAL(recentlyOpenedListSize(int)), this, SLOT(updateRecentlyOpenedList()) );
-
-    // Init of some variables.
-    dataDirctoryStr = "./data/";
-    sourceCodeChanged = false;
-    scrollPositionChanged = false;
 }
 
 
@@ -307,7 +312,7 @@ void MainWindow::initIndenter() {
 	currentIndenterID = settings->getValueByName("LastSelectedIndenterID").toInt();
 
     // Create the indenter widget with the ID and add it to the layout.
-    indentHandler = new IndentHandler(dataDirctoryStr, currentIndenterID, this, centralwidget);
+    indentHandler = new IndentHandler(indenterDirctoryStr, currentIndenterID, this, centralwidget);
     vboxLayout->addWidget(indentHandler);
 
     // Check whether indenters are available.
@@ -321,7 +326,7 @@ void MainWindow::initIndenter() {
     // If no indenter are found, show a warning message.
 	else {
 		currentIndenterID = 0;
-		QMessageBox::warning(NULL, tr("No indenter ini files"), tr("There exists no indenter ini files in the directory \"") + QDir(dataDirctoryStr).absolutePath() + "\".");
+		QMessageBox::warning(NULL, tr("No indenter ini files"), tr("There exists no indenter ini files in the directory \"") + QDir(indenterDirctoryStr).absolutePath() + "\".");
 	}
 
     // Set the combobox in the toolbar to show the selected indenter.
@@ -360,7 +365,7 @@ void MainWindow::selectIndenter(int indenterID) {
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
-    indentHandler = new IndentHandler(dataDirctoryStr, indenterID, this, centralwidget);
+    indentHandler = new IndentHandler(indenterDirctoryStr, indenterID, this, centralwidget);
     indentHandler->hide();
     vboxLayout->insertWidget(0, indentHandler);
     oldIndentHandler->hide();
@@ -952,8 +957,8 @@ void MainWindow::loadLastOpenedFile() {
 			sourceFileContent = loadFile(currentSourceFile);
 		}
         // If the last opened source code file does not exist, try to load the default example.cpp file.
-        else if ( QFile::exists(dataDirctoryStr + "example.cpp") ) {
-			QFileInfo fileInfo(dataDirctoryStr + "example.cpp");
+        else if ( QFile::exists(indenterDirctoryStr + "example.cpp") ) {
+			QFileInfo fileInfo(indenterDirctoryStr + "example.cpp");
 			currentSourceFile = fileInfo.absoluteFilePath();
 			sourceFileContent = loadFile(currentSourceFile);
 		}
