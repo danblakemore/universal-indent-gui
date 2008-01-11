@@ -49,7 +49,7 @@ class IndentHandler : public QWidget
     Q_OBJECT
 
 public:
-    IndentHandler(QString indenterDirPathStr, QString tempDirPathStr, int indenterID, QMainWindow *mainWindow = 0, QWidget *parent = 0);
+    IndentHandler(QString indenterDirPathStr, QString settingsDirPathStr, QString tempDirPathStr, int indenterID, QMainWindow *mainWindow = 0, QWidget *parent = 0);
     ~IndentHandler();
 
     QString generateCommandlineCall(QString inputFileExtension);
@@ -70,7 +70,7 @@ private slots:
 private:
     QString callExecutableIndenter(QString sourceCode, QString inputFileExtension);
     QString callJavaScriptIndenter(QString sourceCode, QString inputFileExtension);
-    void writeConfigFile(QString parameterString);
+    void writeConfigFile(QString filePathName, QString parameterString);
     void readIndentIniFile(QString iniFilePath);
     bool createIndenterCallString();
     void writeParameterWidgetValues2IniSettings();
@@ -133,6 +133,7 @@ private:
     QString indenterFileName;
     QString indenterDirctoryStr;
     QString tempDirctoryStr;
+    QString settingsDirctoryStr;
     QStringList indenterIniFileList;
 	QString parameterOrder;
     QString configFilename;

@@ -40,7 +40,7 @@
     its \a indenterID, which is the number of found indenter ini files in alphabetic 
     order starting at index 0.
  */
-IndentHandler::IndentHandler(QString indenterDirPathStr, QString tempDirPathStr, int indenterID, QMainWindow *mainWindow, QWidget *parent)
+IndentHandler::IndentHandler(QString indenterDirPathStr, QString settingsDirPathStr, QString tempDirPathStr, int indenterID, QMainWindow *mainWindow, QWidget *parent)
     : QWidget(parent)
 {
     Q_ASSERT_X( indenterID >= 0, "IndentHandler", "the selected indenterID is < 0" );
@@ -70,6 +70,7 @@ IndentHandler::IndentHandler(QString indenterDirPathStr, QString tempDirPathStr,
 
     indenterDirctoryStr = indenterDirPathStr;
     tempDirctoryStr = tempDirPathStr;
+    settingsDirctoryStr = settingsDirPathStr;
     QDir indenterDirctory = QDir(indenterDirPathStr);
 
     errorMessageDialog = new UiGuiErrorMessage(mainWindow);
@@ -87,7 +88,11 @@ IndentHandler::IndentHandler(QString indenterDirPathStr, QString tempDirPathStr,
         // reads and parses the by indenterID defined indent ini file and creates toolbox entries
         readIndentIniFile( indenterDirctoryStr + "/" + indenterIniFileList.at(indenterID) );
 
+        // Find out how the indenter can be executed.
         createIndenterCallString();
+
+        // Load the users last settings made for this indenter.
+        loadConfigFile( settingsDirctoryStr + "/" + indenterFileName + ".cfg" );
     }
     else {
         errorMessageDialog->showMessage(tr("No indenter ini files"), tr("There exists no indenter ini files in the directory \"") + QDir(indenterDirctoryStr).absolutePath() + "\".");
@@ -96,7 +101,14 @@ IndentHandler::IndentHandler(QString indenterDirPathStr, QString tempDirPathStr,
 
 
 IndentHandler::~IndentHandler() {
-    writeParameterWidgetValues2IniSettings();
+    //writeParameterWidgetValues2IniSettings();
+
+    // Generate the parameter string that will be saved to the indenters config file.
+    QString parameterString = getParameterString();
+    if ( !indenterFileName.isEmpty() ) {
+        writeConfigFile( settingsDirctoryStr + "/" + indenterFileName + ".cfg", parameterString );
+    }
+
     delete errorMessageDialog;
 }
 
@@ -120,11 +132,11 @@ QString IndentHandler::generateCommandlineCall(QString inputFileExtension) {
     QString shellPlaceholder = "$1";
 #endif
 
-    // Generate the parameter string that will be save to the indenters config file.
+    // Generate the parameter string that will be saved to the indenters config file.
     QString parameterString = getParameterString();
 
 	if ( !configFilename.isEmpty() ) {
-		writeConfigFile( parameterString );
+		writeConfigFile( indenterDirctoryStr + "/" + configFilename, parameterString );
 	}
 
     // Only add point to file extension if the string is not empty.
@@ -149,11 +161,7 @@ QString IndentHandler::generateCommandlineCall(QString inputFileExtension) {
 	}
 	// else if needed add the parameter to the indenter call string where the config file can be found.
 	else if (useCfgFileParameter != "none") {
-#if defined(Q_OS_WIN32)
-		parameterParameterFile = " " + useCfgFileParameter + "\"" + QFileInfo(indenterDirctoryStr).absoluteFilePath() + "/" + configFilename + "\"";
-#else
-        parameterParameterFile = " " + useCfgFileParameter + "\"" + QFileInfo(indenterDirctoryStr).absoluteFilePath() + configFilename + "\"";
-#endif
+		parameterParameterFile = " " + useCfgFileParameter + "\"" + indenterDirctoryStr + "/" + configFilename + "\"";
 	}
 
 	// Assemble indenter call string for parameters according to the set order.
@@ -254,11 +262,11 @@ QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputF
 	QProcess indentProcess;
 	QString processReturnString;
 
-    // generate the parameter string that will be save to the indenters config file
+    // Generate the parameter string that will be saved to the indenters config file
     QString parameterString = getParameterString();
 
 	if ( !configFilename.isEmpty() ) {
-		writeConfigFile( parameterString );
+		writeConfigFile( tempDirctoryStr + "/" + configFilename, parameterString );
 	}
 
     // Only add a dot to file extension if the string is not empty
@@ -281,7 +289,7 @@ QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputF
 	}
 	// if needed add the parameter to the indenter call string where the config file can be found
 	else if (useCfgFileParameter != "none") {
-		parameterParameterFile = " " + useCfgFileParameter + "\"" + QFileInfo(indenterDirctoryStr).absoluteFilePath() + "/" + configFilename + "\"";
+		parameterParameterFile = " " + useCfgFileParameter + "\"" + tempDirctoryStr + "/" + configFilename + "\"";
 	}
 
 	// Assemble indenter call string for parameters according to the set order.
@@ -479,11 +487,9 @@ void IndentHandler::writeParameterWidgetValues2IniSettings() {
 /*!
     \brief Write settings for the indenter to a config file.
  */
-void IndentHandler::writeConfigFile(QString paramString) {
-    Q_ASSERT_X( !configFilename.isEmpty(), "writeConfigFile", "configFilename is empty" );
-
-    QFile::remove( indenterDirctoryStr + "/" + configFilename );
-    QFile cfgFile( indenterDirctoryStr + "/" + configFilename );
+void IndentHandler::writeConfigFile(QString filePathName, QString paramString) {
+    QFile::remove( filePathName );
+    QFile cfgFile( filePathName );
 
     cfgFile.open( QFile::ReadWrite | QFile::Text );
     cfgFile.write( paramString.toAscii() );
@@ -502,6 +508,11 @@ void IndentHandler::loadConfigFile(QString filePathName) {
     int crPos;
     int paramValue = 0;
     QString paramValueStr;
+
+    // If the to be loaded config file does not exist, leave all values as they are and return.
+    if ( !cfgFile.exists() ) {
+        return;
+    }
 
     // open the config file and read all data
     cfgFile.open( QFile::ReadOnly | QFile::Text );
@@ -532,7 +543,7 @@ void IndentHandler::loadConfigFile(QString filePathName) {
                 }
                 // neither true nor false parameter found so use default value
                 else {
-                        paramValue = indenterSettings->value(pBoolean.paramName + "/ValueDefault").toBool();
+                    paramValue = indenterSettings->value(pBoolean.paramName + "/ValueDefault").toBool();
                 }
             }
         }
@@ -554,7 +565,7 @@ void IndentHandler::loadConfigFile(QString filePathName) {
                 }
                 // neither true nor false parameter found so use default value
                 else {
-                        paramValue = indenterSettings->value(pBoolean.paramName + "/ValueDefault").toBool();
+                    paramValue = indenterSettings->value(pBoolean.paramName + "/ValueDefault").toBool();
                 }
             }
         }
@@ -579,19 +590,15 @@ void IndentHandler::loadConfigFile(QString filePathName) {
             // disable the signal-slot connection. Otherwise signal is emmitted each time when value is set
             QObject::disconnect(pNumeric.spinBox, SIGNAL(valueChanged(int)), this, SIGNAL(indenterSettingsChanged()));
             pNumeric.spinBox->setValue( paramValue );
+            pNumeric.valueEnabledChkBox->setChecked( true );
             QObject::connect(pNumeric.spinBox, SIGNAL(valueChanged(int)), this, SIGNAL(indenterSettingsChanged()));
         }
         // parameter was not found in config file
         else {
             int defaultValue = indenterSettings->value(pNumeric.paramName + "/ValueDefault").toInt();
-            // a value of -1 means that this parameter is disabled
-            if ( defaultValue == -1 ) {
-                pNumeric.valueEnabledChkBox->setChecked( false );
-            }
-            // if not disabled use the given default value
-            else {
-                pNumeric.spinBox->setValue( defaultValue );
-            }
+
+            pNumeric.valueEnabledChkBox->setChecked( false );
+            pNumeric.spinBox->setValue( defaultValue );
         }
     }
 
@@ -625,18 +632,14 @@ void IndentHandler::loadConfigFile(QString filePathName) {
             }
             // Set the text for the line edit.
             pString.lineEdit->setText( paramValueStr );
+            pString.valueEnabledChkBox->setChecked( true );
         }
         // parameter was not found in config file
         else {
             paramValueStr = indenterSettings->value(pString.paramName + "/ValueDefault").toString();
-            // a value of -1 means that this parameter is disabled
-            if ( paramValueStr == "-1" ) {
-                pString.valueEnabledChkBox->setChecked( false );
-            }
-            // if not disabled use the given default value
-            else {
-                pString.lineEdit->setText( paramValueStr );
-            }
+
+            pString.valueEnabledChkBox->setChecked( false );
+            pString.lineEdit->setText( paramValueStr );
         }
     }
 
@@ -651,6 +654,7 @@ void IndentHandler::loadConfigFile(QString filePathName) {
             index = cfgFileData.indexOf( pMultiple.choicesStrings.at(i), 0 );
             if ( index != -1 ) {
                 pMultiple.comboBox->setCurrentIndex( i );
+                pMultiple.valueEnabledChkBox->setChecked( true );
             }
             i++;
         }
@@ -658,14 +662,9 @@ void IndentHandler::loadConfigFile(QString filePathName) {
         // parameter was not set in config file, so use default value
         if ( index == -1 ) {
             int defaultValue = indenterSettings->value(pMultiple.paramName + "/ValueDefault").toInt();
-            // a value of -1 means that this parameter is disabled
-            if ( defaultValue == -1 ) {
-                pMultiple.valueEnabledChkBox->setChecked( false );
-            }
-            // if not disabled use the given default value
-            else {
-                pMultiple.comboBox->setCurrentIndex( defaultValue );
-            }
+
+            pMultiple.valueEnabledChkBox->setChecked( false );
+            pMultiple.comboBox->setCurrentIndex( defaultValue );
         }
     }
 }

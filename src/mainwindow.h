@@ -84,6 +84,7 @@ private:
     QString buildDateStr;
 	QString indenterDirctoryStr;
     QString tempDirctoryStr;
+    QString settingsDirctoryStr;
 	QString currentEncoding;
     QString sourceFileContent;
     QString sourceFormattedContent;

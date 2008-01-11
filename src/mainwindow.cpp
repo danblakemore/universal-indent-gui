@@ -43,22 +43,28 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 
     // If a settings file in the subdir of the applications dir exists, use this one (portable mode)
     indenterDirctoryStr = QCoreApplication::applicationDirPath() + "/indenters";
-    // ... otherwise use the system specific global application data path.
     if ( QFile::exists( indenterDirctoryStr ) ) {
+        QDir dirCreator;
+        settingsDirctoryStr = QCoreApplication::applicationDirPath() + "/config";
+        dirCreator.mkpath( settingsDirctoryStr );
         tempDirctoryStr = QCoreApplication::applicationDirPath() + "/temp";
-        QDir tempDirCreator;
-        tempDirCreator.mkpath( tempDirctoryStr );
+        dirCreator.mkpath( tempDirctoryStr );
     }
+    // ... otherwise use the system specific global application data path.
     else {
+        QDir dirCreator;
 #ifdef Q_OS_WIN
-        QStringList commonAppBasePathComponents =  QDir::fromNativeSeparators( qgetenv("APPDATA") ).split("/");
+        settingsDirctoryStr = QDir::fromNativeSeparators( qgetenv("APPDATA") ) + "/UniversalIndentGUI";
+        QStringList commonAppBasePathComponents = QDir::fromNativeSeparators( qgetenv("APPDATA") ).split("/");
         commonAppBasePathComponents.replace( commonAppBasePathComponents.count()-2, "All Users" );
         QString commonAppBasePath = commonAppBasePathComponents.join("/");
 #else
+        settingsDirctoryStr = QDir::homePath() + "/.config/UniversalIndentGUI";
         QString commonAppBasePath = "/etc/xdg";
 #endif
+        dirCreator.mkpath( settingsDirctoryStr );
         indenterDirctoryStr = commonAppBasePath + "/UniversalIndentGUI/indenters";
-        tempDirctoryStr = QDir::temp().absolutePath();
+        tempDirctoryStr = QDir::tempPath();
     }
 
     // Init of some variables.
@@ -334,7 +340,7 @@ void MainWindow::initIndenter() {
 	currentIndenterID = settings->getValueByName("LastSelectedIndenterID").toInt();
 
     // Create the indenter widget with the ID and add it to the layout.
-    indentHandler = new IndentHandler(indenterDirctoryStr, tempDirctoryStr, currentIndenterID, this, centralwidget);
+    indentHandler = new IndentHandler(indenterDirctoryStr, settingsDirctoryStr, tempDirctoryStr, currentIndenterID, this, centralwidget);
     vboxLayout->addWidget(indentHandler);
 
     // Check whether indenters are available.
@@ -386,7 +392,7 @@ void MainWindow::selectIndenter(int indenterID) {
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
-    indentHandler = new IndentHandler(indenterDirctoryStr, tempDirctoryStr, indenterID, this, centralwidget);
+    indentHandler = new IndentHandler(indenterDirctoryStr, settingsDirctoryStr, tempDirctoryStr, indenterID, this, centralwidget);
     indentHandler->hide();
     vboxLayout->insertWidget(0, indentHandler);
     oldIndentHandler->hide();
