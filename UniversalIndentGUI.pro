@@ -16,6 +16,11 @@ INCLUDEPATH += src
 
 LIBS += -lqscintilla2
 
+macx {
+ CONFIG += x86 ppc sdk
+ QMAKE-MAC_SDK = /Developer/SDKs/MacOSX10.5u.sdk
+}
+
 # remove linker flag "-mthreads" so the mingwm10.dll is no longer needed
 #message(old flags:$${QMAKE_LFLAGS})
 parameters = $${QMAKE_LFLAGS}
