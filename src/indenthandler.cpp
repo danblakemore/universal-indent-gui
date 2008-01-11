@@ -47,6 +47,8 @@ IndentHandler::IndentHandler(QString indenterDirPathStr, QString tempDirPathStr,
 
     this->mainWindow = mainWindow;
 
+    indenterSettings = NULL;
+
     // define this widgets size and resize behavior
     //this->setMaximumWidth(263);
     this->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
@@ -1159,5 +1161,10 @@ bool IndentHandler::createIndenterCallString() {
     \brief Returns a string that points to where the indenters manual can be found.
  */
 QString IndentHandler::getManual() {
-    return indenterSettings->value(" header/manual").toString();
+    if ( indenterSettings != NULL ) {
+        return indenterSettings->value(" header/manual").toString();
+    }
+    else {
+        return "";
+    }
 }
