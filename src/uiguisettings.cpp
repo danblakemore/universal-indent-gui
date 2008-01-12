@@ -30,10 +30,10 @@
 /*!
 	\brief The constructor for the settings.
 */
-UiGuiSettings::UiGuiSettings(QString indenterDirctoryStr) : QObject() {
-    QString settingsSubDir = QCoreApplication::applicationDirPath() + "/config/UniversalIndentGUI.ini";
+UiGuiSettings::UiGuiSettings(QString indenterDirctoryStr, QString applicationBinaryPath) : QObject() {
+    QString settingsSubDir = applicationBinaryPath + "/config/UniversalIndentGUI.ini";
     // If a "indenters" subdir in the applications binary path exists, use local config files (portable mode)
-    if ( QFile::exists( QCoreApplication::applicationDirPath() + "/indenters" ) ) {
+    if ( QFile::exists( applicationBinaryPath + "/indenters" ) ) {
         qsettings = new QSettings(settingsSubDir, QSettings::IniFormat, this);
     } 
     // ... otherwise use the users application data default dir.

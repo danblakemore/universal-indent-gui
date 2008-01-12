@@ -32,7 +32,7 @@
 /*!
     \brief The constructor initializes some regular expressions and keywords to identify cpp tokens
  */
-Highlighter::Highlighter(QsciScintilla *parent, QSettings *settings)
+Highlighter::Highlighter(QsciScintilla *parent, QString applicationBinaryPath, QSettings *settings)
 : QObject(parent)
 {
     this->parent = parent;
@@ -43,9 +43,9 @@ Highlighter::Highlighter(QsciScintilla *parent, QSettings *settings)
     }
     // ... else create a new own one.
     else {
-        QString settingsSubDir = QCoreApplication::applicationDirPath() + "/config/UiGuiSyntaxHighlightConfig.ini";
+        QString settingsSubDir = applicationBinaryPath + "/config/UiGuiSyntaxHighlightConfig.ini";
         // If a "indenters" subdir in the applications binary path exists, use local config files (portable mode)
-        if ( QFile::exists( QCoreApplication::applicationDirPath() + "/indenters" ) ) {
+        if ( QFile::exists( applicationBinaryPath + "/indenters" ) ) {
             this->settings = new QSettings(settingsSubDir, QSettings::IniFormat, this);
         } 
         // ... otherwise use the users application data default dir.

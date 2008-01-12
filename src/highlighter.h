@@ -53,7 +53,7 @@ class Highlighter : public QObject
     Q_OBJECT
 
 public:
-    Highlighter(QsciScintilla *parent, QSettings *settings=0);
+    Highlighter(QsciScintilla *parent, QString applicationBinaryPath, QSettings *settings=0);
     void turnHighlightOff();
     void turnHighlightOn();
 	

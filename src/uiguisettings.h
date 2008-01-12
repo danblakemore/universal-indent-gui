@@ -35,7 +35,7 @@ class UiGuiSettings : public QObject
 	Q_OBJECT
 
 public:
-	UiGuiSettings(QString indenterDirctoryStr);
+	UiGuiSettings(QString indenterDirctoryStr, QString applicationBinaryPath);
     virtual ~UiGuiSettings();
     bool loadSettings();
     bool saveSettings();

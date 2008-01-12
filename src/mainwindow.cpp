@@ -42,12 +42,23 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     buildDateStr = buildDate.toString("d. MMMM yyyy");
 
     // If a settings file in the subdir of the applications dir exists, use this one (portable mode)
-    indenterDirctoryStr = QCoreApplication::applicationDirPath() + "/indenters";
+	applicationBinaryPath = QCoreApplication::applicationDirPath();
+#ifdef Q_OS_MAC
+    // Because on Mac universal binaries are used, the binary path is not equal
+	// to the applications (.app) path. So get the .apps path here.
+    int indexOfDotApp = applicationBinaryPath.indexOf(".app");
+    if ( indexOfDotApp != -1 ) {
+	    //TODO: go back to next slash and not only substract 19, which is the length of "UniversalIndentGUI"
+	    applicationBinaryPath = applicationBinaryPath.left( indexOfDotApp-19 );
+	}
+	QMessageBox::warning(this, "", "Applicationpath =" + applicationBinaryPath);
+#endif
+    indenterDirctoryStr = applicationBinaryPath + "/indenters";
     if ( QFile::exists( indenterDirctoryStr ) ) {
         QDir dirCreator;
-        settingsDirctoryStr = QCoreApplication::applicationDirPath() + "/config";
+        settingsDirctoryStr = applicationBinaryPath + "/config";
         dirCreator.mkpath( settingsDirctoryStr );
-        tempDirctoryStr = QCoreApplication::applicationDirPath() + "/temp";
+        tempDirctoryStr = applicationBinaryPath + "/temp";
         dirCreator.mkpath( tempDirctoryStr );
     }
     // ... otherwise use the system specific global application data path.
@@ -77,7 +88,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     QCoreApplication::setApplicationName("UniversalIndentGUI");
 
     // Create the settings object, which loads all UiGui settings from a file.
-	settings = new UiGuiSettings( indenterDirctoryStr );
+	settings = new UiGuiSettings( indenterDirctoryStr, applicationBinaryPath );
 
     // Initialize the language of the application.
     initApplicationLanguage();
@@ -267,7 +278,7 @@ void MainWindow::initTextEditor() {
  */
 void MainWindow::initSyntaxHighlighter() {
     // Create the highlighter.
-    highlighter = new Highlighter(txtedSourceCode);
+    highlighter = new Highlighter(txtedSourceCode, applicationBinaryPath);
 
     // Handle if syntax highlighting is enabled
 	bool syntaxHighlightningEnabled = settings->getValueByName("SyntaxHighlightningEnabled").toBool();
