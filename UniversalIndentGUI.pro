@@ -18,7 +18,7 @@ LIBS += -lqscintilla2
 
 macx {
  CONFIG += x86 ppc sdk
- QMAKE-MAC_SDK = /Developer/SDKs/MacOSX10.5u.sdk
+ QMAKE-MAC_SDK = /Developer/SDKs/MacOSX10.4u.sdk
 }
 
 # remove linker flag "-mthreads" so the mingwm10.dll is no longer needed
