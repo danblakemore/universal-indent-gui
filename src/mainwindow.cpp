@@ -48,8 +48,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 	// to the applications (.app) path. So get the .apps path here.
     int indexOfDotApp = applicationBinaryPath.indexOf(".app");
     if ( indexOfDotApp != -1 ) {
-	    //TODO: go back to next slash and not only substract 19, which is the length of "UniversalIndentGUI"
-	    applicationBinaryPath = applicationBinaryPath.left( indexOfDotApp-19 );
+		// Cut off after the dot of ".app".
+	    applicationBinaryPath = applicationBinaryPath.left( indexOfDotApp-1 );
+		// Cut off after the first slash that was in front of ".app" (noramlly this is the word "UniversalIndentGUI")
+	    applicationBinaryPath = applicationBinaryPath.left( applicationBinaryPath.lastIndexOf("/") );
 	}
 	QMessageBox::warning(this, "", "Applicationpath =" + applicationBinaryPath);
 #endif
