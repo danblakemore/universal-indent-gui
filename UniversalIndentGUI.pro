@@ -31,7 +31,9 @@ unix:documentation.extra = cp doc/UniversalIndentGUI.man doc/UniversalIndentGUI.
 unix:indenters.path = /etc/UniversalIndentGUI/indenters
 unix:indenters.files = indenters/*
 
-INSTALLS += target \
+unix:target.path = /usr/bin/UniversalIndentGUI
+
+unix:INSTALLS += target \
             indenters \
 			documentation
 
