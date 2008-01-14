@@ -24,18 +24,30 @@ macx {
 
 
 # Defining files that shall be installed
+########################################
+# Create and install man page
+system(rm doc/UniversalIndentGUI.1*)
+system(cp doc/UniversalIndentGUI.man doc/UniversalIndentGUI.1)
+system(gzip doc/UniversalIndentGUI.1)
 unix:documentation.path = /usr/share/man/man1
 unix:documentation.files = doc/UniversalIndentGUI.1.gz
-unix:documentation.extra = cp doc/UniversalIndentGUI.man doc/UniversalIndentGUI.1; gzip doc/UniversalIndentGUI.1;
 
+# Install indenter definitions
 unix:indenters.path = /etc/UniversalIndentGUI/indenters
 unix:indenters.files = indenters/*
 
-unix:target.path = /usr/bin/UniversalIndentGUI
+# Install highlighter default config
+unix:highlighterconfig.path = /etc/UniversalIndentGUI/config
+unix:highlighterconfig.files = config/UiGuiSyntaxHighlightConfig.ini
 
+# Install binary
+unix:target.path = /usr/bin
+
+# Set everything that shall be installed
 unix:INSTALLS += target \
-            indenters \
-			documentation
+                 highlighterconfig \
+                 indenters \
+	             documentation
 
 
 
