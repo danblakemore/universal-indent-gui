@@ -55,7 +55,7 @@ echo.
 
 echo Copying the indenter executables and example file to the release data dir
 echo -------------------------------------------------------------------------
-FOR %%A IN ( astyle.exe, astyle.html, bcpp.exe, bcpp.txt, csstidy.exe, gc.exe, gc.txt, htmltidy.exe, htmltidy.html, indent.exe, libiconv-2.dll, libintl-2.dll, indent.html, uncrustify.exe, uncrustify.txt, example.cpp ) DO (
+FOR %%A IN ( astyle.exe, astyle.html, bcpp.exe, bcpp.txt, csstidy.exe, gc.exe, gc.txt, tidy.exe, tidy.html, indent.exe, libiconv-2.dll, libintl-2.dll, indent.html, uncrustify.exe, uncrustify.txt, example.cpp ) DO (
     if not exist .\indenters\%%A (
         echo File .\indenters\%%A not found!
         goto ERROR
@@ -68,7 +68,7 @@ echo.
 
 echo Copying the indenter uigui ini files to the release data dir
 echo ------------------------------------------------------------
-FOR %%A IN ( uigui_astyle.ini, uigui_bcpp.ini, uigui_csstidy.ini, uigui_gnuindent.ini, uigui_greatcode.ini, uigui_htmltidy.ini, uigui_phpCB.ini, uigui_uncrustify.ini, highlighter.ini ) DO (
+FOR %%A IN ( uigui_astyle.ini, uigui_bcpp.ini, uigui_csstidy.ini, uigui_gnuindent.ini, uigui_greatcode.ini, uigui_tidy.ini, uigui_phpCB.ini, uigui_uncrustify.ini, highlighter.ini ) DO (
     if not exist .\indenters\%%A (
         echo File .\indenters\%%A not found!
         goto ERROR

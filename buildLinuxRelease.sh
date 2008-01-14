@@ -48,7 +48,7 @@ cp ./indenters/csstidy ./UniversalIndentGUI_linux32/indenters/
 #cp ./indenters/gc.cfg ./UniversalIndentGUI_linux32/indenters/
 cp ./indenters/gc.exe ./UniversalIndentGUI_linux32/indenters/
 cp ./indenters/gc.txt ./UniversalIndentGUI_linux32/indenters/
-cp ./indenters/htmltidy ./UniversalIndentGUI_linux32/indenters/
+cp ./indenters/tidy ./UniversalIndentGUI_linux32/indenters/
 #cp ./indenters/.indent.pro ./UniversalIndentGUI_linux32/indenters/
 cp ./indenters/indent ./UniversalIndentGUI_linux32/indenters/
 cp ./indenters/indent.html ./UniversalIndentGUI_linux32/indenters/
@@ -62,7 +62,7 @@ cp ./indenters/uigui_greatcode.ini ./UniversalIndentGUI_linux32/indenters/
 cp ./indenters/uigui_phpCB.ini ./UniversalIndentGUI_linux32/indenters/
 cp ./indenters/uigui_gnuindent.ini ./UniversalIndentGUI_linux32/indenters/
 cp ./indenters/uigui_uncrustify.ini ./UniversalIndentGUI_linux32/indenters/
-cp ./indenters/uigui_htmltidy.ini ./UniversalIndentGUI_linux32/indenters/
+cp ./indenters/uigui_tidy.ini ./UniversalIndentGUI_linux32/indenters/
 cp ./indenters/highlighter.ini ./UniversalIndentGUI_linux32/indenters/
 cp ./indenters/example.cpp ./UniversalIndentGUI_linux32/indenters/
 

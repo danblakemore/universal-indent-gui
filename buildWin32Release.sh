@@ -203,7 +203,7 @@ echo ""
 
 echo "Copying the indenter executables and example file to the target data dir"
 echo "------------------------------------------------------------------------"
-indenters="astyle$ext astyle.html bcpp$ext bcpp.txt csstidy$ext gc.exe gc.txt htmltidy$ext htmltidy.html indent$ext indent.html uncrustify$ext uncrustify.txt example.cpp"
+indenters="astyle$ext astyle.html bcpp$ext bcpp.txt csstidy$ext gc.exe gc.txt tidy$ext tidy.html indent$ext indent.html uncrustify$ext uncrustify.txt example.cpp"
 if [ "$ext" = ".exe" ]; then
     indenters="$indenters libiconv-2.dll libintl-2.dll"
 fi
@@ -253,7 +253,7 @@ fi
 
 echo "Copying the indenter uigui ini files to the target data dir"
 echo "-----------------------------------------------------------"
-inifiles="uigui_astyle.ini uigui_bcpp.ini uigui_csstidy.ini uigui_gnuindent.ini uigui_greatcode.ini uigui_htmltidy.ini uigui_phpCB.ini uigui_uncrustify.ini highlighter.ini"
+inifiles="uigui_astyle.ini uigui_bcpp.ini uigui_csstidy.ini uigui_gnuindent.ini uigui_greatcode.ini uigui_tidy.ini uigui_phpCB.ini uigui_uncrustify.ini highlighter.ini"
 for i in $inifiles
 do
     cp ./indenters/$i ./$targetDir/indenters/ &> /dev/null

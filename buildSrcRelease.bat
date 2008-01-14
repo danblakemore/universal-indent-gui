@@ -32,7 +32,7 @@ echo.
 
 echo Copying the indenter uigui ini files to the release data dir
 echo ------------------------------------------------------------
-FOR %%A IN ( uigui_astyle.ini, uigui_bcpp.ini, uigui_csstidy.ini, uigui_gnuindent.ini, uigui_greatcode.ini, uigui_htmltidy.ini, uigui_phpCB.ini, uigui_uncrustify.ini, highlighter.ini ) DO (
+FOR %%A IN ( uigui_astyle.ini, uigui_bcpp.ini, uigui_csstidy.ini, uigui_gnuindent.ini, uigui_greatcode.ini, uigui_tidy.ini, uigui_phpCB.ini, uigui_uncrustify.ini, highlighter.ini ) DO (
     if not exist .\indenters\%%A (
         echo File .\indenters\%%A not found!
         goto ERROR

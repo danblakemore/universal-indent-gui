@@ -48,7 +48,7 @@ cp ./indenters/csstidy ./UniversalIndentGUI_mac/indenters/
 #cp ./indenters/gc.cfg ./UniversalIndentGUI_mac/indenters/
 cp ./indenters/gc.exe ./UniversalIndentGUI_mac/indenters/
 cp ./indenters/gc.txt ./UniversalIndentGUI_mac/indenters/
-cp ./indenters/htmltidy ./UniversalIndentGUI_mac/indenters/
+cp ./indenters/tidy ./UniversalIndentGUI_mac/indenters/
 #cp ./indenters/.indent.pro ./UniversalIndentGUI_mac/indenters/
 cp ./indenters/indent ./UniversalIndentGUI_mac/indenters/
 cp ./indenters/indent.html ./UniversalIndentGUI_mac/indenters/
@@ -62,7 +62,7 @@ cp ./indenters/uigui_greatcode.ini ./UniversalIndentGUI_mac/indenters/
 cp ./indenters/uigui_phpCB.ini ./UniversalIndentGUI_mac/indenters/
 cp ./indenters/uigui_gnuindent.ini ./UniversalIndentGUI_mac/indenters/
 cp ./indenters/uigui_uncrustify.ini ./UniversalIndentGUI_mac/indenters/
-cp ./indenters/uigui_htmltidy.ini ./UniversalIndentGUI_mac/indenters/
+cp ./indenters/uigui_tidy.ini ./UniversalIndentGUI_mac/indenters/
 cp ./indenters/highlighter.ini ./UniversalIndentGUI_mac/indenters/
 cp ./indenters/example.cpp ./UniversalIndentGUI_mac/indenters/
 
