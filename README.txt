@@ -27,11 +27,28 @@ One of the main features and the reason why this tool was (better is being right
 3. Starting UniversalIndentGUI
 ------------------------------
 
-UniversalIndentGUI does not need any further files, because it is linked to Qt statically. Thats why the executable is nearly 7 mb large. This avoids version conflicts with older installed Qt versions. Currently Qt 4.2.1 is being used.
+UniversalIndentGUI does not need any further libs or dlls if you got one of the binary archives, because it is linked statically. Thats the reason why the binary file is rather big.
+
+These binary archives (I mean the zip and tgz files) contain all supported indenters except for phpCB, because it must be obtained with acceptance of its owners.
 
 Right now the windows version of GreatCode is shipped along with the Linux version of UniversalIndentGUI, because I was unable to compile GreatCode under Linux. UniversalIndentGUI tries to start GreatCode via wine. So wine has to be installed in order to use GreatCode. This applies to any new indenter, where only a windows executable exists, too.
 
-Since I have no access to any other systems than windows XP and Linux (Ubuntu Edgy Eft), I would be thankful for info how to run it there.
+3.1 Portable mode
+UniversalIndentGUI can be run in a portable mode, so it won't make any modifications on the system, except for the media it is started from. The things UniversalIndentGUI writes to the for example USB drive are the user settings of the application and the set parameters of the indenters. Further a temporary dir is used, to feed the indenters with input files and grab their output.
+The portable mode is being used, if the sub dir "indenters" is found in the same dir as the executable. Thats the case for the before named binary archives.
+
+3.2 Multiuser mode
+Espacially Unix based systems strictly make use of user restrictments, but also Windows can be used that way, even if many dislike that due to lack of comfort. To be able to run UniversalIndentGUI on multiuser systems the needed files are spread over different directories. On Unix based these are:
+/usr/bin  for the binary.
+/etc/UniversalIndentGUI  for global configuration and the essential indenter ini files.
+/usr/share/man/man1  for the zipped man page.
+~/.config/UniversalIndentGUI  for the users application and indenter settings.
+
+Similar on Windows:
+%ProgramFiles%\UniversalIndentGUI  for the binary and all other needed files, like global configuration and the essential indenter ini files.
+%APPDATA%\UniversalIndentGUI  for the users application and indenter settings.
+
+The multiuser mode is used by default, if no "indenters" sub dir is found in the same dir as the executable.
 
 
 4. Compile UniversalIndentGUI from source
@@ -43,17 +60,17 @@ Repository: svnroot/universalindent
 Directory: trunk
 As one path: https://universalindent.svn.sourceforge.net/svnroot/universalindent/trunk
 
-The Qt Framework Version >=4.2.x with source code is needed for compiling. It is available at www.trolltech.com. Please look there for more information. And pay attention, that there exist a commercial and a free GPL version of the Qt framework.
+The Qt Framework Version >=4.3.x with source code is needed for compiling. It is available at www.trolltech.com. Please look there for more information. And pay attention, that there exist a commercial and a free GPL version of the Qt framework.
 
-The second needed library comes from the QScintilla project (http://www.riverbankcomputing.co.uk/qscintilla/). Since I am using Qt4 there is also need to use the Qt4 version of QScintilla which is (or will be) called QScintilla v2 and is currently in beta state. The least needed version is the one released on 03.18.2007. The latest version is allways available at http://www.riverbankcomputing.com/Downloads/Snapshots/QScintilla2/.
+The second needed library comes from the QScintilla project (http://www.riverbankcomputing.co.uk/qscintilla/). Since I am using Qt4 there is also need to use the Qt4 version of QScintilla which is called QScintilla v2. The latest version is allways available at http://www.riverbankcomputing.com/Downloads/Snapshots/QScintilla2/ and most of the time there is no problem using that snapshot.
 
-For the Windows Visual Studio 2005 a solution file is included, named "UniversalIndentGUI.sln". Additional include and lib directories for Qt have to be set in the preferences. Have a look at the homepage "http://wiki.qgis.org/qgiswiki/Building_QT_4_with_Visual_C++_2005", where zou will find a good guide how to make Qt's open source edition compileabel with Visual Studio. Even though it is written for Qt 4.1.1 it also fits for the current version 4.2.3.
+For the Windows Visual Studio 2005 a solution file is included, named "UniversalIndentGUI.sln". Additional include and lib directories for Qt have to be set in the preferences. Have a look at the homepage "http://wiki.qgis.org/qgiswiki/Building_QT_4_with_Visual_C++_2005", where you will find a good guide how to make Qt's open source edition compileable with Visual Studio. Even though it is written for Qt 4.1.1 it also fits for the current version 4.x.
 
 Instead of using Visual Studio the qmake project file can be used to compile on any platform. Just run "qmake" in the projects main directory (where the file "UniversalIndentGUI.pro" resides). After this run "make debug" or "make release". That should do it.
 
-When compiling has successfully completed you also need to "compile" the existing language translation files in the directory "translations". This is done by calling "lrelease filename.ts -qm filename.qm". "filename" has to be replaced by the real existing filename.
+The make directive to install UniversalIndentGUI is right now only completed for Unix based systems and can be called by "sudo make install".
 
-In the same directory where the UniversalIndentGUI executable is called from, the directories "data" and "translations" have to exist (translations only if you wish to have a translation). Inside of the "date" directory the uigui ini files are placed along with the wanted indenter executables for your platform.
+When compiling has successfully completed you also need to "compile" the existing language translation files in the directory "translations". This is done by calling "lrelease filename.ts -qm filename.qm". "filename" has to be replaced by the real existing filename.
 
 
 5. Some words at the end
