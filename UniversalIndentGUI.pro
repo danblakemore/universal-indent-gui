@@ -21,7 +21,25 @@ macx {
  QMAKE-MAC_SDK = /Developer/SDKs/MacOSX10.4u.sdk
 }
 
+
+
+# Defining files that shall be installed
+unix:documentation.path = /usr/share/man/man1
+unix:documentation.files = doc/UniversalIndentGUI.1.gz
+unix:documentation.extra = cp doc/UniversalIndentGUI.man doc/UniversalIndentGUI.1; gzip doc/UniversalIndentGUI.1;
+
+unix:indenters.path = /etc/UniversalIndentGUI/indenters
+unix:indenters.files = indenters/*
+
+INSTALLS += target \
+            indenters \
+			documentation
+
+
+
+#######################
 # remove linker flag "-mthreads" so the mingwm10.dll is no longer needed
+#######################
 #message(old flags:$${QMAKE_LFLAGS})
 parameters = $${QMAKE_LFLAGS}
 newFlags =
@@ -50,6 +68,7 @@ for(parameter, parameters) {
     }
 }
 QMAKE_CXXFLAGS_EXCEPTIONS_ON = $${newFlags}
+#######################
 
 
 
@@ -59,10 +78,10 @@ CONFIG(debug, debug|release) {
     DESTDIR = ./release
 }
 
-MOC_DIR = $${DESTDIR}/tmp/moc
-UI_DIR = $${DESTDIR}/tmp/uic
-OBJECTS_DIR = $${DESTDIR}/tmp/obj
-RCC_DIR = $${DESTDIR}/tmp/qrc
+MOC_DIR = $${DESTDIR}/moc
+UI_DIR = $${DESTDIR}/uic
+OBJECTS_DIR = $${DESTDIR}/obj
+RCC_DIR = $${DESTDIR}/qrc
 
 #message ( destdir is $${DESTDIR}. uic is $${UI_DIR}. moc is $${MOC_DIR})
 
