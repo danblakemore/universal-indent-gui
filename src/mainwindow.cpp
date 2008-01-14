@@ -116,7 +116,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 	
 
     // generate about dialog box
-    aboutDialog = new AboutDialog(this, Qt::SplashScreen, version, revision, buildDateStr);
+    aboutDialog = new AboutDialog(this, Qt::Dialog, version, revision, buildDateStr);
     //aboutDialogGraphicsView = new AboutDialogGraphicsView(aboutDialog, this);
     //connect( toolBarWidget->pbAbout, SIGNAL(clicked()), aboutDialogGraphicsView, SLOT(show()) );
     //connect( actionAbout_UniversalIndentGUI, SIGNAL(activated()), aboutDialogGraphicsView, SLOT(show()) );
