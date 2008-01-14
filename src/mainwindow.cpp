@@ -61,6 +61,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
         settingsDirctoryStr = applicationBinaryPath + "/config";
         dirCreator.mkpath( settingsDirctoryStr );
         tempDirctoryStr = applicationBinaryPath + "/temp";
+        //TODO: If the portable drive has write protection, use local temp path and clean it up on exit.
         dirCreator.mkpath( tempDirctoryStr );
     }
     // ... otherwise use the system specific global application data path.
@@ -73,11 +74,17 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
         QString commonAppBasePath = commonAppBasePathComponents.join("/");
 #else
         settingsDirctoryStr = QDir::homePath() + "/.config/UniversalIndentGUI";
-        QString commonAppBasePath = "/etc/xdg";
+        QString commonAppBasePath = "/etc";
 #endif
         dirCreator.mkpath( settingsDirctoryStr );
+        // If a highlighter config file does not exist in the users home config dir
+        // copy the default config file overthere.
+        if ( !QFile::exists(settingsDirctoryStr+"/UiGuiSyntaxHighlightConfig.ini") ) {
+            QFile::copy( commonAppBasePath+"/UniversalIndentGUI/config/UiGuiSyntaxHighlightConfig.ini", settingsDirctoryStr+"/UiGuiSyntaxHighlightConfig.ini" );
+        }
         indenterDirctoryStr = commonAppBasePath + "/UniversalIndentGUI/indenters";
-        tempDirctoryStr = QDir::tempPath();
+        tempDirctoryStr = QDir::tempPath() + "/UniversalIndentGUI";
+        dirCreator.mkpath( tempDirctoryStr );
     }
 
     // Init of some variables.
