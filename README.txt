@@ -73,13 +73,29 @@ The make directive to install UniversalIndentGUI is right now only completed for
 When compiling has successfully completed you also need to "compile" the existing language translation files in the directory "translations". This is done by calling "lrelease filename.ts -qm filename.qm". "filename" has to be replaced by the real existing filename.
 
 
-5. Some words at the end
+5. How to integrate an indenter written in JavaScript
+-----------------------------------------------------
+Since version 0.8.0 it is possible to use indenters that are written in JavaScript. These are executed by UniversalIndentGUIs internal JavaScript interpreter.
+To write an own indenter in JavaScript that can be executed by UniversalIndentGUI, the indenter must provide two variables, with the names "unformattedCode" and "formattedCode". The exact names are mandatory. The first one must not be defined by the indenter itself, but is created by UniversalIndentGUI and is the input variable for the indenter. When called, it contains the unformatted source code. The second variable must be defined in the indenter and is the variable that returns the formatted source code.
+In case of the indenter JsDecoder, that is shipped along with UniversalIndentGUI, the important code lines at its end look like this:
+var jsdecoder = new JsDecoder();
+var formattedCode;
+
+// Feed the indenter with unformatted code.
+jsdecoder.s = unformattedCode;
+// Get the formatted code from the indenter.
+formattedCode = jsdecoder.decode();
+
+return formattedCode;
+
+
+6. Some words at the end
 ------------------------
 
 Feel happily invited to try out and comment UniversalIndentGUI. Good and bad critics are welcome, if they are helpful of course ;-)
 
 
-6. Disclaimer
+7. Disclaimer
 -------------
 
 You may use this software on your own risk. I am not responsible for any system damage or loss of data. Respect the GPL!
