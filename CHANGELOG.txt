@@ -1,10 +1,23 @@
 2007-11-22 Version 0.8.0 Beta
-[add] Feature Request ID 1866599 : Adapted the used paths for settings, temporary files and the one containing indenters with ini files to be 
-conform with systems that use strict user rights management. Most this concerns Linux, where the binary resides inside a bin dir and user 
-specific settings are stored in his home dir.
+[add] Feature Request ID 1849297 : Added support for indenters written in JavaScript using an internal interpreter. Have a look into the README.txt to get to know, what steps are needed for that.
+[add] Added support for a simple JavaScript indenter written in JavaScript itself.
 [add] Added support for a simple shell code indenter written in awk.
+[add] Feature Request ID 1736946 : It is now possible to run any indenter that is available in the global environment via a path entry.
+[add] Feature Request ID 1852483 : Indenters written in script languages, like perl, are now also supported, if they have a correct shebang.
+[add] Added support for the well known perltidy. The uigui ini file is completed up to the category and including "Line Break Control". Rest needs to be done.
+[add] Feature Request ID 1866599 : Adapted the used paths for settings, temporary files and the one containing indenter ini files to be conform with systems that use strict user rights management. Most this concerns Linux, where the binary resides inside a bin dir and user specific settings are stored in his home dir. Short: now supporting multiuser systems and also have a portable mode, where modifications are only on local media.
+[add] Feature Request ID 1730360 : Along with real support for multiuser systems, each user can have his own indenter settings. These won't be overwritten by an update, what was the case before.
 [add] Feature Request ID 1867628 : Added a button to the toolbar near the indenter selection that opens the indenters online manual.
+[add] Feature Request ID 1867660 : Created a simple man page for unix based systems.
+[add] The by the qmake projekt file resulting makefile has a directive for install on unix based systems now.
+[add] Added example files for most supported programming languages, so each indenter can be tested.
+[change] The source code archive is now in a Unix conform format and naming convention.
+[change] The used paths have changed. The "data" directory has been renamed to indenters and includes only the uigui ini files and maybe some indenter binaries. Futher a config and a temp directory are used.
+[change] In case of an error during calling the indenter, its standard output is appended to the error dialog.
+[change] Corrected some misspelling.
+[change] Renamed htmltidy to tidy because that is its official name and also the name of the binary in all Linux packages.
 [fix] Bug ID 1855460 : The parameter settings of the indenter were only saved, if preview is turned on. Now the settings are always remembered.
+[fix] Bug ID 1854156 : The syntax highlighter did not switch to perl if a file with suffix .pl or .pm was loaded.
 
 2007-11-22 Version 0.7.1 Beta
 [add] Feature Request ID 1833814 : Added support for building on MacOSX.
