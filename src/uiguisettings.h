@@ -35,7 +35,7 @@ class UiGuiSettings : public QObject
 	Q_OBJECT
 
 public:
-	UiGuiSettings(QString indenterDirctoryStr, QString applicationBinaryPath);
+	UiGuiSettings(bool portableMode, QString globalFilesDirectoryStr);
     virtual ~UiGuiSettings();
     bool loadSettings();
     bool saveSettings();
@@ -85,7 +85,9 @@ private:
 	//! This map holds all possible settings defined by their name as QString. The value is of the type QVariant.
 	QMap<QString, QVariant> settings;
 
+    QString globalFilesDirectoryStr;
     QString indenterDirctoryStr;
+    bool portableMode;
 };
 
 #endif // UIGUISETTINGS_H

@@ -41,7 +41,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     QDate buildDate(2007, 11, 22);
     buildDateStr = buildDate.toString("d. MMMM yyyy");
 
-    // If a settings file in the subdir of the applications dir exists, use this one (portable mode)
+    // Get the applications binary path, with respect to MacOSXs use of the .app folder. 
 	applicationBinaryPath = QCoreApplication::applicationDirPath();
 #ifdef Q_OS_MAC
     // Because on Mac universal binaries are used, the binary path is not equal
@@ -53,11 +53,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 		// Cut off after the first slash that was in front of ".app" (noramlly this is the word "UniversalIndentGUI")
 	    applicationBinaryPath = applicationBinaryPath.left( applicationBinaryPath.lastIndexOf("/") );
 	}
-	QMessageBox::warning(this, "", "Applicationpath =" + applicationBinaryPath);
 #endif
+
+   // If the "indenters" directory is a subdir of the applications binary path, use this one (portable mode)
     indenterDirctoryStr = applicationBinaryPath + "/indenters";
     if ( QFile::exists( indenterDirctoryStr ) ) {
+        portableMode = true;
         QDir dirCreator;
+        globalFilesDirectoryStr = applicationBinaryPath;
         settingsDirctoryStr = applicationBinaryPath + "/config";
         dirCreator.mkpath( settingsDirctoryStr );
         tempDirctoryStr = applicationBinaryPath + "/temp";
@@ -66,23 +69,24 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     }
     // ... otherwise use the system specific global application data path.
     else {
+        portableMode = false;
         QDir dirCreator;
 #ifdef Q_OS_WIN
         settingsDirctoryStr = QDir::fromNativeSeparators( qgetenv("APPDATA") ) + "/UniversalIndentGUI";
         QStringList commonAppBasePathComponents = QDir::fromNativeSeparators( qgetenv("APPDATA") ).split("/");
         commonAppBasePathComponents.replace( commonAppBasePathComponents.count()-2, "All Users" );
-        QString commonAppBasePath = commonAppBasePathComponents.join("/");
+        globalFilesDirectoryStr = commonAppBasePathComponents.join("/") + "/UniversalIndentGUI";
 #else
         settingsDirctoryStr = QDir::homePath() + "/.config/UniversalIndentGUI";
-        QString commonAppBasePath = "/etc";
+        globalFilesDirectoryStr = "/etc/UniversalIndentGUI";
 #endif
         dirCreator.mkpath( settingsDirctoryStr );
         // If a highlighter config file does not exist in the users home config dir
         // copy the default config file overthere.
         if ( !QFile::exists(settingsDirctoryStr+"/UiGuiSyntaxHighlightConfig.ini") ) {
-            QFile::copy( commonAppBasePath+"/UniversalIndentGUI/config/UiGuiSyntaxHighlightConfig.ini", settingsDirctoryStr+"/UiGuiSyntaxHighlightConfig.ini" );
+            QFile::copy( globalFilesDirectoryStr+"/config/UiGuiSyntaxHighlightConfig.ini", settingsDirctoryStr+"/UiGuiSyntaxHighlightConfig.ini" );
         }
-        indenterDirctoryStr = commonAppBasePath + "/UniversalIndentGUI/indenters";
+        indenterDirctoryStr = globalFilesDirectoryStr + "/indenters";
         tempDirctoryStr = QDir::tempPath() + "/UniversalIndentGUI";
         dirCreator.mkpath( tempDirctoryStr );
     }
@@ -97,7 +101,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     QCoreApplication::setApplicationName("UniversalIndentGUI");
 
     // Create the settings object, which loads all UiGui settings from a file.
-	settings = new UiGuiSettings( indenterDirctoryStr, applicationBinaryPath );
+	settings = new UiGuiSettings( portableMode, globalFilesDirectoryStr );
 
     // Initialize the language of the application.
     initApplicationLanguage();
@@ -287,7 +291,7 @@ void MainWindow::initTextEditor() {
  */
 void MainWindow::initSyntaxHighlighter() {
     // Create the highlighter.
-    highlighter = new Highlighter(txtedSourceCode, applicationBinaryPath);
+    highlighter = new Highlighter(txtedSourceCode, portableMode, globalFilesDirectoryStr);
 
     // Handle if syntax highlighting is enabled
 	bool syntaxHighlightningEnabled = settings->getValueByName("SyntaxHighlightningEnabled").toBool();
@@ -334,14 +338,15 @@ bool MainWindow::initApplicationLanguage() {
 
     // Load the Qt own translation file and set it for the application.
     qTTranslator = new QTranslator();
-    bool translationFileLoaded = qTTranslator->load( QString("./translations/qt_") + languageShort );
+    bool translationFileLoaded;
+    translationFileLoaded = qTTranslator->load( globalFilesDirectoryStr + "/translations/qt_" + languageShort );
     if ( translationFileLoaded ) {
         qApp->installTranslator(qTTranslator);
     }
 
     // Load the uigui translation file and set it for the application.
     uiGuiTranslator = new QTranslator();
-    translationFileLoaded = uiGuiTranslator->load( QString("./translations/universalindent_") + languageShort );
+    translationFileLoaded = uiGuiTranslator->load( globalFilesDirectoryStr + "/translations/universalindent_" + languageShort );
     if ( translationFileLoaded ) {
         qApp->installTranslator(uiGuiTranslator);
     }
@@ -1138,13 +1143,14 @@ void MainWindow::languageChanged(int languageIndex) {
 	qApp->removeTranslator( uiGuiTranslator );
 
     // Load the Qt own translation file and set it for the application.
-    bool translationFileLoaded = qTTranslator->load( QString("./translations/qt_") + languageShort );
+    bool translationFileLoaded;
+    translationFileLoaded = qTTranslator->load( globalFilesDirectoryStr + "/translations/qt_" + languageShort );
     if ( translationFileLoaded ) {
         qApp->installTranslator(qTTranslator);
     }
 
     // Load the uigui translation file and set it for the application.
-    translationFileLoaded = uiGuiTranslator->load( QString("./translations/universalindent_") + languageShort );
+    translationFileLoaded = uiGuiTranslator->load( globalFilesDirectoryStr + "/translations/universalindent_" + languageShort );
     if ( translationFileLoaded ) {
         qApp->installTranslator(uiGuiTranslator);
     }

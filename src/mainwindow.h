@@ -82,7 +82,9 @@ private:
     QString version;
     QString revision;
     QString buildDateStr;
+    bool portableMode;
 	QString applicationBinaryPath;
+	QString globalFilesDirectoryStr;
 	QString indenterDirctoryStr;
     QString tempDirctoryStr;
     QString settingsDirctoryStr;

@@ -32,27 +32,20 @@
 /*!
     \brief The constructor initializes some regular expressions and keywords to identify cpp tokens
  */
-Highlighter::Highlighter(QsciScintilla *parent, QString applicationBinaryPath, QSettings *settings)
+Highlighter::Highlighter(QsciScintilla *parent, bool portableMode, QString globalFilesDirectoryStr)
 : QObject(parent)
 {
     this->parent = parent;
 
-    // If a settings file/object is given along with the constructor parameters, use it...
-    if ( settings != NULL ) {
-	    this->settings = settings;
-    }
-    // ... else create a new own one.
+    // If a "indenters" subdir in the applications binary path exists, use local config files (portable mode)
+    if ( portableMode ) {
+        this->settings = new QSettings(globalFilesDirectoryStr + "/config/UiGuiSyntaxHighlightConfig.ini", QSettings::IniFormat, this);
+    } 
+    // ... otherwise use the users application data default dir.
     else {
-        QString settingsSubDir = applicationBinaryPath + "/config/UiGuiSyntaxHighlightConfig.ini";
-        // If a "indenters" subdir in the applications binary path exists, use local config files (portable mode)
-        if ( QFile::exists( applicationBinaryPath + "/indenters" ) ) {
-            this->settings = new QSettings(settingsSubDir, QSettings::IniFormat, this);
-        } 
-        // ... otherwise use the users application data default dir.
-        else {
-            this->settings = new QSettings(QSettings::IniFormat, QSettings::UserScope, QCoreApplication::organizationName(), "UiGuiSyntaxHighlightConfig", this);
-        }
+        this->settings = new QSettings(QSettings::IniFormat, QSettings::UserScope, QCoreApplication::organizationName(), "UiGuiSyntaxHighlightConfig", this);
     }
+
 
     highlightningIsOn = true;
 

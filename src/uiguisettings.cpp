@@ -30,18 +30,19 @@
 /*!
 	\brief The constructor for the settings.
 */
-UiGuiSettings::UiGuiSettings(QString indenterDirctoryStr, QString applicationBinaryPath) : QObject() {
-    QString settingsSubDir = applicationBinaryPath + "/config/UniversalIndentGUI.ini";
+UiGuiSettings::UiGuiSettings(bool portableMode, QString globalFilesDirectoryStr) : QObject() {
     // If a "indenters" subdir in the applications binary path exists, use local config files (portable mode)
-    if ( QFile::exists( applicationBinaryPath + "/indenters" ) ) {
-        qsettings = new QSettings(settingsSubDir, QSettings::IniFormat, this);
+    if ( portableMode ) {
+        qsettings = new QSettings(globalFilesDirectoryStr + "/config/UniversalIndentGUI.ini", QSettings::IniFormat, this);
     } 
     // ... otherwise use the users application data default dir.
     else {
         qsettings = new QSettings(QSettings::IniFormat, QSettings::UserScope, QCoreApplication::organizationName(), QCoreApplication::applicationName(), this);
     }
 
-    this->indenterDirctoryStr = indenterDirctoryStr;
+    this->globalFilesDirectoryStr = globalFilesDirectoryStr;
+    this->portableMode = portableMode;
+    indenterDirctoryStr = globalFilesDirectoryStr + "/indenters";
 	readAvailableTranslations();
 	loadSettings();
 }
@@ -68,7 +69,7 @@ void UiGuiSettings::readAvailableTranslations() {
 	languageFileList << "universalindent_en.qm";
 
 	// Find all translation files in the "translations" directory.
-	QDir translationDirectory = QDir("./translations");
+	QDir translationDirectory = QDir( globalFilesDirectoryStr + "/translations" );
 	languageFileList << translationDirectory.entryList( QStringList("universalindent_*.qm") );
 
 	// Loop for each found translation file
