@@ -36,7 +36,7 @@
  */
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     // set the program version, revision and date, which is shown in the main window title and in the about dialog.
-    version = "0.7.1 Beta";
+    version = "0.8.0 Beta";
     revision = "505";
     QDate buildDate(2007, 11, 22);
     buildDateStr = buildDate.toString("d. MMMM yyyy");
@@ -72,10 +72,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
         portableMode = false;
         QDir dirCreator;
 #ifdef Q_OS_WIN
+        // Get the local users application settings directory.
         settingsDirctoryStr = QDir::fromNativeSeparators( qgetenv("APPDATA") ) + "/UniversalIndentGUI";
-        QStringList commonAppBasePathComponents = QDir::fromNativeSeparators( qgetenv("APPDATA") ).split("/");
-        commonAppBasePathComponents.replace( commonAppBasePathComponents.count()-2, "All Users" );
-        globalFilesDirectoryStr = commonAppBasePathComponents.join("/") + "/UniversalIndentGUI";
+        // On windows systems the directories "indenters", "translations" are subdirs of the applicationBinaryPath.
+        globalFilesDirectoryStr = applicationBinaryPath;
 #else
         settingsDirctoryStr = QDir::homePath() + "/.config/UniversalIndentGUI";
         globalFilesDirectoryStr = "/etc/UniversalIndentGUI";
