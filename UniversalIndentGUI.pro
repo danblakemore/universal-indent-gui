@@ -23,7 +23,9 @@ macx {
  QMAKE-MAC_SDK = /Developer/SDKs/MacOSX10.4u.sdk
 }
 
-
+TRANSLATIONS = translations/universalindent_de.ts \
+               translations/universalindent_ja_JP.ts \
+               translations/universalindent_zh_TW.ts
 
 # Defining files that shall be installed
 ########################################
@@ -38,6 +40,11 @@ unix:documentation.files = doc/UniversalIndentGUI.1.gz
 unix:indenters.path = /etc/UniversalIndentGUI/indenters
 unix:indenters.files = indenters/*
 
+# Install translation files
+unix:translation.path = /etc/UniversalIndentGUI/translations
+unix:translation.files = translations/universalindent_*.qm
+unix:translation.files += $$[QT_INSTALL_TRANSLATIONS]/qt_*.qm
+
 # Install highlighter default config
 unix:highlighterconfig.path = /etc/UniversalIndentGUI/config
 unix:highlighterconfig.files = config/UiGuiSyntaxHighlightConfig.ini
@@ -49,6 +56,7 @@ unix:target.path = /usr/bin
 unix:INSTALLS += target \
                  highlighterconfig \
                  indenters \
+                 translation \
 	             documentation
 
 
