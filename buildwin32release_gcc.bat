@@ -45,17 +45,19 @@ cd UniversalIndentGUI_win32
 IF ERRORLEVEL 1 goto ERROR
 md translations
 IF ERRORLEVEL 1 goto ERROR
-md data
+md indenters
 IF ERRORLEVEL 1 goto ERROR
 md doc
+IF ERRORLEVEL 1 goto ERROR
+md config
 IF ERRORLEVEL 1 goto ERROR
 cd ..
 echo Done.
 echo.
 
-echo Copying the indenter executables and example file to the release data dir
-echo -------------------------------------------------------------------------
-FOR %%A IN ( astyle.exe, astyle.html, bcpp.exe, bcpp.txt, csstidy.exe, gc.exe, gc.txt, tidy.exe, tidy.html, indent.exe, libiconv-2.dll, libintl-2.dll, indent.html, uncrustify.exe, uncrustify.txt, example.cpp ) DO (
+echo Copying the indenter executables and example file to the release indenters dir
+echo ------------------------------------------------------------------------------
+FOR %%A IN ( astyle.exe, astyle.html, bcpp.exe, bcpp.txt, csstidy.exe, gc.exe, gc.txt, indent.exe, libiconv-2.dll, libintl-2.dll, indent.html, JsDecoder.js, perltidy, PerlTidyLib.pm, shellindent.awk, tidy.exe, tidy.html, uncrustify.exe, uncrustify.txt, example.cpp, example.css, example.html, example.js, example.php, example.pl, example.sh ) DO (
     if not exist .\indenters\%%A (
         echo File .\indenters\%%A not found!
         goto ERROR
@@ -66,14 +68,27 @@ FOR %%A IN ( astyle.exe, astyle.html, bcpp.exe, bcpp.txt, csstidy.exe, gc.exe, g
 echo Done.
 echo.
 
-echo Copying the indenter uigui ini files to the release data dir
-echo ------------------------------------------------------------
-FOR %%A IN ( uigui_astyle.ini, uigui_bcpp.ini, uigui_csstidy.ini, uigui_gnuindent.ini, uigui_greatcode.ini, uigui_tidy.ini, uigui_phpCB.ini, uigui_uncrustify.ini, highlighter.ini ) DO (
+echo Copying the indenter uigui ini files to the release indenters dir
+echo -----------------------------------------------------------------
+FOR %%A IN ( uigui_astyle.ini, uigui_bcpp.ini, uigui_csstidy.ini, uigui_gnuindent.ini, uigui_greatcode.ini, uigui_jsdecoder.ini, uigui_perltidy.ini, uigui_phpCB.ini, uigui_shellindent.ini, uigui_tidy.ini, uigui_uncrustify.ini ) DO (
     if not exist .\indenters\%%A (
         echo File .\indenters\%%A not found!
         goto ERROR
     )
     copy .\indenters\%%A .\UniversalIndentGUI_win32\indenters\ >NUL
+    IF ERRORLEVEL 1 goto ERROR
+)
+echo Done.
+echo.
+
+echo Copying the default highlighter ini files to the release config dir
+echo -------------------------------------------------------------------
+FOR %%A IN ( UiGuiSyntaxHighlightConfig.ini ) DO (
+    if not exist .\config\%%A (
+        echo File .\config\%%A not found!
+        goto ERROR
+    )
+    copy .\config\%%A .\UniversalIndentGUI_win32\config\ >NUL
     IF ERRORLEVEL 1 goto ERROR
 )
 echo Done.
@@ -83,7 +98,7 @@ echo Copying some other files (README, CHANGELOG etc)
 echo ------------------------------------------------
 FOR %%A IN ( CHANGELOG.txt, LICENSE.GPL, INSTALL.txt, README.txt ) DO (
     if not exist .\%%A (
-        echo File .\indenters\%%A not found!
+        echo File .\%%A not found!
         goto ERROR
     )
     copy .\%%A .\UniversalIndentGUI_win32\ >NUL
@@ -121,7 +136,7 @@ echo.
 echo Packing the whole release dir content
 echo -------------------------------------
 cd UniversalIndentGUI_win32
-7z.exe a -tzip UniversalIndentGUI_0.7.1_Beta_win32.zip >NUL
+7z.exe a -tzip UniversalIndentGUI_0.8.0_Beta_win32.zip >NUL
 IF ERRORLEVEL 1 goto ERROR
 cd ..
 echo Done.

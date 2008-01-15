@@ -1,5 +1,7 @@
 @echo off
 
+set targetname=universalindentgui-0.8.0
+
 echo Making some environment settings
 echo --------------------------------
 set PATH=%PATH%;D:\Programme\Tools\7-Zip
@@ -8,15 +10,14 @@ echo.
 
 echo Delete old release dir and create new one
 echo -----------------------------------------
-rd UniversalIndentGUI_src /S /Q
+rd %targetname% /S /Q
+md %targetname%
 IF ERRORLEVEL 1 goto ERROR
-md UniversalIndentGUI_src
-IF ERRORLEVEL 1 goto ERROR
-cd UniversalIndentGUI_src
+cd %targetname%
 IF ERRORLEVEL 1 goto ERROR
 md UniversalIndentGUI.xcodeproj
 IF ERRORLEVEL 1 goto ERROR
-md data
+md indenters
 IF ERRORLEVEL 1 goto ERROR
 md resources
 IF ERRORLEVEL 1 goto ERROR
@@ -26,18 +27,41 @@ md src
 IF ERRORLEVEL 1 goto ERROR
 md doc
 IF ERRORLEVEL 1 goto ERROR
+md config
+IF ERRORLEVEL 1 goto ERROR
 cd ..
 echo Done.
 echo.
 
-echo Copying the indenter uigui ini files to the release data dir
-echo ------------------------------------------------------------
-FOR %%A IN ( uigui_astyle.ini, uigui_bcpp.ini, uigui_csstidy.ini, uigui_gnuindent.ini, uigui_greatcode.ini, uigui_tidy.ini, uigui_phpCB.ini, uigui_uncrustify.ini, highlighter.ini ) DO (
+
+echo Updating translation files
+echo --------------------------
+lupdate UniversalIndentGUI.pro -silent
+IF ERRORLEVEL 1 goto ERROR
+echo Done.
+echo.
+
+echo Copying the indenter uigui ini files to the release indenters dir
+echo -----------------------------------------------------------------
+FOR %%A IN ( uigui_astyle.ini, uigui_bcpp.ini, uigui_csstidy.ini, uigui_gnuindent.ini, uigui_greatcode.ini, uigui_jsdecoder.ini, uigui_perltidy.ini, uigui_phpCB.ini, uigui_shellindent.ini, uigui_tidy.ini, uigui_uncrustify.ini ) DO (
     if not exist .\indenters\%%A (
         echo File .\indenters\%%A not found!
         goto ERROR
     )
-    copy .\indenters\%%A .\UniversalIndentGUI_src\indenters\ >NUL
+    copy .\indenters\%%A .\%targetname%\indenters\ >NUL
+    IF ERRORLEVEL 1 goto ERROR
+)
+echo Done.
+echo.
+
+echo Copying the default highlighter ini files to the release config dir
+echo -------------------------------------------------------------------
+FOR %%A IN ( UiGuiSyntaxHighlightConfig.ini ) DO (
+    if not exist .\config\%%A (
+        echo File .\config\%%A not found!
+        goto ERROR
+    )
+    copy .\config\%%A .\%targetname%\config\ >NUL
     IF ERRORLEVEL 1 goto ERROR
 )
 echo Done.
@@ -45,13 +69,13 @@ echo.
 
 echo Copying translations, resources and src dir
 echo -------------------------------------------
-copy .\translations\*.ts .\UniversalIndentGUI_src\translations\ >NUL
+copy .\translations\*.ts .\%targetname%\translations\ >NUL
 IF ERRORLEVEL 1 goto ERROR
-copy .\resources\* .\UniversalIndentGUI_src\resources\ >NUL
+copy .\resources\* .\%targetname%\resources\ >NUL
 IF ERRORLEVEL 1 goto ERROR
-copy .\src\* .\UniversalIndentGUI_src\src\ >NUL
+copy .\src\* .\%targetname%\src\ >NUL
 IF ERRORLEVEL 1 goto ERROR
-del .\UniversalIndentGUI_src\src\*.user >NUL
+del .\%targetname%\src\*.user >NUL
 IF ERRORLEVEL 1 goto ERROR
 echo Done.
 echo.
@@ -63,7 +87,7 @@ FOR %%A IN ( CHANGELOG.txt, LICENSE.GPL, INSTALL.txt, README.txt, UniversalInden
         echo File .\indenters\%%A not found!
         goto ERROR
     )
-    copy .\%%A .\UniversalIndentGUI_src\ >NUL
+    copy .\%%A .\%targetname%\ >NUL
     IF ERRORLEVEL 1 goto ERROR
 )
 echo Done.
@@ -79,7 +103,7 @@ FOR %%A IN ( project.pbxproj, qt_makeqmake.mak, qt_preprocess.mak ) DO (
         echo File .\indenters\%%A not found!
         goto ERROR
     )
-    copy .\%%A ..\UniversalIndentGUI_src\UniversalIndentGUI.xcodeproj\ >NUL
+    copy .\%%A ..\%targetname%\UniversalIndentGUI.xcodeproj\ >NUL
     IF ERRORLEVEL 1 goto ERROR
 )
 cd ..
@@ -88,17 +112,21 @@ echo.
 
 echo Copying doc and UniversalIndentGUI.exe to release dir
 echo -----------------------------------------------------
-copy .\doc\iniFileFormat.html .\UniversalIndentGUI_src\doc\ >NUL
+copy .\doc\iniFileFormat.html .\%targetname%\doc\ >NUL
 IF ERRORLEVEL 1 goto ERROR
 echo Done.
 echo.
 
 echo Packing the whole release dir content
 echo -------------------------------------
-cd UniversalIndentGUI_src
-7z.exe a -tzip UniversalIndentGUI_0.7.1_Beta_src.zip >NUL
+rem cd %targetname%
+del %targetname%.tar >NUL
+del %targetname%.tar.gz >NUL
+7z.exe a -ttar %targetname%.tar %targetname% >NUL
+7z.exe a -tgzip %targetname%.tar.gz %targetname%.tar >NUL
+del %targetname%.tar >NUL
 IF ERRORLEVEL 1 goto ERROR
-cd ..
+rem cd ..
 echo Done.
 echo.
 
