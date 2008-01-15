@@ -77,8 +77,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
         // On windows systems the directories "indenters", "translations" are subdirs of the applicationBinaryPath.
         globalFilesDirectoryStr = applicationBinaryPath;
 #else
-        settingsDirctoryStr = QDir::homePath() + "/.config/UniversalIndentGUI";
-        globalFilesDirectoryStr = "/etc/UniversalIndentGUI";
+        settingsDirctoryStr = QDir::homePath() + "/.config/universalindentgui";
+        globalFilesDirectoryStr = "/etc/universalindentgui";
 #endif
         dirCreator.mkpath( settingsDirctoryStr );
         // If a highlighter config file does not exist in the users home config dir

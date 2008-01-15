@@ -8,7 +8,7 @@ CONFIG += debug_and_release
 TEMPLATE = app
 QT += network
 QT += script 
-TARGET += 
+unix:TARGET = universalindentgui
 DEPENDPATH += resources \
               src \
               debug \
@@ -30,23 +30,23 @@ TRANSLATIONS = translations/universalindent_de.ts \
 # Defining files that shall be installed
 ########################################
 # Create and install man page
-system(rm doc/UniversalIndentGUI.1*)
-system(cp doc/UniversalIndentGUI.man doc/UniversalIndentGUI.1)
-system(gzip doc/UniversalIndentGUI.1)
+unix:system(rm doc/universalindentgui.1*)
+unix:system(cp doc/universalindentgui.man doc/universalindentgui.1)
+unix:system(gzip doc/universalindentgui.1)
 unix:documentation.path = /usr/share/man/man1
-unix:documentation.files = doc/UniversalIndentGUI.1.gz
+unix:documentation.files = doc/universalindentgui.1.gz
 
 # Install indenter definitions
-unix:indenters.path = /etc/UniversalIndentGUI/indenters
+unix:indenters.path = /etc/universalindentgui/indenters
 unix:indenters.files = indenters/*
 
 # Install translation files
-unix:translation.path = /etc/UniversalIndentGUI/translations
+unix:translation.path = /etc/universalindentgui/translations
 unix:translation.files = translations/universalindent_*.qm
 unix:translation.files += $$[QT_INSTALL_TRANSLATIONS]/qt_*.qm
 
 # Install highlighter default config
-unix:highlighterconfig.path = /etc/UniversalIndentGUI/config
+unix:highlighterconfig.path = /etc/universalindentgui/config
 unix:highlighterconfig.files = config/UiGuiSyntaxHighlightConfig.ini
 
 # Install binary
