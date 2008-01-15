@@ -38,7 +38,7 @@ UniversalIndentGUI can be run in a portable mode, so it won't make any modificat
 The portable mode is being used, if the sub dir "indenters" is found in the same dir as the executable. Thats the case for the before named binary archives.
 
 3.2 Multiuser mode
-Espacially Unix based systems strictly make use of user restrictments, but also Windows can be used that way, even if many dislike that due to lack of comfort. To be able to run UniversalIndentGUI on multiuser systems the needed files are spread over different directories. On Unix based these are:
+Especially Unix based systems strictly make use of user restrictments, but also Windows can be used that way, even if many dislike that due to lack of comfort. To be able to run UniversalIndentGUI on multiuser systems the needed files are spread over different directories. On Unix based these are:
 /usr/bin  for the binary.
 /etc/UniversalIndentGUI  for global configuration and the essential indenter ini files.
 /usr/share/man/man1  for the zipped man page.
