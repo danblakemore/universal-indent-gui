@@ -1,4 +1,4 @@
-2007-11-22 Version 0.8.0 Beta
+2008-01-17 Version 0.8.0 Beta
 [add] Feature Request ID 1849297 : Added support for indenters written in JavaScript using an internal interpreter. Have a look into the README.txt to get to know, what steps are needed for that.
 [add] Added support for a simple JavaScript indenter written in JavaScript itself.
 [add] Added support for a simple shell code indenter written in awk.
