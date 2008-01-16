@@ -54,6 +54,21 @@ FOR %%A IN ( uigui_astyle.ini, uigui_bcpp.ini, uigui_csstidy.ini, uigui_gnuinden
 echo Done.
 echo.
 
+
+echo Copying the script indenters to the release indenters dir
+echo ---------------------------------------------------------
+FOR %%A IN ( JsDecoder.js, perltidy, PerlTidyLib.pm, shellindent.awk ) DO (
+    if not exist .\indenters\%%A (
+        echo File .\indenters\%%A not found!
+        goto ERROR
+    )
+    copy .\indenters\%%A .\%targetname%\indenters\ >NUL
+    IF ERRORLEVEL 1 goto ERROR
+)
+echo Done.
+echo.
+
+
 echo Copying the default highlighter ini files to the release config dir
 echo -------------------------------------------------------------------
 FOR %%A IN ( UiGuiSyntaxHighlightConfig.ini ) DO (
