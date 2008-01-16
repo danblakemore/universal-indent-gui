@@ -5,7 +5,7 @@
     <message>
         <location filename="../src/aboutdialog.ui" line="105"/>
         <source>... is a cross platform compatible GUI for several code formatter, beautifier and indenter like GreatCode, AStyle (Artistic Styler), GNU Indent, BCPP and so on. Main feature is a live preview to directly see how the selected formatting option affects the source code.</source>
-        <translation>這是一套給眾多程式碼重整及美化工具（例如 GreatCode、AStyle (Artistic Styler)、GNU Indent、BCPP 及其他類似工具）使用的 GUI 界面，它最主要的特點在於可以即時預覽程式碼被重整後的樣子。</translation>
+        <translation>這是一套給眾多程式碼重整及美化工具使用的 GUI 界面，這些工具包括 GreatCode、AStyle (Artistic Styler)、GNU Indent、BCPP 及其他類似工具，它可以即時預覽程式碼被重整後的樣子。</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.ui" line="101"/>
@@ -92,7 +92,10 @@ Credits:</source>
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;MS Shell Dlg 2&apos;; font-size:12pt;&quot;&gt;Version %1 rev.%2, %3 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;MS Shell Dlg 2&apos;; font-size:12pt;&quot;&gt;Version %1 rev.%2, %3 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.ui" line="136"/>
@@ -102,18 +105,24 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;MS Shell Dlg 2&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;Written by : Thomas Schweitzer&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;MS Shell Dlg 2&apos;; font-size:9pt;&quot;&gt;Project Homepage : &lt;a href=&quot;http://universalindent.sourceforge.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://universalindent.sourceforge.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;MS Shell Dlg 2&apos;; font-size:9pt;&quot;&gt;    &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;MS Shell Dlg 2&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;軟體開發：Thomas Schweitzer&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;MS Shell Dlg 2&apos;; font-size:9pt;&quot;&gt;專案首頁：&lt;a href=&quot;http://universalindent.sourceforge.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://universalindent.sourceforge.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;MS Shell Dlg 2&apos;; font-size:9pt;&quot;&gt;    &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.ui" line="148"/>
         <source>License: UniversalIndentGui is released under the GPL 2. For details read the included file LICENSE.GPL visit http://www.gnu.org/licenses/gpl.html.</source>
-        <translation type="unfinished"></translation>
+        <translation>授權協議：UniversalIndentGUI 是以 GPL 2 釋出，詳情請看安裝目錄下的 LICENSE 檔案。你可以拜訪 http://www.gnu.org/licenses/gpl.html 獲得更多關於 GPL 的細節。</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.ui" line="158"/>
         <source><byte value="xd"/>
 Credits:</source>
-        <translation type="unfinished"></translation>
+        <translation>
+致謝名單：</translation>
     </message>
 </context>
 <context>
@@ -460,7 +469,7 @@ Credits:</source>
     <message>
         <location filename="../src/indenthandler.cpp" line="378"/>
         <source>Indenter returned error</source>
-        <translation type="unfinished">重整工具傳回錯誤</translation>
+        <translation>重整工具傳回錯誤</translation>
     </message>
     <message>
         <location filename="../src/indenthandler.cpp" line="311"/>
@@ -490,32 +499,32 @@ Credits:</source>
     <message>
         <location filename="../src/indenthandler.cpp" line="98"/>
         <source>No indenter ini files</source>
-        <translation type="unfinished">找不到重整工具需要的 INI 檔</translation>
+        <translation>找不到重整工具需要的 INI 檔</translation>
     </message>
     <message>
         <location filename="../src/indenthandler.cpp" line="98"/>
         <source>There exists no indenter ini files in the directory &quot;</source>
-        <translation type="unfinished">本目錄下找不到重整工具所需的 INI 檔 &quot;</translation>
+        <translation>本目錄下找不到重整工具所需的 INI 檔 &quot;</translation>
     </message>
     <message>
         <location filename="../src/indenthandler.cpp" line="312"/>
         <source>There exists no indenter executable with the name &quot;%1&quot; in the directory &quot;%2&quot; nor in the global environment.</source>
-        <translation type="unfinished"></translation>
+        <translation>找不到重整工具 &quot;%1&quot; 於目錄 &quot;%2&quot; 下及全域環境變數下。</translation>
     </message>
     <message>
         <location filename="../src/indenthandler.cpp" line="361"/>
         <source>&lt;br&gt;&lt;br&gt;&lt;b&gt;Indenter output was:&lt;/b&gt;&lt;pre&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;br&gt;&lt;br&gt;&lt;b&gt;重整工具的輸出結果：&lt;/b&gt;&lt;pre&gt;</translation>
     </message>
     <message>
         <location filename="../src/indenthandler.cpp" line="1091"/>
         <source>Interpreter needed</source>
-        <translation type="unfinished"></translation>
+        <translation>需要直譯器</translation>
     </message>
     <message>
         <location filename="../src/indenthandler.cpp" line="1092"/>
         <source>To use the selected indenter the program &quot;%1&quot; needs to be available in the global environment. You should add an entry to your path settings.</source>
-        <translation type="unfinished"></translation>
+        <translation>要使用這個重整工具，你必須將程式 &quot;%1&quot; 加到全域的 Path 變數中。</translation>
     </message>
 </context>
 <context>
@@ -1000,7 +1009,7 @@ Do you want to go to the download website?</source>
     <message>
         <location filename="../src/toolBarWidget.ui" line="54"/>
         <source>Brings you to the online manual of the currently selected indenter, where you can get further help on the possible parameters.</source>
-        <translation type="unfinished"></translation>
+        <translation>這會開啟當前重整工具的線上手冊，你將能找到更多關於可用參數的說明。</translation>
     </message>
 </context>
 </TS>
