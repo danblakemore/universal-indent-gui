@@ -65,33 +65,30 @@ unix:INSTALLS += target \
 # remove linker flag "-mthreads" so the mingwm10.dll is no longer needed
 #######################
 #message(old flags:$${QMAKE_LFLAGS})
-parameters = $${QMAKE_LFLAGS}
-newFlags =
-for(parameter, parameters) {
-    !contains(parameter, -mthreads) {
-        newFlags += $${parameter}
-    }
+win32:parameters = $${QMAKE_LFLAGS}
+win32:newFlags = for(parameter, parameters) { \
+    !contains(parameter, -mthreads) { \
+        newFlags += $${parameter} \
+    } \
 }
-QMAKE_LFLAGS = $${newFlags}
+win32:QMAKE_LFLAGS = $${newFlags}
 #message(new flags:$${QMAKE_LFLAGS})
 
-parameters = $${QMAKE_LFLAGS_EXCEPTIONS_ON}
-newFlags =
-for(parameter, parameters) {
-    !contains(parameter, -mthreads) {
-        newFlags += $${parameter}
-    }
+win32:parameters = $${QMAKE_LFLAGS_EXCEPTIONS_ON}
+win32:newFlags = for(parameter, parameters) { \
+    !contains(parameter, -mthreads) { \
+        newFlags += $${parameter} \
+    } \
 }
-QMAKE_LFLAGS_EXCEPTIONS_ON = $${newFlags}
+win32:QMAKE_LFLAGS_EXCEPTIONS_ON = $${newFlags}
 
-parameters = $${QMAKE_CXXFLAGS_EXCEPTIONS_ON}
-newFlags =
-for(parameter, parameters) {
-    !contains(parameter, -mthreads) {
-        newFlags += $${parameter}
-    }
+win32:parameters = $${QMAKE_CXXFLAGS_EXCEPTIONS_ON}
+win32:newFlags = for(parameter, parameters) { \
+    !contains(parameter, -mthreads) { \
+        newFlags += $${parameter} \
+    } \
 }
-QMAKE_CXXFLAGS_EXCEPTIONS_ON = $${newFlags}
+win32:QMAKE_CXXFLAGS_EXCEPTIONS_ON = $${newFlags}
 #######################
 
 
