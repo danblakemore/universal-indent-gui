@@ -7,7 +7,7 @@ This application is released under the GPL version 2. Read the file "LICENSE.GPL
 1. About UniversalIndentGUI
 ---------------------------
 
-The UniversalIndentGUI is a universal graphical user interface for source code, respective text, formatter, beautifier and indenter. This is mainly achieved by a configuration file for each supported indenter.
+The UniversalIndentGUI is a universal graphical user interface for source code, respective text, formatters, beautifiers and indenters. This is mainly achieved by a configuration file for each supported indenter.
 
 One of the main features and the reason why this tool was (better is being right now) developed is to see how the indent parameter affects the source code style directly while changing the parameters. It always bothered me to change one option of a tool like GNU Indent or GreatCode and have to run it to see what my code would look like afterward. Often the result was not what I expected from the parameters description. So these times are gone. Toggle a parameter and see what it does.
 

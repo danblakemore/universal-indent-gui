@@ -1,17 +1,17 @@
-.TH UniversalIndentGUI 1 "2008-01-15" "0.8.0" "UniversalIndentGUI"
+.TH universalindentgui 1 "2008-01-15" "0.8.0" "UniversalIndentGUI"
 
 .SH NAME 
-UniversalIndentGUI \- is a cross platform graphical user interface for nearly any code indenter.
+universalindentgui \- GUI frontend for several code beautifiers
 
 .SH SYNOPSIS 
-.B UniversalIndentGUI
+.B universalindentgui
 (takes no commandline parameters)
 
 .SH DESCRIPTION 
-UniversalIndentGUI is a cross platform compatible GUI for several code formatter, beautifier and indenter like GreatCode, AStyle (Artistic Styler), GNU Indent, BCPP and so on. Main feature is a live preview to directly see how the selected formatting option affects the source code.
+\fBUniversalIndentGUI\fP is a cross platform compatible GUI for several code formatters, beautifiers and indenters, e.g. GreatCode, AStyle (Artistic Style), GNU Indent, BCPP and others. Its main feature is a live preview to directly see how the selected formatting options affect the source code.
 
 .SH BUGS 
-Actually known bugs can be seen on http://sf.net/tracker/?func=browse&group_id=167482&atid=843127
+Currently known bugs can be browsed on http://sf.net/tracker/?func=browse&group_id=167482&atid=843127
 
 .SH AUTHOR 
-Thomas Schweitzer <thomas_-_s@users.sourceforge.net> 
+Thomas\ Schweitzer <thomas_-_s@users.sourceforge.net>, adjustments for Debian by Sebastian\ Pipping <webmaster@hartwork.org>.
