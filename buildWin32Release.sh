@@ -11,14 +11,15 @@ fi
 # Configuration
 # -------------
 ext=.exe
-targetDir=UniversalIndentGUI_$targetSystem
+targetName=UniversalIndentGUI
+targetDir=${targetName}_$targetSystem
 version=0.6.1_Beta
 doSVNUpdate=false
 languages="de zh_TW ja_JP"
 
 # Qt specific settings
-#QTDIR=/c/Programmierung/qt.4.3.0_gcc_static
-QTDIR=/f/Qt/qt.4.3.2_gpl_static
+QTDIR=/c/Programmierung/qt.4.3.2_gcc
+#QTDIR=/f/Qt/qt.4.3.2_gpl_static
 QMAKESPEC=win32-g++
 
 echo "Making some environment settings"
@@ -47,7 +48,7 @@ if [ $? -gt 0 ]; then
 fi
 mkdir $targetDir/indenters &> /dev/null
 if [ $? -gt 0 ]; then
-    echo "ERROR: Creating dir data failed!"
+    echo "ERROR: Creating dir indenters failed!"
     exit 1
 fi
 mkdir $targetDir/doc &> /dev/null
@@ -60,7 +61,12 @@ if [ $? -gt 0 ]; then
     echo "ERROR: Creating dir translations failed!"
     exit 1
 fi
-# In case of source files as target system, create additional dir.
+mkdir $targetDir/config &> /dev/null
+if [ $? -gt 0 ]; then
+    echo "ERROR: Creating dir config failed!"
+    exit 1
+fi
+# In case of source files as target system, create additional dirs.
 if [ "$targetSystem" = "src" ]; then
     mkdir $targetDir/resources &> /dev/null
     if [ $? -gt 0 ]; then
@@ -192,18 +198,18 @@ echo ""
 
 echo "Copying UniversalIndentGUI$ext to target dir"
 echo "--------------------------------------------"
-cp ./release/UniversalIndentGUI$ext ./$targetDir/ &> /dev/null
+cp ./release/$targetName$ext ./$targetDir/ &> /dev/null
 if [ $? -gt 0 ]; then
-    echo "ERROR: Could not copy file \"UniversalIndentGUI$ext\"!"
+    echo "ERROR: Could not copy file \"$targetName$ext\"!"
     exit 1
 fi
 echo "Done"
 echo ""
 
 
-echo "Copying the indenter executables and example file to the target data dir"
-echo "------------------------------------------------------------------------"
-indenters="astyle$ext astyle.html bcpp$ext bcpp.txt csstidy$ext gc.exe gc.txt tidy$ext tidy.html indent$ext indent.html uncrustify$ext uncrustify.txt example.cpp"
+echo "Copying the indenter executable files to the target indenters dir"
+echo "-----------------------------------------------------------------"
+indenters="astyle$ext astyle.html bcpp$ext bcpp.txt csstidy$ext greatcode.exe greatcode.txt indent$ext indent.html tidy$ext tidy.html uncrustify$ext uncrustify.txt"
 if [ "$ext" = ".exe" ]; then
     indenters="$indenters libiconv-2.dll libintl-2.dll"
 fi
@@ -251,10 +257,10 @@ echo ""
 fi
 ###################### binary release end ########################
 
-echo "Copying the indenter uigui ini files to the target data dir"
-echo "-----------------------------------------------------------"
-inifiles="uigui_astyle.ini uigui_bcpp.ini uigui_csstidy.ini uigui_gnuindent.ini uigui_greatcode.ini uigui_tidy.ini uigui_phpCB.ini uigui_uncrustify.ini highlighter.ini"
-for i in $inifiles
+echo "Copying the script based indenters to the target indenters dir"
+echo "--------------------------------------------------------------"
+indenters="JsDecoder.js perltidy PerlTidyLib.pm shellindent.awk"
+for i in $indenters
 do
     cp ./indenters/$i ./$targetDir/indenters/ &> /dev/null
     if [ $? -gt 0 ]; then
@@ -262,6 +268,38 @@ do
         exit 1
     fi
 done
+echo "Done"
+echo ""
+
+echo "Copying the indenter example files to the target indenters dir"
+echo "--------------------------------------------------------------"
+cp ./indenters/example.* ./$targetDir/indenters/ &> /dev/null
+if [ $? -gt 0 ]; then
+    echo "ERROR: Could not copy example files!"
+    exit 1
+fi
+echo "Done"
+echo ""
+
+
+echo "Copying the indenter uigui ini files to the target indenters dir"
+echo "----------------------------------------------------------------"
+cp ./indenters/uigui*.ini ./$targetDir/indenters/ &> /dev/null
+if [ $? -gt 0 ]; then
+    echo "ERROR: Could not copy the uigui*.ini files!"
+    exit 1
+fi
+echo "Done"
+echo ""
+
+
+echo "Copying the default syntax highlight ini file to the target config dir"
+echo "----------------------------------------------------------------------"
+cp ./config/UiGuiSyntaxHighlightConfig.ini ./$targetDir/config/ &> /dev/null
+if [ $? -gt 0 ]; then
+    echo "ERROR: Could not copy the UiGuiSyntaxHighlightConfig.ini file!"
+    exit 1
+fi
 echo "Done"
 echo ""
 
