@@ -66,27 +66,30 @@ unix:INSTALLS += target \
 #######################
 #message(old flags:$${QMAKE_LFLAGS})
 win32:parameters = $${QMAKE_LFLAGS}
-win32:newFlags = for(parameter, parameters) { \
-    !contains(parameter, -mthreads) { \
-        newFlags += $${parameter} \
-    } \
+newFlags =
+for(parameter, parameters) {
+    !contains(parameter, -mthreads) {
+        newFlags += $${parameter}
+    }
 }
 win32:QMAKE_LFLAGS = $${newFlags}
 #message(new flags:$${QMAKE_LFLAGS})
 
 win32:parameters = $${QMAKE_LFLAGS_EXCEPTIONS_ON}
-win32:newFlags = for(parameter, parameters) { \
-    !contains(parameter, -mthreads) { \
-        newFlags += $${parameter} \
-    } \
+newFlags =
+for(parameter, parameters) {
+    !contains(parameter, -mthreads) {
+        newFlags += $${parameter}
+    }
 }
 win32:QMAKE_LFLAGS_EXCEPTIONS_ON = $${newFlags}
 
 win32:parameters = $${QMAKE_CXXFLAGS_EXCEPTIONS_ON}
-win32:newFlags = for(parameter, parameters) { \
-    !contains(parameter, -mthreads) { \
-        newFlags += $${parameter} \
-    } \
+newFlags =
+for(parameter, parameters) {
+    !contains(parameter, -mthreads) {
+        newFlags += $${parameter}
+    }
 }
 win32:QMAKE_CXXFLAGS_EXCEPTIONS_ON = $${newFlags}
 #######################
