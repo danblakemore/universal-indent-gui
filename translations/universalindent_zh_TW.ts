@@ -895,12 +895,12 @@ Do you want to go to the download website?</source>
 <context>
     <name>UpdateCheckDialog</name>
     <message>
-        <location filename="../src/updatecheckdialog.cpp" line="161"/>
+        <location filename="../src/UpdateCheckDialog.ui" line="16"/>
         <source>Checking for update...</source>
         <translation>正在檢查是否有更新檔</translation>
     </message>
     <message>
-        <location filename="../src/updatecheckdialog.cpp" line="162"/>
+        <location filename="../src/UpdateCheckDialog.ui" line="22"/>
         <source>Checking whether a newer version is available</source>
         <translation>正在檢查是否有新版本</translation>
     </message>

@@ -681,12 +681,12 @@ Do you want to save your changes?</source>
 <context>
     <name>UpdateCheckDialog</name>
     <message>
-        <location filename="../src/updatecheckdialog.cpp" line="161"/>
+        <location filename="../src/UpdateCheckDialog.ui" line="16"/>
         <source>Checking for update...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/updatecheckdialog.cpp" line="162"/>
+        <location filename="../src/UpdateCheckDialog.ui" line="22"/>
         <source>Checking whether a newer version is available</source>
         <translation type="unfinished"></translation>
     </message>

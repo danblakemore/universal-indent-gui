@@ -1047,12 +1047,12 @@ Wollen Sie zu Download Website geleitet werden?</translation>
 <context>
     <name>UpdateCheckDialog</name>
     <message>
-        <location filename="../src/updatecheckdialog.cpp" line="161"/>
+        <location filename="../src/UpdateCheckDialog.ui" line="16"/>
         <source>Checking for update...</source>
         <translation>Prüfe auf Update...</translation>
     </message>
     <message>
-        <location filename="../src/updatecheckdialog.cpp" line="162"/>
+        <location filename="../src/UpdateCheckDialog.ui" line="22"/>
         <source>Checking whether a newer version is available</source>
         <translation>Prüfe ob eine neuere Version verfügbar ist</translation>
     </message>
