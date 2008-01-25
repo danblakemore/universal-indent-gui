@@ -1,4 +1,11 @@
 #!/bin/sh
+
+# Command line syntax:
+# buildRelease [targetsystem qtdir]
+# Example:
+# buildRelease win32 /c/qt.4.3.2
+# Default values are targetsystem=src, qtdir=""
+
 # 1. param is target system
 if [ -n "$1" ]; then
     targetSystem=$1
@@ -6,9 +13,14 @@ else
     targetSystem="src"
 fi
 
+# 2. param, which is QTDIR
+if [ -n "$2" ]; then
+    QTDIR=$2
+fi
+
 # Only allow the build targets win32, macx and linux.
-if [ -n "$1" ] && [ ! "$1" = "win32" ] && [ ! "$1" = "macx" ]  && [ ! "$1" = "linux" ]; then
-    echo "ERROR: Build target \"$1\" not supported! Supported are win32, macx and linux."
+if [ -n "$1" ] && [ ! "$1" = "win32" ] && [ ! "$1" = "macx" ]  && [ ! "$1" = "linux" ] && [ ! "$1" = "src" ]; then
+    echo "ERROR: Build target \"$1\" not supported! Supported are win32, macx, linux and src."
     exit 1
 fi
 
@@ -20,6 +32,7 @@ fi
 
 if [ "$targetSystem" = "win32" ] || [ "$targetSystem" = "macx" ]; then
     targetName=UniversalIndentGUI # The targetname must be identical with the targetname set in the qmake project file.
+    QMAKESPEC=${targetSystem}-g++
 else
     targetName=universalindentgui # The targetname must be identical with the targetname set in the qmake project file.
 fi
@@ -31,10 +44,14 @@ version=0.8.0
 doSVNUpdate=false
 languages="de zh_TW ja_JP"
 
-# Qt specific settings
-QTDIR=/c/Programmierung/qt.4.3.2_gcc
-#QTDIR=/f/Qt/qt.4.3.2_gpl_static
-QMAKESPEC=${targetSystem}-g++
+# Set QTDIR and QMAKESPEC for each platform
+if [ "$targetSystem" = "win32" ] && [ ! -n "$2" ]; then
+    QTDIR=/c/Programmierung/qt.4.3.2_gcc
+else
+    if [ "$targetSystem" = "macx" ] && [ ! -n "$2" ]; then
+        QTDIR=/Users/thomas/Documents/Informatik/qt-static-release
+    fi
+fi
 
 echo "Making some environment settings"
 echo "--------------------------------"
@@ -55,6 +72,10 @@ if [ $? -gt 0 ]; then
     echo "ERROR: Deleting dir $targetDir failed!"
     exit 1
 fi
+
+# wait a second for the old target dir to be really deleted
+sleep 3
+
 mkdir $targetDir &> /dev/null
 if [ $? -gt 0 ]; then
     echo "ERROR: Creating dir $targetDir failed!"
@@ -244,7 +265,7 @@ echo "Generating the translation binaries"
 echo "-----------------------------------"
 for i in $languages
 do
-    lrelease ./translations/universalindent_$i.ts -qm ./translations/universalindent_$i.qm -silent
+    lrelease ./translations/universalindent_$i.ts -qm ./translations/universalindent_$i.qm
     if [ $? -gt 0 ]; then
         echo "ERROR: Could not create translation file \"universalindent_$i.qm\"!"
         exit 1
@@ -256,8 +277,8 @@ echo ""
 
 echo "Copying the translation binaries to the target translation dir"
 echo "--------------------------------------------------------------"
-cp $QTDIR/translations/qt_de.qm ./$targetDir/translations/ &> /dev/null
-cp $QTDIR/translations/qt_ja_jp.qm ./$targetDir/translations/qt_ja_JP.qm &> /dev/null
+cp ./translations/qt_de.qm ./$targetDir/translations/ &> /dev/null
+cp ./translations/qt_ja_JP.qm ./$targetDir/translations/ &> /dev/null
 for i in $languages
 do
     cp ./translations/universalindent_$i.qm ./$targetDir/translations/ &> /dev/null

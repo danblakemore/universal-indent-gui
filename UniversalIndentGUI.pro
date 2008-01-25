@@ -31,6 +31,12 @@ TRANSLATIONS = translations/universalindent_de.ts \
                translations/universalindent_ja_JP.ts \
                translations/universalindent_zh_TW.ts
 
+# Copy Qts own translation files to the local translation directory
+unix:system(cp $$[QT_INSTALL_TRANSLATIONS]/qt_de.qm ./translations/)
+unix:system(cp $$[QT_INSTALL_TRANSLATIONS]/qt_ja_jp.qm ./translations/qt_ja_JP.qm)
+win32:system(copy $$[QT_INSTALL_TRANSLATIONS]/qt_de.qm ./translations/)
+win32:system(copy $$[QT_INSTALL_TRANSLATIONS]/qt_ja_jp.qm ./translations/qt_ja_JP.qm)
+
 # Defining files that shall be installed
 ########################################
 # Create and install man page
@@ -49,8 +55,7 @@ unix:indenters.files += indenters/shellindent.awk
 
 # Install translation files
 unix:translation.path = /etc/universalindentgui/translations
-unix:translation.files = translations/universalindent_*.qm
-unix:translation.files += $$[QT_INSTALL_TRANSLATIONS]/qt_*.qm
+unix:translation.files = translations/*.qm
 
 # Install highlighter default config
 unix:highlighterconfig.path = /etc/universalindentgui/config
