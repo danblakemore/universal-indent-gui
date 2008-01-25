@@ -27,7 +27,7 @@ targetDir=${targetName}_$targetSystem
 
 # Configuration
 # -------------
-version=0.8.0_Beta
+version=0.8.0
 doSVNUpdate=false
 languages="de zh_TW ja_JP"
 
@@ -357,21 +357,17 @@ echo ""
 echo "Packing the whole target dir"
 echo "----------------------------"
 if [ "$ext" = ".exe" ]; then
-    zip -r -9 ${targetName}_${version}_$targetSystem.zip $targetDir &> /dev/null
+    zip -r9 ${targetName}_${version}_$targetSystem.zip $targetDir &> /dev/null
     if [ $? -gt 0 ]; then
         echo "ERROR: Could not create archive \"${targetName}_${version}_$targetSystem.zip\"!"
         exit 1
     fi
 else
-    tar czf ${targetName}_${version}_$targetSystem.tgz $targetDir &> /dev/null
+    tar czf ${targetName}_${version}_$targetSystem.tar.gz $targetDir &> /dev/null
     if [ $? -gt 0 ]; then
-        echo "ERROR: Could not create archive \"${targetName}_${version}_$targetSystem.tgz\"!"
+        echo "ERROR: Could not create archive \"${targetName}_${version}_$targetSystem.tar.gz\"!"
         exit 1
     fi
-fi
-if [ $? -gt 0 ]; then
-    echo "ERROR: Could not create the archive \"${targetName}_${version}_$targetSystem.tgz\"!"
-    exit 1
 fi
 echo "Done"
 echo ""
