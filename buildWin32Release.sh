@@ -1,5 +1,4 @@
 #!/bin/sh
-#!/bin/bash
 # 1. param is target system
 if [ -n "$1" ]; then
     targetSystem=$1
@@ -11,9 +10,9 @@ fi
 # Configuration
 # -------------
 ext=.exe
-targetName=UniversalIndentGUI
+targetName=UniversalIndentGUI # The targetname must be identical with the targetname set in the qmake project file.
 targetDir=${targetName}_$targetSystem
-version=0.6.1_Beta
+version=0.8.0_Beta
 doSVNUpdate=false
 languages="de zh_TW ja_JP"
 
@@ -83,6 +82,7 @@ echo "Done"
 echo ""
 
 
+# Maybe do a SubVersion update.
 if [ "$doSVNUpdate" = "true" ]; then
     echo "Calling svn update"
     echo "------------------"
@@ -196,7 +196,7 @@ echo "Done"
 echo ""
 
 
-echo "Copying UniversalIndentGUI$ext to target dir"
+echo "Copying ${targetName}$ext to target dir"
 echo "--------------------------------------------"
 cp ./release/$targetName$ext ./$targetDir/ &> /dev/null
 if [ $? -gt 0 ]; then
@@ -257,6 +257,8 @@ echo ""
 fi
 ###################### binary release end ########################
 
+###################### Steps to be done for all ########################
+
 echo "Copying the script based indenters to the target indenters dir"
 echo "--------------------------------------------------------------"
 indenters="JsDecoder.js perltidy PerlTidyLib.pm shellindent.awk"
@@ -275,7 +277,7 @@ echo "Copying the indenter example files to the target indenters dir"
 echo "--------------------------------------------------------------"
 cp ./indenters/example.* ./$targetDir/indenters/ &> /dev/null
 if [ $? -gt 0 ]; then
-    echo "ERROR: Could not copy example files!"
+    echo "ERROR: Could not copy the example.* files!"
     exit 1
 fi
 echo "Done"
@@ -321,24 +323,32 @@ echo ""
 
 echo "Copying doc to target dir"
 echo "-------------------------"
-cp ./doc/iniFileFormat.html ./$targetDir/doc/ &> /dev/null
-if [ $? -gt 0 ]; then
-    echo "ERROR: Could not copy file \"iniFileFormat.html\"!"
-    exit 1
+docfiles="iniFileFormat.html"
+if [ "$ext" -ne ".exe" ]; then
+    indenters="$docfiles universalindentgui.man"
 fi
+for i in $docfiles
+do
+    cp ./doc/$i ./$targetDir/doc/ &> /dev/null
+    if [ $? -gt 0 ]; then
+        echo "ERROR: Could not copy file \"$i\"!"
+        exit 1
+    fi
+done
 echo "Done"
 echo ""
 
 
-echo "Packing the whole target dir content"
-echo "------------------------------------"
-cd $targetDir
-tar czf UniversalIndentGUI_$version_$targetSystem.tgz *
+echo "Packing the whole target dir"
+echo "----------------------------"
+if [ "$ext" = ".exe" ]; then
+else
+    tar czf ${targetName}_${version}_$targetSystem.tgz $targetDir
+fi
 if [ $? -gt 0 ]; then
-    echo "ERROR: Could not create the archive \"UniversalIndentGUI_$version_$targetSystem.tgz\"!"
+    echo "ERROR: Could not create the archive \"${targetName}_${version}_$targetSystem.tgz\"!"
     exit 1
 fi
-cd ..
 echo "Done"
 echo ""
 
