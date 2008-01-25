@@ -73,8 +73,11 @@ if [ $? -gt 0 ]; then
     exit 1
 fi
 
-# wait a second for the old target dir to be really deleted
-sleep 3
+# wait until the old target dir has been really deleted
+while [ -d "$targetDir" ]
+do
+    sleep 1
+done
 
 mkdir $targetDir &> /dev/null
 if [ $? -gt 0 ]; then
