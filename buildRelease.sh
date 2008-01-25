@@ -278,7 +278,7 @@ echo ""
 echo "Copying the translation binaries to the target translation dir"
 echo "--------------------------------------------------------------"
 cp ./translations/qt_de.qm ./$targetDir/translations/ &> /dev/null
-cp ./translations/qt_ja_JP.qm ./$targetDir/translations/ &> /dev/null
+cp ./translations/qt_ja_jp.qm ./$targetDir/translations/qt_ja_JP.qm &> /dev/null
 for i in $languages
 do
     cp ./translations/universalindent_$i.qm ./$targetDir/translations/ &> /dev/null
