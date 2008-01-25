@@ -6,12 +6,27 @@ else
     targetSystem="src"
 fi
 
+# Only allow the build targets win32, macx and linux.
+if [ -n "$1" ] && [ ! "$1" = "win32" ] && [ ! "$1" = "macx" ]  && [ ! "$1" = "linux" ]; then
+    echo "ERROR: Build target \"$1\" not supported! Supported are win32, macx and linux."
+    exit 1
+fi
+
+if [ "$targetSystem" = "win32" ]; then
+    ext=".exe"
+else
+    ext=""
+fi
+
+if [ "$targetSystem" = "win32" ] || [ "$targetSystem" = "macx" ]; then
+    targetName=UniversalIndentGUI # The targetname must be identical with the targetname set in the qmake project file.
+else
+    targetName=universalindentgui # The targetname must be identical with the targetname set in the qmake project file.
+fi
+targetDir=${targetName}_$targetSystem
 
 # Configuration
 # -------------
-ext=.exe
-targetName=UniversalIndentGUI # The targetname must be identical with the targetname set in the qmake project file.
-targetDir=${targetName}_$targetSystem
 version=0.8.0_Beta
 doSVNUpdate=false
 languages="de zh_TW ja_JP"
@@ -19,7 +34,7 @@ languages="de zh_TW ja_JP"
 # Qt specific settings
 QTDIR=/c/Programmierung/qt.4.3.2_gcc
 #QTDIR=/f/Qt/qt.4.3.2_gpl_static
-QMAKESPEC=win32-g++
+QMAKESPEC=${targetSystem}-g++
 
 echo "Making some environment settings"
 echo "--------------------------------"
@@ -324,7 +339,7 @@ echo ""
 echo "Copying doc to target dir"
 echo "-------------------------"
 docfiles="iniFileFormat.html"
-if [ "$ext" -ne ".exe" ]; then
+if [ ! "$ext" = ".exe" ]; then
     indenters="$docfiles universalindentgui.man"
 fi
 for i in $docfiles
@@ -342,8 +357,17 @@ echo ""
 echo "Packing the whole target dir"
 echo "----------------------------"
 if [ "$ext" = ".exe" ]; then
+    zip -r -9 ${targetName}_${version}_$targetSystem.zip $targetDir &> /dev/null
+    if [ $? -gt 0 ]; then
+        echo "ERROR: Could not create archive \"${targetName}_${version}_$targetSystem.zip\"!"
+        exit 1
+    fi
 else
-    tar czf ${targetName}_${version}_$targetSystem.tgz $targetDir
+    tar czf ${targetName}_${version}_$targetSystem.tgz $targetDir &> /dev/null
+    if [ $? -gt 0 ]; then
+        echo "ERROR: Could not create archive \"${targetName}_${version}_$targetSystem.tgz\"!"
+        exit 1
+    fi
 fi
 if [ $? -gt 0 ]; then
     echo "ERROR: Could not create the archive \"${targetName}_${version}_$targetSystem.tgz\"!"
@@ -353,5 +377,5 @@ echo "Done"
 echo ""
 
 
-echo "Everything completed successfull!"
+echo "Everything completed successfully!"
 #read -p "press any key to continue"

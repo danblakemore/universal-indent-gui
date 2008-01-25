@@ -8,7 +8,11 @@ CONFIG += debug_and_release
 TEMPLATE = app
 QT += network
 QT += script 
+
 unix:TARGET = universalindentgui
+win32:TARGET = UniversalIndentGUI
+macx:TARGET = UniversalIndentGUI
+
 DEPENDPATH += resources \
               src \
               debug \
