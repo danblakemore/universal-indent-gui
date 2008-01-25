@@ -40,9 +40,12 @@ unix:system(gzip doc/universalindentgui.1)
 unix:documentation.path = /usr/share/man/man1
 unix:documentation.files = doc/universalindentgui.1.gz
 
-# Install indenter definitions
+# Install indenter ini files, examples and some indenters
 unix:indenters.path = /etc/universalindentgui/indenters
-unix:indenters.files = indenters/*
+unix:indenters.files = indenters/uigui_*.ini
+unix:indenters.files += indenters/examples.*
+unix:indenters.files += indenters/JsDecoder.js
+unix:indenters.files += indenters/shellindent.awk
 
 # Install translation files
 unix:translation.path = /etc/universalindentgui/translations
