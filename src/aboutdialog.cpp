@@ -54,7 +54,7 @@ AboutDialog::AboutDialog(QWidget *parent, Qt::WindowFlags flags, QString version
 		"<p align='center'><b>Sebastian Pipping</b> for helping me bring UiGUI into the Debian repository and other good ideas.</p></br>"
 		"<p align='center'>The <b>Scintilla</b> project for their great text editing component.</p></br>"
         "<p align='center'><b>Riverbank</b> for their Scintlla Qt wrapper QScintilla.</p></br>"
-        "<p align='center'>The <b>Artistic Styler</b> project.</p></br>"
+        "<p align='center'>The <b>Artistic Style</b> project.</p></br>"
         "<p align='center'>The <b>BCPP</b> project.</p></br>"
 		"<p align='center'>The <b>CSSTidy</b> project.</p></br>"
         "<p align='center'>The <b>GNU Indent</b> project.</p></br>"
