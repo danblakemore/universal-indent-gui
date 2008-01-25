@@ -1,7 +1,9 @@
 #!/bin/bash
-echo "setting Qt path to /usr/local/Trolltech/Qt-4.2.1/bin"
+echo "setting Qt path to /mnt/hdd2/qt-x11-opensource-src-4.3.3"
 echo "----------------------------------------------------"
-QTDIR=/usr/local/Trolltech/Qt-4.2.1
+QMAKESPEC=linux-g++-32
+export QMAKESPEC
+QTDIR=/usr/local/Trolltech/Qt-4.3.3
 export QTDIR
 PATH=$QTDIR/bin:$PATH
 export PATH
