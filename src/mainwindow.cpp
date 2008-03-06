@@ -581,6 +581,14 @@ bool MainWindow::saveSourceFile() {
         outSrcFile.write( savedSourceContent.toUtf8() );
         outSrcFile.close();
 
+        // Get current encoding.
+        /*
+        QString currentEncoding = encodingActionGroup->checkedAction()->text();
+        QTextStream outSrcStrm(&outSrcFile);
+        outSrcStrm.setCodec( QTextCodec::codecForName(currentEncoding.toAscii()) );
+        outSrcStrm << savedSourceContent;
+        outSrcFile.close();
+        */
         txtedSourceCode->setModified( false );
         setWindowModified( txtedSourceCode->isModified() );
     }
