@@ -48,9 +48,11 @@ win32:system(xcopy $${qtTranslationInstallDir}\qt_uk.qm .\translations\ /Y >NUL)
 # Defining files that shall be installed
 ########################################
 # Create and install man page
-unix:system(rm doc/universalindentgui.1*)
-unix:system(cp doc/universalindentgui.man doc/universalindentgui.1)
-unix:system(gzip doc/universalindentgui.1)
+exists( ./doc/universalindentgui.1* ) {
+    unix:system(rm ./doc/universalindentgui.1*)
+}
+unix:system(cp ./doc/universalindentgui.man ./doc/universalindentgui.1)
+unix:system(gzip ./doc/universalindentgui.1)
 unix:documentation.path = /usr/share/man/man1
 unix:documentation.files = doc/universalindentgui.1.gz
 
