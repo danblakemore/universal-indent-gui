@@ -50,18 +50,18 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     if ( indexOfDotApp != -1 ) {
 		// Cut off after the dot of ".app".
 	    applicationBinaryPath = applicationBinaryPath.left( indexOfDotApp-1 );
-		// Cut off after the first slash that was in front of ".app" (noramlly this is the word "UniversalIndentGUI")
+		// Cut off after the first slash that was in front of ".app" (normally this is the word "UniversalIndentGUI")
 	    applicationBinaryPath = applicationBinaryPath.left( applicationBinaryPath.lastIndexOf("/") );
 	}
 #endif
 
-   // If the "indenters" directory is a subdir of the applications binary path, use this one (portable mode)
-    indenterDirctoryStr = applicationBinaryPath + "/indenters";
-    if ( QFile::exists( indenterDirctoryStr ) ) {
+   // If the "config" directory is a subdir of the applications binary path, use this one (portable mode)
+    settingsDirctoryStr = applicationBinaryPath + "/config";
+    if ( QFile::exists( settingsDirctoryStr ) ) {
         portableMode = true;
         QDir dirCreator;
         globalFilesDirectoryStr = applicationBinaryPath;
-        settingsDirctoryStr = applicationBinaryPath + "/config";
+        indenterDirctoryStr = applicationBinaryPath + "/indenters";
         dirCreator.mkpath( settingsDirctoryStr );
         tempDirctoryStr = applicationBinaryPath + "/temp";
         //TODO: If the portable drive has write protection, use local temp path and clean it up on exit.
@@ -78,7 +78,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
         globalFilesDirectoryStr = applicationBinaryPath;
 #else
         settingsDirctoryStr = QDir::homePath() + "/.config/universalindentgui";
-        globalFilesDirectoryStr = "/etc/universalindentgui";
+        globalFilesDirectoryStr = "/usr/share/universalindentgui";
 #endif
         dirCreator.mkpath( settingsDirctoryStr );
         // If a highlighter config file does not exist in the users home config dir

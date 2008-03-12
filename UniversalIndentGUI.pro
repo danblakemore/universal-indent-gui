@@ -55,18 +55,18 @@ unix:documentation.path = /usr/share/man/man1
 unix:documentation.files = doc/universalindentgui.1.gz
 
 # Install indenter ini files, examples and some indenters
-unix:indenters.path = /etc/universalindentgui/indenters
+unix:indenters.path = /usr/share/universalindentgui/indenters
 unix:indenters.files = indenters/uigui_*.ini
 unix:indenters.files += indenters/examples.*
 unix:indenters.files += indenters/JsDecoder.js
 unix:indenters.files += indenters/shellindent.awk
 
 # Install translation files
-unix:translation.path = /etc/universalindentgui/translations
+unix:translation.path = /usr/share/universalindentgui/translations
 unix:translation.files = translations/*.qm
 
 # Install highlighter default config
-unix:highlighterconfig.path = /etc/universalindentgui/config
+unix:highlighterconfig.path = /usr/share/universalindentgui/config
 unix:highlighterconfig.files = config/UiGuiSyntaxHighlightConfig.ini
 
 # Install binary
