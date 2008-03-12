@@ -79,6 +79,12 @@ void UiGuiSettingsDialog::initTranslationSelection() {
 		else if ( languageShort == "ja_JP" ) {
 			uiGuiLanguage->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("Japanese") );
 		}
+        else if ( languageShort == "ru" ) {
+            uiGuiLanguage->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("Russian") );
+        }
+        else if ( languageShort == "uk" ) {
+            uiGuiLanguage->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("Ukrainian") );
+        }
 		else {
 			uiGuiLanguage->addItem( tr("Unknown language mnemonic ") + languageShort );
 		}
@@ -199,6 +205,12 @@ void UiGuiSettingsDialog::changeEvent(QEvent *event) {
             }
             else if ( languageShort == "ja_JP" ) {
                 uiGuiLanguage->setItemText( i, tr("Japanese") );
+            }
+            else if ( languageShort == "ru" ) {
+                uiGuiLanguage->setItemText( i, tr("Russian") );
+            }
+            else if ( languageShort == "uk" ) {
+                uiGuiLanguage->setItemText( i, tr("Ukrainian") );
             }
             else {
                 uiGuiLanguage->setItemText( i, tr("Unknown language mnemonic ") + languageShort );

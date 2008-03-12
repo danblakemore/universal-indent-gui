@@ -29,15 +29,21 @@ macx {
 
 TRANSLATIONS = translations/universalindent_de.ts \
                translations/universalindent_ja_JP.ts \
-               translations/universalindent_zh_TW.ts
+               translations/universalindent_zh_TW.ts \
+               translations/universalindent_ru.ts \
+               translations/universalindent_uk.ts
 
 # Copy Qts own translation files to the local translation directory
 qtTranslationInstallDir = $$[QT_INSTALL_TRANSLATIONS]
 win32:qtTranslationInstallDir = $$replace(qtTranslationInstallDir, /, \)
 unix:system(cp $${qtTranslationInstallDir}/qt_de.qm ./translations/ &> /dev/null)
 unix:system(cp $${qtTranslationInstallDir}/qt_ja_jp.qm ./translations/qt_ja_JP.qm &> /dev/null)
+unix:system(cp $${qtTranslationInstallDir}/qt_ru.qm ./translations/ &> /dev/null)
+unix:system(cp $${qtTranslationInstallDir}/qt_uk.qm ./translations/ &> /dev/null)
 win32:system(xcopy $${qtTranslationInstallDir}\qt_de.qm .\translations\ /Y >NUL)
-win32:system(xcopy $${qtTranslationInstallDir}\qt_ja_jp.qm .\translations\ /Y >NUL)
+win32:system(xcopy $${qtTranslationInstallDir}\qt_ja_jp.qm .\translations\qt_ja_JP.qm /Y >NUL)
+win32:system(xcopy $${qtTranslationInstallDir}\qt_ru.qm .\translations\ /Y >NUL)
+win32:system(xcopy $${qtTranslationInstallDir}\qt_uk.qm .\translations\ /Y >NUL)
 
 # Defining files that shall be installed
 ########################################

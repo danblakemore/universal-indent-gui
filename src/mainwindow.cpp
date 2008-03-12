@@ -82,7 +82,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 #endif
         dirCreator.mkpath( settingsDirctoryStr );
         // If a highlighter config file does not exist in the users home config dir
-        // copy the default config file overthere.
+        // copy the default config file over there.
         if ( !QFile::exists(settingsDirctoryStr+"/UiGuiSyntaxHighlightConfig.ini") ) {
             QFile::copy( globalFilesDirectoryStr+"/config/UiGuiSyntaxHighlightConfig.ini", settingsDirctoryStr+"/UiGuiSyntaxHighlightConfig.ini" );
         }

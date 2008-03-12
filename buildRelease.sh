@@ -42,7 +42,7 @@ targetDir=${targetName}_$targetSystem
 # -------------
 version=0.8.0
 doSVNUpdate=false
-languages="de zh_TW ja_JP"
+languages="de zh_TW ja_JP ru uk"
 
 # Set QTDIR and QMAKESPEC for each platform
 if [ "$targetSystem" = "win32" ] && [ ! -n "$2" ]; then
@@ -280,8 +280,10 @@ echo ""
 
 echo "Copying the translation binaries to the target translation dir"
 echo "--------------------------------------------------------------"
-cp ./translations/qt_de.qm ./$targetDir/translations/ &> /dev/null
-cp ./translations/qt_ja_jp.qm ./$targetDir/translations/qt_ja_JP.qm &> /dev/null
+cp $QTDIR/translations/qt_de.qm ./$targetDir/translations/ &> /dev/null
+cp $QTDIR/translations/qt_ja_jp.qm ./$targetDir/translations/qt_ja_JP.qm &> /dev/null
+cp $QTDIR/translations/qt_ru.qm ./$targetDir/translations/ &> /dev/null
+cp $QTDIR/translations/qt_uk.qm ./$targetDir/translations/ &> /dev/null
 for i in $languages
 do
     cp ./translations/universalindent_$i.qm ./$targetDir/translations/ &> /dev/null

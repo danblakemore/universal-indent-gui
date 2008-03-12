@@ -24,6 +24,8 @@ echo ------------------------
 lrelease ./translations/universalindent_de.ts -qm ./translations/universalindent_de.qm
 lrelease ./translations/universalindent_zh_TW.ts -qm ./translations/universalindent_zh_TW.qm
 lrelease ./translations/universalindent_ja_JP.ts -qm ./translations/universalindent_ja_JP.qm
+lrelease ./translations/universalindent_ru.ts -qm ./translations/universalindent_ru.qm
+lrelease ./translations/universalindent_uk.ts -qm ./translations/universalindent_uk.qm
 
 echo calling make release
 echo --------------------
@@ -79,6 +81,8 @@ cp ./config/UiGuiSyntaxHighlightConfig.ini ./UniversalIndentGUI_mac/config/
 # Copy the translation files.
 cp $QTDIR/translations/qt_de.qm ./translations/
 cp $QTDIR/translations/qt_ja_jp.qm ./translations/qt_ja_JP.qm
+cp $QTDIR/translations/qt_ru.qm ./translations/
+cp $QTDIR/translations/qt_uk.qm ./translations/
 cp ./translations/*.qm ./UniversalIndentGUI_mac/translations/
 
 cp ./doc/iniFileFormat.html ./UniversalIndentGUI_mac/doc/
