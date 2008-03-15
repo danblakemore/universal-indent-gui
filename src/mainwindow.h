@@ -25,7 +25,9 @@
 #include "ui_indentgui.h"
 #include "ui_toolBarWidget.h"
 #include "aboutdialog.h"
-//#include "AboutDialogGraphicsView.h"
+#if QT_VERSION >= 0x040400
+#include "AboutDialogGraphicsView.h"
+#endif
 #include "uiguisettings.h"
 #include "uiguisettingsdialog.h"
 #include "highlighter.h"
@@ -95,7 +97,9 @@ private:
     Highlighter *highlighter;
     QScrollBar *textEditVScrollBar;
     AboutDialog *aboutDialog;
-//    AboutDialogGraphicsView *aboutDialogGraphicsView;
+#if QT_VERSION >= 0x040400
+    AboutDialogGraphicsView *aboutDialogGraphicsView;
+#endif
 	UiGuiSettingsDialog *settingsDialog;
     int textEditLastScrollPos;
     int currentIndenterID;
