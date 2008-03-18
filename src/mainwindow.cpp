@@ -87,9 +87,18 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
             QFile::copy( globalFilesDirectoryStr+"/config/UiGuiSyntaxHighlightConfig.ini", settingsDirctoryStr+"/UiGuiSyntaxHighlightConfig.ini" );
         }
         indenterDirctoryStr = globalFilesDirectoryStr + "/indenters";
+#ifdef Q_OS_WIN
         tempDirctoryStr = QDir::tempPath() + "/UniversalIndentGUI";
+#else
+        tempDirctoryStr = QDir::tempPath() + "UniversalIndentGUI";
+#endif
         dirCreator.mkpath( tempDirctoryStr );
     }
+
+    qDebug() << "Using directories:\nsettings = " << settingsDirctoryStr;
+    qDebug() << "globalFiles = " << globalFilesDirectoryStr;
+    qDebug() << "indenterDirctoryStr = " << indenterDirctoryStr;
+    qDebug() << "tempDirctoryStr = " << tempDirctoryStr;
 
     // Init of some variables.
     sourceCodeChanged = false;
