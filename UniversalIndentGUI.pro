@@ -59,7 +59,7 @@ unix:documentation.files = doc/universalindentgui.1.gz
 # Install indenter ini files, examples and some indenters
 unix:indenters.path = /usr/share/universalindentgui/indenters
 unix:indenters.files = indenters/uigui_*.ini
-unix:indenters.files += indenters/examples.*
+unix:indenters.files += indenters/example.*
 unix:indenters.files += indenters/JsDecoder.js
 unix:indenters.files += indenters/shellindent.awk
 
