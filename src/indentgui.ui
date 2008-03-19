@@ -95,12 +95,18 @@
       <string>Reopen File with other Encoding</string>
      </property>
     </widget>
+    <widget class="QMenu" name="saveEncodedMenu" >
+     <property name="title" >
+      <string>Save Source File As with other Encoding</string>
+     </property>
+    </widget>
     <addaction name="actionOpen_Source_File" />
     <addaction name="menuRecently_Opened_Files" />
     <addaction name="encodingMenu" />
     <addaction name="separator" />
     <addaction name="actionSave_Source_File" />
     <addaction name="actionSave_Source_File_As" />
+    <addaction name="saveEncodedMenu" />
     <addaction name="separator" />
     <addaction name="menuExport" />
     <addaction name="actionExit" />

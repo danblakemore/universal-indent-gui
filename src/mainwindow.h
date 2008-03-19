@@ -20,8 +20,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-//#include "arthurwidgets.h"
-
 #include "ui_indentgui.h"
 #include "ui_toolBarWidget.h"
 #include "aboutdialog.h"
@@ -108,6 +106,7 @@ private:
     QString currentSourceFileExtension;
     QString savedSourceContent;
     QActionGroup *encodingActionGroup;
+    QActionGroup *saveEncodedActionGroup;
     QActionGroup *highlighterActionGroup;
     QTranslator *uiGuiTranslator;
     QTranslator *qTTranslator;
@@ -130,7 +129,8 @@ protected:
 private slots:
     void openConfigFileDialog();
     void openSourceFileDialog(QString fileName = "");
-    bool saveasSourceFileDialog();
+    bool saveasSourceFileDialog(QAction *chosenEncodingAction = NULL);
+    void saveAsOtherEncoding(QAction *chosenEncodingAction);
     bool saveSourceFile();
     void saveasIndentCfgFileDialog();
     void callIndenter();

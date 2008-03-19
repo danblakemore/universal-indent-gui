@@ -544,7 +544,8 @@ void MainWindow::openSourceFileDialog(QString fileName) {
 
     If the file already exists and it should be overwritten, a warning is shown before.
  */
-bool MainWindow::saveasSourceFileDialog() {
+bool MainWindow::saveasSourceFileDialog(QAction *chosenEncodingAction) {
+    QString encoding;
     QString fileExtensions = tr("Supported by indenter")+" ("+indentHandler->getPossibleIndenterFileExtensions()+
                              ");;"+tr("All files")+" (*.*)";
 
@@ -562,7 +563,17 @@ bool MainWindow::saveasSourceFileDialog() {
     QFile::remove(fileName);
     QFile outSrcFile(fileName);
     outSrcFile.open( QFile::ReadWrite | QFile::Text );
-    outSrcFile.write( savedSourceContent.toUtf8() );
+    
+    // Get current encoding.
+    if ( chosenEncodingAction != NULL ) {
+        encoding = chosenEncodingAction->text();
+    }
+    else {
+        encoding = encodingActionGroup->checkedAction()->text();
+    }
+    QTextStream outSrcStrm(&outSrcFile);
+    outSrcStrm.setCodec( QTextCodec::codecForName(encoding.toAscii()) );
+    outSrcStrm << savedSourceContent;
     outSrcFile.close();
 
     QFileInfo fileInfo(fileName);
@@ -591,17 +602,14 @@ bool MainWindow::saveSourceFile() {
         QFile outSrcFile(currentSourceFile);
         savedSourceContent = txtedSourceCode->text();
         outSrcFile.open( QFile::ReadWrite | QFile::Text );
-        outSrcFile.write( savedSourceContent.toUtf8() );
-        outSrcFile.close();
 
         // Get current encoding.
-        /*
         QString currentEncoding = encodingActionGroup->checkedAction()->text();
         QTextStream outSrcStrm(&outSrcFile);
         outSrcStrm.setCodec( QTextCodec::codecForName(currentEncoding.toAscii()) );
         outSrcStrm << savedSourceContent;
         outSrcFile.close();
-        */
+
         txtedSourceCode->setModified( false );
         setWindowModified( txtedSourceCode->isModified() );
     }
@@ -1179,13 +1187,11 @@ void MainWindow::languageChanged(int languageIndex) {
 
 
 /*!
-    \brief Creates a menu entry under the settings menu for all available text encodings.
+    \brief Creates a menu entries in the file menu for opening and saving a file with different encodings.
 */
 void MainWindow::createEncodingMenu() {
     QAction *encodingAction;
     QString encodingName;
-
-    encodingActionGroup = new QActionGroup(this);
 
     encodingsList = QStringList() << "UTF-8" << "UTF-16" << "UTF-16BE" << "UTF-16LE"
             << "Apple Roman" << "Big5" << "Big5-HKSCS" << "EUC-JP" << "EUC-KR" << "GB18030-0"
@@ -1193,19 +1199,50 @@ void MainWindow::createEncodingMenu() {
             << "Iscii-Bng" << "JIS X 0201" << "JIS X 0208" << "KOI8-R" << "KOI8-U" << "MuleLao-1"
             << "ROMAN8" << "Shift-JIS" << "TIS-620" << "TSCII" << "Windows-1250" << "WINSAMI2";
 
+    encodingActionGroup = new QActionGroup(this);
+    saveEncodedActionGroup = new QActionGroup(this);
+
     // Loop for each available encoding
     foreach ( encodingName, encodingsList ) {
-            encodingAction = new QAction(encodingName, encodingActionGroup);
-            encodingAction->setStatusTip( tr("Reopen the currently opened source code file by using the text encoding scheme ") + encodingName );
-            encodingAction->setCheckable(true);
-			if ( encodingName == currentEncoding ) {
-				encodingAction->setChecked(true);
-			}
+        // Create actions for the "reopen" menu
+        encodingAction = new QAction(encodingName, encodingActionGroup);
+        encodingAction->setStatusTip( tr("Reopen the currently opened source code file by using the text encoding scheme ") + encodingName );
+        encodingAction->setCheckable(true);
+        if ( encodingName == currentEncoding ) {
+            encodingAction->setChecked(true);
+        }
+
+        // Create actions for the "save as encoded" menu
+        encodingAction = new QAction(encodingName, saveEncodedActionGroup);
+        encodingAction->setStatusTip( tr("Save the currently opened source code file by using the text encoding scheme ") + encodingName );
     }
 
     encodingMenu->addActions( encodingActionGroup->actions() );
-
     connect( encodingActionGroup, SIGNAL(triggered(QAction*)), this, SLOT(encodingChanged(QAction*)) );
+
+    saveEncodedMenu->addActions( saveEncodedActionGroup->actions() );
+    connect( saveEncodedActionGroup, SIGNAL(triggered(QAction*)), this, SLOT(saveAsOtherEncoding(QAction*)) );
+}
+
+
+/*!
+    \brief This slot calls the save dialog to save the current source file with another encoding.
+
+    If the saving is successul and not aborted, the currently used encoding, visible in the
+    "reopen" menu, is also changed to the new encoding.
+*/
+void MainWindow::saveAsOtherEncoding(QAction *chosenEncodingAction) {
+    bool fileWasSaved = saveasSourceFileDialog(chosenEncodingAction);
+
+    // If the file was save with another encoding, change the selected encoding in the reopen menu.
+    if ( fileWasSaved ) {
+        foreach ( QAction *action, encodingActionGroup->actions() ) {
+            if ( action->text() == chosenEncodingAction->text() ) {
+                action->setChecked(true);
+                return;
+            }
+        }
+    }
 }
 
 
