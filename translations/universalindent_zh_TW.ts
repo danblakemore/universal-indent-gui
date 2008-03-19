@@ -79,7 +79,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../src/aboutdialog.ui" line="158"/>
         <source>
 Credits:</source>
-        <translation type="obsolete">致謝名單：</translation>
+        <translation type="unfinished">致謝名單：</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.ui" line="148"/>
@@ -121,7 +121,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../src/aboutdialog.ui" line="158"/>
         <source><byte value="xd"/>
 Credits:</source>
-        <translation>
+        <translation type="obsolete">
 致謝名單：</translation>
     </message>
 </context>
@@ -535,22 +535,22 @@ Credits:</source>
         <translation type="obsolete"> 套用到程式界面</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1329"/>
+        <location filename="../src/mainwindow.cpp" line="1350"/>
         <source>All files</source>
         <translation>所有檔案</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1200"/>
+        <location filename="../src/mainwindow.cpp" line="1221"/>
         <source>Cannot read the file </source>
         <translation>無法讀取檔案</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="620"/>
+        <location filename="../src/mainwindow.cpp" line="641"/>
         <source>Choose indenter config file</source>
         <translation>選擇重整工具設定檔</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="501"/>
+        <location filename="../src/mainwindow.cpp" line="514"/>
         <source>Choose source code file</source>
         <translation>選擇檔案</translation>
     </message>
@@ -560,12 +560,12 @@ Credits:</source>
         <translation type="obsolete">English</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1200"/>
+        <location filename="../src/mainwindow.cpp" line="1221"/>
         <source>Error opening file</source>
         <translation>開啟檔案時發生錯誤</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="969"/>
+        <location filename="../src/mainwindow.cpp" line="990"/>
         <source>Export source code file</source>
         <translation>匯出檔案</translation>
     </message>
@@ -575,7 +575,7 @@ Credits:</source>
         <translation type="obsolete">German</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="962"/>
+        <location filename="../src/mainwindow.cpp" line="983"/>
         <source>HTML Document</source>
         <translation>HTML 文件</translation>
     </message>
@@ -585,12 +585,12 @@ Credits:</source>
         <translation type="obsolete">選擇語系</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1114"/>
+        <location filename="../src/mainwindow.cpp" line="1135"/>
         <source>Modified code</source>
         <translation>修改後的檔案</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="940"/>
+        <location filename="../src/mainwindow.cpp" line="961"/>
         <source>PDF Document</source>
         <translation>PDF 文件</translation>
     </message>
@@ -600,27 +600,27 @@ Credits:</source>
         <translation type="obsolete">用別的編碼方式重新開啟</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1295"/>
+        <location filename="../src/mainwindow.cpp" line="1316"/>
         <source>Reopen the currently opened source code file by using the text encoding scheme </source>
         <translation>重新開啟目前的檔案，編碼使用 </translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="600"/>
+        <location filename="../src/mainwindow.cpp" line="621"/>
         <source>Save indent config file</source>
         <translation>儲存重整工具的設定</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="539"/>
+        <location filename="../src/mainwindow.cpp" line="552"/>
         <source>Save source code file</source>
         <translation>儲存檔案</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="535"/>
+        <location filename="../src/mainwindow.cpp" line="548"/>
         <source>Supported by indenter</source>
         <translation>重整工具支援的檔案類型</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1116"/>
+        <location filename="../src/mainwindow.cpp" line="1137"/>
         <source>The source code has been modified.
 Do you want to save your changes?</source>
         <translation>程式碼已被修改。
@@ -662,7 +662,7 @@ Do you want to save your changes?</source>
         <translation type="obsolete">Chinese (Taiwan)</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1303"/>
+        <location filename="../src/mainwindow.cpp" line="1324"/>
         <source>Set the syntax highlightning to </source>
         <translation>將語法高亮度方式設為 </translation>
     </message>
@@ -672,22 +672,22 @@ Do you want to save your changes?</source>
         <translation type="obsolete">選擇語法高亮度</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1329"/>
+        <location filename="../src/mainwindow.cpp" line="1350"/>
         <source>Shell Script</source>
         <translation>批次檔</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1477"/>
+        <location filename="../src/mainwindow.cpp" line="1498"/>
         <source>File no longer exists</source>
         <translation>檔案不存在</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1477"/>
+        <location filename="../src/mainwindow.cpp" line="1498"/>
         <source>The file %1 in the list of recently opened files does no longer exist.</source>
         <translation>找不到檔案清單裡的「%1」</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1335"/>
+        <location filename="../src/mainwindow.cpp" line="1356"/>
         <source>Save shell script</source>
         <translation>儲存批次檔</translation>
     </message>
@@ -862,12 +862,12 @@ Do you want to go to the download website?</source>
 <context>
     <name>UiGuiSettingsDialog</name>
     <message>
-        <location filename="../src/uiguisettingsdialog.cpp" line="192"/>
+        <location filename="../src/uiguisettingsdialog.cpp" line="198"/>
         <source>English</source>
         <translation>English</translation>
     </message>
     <message>
-        <location filename="../src/uiguisettingsdialog.cpp" line="195"/>
+        <location filename="../src/uiguisettingsdialog.cpp" line="201"/>
         <source>German</source>
         <translation>German</translation>
     </message>
@@ -877,19 +877,29 @@ Do you want to go to the download website?</source>
         <translation type="obsolete">Chinese</translation>
     </message>
     <message>
-        <location filename="../src/uiguisettingsdialog.cpp" line="201"/>
+        <location filename="../src/uiguisettingsdialog.cpp" line="207"/>
         <source>Japanese</source>
         <translation>Japanese</translation>
     </message>
     <message>
-        <location filename="../src/uiguisettingsdialog.cpp" line="204"/>
+        <location filename="../src/uiguisettingsdialog.cpp" line="216"/>
         <source>Unknown language mnemonic </source>
         <translation>未知語言 </translation>
     </message>
     <message>
-        <location filename="../src/uiguisettingsdialog.cpp" line="198"/>
+        <location filename="../src/uiguisettingsdialog.cpp" line="204"/>
         <source>Chinese (Taiwan)</source>
         <translation>Chinese (Taiwan)</translation>
+    </message>
+    <message>
+        <location filename="../src/uiguisettingsdialog.cpp" line="210"/>
+        <source>Russian</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/uiguisettingsdialog.cpp" line="213"/>
+        <source>Ukrainian</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

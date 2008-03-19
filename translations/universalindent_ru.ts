@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="1.1">
+<!DOCTYPE TS><TS version="1.1">
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="../src/aboutdialog.ui" line="27"/>
+        <location filename="../src/aboutdialog.ui" line="25"/>
         <source>About UniversalIndentGUI</source>
         <translation>О UniversalIndentGUI</translation>
     </message>
@@ -15,37 +14,37 @@
     </message>
     <message>
         <location filename="../src/aboutdialog.ui" line="138"/>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name="qrichtext" content="1" /&gt;&lt;style type="text/css"&gt;
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;"&gt;
-&lt;p style=" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;"&gt;&lt;br /&gt;Written by : Thomas Schweitzer&lt;/p&gt;
-&lt;p style=" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;"&gt;Project Homepage : &lt;a href="http://universalindent.sourceforge.net"&gt;&lt;span style=" text-decoration: underline; color:#0000ff;"&gt;http://universalindent.sourceforge.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;"&gt;    &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name="qrichtext" content="1" /&gt;&lt;style type="text/css"&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;&quot;&gt;&lt;br /&gt;Written by : Thomas Schweitzer&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;&quot;&gt;Project Homepage : &lt;a href=&quot;http://universalindent.sourceforge.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://universalindent.sourceforge.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;&quot;&gt;    &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="obsolete">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;"&gt;
-&lt;p style=" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;"&gt;&lt;br /&gt;Написано: Томасом Швайцером&lt;/p&gt;
-&lt;p style=" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;"&gt;Страница проекта: &lt;a href="http://universalindent.sourceforge.net"&gt;&lt;span style=" text-decoration: underline; color:#0000ff;"&gt;http://universalindent.sourceforge.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;"&gt;    &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;&quot;&gt;&lt;br /&gt;Написано: Томасом Швайцером&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;&quot;&gt;Страница проекта: &lt;a href=&quot;http://universalindent.sourceforge.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://universalindent.sourceforge.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;&quot;&gt;    &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.ui" line="196"/>
+        <location filename="../src/aboutdialog.ui" line="203"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.ui" line="95"/>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name="qrichtext" content="1" /&gt;&lt;style type="text/css"&gt;
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;"&gt;
-&lt;p style=" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:12pt;"&gt;Version %1 rev.%2, %3 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name="qrichtext" content="1" /&gt;&lt;style type="text/css"&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:12pt;&quot;&gt;Version %1 rev.%2, %3 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="obsolete">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;"&gt;
-&lt;p style=" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:12pt;"&gt;Версия %1 ред.%2, %3 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:12pt;&quot;&gt;Версия %1 ред.%2, %3 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.ui" line="160"/>
+        <location filename="../src/aboutdialog.ui" line="158"/>
         <source>
 Credits:</source>
         <translation>
@@ -54,7 +53,30 @@ Credits:</source>
     <message>
         <location filename="../src/aboutdialog.ui" line="150"/>
         <source>License: UniversalIndentGui is released under the GPL 2. For details read the included file LICENSE.GPL visit http://www.gnu.org/licenses/gpl.html</source>
-        <translation>Лицензия: UniversalIndentGui выдается в рамках GPL 2. О деталях читайте присоединенный файл LICENSE.GPL Посетите http://www.gnu.org/licenses/gpl.html</translation>
+        <translation type="obsolete">Лицензия: UniversalIndentGui выдается в рамках GPL 2. О деталях читайте присоединенный файл LICENSE.GPL Посетите http://www.gnu.org/licenses/gpl.html</translation>
+    </message>
+    <message>
+        <location filename="../src/aboutdialog.ui" line="95"/>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;MS Shell Dlg 2&apos;; font-size:12pt;&quot;&gt;Version %1 rev.%2, %3 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/aboutdialog.ui" line="136"/>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;MS Shell Dlg 2&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;Written by : Thomas Schweitzer&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;MS Shell Dlg 2&apos;; font-size:9pt;&quot;&gt;Project Homepage : &lt;a href=&quot;http://universalindent.sourceforge.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://universalindent.sourceforge.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;MS Shell Dlg 2&apos;; font-size:9pt;&quot;&gt;    &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/aboutdialog.ui" line="148"/>
+        <source>License: UniversalIndentGui is released under the GPL 2. For details read the included file LICENSE.GPL visit http://www.gnu.org/licenses/gpl.html.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -333,167 +355,202 @@ Credits:</source>
 <context>
     <name>IndentHandler</name>
     <message>
-        <location filename="../src/indenthandler.cpp" line="266"/>
+        <location filename="../src/indenthandler.cpp" line="311"/>
         <source>No indenter executable</source>
         <translation>Нет программы отступатора</translation>
     </message>
     <message>
         <location filename="../src/indenthandler.cpp" line="267"/>
-        <source>There exists no indenter executable with the name "</source>
-        <translation>Не существует программы отступатора под именем "</translation>
+        <source>There exists no indenter executable with the name &quot;</source>
+        <translation type="obsolete">Не существует программы отступатора под именем &quot;</translation>
     </message>
     <message>
         <location filename="../src/indenthandler.cpp" line="267"/>
-        <source>" in the directory "</source>
-        <translation>" в папке "</translation>
+        <source>&quot; in the directory &quot;</source>
+        <translation type="obsolete">&quot; в папке &quot;</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="303"/>
+        <location filename="../src/indenthandler.cpp" line="1139"/>
         <source>wine not installed</source>
         <translation>вино не установлено</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="303"/>
+        <location filename="../src/indenthandler.cpp" line="1139"/>
         <source>There exists only a win32 executable of the indenter and wine does not seem to be installed. Please install wine to be able to run the indenter.</source>
         <translation>Существует только win32-программа отступатора, а вино, кажется, не установлено. Пожалуйста, установите вино, чтобы запустить отступатор.</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="315"/>
+        <location filename="../src/indenthandler.cpp" line="336"/>
         <source>&lt;b&gt;Returned error message:&lt;/b&gt; </source>
         <translation>&lt;b&gt;Возвращенное сообщение об ошибке:&lt;/b&gt; </translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="319"/>
+        <location filename="../src/indenthandler.cpp" line="340"/>
         <source>&lt;b&gt;Reason could be:&lt;/b&gt; </source>
         <translation>&lt;b&gt;Причиной может быть:&lt;/b&gt; </translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="341"/>
+        <location filename="../src/indenthandler.cpp" line="363"/>
         <source>Error calling Indenter</source>
         <translation>Ошибка вызова отступатора</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="352"/>
+        <location filename="../src/indenthandler.cpp" line="374"/>
         <source>&lt;b&gt;Indenter returned with exit code:&lt;/b&gt; </source>
         <translation>&lt;b&gt;Отступатор возвратился с кодом выхода:&lt;/b&gt; </translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="353"/>
+        <location filename="../src/indenthandler.cpp" line="375"/>
         <source>&lt;b&gt;Indent console output was:&lt;/b&gt; </source>
         <translation>&lt;b&gt;Выходом консоли отступатора было:&lt;/b&gt; </translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="354"/>
+        <location filename="../src/indenthandler.cpp" line="376"/>
         <source>&lt;br&gt;&lt;b&gt;Callstring was:&lt;/b&gt; </source>
         <translation>&lt;br&gt;&lt;b&gt;Строкой вызова было:&lt;/b&gt; </translation>
+    </message>
+    <message>
+        <location filename="../src/indenthandler.cpp" line="98"/>
+        <source>No indenter ini files</source>
+        <translation type="unfinished">Отсутствуют ini-файлы отступатора</translation>
+    </message>
+    <message>
+        <location filename="../src/indenthandler.cpp" line="98"/>
+        <source>There exists no indenter ini files in the directory &quot;</source>
+        <translation type="unfinished">Не существуют ini-файлы отступатора в папке &quot;</translation>
+    </message>
+    <message>
+        <location filename="../src/indenthandler.cpp" line="312"/>
+        <source>There exists no indenter executable with the name &quot;%1&quot; in the directory &quot;%2&quot; nor in the global environment.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/indenthandler.cpp" line="361"/>
+        <source>&lt;br&gt;&lt;br&gt;&lt;b&gt;Indenter output was:&lt;/b&gt;&lt;pre&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/indenthandler.cpp" line="378"/>
+        <source>Indenter returned error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/indenthandler.cpp" line="1091"/>
+        <source>Interpreter needed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/indenthandler.cpp" line="1092"/>
+        <source>To use the selected indenter the program &quot;%1&quot; needs to be available in the global environment. You should add an entry to your path settings.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1135"/>
+        <location filename="../src/mainwindow.cpp" line="1221"/>
         <source>Error opening file</source>
         <translation>Ошибка открытия файла</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1135"/>
+        <location filename="../src/mainwindow.cpp" line="1221"/>
         <source>Cannot read the file </source>
         <translation>Невозможно прочитать файл </translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="475"/>
+        <location filename="../src/mainwindow.cpp" line="548"/>
         <source>Supported by indenter</source>
         <translation>Поддерживается отступатором</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1262"/>
+        <location filename="../src/mainwindow.cpp" line="1350"/>
         <source>All files</source>
         <translation>Все файлы</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="441"/>
+        <location filename="../src/mainwindow.cpp" line="514"/>
         <source>Choose source code file</source>
         <translation>Выбрать файл исходного кода</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="479"/>
+        <location filename="../src/mainwindow.cpp" line="552"/>
         <source>Save source code file</source>
         <translation>Сохранить файл исходного кода</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="540"/>
+        <location filename="../src/mainwindow.cpp" line="621"/>
         <source>Save indent config file</source>
         <translation>Сохранить конфигурационный файл отступатора</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="560"/>
+        <location filename="../src/mainwindow.cpp" line="641"/>
         <source>Choose indenter config file</source>
         <translation>Выбрать конфигурационный файл отступатора</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="876"/>
+        <location filename="../src/mainwindow.cpp" line="961"/>
         <source>PDF Document</source>
         <translation>Документ PDF</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="905"/>
+        <location filename="../src/mainwindow.cpp" line="990"/>
         <source>Export source code file</source>
         <translation>Экспорт файла исходного кода</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="898"/>
+        <location filename="../src/mainwindow.cpp" line="983"/>
         <source>HTML Document</source>
         <translation>Документ HTML</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1050"/>
+        <location filename="../src/mainwindow.cpp" line="1135"/>
         <source>Modified code</source>
         <translation>Измененный код</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1052"/>
+        <location filename="../src/mainwindow.cpp" line="1137"/>
         <source>The source code has been modified.
 Do you want to save your changes?</source>
         <translation>Исходный код изменен.
 Хотите сохранить изменения?</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1228"/>
+        <location filename="../src/mainwindow.cpp" line="1316"/>
         <source>Reopen the currently opened source code file by using the text encoding scheme </source>
         <translation>Повторно открыть текущий открытый файл исходного кода, используя схему кодирования текста </translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="324"/>
         <source>No indenter ini files</source>
-        <translation>Отсутствуют ini-файлы отступатора</translation>
+        <translation type="obsolete">Отсутствуют ini-файлы отступатора</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="324"/>
-        <source>There exists no indenter ini files in the directory "</source>
-        <translation>Не существуют ini-файлы отступатора в папке "</translation>
+        <source>There exists no indenter ini files in the directory &quot;</source>
+        <translation type="obsolete">Не существуют ini-файлы отступатора в папке &quot;</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1236"/>
+        <location filename="../src/mainwindow.cpp" line="1324"/>
         <source>Set the syntax highlightning to </source>
         <translation>Задать подсветку синтаксиса на </translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1262"/>
+        <location filename="../src/mainwindow.cpp" line="1350"/>
         <source>Shell Script</source>
         <translation>Скрипт оболочки</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1268"/>
+        <location filename="../src/mainwindow.cpp" line="1356"/>
         <source>Save shell script</source>
         <translation>Сохранить скрипт оболочки</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1410"/>
+        <location filename="../src/mainwindow.cpp" line="1498"/>
         <source>File no longer exists</source>
         <translation>Файл больше не существует</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1410"/>
+        <location filename="../src/mainwindow.cpp" line="1498"/>
         <source>The file %1 in the list of recently opened files does no longer exist.</source>
         <translation>Файл %1 из списка недавно открытых файлов больше не существует.</translation>
     </message>
@@ -644,29 +701,39 @@ Do you want to save your changes?</source>
 <context>
     <name>UiGuiSettingsDialog</name>
     <message>
-        <location filename="../src/uiguisettingsdialog.cpp" line="192"/>
+        <location filename="../src/uiguisettingsdialog.cpp" line="198"/>
         <source>English</source>
         <translation>Английский</translation>
     </message>
     <message>
-        <location filename="../src/uiguisettingsdialog.cpp" line="195"/>
+        <location filename="../src/uiguisettingsdialog.cpp" line="201"/>
         <source>German</source>
         <translation>Немецкий</translation>
     </message>
     <message>
-        <location filename="../src/uiguisettingsdialog.cpp" line="201"/>
+        <location filename="../src/uiguisettingsdialog.cpp" line="207"/>
         <source>Japanese</source>
         <translation>Японский</translation>
     </message>
     <message>
-        <location filename="../src/uiguisettingsdialog.cpp" line="204"/>
+        <location filename="../src/uiguisettingsdialog.cpp" line="216"/>
         <source>Unknown language mnemonic </source>
         <translation>Неизвестный мнемокод языка </translation>
     </message>
     <message>
-        <location filename="../src/uiguisettingsdialog.cpp" line="198"/>
+        <location filename="../src/uiguisettingsdialog.cpp" line="204"/>
         <source>Chinese (Taiwan)</source>
         <translation>Китайский (Тайвань)</translation>
+    </message>
+    <message>
+        <location filename="../src/uiguisettingsdialog.cpp" line="210"/>
+        <source>Russian</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/uiguisettingsdialog.cpp" line="213"/>
+        <source>Ukrainian</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -682,12 +749,12 @@ Do you want to save your changes?</source>
         <translation>Проверка доступности новой версии</translation>
     </message>
     <message>
-        <location filename="../src/updatecheckdialog.cpp" line="175"/>
+        <location filename="../src/updatecheckdialog.cpp" line="173"/>
         <source>Update available</source>
         <translation>Обновление доступно</translation>
     </message>
     <message>
-        <location filename="../src/updatecheckdialog.cpp" line="176"/>
+        <location filename="../src/updatecheckdialog.cpp" line="174"/>
         <source>A newer version of UniversalIndentGUI is available.
 Your version is %1. New version is %2.
 Do you want to go to the download website?</source>
@@ -696,12 +763,12 @@ Do you want to go to the download website?</source>
 Хотите перейти на веб-сайт загрузки?</translation>
     </message>
     <message>
-        <location filename="../src/updatecheckdialog.cpp" line="187"/>
+        <location filename="../src/updatecheckdialog.cpp" line="185"/>
         <source>No new update available</source>
         <translation>Обновлений нет.</translation>
     </message>
     <message>
-        <location filename="../src/updatecheckdialog.cpp" line="188"/>
+        <location filename="../src/updatecheckdialog.cpp" line="186"/>
         <source>You already have the latest version of UniversalIndentGUI.</source>
         <translation>У вас последняя версия UniversalIndentGUI.</translation>
     </message>
@@ -714,64 +781,69 @@ Do you want to go to the download website?</source>
         <translation>Форма</translation>
     </message>
     <message>
-        <location filename="../src/toolBarWidget.ui" line="25"/>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name="qrichtext" content="1" /&gt;&lt;/head&gt;&lt;body style=" white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;"&gt;&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;&lt;span style=" font-size:8pt;"&gt;Opens a dialog for selecting a source code file.&lt;/span&gt;&lt;/p&gt;&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;"&gt;This file will be used to show what the indent tool changes.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name="qrichtext" content="1" /&gt;&lt;/head&gt;&lt;body style=" white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;"&gt;&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;&lt;span style=" font-size:8pt;"&gt;Открывает диалог выбора файла исходного кода.&lt;/span&gt;&lt;/p&gt;&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;"&gt;Этот файл будет использоваться для показа изменений, сделанных инструментом отступа.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <location filename="../src/toolBarWidget.ui" line="34"/>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Opens a dialog for selecting a source code file.&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;&quot;&gt;This file will be used to show what the indent tool changes.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Открывает диалог выбора файла исходного кода.&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;&quot;&gt;Этот файл будет использоваться для показа изменений, сделанных инструментом отступа.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/toolBarWidget.ui" line="28"/>
+        <location filename="../src/toolBarWidget.ui" line="37"/>
         <source> Open Source File </source>
         <translation> Открыть исходный файл </translation>
     </message>
     <message>
-        <location filename="../src/toolBarWidget.ui" line="38"/>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name="qrichtext" content="1" /&gt;&lt;/head&gt;&lt;body style=" white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;"&gt;&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Shows the currently chosen indenters name and lets you choose other available indenters&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name="qrichtext" content="1" /&gt;&lt;/head&gt;&lt;body style=" white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;"&gt;&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Показывает название текущего выбранного отступатора и позволяет выбрать другие доступные отступаторы&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <location filename="../src/toolBarWidget.ui" line="47"/>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Shows the currently chosen indenters name and lets you choose other available indenters&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Показывает название текущего выбранного отступатора и позволяет выбрать другие доступные отступаторы&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/toolBarWidget.ui" line="48"/>
+        <location filename="../src/toolBarWidget.ui" line="67"/>
         <source>Live Indent Preview</source>
         <translation>Живой просмотр отступа</translation>
     </message>
     <message>
-        <location filename="../src/toolBarWidget.ui" line="58"/>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name="qrichtext" content="1" /&gt;&lt;/head&gt;&lt;body style=" white-space: pre-wrap; font-family:MS Shell Dlg 2; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;"&gt;&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;"&gt;Enables and disables the highlightning of the source&lt;/p&gt;&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;"&gt;code shown below. (Still needs some performance improvements) (Strg+H)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name="qrichtext" content="1" /&gt;&lt;/head&gt;&lt;body style=" white-space: pre-wrap; font-family:MS Shell Dlg 2; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;"&gt;&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;"&gt;Включает и выключает подсветку исходного&lt;/p&gt;&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;"&gt;кода, показанного ниже. (Все еще нужно доработать эффективность) (Strg+H)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <location filename="../src/toolBarWidget.ui" line="77"/>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg 2; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;Enables and disables the highlightning of the source&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;code shown below. (Still needs some performance improvements) (Strg+H)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg 2; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;Включает и выключает подсветку исходного&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;кода, показанного ниже. (Все еще нужно доработать эффективность) (Strg+H)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/toolBarWidget.ui" line="61"/>
+        <location filename="../src/toolBarWidget.ui" line="80"/>
         <source>Syntax Highlight</source>
         <translation>Подсветка синтаксиса</translation>
     </message>
     <message>
-        <location filename="../src/toolBarWidget.ui" line="67"/>
+        <location filename="../src/toolBarWidget.ui" line="86"/>
         <source>Ctrl+H</source>
         <translation>Ctrl+H</translation>
     </message>
     <message>
-        <location filename="../src/toolBarWidget.ui" line="90"/>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name="qrichtext" content="1" /&gt;&lt;/head&gt;&lt;body style=" white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;"&gt;&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Shows info about UniversalIndentGUI&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name="qrichtext" content="1" /&gt;&lt;/head&gt;&lt;body style=" white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;"&gt;&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Показывает информацию о UniversalIndentGUI&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <location filename="../src/toolBarWidget.ui" line="109"/>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Shows info about UniversalIndentGUI&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Показывает информацию о UniversalIndentGUI&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/toolBarWidget.ui" line="93"/>
+        <location filename="../src/toolBarWidget.ui" line="112"/>
         <source>About</source>
         <translation>О</translation>
     </message>
     <message>
-        <location filename="../src/toolBarWidget.ui" line="103"/>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name="qrichtext" content="1" /&gt;&lt;/head&gt;&lt;body style=" white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;"&gt;&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Quits the UniversalIndentGUI&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name="qrichtext" content="1" /&gt;&lt;/head&gt;&lt;body style=" white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;"&gt;&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Выходит из UniversalIndentGUI&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <location filename="../src/toolBarWidget.ui" line="122"/>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Quits the UniversalIndentGUI&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Выходит из UniversalIndentGUI&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/toolBarWidget.ui" line="106"/>
+        <location filename="../src/toolBarWidget.ui" line="125"/>
         <source>Exit</source>
         <translation>Выход</translation>
     </message>
     <message>
-        <location filename="../src/toolBarWidget.ui" line="45"/>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name="qrichtext" content="1" /&gt;&lt;/head&gt;&lt;body style=" white-space: pre-wrap; font-family:MS Shell Dlg 2; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;"&gt;&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;"&gt;Turns the preview of the reformatted source code on and off.&lt;/p&gt;&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;"&gt;In other words it switches between formatted and nonformatted code. (Ctrl+L)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name="qrichtext" content="1" /&gt;&lt;/head&gt;&lt;body style=" white-space: pre-wrap; font-family:MS Shell Dlg 2; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;"&gt;&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;"&gt;Включает и выключает просмотр реформатированного исходного кода.&lt;/p&gt;&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;"&gt;Другими словами, переключает между форматированным и неформатированным кодом. (Ctrl+L)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <location filename="../src/toolBarWidget.ui" line="64"/>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg 2; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;Turns the preview of the reformatted source code on and off.&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;In other words it switches between formatted and nonformatted code. (Ctrl+L)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg 2; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;Включает и выключает просмотр реформатированного исходного кода.&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;Другими словами, переключает между форматированным и неформатированным кодом. (Ctrl+L)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/toolBarWidget.ui" line="54"/>
+        <source>Brings you to the online manual of the currently selected indenter, where you can get further help on the possible parameters.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

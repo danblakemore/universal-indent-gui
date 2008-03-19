@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
+<defaultcodec></defaultcodec>
 <context>
     <name>AboutDialog</name>
     <message>
@@ -116,7 +117,8 @@ p, li { white-space: pre-wrap; }
         <location filename="../src/aboutdialog.ui" line="158"/>
         <source>
 Credits:</source>
-        <translation type="obsolete">Danksagung:</translation>
+        <translation>
+Danksagung:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.ui" line="95"/>
@@ -179,7 +181,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../src/aboutdialog.ui" line="158"/>
         <source><byte value="xd"/>
 Credits:</source>
-        <translation>Danksagung:</translation>
+        <translation type="obsolete">Danksagung:</translation>
     </message>
 </context>
 <context>
@@ -657,69 +659,69 @@ Indent console output was:
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1200"/>
+        <location filename="../src/mainwindow.cpp" line="1221"/>
         <source>Error opening file</source>
         <translation>Fehler beim Dateiöffnen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1200"/>
+        <location filename="../src/mainwindow.cpp" line="1221"/>
         <source>Cannot read the file </source>
         <translation> Kann folgende Datei nicht lesen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="501"/>
+        <location filename="../src/mainwindow.cpp" line="514"/>
         <source>Choose source code file</source>
         <translation>Quellcodedatei wählen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="539"/>
+        <location filename="../src/mainwindow.cpp" line="552"/>
         <source>Save source code file</source>
         <translation>Quellcodedatei speichern</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="600"/>
+        <location filename="../src/mainwindow.cpp" line="621"/>
         <source>Save indent config file</source>
         <translation>Formatierer Konfiguration speichern</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="620"/>
+        <location filename="../src/mainwindow.cpp" line="641"/>
         <source>Choose indenter config file</source>
         <translation>Formatierer Konfigurationsdatei wählen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="969"/>
+        <location filename="../src/mainwindow.cpp" line="990"/>
         <source>Export source code file</source>
         <translation>Quellcode exportieren</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1116"/>
+        <location filename="../src/mainwindow.cpp" line="1137"/>
         <source>The source code has been modified.
 Do you want to save your changes?</source>
         <translation>Die Quellcodedatei wurde geändert.
 Möchten Sie die Änderungen speichern?</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="535"/>
+        <location filename="../src/mainwindow.cpp" line="548"/>
         <source>Supported by indenter</source>
         <translation>Von Formatierer unterstützt</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1329"/>
+        <location filename="../src/mainwindow.cpp" line="1350"/>
         <source>All files</source>
         <translation>Alle Dateien</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="940"/>
+        <location filename="../src/mainwindow.cpp" line="961"/>
         <source>PDF Document</source>
         <translation>PDF Dokument</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="962"/>
+        <location filename="../src/mainwindow.cpp" line="983"/>
         <source>HTML Document</source>
         <translation>HTML Dokument</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1114"/>
+        <location filename="../src/mainwindow.cpp" line="1135"/>
         <source>Modified code</source>
         <translation>Geänderter Quellcode</translation>
     </message>
@@ -754,7 +756,7 @@ Möchten Sie die Änderungen speichern?</translation>
         <translation type="obsolete"> als Programmsprache verwenden.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1295"/>
+        <location filename="../src/mainwindow.cpp" line="1316"/>
         <source>Reopen the currently opened source code file by using the text encoding scheme </source>
         <translation>Die momentan geöffnete Quellcodedatei erneut öffnen, unter Verwendung der Textcordierung </translation>
     </message>
@@ -789,7 +791,7 @@ Möchten Sie die Änderungen speichern?</translation>
         <translation type="obsolete">Chinesisch</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1303"/>
+        <location filename="../src/mainwindow.cpp" line="1324"/>
         <source>Set the syntax highlightning to </source>
         <translation>Setzte Syntax-Hervorhebung für </translation>
     </message>
@@ -809,22 +811,22 @@ Möchten Sie die Änderungen speichern?</translation>
         <translation type="obsolete">Zuletzt geöffnete Dateien</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1329"/>
+        <location filename="../src/mainwindow.cpp" line="1350"/>
         <source>Shell Script</source>
         <translation>Shell SKript</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1477"/>
+        <location filename="../src/mainwindow.cpp" line="1498"/>
         <source>File no longer exists</source>
         <translation>Datei existiert nicht mehr</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1477"/>
+        <location filename="../src/mainwindow.cpp" line="1498"/>
         <source>The file %1 in the list of recently opened files does no longer exist.</source>
         <translation>Die Datei %1 in der Liste der zuletzt geöffneten Dateien existiert nicht mehr.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1335"/>
+        <location filename="../src/mainwindow.cpp" line="1356"/>
         <source>Save shell script</source>
         <translation>Shell Skript speichern</translation>
     </message>
@@ -1014,12 +1016,12 @@ Wollen Sie zu Download Website geleitet werden?</translation>
 <context>
     <name>UiGuiSettingsDialog</name>
     <message>
-        <location filename="../src/uiguisettingsdialog.cpp" line="192"/>
+        <location filename="../src/uiguisettingsdialog.cpp" line="198"/>
         <source>English</source>
         <translation>Englisch</translation>
     </message>
     <message>
-        <location filename="../src/uiguisettingsdialog.cpp" line="195"/>
+        <location filename="../src/uiguisettingsdialog.cpp" line="201"/>
         <source>German</source>
         <translation>Deutsch</translation>
     </message>
@@ -1029,19 +1031,29 @@ Wollen Sie zu Download Website geleitet werden?</translation>
         <translation type="obsolete">Chinesisch</translation>
     </message>
     <message>
-        <location filename="../src/uiguisettingsdialog.cpp" line="201"/>
+        <location filename="../src/uiguisettingsdialog.cpp" line="207"/>
         <source>Japanese</source>
         <translation>Japanisch</translation>
     </message>
     <message>
-        <location filename="../src/uiguisettingsdialog.cpp" line="204"/>
+        <location filename="../src/uiguisettingsdialog.cpp" line="216"/>
         <source>Unknown language mnemonic </source>
         <translation>Unbekanntes Sprachkürzel </translation>
     </message>
     <message>
-        <location filename="../src/uiguisettingsdialog.cpp" line="198"/>
+        <location filename="../src/uiguisettingsdialog.cpp" line="204"/>
         <source>Chinese (Taiwan)</source>
         <translation>Chinesisch (Taiwan)</translation>
+    </message>
+    <message>
+        <location filename="../src/uiguisettingsdialog.cpp" line="210"/>
+        <source>Russian</source>
+        <translation>Russisch</translation>
+    </message>
+    <message>
+        <location filename="../src/uiguisettingsdialog.cpp" line="213"/>
+        <source>Ukrainian</source>
+        <translation>Ukrainisch</translation>
     </message>
 </context>
 <context>
