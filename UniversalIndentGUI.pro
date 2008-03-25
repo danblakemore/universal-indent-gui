@@ -23,32 +23,42 @@ macx {
  QMAKE-MAC_SDK = /Developer/SDKs/MacOSX10.4u.sdk
 }
 
+
+win32:pipe2nul = ">NUL"
+unix:pipe2nul = "&> /dev/null"
+macx:pipe2nul = "&> /dev/null"
+message(Updating language files)
+
+lupdate = lupdate
+unix:lupdate = lupdate-qt4
+lrelease = lrelease
+unix:lrelease = lrelease-qt4
 # Update translation files
-system(lupdate-qt4 src -ts ./translations/universalindent.ts)
-system(lupdate-qt4 src -ts ./translations/universalindent_de.ts)
-system(lupdate-qt4 src -ts ./translations/universalindent_zh_TW.ts)
-system(lupdate-qt4 src -ts ./translations/universalindent_ja_JP.ts)
-system(lupdate-qt4 src -ts ./translations/universalindent_ru.ts)
-system(lupdate-qt4 src -ts ./translations/universalindent_uk.ts)
+system($${lupdate} src -ts ./translations/universalindent.ts -silent)
+system($${lupdate} src -ts ./translations/universalindent_de.ts -silent)
+system($${lupdate} src -ts ./translations/universalindent_zh_TW.ts -silent)
+system($${lupdate} src -ts ./translations/universalindent_ja_JP.ts -silent)
+system($${lupdate} src -ts ./translations/universalindent_ru.ts -silent)
+system($${lupdate} src -ts ./translations/universalindent_uk.ts -silent)
 
 # Create translation binaries
-system(lrelease-qt4 ./translations/universalindent_de.ts -qm ./translations/universalindent_de.qm)
-system(lrelease-qt4 ./translations/universalindent_zh_TW.ts -qm ./translations/universalindent_zh_TW.qm)
-system(lrelease-qt4 ./translations/universalindent_ja_JP.ts -qm ./translations/universalindent_ja_JP.qm)
-system(lrelease-qt4 ./translations/universalindent_ru.ts -qm ./translations/universalindent_ru.qm)
-system(lrelease-qt4 ./translations/universalindent_uk.ts -qm ./translations/universalindent_uk.qm)
+system($${lrelease} ./translations/universalindent_de.ts -qm ./translations/universalindent_de.qm -silent)
+system($${lrelease} ./translations/universalindent_zh_TW.ts -qm ./translations/universalindent_zh_TW.qm -silent)
+system($${lrelease} ./translations/universalindent_ja_JP.ts -qm ./translations/universalindent_ja_JP.qm -silent)
+system($${lrelease} ./translations/universalindent_ru.ts -qm ./translations/universalindent_ru.qm -silent)
+system($${lrelease} ./translations/universalindent_uk.ts -qm ./translations/universalindent_uk.qm -silent)
 
 # Copy Qts own translation files to the local translation directory
 qtTranslationInstallDir = $$[QT_INSTALL_TRANSLATIONS]
 win32:qtTranslationInstallDir = $$replace(qtTranslationInstallDir, /, \)
-unix:system(cp $${qtTranslationInstallDir}/qt_de.qm ./translations/)
-unix:system(cp $${qtTranslationInstallDir}/qt_ja_jp.qm ./translations/qt_ja_JP.qm)
-unix:system(cp $${qtTranslationInstallDir}/qt_ru.qm ./translations/)
-unix:system(cp $${qtTranslationInstallDir}/qt_uk.qm ./translations/)
-win32:system(xcopy $${qtTranslationInstallDir}\qt_de.qm .\translations\ /Y)
-win32:system(xcopy $${qtTranslationInstallDir}\qt_ja_jp.qm .\translations\qt_ja_JP.qm /Y)
-win32:system(xcopy $${qtTranslationInstallDir}\qt_ru.qm .\translations\ /Y)
-win32:system(xcopy $${qtTranslationInstallDir}\qt_uk.qm .\translations\ /Y)
+unix:system(cp $${qtTranslationInstallDir}/qt_de.qm ./translations/ $$pipe2nul)
+unix:system(cp $${qtTranslationInstallDir}/qt_ja_jp.qm ./translations/qt_ja_JP.qm $$pipe2nul)
+unix:system(cp $${qtTranslationInstallDir}/qt_ru.qm ./translations/ $$pipe2nul)
+unix:system(cp $${qtTranslationInstallDir}/qt_uk.qm ./translations/ $$pipe2nul)
+win32:system(xcopy $${qtTranslationInstallDir}\qt_de.qm .\translations\ /Y $$pipe2nul)
+win32:system(xcopy $${qtTranslationInstallDir}\qt_ja_jp.qm .\translations\qt_ja_JP.qm /Y $$pipe2nul)
+win32:system(xcopy $${qtTranslationInstallDir}\qt_ru.qm .\translations\ /Y $$pipe2nul)
+win32:system(xcopy $${qtTranslationInstallDir}\qt_uk.qm .\translations\ /Y $$pipe2nul)
 
 # Defining files that shall be installed
 ########################################
