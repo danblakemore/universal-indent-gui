@@ -22,6 +22,7 @@
 UiGuiErrorMessage::UiGuiErrorMessage(QWidget *parent) : QErrorMessage(parent) {
     showAgainCheckBox = findChild<QCheckBox *>();
     setWindowModality( Qt::ApplicationModal );
+    showAgainCheckBox->setText( tr("Show this message again") );
 }
 
 UiGuiErrorMessage::~UiGuiErrorMessage(void) {

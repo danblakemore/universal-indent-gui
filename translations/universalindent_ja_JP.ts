@@ -42,7 +42,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../src/aboutdialog.ui" line="158"/>
-        <source>
+        <source><byte value="xd"/>
 Credits:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -65,12 +65,12 @@ Credits:</source>
         <translation>エクスポート</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="127"/>
+        <location filename="../src/indentgui.ui" line="133"/>
         <source>Help</source>
         <translation>ヘルプ</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="441"/>
+        <location filename="../src/indentgui.ui" line="447"/>
         <source>Settings</source>
         <translation>設定</translation>
     </message>
@@ -80,212 +80,212 @@ Credits:</source>
         <translation>インデントツール</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="152"/>
+        <location filename="../src/indentgui.ui" line="158"/>
         <source>Indenter Parameter</source>
         <translation>インデントツール パラメータ</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="201"/>
+        <location filename="../src/indentgui.ui" line="207"/>
         <source>Main Toolbar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="227"/>
+        <location filename="../src/indentgui.ui" line="233"/>
         <source>Open Source File</source>
         <translation>ソースファイルを開く</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="230"/>
+        <location filename="../src/indentgui.ui" line="236"/>
         <source>Opens a dialog for selecting a source code file.</source>
         <translation>ソースコードファイルを選択するためのダイアログを開きます</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="233"/>
+        <location filename="../src/indentgui.ui" line="239"/>
         <source>Ctrl+O</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="241"/>
+        <location filename="../src/indentgui.ui" line="247"/>
         <source>Save Source File</source>
         <translation>ソースファイルを保存</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="244"/>
+        <location filename="../src/indentgui.ui" line="250"/>
         <source>Saves the currently shown source code to the last opened or saved source file.</source>
         <translation>現在開いているソースコードを最後に開いたファイルまたは保存したファイルに保存します。</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="247"/>
+        <location filename="../src/indentgui.ui" line="253"/>
         <source>Ctrl+S</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="255"/>
+        <location filename="../src/indentgui.ui" line="261"/>
         <source>Save Source File As</source>
         <translation>名前を付けてソースファイルを保存</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="258"/>
+        <location filename="../src/indentgui.ui" line="264"/>
         <source>Opens a file dialog to save the currently shown source code.</source>
         <translation>現在開いているソースコードを保存するためのダイアログを開きます。</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="266"/>
+        <location filename="../src/indentgui.ui" line="272"/>
         <source>Load Indenter Config File</source>
         <translation>インデントツールの設定ファイルを開く</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="269"/>
+        <location filename="../src/indentgui.ui" line="275"/>
         <source>Opens a file dialog to load the original config file of the indenter.</source>
         <translation>インデントツールの設定ファイルの読み込みダイアログを開きます。</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="272"/>
+        <location filename="../src/indentgui.ui" line="278"/>
         <source>Alt+O</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="280"/>
+        <location filename="../src/indentgui.ui" line="286"/>
         <source>Save Indenter Config File</source>
         <translation>インデントツールの設定ファイルを保存</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="283"/>
+        <location filename="../src/indentgui.ui" line="289"/>
         <source>Opens a dialog to save the current indenter configuration to a file.</source>
         <translation>現在のインデントツールの設定をファイルに保存するためのダイアログを開きます。</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="286"/>
+        <location filename="../src/indentgui.ui" line="292"/>
         <source>Alt+S</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="294"/>
+        <location filename="../src/indentgui.ui" line="300"/>
         <source>About UniversalIndentGUI</source>
         <translation>UniversalIndentGUI について</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="297"/>
+        <location filename="../src/indentgui.ui" line="303"/>
         <source>Shows info about UniversalIndentGUI.</source>
         <translation>UniversalIndentGUI についての情報を表示します。</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="305"/>
+        <location filename="../src/indentgui.ui" line="311"/>
         <source>Exit</source>
         <translation>終了</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="308"/>
+        <location filename="../src/indentgui.ui" line="314"/>
         <source>Quits the UniversalIndentGUI.</source>
         <translation>UniversalIndentGUI を終了します。</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="311"/>
+        <location filename="../src/indentgui.ui" line="317"/>
         <source>Ctrl+Q</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="319"/>
+        <location filename="../src/indentgui.ui" line="325"/>
         <source>PDF</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="322"/>
+        <location filename="../src/indentgui.ui" line="328"/>
         <source>Export the currently visible source code as PDF document</source>
         <translation>表示されているソースコードを PDF ファイルとして出力します。</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="330"/>
+        <location filename="../src/indentgui.ui" line="336"/>
         <source>HTML</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="333"/>
+        <location filename="../src/indentgui.ui" line="339"/>
         <source>Export the currently visible source code as HTML document</source>
         <translation>表示されているソースコードを HTML として出力します。</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="347"/>
+        <location filename="../src/indentgui.ui" line="353"/>
         <source>Parameter Tooltips</source>
         <translation>パラメータ ツールチップ</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="350"/>
+        <location filename="../src/indentgui.ui" line="356"/>
         <source>If checked, tool tips will show up if the mouse cursor remains over an indenter parameter for a while.</source>
         <translation>チェックすると、インデントツールのパラメータの上にしばらくマウスカーソルを置くとツールチップを表示するようにします。</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="361"/>
+        <location filename="../src/indentgui.ui" line="367"/>
         <source>Live Indent Preview</source>
         <translation>インデントの即時プレビュー</translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="401"/>
+        <location filename="../src/indentgui.ui" line="407"/>
         <source>White Space Visible</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="404"/>
+        <location filename="../src/indentgui.ui" line="410"/>
         <source>Set white space visible</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="407"/>
+        <location filename="../src/indentgui.ui" line="413"/>
         <source>Enables or disables diplaying of white space characters in the editor.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="421"/>
+        <location filename="../src/indentgui.ui" line="427"/>
         <source>Auto Open Last File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="424"/>
+        <location filename="../src/indentgui.ui" line="430"/>
         <source>Auto open last source file on startup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="427"/>
+        <location filename="../src/indentgui.ui" line="433"/>
         <source>If selected opens last source code file on startup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="364"/>
+        <location filename="../src/indentgui.ui" line="370"/>
         <source>Ctrl+L</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="384"/>
+        <location filename="../src/indentgui.ui" line="390"/>
         <source>Syntax Highlighting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="387"/>
+        <location filename="../src/indentgui.ui" line="393"/>
         <source>Enables or disables syntax highlighting for the source code.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="390"/>
+        <location filename="../src/indentgui.ui" line="396"/>
         <source>By enabling special key words of the source code are highlighted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="444"/>
+        <location filename="../src/indentgui.ui" line="450"/>
         <source>Opens the settings dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="447"/>
+        <location filename="../src/indentgui.ui" line="453"/>
         <source>Opens the settings dialog, to set language etc.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="455"/>
+        <location filename="../src/indentgui.ui" line="461"/>
         <source>Create Indenter Call Shell Script</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="461"/>
+        <location filename="../src/indentgui.ui" line="467"/>
         <source>Create a shell script that calls the current selected indenter for formatting an as parameter given file with the current indent settings</source>
         <translation type="unfinished"></translation>
     </message>
@@ -300,23 +300,28 @@ Credits:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="114"/>
+        <location filename="../src/indentgui.ui" line="120"/>
         <source>Set Syntax Highlighter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="469"/>
+        <location filename="../src/indentgui.ui" line="475"/>
         <source>Check for update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="475"/>
+        <location filename="../src/indentgui.ui" line="481"/>
         <source>Checks online whether a new version of UniversalIndentGUI is available.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indentgui.ui" line="483"/>
+        <location filename="../src/indentgui.ui" line="489"/>
         <source>Clear Recently Opened List</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/indentgui.ui" line="100"/>
+        <source>Save Source File As with other Encoding</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -406,22 +411,22 @@ Credits:</source>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1221"/>
+        <location filename="../src/mainwindow.cpp" line="1258"/>
         <source>Error opening file</source>
         <translation>ファイルの読み込みエラーが発生しました</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1221"/>
+        <location filename="../src/mainwindow.cpp" line="1258"/>
         <source>Cannot read the file </source>
         <translation>次のファイルを開けませんでした。: </translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="548"/>
+        <location filename="../src/mainwindow.cpp" line="549"/>
         <source>Supported by indenter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1350"/>
+        <location filename="../src/mainwindow.cpp" line="1387"/>
         <source>All files</source>
         <translation type="unfinished"></translation>
     </message>
@@ -431,42 +436,42 @@ Credits:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="552"/>
+        <location filename="../src/mainwindow.cpp" line="553"/>
         <source>Save source code file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="621"/>
+        <location filename="../src/mainwindow.cpp" line="629"/>
         <source>Save indent config file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="641"/>
+        <location filename="../src/mainwindow.cpp" line="649"/>
         <source>Choose indenter config file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="961"/>
+        <location filename="../src/mainwindow.cpp" line="969"/>
         <source>PDF Document</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="990"/>
+        <location filename="../src/mainwindow.cpp" line="998"/>
         <source>Export source code file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="983"/>
+        <location filename="../src/mainwindow.cpp" line="991"/>
         <source>HTML Document</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1135"/>
+        <location filename="../src/mainwindow.cpp" line="1143"/>
         <source>Modified code</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1137"/>
+        <location filename="../src/mainwindow.cpp" line="1145"/>
         <source>The source code has been modified.
 Do you want to save your changes?</source>
         <translation type="unfinished"></translation>
@@ -477,33 +482,38 @@ Do you want to save your changes?</source>
         <translation type="obsolete">言語</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1316"/>
+        <location filename="../src/mainwindow.cpp" line="1353"/>
         <source>Reopen the currently opened source code file by using the text encoding scheme </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1324"/>
+        <location filename="../src/mainwindow.cpp" line="1361"/>
         <source>Set the syntax highlightning to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1350"/>
+        <location filename="../src/mainwindow.cpp" line="1387"/>
         <source>Shell Script</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1498"/>
+        <location filename="../src/mainwindow.cpp" line="1535"/>
         <source>File no longer exists</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1498"/>
+        <location filename="../src/mainwindow.cpp" line="1535"/>
         <source>The file %1 in the list of recently opened files does no longer exist.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1356"/>
+        <location filename="../src/mainwindow.cpp" line="1393"/>
         <source>Save shell script</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1217"/>
+        <source>Save the currently opened source code file by using the text encoding scheme </source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -648,6 +658,14 @@ Do you want to save your changes?</source>
         <location filename="../src/UiGuiSettingsDialog.ui" line="213"/>
         <source>Check online for update on program start</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>UiGuiErrorMessage</name>
+    <message>
+        <location filename="../src/uiguierrormessage.cpp" line="25"/>
+        <source>Show this message again</source>
+        <translation></translation>
     </message>
 </context>
 <context>

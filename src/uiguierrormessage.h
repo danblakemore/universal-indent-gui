@@ -25,6 +25,8 @@
 
 class UiGuiErrorMessage : public QErrorMessage
 {
+    Q_OBJECT
+
 public:
     UiGuiErrorMessage(QWidget *parent = 0);
     ~UiGuiErrorMessage(void);
