@@ -1228,7 +1228,7 @@ void MainWindow::createEncodingMenu() {
 /*!
     \brief This slot calls the save dialog to save the current source file with another encoding.
 
-    If the saving is successul and not aborted, the currently used encoding, visible in the
+    If the saving is successful and not aborted, the currently used encoding, visible in the
     "reopen" menu, is also changed to the new encoding.
 */
 void MainWindow::saveAsOtherEncoding(QAction *chosenEncodingAction) {
