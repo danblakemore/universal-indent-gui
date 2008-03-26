@@ -431,7 +431,7 @@ Credits:</source>
     <message>
         <location filename="../src/indentgui.ui" line="100"/>
         <source>Save Source File As with other Encoding</source>
-        <translation type="unfinished"></translation>
+        <translation>用別的編碼方式另存新檔</translation>
     </message>
 </context>
 <context>
@@ -713,7 +713,7 @@ Do you want to go to the download website?</source>
     <message>
         <location filename="../src/mainwindow.cpp" line="1217"/>
         <source>Save the currently opened source code file by using the text encoding scheme </source>
-        <translation type="unfinished"></translation>
+        <translation>另存目前的檔案，編碼使用 </translation>
     </message>
 </context>
 <context>
@@ -874,7 +874,7 @@ Do you want to go to the download website?</source>
     <message>
         <location filename="../src/uiguierrormessage.cpp" line="25"/>
         <source>Show this message again</source>
-        <translation type="unfinished"></translation>
+        <translation>下次繼續顯示這個訊息</translation>
     </message>
 </context>
 <context>

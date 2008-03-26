@@ -348,7 +348,7 @@ Credits:</source>
     <message>
         <location filename="../src/indentgui.ui" line="467"/>
         <source>Create a shell script that calls the current selected indenter for formatting an as parameter given file with the current indent settings</source>
-        <translation>Створити скрипт оболонки, який викликає поточний обраний відступач для форматування по параметрам даного файлу з поточними налаштуваннями відступів.</translation>
+        <translation>Створити скрипт оболонки, який викликає поточний обраний відступач для форматування по параметрам даного файлу з поточними налаштуваннями відступів</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="475"/>
@@ -368,7 +368,7 @@ Credits:</source>
     <message>
         <location filename="../src/indentgui.ui" line="100"/>
         <source>Save Source File As with other Encoding</source>
-        <translation type="unfinished"></translation>
+        <translation>Зберегти вихідний файл з іншим кодуванням як</translation>
     </message>
 </context>
 <context>
@@ -576,7 +576,7 @@ Do you want to save your changes?</source>
     <message>
         <location filename="../src/mainwindow.cpp" line="1217"/>
         <source>Save the currently opened source code file by using the text encoding scheme </source>
-        <translation type="unfinished"></translation>
+        <translation>Зберегти поточний відкритий файл коду джерела використовуючи схему кодування тексту(sp)</translation>
     </message>
 </context>
 <context>

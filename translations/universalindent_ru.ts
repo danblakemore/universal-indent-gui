@@ -308,7 +308,7 @@ Credits:</source>
     <message>
         <location filename="../src/indentgui.ui" line="393"/>
         <source>Enables or disables syntax highlighting for the source code.</source>
-        <translation>Включает или отключает подсветку синтаксиса для исходного кода</translation>
+        <translation>Включает или отключает подсветку синтаксиса для исходного кода.</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="396"/>
@@ -348,7 +348,7 @@ Credits:</source>
     <message>
         <location filename="../src/indentgui.ui" line="467"/>
         <source>Create a shell script that calls the current selected indenter for formatting an as parameter given file with the current indent settings</source>
-        <translation>Создать скрипт оболочки, вызывающий текущий выбранный отступатор для форматирования по параметрам данного файла с текущими настройками отступов.</translation>
+        <translation>Создать скрипт оболочки, вызывающий текущий выбранный отступатор для форматирования по параметрам данного файла с текущими настройками отступов</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="475"/>
@@ -358,7 +358,7 @@ Credits:</source>
     <message>
         <location filename="../src/indentgui.ui" line="481"/>
         <source>Checks online whether a new version of UniversalIndentGUI is available.</source>
-        <translation>Проверить в сети доступность новой версии UniversalIndentGUI</translation>
+        <translation>Проверить в сети доступность новой версии UniversalIndentGUI.</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="489"/>
@@ -368,7 +368,7 @@ Credits:</source>
     <message>
         <location filename="../src/indentgui.ui" line="100"/>
         <source>Save Source File As with other Encoding</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранить исходный файл с другой кодировкой как</translation>
     </message>
 </context>
 <context>
@@ -576,7 +576,7 @@ Do you want to save your changes?</source>
     <message>
         <location filename="../src/mainwindow.cpp" line="1217"/>
         <source>Save the currently opened source code file by using the text encoding scheme </source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранить текущий открытый файл исходного кода с использованием схемы кодирования текста(sp)</translation>
     </message>
 </context>
 <context>
