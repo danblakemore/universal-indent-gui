@@ -1,3 +1,11 @@
+2008-03-27 Version 0.8.1
+[add] Feature Request ID 1909450 : Added support for the PEAR PHP beautifier. Thus PHP beautifying is also possible on Linux and Mac OS X. (Needs the PEAR package "PHP_Beautifier" to be installed and a path entry pointing to the PHP dir.)
+[add] Added support and translations for Russian and Ukrainian language. Thanks to Oleksandr (http://korytskyy.lviv.ua).
+[add] Feature Request ID 1901935 : From now on files are saved with the same encoding as they were opened and no longer always UTF-8. Also it is possible to save the file with any other encoding.
+[change] The detection whether to run in portable mode now depends on where the "config" folder resides and no longer the "indenters" folder. This is needed to be able to correctly run on Windows multiuser systems.
+[change] Removed the word "beta" whereever it occurred, since UiGUI isn't that beta anymore.
+[fix] Bug ID 1910773 : On Unix systems the globally available files, like indenters, translations etc are not longer installed to /etc/universalindentgui but to /usr/share/universalindentgui.
+
 2008-01-17 Version 0.8.0 Beta
 [add] Feature Request ID 1849297 : Added support for indenters written in JavaScript using an internal interpreter. Have a look into the README.txt to get to know, what steps are needed for that.
 [add] Added support for a simple JavaScript indenter written in JavaScript itself.
