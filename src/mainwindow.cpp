@@ -136,16 +136,16 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 	
 
     // generate about dialog box
-#if QT_VERSION >= 0x040400
+/*#if QT_VERSION >= 0x040400
     aboutDialog = new AboutDialog(this, Qt::SplashScreen, version, revision, buildDateStr);
     aboutDialogGraphicsView = new AboutDialogGraphicsView(aboutDialog, this);
     connect( toolBarWidget->pbAbout, SIGNAL(clicked()), aboutDialogGraphicsView, SLOT(show()) );
     connect( actionAbout_UniversalIndentGUI, SIGNAL(activated()), aboutDialogGraphicsView, SLOT(show()) );
-#else
+#else */
     aboutDialog = new AboutDialog(this, Qt::Dialog, version, revision, buildDateStr);
     connect( actionAbout_UniversalIndentGUI, SIGNAL(activated()), aboutDialog, SLOT(exec()) );
     connect( toolBarWidget->pbAbout, SIGNAL(clicked()), aboutDialog, SLOT(exec()) );
-#endif
+//#endif
 
 	// generate settings dialog box
 	settingsDialog = new UiGuiSettingsDialog(this, settings);

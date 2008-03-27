@@ -31,8 +31,10 @@ message(Updating language files)
 
 lupdate = lupdate
 unix:lupdate = lupdate-qt4
+macx:lupdate = lupdate
 lrelease = lrelease
 unix:lrelease = lrelease-qt4
+macx:lrelease = lrelease
 # Update translation files
 system($${lupdate} src -ts ./translations/universalindent.ts -silent)
 system($${lupdate} src -ts ./translations/universalindent_de.ts -silent)
@@ -171,6 +173,10 @@ SOURCES += src/aboutdialog.cpp \
            src/uiguisettings.cpp \
            src/uiguisettingsdialog.cpp \
            src/updatecheckdialog.cpp
+#macx {
+#SOURCES += src/AboutDialogGraphicsView.cpp
+#HEADERS += src/AboutDialogGraphicsView.h
+#}
 
 RESOURCES += resources/Icons.qrc
 RC_FILE    = resources/programicon.rc
