@@ -12,14 +12,6 @@ set QMAKESPEC=win32-g++
 echo Done.
 echo.
 
-echo Generating the translation binaries
-echo -----------------------------------
-for %%A in ( de, zh_TW, ja_JP) do (
-    lrelease .\translations\universalindent_%%A.ts -qm .\translations\universalindent_%%A.qm -silent
-    IF ERRORLEVEL 1 goto ERROR
-)
-echo Done.
-echo.
 
 echo Calling qmake
 echo -------------
@@ -57,7 +49,7 @@ echo.
 
 echo Copying the indenter executables and example file to the release indenters dir
 echo ------------------------------------------------------------------------------
-FOR %%A IN ( astyle.exe, astyle.html, bcpp.exe, bcpp.txt, csstidy.exe, gc.exe, gc.txt, indent.exe, libiconv-2.dll, libintl-2.dll, indent.html, JsDecoder.js, perltidy, PerlTidyLib.pm, shellindent.awk, tidy.exe, tidy.html, uncrustify.exe, uncrustify.txt, example.cpp, example.css, example.html, example.js, example.php, example.pl, example.sh ) DO (
+FOR %%A IN ( astyle.exe, astyle.html, bcpp.exe, bcpp.txt, csstidy.exe, gc.exe, gc.txt, indent.exe, libiconv-2.dll, libintl-2.dll, indent.html, JsDecoder.js, perltidy, PerlTidyLib.pm, php_beautifier.html, shellindent.awk, tidy.exe, tidy.html, uncrustify.exe, uncrustify.txt, example.cpp, example.css, example.html, example.js, example.php, example.pl, example.sh ) DO (
     if not exist .\indenters\%%A (
         echo File .\indenters\%%A not found!
         goto ERROR
@@ -70,14 +62,8 @@ echo.
 
 echo Copying the indenter uigui ini files to the release indenters dir
 echo -----------------------------------------------------------------
-FOR %%A IN ( uigui_astyle.ini, uigui_bcpp.ini, uigui_csstidy.ini, uigui_gnuindent.ini, uigui_greatcode.ini, uigui_jsdecoder.ini, uigui_perltidy.ini, uigui_phpCB.ini, uigui_shellindent.ini, uigui_tidy.ini, uigui_uncrustify.ini ) DO (
-    if not exist .\indenters\%%A (
-        echo File .\indenters\%%A not found!
-        goto ERROR
-    )
-    copy .\indenters\%%A .\UniversalIndentGUI_win32\indenters\ >NUL
-    IF ERRORLEVEL 1 goto ERROR
-)
+copy .\indenters\uigui_*.ini .\UniversalIndentGUI_win32\indenters\ >NUL
+IF ERRORLEVEL 1 goto ERROR
 echo Done.
 echo.
 
@@ -109,18 +95,8 @@ echo.
 
 echo Copying the translation files to the release translation dir
 echo ------------------------------------------------------------
-copy %QTDIR%\translations\qt_de.qm .\translations\ >NUL
-copy %QTDIR%\translations\qt_ja_jp.qm .\translations\qt_ja_JP.qm >NUL
-copy .\translations\qt_de.qm .\UniversalIndentGUI_win32\translations\ >NUL
-copy .\translations\qt_ja_JP.qm .\UniversalIndentGUI_win32\translations\ >NUL
-for %%A in ( de, zh_TW, ja_JP ) do (
-    if not exist .\translations\universalindent_%%A.qm (
-        echo File .\translations\universalindent_%%A.qm not found!
-        goto ERROR
-    )
-    copy .\translations\universalindent_%%A.qm .\UniversalIndentGUI_win32\translations\ >NUL
-    IF ERRORLEVEL 1 goto ERROR
-)
+copy .\translations\*.qm .\UniversalIndentGUI_win32\translations\ >NUL
+IF ERRORLEVEL 1 goto ERROR
 echo Done.
 echo.
 
@@ -136,7 +112,7 @@ echo.
 echo Packing the whole release dir content
 echo -------------------------------------
 cd UniversalIndentGUI_win32
-7z.exe a -tzip UniversalIndentGUI_0.8.0_Beta_win32.zip >NUL
+7z.exe a -tzip UniversalIndentGUI_0.8.1_win32.zip >NUL
 IF ERRORLEVEL 1 goto ERROR
 cd ..
 echo Done.
