@@ -115,7 +115,7 @@ rem IF ERRORLEVEL 1 goto ERROR
 cd UniversalIndentGUI.xcodeproj
 FOR %%A IN ( project.pbxproj, qt_makeqmake.mak, qt_preprocess.mak ) DO (
     if not exist .\%%A (
-        echo File .\indenters\%%A not found!
+        echo File .\UniversalIndentGUI.xcodeproj\%%A not found!
         goto ERROR
     )
     copy .\%%A ..\%targetname%\UniversalIndentGUI.xcodeproj\ >NUL
