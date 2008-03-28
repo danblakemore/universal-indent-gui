@@ -36,13 +36,19 @@ if [ "$targetSystem" = "win32" ] || [ "$targetSystem" = "macx" ]; then
 else
     targetName=universalindentgui # The targetname must be identical with the targetname set in the qmake project file.
 fi
-targetDir=${targetName}_$targetSystem
+
 
 # Configuration
 # -------------
-version=0.8.0
+version=0.8.1
 doSVNUpdate=false
 languages="de zh_TW ja_JP ru uk"
+
+if [ "$targetSystem" = "src" ]; then
+    targetDir=${targetName}-$version
+else
+    targetDir=${targetName}_$targetSystem
+fi
 
 # Set QTDIR and QMAKESPEC for each platform
 if [ "$targetSystem" = "win32" ] && [ ! -n "$2" ]; then
@@ -389,9 +395,14 @@ if [ "$ext" = ".exe" ]; then
         exit 1
     fi
 else
-    tar czf ${targetName}_${version}_$targetSystem.tar.gz $targetDir &> /dev/null
+    if [ "$targetSystem" = "src" ]; then
+        targetArchiveName=${targetName}-${version}.tar.gz
+    else
+        targetArchiveName=${targetName}_${version}_$targetSystem.tar.gz
+    fi
+    tar czf $targetArchiveName $targetDir &> /dev/null
     if [ $? -gt 0 ]; then
-        echo "ERROR: Could not create archive \"${targetName}_${version}_$targetSystem.tar.gz\"!"
+        echo "ERROR: Could not create archive \"$targetArchiveName\"!"
         exit 1
     fi
 fi
