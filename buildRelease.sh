@@ -414,7 +414,7 @@ else
     if [ "$targetSystem" = "src" ]; then
         targetArchiveName=${targetName}-${version}.tar
     else
-        targetArchiveName=${targetName}_${version}_$targetSystem.tar.gz
+        targetArchiveName=${targetName}_${version}_$targetSystem.tar
     fi
     tar cf $targetArchiveName $targetDir &> /dev/null
     if [ $? -gt 0 ]; then
