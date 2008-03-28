@@ -1,6 +1,6 @@
 @echo off
 
-set targetname=universalindentgui-0.8.0
+set targetname=universalindentgui-0.8.1
 
 echo Making some environment settings
 echo --------------------------------
@@ -36,21 +36,16 @@ echo.
 
 echo Updating translation files
 echo --------------------------
-lupdate UniversalIndentGUI.pro -silent
-IF ERRORLEVEL 1 goto ERROR
+::lupdate UniversalIndentGUI.pro -silent
+::IF ERRORLEVEL 1 goto ERROR
 echo Done.
 echo.
 
+
 echo Copying the indenter uigui ini files to the release indenters dir
 echo -----------------------------------------------------------------
-FOR %%A IN ( uigui_astyle.ini, uigui_bcpp.ini, uigui_csstidy.ini, uigui_gnuindent.ini, uigui_greatcode.ini, uigui_jsdecoder.ini, uigui_perltidy.ini, uigui_phpCB.ini, uigui_shellindent.ini, uigui_tidy.ini, uigui_uncrustify.ini ) DO (
-    if not exist .\indenters\%%A (
-        echo File .\indenters\%%A not found!
-        goto ERROR
-    )
-    copy .\indenters\%%A .\%targetname%\indenters\ >NUL
-    IF ERRORLEVEL 1 goto ERROR
-)
+copy .\indenters\uigui_*.ini .\%targetname%\indenters\ >NUL
+IF ERRORLEVEL 1 goto ERROR
 echo Done.
 echo.
 
@@ -125,8 +120,8 @@ cd ..
 echo Done.
 echo.
 
-echo Copying doc and UniversalIndentGUI.exe to release dir
-echo -----------------------------------------------------
+echo Copying doc to release dir
+echo --------------------------
 copy .\doc\iniFileFormat.html .\%targetname%\doc\ >NUL
 IF ERRORLEVEL 1 goto ERROR
 echo Done.
@@ -139,8 +134,8 @@ del %targetname%.tar >NUL
 del %targetname%.tar.gz >NUL
 7z.exe a -ttar %targetname%.tar %targetname% >NUL
 7z.exe a -tgzip %targetname%.tar.gz %targetname%.tar >NUL
-del %targetname%.tar >NUL
 IF ERRORLEVEL 1 goto ERROR
+del %targetname%.tar >NUL
 rem cd ..
 echo Done.
 echo.

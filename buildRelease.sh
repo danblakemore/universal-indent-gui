@@ -211,6 +211,16 @@ echo "Done"
 echo ""
 
 
+echo "Copying man page to target dir"
+echo "------------------------------"
+cp ./doc/universalindentgui.man ./$targetDir/doc/ &> /dev/null
+if [ $? -gt 0 ]; then
+    echo "ERROR: Could not copy file \"/doc/universalindentgui.man\"!"
+    exit 1
+fi
+echo "Done"
+echo ""
+
 ###################### source release end ########################
 else
 ###################### binary release begin ########################
