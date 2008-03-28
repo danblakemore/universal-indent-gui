@@ -248,7 +248,7 @@ echo ""
 
 echo "Copying the indenter executable files to the target indenters dir"
 echo "-----------------------------------------------------------------"
-indenters="astyle$ext astyle.html bcpp$ext bcpp.txt csstidy$ext greatcode.exe greatcode.txt indent$ext indent.html tidy$ext tidy.html uncrustify$ext uncrustify.txt"
+indenters="astyle$ext astyle.html bcpp$ext bcpp.txt csstidy$ext greatcode.exe greatcode.txt indent$ext indent.html php_beautifier.html tidy$ext tidy.html uncrustify$ext uncrustify.txt"
 if [ "$ext" = ".exe" ]; then
     indenters="$indenters libiconv-2.dll libintl-2.dll"
 fi
