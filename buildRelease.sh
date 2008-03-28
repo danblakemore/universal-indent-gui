@@ -110,7 +110,7 @@ if [ $? -gt 0 ]; then
     echo "ERROR: Creating dir config failed!"
     exit 1
 fi
-# In case of source files as target system, create additional dirs.
+# In case of src as target system, create additional dirs.
 if [ "$targetSystem" = "src" ]; then
     mkdir $targetDir/resources &> /dev/null
     if [ $? -gt 0 ]; then
@@ -195,6 +195,22 @@ fi
 echo "Done"
 echo ""
 
+
+echo "Copying the indenter project files to the target dir"
+echo "----------------------------------------------------"
+projectfiles="UniversalIndentGUI.pro UniversalIndentGUI.sln VS8QtRules.rules UniversalIndentGUI.xcodeproj"
+for i in $projectfiles
+do
+    cp -r ./$i ./$targetDir/ &> /dev/null
+    if [ $? -gt 0 ]; then
+        echo "ERROR: Could not copy file \"$i\"!"
+        exit 1
+    fi
+done
+echo "Done"
+echo ""
+
+
 ###################### source release end ########################
 else
 ###################### binary release begin ########################
@@ -254,7 +270,7 @@ echo ""
 
 echo "Copying the indenter executable files to the target indenters dir"
 echo "-----------------------------------------------------------------"
-indenters="astyle$ext astyle.html bcpp$ext bcpp.txt csstidy$ext greatcode.exe greatcode.txt indent$ext indent.html php_beautifier.html tidy$ext tidy.html uncrustify$ext uncrustify.txt"
+indenters="astyle$ext astyle.html bcpp$ext bcpp.txt csstidy$ext greatcode.exe greatcode.txt indent$ext indent.html tidy$ext tidy.html uncrustify$ext uncrustify.txt"
 if [ "$ext" = ".exe" ]; then
     indenters="$indenters libiconv-2.dll libintl-2.dll"
 fi
@@ -308,7 +324,7 @@ fi
 
 echo "Copying the script based indenters to the target indenters dir"
 echo "--------------------------------------------------------------"
-indenters="JsDecoder.js perltidy PerlTidyLib.pm shellindent.awk"
+indenters="JsDecoder.js perltidy PerlTidyLib.pm php_beautifier.html shellindent.awk"
 for i in $indenters
 do
     cp ./indenters/$i ./$targetDir/indenters/ &> /dev/null
@@ -396,13 +412,18 @@ if [ "$ext" = ".exe" ]; then
     fi
 else
     if [ "$targetSystem" = "src" ]; then
-        targetArchiveName=${targetName}-${version}.tar.gz
+        targetArchiveName=${targetName}-${version}.tar
     else
         targetArchiveName=${targetName}_${version}_$targetSystem.tar.gz
     fi
-    tar czf $targetArchiveName $targetDir &> /dev/null
+    tar cf $targetArchiveName $targetDir &> /dev/null
     if [ $? -gt 0 ]; then
         echo "ERROR: Could not create archive \"$targetArchiveName\"!"
+        exit 1
+    fi
+    gzip -9 -f $targetArchiveName
+    if [ $? -gt 0 ]; then
+        echo "ERROR: Could not create archive \"$targetArchiveName.gz\"!"
         exit 1
     fi
 fi
