@@ -90,6 +90,13 @@ if [ $? -gt 0 ]; then
     echo "ERROR: Creating dir $targetDir failed!"
     exit 1
 fi
+
+# wait until the new target dir has been really created
+while [ ! -d "$targetDir" ]
+do
+    sleep 1
+done
+
 mkdir $targetDir/indenters &> /dev/null
 if [ $? -gt 0 ]; then
     echo "ERROR: Creating dir indenters failed!"
