@@ -77,7 +77,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
         // On windows systems the directories "indenters", "translations" are subdirs of the applicationBinaryPath.
         globalFilesDirectoryStr = applicationBinaryPath;
 #else
-        settingsDirctoryStr = QDir::homePath() + "/.config/universalindentgui";
+        settingsDirctoryStr = QDir::homePath() + "/.universalindentgui";
         globalFilesDirectoryStr = "/usr/share/universalindentgui";
 #endif
         dirCreator.mkpath( settingsDirctoryStr );
