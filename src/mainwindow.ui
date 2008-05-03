@@ -1,7 +1,7 @@
 <ui version="4.0" >
  <author>Thomas_-_S</author>
- <class>IndentGui</class>
- <widget class="QMainWindow" name="IndentGui" >
+ <class>MainWindowUi</class>
+ <widget class="QMainWindow" name="MainWindowUi" >
   <property name="geometry" >
    <rect>
     <x>0</x>
@@ -497,7 +497,7 @@
   <connection>
    <sender>actionExit</sender>
    <signal>activated()</signal>
-   <receiver>IndentGui</receiver>
+   <receiver>MainWindowUi</receiver>
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel" >

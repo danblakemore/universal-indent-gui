@@ -328,7 +328,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\indentgui.ui"
+				RelativePath=".\mainwindow.ui"
 				>
 			</File>
 			<File
@@ -416,7 +416,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="$(OutDir)\tmp\uic\ui_indentgui.h"
+				RelativePath="$(OutDir)\tmp\uic\ui_mainwindow.h"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"

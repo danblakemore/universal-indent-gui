@@ -20,7 +20,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "ui_indentgui.h"
+#include "ui_mainwindow.h"
 #include "ui_toolBarWidget.h"
 #include "aboutdialog.h"
 #if QT_VERSION >= 0x040400
@@ -51,7 +51,7 @@
 #include <Qsci/qsciscintilla.h>
 #include <Qsci/qsciprinter.h>
 
-class MainWindow : public QMainWindow, private Ui::IndentGui
+class MainWindow : public QMainWindow, private Ui::MainWindowUi
 {
     Q_OBJECT
 
