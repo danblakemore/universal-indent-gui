@@ -160,6 +160,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     if ( settings->getValueByName("CheckForUpdate").toBool() && QDate::currentDate() != settings->getValueByName("LastUpdateCheck").toDate() ) {
         updateCheckDialog->checkForUpdate();
     }
+
+    // Enable accept dropping of files.
+    setAcceptDrops(true);
 }
 
 
@@ -1548,4 +1551,27 @@ void MainWindow::openFileFromRecentlyOpenedList(QAction* recentlyOpenedAction) {
 void MainWindow::showIndenterManual() {
     QString manualReference = indentHandler->getManual();
     QDesktopServices::openUrl( manualReference );
+}
+
+
+/*!
+    \brief If the dragged in object contains urls/paths to a file, accept the drag.
+*/
+void MainWindow::dragEnterEvent(QDragEnterEvent *event) {
+    if ( event->mimeData()->hasUrls() ) {
+        event->acceptProposedAction();
+    }
+}
+
+
+/*!
+    \brief If the dropped in object contains urls/paths to a file, open that file.
+*/
+void MainWindow::dropEvent(QDropEvent *event) {
+    if ( event->mimeData()->hasUrls() ) {
+        QString filePathName = event->mimeData()->urls().first().toLocalFile();
+        openSourceFileDialog(filePathName);
+    }
+
+    event->acceptProposedAction();
 }

@@ -75,6 +75,8 @@ private:
     void initSyntaxHighlighter();
     void initIndenter();
     void changeEvent(QEvent *event);
+    void dragEnterEvent(QDragEnterEvent *event);
+    void dropEvent(QDropEvent *event);
 
 	QsciScintilla *txtedSourceCode;
 	UiGuiSettings *settings;
