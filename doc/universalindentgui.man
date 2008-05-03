@@ -6,6 +6,7 @@ universalindentgui \- GUI frontend for several code beautifiers
 .SH SYNOPSIS 
 .B universalindentgui
 .RI [ FILE ]
+.br
 Optional the as parameter given
 .IR FILE
 can be opened at start.
