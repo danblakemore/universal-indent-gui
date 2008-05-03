@@ -27,8 +27,12 @@
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
+    QString file2OpenOnStart = "";
 
-    MainWindow mainWindow;
+    if ( argc > 1 ) {
+        file2OpenOnStart = argv[1];
+    }
+    MainWindow mainWindow(file2OpenOnStart);
 
     mainWindow.show();
 

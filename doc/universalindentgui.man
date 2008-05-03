@@ -5,7 +5,10 @@ universalindentgui \- GUI frontend for several code beautifiers
 
 .SH SYNOPSIS 
 .B universalindentgui
-(takes no commandline parameters)
+.RI [ FILE ]
+Optional the as parameter given
+.IR FILE
+can be opened at start.
 
 .SH DESCRIPTION 
 \fBUniversalIndentGUI\fP is a cross platform compatible GUI for several code formatters, beautifiers and indenters, e.g. GreatCode, AStyle (Artistic Style), GNU Indent, BCPP and others. Its main feature is a live preview to directly see how the selected formatting options affect the source code.

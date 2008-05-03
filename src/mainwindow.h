@@ -57,7 +57,7 @@ class MainWindow : public QMainWindow, private Ui::MainWindowUi
 
 public:
     //! Constructor
-    MainWindow(QWidget *parent = 0);
+    MainWindow(QString file2OpenOnStart = "", QWidget *parent = 0);
 
 private:
     QString loadFile(QString filePath);

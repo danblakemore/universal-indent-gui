@@ -33,11 +33,14 @@ These binary archives (I mean the zip and tgz files) contain all supported inden
 
 Right now the windows version of GreatCode is shipped along with the Linux version of UniversalIndentGUI, because I was unable to compile GreatCode under Linux. UniversalIndentGUI tries to start GreatCode via wine. So wine has to be installed in order to use GreatCode. This applies to any new indenter, where only a windows executable exists, too.
 
-3.1 Portable mode
+3.1 Parameters
+UniversalIndentGUI can be started with a file as parameter, which is loaded on startup.
+
+3.2 Portable mode
 UniversalIndentGUI can be run in a portable mode, so it won't make any modifications on the system, except for the media it is started from. The things UniversalIndentGUI writes to the for example USB drive are the user settings of the application and the set parameters of the indenters. Further a temporary dir is used, to feed the indenters with input files and grab their output.
 The portable mode is being used, if the sub dir "indenters" is found in the same dir as the executable. Thats the case for the before named binary archives.
 
-3.2 Multiuser mode
+3.3 Multiuser mode
 Especially Unix based systems strictly make use of user restrictments, but also Windows can be used that way, even if many dislike that due to lack of comfort. To be able to run UniversalIndentGUI on multiuser systems the needed files are spread over different directories. On Unix based these are:
 /usr/bin  for the binary.
 /etc/UniversalIndentGUI  for global configuration and the essential indenter ini files.

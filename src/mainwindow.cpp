@@ -34,7 +34,7 @@
 /*!
     \brief Constructs the main window.
  */
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
+MainWindow::MainWindow(QString file2OpenOnStart, QWidget *parent) : QMainWindow(parent) {
     // set the program version, revision and date, which is shown in the main window title and in the about dialog.
     version = "0.8.1";
     revision = "650";
@@ -151,8 +151,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 	settingsDialog = new UiGuiSettingsDialog(this, settings);
     connect( actionShowSettings, SIGNAL(activated()), settingsDialog, SLOT(showDialog()) );
 
-    // Loads the last opened file, if this is enabled in the settings.
-    loadLastOpenedFile();
+    // If a file that should be opened on start has been handed over to the constructor exists, load it
+    if ( QFile::exists(file2OpenOnStart) ) {
+        openSourceFileDialog(file2OpenOnStart);
+    }
+    // Otherwise load the last opened file, if this is enabled in the settings.
+    else {
+        loadLastOpenedFile();
+    }
 
     updateSourceView();
 
