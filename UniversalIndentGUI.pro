@@ -158,7 +158,7 @@ HEADERS += src/aboutdialog.h \
            src/uiguisettingsdialog.h \
            src/updatecheckdialog.h
 
-FORMS += src/indentgui.ui \
+FORMS += src/mainwindow.ui \
          src/toolBarWidget.ui \
          src/UiGuiSettingsDialog.ui \
          src/aboutdialog.ui \

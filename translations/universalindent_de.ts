@@ -213,11 +213,6 @@ Danksagung:</translation>
 <context>
     <name>IndentGui</name>
     <message>
-        <location filename="../src/indentgui.ui" line="14"/>
-        <source>UniversalIndentGUI</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../src/indentgui.ui" line="38"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Shows the currently chosen indenters name and lets you choose other available indenters&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="obsolete">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Zeigt den aktuell gewählten und alle verfügbaren Formatierer an.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
@@ -240,7 +235,7 @@ Danksagung:</translation>
     <message>
         <location filename="../src/indentgui.ui" line="367"/>
         <source>Live Indent Preview</source>
-        <translation>Echtzeit Formatieransicht</translation>
+        <translation type="obsolete">Echtzeit Formatieransicht</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="67"/>
@@ -280,267 +275,257 @@ Danksagung:</translation>
     <message>
         <location filename="../src/indentgui.ui" line="311"/>
         <source>Exit</source>
-        <translation>Beenden</translation>
+        <translation type="obsolete">Beenden</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="133"/>
         <source>Help</source>
-        <translation>Hilfe</translation>
-    </message>
-    <message>
-        <location filename="../src/indentgui.ui" line="69"/>
-        <source>Indenter</source>
-        <translation></translation>
+        <translation type="obsolete">Hilfe</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="77"/>
         <source>File</source>
-        <translation>Datei</translation>
-    </message>
-    <message>
-        <location filename="../src/indentgui.ui" line="81"/>
-        <source>Export</source>
-        <translation></translation>
+        <translation type="obsolete">Datei</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="447"/>
         <source>Settings</source>
-        <translation>Einstellungen</translation>
+        <translation type="obsolete">Einstellungen</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="233"/>
         <source>Open Source File</source>
-        <translation>Quellcodedatei öffnen</translation>
+        <translation type="obsolete">Quellcodedatei öffnen</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="236"/>
         <source>Opens a dialog for selecting a source code file.</source>
-        <translation>Öffnet ein Dialogfenster zur Auswahl der Quellcodedatei.</translation>
+        <translation type="obsolete">Öffnet ein Dialogfenster zur Auswahl der Quellcodedatei.</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="239"/>
         <source>Ctrl+O</source>
-        <translation>Ctrl+O</translation>
+        <translation type="obsolete">Ctrl+O</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="247"/>
         <source>Save Source File</source>
-        <translation>Speichern des Quellcodes</translation>
+        <translation type="obsolete">Speichern des Quellcodes</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="250"/>
         <source>Saves the currently shown source code to the last opened or saved source file.</source>
-        <translation>Speichert den momentan sichtbaren Quellcode unter dem zuletzt gewählten Dateinamen.</translation>
+        <translation type="obsolete">Speichert den momentan sichtbaren Quellcode unter dem zuletzt gewählten Dateinamen.</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="253"/>
         <source>Ctrl+S</source>
-        <translation>Ctrl+S</translation>
+        <translation type="obsolete">Ctrl+S</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="261"/>
         <source>Save Source File As</source>
-        <translation>Speichern unter</translation>
+        <translation type="obsolete">Speichern unter</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="264"/>
         <source>Opens a file dialog to save the currently shown source code.</source>
-        <translation>Öffnet ein Dialogfenster zur Auswahl des Dateinamens unter dem der momentan sichtbare Quellcode gespeichert werden soll.</translation>
+        <translation type="obsolete">Öffnet ein Dialogfenster zur Auswahl des Dateinamens unter dem der momentan sichtbare Quellcode gespeichert werden soll.</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="272"/>
         <source>Load Indenter Config File</source>
-        <translation>Formatierer Konfiguration laden</translation>
+        <translation type="obsolete">Formatierer Konfiguration laden</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="275"/>
         <source>Opens a file dialog to load the original config file of the indenter.</source>
-        <translation>Öffnet ein Dialogfenster zum Laden einer Konfigurationsdatei des momentan gewählten Formatierers.</translation>
+        <translation type="obsolete">Öffnet ein Dialogfenster zum Laden einer Konfigurationsdatei des momentan gewählten Formatierers.</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="278"/>
         <source>Alt+O</source>
-        <translation>Alt+O</translation>
+        <translation type="obsolete">Alt+O</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="286"/>
         <source>Save Indenter Config File</source>
-        <translation>Formatierer Konfiguration speichern</translation>
+        <translation type="obsolete">Formatierer Konfiguration speichern</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="289"/>
         <source>Opens a dialog to save the current indenter configuration to a file.</source>
-        <translation>Öffnet ein Dialogfenster zum Speichern der Konfigurationsdatei des momentan gewählten Formatierers.</translation>
+        <translation type="obsolete">Öffnet ein Dialogfenster zum Speichern der Konfigurationsdatei des momentan gewählten Formatierers.</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="292"/>
         <source>Alt+S</source>
-        <translation>Alt+S</translation>
+        <translation type="obsolete">Alt+S</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="300"/>
         <source>About UniversalIndentGUI</source>
-        <translation>Über UniversalIndentGUI</translation>
+        <translation type="obsolete">Über UniversalIndentGUI</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="303"/>
         <source>Shows info about UniversalIndentGUI.</source>
-        <translation>Zeigt Informationen über UniversalIndentGUI.</translation>
+        <translation type="obsolete">Zeigt Informationen über UniversalIndentGUI.</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="314"/>
         <source>Quits the UniversalIndentGUI.</source>
-        <translation>Beendet UniversalIndentGUI.</translation>
+        <translation type="obsolete">Beendet UniversalIndentGUI.</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="317"/>
         <source>Ctrl+Q</source>
-        <translation>Ctrl+Q</translation>
+        <translation type="obsolete">Ctrl+Q</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="325"/>
         <source>PDF</source>
-        <translation>PDF</translation>
+        <translation type="obsolete">PDF</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="328"/>
         <source>Export the currently visible source code as PDF document</source>
-        <translation>Exportiert den momentan sichtbaren Quellcode als PDF Dokument</translation>
+        <translation type="obsolete">Exportiert den momentan sichtbaren Quellcode als PDF Dokument</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="336"/>
         <source>HTML</source>
-        <translation>HTML</translation>
+        <translation type="obsolete">HTML</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="339"/>
         <source>Export the currently visible source code as HTML document</source>
-        <translation>Exportiert den momentan sichtbaren Quellcode als HTML Dokument</translation>
+        <translation type="obsolete">Exportiert den momentan sichtbaren Quellcode als HTML Dokument</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="353"/>
         <source>Parameter Tooltips</source>
-        <translation>Parameter Tooltips</translation>
+        <translation type="obsolete">Parameter Tooltips</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="356"/>
         <source>If checked, tool tips will show up if the mouse cursor remains over an indenter parameter for a while.</source>
-        <translation>Zeigt Tooltips zu den Formatierer Einstellungen an, wenn aktiviert.</translation>
+        <translation type="obsolete">Zeigt Tooltips zu den Formatierer Einstellungen an, wenn aktiviert.</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="207"/>
         <source>Main Toolbar</source>
-        <translation>Hauptmenüleiste</translation>
+        <translation type="obsolete">Hauptmenüleiste</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="158"/>
         <source>Indenter Parameter</source>
-        <translation>Formatierer Parameter</translation>
+        <translation type="obsolete">Formatierer Parameter</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="407"/>
         <source>White Space Visible</source>
-        <translation>Leerzeichen sichtbar</translation>
+        <translation type="obsolete">Leerzeichen sichtbar</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="410"/>
         <source>Set white space visible</source>
-        <translation>Stelle Leerzeichen dar</translation>
+        <translation type="obsolete">Stelle Leerzeichen dar</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="413"/>
         <source>Enables or disables diplaying of white space characters in the editor.</source>
-        <translation>Aktiviert oder deaktiviert die Darstellung von Leerzeichen im Editor.</translation>
+        <translation type="obsolete">Aktiviert oder deaktiviert die Darstellung von Leerzeichen im Editor.</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="427"/>
         <source>Auto Open Last File</source>
-        <translation>Letzte Datei automatisch öffnen</translation>
+        <translation type="obsolete">Letzte Datei automatisch öffnen</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="430"/>
         <source>Auto open last source file on startup</source>
-        <translation>Bei Porgrammstart letzte Datei automatisch öffnen</translation>
+        <translation type="obsolete">Bei Porgrammstart letzte Datei automatisch öffnen</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="433"/>
         <source>If selected opens last source code file on startup</source>
-        <translation>Wenn aktiviert, dann wird die zuletzt geöffnete Datei bei Progrannstart automatisch geladen</translation>
+        <translation type="obsolete">Wenn aktiviert, dann wird die zuletzt geöffnete Datei bei Progrannstart automatisch geladen</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="370"/>
         <source>Ctrl+L</source>
-        <translation>Ctrl+E</translation>
+        <translation type="obsolete">Ctrl+E</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="390"/>
         <source>Syntax Highlighting</source>
-        <translation>Syntax Hervorhebung</translation>
+        <translation type="obsolete">Syntax Hervorhebung</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="393"/>
         <source>Enables or disables syntax highlighting for the source code.</source>
-        <translation>Aktiviert oder deaktiviert die Syntaxhervorhebung des Quellcodes.</translation>
+        <translation type="obsolete">Aktiviert oder deaktiviert die Syntaxhervorhebung des Quellcodes.</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="396"/>
         <source>By enabling special key words of the source code are highlighted.</source>
-        <translation>Wenn aktiviert, dann werden Schlüsselworte des Quellcodes hervorgehoben.</translation>
+        <translation type="obsolete">Wenn aktiviert, dann werden Schlüsselworte des Quellcodes hervorgehoben.</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="450"/>
         <source>Opens the settings dialog</source>
-        <translation>Öffnet das Einstellungsmenü</translation>
+        <translation type="obsolete">Öffnet das Einstellungsmenü</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="453"/>
         <source>Opens the settings dialog, to set language etc.</source>
-        <translation>Öffnet das Einstellungsmenü, für Sprache usw.</translation>
+        <translation type="obsolete">Öffnet das Einstellungsmenü, für Sprache usw.</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="461"/>
         <source>Create Indenter Call Shell Script</source>
-        <translation>Formatierer Shell Skript erzeugen</translation>
+        <translation type="obsolete">Formatierer Shell Skript erzeugen</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="467"/>
         <source>Create a shell script that calls the current selected indenter for formatting an as parameter given file with the current indent settings</source>
-        <translation>Erzeugt ein Shell Skript mit dem sich der momentan gewählte Formatierer mit den momentanen Einstellungen zum Formatieren einer Datei aufrufen lässt.</translation>
+        <translation type="obsolete">Erzeugt ein Shell Skript mit dem sich der momentan gewählte Formatierer mit den momentanen Einstellungen zum Formatieren einer Datei aufrufen lässt.</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="88"/>
         <source>Recently Opened Files</source>
-        <translation>Zuletzt geöffnete Dateien</translation>
+        <translation type="obsolete">Zuletzt geöffnete Dateien</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="95"/>
         <source>Reopen File with other Encoding</source>
-        <translation>Datei mit anderer Kodierung erneut öffnen</translation>
+        <translation type="obsolete">Datei mit anderer Kodierung erneut öffnen</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="120"/>
         <source>Set Syntax Highlighter</source>
-        <translation>Setze Syntax Highlighter</translation>
+        <translation type="obsolete">Setze Syntax Highlighter</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="475"/>
         <source>Check for update</source>
-        <translation>Auf Update prüfen</translation>
+        <translation type="obsolete">Auf Update prüfen</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="481"/>
         <source>Checks online whether a new version of UniversalIndentGUI is available.</source>
-        <translation>Prüft ob eine neue Version von UniversalIndentGUI zum Download verfügbar ist.</translation>
+        <translation type="obsolete">Prüft ob eine neue Version von UniversalIndentGUI zum Download verfügbar ist.</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="489"/>
         <source>Clear Recently Opened List</source>
-        <translation>Liste zuletzt geöffneter Dateien leeren</translation>
+        <translation type="obsolete">Liste zuletzt geöffneter Dateien leeren</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="100"/>
         <source>Save Source File As with other Encoding</source>
-        <translation>Quellcodedatei mit anderer Kodierung speichern</translation>
+        <translation type="obsolete">Quellcodedatei mit anderer Kodierung speichern</translation>
     </message>
 </context>
 <context>
@@ -664,69 +649,69 @@ Indent console output was:
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1258"/>
+        <location filename="../src/mainwindow.cpp" line="1267"/>
         <source>Error opening file</source>
         <translation>Fehler beim Dateiöffnen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1258"/>
+        <location filename="../src/mainwindow.cpp" line="1267"/>
         <source>Cannot read the file </source>
         <translation> Kann folgende Datei nicht lesen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="514"/>
+        <location filename="../src/mainwindow.cpp" line="523"/>
         <source>Choose source code file</source>
         <translation>Quellcodedatei wählen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="553"/>
+        <location filename="../src/mainwindow.cpp" line="562"/>
         <source>Save source code file</source>
         <translation>Quellcodedatei speichern</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="629"/>
+        <location filename="../src/mainwindow.cpp" line="638"/>
         <source>Save indent config file</source>
         <translation>Formatierer Konfiguration speichern</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="649"/>
+        <location filename="../src/mainwindow.cpp" line="658"/>
         <source>Choose indenter config file</source>
         <translation>Formatierer Konfigurationsdatei wählen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="998"/>
+        <location filename="../src/mainwindow.cpp" line="1007"/>
         <source>Export source code file</source>
         <translation>Quellcode exportieren</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1145"/>
+        <location filename="../src/mainwindow.cpp" line="1154"/>
         <source>The source code has been modified.
 Do you want to save your changes?</source>
         <translation>Die Quellcodedatei wurde geändert.
 Möchten Sie die Änderungen speichern?</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="549"/>
+        <location filename="../src/mainwindow.cpp" line="558"/>
         <source>Supported by indenter</source>
         <translation>Von Formatierer unterstützt</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1387"/>
+        <location filename="../src/mainwindow.cpp" line="1396"/>
         <source>All files</source>
         <translation>Alle Dateien</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="969"/>
+        <location filename="../src/mainwindow.cpp" line="978"/>
         <source>PDF Document</source>
         <translation>PDF Dokument</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="991"/>
+        <location filename="../src/mainwindow.cpp" line="1000"/>
         <source>HTML Document</source>
         <translation>HTML Dokument</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1143"/>
+        <location filename="../src/mainwindow.cpp" line="1152"/>
         <source>Modified code</source>
         <translation>Geänderter Quellcode</translation>
     </message>
@@ -761,7 +746,7 @@ Möchten Sie die Änderungen speichern?</translation>
         <translation type="obsolete"> als Programmsprache verwenden.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1353"/>
+        <location filename="../src/mainwindow.cpp" line="1362"/>
         <source>Reopen the currently opened source code file by using the text encoding scheme </source>
         <translation>Die momentan geöffnete Quellcodedatei erneut öffnen, unter Verwendung der Textkodierung </translation>
     </message>
@@ -796,7 +781,7 @@ Möchten Sie die Änderungen speichern?</translation>
         <translation type="obsolete">Chinesisch</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1361"/>
+        <location filename="../src/mainwindow.cpp" line="1370"/>
         <source>Set the syntax highlightning to </source>
         <translation>Setzte Syntax-Hervorhebung für </translation>
     </message>
@@ -816,22 +801,22 @@ Möchten Sie die Änderungen speichern?</translation>
         <translation type="obsolete">Zuletzt geöffnete Dateien</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1387"/>
+        <location filename="../src/mainwindow.cpp" line="1396"/>
         <source>Shell Script</source>
         <translation>Shell SKript</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1535"/>
+        <location filename="../src/mainwindow.cpp" line="1544"/>
         <source>File no longer exists</source>
         <translation>Datei existiert nicht mehr</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1535"/>
+        <location filename="../src/mainwindow.cpp" line="1544"/>
         <source>The file %1 in the list of recently opened files does no longer exist.</source>
         <translation>Die Datei %1 in der Liste der zuletzt geöffneten Dateien existiert nicht mehr.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1393"/>
+        <location filename="../src/mainwindow.cpp" line="1402"/>
         <source>Save shell script</source>
         <translation>Shell Skript speichern</translation>
     </message>
@@ -865,9 +850,287 @@ Wollen Sie zu Download Website geleitet werden?</translation>
         <translation type="obsolete">Sie haben bereits die aktuellste Version von UniversalIndentGUI.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1217"/>
+        <location filename="../src/mainwindow.cpp" line="1226"/>
         <source>Save the currently opened source code file by using the text encoding scheme </source>
         <translation>Die momentan geöffnete Quellcodedatei speichern, unter Verwendung der Textkodierung </translation>
+    </message>
+</context>
+<context>
+    <name>MainWindowUi</name>
+    <message>
+        <location filename="../src/mainwindow.ui" line="14"/>
+        <source>UniversalIndentGUI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="69"/>
+        <source>Indenter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="77"/>
+        <source>File</source>
+        <translation type="unfinished">Datei</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="81"/>
+        <source>Export</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="88"/>
+        <source>Recently Opened Files</source>
+        <translation type="unfinished">Zuletzt geöffnete Dateien</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="95"/>
+        <source>Reopen File with other Encoding</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="100"/>
+        <source>Save Source File As with other Encoding</source>
+        <translation type="unfinished">Quellcodedatei mit anderer Kodierung speichern</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="447"/>
+        <source>Settings</source>
+        <translation type="unfinished">Einstellungen</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="120"/>
+        <source>Set Syntax Highlighter</source>
+        <translation type="unfinished">Setze Syntax Highlighter</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="133"/>
+        <source>Help</source>
+        <translation type="unfinished">Hilfe</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="158"/>
+        <source>Indenter Parameter</source>
+        <translation type="unfinished">Formatierer Parameter</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="207"/>
+        <source>Main Toolbar</source>
+        <translation type="unfinished">Hauptmenüleiste</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="233"/>
+        <source>Open Source File</source>
+        <translation type="unfinished">Quellcodedatei öffnen</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="236"/>
+        <source>Opens a dialog for selecting a source code file.</source>
+        <translation type="unfinished">Öffnet ein Dialogfenster zur Auswahl der Quellcodedatei.</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="239"/>
+        <source>Ctrl+O</source>
+        <translation type="unfinished">Ctrl+O</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="247"/>
+        <source>Save Source File</source>
+        <translation type="unfinished">Speichern des Quellcodes</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="250"/>
+        <source>Saves the currently shown source code to the last opened or saved source file.</source>
+        <translation type="unfinished">Speichert den momentan sichtbaren Quellcode unter dem zuletzt gewählten Dateinamen.</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="253"/>
+        <source>Ctrl+S</source>
+        <translation type="unfinished">Ctrl+S</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="261"/>
+        <source>Save Source File As</source>
+        <translation type="unfinished">Speichern unter</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="264"/>
+        <source>Opens a file dialog to save the currently shown source code.</source>
+        <translation type="unfinished">Öffnet ein Dialogfenster zur Auswahl des Dateinamens unter dem der momentan sichtbare Quellcode gespeichert werden soll.</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="272"/>
+        <source>Load Indenter Config File</source>
+        <translation type="unfinished">Formatierer Konfiguration laden</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="275"/>
+        <source>Opens a file dialog to load the original config file of the indenter.</source>
+        <translation type="unfinished">Öffnet ein Dialogfenster zum Laden einer Konfigurationsdatei des momentan gewählten Formatierers.</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="278"/>
+        <source>Alt+O</source>
+        <translation type="unfinished">Alt+O</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="286"/>
+        <source>Save Indenter Config File</source>
+        <translation type="unfinished">Formatierer Konfiguration speichern</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="289"/>
+        <source>Opens a dialog to save the current indenter configuration to a file.</source>
+        <translation type="unfinished">Öffnet ein Dialogfenster zum Speichern der Konfigurationsdatei des momentan gewählten Formatierers.</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="292"/>
+        <source>Alt+S</source>
+        <translation type="unfinished">Alt+S</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="300"/>
+        <source>About UniversalIndentGUI</source>
+        <translation type="unfinished">Über UniversalIndentGUI</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="303"/>
+        <source>Shows info about UniversalIndentGUI.</source>
+        <translation type="unfinished">Zeigt Informationen über UniversalIndentGUI.</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="311"/>
+        <source>Exit</source>
+        <translation type="unfinished">Beenden</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="314"/>
+        <source>Quits the UniversalIndentGUI.</source>
+        <translation type="unfinished">Beendet UniversalIndentGUI.</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="317"/>
+        <source>Ctrl+Q</source>
+        <translation type="unfinished">Ctrl+Q</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="325"/>
+        <source>PDF</source>
+        <translation type="unfinished">PDF</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="328"/>
+        <source>Export the currently visible source code as PDF document</source>
+        <translation type="unfinished">Exportiert den momentan sichtbaren Quellcode als PDF Dokument</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="336"/>
+        <source>HTML</source>
+        <translation type="unfinished">HTML</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="339"/>
+        <source>Export the currently visible source code as HTML document</source>
+        <translation type="unfinished">Exportiert den momentan sichtbaren Quellcode als HTML Dokument</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="353"/>
+        <source>Parameter Tooltips</source>
+        <translation type="unfinished">Parameter Tooltips</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="356"/>
+        <source>If checked, tool tips will show up if the mouse cursor remains over an indenter parameter for a while.</source>
+        <translation type="unfinished">Zeigt Tooltips zu den Formatierer Einstellungen an, wenn aktiviert.</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="367"/>
+        <source>Live Indent Preview</source>
+        <translation type="unfinished">Echtzeit Formatieransicht</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="370"/>
+        <source>Ctrl+L</source>
+        <translation type="unfinished">Ctrl+E</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="390"/>
+        <source>Syntax Highlighting</source>
+        <translation type="unfinished">Syntax Hervorhebung</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="393"/>
+        <source>Enables or disables syntax highlighting for the source code.</source>
+        <translation type="unfinished">Aktiviert oder deaktiviert die Syntaxhervorhebung des Quellcodes.</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="396"/>
+        <source>By enabling special key words of the source code are highlighted.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="407"/>
+        <source>White Space Visible</source>
+        <translation type="unfinished">Leerzeichen sichtbar</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="410"/>
+        <source>Set white space visible</source>
+        <translation type="unfinished">Stelle Leerzeichen dar</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="413"/>
+        <source>Enables or disables diplaying of white space characters in the editor.</source>
+        <translation type="unfinished">Aktiviert oder deaktiviert die Darstellung von Leerzeichen im Editor.</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="427"/>
+        <source>Auto Open Last File</source>
+        <translation type="unfinished">Letzte Datei automatisch öffnen</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="430"/>
+        <source>Auto open last source file on startup</source>
+        <translation type="unfinished">Bei Porgrammstart letzte Datei automatisch öffnen</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="433"/>
+        <source>If selected opens last source code file on startup</source>
+        <translation type="unfinished">Wenn aktiviert, dann wird die zuletzt geöffnete Datei bei Progrannstart automatisch geladen</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="450"/>
+        <source>Opens the settings dialog</source>
+        <translation type="unfinished">Öffnet das Einstellungsmenü</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="453"/>
+        <source>Opens the settings dialog, to set language etc.</source>
+        <translation type="unfinished">Öffnet das Einstellungsmenü, für Sprache usw.</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="461"/>
+        <source>Create Indenter Call Shell Script</source>
+        <translation type="unfinished">Formatierer Shell Skript erzeugen</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="467"/>
+        <source>Create a shell script that calls the current selected indenter for formatting an as parameter given file with the current indent settings</source>
+        <translation type="unfinished">Erzeugt ein Shell Skript mit dem sich der momentan gewählte Formatierer mit den momentanen Einstellungen zum Formatieren einer Datei aufrufen lässt.</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="475"/>
+        <source>Check for update</source>
+        <translation type="unfinished">Auf Update prüfen</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="481"/>
+        <source>Checks online whether a new version of UniversalIndentGUI is available.</source>
+        <translation type="unfinished">Prüft ob eine neue Version von UniversalIndentGUI zum Download verfügbar ist.</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="489"/>
+        <source>Clear Recently Opened List</source>
+        <translation type="unfinished">Liste zuletzt geöffneter Dateien leeren</translation>
     </message>
 </context>
 <context>

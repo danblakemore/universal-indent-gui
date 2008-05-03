@@ -27,7 +27,7 @@
     \brief Is the main window of UniversalIndentGUI
 
     The MainWindow class is responsible for generating and displaying most of the gui elements.
-    Its look is set in the file "indentgui.ui". An object for the indent handler is generated here
+    Its look is set in the file "mainwindow.ui". An object for the indent handler is generated here
     and user actions are being controlled. Is responsible for file open dialogs and indenter selection.
  */
 
@@ -176,7 +176,7 @@ MainWindow::MainWindow(QString file2OpenOnStart, QWidget *parent) : QMainWindow(
     \brief Initializes the main window by creating the main gui and make some settings.
  */
 void MainWindow::initMainWindow() {
-    // Generate gui as it is build in the file "indentgui.ui"
+    // Generate gui as it is build in the file "mainwindow.ui"
     setupUi(this);
 
 	// Handle last opened window size

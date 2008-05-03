@@ -98,277 +98,277 @@ Credits:</source>
     <message>
         <location filename="../src/indentgui.ui" line="14"/>
         <source>UniversalIndentGUI</source>
-        <translation>UniversalIndentGUI</translation>
+        <translation type="obsolete">UniversalIndentGUI</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="77"/>
         <source>File</source>
-        <translation>Файл</translation>
+        <translation type="obsolete">Файл</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="81"/>
         <source>Export</source>
-        <translation>Експорт</translation>
+        <translation type="obsolete">Експорт</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="133"/>
         <source>Help</source>
-        <translation>Допомога</translation>
+        <translation type="obsolete">Допомога</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="447"/>
         <source>Settings</source>
-        <translation>Налаштування</translation>
+        <translation type="obsolete">Налаштування</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="69"/>
         <source>Indenter</source>
-        <translation>Відступач</translation>
+        <translation type="obsolete">Відступач</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="158"/>
         <source>Indenter Parameter</source>
-        <translation>Параметр відступача</translation>
+        <translation type="obsolete">Параметр відступача</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="207"/>
         <source>Main Toolbar</source>
-        <translation>Головна панель</translation>
+        <translation type="obsolete">Головна панель</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="233"/>
         <source>Open Source File</source>
-        <translation>Відкрити файл джерела</translation>
+        <translation type="obsolete">Відкрити файл джерела</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="236"/>
         <source>Opens a dialog for selecting a source code file.</source>
-        <translation>Відкриває діалог для обирання файла коду джерела.</translation>
+        <translation type="obsolete">Відкриває діалог для обирання файла коду джерела.</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="239"/>
         <source>Ctrl+O</source>
-        <translation>Ctrl+O</translation>
+        <translation type="obsolete">Ctrl+O</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="247"/>
         <source>Save Source File</source>
-        <translation>Зберегти файл джерела</translation>
+        <translation type="obsolete">Зберегти файл джерела</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="250"/>
         <source>Saves the currently shown source code to the last opened or saved source file.</source>
-        <translation>Зберігає поточний код джерела у останній відкрити або збережений файл джерела.</translation>
+        <translation type="obsolete">Зберігає поточний код джерела у останній відкрити або збережений файл джерела.</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="253"/>
         <source>Ctrl+S</source>
-        <translation>Ctrl+S</translation>
+        <translation type="obsolete">Ctrl+S</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="261"/>
         <source>Save Source File As</source>
-        <translation>Зберегти файл джерела як</translation>
+        <translation type="obsolete">Зберегти файл джерела як</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="264"/>
         <source>Opens a file dialog to save the currently shown source code.</source>
-        <translation>Відкриває файловий діалог для збереження поточного коду джерела.</translation>
+        <translation type="obsolete">Відкриває файловий діалог для збереження поточного коду джерела.</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="272"/>
         <source>Load Indenter Config File</source>
-        <translation>Завантажити файл конфігурації відступача</translation>
+        <translation type="obsolete">Завантажити файл конфігурації відступача</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="275"/>
         <source>Opens a file dialog to load the original config file of the indenter.</source>
-        <translation>Відкриває файловий діалог для завантаження основного файлу конфігурації відступача.</translation>
+        <translation type="obsolete">Відкриває файловий діалог для завантаження основного файлу конфігурації відступача.</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="278"/>
         <source>Alt+O</source>
-        <translation>Alt+O</translation>
+        <translation type="obsolete">Alt+O</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="286"/>
         <source>Save Indenter Config File</source>
-        <translation>Зберегти файл конфігурації відступача</translation>
+        <translation type="obsolete">Зберегти файл конфігурації відступача</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="289"/>
         <source>Opens a dialog to save the current indenter configuration to a file.</source>
-        <translation>Відкриває діалог для збереження поточної конфігурації відступача у файл.</translation>
+        <translation type="obsolete">Відкриває діалог для збереження поточної конфігурації відступача у файл.</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="292"/>
         <source>Alt+S</source>
-        <translation>Alt+S</translation>
+        <translation type="obsolete">Alt+S</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="300"/>
         <source>About UniversalIndentGUI</source>
-        <translation>Про UniversalIndentGUI</translation>
+        <translation type="obsolete">Про UniversalIndentGUI</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="303"/>
         <source>Shows info about UniversalIndentGUI.</source>
-        <translation>Показує інформацію про UniversalIndentGUI.</translation>
+        <translation type="obsolete">Показує інформацію про UniversalIndentGUI.</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="311"/>
         <source>Exit</source>
-        <translation>Вихід</translation>
+        <translation type="obsolete">Вихід</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="314"/>
         <source>Quits the UniversalIndentGUI.</source>
-        <translation>Виходить з UniversalIndentGUI.</translation>
+        <translation type="obsolete">Виходить з UniversalIndentGUI.</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="317"/>
         <source>Ctrl+Q</source>
-        <translation>Ctrl+Q</translation>
+        <translation type="obsolete">Ctrl+Q</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="325"/>
         <source>PDF</source>
-        <translation>PDF</translation>
+        <translation type="obsolete">PDF</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="328"/>
         <source>Export the currently visible source code as PDF document</source>
-        <translation>Експортує поточний код джерела у PDF-документ</translation>
+        <translation type="obsolete">Експортує поточний код джерела у PDF-документ</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="336"/>
         <source>HTML</source>
-        <translation>HTML</translation>
+        <translation type="obsolete">HTML</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="339"/>
         <source>Export the currently visible source code as HTML document</source>
-        <translation>Експортує поточний код джерела у HTML-документ</translation>
+        <translation type="obsolete">Експортує поточний код джерела у HTML-документ</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="353"/>
         <source>Parameter Tooltips</source>
-        <translation>Підказки параметрів</translation>
+        <translation type="obsolete">Підказки параметрів</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="356"/>
         <source>If checked, tool tips will show up if the mouse cursor remains over an indenter parameter for a while.</source>
-        <translation>Якщо виділено, підказки зapos;являтимуться при наведенні і утриманні курсору миші над параметром відступача.</translation>
+        <translation type="obsolete">Якщо виділено, підказки зapos;являтимуться при наведенні і утриманні курсору миші над параметром відступача.</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="367"/>
         <source>Live Indent Preview</source>
-        <translation>Живий перегляд відступів</translation>
+        <translation type="obsolete">Живий перегляд відступів</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="407"/>
         <source>White Space Visible</source>
-        <translation>Пробіл видимий</translation>
+        <translation type="obsolete">Пробіл видимий</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="410"/>
         <source>Set white space visible</source>
-        <translation>Зробити пробіл видимим</translation>
+        <translation type="obsolete">Зробити пробіл видимим</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="413"/>
         <source>Enables or disables diplaying of white space characters in the editor.</source>
-        <translation>Включити або відключити показ символів пробілу у редакторі.</translation>
+        <translation type="obsolete">Включити або відключити показ символів пробілу у редакторі.</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="427"/>
         <source>Auto Open Last File</source>
-        <translation>Автовідкритття останнього файлу</translation>
+        <translation type="obsolete">Автовідкритття останнього файлу</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="430"/>
         <source>Auto open last source file on startup</source>
-        <translation>Автовідкритття останнього файлу джерела при запуску</translation>
+        <translation type="obsolete">Автовідкритття останнього файлу джерела при запуску</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="433"/>
         <source>If selected opens last source code file on startup</source>
-        <translation>При виборі при запуску відкриватиметься останній файл коду джерела</translation>
+        <translation type="obsolete">При виборі при запуску відкриватиметься останній файл коду джерела</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="370"/>
         <source>Ctrl+L</source>
-        <translation>Ctrl+L</translation>
+        <translation type="obsolete">Ctrl+L</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="390"/>
         <source>Syntax Highlighting</source>
-        <translation>Підсвітка синтаксису</translation>
+        <translation type="obsolete">Підсвітка синтаксису</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="393"/>
         <source>Enables or disables syntax highlighting for the source code.</source>
-        <translation>Включає або відключає підсвічування синтаксису для файла джерела.</translation>
+        <translation type="obsolete">Включає або відключає підсвічування синтаксису для файла джерела.</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="396"/>
         <source>By enabling special key words of the source code are highlighted.</source>
-        <translation>Включення підсвічує спеціальні ключові слова коду джерела.</translation>
+        <translation type="obsolete">Включення підсвічує спеціальні ключові слова коду джерела.</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="450"/>
         <source>Opens the settings dialog</source>
-        <translation>Відкриває діалог налаштувань</translation>
+        <translation type="obsolete">Відкриває діалог налаштувань</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="453"/>
         <source>Opens the settings dialog, to set language etc.</source>
-        <translation>Відкриває діалог налаштувань, встановлення мови, і т.д.</translation>
+        <translation type="obsolete">Відкриває діалог налаштувань, встановлення мови, і т.д.</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="88"/>
         <source>Recently Opened Files</source>
-        <translation>Нещодавно відкриті файли</translation>
+        <translation type="obsolete">Нещодавно відкриті файли</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="95"/>
         <source>Reopen File with other Encoding</source>
-        <translation>Відкрити файл з іншим кодуванням</translation>
+        <translation type="obsolete">Відкрити файл з іншим кодуванням</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="120"/>
         <source>Set Syntax Highlighter</source>
-        <translation>Встановити підсвітку синтаксису</translation>
+        <translation type="obsolete">Встановити підсвітку синтаксису</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="461"/>
         <source>Create Indenter Call Shell Script</source>
-        <translation>Створити скрипт оболонки виклику відступача</translation>
+        <translation type="obsolete">Створити скрипт оболонки виклику відступача</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="467"/>
         <source>Create a shell script that calls the current selected indenter for formatting an as parameter given file with the current indent settings</source>
-        <translation>Створити скрипт оболонки, який викликає поточний обраний відступач для форматування по параметрам даного файлу з поточними налаштуваннями відступів</translation>
+        <translation type="obsolete">Створити скрипт оболонки, який викликає поточний обраний відступач для форматування по параметрам даного файлу з поточними налаштуваннями відступів</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="475"/>
         <source>Check for update</source>
-        <translation>Перевірити оновлення</translation>
+        <translation type="obsolete">Перевірити оновлення</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="481"/>
         <source>Checks online whether a new version of UniversalIndentGUI is available.</source>
-        <translation>Перевіряє в мережі, чи доступна нова версія UniversalIndentGUI.</translation>
+        <translation type="obsolete">Перевіряє в мережі, чи доступна нова версія UniversalIndentGUI.</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="489"/>
         <source>Clear Recently Opened List</source>
-        <translation>Очистити перелік нещодавно відкритих файлів</translation>
+        <translation type="obsolete">Очистити перелік нещодавно відкритих файлів</translation>
     </message>
     <message>
         <location filename="../src/indentgui.ui" line="100"/>
         <source>Save Source File As with other Encoding</source>
-        <translation>Зберегти вихідний файл з іншим кодуванням як</translation>
+        <translation type="obsolete">Зберегти вихідний файл з іншим кодуванням як</translation>
     </message>
 </context>
 <context>
@@ -467,74 +467,74 @@ Credits:</source>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1258"/>
+        <location filename="../src/mainwindow.cpp" line="1267"/>
         <source>Error opening file</source>
         <translation>Помилка відкриття файла</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1258"/>
+        <location filename="../src/mainwindow.cpp" line="1267"/>
         <source>Cannot read the file </source>
         <translation>Неможливо прочитати файл </translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="549"/>
+        <location filename="../src/mainwindow.cpp" line="558"/>
         <source>Supported by indenter</source>
         <translation>Підтримується відступачем</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1387"/>
+        <location filename="../src/mainwindow.cpp" line="1396"/>
         <source>All files</source>
         <translation>Всі файли</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="514"/>
+        <location filename="../src/mainwindow.cpp" line="523"/>
         <source>Choose source code file</source>
         <translation>Обрати файл коду джерела</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="553"/>
+        <location filename="../src/mainwindow.cpp" line="562"/>
         <source>Save source code file</source>
         <translation>Зберегти файл коду джерела</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="629"/>
+        <location filename="../src/mainwindow.cpp" line="638"/>
         <source>Save indent config file</source>
         <translation>Зберегти файл конфігурації відступів</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="649"/>
+        <location filename="../src/mainwindow.cpp" line="658"/>
         <source>Choose indenter config file</source>
         <translation>Обрати файл конфігурації відступача</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="969"/>
+        <location filename="../src/mainwindow.cpp" line="978"/>
         <source>PDF Document</source>
         <translation>Документ PDF</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="998"/>
+        <location filename="../src/mainwindow.cpp" line="1007"/>
         <source>Export source code file</source>
         <translation>Експортувати файл коду джерела</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="991"/>
+        <location filename="../src/mainwindow.cpp" line="1000"/>
         <source>HTML Document</source>
         <translation>Документ HTML</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1143"/>
+        <location filename="../src/mainwindow.cpp" line="1152"/>
         <source>Modified code</source>
         <translation>Змінений код</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1145"/>
+        <location filename="../src/mainwindow.cpp" line="1154"/>
         <source>The source code has been modified.
 Do you want to save your changes?</source>
         <translation>Код джерела змінено.
 Хочете зберегти зміни?</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1353"/>
+        <location filename="../src/mainwindow.cpp" line="1362"/>
         <source>Reopen the currently opened source code file by using the text encoding scheme </source>
         <translation>Відкрити поточний відкритий файл коду джерела використовуючи схему кодування тексту </translation>
     </message>
@@ -549,34 +549,312 @@ Do you want to save your changes?</source>
         <translation type="obsolete">Не існує ini-файлів відступача у теці &quot;</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1361"/>
+        <location filename="../src/mainwindow.cpp" line="1370"/>
         <source>Set the syntax highlightning to </source>
         <translation>Встановити підсвічування синтаксису на </translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1387"/>
+        <location filename="../src/mainwindow.cpp" line="1396"/>
         <source>Shell Script</source>
         <translation>Скрипт оболонки</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1393"/>
+        <location filename="../src/mainwindow.cpp" line="1402"/>
         <source>Save shell script</source>
         <translation>Зберегти скрипт оболонки</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1535"/>
+        <location filename="../src/mainwindow.cpp" line="1544"/>
         <source>File no longer exists</source>
         <translation>Файл більше не існує</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1535"/>
+        <location filename="../src/mainwindow.cpp" line="1544"/>
         <source>The file %1 in the list of recently opened files does no longer exist.</source>
         <translation>Файл %1 з переліку нещодавно відкритих файлів більше не існує.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1217"/>
+        <location filename="../src/mainwindow.cpp" line="1226"/>
         <source>Save the currently opened source code file by using the text encoding scheme </source>
         <translation>Зберегти поточний відкритий файл коду джерела використовуючи схему кодування тексту(sp)</translation>
+    </message>
+</context>
+<context>
+    <name>MainWindowUi</name>
+    <message>
+        <location filename="../src/mainwindow.ui" line="14"/>
+        <source>UniversalIndentGUI</source>
+        <translation type="unfinished">UniversalIndentGUI</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="69"/>
+        <source>Indenter</source>
+        <translation type="unfinished">Відступач</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="77"/>
+        <source>File</source>
+        <translation type="unfinished">Файл</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="81"/>
+        <source>Export</source>
+        <translation type="unfinished">Експорт</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="88"/>
+        <source>Recently Opened Files</source>
+        <translation type="unfinished">Нещодавно відкриті файли</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="95"/>
+        <source>Reopen File with other Encoding</source>
+        <translation type="unfinished">Відкрити файл з іншим кодуванням</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="100"/>
+        <source>Save Source File As with other Encoding</source>
+        <translation type="unfinished">Зберегти вихідний файл з іншим кодуванням як</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="447"/>
+        <source>Settings</source>
+        <translation type="unfinished">Налаштування</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="120"/>
+        <source>Set Syntax Highlighter</source>
+        <translation type="unfinished">Встановити підсвітку синтаксису</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="133"/>
+        <source>Help</source>
+        <translation type="unfinished">Допомога</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="158"/>
+        <source>Indenter Parameter</source>
+        <translation type="unfinished">Параметр відступача</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="207"/>
+        <source>Main Toolbar</source>
+        <translation type="unfinished">Головна панель</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="233"/>
+        <source>Open Source File</source>
+        <translation type="unfinished">Відкрити файл джерела</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="236"/>
+        <source>Opens a dialog for selecting a source code file.</source>
+        <translation type="unfinished">Відкриває діалог для обирання файла коду джерела.</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="239"/>
+        <source>Ctrl+O</source>
+        <translation type="unfinished">Ctrl+O</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="247"/>
+        <source>Save Source File</source>
+        <translation type="unfinished">Зберегти файл джерела</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="250"/>
+        <source>Saves the currently shown source code to the last opened or saved source file.</source>
+        <translation type="unfinished">Зберігає поточний код джерела у останній відкрити або збережений файл джерела.</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="253"/>
+        <source>Ctrl+S</source>
+        <translation type="unfinished">Ctrl+S</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="261"/>
+        <source>Save Source File As</source>
+        <translation type="unfinished">Зберегти файл джерела як</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="264"/>
+        <source>Opens a file dialog to save the currently shown source code.</source>
+        <translation type="unfinished">Відкриває файловий діалог для збереження поточного коду джерела.</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="272"/>
+        <source>Load Indenter Config File</source>
+        <translation type="unfinished">Завантажити файл конфігурації відступача</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="275"/>
+        <source>Opens a file dialog to load the original config file of the indenter.</source>
+        <translation type="unfinished">Відкриває файловий діалог для завантаження основного файлу конфігурації відступача.</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="278"/>
+        <source>Alt+O</source>
+        <translation type="unfinished">Alt+O</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="286"/>
+        <source>Save Indenter Config File</source>
+        <translation type="unfinished">Зберегти файл конфігурації відступача</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="289"/>
+        <source>Opens a dialog to save the current indenter configuration to a file.</source>
+        <translation type="unfinished">Відкриває діалог для збереження поточної конфігурації відступача у файл.</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="292"/>
+        <source>Alt+S</source>
+        <translation type="unfinished">Alt+S</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="300"/>
+        <source>About UniversalIndentGUI</source>
+        <translation type="unfinished">Про UniversalIndentGUI</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="303"/>
+        <source>Shows info about UniversalIndentGUI.</source>
+        <translation type="unfinished">Показує інформацію про UniversalIndentGUI.</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="311"/>
+        <source>Exit</source>
+        <translation type="unfinished">Вихід</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="314"/>
+        <source>Quits the UniversalIndentGUI.</source>
+        <translation type="unfinished">Виходить з UniversalIndentGUI.</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="317"/>
+        <source>Ctrl+Q</source>
+        <translation type="unfinished">Ctrl+Q</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="325"/>
+        <source>PDF</source>
+        <translation type="unfinished">PDF</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="328"/>
+        <source>Export the currently visible source code as PDF document</source>
+        <translation type="unfinished">Експортує поточний код джерела у PDF-документ</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="336"/>
+        <source>HTML</source>
+        <translation type="unfinished">HTML</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="339"/>
+        <source>Export the currently visible source code as HTML document</source>
+        <translation type="unfinished">Експортує поточний код джерела у HTML-документ</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="353"/>
+        <source>Parameter Tooltips</source>
+        <translation type="unfinished">Підказки параметрів</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="356"/>
+        <source>If checked, tool tips will show up if the mouse cursor remains over an indenter parameter for a while.</source>
+        <translation type="unfinished">Якщо виділено, підказки зapos;являтимуться при наведенні і утриманні курсору миші над параметром відступача.</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="367"/>
+        <source>Live Indent Preview</source>
+        <translation type="unfinished">Живий перегляд відступів</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="370"/>
+        <source>Ctrl+L</source>
+        <translation type="unfinished">Ctrl+L</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="390"/>
+        <source>Syntax Highlighting</source>
+        <translation type="unfinished">Підсвітка синтаксису</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="393"/>
+        <source>Enables or disables syntax highlighting for the source code.</source>
+        <translation type="unfinished">Включає або відключає підсвічування синтаксису для файла джерела.</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="396"/>
+        <source>By enabling special key words of the source code are highlighted.</source>
+        <translation type="unfinished">Включення підсвічує спеціальні ключові слова коду джерела.</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="407"/>
+        <source>White Space Visible</source>
+        <translation type="unfinished">Пробіл видимий</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="410"/>
+        <source>Set white space visible</source>
+        <translation type="unfinished">Зробити пробіл видимим</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="413"/>
+        <source>Enables or disables diplaying of white space characters in the editor.</source>
+        <translation type="unfinished">Включити або відключити показ символів пробілу у редакторі.</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="427"/>
+        <source>Auto Open Last File</source>
+        <translation type="unfinished">Автовідкритття останнього файлу</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="430"/>
+        <source>Auto open last source file on startup</source>
+        <translation type="unfinished">Автовідкритття останнього файлу джерела при запуску</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="433"/>
+        <source>If selected opens last source code file on startup</source>
+        <translation type="unfinished">При виборі при запуску відкриватиметься останній файл коду джерела</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="450"/>
+        <source>Opens the settings dialog</source>
+        <translation type="unfinished">Відкриває діалог налаштувань</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="453"/>
+        <source>Opens the settings dialog, to set language etc.</source>
+        <translation type="unfinished">Відкриває діалог налаштувань, встановлення мови, і т.д.</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="461"/>
+        <source>Create Indenter Call Shell Script</source>
+        <translation type="unfinished">Створити скрипт оболонки виклику відступача</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="467"/>
+        <source>Create a shell script that calls the current selected indenter for formatting an as parameter given file with the current indent settings</source>
+        <translation type="unfinished">Створити скрипт оболонки, який викликає поточний обраний відступач для форматування по параметрам даного файлу з поточними налаштуваннями відступів</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="475"/>
+        <source>Check for update</source>
+        <translation type="unfinished">Перевірити оновлення</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="481"/>
+        <source>Checks online whether a new version of UniversalIndentGUI is available.</source>
+        <translation type="unfinished">Перевіряє в мережі, чи доступна нова версія UniversalIndentGUI.</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="489"/>
+        <source>Clear Recently Opened List</source>
+        <translation type="unfinished">Очистити перелік нещодавно відкритих файлів</translation>
     </message>
 </context>
 <context>
