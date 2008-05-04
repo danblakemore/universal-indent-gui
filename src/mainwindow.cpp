@@ -1562,7 +1562,7 @@ void MainWindow::showIndenterManual() {
 
 /*!
     \brief If the dragged in object contains urls/paths to a file, accept the drag.
-*/
+ */
 void MainWindow::dragEnterEvent(QDragEnterEvent *event) {
     if ( event->mimeData()->hasUrls() ) {
         event->acceptProposedAction();
@@ -1572,7 +1572,7 @@ void MainWindow::dragEnterEvent(QDragEnterEvent *event) {
 
 /*!
     \brief If the dropped in object contains urls/paths to a file, open that file.
-*/
+ */
 void MainWindow::dropEvent(QDropEvent *event) {
     if ( event->mimeData()->hasUrls() ) {
         QString filePathName = event->mimeData()->urls().first().toLocalFile();
