@@ -1,0 +1,18 @@
+format 55
+
+classcanvas 128002 class_ref 128002 // User
+  class_drawing_mode default show_context_mode default
+  xyz 13 55 2000
+usecasecanvas 128130 usecase_ref 128002 // Preview parameter changes
+  xyzwh 125 4 3005 175 97 label_xy 133 44
+usecasecanvas 128258 usecase_ref 128130 // Create/edit indenter configuration
+  xyzwh 299 58 3005 219 117 label_xy 315 110
+usecasecanvas 128386 usecase_ref 129282 // Mass indent files
+  xyzwh 124 139 3005 131 75 label_xy 137 171
+line 128514 ----
+  from ref 128002 z 1999 to ref 128130
+line 128642 ----
+  from ref 128002 z 1999 to ref 128258
+line 128770 ----
+  from ref 128002 z 1999 to ref 128386
+end
