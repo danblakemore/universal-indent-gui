@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Bouml (http://bouml.free.fr/) -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="610" height="1120" version="1.1" xmlns="http://www.w3.org/2000/svg">
+<g>
+	<line stroke="black" stroke-opacity="1" x1="285" y1="759" x2="291" y2="753" />
+	<line stroke="black" stroke-opacity="1" x1="285" y1="759" x2="279" y2="753" />
+	<line stroke="black" stroke-opacity="1" x1="285" y1="681" x2="285" y2="759" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="351" y1="869" x2="359" y2="869" />
+	<line stroke="black" stroke-opacity="1" x1="351" y1="869" x2="351" y2="860" />
+	<line stroke="black" stroke-opacity="1" x1="445" y1="783" x2="351" y2="869" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="445" y1="653" x2="444" y2="644" />
+	<line stroke="black" stroke-opacity="1" x1="445" y1="653" x2="436" y2="653" />
+	<line stroke="black" stroke-opacity="1" x1="155" y1="421" x2="445" y2="653" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="224" y1="759" x2="227" y2="751" />
+	<line stroke="black" stroke-opacity="1" x1="224" y1="759" x2="216" y2="755" />
+	<line stroke="black" stroke-opacity="1" x1="155" y1="559" x2="224" y2="759" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="253" y1="594" x2="254" y2="585" />
+	<line stroke="black" stroke-opacity="1" x1="253" y1="594" x2="244" y2="592" />
+	<line stroke="black" stroke-opacity="1" x1="155" y1="459" x2="253" y2="594" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="285" y1="287" x2="277" y2="283" />
+	<line stroke="black" stroke-opacity="1" x1="285" y1="287" x2="281" y2="294" />
+	<line stroke="black" stroke-opacity="1" x1="155" y1="342" x2="285" y2="287" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="427" y1="380" x2="421" y2="373" />
+	<line stroke="black" stroke-opacity="1" x1="427" y1="380" x2="420" y2="385" />
+	<line stroke="black" stroke-opacity="1" x1="155" y1="371" x2="427" y2="380" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="267" y1="156" x2="258" y2="156" />
+	<line stroke="black" stroke-opacity="1" x1="267" y1="156" x2="267" y2="164" />
+	<line stroke="black" stroke-opacity="1" x1="155" y1="290" x2="267" y2="156" />
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="573" y="501" width="2" height="64" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="493" y="563" width="82" height="2" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="490" y="498" width="83" height="65" />
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="532" y="506">UiGuiErrorMessage</text>
+	<line stroke="black" stroke-opacity="1" x1="490" y1="508" x2="573" y2="508" />
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="492" y="516">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="500" y="516">showAgainCheckBox</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="492" y="525">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="500" y="525">errorMessageList</text>
+	<line stroke="black" stroke-opacity="1" x1="490" y1="527" x2="573" y2="527" />
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="492" y="535">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="500" y="535">UiGuiErrorMessage()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="492" y="544">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="500" y="544">~UiGuiErrorMessage()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="492" y="553">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="500" y="553">showMessage()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="492" y="562">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="500" y="562">showMessage()</text>
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="152" y="19" width="2" height="704" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="30" y="721" width="124" height="2" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="27" y="16" width="125" height="705" />
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="90" y="24">MainWindow</text>
+	<line stroke="black" stroke-opacity="1" x1="27" y1="26" x2="152" y2="26" />
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="34">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="34">txtedSourceCode</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="43">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="43">version</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="52">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="52">revision</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="61">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="61">buildDateStr</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="70">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="70">portableMode</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="79">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="79">applicationBinaryPath</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="88">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="88">globalFilesDirectoryStr</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="97">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="97">indenterDirctoryStr</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="106">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="106">tempDirctoryStr</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="115">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="115">settingsDirctoryStr</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="124">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="124">currentEncoding</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="133">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="133">sourceFileContent</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="142">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="142">sourceFormattedContent</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="151">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="151">sourceViewContent</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="160">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="160">textEditVScrollBar</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="169">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="169">textEditLastScrollPos</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="178">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="178">currentIndenterID</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="187">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="187">loadLastSourceCodeFileOnStartup</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="196">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="196">currentSourceFile</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="205">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="205">currentSourceFileExtension</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="214">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="214">savedSourceContent</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="223">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="223">encodingActionGroup</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="232">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="232">saveEncodedActionGroup</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="241">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="241">highlighterActionGroup</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="250">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="250">uiGuiTranslator</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="259">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="259">qTTranslator</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="268">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="268">isFirstRunOfThisVersion</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="277">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="277">sourceCodeChanged</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="286">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="286">scrollPositionChanged</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="295">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="295">indentSettingsChanged</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="304">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="304">previewToggled</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="313">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="313">encodingsList</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="322">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="322">toolBarWidget</text>
+	<line stroke="black" stroke-opacity="1" x1="27" y1="324" x2="152" y2="324" />
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="332">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="332">MainWindow()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="341">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="341">loadFile()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="350">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="350">openFileDialog()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="359">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="359">updateWindowTitle()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="368">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="368">loadLastOpenedFile()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="377">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="377">saveSettings()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="386">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="386">maybeSave()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="395">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="395">createEncodingMenu()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="404">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="404">createHighlighterMenu()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="413">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="413">initApplicationLanguage()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="422">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="422">initMainWindow()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="431">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="431">initToolBar()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="440">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="440">initTextEditor()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="449">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="449">initSyntaxHighlighter()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="458">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="458">initIndenter()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="467">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="467">changeEvent()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="476">#</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="476">closeEvent()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="485">#</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="485">eventFilter()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="494">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="494">openConfigFileDialog()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="503">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="503">openSourceFileDialog()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="512">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="512">saveasSourceFileDialog()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="521">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="521">saveAsOtherEncoding()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="530">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="530">saveSourceFile()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="539">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="539">saveasIndentCfgFileDialog()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="548">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="548">callIndenter()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="557">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="557">updateSourceView()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="566">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="566">turnHighlightOnOff()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="575">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="575">setWhiteSpaceVisibility()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="584">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="584">selectIndenter()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="593">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="593">sourceCodeChangedHelperSlot()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="602">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="602">sourceCodeChangedSlot()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="611">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="611">indentSettingsChangedSlot()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="620">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="620">previewTurnedOnOff()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="629">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="629">exportToPDF()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="638">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="638">exportToHTML()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="647">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="647">languageChanged()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="656">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="656">encodingChanged()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="665">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="665">highlighterChanged()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="674">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="674">numberOfLinesChanged()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="683">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="683">createIndenterCallShellScript()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="692">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="692">updateRecentlyOpenedList()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="701">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="701">openFileFromRecentlyOpenedList()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="710">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="710">clearRecentlyOpenedList()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="29" y="719">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="37" y="719">showIndenterManual()</text>
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="405" y="9" width="2" height="146" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="261" y="153" width="146" height="2" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="258" y="6" width="147" height="147" />
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="332" y="14">AboutDialog</text>
+	<line stroke="black" stroke-opacity="1" x1="258" y1="16" x2="405" y2="16" />
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="260" y="24">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="268" y="24">gplText</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="260" y="33">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="268" y="33">textBrowserSavedContent</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="260" y="42">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="268" y="42">version</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="260" y="51">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="268" y="51">revision</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="260" y="60">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="268" y="60">buildDate</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="260" y="69">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="268" y="69">scrollDirection</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="260" y="78">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="268" y="78">scrollSpeed</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="260" y="87">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="268" y="87">timer</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="260" y="96">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="268" y="96">parent</text>
+	<line stroke="black" stroke-opacity="1" x1="258" y1="98" x2="405" y2="98" />
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="260" y="106">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="268" y="106">AboutDialog()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="260" y="115">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="268" y="115">exec()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="260" y="124">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="268" y="124">show()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="260" y="133">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="268" y="133">restoreTextBrowserContentAndOpenLink()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="260" y="142">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="268" y="142">scroll()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="260" y="151">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="268" y="151">changeEvent()</text>
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="405" y="178" width="2" height="172" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="289" y="348" width="118" height="2" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="286" y="175" width="119" height="173" />
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="346" y="183">Highlighter</text>
+	<line stroke="black" stroke-opacity="1" x1="286" y1="185" x2="405" y2="185" />
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="288" y="193">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="296" y="193">highlightningIsOn</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="288" y="202">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="296" y="202">parent</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="288" y="211">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="296" y="211">fontForStyles</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="288" y="220">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="296" y="220">colorForStyles</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="288" y="229">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="296" y="229">lexer</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="288" y="238">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="296" y="238">settings</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="288" y="247">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="296" y="247">mapHighlighternameToExtension</text>
+	<line stroke="black" stroke-opacity="1" x1="286" y1="249" x2="405" y2="249" />
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="288" y="257">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="296" y="257">Highlighter()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="288" y="266">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="296" y="266">turnHighlightOff()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="288" y="275">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="296" y="275">turnHighlightOn()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="288" y="284">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="296" y="284">readCurrentSettings()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="288" y="293">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="296" y="293">writeCurrentSettings()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="288" y="302">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="296" y="302">getAvailableHighlighters()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="288" y="311">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="296" y="311">setColor()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="288" y="320">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="296" y="320">setFont()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="288" y="329">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="296" y="329">setLexerForExtension()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="288" y="338">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="296" y="338">setLexerByName()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="288" y="347">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="296" y="347">setHighlighterByAction()</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="295" y="756">settings</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="361" y="857">settings</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="233" y="756">settings</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="371" y="657">updateCheckDialog</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="261" y="591">settingsDialog</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="457" y="528">errorMessageDialog</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="372" y="377">indentHandler</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="241" y="280">highlighter</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="274" y="167">aboutDialog</text>
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="595" y="639" width="2" height="154" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="449" y="791" width="148" height="2" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="446" y="636" width="149" height="155" />
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="521" y="644">UpdateCheckDialog</text>
+	<line stroke="black" stroke-opacity="1" x1="446" y1="646" x2="595" y2="646" />
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="448" y="654">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="456" y="654">manualUpdateRequested</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="448" y="663">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="456" y="663">http</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="448" y="672">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="456" y="672">currentVersion</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="448" y="681">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="456" y="681">roleOfClickedButton</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="448" y="690">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="456" y="690">updateCheckProgressTimer</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="448" y="699">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="456" y="699">updateCheckProgressCounter</text>
+	<line stroke="black" stroke-opacity="1" x1="446" y1="701" x2="595" y2="701" />
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="448" y="709">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="456" y="709">UpdateCheckDialog()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="448" y="718">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="456" y="718">checkForUpdateAndShowDialog()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="448" y="727">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="456" y="727">checkForUpdate()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="448" y="736">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="456" y="736">getPadXMLFile()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="448" y="745">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="456" y="745">showCheckingForUpdateDialog()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="448" y="754">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="456" y="754">showNewVersionAvailableDialog()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="448" y="763">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="456" y="763">showNoNewVersionAvailableDialog()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="448" y="772">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="456" y="772">checkResultsOfFetchedPadXMLFile()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="448" y="781">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="456" y="781">handleUpdateCheckDialogButtonClicked()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="448" y="790">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="456" y="790">updateUpdateCheckProgressBar()</text>
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="339" y="598" width="2" height="82" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="231" y="678" width="110" height="2" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="228" y="595" width="111" height="83" />
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="284" y="603">UiGuiSettingsDialog</text>
+	<line stroke="black" stroke-opacity="1" x1="228" y1="605" x2="339" y2="605" />
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="230" y="613">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="238" y="613">checkBoxes</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="230" y="622">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="238" y="622">spinBoxes</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="230" y="631">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="238" y="631">comboBoxes</text>
+	<line stroke="black" stroke-opacity="1" x1="228" y1="633" x2="339" y2="633" />
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="230" y="641">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="238" y="641">UiGuiSettingsDialog()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="230" y="650">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="238" y="650">showDialog()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="230" y="659">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="238" y="659">writeWidgetValuesToSettings()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="230" y="668">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="238" y="668">changeEvent()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="230" y="677">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="238" y="677">initTranslationSelection()</text>
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="348" y="763" width="2" height="344" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="224" y="1105" width="126" height="2" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="221" y="760" width="127" height="345" />
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="285" y="768">UiGuiSettings</text>
+	<line stroke="black" stroke-opacity="1" x1="221" y1="770" x2="348" y2="770" />
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="223" y="778">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="231" y="778">availableTranslations</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="223" y="787">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="231" y="787">qsettings</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="223" y="796">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="231" y="796">settings</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="223" y="805">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="231" y="805">globalFilesDirectoryStr</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="223" y="814">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="231" y="814">indenterDirctoryStr</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="223" y="823">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="231" y="823">portableMode</text>
+	<line stroke="black" stroke-opacity="1" x1="221" y1="825" x2="348" y2="825" />
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="223" y="833">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="231" y="833">UiGuiSettings()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="223" y="842">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="231" y="842">~UiGuiSettings()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="223" y="851">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="231" y="851">loadSettings()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="223" y="860">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="231" y="860">saveSettings()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="223" y="869">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="231" y="869">setValueByName()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="223" y="878">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="231" y="878">getValueByName()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="223" y="887">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="231" y="887">updateAllDependend()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="223" y="896">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="231" y="896">getAvailableTranslations()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="223" y="905">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="231" y="905">handleValueChangeFromExtern()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="223" y="914">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="231" y="914">handleValueChangeFromExtern()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="223" y="923">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="231" y="923">handleValueChangeFromExtern()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="223" y="932">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="231" y="932">handleValueChangeFromExtern()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="223" y="941">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="231" y="941">versionInSettingsFile()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="223" y="950">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="231" y="950">windowIsMaximized()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="223" y="959">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="231" y="959">windowPosition()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="223" y="968">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="231" y="968">windowSize()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="223" y="977">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="231" y="977">fileEncoding()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="223" y="986">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="231" y="986">recentlyOpenedListSize()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="223" y="995">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="231" y="995">loadLastOpenedFileOnStartup()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="223" y="1004">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="231" y="1004">lastOpenedFiles()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="223" y="1013">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="231" y="1013">lastSelectedIndenterID()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="223" y="1022">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="231" y="1022">syntaxHighlightningEnabled()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="223" y="1031">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="231" y="1031">whiteSpaceIsVisible()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="223" y="1040">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="231" y="1040">indenterParameterTooltipsEnabled()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="223" y="1049">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="231" y="1049">tabWidth()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="223" y="1058">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="231" y="1058">language()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="223" y="1067">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="231" y="1067">checkForUpdate()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="223" y="1076">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="231" y="1076">lastUpdateCheck()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="223" y="1085">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="231" y="1085">mainWindowState()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="223" y="1094">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="231" y="1094">emitSignalForSetting()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="223" y="1103">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="231" y="1103">readAvailableTranslations()</text>
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="577" y="191" width="2" height="388" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="431" y="577" width="148" height="2" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="428" y="188" width="149" height="389" />
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="503" y="196">IndentHandler</text>
+	<line stroke="black" stroke-opacity="1" x1="428" y1="198" x2="577" y2="198" />
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="206">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="206">vboxLayout</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="215">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="215">toolBox</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="224">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="224">indenterSettings</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="233">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="233">indenterParameters</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="242">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="242">cfgFileData</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="251">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="251">indenterName</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="260">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="260">indenterFileName</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="269">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="269">indenterDirctoryStr</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="278">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="278">tempDirctoryStr</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="287">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="287">settingsDirctoryStr</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="296">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="296">indenterIniFileList</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="305">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="305">parameterOrder</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="314">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="314">configFilename</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="323">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="323">cfgFileParameterEnding</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="332">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="332">inputFileParameter</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="341">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="341">inputFileName</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="350">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="350">outputFileParameter</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="359">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="359">outputFileName</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="368">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="368">fileTypes</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="377">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="377">useCfgFileParameter</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="386">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="386">indenterShowHelpParameter</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="395">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="395">mainWindow</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="404">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="404">indenterExecutableCallString</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="413">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="413">indenterExecutableSuffix</text>
+	<line stroke="black" stroke-opacity="1" x1="428" y1="415" x2="577" y2="415" />
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="423">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="423">IndentHandler()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="432">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="432">~IndentHandler()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="441">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="441">generateCommandlineCall()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="450">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="450">callIndenter()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="459">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="459">loadConfigFile()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="468">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="468">getAvailableIndenters()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="477">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="477">getPossibleIndenterFileExtensions()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="486">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="486">getParameterString()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="495">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="495">getIndenterCfgFile()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="504">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="504">getManual()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="513">+</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="513">indenterSettingsChanged()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="522">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="522">setIndenter()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="531">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="531">callExecutableIndenter()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="540">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="540">callJavaScriptIndenter()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="549">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="549">writeConfigFile()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="558">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="558">readIndentIniFile()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="567">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="567">createIndenterCallString()</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" font-weight="bold" x="430" y="576">-</text>
+	<text font-family="Helvetica" font-size="7" fill="#000000" xml:space="preserve" x="438" y="576">writeParameterWidgetValues2IniSettings()</text>
+</g>
+</svg>
