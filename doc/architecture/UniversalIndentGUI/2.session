@@ -1,16 +1,18 @@
-window_sizes 1154 619 300 848 431 136
+window_sizes 1154 619 300 848 497 70
 windows_style
 diagrams
   usecasediagram_ref 128002 // MassConvert
     743 411 130 4 0 0
-  active  classdiagram_ref 128130 // UiGUI
-    600 341 103 4 0 0
+  active  classdiagram_ref 128130 // Class Diagram
+    708 469 100 4 0 0
+  classdiagram_ref 129282 // Analyse
+    746 404 100 4 0 0
 end
 show_stereotypes
-selected 
-package_ref 129 // UniversalIndentGUI
+selected operation_ref 130434 // showWhiteSpace
 open
   usecaseview_ref 128002 // UiGUI
+  classdiagram_ref 129282 // Analyse
   class_ref 128130 // CodeViewInterface
 end
 end

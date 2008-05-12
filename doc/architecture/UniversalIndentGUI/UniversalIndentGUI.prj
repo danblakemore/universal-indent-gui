@@ -1,6 +1,6 @@
 format 55
 "UniversalIndentGUI"
-  revision 2
+  revision 3
   modified_by 2 "thomas"
 
 
@@ -140,6 +140,84 @@ ${inlines}
     //activity diagram settings
     package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
     show_infonote default drawing_language default
+    classdiagram 129282 "Analyse"
+      draw_all_relations default hide_attributes yes hide_operations yes show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+      size A4
+    end
+
+    classdiagram 128130 "Class Diagram"
+      draw_all_relations default hide_attributes default hide_operations default show_members_full_definition yes show_members_visibility yes show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+      size A4
+    end
+
+    class 129282 "MainWindow"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "This class is the main window of the whole application."
+      classrelation 129282 // <unidirectional association>
+	relation 129282 --->
+	  a role_name "" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 129282 // <unidirectional association>
+	  b parent class_ref 130690 // CodeViewFactory
+      end
+
+      classrelation 129410 // <unidirectional association>
+	relation 129410 --->
+	  a role_name "" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 129410 // <unidirectional association>
+	  b parent class_ref 128130 // CodeViewInterface
+      end
+
+      classrelation 129794 // <unidirectional association>
+	relation 129794 --->
+	  a role_name "" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 129794 // <unidirectional association>
+	  b parent class_ref 130946 // SettingsDialog
+      end
+
+      classrelation 129922 // <unidirectional association>
+	relation 129922 --->
+	  a role_name "" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 129922 // <unidirectional association>
+	  b parent class_ref 130818 // Settings
+      end
+
+      classrelation 130306 // <unidirectional association>
+	relation 130306 --->
+	  a role_name "" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 130306 // <unidirectional association>
+	  b parent class_ref 131074 // IndenterFactory
+      end
+
+      classrelation 130434 // <unidirectional association>
+	relation 130434 --->
+	  a role_name "" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 130434 // <unidirectional association>
+	  b parent class_ref 131202 // IndenterInterface
+      end
+    end
+
     class 128130 "CodeViewInterface"
       abstract visibility package stereotype "interface"
       cpp_decl "${comment}${template}class ${name}${inherit} {
@@ -160,7 +238,7 @@ ${members}};
       
       comment "This abstract class has to be the parent of every code view widget."
       operation 128002 "getToolBar"
-	public explicit_return_type "QToolBar*"
+	public explicit_return_type "const QToolBar*"
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
@@ -202,7 +280,7 @@ ${members}};
       end
 
       operation 128258 "getSettingsTabName"
-	public explicit_return_type "const QString*"
+	public explicit_return_type "const QString"
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
@@ -257,26 +335,132 @@ ${members}};
 	idl_decl ""
 	comment "The pointer to the code views settings widget. If it has any at all."
       end
-    end
 
-    classdiagram 128130 "UiGUI"
-      draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-      size A4
-    end
-
-    class 129282 "MainWindow"
-      visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+      operation 129666 "setUnformattedText"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "unformattedText" explicit_type "QString"
+	    defaultvalue "\"\""
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
-      java_decl ""
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      
-      comment "This class is the main window of the whole application."
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 129794 "getUnformattedText"
+	public explicit_return_type "QString"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 129922 "setFormattedText"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "formattedText" explicit_type "QString"
+	    defaultvalue "\"\""
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 130050 "getFormattedText"
+	public explicit_return_type "QString"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      attribute 129282 "unformattedText"
+	protected explicit_type "QString"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 129410 "formattedText"
+	protected explicit_type "QString"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 130178 "setSyntaxHighlightingOnOff"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "highlightingOnOff" explicit_type "bool"
+	    defaultvalue "true"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 130306 "setEditorStyle"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 130434 "showWhiteSpace"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "whiteSpaceIsVisible" explicit_type "bool"
+	    defaultvalue "true"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
     end
 
     class 129410 "LivePreview"
@@ -318,6 +502,143 @@ ${inlines}
 	    cpp default "${type}"
 	    classrelation_ref 128130 // <realization>
 	  b parent class_ref 128130 // CodeViewInterface
+      end
+    end
+
+    class 130690 "CodeViewFactory"
+      visibility package stereotype "factory"
+      
+      constraint "- Gives back a list of available code view widgets as a string list.
+- Can create a by its name defined code view widget object and returns a pointer to it."cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "This factory knows about the different available code view widgets. It can tell one which widgets might be created and also create a specified widget."
+      classrelation 129538 // <unidirectional association>
+	relation 129538 --->
+	  a role_name "" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 129538 // <unidirectional association>
+	  b parent class_ref 129410 // LivePreview
+      end
+
+      classrelation 129666 // <unidirectional association>
+	relation 129666 --->
+	  a role_name "" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 129666 // <unidirectional association>
+	  b parent class_ref 129538 // DiffView
+      end
+    end
+
+    class 130818 "Settings"
+      visibility package stereotype "model"
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+    end
+
+    class 130946 "SettingsDialog"
+      visibility package stereotype "view"
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 130050 // <unidirectional association>
+	relation 130050 --->
+	  a role_name "" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 130050 // <unidirectional association>
+	  b parent class_ref 130818 // Settings
+      end
+    end
+
+    class 131074 "IndenterFactory"
+      visibility package stereotype "factory"
+      
+      constraint "- Scans for uigui ini files.
+- Can return a string list of available indenters.
+- Can create a indenter widget defined by its name and returns a pointer to it."cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Knows about the available indenters by scanning for existing uigui ini files. Can return a list of the found indenters and instantiate a widget for each."
+      classrelation 130562 // <unidirectional association>
+	relation 130562 --->
+	  a role_name "" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 130562 // <unidirectional association>
+	  b parent class_ref 131330 // Indenter
+      end
+    end
+
+    class 131202 "IndenterInterface"
+      abstract visibility package stereotype "interface"
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl "${comment}${@}${visibility}interface ${name}${extends} {
+${members}}
+"
+      php_decl "${comment}${visibility}interface ${name} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl "${comment}${abstract}${local}interface ${name}${inherit} {
+${members}};
+"
+      explicit_switch_type ""
+      
+    end
+
+    class 131330 "Indenter"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 130178 // <realization>
+	relation 130178 -_-|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 130178 // <realization>
+	  b parent class_ref 131202 // IndenterInterface
       end
     end
   end
