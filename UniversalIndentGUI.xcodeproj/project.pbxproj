@@ -28,7 +28,7 @@
 		D9D01E696ABE1F0ECDDED0C5 /* indenthandler.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 6D1AD0AC2581C9346952C1AE /* indenthandler.cpp */; settings = {ATTRIBUTES = (); }; };
 		DC78F47D1155B9D5F6AD9FE2 /* uiguierrormessage.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 79F947E978D31E3EE78A3CA3 /* uiguierrormessage.cpp */; settings = {ATTRIBUTES = (); }; };
 		E1B069F4041AB2DBDCDE459A /* moc_uiguisettings.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 36EF9016B67A0CB71883177F /* moc_uiguisettings.cpp */; settings = {ATTRIBUTES = (); }; };
-		E997B4810DBE905800ABDA2C /* UniversalIndentGUI.app in Project Copy */ = {isa = PBXBuildFile; fileRef = E997B47E0DBE905800ABDA2C /* UniversalIndentGUI.app */; };
+		E9CF6DA90DDCEB4600CB2642 /* UniversalIndentGUI.app in Project Copy */ = {isa = PBXBuildFile; fileRef = E9CF6DA60DDCEB4600CB2642 /* UniversalIndentGUI.app */; };
 		ED1C6BDDD90C246A4B296AF9 /* uiguisettings.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = CCA6F3C7D091FAF3F0192950 /* uiguisettings.cpp */; settings = {ATTRIBUTES = (); }; };
 		F1B05587B803785E09220177 /* uiguisettingsdialog.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = EFAA99570EB8729CF49B8242 /* uiguisettingsdialog.cpp */; settings = {ATTRIBUTES = (); }; };
 		F6DB9779803ED45C0D1172A0 /* moc_uiguisettingsdialog.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 7959FB2216420D3E05E34AF3 /* moc_uiguisettingsdialog.cpp */; settings = {ATTRIBUTES = (); }; };
@@ -44,7 +44,7 @@
 			dstPath = /Users/thomas/Documents/Informatik/universalindent/release;
 			dstSubfolderSpec = 0;
 			files = (
-				E997B4810DBE905800ABDA2C /* UniversalIndentGUI.app in Project Copy */,
+				E9CF6DA90DDCEB4600CB2642 /* UniversalIndentGUI.app in Project Copy */,
 			);
 			name = "Project Copy";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -55,7 +55,7 @@
 		013EB90917D07AA5F0C63620 /* moc_updatecheckdialog.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = moc_updatecheckdialog.cpp; path = release/moc/moc_updatecheckdialog.cpp; sourceTree = "<group>"; };
 		0191D584CC179DA7EF70ADC1 /* QtNetwork */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = QtNetwork; path = "../qt-static-release/lib/libQtNetwork.a"; sourceTree = "<group>"; };
 		024980E1DDD1749E47DB339C /* QtGui */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = QtGui; path = "../qt-static-release/lib/libQtGui.a"; sourceTree = "<group>"; };
-		0AD1A62B72DEF9C2306F6A3E /* ui_indentgui.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ui_indentgui.h; path = release/uic/ui_indentgui.h; sourceTree = "<group>"; };
+		05F1EAE64901C1A85489DAF0 /* mainwindow.ui */ = {isa = PBXFileReference; lastKnownFileType = text; name = mainwindow.ui; path = src/mainwindow.ui; sourceTree = "<group>"; };
 		0AF78DFFDB598C40F9DEE03C /* updatecheckdialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = updatecheckdialog.h; path = src/updatecheckdialog.h; sourceTree = "<group>"; };
 		0F617A0F6F84610A27A87E30 /* programicon.rc */ = {isa = PBXFileReference; lastKnownFileType = text; name = programicon.rc; path = resources/programicon.rc; sourceTree = "<group>"; };
 		154405CB0FE6542A47B7DE92 /* QtCore */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = QtCore; path = "../qt-static-release/lib/libQtCore.a"; sourceTree = "<group>"; };
@@ -66,7 +66,6 @@
 		2E67BEE5A9F88B1264F21E7A /* aboutdialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = aboutdialog.h; path = src/aboutdialog.h; sourceTree = "<group>"; };
 		30D9D4CD6681818B576150BF /* ui_aboutdialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ui_aboutdialog.h; path = release/uic/ui_aboutdialog.h; sourceTree = "<group>"; };
 		327BB84B9DBF953EF4A6B8B2 /* QtScript */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = QtScript; path = "../qt-static-release/lib/libQtScript.a"; sourceTree = "<group>"; };
-		35102B3E3654DD2295E49D43 /* indentgui.ui */ = {isa = PBXFileReference; lastKnownFileType = text; name = indentgui.ui; path = src/indentgui.ui; sourceTree = "<group>"; };
 		36EF9016B67A0CB71883177F /* moc_uiguisettings.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = moc_uiguisettings.cpp; path = release/moc/moc_uiguisettings.cpp; sourceTree = "<group>"; };
 		4101635F385AA8FF930F0300 /* ui_toolBarWidget.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ui_toolBarWidget.h; path = release/uic/ui_toolBarWidget.h; sourceTree = "<group>"; };
 		471C858925F6FEEC9C593904 /* moc_highlighter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = moc_highlighter.cpp; path = release/moc/moc_highlighter.cpp; sourceTree = "<group>"; };
@@ -84,6 +83,7 @@
 		8BE8AF423371D6CAE24BA96C /* updatecheckdialog.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = updatecheckdialog.cpp; path = src/updatecheckdialog.cpp; sourceTree = "<group>"; };
 		8C2BAFA061B71DC50BFD2EE6 /* uiguierrormessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = uiguierrormessage.h; path = src/uiguierrormessage.h; sourceTree = "<group>"; };
 		97525CDC9B1C934FD1F20518 /* moc_indenthandler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = moc_indenthandler.cpp; path = release/moc/moc_indenthandler.cpp; sourceTree = "<group>"; };
+		9CC40BA225B1479014D5F9A4 /* ui_mainwindow.h */ = {isa = PBXFileReference; lastKnownFileType = file; name = ui_mainwindow.h; path = release/uic/ui_mainwindow.h; sourceTree = "<group>"; };
 		9E5FE3E007D1516848BC5E2E /* highlighter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = highlighter.h; path = src/highlighter.h; sourceTree = "<group>"; };
 		B3201EB1AA113D49631A1BC2 /* UiGuiSettingsDialog.ui */ = {isa = PBXFileReference; lastKnownFileType = text; name = UiGuiSettingsDialog.ui; path = src/UiGuiSettingsDialog.ui; sourceTree = "<group>"; };
 		C2D745F51D062CD6409FA16C /* ui_UpdateCheckDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ui_UpdateCheckDialog.h; path = release/uic/ui_UpdateCheckDialog.h; sourceTree = "<group>"; };
@@ -98,7 +98,7 @@
 		E53FC39EBC111E4E73935122 /* mainwindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = mainwindow.h; path = src/mainwindow.h; sourceTree = "<group>"; };
 		E5B4982021E70D198AF38D74 /* toolBarWidget.ui */ = {isa = PBXFileReference; lastKnownFileType = text; name = toolBarWidget.ui; path = src/toolBarWidget.ui; sourceTree = "<group>"; };
 		E7B574C547DCB5ED98E04246 /* moc_uiguierrormessage.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = moc_uiguierrormessage.cpp; path = release/moc/moc_uiguierrormessage.cpp; sourceTree = "<group>"; };
-		E997B47E0DBE905800ABDA2C /* UniversalIndentGUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniversalIndentGUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9CF6DA60DDCEB4600CB2642 /* UniversalIndentGUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniversalIndentGUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFAA99570EB8729CF49B8242 /* uiguisettingsdialog.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = uiguisettingsdialog.cpp; path = src/uiguisettingsdialog.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,7 +132,7 @@
 				52C235EBF1C9B07808119459 /* Sources [RCC] */,
 				EEC299C65D5017EB9DD513B0 /* Sources [UIC] */,
 				ED1E82605DD74B483AF3C982 /* External Frameworks and Libraries */,
-				E997B47F0DBE905800ABDA2C /* Products */,
+				E9CF6DA70DDCEB4600CB2642 /* Products */,
 			);
 			name = UniversalIndentGUI;
 			sourceTree = "<group>";
@@ -211,7 +211,7 @@
 		A1B6D1488110DA0868414A40 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				35102B3E3654DD2295E49D43 /* indentgui.ui */,
+				05F1EAE64901C1A85489DAF0 /* mainwindow.ui */,
 				E5B4982021E70D198AF38D74 /* toolBarWidget.ui */,
 				B3201EB1AA113D49631A1BC2 /* UiGuiSettingsDialog.ui */,
 				DDCD93CEBC73250DA1DA1579 /* aboutdialog.ui */,
@@ -223,7 +223,7 @@
 		A742563A513C5350203403C2 /* uic */ = {
 			isa = PBXGroup;
 			children = (
-				0AD1A62B72DEF9C2306F6A3E /* ui_indentgui.h */,
+				9CC40BA225B1479014D5F9A4 /* ui_mainwindow.h */,
 				4101635F385AA8FF930F0300 /* ui_toolBarWidget.h */,
 				DCEF1F98F703B62597F530A9 /* ui_UiGuiSettingsDialog.h */,
 				30D9D4CD6681818B576150BF /* ui_aboutdialog.h */,
@@ -258,10 +258,10 @@
 			name = qrc;
 			sourceTree = "<group>";
 		};
-		E997B47F0DBE905800ABDA2C /* Products */ = {
+		E9CF6DA70DDCEB4600CB2642 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E997B47E0DBE905800ABDA2C /* UniversalIndentGUI.app */,
+				E9CF6DA60DDCEB4600CB2642 /* UniversalIndentGUI.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -318,7 +318,7 @@
 /* Begin PBXNativeTarget section */
 		4573339B43E481DE09A4C0CD /* UniversalIndentGUI */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E997B4880DBE908000ABDA2C /* Build configuration list for PBXNativeTarget "UniversalIndentGUI" */;
+			buildConfigurationList = E9CF6DB00DDCEB6B00CB2642 /* Build configuration list for PBXNativeTarget "UniversalIndentGUI" */;
 			buildPhases = (
 				D7BA7D76DAB5DD13389D6332 /* Qt Qmake */,
 				A0A52A2ADF7A1E2A99738674 /* Qt Preprocessors */,
@@ -334,7 +334,7 @@
 			name = UniversalIndentGUI;
 			productInstallPath = release/;
 			productName = UniversalIndentGUI;
-			productReference = E997B47E0DBE905800ABDA2C /* UniversalIndentGUI.app */;
+			productReference = E9CF6DA60DDCEB4600CB2642 /* UniversalIndentGUI.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -346,7 +346,7 @@
 			compatibilityVersion = "Xcode 2.4";
 			hasScannedForEncodings = 1;
 			mainGroup = 05596AB53D8D521C69802C27 /* UniversalIndentGUI */;
-			productRefGroup = E997B47F0DBE905800ABDA2C /* Products */;
+			productRefGroup = E9CF6DA70DDCEB4600CB2642 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -437,7 +437,7 @@
 			};
 			name = Release;
 		};
-		E997B4840DBE905800ABDA2C /* Debug */ = {
+		E9CF6DAC0DDCEB4800CB2642 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = (
@@ -515,7 +515,7 @@
 			};
 			name = Debug;
 		};
-		E997B4850DBE905800ABDA2C /* Release */ = {
+		E9CF6DAD0DDCEB4800CB2642 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = (
@@ -592,7 +592,7 @@
 			};
 			name = Release;
 		};
-		E997B4860DBE905800ABDA2C /* Default */ = {
+		E9CF6DAE0DDCEB4800CB2642 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = (
@@ -679,12 +679,12 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E997B4880DBE908000ABDA2C /* Build configuration list for PBXNativeTarget "UniversalIndentGUI" */ = {
+		E9CF6DB00DDCEB6B00CB2642 /* Build configuration list for PBXNativeTarget "UniversalIndentGUI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E997B4840DBE905800ABDA2C /* Debug */,
-				E997B4850DBE905800ABDA2C /* Release */,
-				E997B4860DBE905800ABDA2C /* Default */,
+				E9CF6DAC0DDCEB4800CB2642 /* Debug */,
+				E9CF6DAD0DDCEB4800CB2642 /* Release */,
+				E9CF6DAE0DDCEB4800CB2642 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;
