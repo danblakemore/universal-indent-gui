@@ -42,6 +42,7 @@
 #include <QtScript> 
 
 #include "uiguierrormessage.h"
+#include "templateBatchScript.h"
 
 
 class IndentHandler : public QWidget

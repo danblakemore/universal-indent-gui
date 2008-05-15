@@ -290,6 +290,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\templateBatchScript.h"
+				>
+			</File>
+			<File
 				RelativePath=".\uiguierrormessage.h"
 				>
 			</File>
