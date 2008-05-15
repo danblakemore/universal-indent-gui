@@ -21,6 +21,7 @@
 #define TEMPLATEBATCHSCRIPT_H
 
 static const char* templateBatchScript =
+#if defined(Q_OS_WIN32)
 "@echo off\n"
 "\n"
 "IF (%1)==() GOTO error\n"
@@ -70,6 +71,47 @@ static const char* templateBatchScript =
 "\n"
 ":ende\n";
 
+#else
+
+"#!/bin/sh \n"
+"\n"
+"if [ ! -n \"$1\" ]; then\n"
+    "echo \"Syntax is: recurse.sh dirname filesuffix\"\n"
+    "echo \"Syntax is: recurse.sh filename\"\n"
+    "echo \"Example: recurse.sh temp cpp\"\n"
+    "exit 1\n"
+"fi\n"
+"\n"
+"if [ -d \"$1\" ]; then\n"
+    "#echo \"Dir ${1} exists\"\n"
+    "if [ -n \"$2\" ]; then\n"
+        "filesuffix=$2\n"
+    "else\n"
+        "filesuffix=\"*\"\n"
+    "fi\n"
+    "\n"
+    "#echo \"Filtering files using suffix ${filesuffix}\"\n"
+    "\n"
+    "file_list=`find temp -name \"*.${filesuffix}\" -type f`\n"
+    "for file2indent in $file_list\n"
+    "do \n"
+        "echo \"Indenting file $file2indent\"\n"
+        "__INDENTERCALLSTRING1__\n"
+    "done\n"
+"else\n"
+    "if [ -f \"$1\" ]; then\n"
+        "echo \"Indenting one file $1\"\n"
+        "__INDENTERCALLSTRING2__\n"
+    "else\n"
+        "echo \"ERROR: As parameter given directory or file does not exist!\"\n"
+        "echo \"Syntax is: recurse.sh dirname filesuffix\"\n"
+        "echo \"Syntax is: recurse.sh filename\"\n"
+        "echo \"Example: recurse.sh temp cpp\"\n"
+        "exit 1\n"
+    "fi\n"
+"fi\n";
+#endif // #if defined(Q_OS_WIN32)
+
 #endif // TEMPLATEBATCHSCRIPT_H
 
 /* Here comes the original batch script without the c++ markup
@@ -118,7 +160,7 @@ GOTO ende
 :error
 echo .
 echo ERROR: As parameter given directory or file does not exist!
-echo Syntax is: recurse.bat dirname file suffix
+echo Syntax is: recurse.bat dirname filesuffix
 echo Syntax is: recurse.bat filename
 echo Example: recurse.bat temp cpp
 echo .

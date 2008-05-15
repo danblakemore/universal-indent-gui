@@ -199,13 +199,17 @@ QString IndentHandler::generateCommandlineCall(QString inputFileExtension) {
 #endif
     }
 
+#if defined(Q_OS_WIN32)
     QString shellScript(templateBatchScript);
     shellScript = shellScript.replace("__INDENTERCALLSTRING2__", indenterCompleteCallString + "\n" + replaceInputFileCommand);
-#if defined(Q_OS_WIN32)
     indenterCompleteCallString = indenterCompleteCallString.replace("%1", "%%G");
-#else
-#endif
     shellScript = shellScript.replace("__INDENTERCALLSTRING1__", indenterCompleteCallString + "\n" + replaceInputFileCommand);
+#else
+    QString shellScript(templateShellScript);
+    shellScript = shellScript.replace("__INDENTERCALLSTRING2__", indenterCompleteCallString + "\n" + replaceInputFileCommand);
+    indenterCompleteCallString = indenterCompleteCallString.replace("$1", "$file2indent");
+    shellScript = shellScript.replace("__INDENTERCALLSTRING1__", indenterCompleteCallString + "\n" + replaceInputFileCommand);
+#endif
 
     return shellScript;
 }
