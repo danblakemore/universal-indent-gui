@@ -125,11 +125,11 @@ QString IndentHandler::generateCommandlineCall(QString inputFileExtension) {
 	QString parameterParameterFile;
     QString replaceInputFileCommand;
 
-    // Define the placeholder for variable either in batch or bash programming.
+    // Define the placeholder for parameter variable either in batch or bash programming.
 #if defined(Q_OS_WIN32)
-    QString shellPlaceholder = "%1";
+    QString shellParameterPlaceholder = "%1";
 #else
-    QString shellPlaceholder = "$1";
+    QString shellParameterPlaceholder = "$1";
 #endif
 
     // Generate the parameter string that will be saved to the indenters config file.
@@ -144,11 +144,11 @@ QString IndentHandler::generateCommandlineCall(QString inputFileExtension) {
         inputFileExtension = "." + inputFileExtension;
     }
 
-    parameterInputFile = " " + inputFileParameter + "\"" + shellPlaceholder + "\"";
+    parameterInputFile = " " + inputFileParameter + "\"" + shellParameterPlaceholder + "\"";
 
     if ( outputFileParameter != "none" && outputFileParameter != "stdout" ) {
         if ( outputFileName == inputFileName ) {
-            parameterOuputFile = " " + outputFileParameter + "\"" + shellPlaceholder + "\"";
+            parameterOuputFile = " " + outputFileParameter + "\"" + shellParameterPlaceholder + "\"";
         }
         else {
             parameterOuputFile = " " + outputFileParameter + outputFileName + inputFileExtension;
@@ -193,13 +193,21 @@ QString IndentHandler::generateCommandlineCall(QString inputFileExtension) {
     // If the output filename is not the same as the input filename copy the output over the input.
     if ( outputFileName != inputFileName ) {
 #if defined(Q_OS_WIN32)
-        replaceInputFileCommand = "move /Y " + outputFileName + inputFileExtension + " \"" + shellPlaceholder + "\"\n";
+        replaceInputFileCommand = "move /Y " + outputFileName + inputFileExtension + " \"" + shellParameterPlaceholder + "\"\n";
 #else
-        replaceInputFileCommand = "mv " + outputFileName + inputFileExtension + " \"" + shellPlaceholder + "\"\n";
+        replaceInputFileCommand = "mv " + outputFileName + inputFileExtension + " \"" + shellParameterPlaceholder + "\"\n";
 #endif
     }
 
-    return indenterCompleteCallString + "\n" + replaceInputFileCommand;
+    QString shellScript(templateBatchScript);
+    shellScript = shellScript.replace("__INDENTERCALLSTRING2__", indenterCompleteCallString + "\n" + replaceInputFileCommand);
+#if defined(Q_OS_WIN32)
+    indenterCompleteCallString = indenterCompleteCallString.replace("%1", "%%G");
+#else
+#endif
+    shellScript = shellScript.replace("__INDENTERCALLSTRING1__", indenterCompleteCallString + "\n" + replaceInputFileCommand);
+
+    return shellScript;
 }
 
 

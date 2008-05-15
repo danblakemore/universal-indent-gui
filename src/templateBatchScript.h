@@ -24,12 +24,7 @@ static const char* templateBatchScript =
 "@echo off\n"
 "\n"
 "IF (%1)==() GOTO error\n"
-"IF EXIST %1\\. GOTO indentDir\n"
-":: if the directory parameter contains quotes, remove them and try again if the dir exists\n"
-"set newpath=%1%\n"
-"set newpath=\"%newpath:~1,-1%\\.\"\n"
-"::echo newpath=%newpath%\n"
-"IF EXIST %newpath% GOTO indentDir\n"
+"dir /b /ad %1 >nul 2>nul && GOTO indentDir\n"
 "IF NOT EXIST %1 GOTO error\n"
 "goto indentFile\n"
 "\n"
@@ -55,16 +50,13 @@ static const char* templateBatchScript =
 ":run\n"
 "FOR /F \"tokens=*\" %%G IN ('DIR /B /S %searchdir%\\*.%filesuffix%') DO (\n"
     "echo Indenting file \"%%G\"\n"
-    "::call call_CSSTidy.bat \"%%G\"\n"
-	"\"C:/Dokumente und Einstellungen/ts/Eigene Dateien/Visual Studio 2005/Projects/UiGuixy/indenters/csstidy.exe\" \"%%G\" --timestamp=true --allow_html_in_templates=false --compress_colors=true --compress_font=true --lowercase_s=false --preserve_css=false --remove_last_;=false --remove_bslash=true --sort_properties=false --sort_selectors=false  indentoutput.css\n"
-    "move /Y indentoutput.css \"%%G\"\n"
+    "__INDENTERCALLSTRING1__\n"
 ")\n"
 "GOTO ende\n"
 "\n"
 ":indentFile\n"
 "echo Indenting one file %1\n"
-"\"C:/Dokumente und Einstellungen/ts/Eigene Dateien/Visual Studio 2005/Projects/UiGuixy/indenters/csstidy.exe\" %1 --timestamp=true --allow_html_in_templates=false --compress_colors=true --compress_font=true --lowercase_s=false --preserve_css=false --remove_last_;=false --remove_bslash=true --sort_properties=false --sort_selectors=false  indentoutput.css\n"
-"move /Y indentoutput.css %1\n"
+"__INDENTERCALLSTRING2__\n"
 "\n"
 "GOTO ende\n"
 "\n"
@@ -84,12 +76,7 @@ static const char* templateBatchScript =
 @echo off
 
 IF (%1)==() GOTO error
-IF EXIST %1\. GOTO indentDir
-:: if the directory parameter contains quotes, remove them and try again if the dir exists
-set newpath=%1%
-set newpath="%newpath:~1,-1%\."
-::echo newpath=%newpath%
-IF EXIST %newpath% GOTO indentDir
+dir /b /ad %1 >nul 2>nul && GOTO indentDir
 IF NOT EXIST %1 GOTO error
 goto indentFile
 
@@ -131,7 +118,7 @@ GOTO ende
 :error
 echo .
 echo ERROR: As parameter given directory or file does not exist!
-echo Syntax is: recurse.bat dirname filesuffix
+echo Syntax is: recurse.bat dirname file suffix
 echo Syntax is: recurse.bat filename
 echo Example: recurse.bat temp cpp
 echo .
