@@ -32,13 +32,6 @@ static const char* templateBatchScript =
 ":indentDir\n"
 "set searchdir=%1\n"
 "\n"
-"GOTO assignSuffix\n"
-"\n"
-":assignDefaultDir\n"
-"::echo !!!!DEFAULT DIR!!!\n"
-"set searchdir=.\n"
-"\n"
-":assignSuffix\n"
 "IF (%2)==() GOTO assignDefaultSuffix\n"
 "set filesuffix=%2\n"
 "\n"
@@ -125,13 +118,6 @@ goto indentFile
 :indentDir
 set searchdir=%1
 
-GOTO assignSuffix
-
-:assignDefaultDir
-::echo !!!!DEFAULT DIR!!!
-set searchdir=.
-
-:assignSuffix
 IF (%2)==() GOTO assignDefaultSuffix
 set filesuffix=%2
 
