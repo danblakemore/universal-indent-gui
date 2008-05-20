@@ -3,9 +3,9 @@ windows_style
 diagrams
   usecasediagram_ref 128002 // MassConvert
     743 411 130 4 0 0
-  active  classdiagram_ref 128130 // Class Diagram
+  classdiagram_ref 128130 // Class Diagram
     708 469 100 4 0 0
-  classdiagram_ref 129282 // Analyse
+  active  classdiagram_ref 129282 // Analyse
     746 404 100 4 0 0
 end
 show_stereotypes
