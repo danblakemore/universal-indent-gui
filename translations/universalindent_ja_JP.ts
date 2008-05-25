@@ -178,47 +178,47 @@ Credits:</source>
 <context>
     <name>IndentHandler</name>
     <message>
-        <location filename="../src/indenthandler.cpp" line="311"/>
+        <location filename="../src/indenthandler.cpp" line="323"/>
         <source>No indenter executable</source>
         <translation>インデントツールの実行ファイルがありません</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1139"/>
+        <location filename="../src/indenthandler.cpp" line="1158"/>
         <source>wine not installed</source>
         <translation>wine がインストールされていません</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1139"/>
+        <location filename="../src/indenthandler.cpp" line="1158"/>
         <source>There exists only a win32 executable of the indenter and wine does not seem to be installed. Please install wine to be able to run the indenter.</source>
         <translation>インデントツールの実行ファイルは win32 形式のものしか存在しません。インデントツールを実行するために wine をインストールしてください。 </translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="336"/>
+        <location filename="../src/indenthandler.cpp" line="349"/>
         <source>&lt;b&gt;Returned error message:&lt;/b&gt; </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="340"/>
+        <location filename="../src/indenthandler.cpp" line="353"/>
         <source>&lt;b&gt;Reason could be:&lt;/b&gt; </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="363"/>
+        <location filename="../src/indenthandler.cpp" line="376"/>
         <source>Error calling Indenter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="374"/>
+        <location filename="../src/indenthandler.cpp" line="387"/>
         <source>&lt;b&gt;Indenter returned with exit code:&lt;/b&gt; </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="375"/>
+        <location filename="../src/indenthandler.cpp" line="388"/>
         <source>&lt;b&gt;Indent console output was:&lt;/b&gt; </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="376"/>
+        <location filename="../src/indenthandler.cpp" line="389"/>
         <source>&lt;br&gt;&lt;b&gt;Callstring was:&lt;/b&gt; </source>
         <translation type="unfinished"></translation>
     </message>
@@ -233,27 +233,27 @@ Credits:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="312"/>
+        <location filename="../src/indenthandler.cpp" line="324"/>
         <source>There exists no indenter executable with the name &quot;%1&quot; in the directory &quot;%2&quot; nor in the global environment.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="361"/>
+        <location filename="../src/indenthandler.cpp" line="374"/>
         <source>&lt;br&gt;&lt;br&gt;&lt;b&gt;Indenter output was:&lt;/b&gt;&lt;pre&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="378"/>
+        <location filename="../src/indenthandler.cpp" line="391"/>
         <source>Indenter returned error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1091"/>
+        <location filename="../src/indenthandler.cpp" line="1112"/>
         <source>Interpreter needed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1092"/>
+        <location filename="../src/indenthandler.cpp" line="1113"/>
         <source>To use the selected indenter the program &quot;%1&quot; needs to be available in the global environment. You should add an entry to your path settings.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -372,22 +372,22 @@ Do you want to save your changes?</source>
     <message>
         <location filename="../src/mainwindow.ui" line="14"/>
         <source>UniversalIndentGUI</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="69"/>
         <source>Indenter</source>
-        <translation type="unfinished">インデントツール</translation>
+        <translation>インデントツール</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="77"/>
         <source>File</source>
-        <translation type="unfinished">ファイル</translation>
+        <translation>ファイル</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="81"/>
         <source>Export</source>
-        <translation type="unfinished">エクスポート</translation>
+        <translation>エクスポート</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="88"/>
@@ -407,7 +407,7 @@ Do you want to save your changes?</source>
     <message>
         <location filename="../src/mainwindow.ui" line="447"/>
         <source>Settings</source>
-        <translation type="unfinished">設定</translation>
+        <translation>設定</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="120"/>
@@ -417,12 +417,12 @@ Do you want to save your changes?</source>
     <message>
         <location filename="../src/mainwindow.ui" line="133"/>
         <source>Help</source>
-        <translation type="unfinished">ヘルプ</translation>
+        <translation>ヘルプ</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="158"/>
         <source>Indenter Parameter</source>
-        <translation type="unfinished">インデントツール パラメータ</translation>
+        <translation>インデントツール パラメータ</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="207"/>
@@ -432,12 +432,12 @@ Do you want to save your changes?</source>
     <message>
         <location filename="../src/mainwindow.ui" line="233"/>
         <source>Open Source File</source>
-        <translation type="unfinished">ソースファイルを開く</translation>
+        <translation>ソースファイルを開く</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="236"/>
         <source>Opens a dialog for selecting a source code file.</source>
-        <translation type="unfinished">ソースコードファイルを選択するためのダイアログを開きます</translation>
+        <translation>ソースコードファイルを選択するためのダイアログを開きます</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="239"/>
@@ -447,12 +447,12 @@ Do you want to save your changes?</source>
     <message>
         <location filename="../src/mainwindow.ui" line="247"/>
         <source>Save Source File</source>
-        <translation type="unfinished">ソースファイルを保存</translation>
+        <translation>ソースファイルを保存</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="250"/>
         <source>Saves the currently shown source code to the last opened or saved source file.</source>
-        <translation type="unfinished">現在開いているソースコードを最後に開いたファイルまたは保存したファイルに保存します。</translation>
+        <translation>現在開いているソースコードを最後に開いたファイルまたは保存したファイルに保存します。</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="253"/>
@@ -462,22 +462,22 @@ Do you want to save your changes?</source>
     <message>
         <location filename="../src/mainwindow.ui" line="261"/>
         <source>Save Source File As</source>
-        <translation type="unfinished">名前を付けてソースファイルを保存</translation>
+        <translation>名前を付けてソースファイルを保存</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="264"/>
         <source>Opens a file dialog to save the currently shown source code.</source>
-        <translation type="unfinished">現在開いているソースコードを保存するためのダイアログを開きます。</translation>
+        <translation>現在開いているソースコードを保存するためのダイアログを開きます。</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="272"/>
         <source>Load Indenter Config File</source>
-        <translation type="unfinished">インデントツールの設定ファイルを開く</translation>
+        <translation>インデントツールの設定ファイルを開く</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="275"/>
         <source>Opens a file dialog to load the original config file of the indenter.</source>
-        <translation type="unfinished">インデントツールの設定ファイルの読み込みダイアログを開きます。</translation>
+        <translation>インデントツールの設定ファイルの読み込みダイアログを開きます。</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="278"/>
@@ -487,12 +487,12 @@ Do you want to save your changes?</source>
     <message>
         <location filename="../src/mainwindow.ui" line="286"/>
         <source>Save Indenter Config File</source>
-        <translation type="unfinished">インデントツールの設定ファイルを保存</translation>
+        <translation>インデントツールの設定ファイルを保存</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="289"/>
         <source>Opens a dialog to save the current indenter configuration to a file.</source>
-        <translation type="unfinished">現在のインデントツールの設定をファイルに保存するためのダイアログを開きます。</translation>
+        <translation>現在のインデントツールの設定をファイルに保存するためのダイアログを開きます。</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="292"/>
@@ -502,22 +502,22 @@ Do you want to save your changes?</source>
     <message>
         <location filename="../src/mainwindow.ui" line="300"/>
         <source>About UniversalIndentGUI</source>
-        <translation type="unfinished">UniversalIndentGUI について</translation>
+        <translation>UniversalIndentGUI について</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="303"/>
         <source>Shows info about UniversalIndentGUI.</source>
-        <translation type="unfinished">UniversalIndentGUI についての情報を表示します。</translation>
+        <translation>UniversalIndentGUI についての情報を表示します。</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="311"/>
         <source>Exit</source>
-        <translation type="unfinished">終了</translation>
+        <translation>終了</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="314"/>
         <source>Quits the UniversalIndentGUI.</source>
-        <translation type="unfinished">UniversalIndentGUI を終了します。</translation>
+        <translation>UniversalIndentGUI を終了します。</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="317"/>
@@ -532,7 +532,7 @@ Do you want to save your changes?</source>
     <message>
         <location filename="../src/mainwindow.ui" line="328"/>
         <source>Export the currently visible source code as PDF document</source>
-        <translation type="unfinished">表示されているソースコードを PDF ファイルとして出力します。</translation>
+        <translation>表示されているソースコードを PDF ファイルとして出力します。</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="336"/>
@@ -542,22 +542,22 @@ Do you want to save your changes?</source>
     <message>
         <location filename="../src/mainwindow.ui" line="339"/>
         <source>Export the currently visible source code as HTML document</source>
-        <translation type="unfinished">表示されているソースコードを HTML として出力します。</translation>
+        <translation>表示されているソースコードを HTML として出力します。</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="353"/>
         <source>Parameter Tooltips</source>
-        <translation type="unfinished">パラメータ ツールチップ</translation>
+        <translation>パラメータ ツールチップ</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="356"/>
         <source>If checked, tool tips will show up if the mouse cursor remains over an indenter parameter for a while.</source>
-        <translation type="unfinished">チェックすると、インデントツールのパラメータの上にしばらくマウスカーソルを置くとツールチップを表示するようにします。</translation>
+        <translation>チェックすると、インデントツールのパラメータの上にしばらくマウスカーソルを置くとツールチップを表示するようにします。</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="367"/>
         <source>Live Indent Preview</source>
-        <translation type="unfinished">インデントの即時プレビュー</translation>
+        <translation>インデントの即時プレビュー</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="370"/>
@@ -655,7 +655,7 @@ Do you want to save your changes?</source>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="16"/>
         <source>Settings</source>
-        <translation type="unfinished">設定</translation>
+        <translation>設定</translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="129"/>
@@ -705,7 +705,7 @@ Do you want to save your changes?</source>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="136"/>
         <source>If checked, tool tips will show up if the mouse cursor remains over an indenter parameter for a while.</source>
-        <translation type="unfinished">チェックすると、インデントツールのパラメータの上にしばらくマウスカーソルを置くとツールチップを表示するようにします。</translation>
+        <translation>チェックすると、インデントツールのパラメータの上にしばらくマウスカーソルを置くとツールチップを表示するようにします。</translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="179"/>
