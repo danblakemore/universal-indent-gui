@@ -1,3 +1,16 @@
+2008-05-25 Version 0.8.2
+[add] Feature Request ID 1971181 : Added support for the HTML indenter HTB.
+[add] Feature Request ID 1867562 : Added support for the HTML indenter hindent.
+[add] Added support for the php indenter phpStylist version 1.0.
+[add] Added the possibility to directly setting php files as indenter. The suffix .php is recognized and php used as default interpreter.
+[add] Extended the created batch/shell script so it is able to indent only one file given as parameter or a whole directory recursively with a defined file suffix.
+[add] Feature Request ID 1885911 : Added the possibility to open a file on applications start, that is handed over as parameter on the command line.
+[add] Feature Request ID 1729429 : Added the possibility to drag'n drop in any source code file for opening it.
+[change] Completed the support for all perl tidy parameters.
+[change] Updated to uncrustify version 0.46.
+[fix] Bug ID 1933074 : On Unix systems the user config files were stored in his home dir in the subfolder ".config". Now they are directly stored in ".universalindentgui".
+[fix] Fixed a bug where the string "<html><body>" was prepended to the output code. Occurred for example when using the shell indenter.
+
 2008-03-27 Version 0.8.1
 [add] Feature Request ID 1909450 : Added support for the PEAR PHP beautifier. Thus PHP beautifying is also possible on Linux and Mac OS X. (Needs the PEAR package "PHP_Beautifier" to be installed and a path entry pointing to the PHP dir.)
 [add] Added support and translations for Russian and Ukrainian language. Thanks to Oleksandr (http://korytskyy.lviv.ua).
