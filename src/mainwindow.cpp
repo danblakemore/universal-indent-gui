@@ -36,9 +36,9 @@
  */
 MainWindow::MainWindow(QString file2OpenOnStart, QWidget *parent) : QMainWindow(parent) {
     // set the program version, revision and date, which is shown in the main window title and in the about dialog.
-    version = "0.8.1";
-    revision = "650";
-    QDate buildDate(2008, 03, 27);
+    version = "0.8.2";
+    revision = "700";
+    QDate buildDate(2008, 05, 25);
     buildDateStr = buildDate.toString("d. MMMM yyyy");
 
     // Get the applications binary path, with respect to MacOSXs use of the .app folder. 
