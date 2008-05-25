@@ -40,7 +40,7 @@ fi
 
 # Configuration
 # -------------
-version=0.8.1
+version=0.8.2
 doSVNUpdate=false
 languages="de zh_TW ja_JP ru uk"
 
@@ -287,7 +287,7 @@ echo ""
 
 echo "Copying the indenter executable files to the target indenters dir"
 echo "-----------------------------------------------------------------"
-indenters="astyle$ext astyle.html bcpp$ext bcpp.txt csstidy$ext greatcode.exe greatcode.txt indent$ext indent.html tidy$ext tidy.html uncrustify$ext uncrustify.txt"
+indenters="astyle$ext astyle.html bcpp$ext bcpp.txt csstidy$ext gc.exe gc.txt htb$ext htb.html indent$ext indent.html tidy$ext tidy.html uncrustify$ext uncrustify.txt"
 if [ "$ext" = ".exe" ]; then
     indenters="$indenters libiconv-2.dll libintl-2.dll"
 fi
@@ -341,7 +341,7 @@ fi
 
 echo "Copying the script based indenters to the target indenters dir"
 echo "--------------------------------------------------------------"
-indenters="JsDecoder.js perltidy PerlTidyLib.pm php_beautifier.html shellindent.awk"
+indenters="hindent hindent.html JsDecoder.js perltidy PerlTidyLib.pm php_beautifier.html phpStylist.php phpStylist.txt shellindent.awk"
 for i in $indenters
 do
     cp ./indenters/$i ./$targetDir/indenters/ &> /dev/null
