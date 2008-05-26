@@ -203,11 +203,13 @@ QString IndentHandler::generateCommandlineCall(QString inputFileExtension) {
     QString shellScript(templateBatchScript);
     shellScript = shellScript.replace("__INDENTERCALLSTRING2__", indenterCompleteCallString + "\n" + replaceInputFileCommand);
     indenterCompleteCallString = indenterCompleteCallString.replace("%1", "%%G");
+    replaceInputFileCommand = replaceInputFileCommand.replace("%1", "%%G");
     shellScript = shellScript.replace("__INDENTERCALLSTRING1__", indenterCompleteCallString + "\n" + replaceInputFileCommand);
 #else
     QString shellScript(templateBatchScript);
     shellScript = shellScript.replace("__INDENTERCALLSTRING2__", indenterCompleteCallString + "\n" + replaceInputFileCommand);
     indenterCompleteCallString = indenterCompleteCallString.replace("$1", "$file2indent");
+    replaceInputFileCommand = replaceInputFileCommand.replace("$1", "$file2indent");
     shellScript = shellScript.replace("__INDENTERCALLSTRING1__", indenterCompleteCallString + "\n" + replaceInputFileCommand);
 #endif
 
