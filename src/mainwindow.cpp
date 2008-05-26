@@ -1412,7 +1412,7 @@ void MainWindow::createIndenterCallShellScript() {
     }
 	
 	// Replace placeholder for script name in script template.
-	indenterCallShellScript = indenterCallShellScript.replace("__INDENTERCALLSTRINGSCRIPTNAME__", fileName);
+	indenterCallShellScript = indenterCallShellScript.replace( "__INDENTERCALLSTRINGSCRIPTNAME__", QFileInfo(fileName).fileName() );
 
 	// Delete any old file, write the new contents and set executable permissions.
     QFile::remove(fileName);
