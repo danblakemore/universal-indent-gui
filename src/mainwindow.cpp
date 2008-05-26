@@ -1396,6 +1396,11 @@ void MainWindow::createIndenterCallShellScript() {
     QString fileExtensions = tr("Shell Script")+" (*."+shellScriptExtension+");;"+tr("All files")+" (*.*)";
 
     QString currentIndenterName = toolBarWidget->cmbBoxIndenters->currentText();
+    // Remove the supported programming languages from indenters name, which are set in braces.
+    if ( currentIndenterName.indexOf("(") > 0 ) {
+        // Using index-1 to also leave out the blank before the brace.
+        currentIndenterName = currentIndenterName.left( currentIndenterName.indexOf("(")-1 );
+    }
     currentIndenterName = currentIndenterName.replace(" ", "_");
 
     //QString openedSourceFileContent = openFileDialog( tr("Choose source code file"), "./", fileExtensions );
@@ -1410,6 +1415,10 @@ void MainWindow::createIndenterCallShellScript() {
     QFile outSrcFile(fileName);
     outSrcFile.open( QFile::ReadWrite | QFile::Text );
     outSrcFile.write( indenterCallShellScript.toAscii() );
+#if !defined(Q_OS_WIN32)
+// For none Windows systems the files executable flag
+    outSrcFile.setPermissions( outSrcFile.permissions() | QFile::ExeOwner | QFile::ExeUser| QFile::ExeGroup );
+#endif
     outSrcFile.close();
 }
 
