@@ -438,6 +438,11 @@ else
         echo "ERROR: Could not create archive \"$targetArchiveName\"!"
         exit 1
     fi
+    # wait until the tar file has been created
+    while [ ! -f "$targetArchiveName" ]
+    do
+        sleep 1
+    done
     gzip -9 -f $targetArchiveName
     if [ $? -gt 0 ]; then
         echo "ERROR: Could not create archive \"$targetArchiveName.gz\"!"
