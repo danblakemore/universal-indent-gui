@@ -1,4 +1,5 @@
 2008-05-25 Version 0.8.2
+[add] Feature Request ID 1971206 : Now showing by the indenter supported programming languages next to indenter name.
 [add] Feature Request ID 1971181 : Added support for the HTML indenter HTB.
 [add] Feature Request ID 1867562 : Added support for the HTML indenter hindent.
 [add] Added support for the php indenter phpStylist version 1.0.
