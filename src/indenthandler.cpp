@@ -1067,54 +1067,59 @@ bool IndentHandler::createIndenterCallString() {
 
         // Only try to call the indenter, if the file exists.
         if ( QFile::exists(indenterExecutableCallString) ) {
-            indentProcess.start( "\"" + indenterExecutableCallString +  + "\" " + indenterShowHelpParameter );
-            if ( indentProcess.waitForFinished(2000) ) {
-                indenterExecutableCallString = "\"" + indenterExecutableCallString + "\"";
-                return true;
+        
+            // Only try to call the indenter directly if it is no php file
+            if ( QFileInfo(indenterExecutableCallString).suffix().toLower() != "php" ) {
+                indentProcess.start( "\"" + indenterExecutableCallString +  + "\" " + indenterShowHelpParameter );
+                if ( indentProcess.waitForFinished(2000) ) {
+                    indenterExecutableCallString = "\"" + indenterExecutableCallString + "\"";
+                    return true;
+                }
+                else if ( indentProcess.error() == QProcess::Timedout ) {
+                    indenterExecutableCallString = "\"" + indenterExecutableCallString + "\"";
+                    return true;
+                }
             }
-            else if ( indentProcess.error() == QProcess::Timedout ) {
-                indenterExecutableCallString = "\"" + indenterExecutableCallString + "\"";
-                return true;
-            }
+            
+            // Test for needed interpreters
+            // ----------------------------
             // If the file could not be executed, try to find a shebang at its start or test if its a php file.
-            else {
-                QString interpreterName = "";
-                QFile indenterExecutable( indenterExecutableCallString );
+            QString interpreterName = "";
+            QFile indenterExecutable( indenterExecutableCallString );
 
-                // If indenter executable file has .php as suffix, use php as default interpreter
-                if ( QFileInfo(indenterExecutableCallString).suffix().toLower() == "php" ) {
-                    interpreterName = "php -f";
+            // If indenter executable file has .php as suffix, use php as default interpreter
+            if ( QFileInfo(indenterExecutableCallString).suffix().toLower() == "php" ) {
+                interpreterName = "php -f";
+            }
+            // Else try to open the file and read the shebang.
+            else if ( indenterExecutable.open(QFile::ReadOnly) ) {
+                // Read the first line of the file.
+                QTextStream indenterExecutableContent(&indenterExecutable);
+                QString firstLineOfIndenterExe = indenterExecutableContent.readLine(75);
+                indenterExecutable.close();
+
+                // If the initial shebang is found, read the named intepreter. e.g. perl
+                if ( firstLineOfIndenterExe.startsWith("#!") ) {
+                    // Get the rightmost word. by splitting the string into only full words.
+                    interpreterName = firstLineOfIndenterExe.split( "/" ).last();
                 }
-                // Else try to open the file and read the shebang.
-                else if ( indenterExecutable.open(QFile::ReadOnly) ) {
-                    // Read the first line of the file.
-                    QTextStream indenterExecutableContent(&indenterExecutable);
-                    QString firstLineOfIndenterExe = indenterExecutableContent.readLine(75);
-                    indenterExecutable.close();
+            }
 
-                    // If the initial shebang is found, read the named intepreter. e.g. perl
-                    if ( firstLineOfIndenterExe.startsWith("#!") ) {
-                        // Get the rightmost word. by splitting the string into only full words.
-                        interpreterName = firstLineOfIndenterExe.split( "/" ).last();
-                    }
+            // Try to call the interpreter, if it exists.
+            if ( !interpreterName.isEmpty() ) {
+                indenterExecutableCallString = interpreterName + " \"" + indenterExecutableCallString + "\"";
+                indentProcess.start( interpreterName + " -h");
+                if ( indentProcess.waitForFinished(2000) ) {
+                    return true;
                 }
-
-                // Try to call the interpreter, if it exists.
-                if ( !interpreterName.isEmpty() ) {
-                    indenterExecutableCallString = interpreterName + " \"" + indenterExecutableCallString + "\"";
-                    indentProcess.start( interpreterName + " -h");
-                    if ( indentProcess.waitForFinished(2000) ) {
-                        return true;
-                    }
-                    else if ( indentProcess.error() == QProcess::Timedout ) {
-                        return true;
-                    }
-                    // now we know an interpreter is needed but it could not be called, so inform the user.
-                    else {
-                        errorMessageDialog->showMessage( tr("Interpreter needed"), 
-                            tr("To use the selected indenter the program \"%1\" needs to be available in the global environment. You should add an entry to your path settings.").arg(interpreterName) );
-                        return true;
-                    }
+                else if ( indentProcess.error() == QProcess::Timedout ) {
+                    return true;
+                }
+                // now we know an interpreter is needed but it could not be called, so inform the user.
+                else {
+                    errorMessageDialog->showMessage( tr("Interpreter needed"), 
+                        tr("To use the selected indenter the program \"%1\" needs to be available in the global environment. You should add an entry to your path settings.").arg(interpreterName) );
+                    return true;
                 }
             }
         }
