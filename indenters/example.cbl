@@ -1,30 +1,59 @@
-      $ SET SOURCEFORMAT"FREE"
-IDENTIFICATION DIVISION.
-PROGRAM-ID.  Iteration-If.
-AUTHOR.  Michael Coughlan.
-
-DATA DIVISION.
-WORKING-STORAGE SECTION.
-01  Num1           PIC 9  VALUE ZEROS.
-01  Num2           PIC 9  VALUE ZEROS.
-01  Result         PIC 99 VALUE ZEROS.
-01  Operator       PIC X  VALUE SPACE.
-
-PROCEDURE DIVISION.
-Calculator.
-    PERFORM 3 TIMES
-       DISPLAY "Enter First Number      : " WITH NO ADVANCING
-       ACCEPT Num1
-       DISPLAY "Enter Second Number     : " WITH NO ADVANCING
-       ACCEPT Num2
-       DISPLAY "Enter operator (+ or *) : " WITH NO ADVANCING
-       ACCEPT Operator
-       IF Operator = "+" THEN
-          ADD Num1, Num2 GIVING Result
-       END-IF
-       IF Operator = "*" THEN
-          MULTIPLY Num1 BY Num2 GIVING Result
-       END-IF
-       DISPLAY "Result is = ", Result
-    END-PERFORM.
-    STOP RUN.
+000000* An example illustrating the use of a programmer defined paragraphs
+      * and perform-thru
+       identification division.
+       program-id.     level88.
+       author.         kik.
+       environment division.
+       configuration section.
+       special-names.
+            console is crt
+            decimal-point is comma.
+       data division.
+       working-storage section.
+       77  transaction-kode    pic 99.
+       88  valid-kode          value 4, 8 thru 15.
+       88  create              value 10.
+       88  destroy             value 15.
+
+       procedure division.
+       main section.
+      *
+      *  Some code leading to "transacion-kode" getting a value
+      *
+
+           move 10 to transaction-kode.
+
+
+      *
+      * Testing the conditions 
+      *
+
+           if valid-kode then
+              if create then
+                 perform p-create thru p-create-end
+              else
+                 if destroy then
+                    perform p-destroy thru p-destroy-end
+                 else
+                    perform ordinary-transaction 
+                            thru ordinary-transaction-end.
+
+      *
+       p-create.
+      *  some creation code
+       p-create-end.
+         exit.
+
+       p-destroy.
+      *  some destruction code
+       p-destroy-end.
+         exit. 
+
+       ordinary-transaction.
+      *  some ordinary data processing code
+       ord-trns-1.
+
+       ord-trns-2.
+
+       ordinary-transaction-end.
+         exit.
