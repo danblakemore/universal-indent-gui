@@ -65,9 +65,9 @@ QStringList UiguiIniFileParser::childGroups()
     <code>[NiceSection]</br>niceKeyName=2</code> you would have to call
     value("NiceSection/niceKeyName").
  */
-QVariant UiguiIniFileParser::value(const QString &keyName)
+QVariant UiguiIniFileParser::value(const QString &keyName, const QString &defaultValue)
 {
-    return keyValueMap.value(keyName, QVariant("error") );   
+    return keyValueMap.value( keyName, defaultValue );   
 }
 
 
@@ -87,7 +87,7 @@ void UiguiIniFileParser::parseIniFile()
         QString line;
         QString currentSectionName = "";
         QString keyName = "";
-        QString keyValueAsString = "";
+        QString valueAsString = "";
 
         while ( !iniFileStream.atEnd() ) {
             line = iniFileStream.readLine().trimmed();
@@ -106,7 +106,12 @@ void UiguiIniFileParser::parseIniFile()
                 keyName = line.left(indexOfFirstAssign);
 
                 if ( !keyName.isEmpty() ) {
-                    keyValueAsString = line.remove(0, indexOfFirstAssign+1);
+                    valueAsString = line.remove(0, indexOfFirstAssign+1);
+                    // Remove any existing double quotes from the value.
+                    if ( valueAsString.startsWith("\"") && valueAsString.endsWith("\"") ) {
+                        valueAsString = valueAsString.remove(0, 1);
+                        valueAsString.chop(1);
+                    }
 
                     // Prepend an eventually section name to the key name.
                     if ( !currentSectionName.isEmpty() ) {
@@ -114,7 +119,7 @@ void UiguiIniFileParser::parseIniFile()
                     }
 
                     // Store the key and value in the map.
-                    keyValueMap.insert(keyName, keyValueAsString );
+                    keyValueMap.insert(keyName, valueAsString );
                 }
             }
         }

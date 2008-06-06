@@ -43,6 +43,7 @@
 
 #include "uiguierrormessage.h"
 #include "templateBatchScript.h"
+#include "uiguiIniFileParser.h"
 
 
 class IndentHandler : public QWidget
@@ -74,7 +75,6 @@ private:
     void writeConfigFile(QString filePathName, QString parameterString);
     void readIndentIniFile(QString iniFilePath);
     bool createIndenterCallString();
-    void writeParameterWidgetValues2IniSettings();
 
     //! Holds a reference to all created pages of the toolbox and the pages boxlayout
     struct ToolBoxPage {
@@ -125,7 +125,7 @@ private:
 
     QVBoxLayout *vboxLayout;
     QToolBox *toolBox;
-    QSettings *indenterSettings;
+    UiguiIniFileParser *indenterSettings;
     QStringList indenterParameters;
     QByteArray cfgFileData;
     //! The indenters name in a descriptive form

@@ -38,7 +38,7 @@ public:
     UiguiIniFileParser(void);
     UiguiIniFileParser(const QString &iniFileName);
     ~UiguiIniFileParser(void);
-    QVariant value(const QString &keyName);
+    QVariant value(const QString &keyName, const QString &defaultValue="");
     QStringList childGroups();
 
 private:

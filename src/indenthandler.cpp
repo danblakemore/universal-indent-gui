@@ -101,8 +101,6 @@ IndentHandler::IndentHandler(QString indenterDirPathStr, QString settingsDirPath
 
 
 IndentHandler::~IndentHandler() {
-    //writeParameterWidgetValues2IniSettings();
-
     // Generate the parameter string that will be saved to the indenters config file.
     QString parameterString = getParameterString();
     if ( !indenterFileName.isEmpty() ) {
@@ -465,41 +463,6 @@ QString IndentHandler::getParameterString() {
 
 
 /*!
-    \brief Writes all the values from the controls that influence the indenter parameters to the
-    ini file settings.
- */
-void IndentHandler::writeParameterWidgetValues2IniSettings() {
-    // Write all boolean values.
-    foreach (ParamBoolean pBoolean, paramBooleans) {
-        if ( pBoolean.checkBox->isChecked() ) {
-            indenterSettings->setValue( pBoolean.paramName + "/Value", 1);
-        }
-        else {
-            indenterSettings->setValue( pBoolean.paramName + "/Value", 0);
-        }
-    }
-
-    // Write all numeric values.
-    foreach (ParamNumeric pNumeric, paramNumerics) {
-        indenterSettings->setValue( pNumeric.paramName + "/Value", pNumeric.spinBox->value() );
-        indenterSettings->setValue( pNumeric.paramName + "/Enabled", pNumeric.valueEnabledChkBox->isChecked() );
-    }
-
-    // Write all string values.
-    foreach (ParamString pString, paramStrings) {
-        indenterSettings->setValue( pString.paramName + "/Value", pString.lineEdit->text() );
-        indenterSettings->setValue( pString.paramName + "/Enabled", pString.valueEnabledChkBox->isChecked() );
-    }
-
-    // Write all multiple choice values
-    foreach (ParamMultiple pMultiple, paramMultiples) {
-        indenterSettings->setValue( pMultiple.paramName + "/Value", pMultiple.comboBox->currentIndex () );
-        indenterSettings->setValue( pMultiple.paramName + "/Enabled", pMultiple.valueEnabledChkBox->isChecked() );
-    }
-}
-
-
-/*!
     \brief Write settings for the indenter to a config file.
  */
 void IndentHandler::writeConfigFile(QString filePathName, QString paramString) {
@@ -691,7 +654,7 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
     Q_ASSERT_X( !iniFilePath.isEmpty(), "readIndentIniFile", "iniFilePath is empty" );
 
     // open the ini-file that contains all available indenter settings with their additional infos
-    indenterSettings = new QSettings(iniFilePath, QSettings::IniFormat, this);
+    indenterSettings = new UiguiIniFileParser(iniFilePath);
 
     QStringList categories;
     //QString indenterGroupString = "";
