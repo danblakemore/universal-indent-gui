@@ -20,14 +20,18 @@
 #include "mainwindow.h"
 #include <QApplication>
 
+#include "uiguiIniFileParser.h"
 
 /*!
-    \brief Entry point to UniversalIndentGUI application. Does not evaluate any command line parameters.
+    /brief Entry point to UniversalIndentGUI application. Does not evaluate any command line parameters.
  */
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
     QString file2OpenOnStart = "";
+
+    //UiguiIniFileParser iniParser("C:/Dokumente und Einstellungen/ts/Eigene Dateien/Visual Studio 2005/Projects/UiGui/indenters/uigui_astyle.ini");
+    //iniParser.childGroups();
 
     if ( argc > 1 ) {
         file2OpenOnStart = argv[1];

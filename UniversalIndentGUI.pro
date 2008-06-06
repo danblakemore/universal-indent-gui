@@ -154,6 +154,7 @@ HEADERS += src/aboutdialog.h \
            src/indenthandler.h \
            src/mainwindow.h \
            src/uiguierrormessage.h \
+		   src/uiguiIniFileParser.h \
            src/uiguisettings.h \
            src/uiguisettingsdialog.h \
            src/updatecheckdialog.h
@@ -170,6 +171,7 @@ SOURCES += src/aboutdialog.cpp \
            src/main.cpp \
            src/mainwindow.cpp \
            src/uiguierrormessage.cpp \
+		   src/uiguiIniFileParser.cpp \
            src/uiguisettings.cpp \
            src/uiguisettingsdialog.cpp \
            src/updatecheckdialog.cpp
