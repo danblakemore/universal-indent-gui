@@ -14,10 +14,9 @@ The ini file has equal base format as common used ini files. It contains groups,
 <br>
 2. Ini file header<br>
 ------------------<br>
-At the beginning of the ini file the header is located. It is named [%20header]. You might wonder why I use the "%20" before the header. The reason for this is, that Qt, which I use as programming framework, automatically sorts the ini file by the group names in alphabetical order. To have the header at the beginning of each ini file I use "%20", it stands for a space. So nothing important about this.<br>
-Following a ini file header is shown:<br>
+At the beginning of the ini file the header is located. It is named [header]. In the following a ini file header is shown:<br>
 <pre>
-[%20header]
+[header]
 categories=Predefined Style|Tab and Bracket|Indentation|Formatting
 cfgFileParameterEnding=cr
 configFilename=.astylerc

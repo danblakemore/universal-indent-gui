@@ -702,28 +702,28 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
     //  parse ini file indenter header
     //
 
-    indenterName = indenterSettings->value(" header/indenterName").toString();
-    indenterFileName = indenterSettings->value(" header/indenterFileName").toString();
-    configFilename = indenterSettings->value(" header/configFilename").toString();
-    useCfgFileParameter = indenterSettings->value(" header/useCfgFileParameter").toString();
-    cfgFileParameterEnding = indenterSettings->value(" header/cfgFileParameterEnding").toString();
+    indenterName = indenterSettings->value("header/indenterName").toString();
+    indenterFileName = indenterSettings->value("header/indenterFileName").toString();
+    configFilename = indenterSettings->value("header/configFilename").toString();
+    useCfgFileParameter = indenterSettings->value("header/useCfgFileParameter").toString();
+    cfgFileParameterEnding = indenterSettings->value("header/cfgFileParameterEnding").toString();
     if ( cfgFileParameterEnding == "cr" ) {
         cfgFileParameterEnding = "\n";
     }
-    indenterShowHelpParameter = indenterSettings->value(" header/showHelpParameter").toString();
+    indenterShowHelpParameter = indenterSettings->value("header/showHelpParameter").toString();
 
 	// Read the parameter order. Possible values are (p=parameter[file] i=inputfile o=outputfile)
 	// pio, ipo, iop
-	parameterOrder = indenterSettings->value(" header/parameterOrder", "pio").toString();
-    inputFileParameter = indenterSettings->value(" header/inputFileParameter").toString();
-    inputFileName = indenterSettings->value(" header/inputFileName").toString();
-    outputFileParameter = indenterSettings->value(" header/outputFileParameter").toString();
-    outputFileName = indenterSettings->value(" header/outputFileName").toString();
-    fileTypes = indenterSettings->value(" header/fileTypes").toString();
+	parameterOrder = indenterSettings->value("header/parameterOrder", "pio").toString();
+    inputFileParameter = indenterSettings->value("header/inputFileParameter").toString();
+    inputFileName = indenterSettings->value("header/inputFileName").toString();
+    outputFileParameter = indenterSettings->value("header/outputFileParameter").toString();
+    outputFileName = indenterSettings->value("header/outputFileName").toString();
+    fileTypes = indenterSettings->value("header/fileTypes").toString();
     fileTypes.replace('|', " ");
 
     // read the categories names which are separated by "|"
-    QString categoriesStr = indenterSettings->value(" header/categories").toString();
+    QString categoriesStr = indenterSettings->value("header/categories").toString();
     categories = categoriesStr.split("|");
 	// Assure that the category list is never empty. At least contain a "general" section.
 	if ( categories.isEmpty() ) {
@@ -761,7 +761,7 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
 
         // if it is not the indent header definition read the parameter and add it to
         // the corresponding category toolbox page
-        if ( indenterParameter != " header") {
+        if ( indenterParameter != "header") {
             // read to which category the parameter belongs
             int category = indenterSettings->value(indenterParameter + "/Category").toInt();
 			// Assure that the category number is never greater than the available categories.
@@ -1187,7 +1187,7 @@ bool IndentHandler::createIndenterCallString() {
  */
 QString IndentHandler::getManual() {
     if ( indenterSettings != NULL ) {
-        return indenterSettings->value(" header/manual").toString();
+        return indenterSettings->value("header/manual").toString();
     }
     else {
         return "";
