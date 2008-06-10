@@ -263,7 +263,6 @@ void MainWindow::initToolBar() {
     toolBarWidget->uiGuiSyntaxHighlightningEnabled->hide();
     connect( toolBarWidget->pbOpen_Source_File, SIGNAL(clicked()), this, SLOT(openSourceFileDialog()) );
     connect( toolBarWidget->pbExit, SIGNAL(clicked()), this, SLOT(close()));
-    connect( toolBarWidget->cmbBoxIndenters, SIGNAL(activated(int)), this, SLOT(selectIndenter(int)) );
     connect( toolBarWidget->cbLivePreview, SIGNAL(toggled(bool)), this, SLOT(previewTurnedOnOff(bool)) );
     connect( toolBarWidget->cbLivePreview, SIGNAL(toggled(bool)), actionLive_Indent_Preview, SLOT(setChecked(bool)) );
     connect( actionLive_Indent_Preview, SIGNAL(toggled(bool)), toolBarWidget->cbLivePreview, SLOT(setChecked(bool)) );
@@ -390,22 +389,6 @@ void MainWindow::initIndenter() {
     indentHandler = new IndentHandler(indenterDirctoryStr, settingsDirctoryStr, tempDirctoryStr, currentIndenterID, this, centralwidget);
     vboxLayout->addWidget(indentHandler);
 
-    // Check whether indenters are available.
-	if ( !indentHandler->getAvailableIndenters().isEmpty() ) {
-		toolBarWidget->cmbBoxIndenters->addItems( indentHandler->getAvailableIndenters() );
-		// Take care if the selected indenterID is greater than the number of existing indenters
-		if ( currentIndenterID >= indentHandler->getAvailableIndenters().count() ) {
-			currentIndenterID = indentHandler->getAvailableIndenters().count() - 1;
-		}
-	}
-    // If no indenter are found, show a warning message.
-	else {
-		currentIndenterID = 0;
-	}
-
-    // Set the combobox in the toolbar to show the selected indenter.
-    toolBarWidget->cmbBoxIndenters->setCurrentIndex( currentIndenterID );
-
     // If settings for the indenter have changed, let the main window know aboud it.
     connect(indentHandler, SIGNAL(indenterSettingsChanged()), this, SLOT(indentSettingsChangedSlot()));
 
@@ -417,59 +400,6 @@ void MainWindow::initIndenter() {
     connect( uiGuiIndenterParameterTooltipsEnabled, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern(bool)) );
     connect( settings, SIGNAL(indenterParameterTooltipsEnabled(bool)), uiGuiIndenterParameterTooltipsEnabled, SLOT(setChecked(bool)) );
     uiGuiIndenterParameterTooltipsEnabled->setChecked( settings->getValueByName("IndenterParameterTooltipsEnabled").toBool() );
-
-    // Handle if the indenter help/manual button is pressed
-    connect( toolBarWidget->indenterManualButton, SIGNAL(clicked()), this, SLOT(showIndenterManual()) );
-}
-
-
-/*!
-    \brief Creates the by \a indenterID selected indent handler object and adds the indent widget to its layout.
- */
-void MainWindow::selectIndenter(int indenterID) {
-    IndentHandler *oldIndentHandler = indentHandler;
-
-    // Prevent unnecessary updates if same indenter as current has been selected
-    if ( indenterID == currentIndenterID ) {
-        return;
-    }
-
-    // Disconnect the old indent handler from the settings changed slot, because he will be deleted.
-    disconnect(oldIndentHandler, SIGNAL(indenterSettingsChanged()), this, SLOT(indentSettingsChangedSlot()));
-
-    QApplication::setOverrideCursor(Qt::WaitCursor);
-
-    indentHandler = new IndentHandler(indenterDirctoryStr, settingsDirctoryStr, tempDirctoryStr, indenterID, this, centralwidget);
-    indentHandler->hide();
-    vboxLayout->insertWidget(0, indentHandler);
-    oldIndentHandler->hide();
-    indentHandler->show();
-    vboxLayout->removeWidget(oldIndentHandler);
-    delete oldIndentHandler;
-
-    // Take care if the selected indenterID is smaller or greater than the number of existing indenters
-    if ( indenterID < 0 ) {
-        indenterID = 0;
-    }
-    if ( indenterID >= indentHandler->getAvailableIndenters().count() ) {
-        indenterID = indentHandler->getAvailableIndenters().count() - 1;
-    }
-
-    // Set the combobox in the toolbar to show the selected indenter.
-    toolBarWidget->cmbBoxIndenters->setCurrentIndex(indenterID);
-
-    // If settings for the indenter have changed, let the main window know aboud it.
-    connect(indentHandler, SIGNAL(indenterSettingsChanged()), this, SLOT(indentSettingsChangedSlot()));
-
-    currentIndenterID = indenterID;
-    if ( toolBarWidget->cbLivePreview->isChecked() ) {
-        callIndenter();
-    }
-
-    previewToggled = true;
-    indentSettingsChanged = true;
-    updateSourceView();
-    QApplication::restoreOverrideCursor();
 }
 
 
@@ -1356,10 +1286,19 @@ void MainWindow::changeEvent(QEvent *event) {
         // Translate the toolbar.
         toolBarWidget->retranslateUi(toolBar);
 
-         // Translate the encoding menu.
+        // Translate the indent handler widget.
+        indentHandler->retranslateUi();
+
+         // Translate the load encoding menu.
         QList<QAction *> encodingActionList = encodingActionGroup->actions();
         for ( i = 0; i < encodingActionList.size(); i++ ) {
             encodingActionList.at(i)->setStatusTip( tr("Reopen the currently opened source code file by using the text encoding scheme ") + encodingsList.at(i) );
+        }
+
+        // Translate the save encoding menu.
+        encodingActionList = saveEncodedActionGroup->actions();
+        for ( i = 0; i < encodingActionList.size(); i++ ) {
+            encodingActionList.at(i)->setStatusTip( tr("Save the currently opened source code file by using the text encoding scheme ") + encodingsList.at(i) );
         }
 
         // Translate the highlighter menu.
@@ -1395,12 +1334,7 @@ void MainWindow::createIndenterCallShellScript() {
 
     QString fileExtensions = tr("Shell Script")+" (*."+shellScriptExtension+");;"+tr("All files")+" (*.*)";
 
-    QString currentIndenterName = toolBarWidget->cmbBoxIndenters->currentText();
-    // Remove the supported programming languages from indenters name, which are set in braces.
-    if ( currentIndenterName.indexOf("(") > 0 ) {
-        // Using index-1 to also leave out the blank before the brace.
-        currentIndenterName = currentIndenterName.left( currentIndenterName.indexOf("(")-1 );
-    }
+    QString currentIndenterName = indentHandler->getCurrentIndenterName();
     currentIndenterName = currentIndenterName.replace(" ", "_");
 
     //QString openedSourceFileContent = openFileDialog( tr("Choose source code file"), "./", fileExtensions );
@@ -1561,15 +1495,6 @@ void MainWindow::openFileFromRecentlyOpenedList(QAction* recentlyOpenedAction) {
         // any of these actions in updateRecentlyOpenedList() causes an error.
 		QTimer::singleShot(0, this, SLOT(updateRecentlyOpenedList()) );
 	}
-}
-
-
-/*!
-    \brief This slot gets the reference to the indenters manual from the indenter handler and opens it.
- */
-void MainWindow::showIndenterManual() {
-    QString manualReference = indentHandler->getManual();
-    QDesktopServices::openUrl( manualReference );
 }
 
 

@@ -155,7 +155,7 @@
     <set>Qt::LeftDockWidgetArea|Qt::NoDockWidgetArea|Qt::RightDockWidgetArea</set>
    </property>
    <property name="windowTitle" >
-    <string>Indenter Parameter</string>
+    <string>Indenter Settings</string>
    </property>
    <attribute name="dockWidgetArea" >
     <number>1</number>

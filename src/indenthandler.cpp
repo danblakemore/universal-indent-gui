@@ -45,6 +45,8 @@ IndentHandler::IndentHandler(QString indenterDirPathStr, QString settingsDirPath
 {
     Q_ASSERT_X( indenterID >= 0, "IndentHandler", "the selected indenterID is < 0" );
 
+    setObjectName(QString::fromUtf8("indentHandler"));
+
     this->mainWindow = mainWindow;
 
     indenterSettings = NULL;
@@ -56,6 +58,26 @@ IndentHandler::IndentHandler(QString indenterDirPathStr, QString settingsDirPath
     // create vertical layout box, into which the toolbox will be added
     vboxLayout = new QVBoxLayout(this);
     vboxLayout->setMargin(2);
+
+    // Create horizontal layout for indenter selector and help button.
+    QHBoxLayout *hboxLayout = new QHBoxLayout(this);
+    //hboxLayout->setMargin(2);
+    vboxLayout->addLayout( hboxLayout );
+
+    // Create the indenter selection combo box.
+    indenterSelectionComboBox = new QComboBox(this);
+    indenterSelectionComboBox->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
+    indenterSelectionComboBox->setMinimumContentsLength(20);
+    connect( indenterSelectionComboBox, SIGNAL(activated(int)), this, SLOT(setIndenter(int)) );
+    hboxLayout->addWidget( indenterSelectionComboBox );
+
+    // Create the indenter parameter help button.
+    indenterParameterHelpButton = new QToolButton(this);
+    indenterParameterHelpButton->setObjectName(QString::fromUtf8("indenterParameterHelpButton"));
+    indenterParameterHelpButton->setIcon(QIcon(QString::fromUtf8(":/mainWindow/help.png")));
+    hboxLayout->addWidget( indenterParameterHelpButton );
+    // Handle if the indenter parameter help button is pressed.
+    connect( indenterParameterHelpButton, SIGNAL(clicked()), this, SLOT(showIndenterManual()) );
 
     // create a toolbox and set its resize behavior
     toolBox = new QToolBox(this);
@@ -93,10 +115,18 @@ IndentHandler::IndentHandler(QString indenterDirPathStr, QString settingsDirPath
 
         // Load the users last settings made for this indenter.
         loadConfigFile( settingsDirctoryStr + "/" + indenterFileName + ".cfg" );
+
+        // Fill the indenter selection combo box with the list of available indenters.
+        if ( !getAvailableIndenters().isEmpty() ) {
+            indenterSelectionComboBox->addItems( getAvailableIndenters() );
+            indenterSelectionComboBox->setCurrentIndex( indenterID );
+        }
     }
     else {
         errorMessageDialog->showMessage(tr("No indenter ini files"), tr("There exists no indenter ini files in the directory \"") + QDir(indenterDirctoryStr).absolutePath() + "\".");
-    }    
+    }
+
+    retranslateUi();
 }
 
 
@@ -964,6 +994,14 @@ QStringList IndentHandler::getAvailableIndenters() {
  */
 void IndentHandler::setIndenter(int indenterID) {
     // TODO: This function is never called because out of the mainwindow object a new indenthandler object is created if another indenter is selected.
+    
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+
+    // Generate the parameter string that will be saved to the indenters config file.
+    QString parameterString = getParameterString();
+    if ( !indenterFileName.isEmpty() ) {
+        writeConfigFile( settingsDirctoryStr + "/" + indenterFileName + ".cfg", parameterString );
+    }
 
     // Take care if the selected indenterID is smaller or greater than the number of existing indenters
     if ( indenterID < 0 ) {
@@ -988,9 +1026,20 @@ void IndentHandler::setIndenter(int indenterID) {
     paramStrings.clear();
     paramNumerics.clear();
     paramBooleans.clear();
+    paramMultiples.clear();
     delete indenterSettings;
 
     readIndentIniFile( indenterDirctoryStr + "/" + indenterIniFileList.at(indenterID) );
+
+    // Find out how the indenter can be executed.
+    createIndenterCallString();
+
+    // Load the users last settings made for this indenter.
+    loadConfigFile( settingsDirctoryStr + "/" + indenterFileName + ".cfg" );
+
+    emit( indenterSettingsChanged() );
+
+    QApplication::restoreOverrideCursor();
 }
 
 
@@ -1155,4 +1204,38 @@ QString IndentHandler::getManual() {
     else {
         return "";
     }
+}
+
+
+/*!
+    \brief This slot gets the reference to the indenters manual and opens it.
+ */
+void IndentHandler::showIndenterManual() {
+    QString manualReference = getManual();
+    QDesktopServices::openUrl( manualReference );
+}
+
+
+/*!
+    \brief Can be called to update all widgets text to the currently selected language.
+ */
+void IndentHandler::retranslateUi() {
+    indenterSelectionComboBox->setToolTip( tr("<html><head><meta name=\"qrichtext\" content=\"1\" /></head><body style=\" white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;\"><p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Shows the currently chosen indenters name and lets you choose other available indenters</p></body></html>") );
+    indenterParameterHelpButton->setToolTip( tr("Brings you to the online manual of the currently selected indenter, where you can get further help on the possible parameters.") );
+}
+
+
+/*!
+    \brief Returns the name of the currently selected indenter.
+ */
+QString IndentHandler::getCurrentIndenterName() {
+    QString currentIndenterName = indenterSelectionComboBox->currentText();
+
+    // Remove the supported programming languages from indenters name, which are set in braces.
+    if ( currentIndenterName.indexOf("(") > 0 ) {
+        // Using index-1 to also leave out the blank before the brace.
+        currentIndenterName = currentIndenterName.left( currentIndenterName.indexOf("(")-1 );
+    }
+
+    return currentIndenterName;
 }

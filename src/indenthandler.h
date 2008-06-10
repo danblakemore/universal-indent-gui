@@ -26,6 +26,7 @@
 #include <QApplication>
 #include <QCheckBox>
 #include <QComboBox>
+#include <QToolButton>
 #include <QFile>
 #include <QProcess>
 #include <QSettings>
@@ -39,7 +40,8 @@
 #include <QMainWindow>
 #include <QTextStream>
 #include <QTextCodec>
-#include <QtScript> 
+#include <QtScript>
+#include <QDesktopServices>
 
 #include "uiguierrormessage.h"
 #include "templateBatchScript.h"
@@ -62,12 +64,15 @@ public:
     QString getParameterString();
     QString getIndenterCfgFile();
     QString getManual();
+    void retranslateUi();
+    QString getCurrentIndenterName();
 
 signals:
     void indenterSettingsChanged();
     
 private slots:
     void setIndenter(int indenterID);
+    void showIndenterManual();
 
 private:
     QString callExecutableIndenter(QString sourceCode, QString inputFileExtension);
@@ -123,6 +128,8 @@ private:
     };
     QVector<ParamMultiple> paramMultiples;
 
+    QComboBox *indenterSelectionComboBox;
+    QToolButton *indenterParameterHelpButton;
     QVBoxLayout *vboxLayout;
     QToolBox *toolBox;
     UiguiIniFileParser *indenterSettings;

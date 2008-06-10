@@ -42,29 +42,6 @@
     </widget>
    </item>
    <item>
-    <widget class="QComboBox" name="cmbBoxIndenters" >
-     <property name="toolTip" >
-      <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;/head>&lt;body style=" white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;">&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Shows the currently chosen indenters name and lets you choose other available indenters&lt;/p>&lt;/body>&lt;/html></string>
-     </property>
-     <property name="sizeAdjustPolicy" >
-      <enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum>
-     </property>
-     <property name="minimumContentsLength" >
-      <number>20</number>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QToolButton" name="indenterManualButton" >
-     <property name="toolTip" >
-      <string>Brings you to the online manual of the currently selected indenter, where you can get further help on the possible parameters.</string>
-     </property>
-     <property name="icon" >
-      <iconset resource="../resources/Icons.qrc" >:/mainWindow/help.png</iconset>
-     </property>
-    </widget>
-   </item>
-   <item>
     <widget class="QCheckBox" name="cbLivePreview" >
      <property name="toolTip" >
       <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;/head>&lt;body style=" white-space: pre-wrap; font-family:MS Shell Dlg 2; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;">&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;">Turns the preview of the reformatted source code on and off.&lt;/p>&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;">In other words it switches between formatted and nonformatted code. (Ctrl+L)&lt;/p>&lt;/body>&lt;/html></string>
