@@ -778,7 +778,6 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
 
                 // create the spinbox
                 QSpinBox *spinBox = new QSpinBox( toolBoxPages.at(category).page );
-                spinBox->setValue( indenterSettings->value(indenterParameter + "/Value").toInt() );
                 paramToolTip = indenterSettings->value(indenterParameter + "/Description").toString();
                 spinBox->setToolTip( paramToolTip );
                 spinBox->setMaximumWidth(50);
@@ -828,7 +827,6 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
                 // create the checkbox, make its settings and add it to the toolbox page
                 QCheckBox *chkBox = new QCheckBox( toolBoxPages.at(category).page );
                 chkBox->setText(indenterParameter);
-                chkBox->setChecked( indenterSettings->value(indenterParameter + "/Value").toBool() );
                 paramToolTip = indenterSettings->value(indenterParameter + "/Description").toString();
                 chkBox->setToolTip( paramToolTip );
                 chkBox->installEventFilter( mainWindow );
@@ -861,7 +859,6 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
 
                 // create the line edit
                 QLineEdit *lineEdit = new QLineEdit( toolBoxPages.at(category).page );
-                lineEdit->setText( indenterSettings->value(indenterParameter + "/Value").toString() );
                 paramToolTip = indenterSettings->value(indenterParameter + "/Description").toString();
                 lineEdit->setToolTip( paramToolTip );
                 lineEdit->setMaximumWidth(50);
@@ -919,7 +916,6 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
 				else {
 					comboBox->addItems( choicesStringsReadable );
 				}
-                comboBox->setCurrentIndex( indenterSettings->value(indenterParameter + "/Value").toInt() );
                 paramToolTip = indenterSettings->value(indenterParameter + "/Description").toString();
                 comboBox->setToolTip( paramToolTip );
                 comboBox->installEventFilter( mainWindow );
