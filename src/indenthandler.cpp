@@ -50,6 +50,11 @@ IndentHandler::IndentHandler(QString indenterDirPathStr, QString settingsDirPath
     this->mainWindow = mainWindow;
 
     indenterSettings = NULL;
+    menuIndenter = NULL;
+    actionLoad_Indenter_Config_File = NULL;
+    actionSave_Indenter_Config_File = NULL;
+    actionCreateShellScript = NULL;
+    initIndenterMenu();
 
     // define this widgets size and resize behavior
     //this->setMaximumWidth(263);
@@ -138,6 +143,46 @@ IndentHandler::~IndentHandler() {
     }
 
     delete errorMessageDialog;
+}
+
+
+/*!
+    \brief Initializes the context menu used for some actions like saving the indenter config file.
+ */
+void IndentHandler::initIndenterMenu() {
+    if ( menuIndenter == NULL ) {
+        actionLoad_Indenter_Config_File = new QAction(this);
+        actionLoad_Indenter_Config_File->setObjectName(QString::fromUtf8("actionLoad_Indenter_Config_File"));
+        actionLoad_Indenter_Config_File->setIcon(QIcon(QString::fromUtf8(":/mainWindow/load_indent_cfg.png")));
+        actionSave_Indenter_Config_File = new QAction(this);
+        actionSave_Indenter_Config_File->setObjectName(QString::fromUtf8("actionSave_Indenter_Config_File"));
+        actionSave_Indenter_Config_File->setIcon(QIcon(QString::fromUtf8(":/mainWindow/save_indent_cfg.png")));
+        actionCreateShellScript = new QAction(this);
+        actionCreateShellScript->setObjectName(QString::fromUtf8("actionCreateShellScript"));
+        actionCreateShellScript->setIcon(QIcon(QString::fromUtf8(":/mainWindow/shell.png")));
+
+        menuIndenter = new QMenu(this);
+        menuIndenter->setObjectName(QString::fromUtf8("menuIndenter"));
+        menuIndenter->addAction(actionLoad_Indenter_Config_File);
+        menuIndenter->addAction(actionSave_Indenter_Config_File);
+        menuIndenter->addAction(actionCreateShellScript);
+    }
+}
+
+
+/*!
+    \brief Returns the context menu used for some actions like saving the indenter config file.
+ */
+QMenu* IndentHandler::getIndenterMenu() {
+    return menuIndenter;
+}
+
+
+/*!
+    \brief Opens the context menu, used for some actions like saving the indenter config file, at the event position.
+ */
+void IndentHandler::contextMenuEvent( QContextMenuEvent *event ) {
+    getIndenterMenu()->exec( event->globalPos() );
 }
 
 
@@ -1216,6 +1261,16 @@ void IndentHandler::showIndenterManual() {
 void IndentHandler::retranslateUi() {
     indenterSelectionComboBox->setToolTip( tr("<html><head><meta name=\"qrichtext\" content=\"1\" /></head><body style=\" white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;\"><p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Shows the currently chosen indenters name and lets you choose other available indenters</p></body></html>") );
     indenterParameterHelpButton->setToolTip( tr("Brings you to the online manual of the currently selected indenter, where you can get further help on the possible parameters.") );
+
+    actionLoad_Indenter_Config_File->setText(QApplication::translate("MainWindowUi", "Load Indenter Config File", 0, QApplication::UnicodeUTF8));
+    actionLoad_Indenter_Config_File->setStatusTip(QApplication::translate("MainWindowUi", "Opens a file dialog to load the original config file of the indenter.", 0, QApplication::UnicodeUTF8));
+    actionLoad_Indenter_Config_File->setShortcut(QApplication::translate("MainWindowUi", "Alt+O", 0, QApplication::UnicodeUTF8));
+    actionSave_Indenter_Config_File->setText(QApplication::translate("MainWindowUi", "Save Indenter Config File", 0, QApplication::UnicodeUTF8));
+    actionSave_Indenter_Config_File->setStatusTip(QApplication::translate("MainWindowUi", "Opens a dialog to save the current indenter configuration to a file.", 0, QApplication::UnicodeUTF8));
+    actionSave_Indenter_Config_File->setShortcut(QApplication::translate("MainWindowUi", "Alt+S", 0, QApplication::UnicodeUTF8));
+    actionCreateShellScript->setText(QApplication::translate("MainWindowUi", "Create Indenter Call Shell Script", 0, QApplication::UnicodeUTF8));
+    actionCreateShellScript->setToolTip(QApplication::translate("MainWindowUi", "Create a shell script that calls the current selected indenter for formatting an as parameter given file with the current indent settings", 0, QApplication::UnicodeUTF8));
+    actionCreateShellScript->setStatusTip(QApplication::translate("MainWindowUi", "Create a shell script that calls the current selected indenter for formatting an as parameter given file with the current indent settings", 0, QApplication::UnicodeUTF8));
 }
 
 

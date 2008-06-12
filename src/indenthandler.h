@@ -42,6 +42,9 @@
 #include <QTextCodec>
 #include <QtScript>
 #include <QDesktopServices>
+#include <QMenu>
+#include <QAction>
+#include <QContextMenuEvent>
 
 #include "uiguierrormessage.h"
 #include "templateBatchScript.h"
@@ -66,6 +69,8 @@ public:
     QString getManual();
     void retranslateUi();
     QString getCurrentIndenterName();
+    QMenu* getIndenterMenu();
+    void contextMenuEvent( QContextMenuEvent *event );
 
 signals:
     void indenterSettingsChanged();
@@ -80,6 +85,7 @@ private:
     void writeConfigFile(QString filePathName, QString parameterString);
     void readIndentIniFile(QString iniFilePath);
     bool createIndenterCallString();
+    void initIndenterMenu();
 
     //! Holds a reference to all created pages of the toolbox and the pages boxlayout
     struct ToolBoxPage {
@@ -157,6 +163,11 @@ private:
     UiGuiErrorMessage *errorMessageDialog;
     QString indenterExecutableCallString;
     QString indenterExecutableSuffix;
+
+    QMenu *menuIndenter;
+    QAction *actionLoad_Indenter_Config_File;
+    QAction *actionSave_Indenter_Config_File;
+    QAction *actionCreateShellScript;
 };
 
 #endif // INDENTHANDLER_H
