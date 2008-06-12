@@ -134,7 +134,7 @@ private:
     QToolBox *toolBox;
     UiguiIniFileParser *indenterSettings;
     QStringList indenterParameters;
-    QByteArray cfgFileData;
+    QString cfgFileData;
     //! The indenters name in a descriptive form
     QString indenterName;
     //! The indenters file name (w/o extension), that is being called

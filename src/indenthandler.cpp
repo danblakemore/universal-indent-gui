@@ -537,14 +537,14 @@ void IndentHandler::loadConfigFile(QString filePathName) {
         // the true parameter string is longer than the false string
         if ( pBoolean.trueString.length() > pBoolean.falseString.length() ) {
             // search for the true string
-            index = cfgFileData.indexOf( pBoolean.trueString, 0 );
+            index = cfgFileData.indexOf( pBoolean.trueString, 0, Qt::CaseInsensitive );
             // if true string found set the parameter value to true
             if ( index != -1 ) {
                 paramValue = true;
             }
             // if true string not found, search for false string
             else {
-                index = cfgFileData.indexOf( pBoolean.falseString, 0 );
+                index = cfgFileData.indexOf( pBoolean.falseString, 0, Qt::CaseInsensitive );
                 // if false string found set the parameter value to false
                 if ( index != -1 ) {
                     paramValue = false;
@@ -559,14 +559,14 @@ void IndentHandler::loadConfigFile(QString filePathName) {
         else {
 
             // search for the false string
-            index = cfgFileData.indexOf( pBoolean.falseString, 0 );
+            index = cfgFileData.indexOf( pBoolean.falseString, 0, Qt::CaseInsensitive );
             // if false string found set the parameter value to false
             if ( index != -1 ) {
                 paramValue = false;
             }
             // if false string not found, search for true string
             else {
-                index = cfgFileData.indexOf( pBoolean.trueString, 0 );
+                index = cfgFileData.indexOf( pBoolean.trueString, 0, Qt::CaseInsensitive );
                 // if true string found set the parameter value to true
                 if ( index != -1 ) {
                     paramValue = true;
@@ -582,13 +582,13 @@ void IndentHandler::loadConfigFile(QString filePathName) {
 
     // search for name of each numeric parameter and set the value found behind it
     foreach (ParamNumeric pNumeric, paramNumerics) {
-        index = cfgFileData.indexOf( pNumeric.paramCallName, 0 );
+        index = cfgFileData.indexOf( pNumeric.paramCallName, 0, Qt::CaseInsensitive );
         // parameter was found in config file
         if ( index != -1 ) {
             // set index after the parameter name, so in front of the number
             index += pNumeric.paramCallName.length();
 
-            // find the line end by searching for carriage return
+            // Find the end of the parameter by searching for set config file parameter ending. Most of time this is a carriage return.
             crPos = cfgFileData.indexOf( cfgFileParameterEnding, index+1 );
 
             // get the number and convert it to int
@@ -615,34 +615,35 @@ void IndentHandler::loadConfigFile(QString filePathName) {
         paramValueStr = "";
         // The number of the found values for this parameter name.
         int numberOfValues = 0;
-        index = cfgFileData.indexOf( pString.paramCallName, 0 );
-        // parameter was found in config file
+        index = cfgFileData.indexOf( pString.paramCallName, 0, Qt::CaseInsensitive );
+        // If parameter was found in config file
         if ( index != -1 ) {
             while ( index != -1 ) {
                 numberOfValues++;
 
-                // set index after the parameter name, so in front of the string
+                // Set index after the parameter name, so it points to the front of the string value.
                 index += pString.paramCallName.length();
 
-                // find the line end by searching for carriage return
+                // Find the end of the parameter by searching for set config file parameter ending. Most of time this is a carriage return.
                 crPos = cfgFileData.indexOf( cfgFileParameterEnding, index+1 );
 
-                // Get the string and eventually add it to the line edit.
+                // Get the string and remember it.
                 if ( numberOfValues < 2 ) {
                     paramValueStr = QString( cfgFileData.mid( index, crPos - index ) );
                 }
+                // If the same parameter has been set multiple times, concatenate the strings dvivided by a |.
                 else {
                     paramValueStr = paramValueStr + "|" + QString( cfgFileData.mid( index, crPos - index ) );
                 }
                 
                 // Get next value for this setting, if one exists.
-                index = cfgFileData.indexOf( pString.paramCallName, crPos+1 );
+                index = cfgFileData.indexOf( pString.paramCallName, crPos+1, Qt::CaseInsensitive );
             }
             // Set the text for the line edit.
             pString.lineEdit->setText( paramValueStr );
             pString.valueEnabledChkBox->setChecked( true );
         }
-        // parameter was not found in config file
+        // Parameter was not found in config file
         else {
             paramValueStr = indenterSettings->value(pString.paramName + "/ValueDefault").toString();
 
@@ -659,7 +660,7 @@ void IndentHandler::loadConfigFile(QString filePathName) {
         // search for all parameter names of the multiple choice list
         // if one is found, set it and leave the while loop
         while ( i < pMultiple.choicesStrings.count() && index == -1 ) {
-            index = cfgFileData.indexOf( pMultiple.choicesStrings.at(i), 0 );
+            index = cfgFileData.indexOf( pMultiple.choicesStrings.at(i), 0, Qt::CaseInsensitive );
             if ( index != -1 ) {
                 pMultiple.comboBox->setCurrentIndex( i );
                 pMultiple.valueEnabledChkBox->setChecked( true );
@@ -727,18 +728,15 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
 
     // create a page for each category and store its references in a toolboxpage-array
     foreach (QString category, categories) {
-        //QString categoryName = indenterSettings->value("Categories/" + category).toString();
-        QString categoryName = category;
-
         toolBoxPage.page = new QWidget();
-        toolBoxPage.page->setObjectName(categoryName);
+        toolBoxPage.page->setObjectName(category);
         toolBoxPage.page->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
         toolBoxPage.vboxLayout = new QVBoxLayout(toolBoxPage.page);
         toolBoxPage.vboxLayout->setSpacing(6);
         toolBoxPage.vboxLayout->setMargin(9);
-        toolBoxPage.vboxLayout->setObjectName(categoryName);
+        toolBoxPage.vboxLayout->setObjectName(category);
         toolBoxPages.append(toolBoxPage);
-        toolBox->addItem(toolBoxPage.page, QApplication::translate("IndentHandler", categoryName.toAscii(), 0, QApplication::UnicodeUTF8));
+        toolBox->addItem(toolBoxPage.page, category);
     }
 
 
