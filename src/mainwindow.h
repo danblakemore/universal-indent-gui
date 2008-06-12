@@ -129,12 +129,10 @@ protected:
     bool eventFilter(QObject *obj, QEvent *event);
 
 private slots:
-    void openConfigFileDialog();
     void openSourceFileDialog(QString fileName = "");
     bool saveasSourceFileDialog(QAction *chosenEncodingAction = NULL);
     void saveAsOtherEncoding(QAction *chosenEncodingAction);
     bool saveSourceFile();
-    void saveasIndentCfgFileDialog();
     void callIndenter();
     void updateSourceView();
     void turnHighlightOnOff(bool turnOn);
@@ -149,7 +147,6 @@ private slots:
     void encodingChanged(QAction *encodingAction);
     void highlighterChanged(QAction* highlighterAction);
 	void numberOfLinesChanged();
-    void createIndenterCallShellScript();
     void updateRecentlyOpenedList();
     void openFileFromRecentlyOpenedList(QAction* recentlyOpenedAction);
     void clearRecentlyOpenedList();

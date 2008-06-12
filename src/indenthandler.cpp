@@ -56,6 +56,10 @@ IndentHandler::IndentHandler(QString indenterDirPathStr, QString settingsDirPath
     actionCreateShellScript = NULL;
     initIndenterMenu();
 
+    connect( actionLoad_Indenter_Config_File, SIGNAL(activated()), this, SLOT(openConfigFileDialog()) );
+    connect( actionSave_Indenter_Config_File, SIGNAL(activated()), this, SLOT(saveasIndentCfgFileDialog()) );
+    connect( actionCreateShellScript, SIGNAL(activated()), this, SLOT(createIndenterCallShellScript()) );
+
     // define this widgets size and resize behavior
     //this->setMaximumWidth(263);
     this->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
@@ -175,6 +179,16 @@ void IndentHandler::initIndenterMenu() {
  */
 QMenu* IndentHandler::getIndenterMenu() {
     return menuIndenter;
+}
+
+
+/*!
+    \brief Returns the actions of the context menu used for some actions like saving the indenter config file.
+*/
+QList<QAction*> IndentHandler::getIndenterMenuActions() {
+    QList<QAction*> actionList;
+    actionList << actionLoad_Indenter_Config_File << actionSave_Indenter_Config_File << actionCreateShellScript;
+    return actionList;
 }
 
 
@@ -1287,4 +1301,88 @@ QString IndentHandler::getCurrentIndenterName() {
     }
 
     return currentIndenterName;
+}
+
+
+/*!
+\brief Shows a file open dialog to open an existing config file for the currently selected indenter.
+
+If the file was successfully opened the indent handler is called to load the settings and update itself.
+*/
+void IndentHandler::openConfigFileDialog() {
+    QString configFilePath;
+
+    configFilePath = QFileDialog::getOpenFileName( NULL, tr("Choose indenter config file"), getIndenterCfgFile(), "All files (*.*)" );
+
+    if (configFilePath != "") {
+        loadConfigFile(configFilePath);
+    }
+}
+
+
+/*!
+\brief Calls the indenter config file save as dialog to save the config file under a chosen name.
+
+If the file already exists and it should be overwritten, a warning is shown before.
+*/
+void IndentHandler::saveasIndentCfgFileDialog() {
+    QString fileExtensions = tr("All files")+" (*.*)";
+
+    //QString openedSourceFileContent = openFileDialog( tr("Choose source code file"), "./", fileExtensions );
+    QString fileName = QFileDialog::getSaveFileName( this, tr("Save indent config file"), getIndenterCfgFile(), fileExtensions);
+
+    if (fileName != "") {
+        QFile::remove(fileName);
+        QFile outCfgFile(fileName);
+        outCfgFile.open( QFile::ReadWrite | QFile::Text );
+        outCfgFile.write( getParameterString().toAscii() );
+        outCfgFile.close();
+    }
+}
+
+
+/*!
+\brief Invokes the indenter to create a shell script.
+
+Lets the indenter create a shell script for calling the indenter out of any
+other application and open a save dialog for saving the shell script.
+*/
+void IndentHandler::createIndenterCallShellScript() {
+    //QString indenterCallShellScript = generateCommandlineCall(currentSourceFileExtension);
+    //TODO: Should be like previous call
+    QString indenterCallShellScript = generateCommandlineCall("");
+
+    QString shellScriptExtension;
+#if defined(Q_OS_WIN32)
+    shellScriptExtension = "bat";
+#else
+    shellScriptExtension = "sh";
+#endif
+
+    QString fileExtensions = tr("Shell Script")+" (*."+shellScriptExtension+");;"+tr("All files")+" (*.*)";
+
+    QString currentIndenterName = getCurrentIndenterName();
+    currentIndenterName = currentIndenterName.replace(" ", "_");
+
+    //QString openedSourceFileContent = openFileDialog( tr("Choose source code file"), "./", fileExtensions );
+    QString fileName = QFileDialog::getSaveFileName( this, tr("Save shell script"), "call_"+currentIndenterName+"."+shellScriptExtension, fileExtensions);
+
+    // Saving has been canceled if the filename is empty
+    if ( fileName.isEmpty() ) {
+        return;
+    }
+
+    // Replace placeholder for script name in script template.
+    indenterCallShellScript = indenterCallShellScript.replace( "__INDENTERCALLSTRINGSCRIPTNAME__", QFileInfo(fileName).fileName() );
+
+    // Delete any old file, write the new contents and set executable permissions.
+    QFile::remove(fileName);
+    QFile outSrcFile(fileName);
+    outSrcFile.open( QFile::ReadWrite | QFile::Text );
+    outSrcFile.write( indenterCallShellScript.toAscii() );
+#if !defined(Q_OS_WIN32)
+    // For none Windows systems the files executable flag
+    outSrcFile.setPermissions( outSrcFile.permissions() | QFile::ExeOwner | QFile::ExeUser| QFile::ExeGroup );
+#endif
+    outSrcFile.close();
 }

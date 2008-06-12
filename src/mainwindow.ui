@@ -14,23 +14,23 @@
    <string>UniversalIndentGUI</string>
   </property>
   <property name="windowIcon" >
-   <iconset resource="../resources/Icons.qrc" >:/mainWindow/icon2.png</iconset>
+   <iconset resource="../resources/Icons.qrc" >
+    <normaloff>:/mainWindow/icon2.png</normaloff>:/mainWindow/icon2.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget" >
+   <property name="geometry" >
+    <rect>
+     <x>66</x>
+     <y>33</y>
+     <width>883</width>
+     <height>581</height>
+    </rect>
+   </property>
    <layout class="QHBoxLayout" >
     <property name="spacing" >
      <number>6</number>
     </property>
-    <property name="leftMargin" >
-     <number>0</number>
-    </property>
-    <property name="topMargin" >
-     <number>0</number>
-    </property>
-    <property name="rightMargin" >
-     <number>0</number>
-    </property>
-    <property name="bottomMargin" >
+    <property name="margin" >
      <number>0</number>
     </property>
     <item>
@@ -38,23 +38,23 @@
       <property name="spacing" >
        <number>0</number>
       </property>
-      <property name="leftMargin" >
-       <number>2</number>
-      </property>
-      <property name="topMargin" >
-       <number>2</number>
-      </property>
-      <property name="rightMargin" >
-       <number>2</number>
-      </property>
-      <property name="bottomMargin" >
+      <property name="margin" >
        <number>2</number>
       </property>
      </layout>
     </item>
    </layout>
   </widget>
-  <widget class="QStatusBar" name="statusbar" />
+  <widget class="QStatusBar" name="statusbar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>614</y>
+     <width>949</width>
+     <height>19</height>
+    </rect>
+   </property>
+  </widget>
   <widget class="QMenuBar" name="menuBar" >
    <property name="geometry" >
     <rect>
@@ -68,9 +68,6 @@
     <property name="title" >
      <string>Indenter</string>
     </property>
-    <addaction name="actionLoad_Indenter_Config_File" />
-    <addaction name="actionSave_Indenter_Config_File" />
-    <addaction name="actionCreateShellScript" />
    </widget>
    <widget class="QMenu" name="menuFile" >
     <property name="title" >
@@ -142,6 +139,14 @@
    <addaction name="menuHelp" />
   </widget>
   <widget class="QDockWidget" name="dockWidget" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>33</y>
+     <width>62</width>
+     <height>581</height>
+    </rect>
+   </property>
    <property name="sizePolicy" >
     <sizepolicy vsizetype="Preferred" hsizetype="MinimumExpanding" >
      <horstretch>0</horstretch>
@@ -149,10 +154,10 @@
     </sizepolicy>
    </property>
    <property name="features" >
-    <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable|QDockWidget::NoDockWidgetFeatures</set>
+    <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable</set>
    </property>
    <property name="allowedAreas" >
-    <set>Qt::LeftDockWidgetArea|Qt::NoDockWidgetArea|Qt::RightDockWidgetArea</set>
+    <set>Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea</set>
    </property>
    <property name="windowTitle" >
     <string>Indenter Settings</string>
@@ -161,20 +166,19 @@
     <number>1</number>
    </attribute>
    <widget class="QWidget" name="dockWidgetContents" >
+    <property name="geometry" >
+     <rect>
+      <x>0</x>
+      <y>22</y>
+      <width>62</width>
+      <height>559</height>
+     </rect>
+    </property>
     <layout class="QHBoxLayout" >
      <property name="spacing" >
       <number>6</number>
      </property>
-     <property name="leftMargin" >
-      <number>0</number>
-     </property>
-     <property name="topMargin" >
-      <number>0</number>
-     </property>
-     <property name="rightMargin" >
-      <number>0</number>
-     </property>
-     <property name="bottomMargin" >
+     <property name="margin" >
       <number>0</number>
      </property>
      <item>
@@ -182,16 +186,7 @@
        <property name="spacing" >
         <number>0</number>
        </property>
-       <property name="leftMargin" >
-        <number>0</number>
-       </property>
-       <property name="topMargin" >
-        <number>0</number>
-       </property>
-       <property name="rightMargin" >
-        <number>0</number>
-       </property>
-       <property name="bottomMargin" >
+       <property name="margin" >
         <number>0</number>
        </property>
       </layout>
@@ -200,6 +195,14 @@
    </widget>
   </widget>
   <widget class="QToolBar" name="toolBar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>21</y>
+     <width>949</width>
+     <height>12</height>
+    </rect>
+   </property>
    <property name="contextMenuPolicy" >
     <enum>Qt::PreventContextMenu</enum>
    </property>
@@ -227,7 +230,8 @@
   </widget>
   <action name="actionOpen_Source_File" >
    <property name="icon" >
-    <iconset resource="../resources/Icons.qrc" >:/mainWindow/document-open.png</iconset>
+    <iconset resource="../resources/Icons.qrc" >
+     <normaloff>:/mainWindow/document-open.png</normaloff>:/mainWindow/document-open.png</iconset>
    </property>
    <property name="text" >
     <string>Open Source File</string>
@@ -241,7 +245,8 @@
   </action>
   <action name="actionSave_Source_File" >
    <property name="icon" >
-    <iconset resource="../resources/Icons.qrc" >:/mainWindow/document-save.png</iconset>
+    <iconset resource="../resources/Icons.qrc" >
+     <normaloff>:/mainWindow/document-save.png</normaloff>:/mainWindow/document-save.png</iconset>
    </property>
    <property name="text" >
     <string>Save Source File</string>
@@ -255,7 +260,8 @@
   </action>
   <action name="actionSave_Source_File_As" >
    <property name="icon" >
-    <iconset resource="../resources/Icons.qrc" >:/mainWindow/document-save-as.png</iconset>
+    <iconset resource="../resources/Icons.qrc" >
+     <normaloff>:/mainWindow/document-save-as.png</normaloff>:/mainWindow/document-save-as.png</iconset>
    </property>
    <property name="text" >
     <string>Save Source File As</string>
@@ -264,37 +270,10 @@
     <string>Opens a file dialog to save the currently shown source code.</string>
    </property>
   </action>
-  <action name="actionLoad_Indenter_Config_File" >
-   <property name="icon" >
-    <iconset resource="../resources/Icons.qrc" >:/mainWindow/load_indent_cfg.png</iconset>
-   </property>
-   <property name="text" >
-    <string>Load Indenter Config File</string>
-   </property>
-   <property name="statusTip" >
-    <string>Opens a file dialog to load the original config file of the indenter.</string>
-   </property>
-   <property name="shortcut" >
-    <string>Alt+O</string>
-   </property>
-  </action>
-  <action name="actionSave_Indenter_Config_File" >
-   <property name="icon" >
-    <iconset resource="../resources/Icons.qrc" >:/mainWindow/save_indent_cfg.png</iconset>
-   </property>
-   <property name="text" >
-    <string>Save Indenter Config File</string>
-   </property>
-   <property name="statusTip" >
-    <string>Opens a dialog to save the current indenter configuration to a file.</string>
-   </property>
-   <property name="shortcut" >
-    <string>Alt+S</string>
-   </property>
-  </action>
   <action name="actionAbout_UniversalIndentGUI" >
    <property name="icon" >
-    <iconset resource="../resources/Icons.qrc" >:/mainWindow/info.png</iconset>
+    <iconset resource="../resources/Icons.qrc" >
+     <normaloff>:/mainWindow/info.png</normaloff>:/mainWindow/info.png</iconset>
    </property>
    <property name="text" >
     <string>About UniversalIndentGUI</string>
@@ -305,7 +284,8 @@
   </action>
   <action name="actionExit" >
    <property name="icon" >
-    <iconset resource="../resources/Icons.qrc" >:/mainWindow/system-log-out.png</iconset>
+    <iconset resource="../resources/Icons.qrc" >
+     <normaloff>:/mainWindow/system-log-out.png</normaloff>:/mainWindow/system-log-out.png</iconset>
    </property>
    <property name="text" >
     <string>Exit</string>
@@ -319,7 +299,8 @@
   </action>
   <action name="actionExportPDF" >
    <property name="icon" >
-    <iconset resource="../resources/Icons.qrc" >:/mainWindow/exportpdf.png</iconset>
+    <iconset resource="../resources/Icons.qrc" >
+     <normaloff>:/mainWindow/exportpdf.png</normaloff>:/mainWindow/exportpdf.png</iconset>
    </property>
    <property name="text" >
     <string>PDF</string>
@@ -330,7 +311,8 @@
   </action>
   <action name="actionExportHTML" >
    <property name="icon" >
-    <iconset resource="../resources/Icons.qrc" >:/mainWindow/exporthtml.png</iconset>
+    <iconset resource="../resources/Icons.qrc" >
+     <normaloff>:/mainWindow/exporthtml.png</normaloff>:/mainWindow/exporthtml.png</iconset>
    </property>
    <property name="text" >
     <string>HTML</string>
@@ -347,7 +329,8 @@
     <bool>true</bool>
    </property>
    <property name="icon" >
-    <iconset resource="../resources/Icons.qrc" >:/mainWindow/tooltip.png</iconset>
+    <iconset resource="../resources/Icons.qrc" >
+     <normaloff>:/mainWindow/tooltip.png</normaloff>:/mainWindow/tooltip.png</iconset>
    </property>
    <property name="text" >
     <string>Parameter Tooltips</string>
@@ -361,7 +344,8 @@
     <bool>true</bool>
    </property>
    <property name="icon" >
-    <iconset resource="../resources/Icons.qrc" >:/mainWindow/live-preview.png</iconset>
+    <iconset resource="../resources/Icons.qrc" >
+     <normaloff>:/mainWindow/live-preview.png</normaloff>:/mainWindow/live-preview.png</iconset>
    </property>
    <property name="text" >
     <string>Live Indent Preview</string>
@@ -381,7 +365,8 @@
     <bool>true</bool>
    </property>
    <property name="icon" >
-    <iconset resource="../resources/Icons.qrc" >:/mainWindow/syntax-highlight.png</iconset>
+    <iconset resource="../resources/Icons.qrc" >
+     <normaloff>:/mainWindow/syntax-highlight.png</normaloff>:/mainWindow/syntax-highlight.png</iconset>
    </property>
    <property name="text" >
     <string>Syntax Highlighting</string>
@@ -438,7 +423,8 @@
   </action>
   <action name="actionShowSettings" >
    <property name="icon" >
-    <iconset resource="../resources/Icons.qrc" >:/mainWindow/preferences-system.png</iconset>
+    <iconset resource="../resources/Icons.qrc" >
+     <normaloff>:/mainWindow/preferences-system.png</normaloff>:/mainWindow/preferences-system.png</iconset>
    </property>
    <property name="text" >
     <string>Settings</string>
@@ -453,23 +439,10 @@
     <string>Opens the settings dialog, to set language etc.</string>
    </property>
   </action>
-  <action name="actionCreateShellScript" >
-   <property name="icon" >
-    <iconset resource="../resources/Icons.qrc" >:/mainWindow/shell.png</iconset>
-   </property>
-   <property name="text" >
-    <string>Create Indenter Call Shell Script</string>
-   </property>
-   <property name="toolTip" >
-    <string>Create a shell script that calls the current selected indenter for formatting an as parameter given file with the current indent settings</string>
-   </property>
-   <property name="statusTip" >
-    <string>Create a shell script that calls the current selected indenter for formatting an as parameter given file with the current indent settings</string>
-   </property>
-  </action>
   <action name="actionCheck_for_update" >
    <property name="icon" >
-    <iconset resource="../resources/Icons.qrc" >:/mainWindow/system-software-update.png</iconset>
+    <iconset resource="../resources/Icons.qrc" >
+     <normaloff>:/mainWindow/system-software-update.png</normaloff>:/mainWindow/system-software-update.png</iconset>
    </property>
    <property name="text" >
     <string>Check for update</string>
@@ -483,7 +456,8 @@
   </action>
   <action name="actionClear_Recently_Opened_List" >
    <property name="icon" >
-    <iconset resource="../resources/Icons.qrc" >:/mainWindow/edit-clear.png</iconset>
+    <iconset resource="../resources/Icons.qrc" >
+     <normaloff>:/mainWindow/edit-clear.png</normaloff>:/mainWindow/edit-clear.png</iconset>
    </property>
    <property name="text" >
     <string>Clear Recently Opened List</string>

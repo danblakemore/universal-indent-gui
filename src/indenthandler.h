@@ -45,6 +45,7 @@
 #include <QMenu>
 #include <QAction>
 #include <QContextMenuEvent>
+#include <QFileDialog>
 
 #include "uiguierrormessage.h"
 #include "templateBatchScript.h"
@@ -70,6 +71,7 @@ public:
     void retranslateUi();
     QString getCurrentIndenterName();
     QMenu* getIndenterMenu();
+    QList<QAction*> getIndenterMenuActions();
     void contextMenuEvent( QContextMenuEvent *event );
 
 signals:
@@ -78,6 +80,9 @@ signals:
 private slots:
     void setIndenter(int indenterID);
     void showIndenterManual();
+    void openConfigFileDialog();
+    void saveasIndentCfgFileDialog();
+    void createIndenterCallShellScript();
 
 private:
     QString callExecutableIndenter(QString sourceCode, QString inputFileExtension);
