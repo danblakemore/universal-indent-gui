@@ -62,7 +62,7 @@ public:
 
     QString generateCommandlineCall(QString inputFileExtension);
     QString callIndenter(QString sourceCode, QString inputFileExtension);
-    void loadConfigFile(QString filePathName);
+    void loadConfigFile(QString filePathName, bool resetValues = false);
     QStringList getAvailableIndenters();
     QString getPossibleIndenterFileExtensions();
     QString getParameterString();
@@ -83,6 +83,7 @@ private slots:
     void openConfigFileDialog();
     void saveasIndentCfgFileDialog();
     void createIndenterCallShellScript();
+    void resetIndenterParameter();
 
 private:
     QString callExecutableIndenter(QString sourceCode, QString inputFileExtension);
@@ -145,7 +146,6 @@ private:
     QToolBox *toolBox;
     UiguiIniFileParser *indenterSettings;
     QStringList indenterParameters;
-    QString cfgFileData;
     //! The indenters name in a descriptive form
     QString indenterName;
     //! The indenters file name (w/o extension), that is being called
@@ -173,6 +173,7 @@ private:
     QAction *actionLoad_Indenter_Config_File;
     QAction *actionSave_Indenter_Config_File;
     QAction *actionCreateShellScript;
+    QAction *actionResetIndenterParameters;
 };
 
 #endif // INDENTHANDLER_H
