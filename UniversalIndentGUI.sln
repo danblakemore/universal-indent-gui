@@ -1,7 +1,8 @@
-
 Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual C++ Express 2005
+# Visual Studio 2005
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UniversalIndentGUI", "src\UniversalIndentGUI.vcproj", "{CF521500-824E-4DB7-A7FA-F4A8B6BB008A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UniversalIndentGUI_NPP", "src\UniversalIndentGUI_NPP\UniversalIndentGUI_NPP.vcproj", "{0A9F9D63-C282-4AE8-9F80-A6D5F541AD12}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +14,10 @@ Global
 		{CF521500-824E-4DB7-A7FA-F4A8B6BB008A}.Debug|Win32.Build.0 = Debug|Win32
 		{CF521500-824E-4DB7-A7FA-F4A8B6BB008A}.Release|Win32.ActiveCfg = Release|Win32
 		{CF521500-824E-4DB7-A7FA-F4A8B6BB008A}.Release|Win32.Build.0 = Release|Win32
+		{0A9F9D63-C282-4AE8-9F80-A6D5F541AD12}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0A9F9D63-C282-4AE8-9F80-A6D5F541AD12}.Debug|Win32.Build.0 = Debug|Win32
+		{0A9F9D63-C282-4AE8-9F80-A6D5F541AD12}.Release|Win32.ActiveCfg = Release|Win32
+		{0A9F9D63-C282-4AE8-9F80-A6D5F541AD12}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

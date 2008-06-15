@@ -57,7 +57,7 @@ class IndentHandler : public QWidget
     Q_OBJECT
 
 public:
-    IndentHandler(QString indenterDirPathStr, QString settingsDirPathStr, QString tempDirPathStr, int indenterID, QMainWindow *mainWindow = 0, QWidget *parent = 0);
+    IndentHandler(QString indenterDirPathStr, QString settingsDirPathStr, QString tempDirPathStr, int indenterID, QWidget *mainWindow = 0, QWidget *parent = 0);
     ~IndentHandler();
 
     QString generateCommandlineCall(QString inputFileExtension);
@@ -73,9 +73,13 @@ public:
     QMenu* getIndenterMenu();
     QList<QAction*> getIndenterMenuActions();
     void contextMenuEvent( QContextMenuEvent *event );
+    void setParameterChangedCallback( void(*paramChangedCallback)(void) );
 
 signals:
     void indenterSettingsChanged();
+
+protected:
+    bool event( QEvent *event );
     
 private slots:
     void setIndenter(int indenterID);
@@ -164,7 +168,7 @@ private:
     QString fileTypes;
     QString useCfgFileParameter;
     QString indenterShowHelpParameter;
-    QMainWindow *mainWindow;
+    QWidget *mainWindow;
     UiGuiErrorMessage *errorMessageDialog;
     QString indenterExecutableCallString;
     QString indenterExecutableSuffix;
@@ -174,6 +178,7 @@ private:
     QAction *actionSave_Indenter_Config_File;
     QAction *actionCreateShellScript;
     QAction *actionResetIndenterParameters;
+    void(*parameterChangedCallback)(void);
 };
 
 #endif // INDENTHANDLER_H

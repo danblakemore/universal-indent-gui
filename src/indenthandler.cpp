@@ -40,15 +40,21 @@
     its \a indenterID, which is the number of found indenter ini files in alphabetic 
     order starting at index 0.
  */
-IndentHandler::IndentHandler(QString indenterDirPathStr, QString settingsDirPathStr, QString tempDirPathStr, int indenterID, QMainWindow *mainWindow, QWidget *parent)
+IndentHandler::IndentHandler(QString indenterDirPathStr, QString settingsDirPathStr, QString tempDirPathStr, int indenterID, QWidget *mainWindow, QWidget *parent)
     : QWidget(parent)
 {
     Q_ASSERT_X( indenterID >= 0, "IndentHandler", "the selected indenterID is < 0" );
 
     setObjectName(QString::fromUtf8("indentHandler"));
 
-    this->mainWindow = mainWindow;
+    if ( mainWindow == NULL ) {
+        this->mainWindow = this;
+    }
+    else {
+        this->mainWindow = mainWindow;
+    }
 
+    parameterChangedCallback = NULL;
     indenterSettings = NULL;
     menuIndenter = NULL;
     actionLoad_Indenter_Config_File = NULL;
@@ -92,6 +98,11 @@ IndentHandler::IndentHandler(QString indenterDirPathStr, QString settingsDirPath
     // create a toolbox and set its resize behavior
     toolBox = new QToolBox(this);
     toolBox->setObjectName(QString::fromUtf8("toolBox"));
+
+#ifdef UNIVERSALINDENTGUI_NPP_EXPORTS
+    connect( toolBox, SIGNAL(currentChanged(int)), this, SLOT(repaint()) );
+#endif // UNIVERSALINDENTGUI_NPP_EXPORTS
+    
     //toolBox->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
     //toolBox->setMaximumSize(QSize(16777215, 16777215));
     // insert the toolbox into the vlayout
@@ -1011,6 +1022,9 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
 
                 QObject::connect(comboBox, SIGNAL(activated(int)), this, SIGNAL(indenterSettingsChanged()));
                 QObject::connect(chkBox, SIGNAL(clicked()), this, SIGNAL(indenterSettingsChanged()));
+#ifdef UNIVERSALINDENTGUI_NPP_EXPORTS
+                connect( comboBox, SIGNAL(activated(int)), comboBox, SLOT(repaint()) );
+#endif // UNIVERSALINDENTGUI_NPP_EXPORTS
             }
 
         }
@@ -1060,9 +1074,11 @@ QStringList IndentHandler::getAvailableIndenters() {
     \brief Deletes all elements in the toolbox and initializes the indenter selected by \a indenterID.
  */
 void IndentHandler::setIndenter(int indenterID) {
-    // TODO: This function is never called because out of the mainwindow object a new indenthandler object is created if another indenter is selected.
-    
     QApplication::setOverrideCursor(Qt::WaitCursor);
+
+#ifdef UNIVERSALINDENTGUI_NPP_EXPORTS
+    disconnect( toolBox, SIGNAL(currentChanged(int)), this, SLOT(repaint()) );
+#endif // UNIVERSALINDENTGUI_NPP_EXPORTS
 
     // Generate the parameter string that will be saved to the indenters config file.
     QString parameterString = getParameterString();
@@ -1096,6 +1112,11 @@ void IndentHandler::setIndenter(int indenterID) {
     paramMultiples.clear();
     delete indenterSettings;
 
+#ifdef UNIVERSALINDENTGUI_NPP_EXPORTS
+    QWidget dummyWidget;
+    toolBox->addItem(&dummyWidget, "dummyText");
+#endif
+
     readIndentIniFile( indenterDirctoryStr + "/" + indenterIniFileList.at(indenterID) );
 
     // Find out how the indenter can be executed.
@@ -1107,11 +1128,16 @@ void IndentHandler::setIndenter(int indenterID) {
     emit( indenterSettingsChanged() );
 
     QApplication::restoreOverrideCursor();
+
+#ifdef UNIVERSALINDENTGUI_NPP_EXPORTS
+    connect( toolBox, SIGNAL(currentChanged(int)), this, SLOT(repaint()) );
+    toolBox->removeItem( toolBox->indexOf(&dummyWidget) );
+#endif // UNIVERSALINDENTGUI_NPP_EXPORTS
 }
 
 
 /*!
-    \brief Returns a string containing by the indenter supported file types/extensions devided by a space.
+    \brief Returns a string containing by the indenter supported file types/extensions divided by a space.
  */
 QString IndentHandler::getPossibleIndenterFileExtensions() {
     return fileTypes;
@@ -1418,4 +1444,27 @@ void IndentHandler::resetIndenterParameter() {
     if ( messageBoxAnswer == QMessageBox::Yes ) {
         loadConfigFile("", true);
     }
+}
+
+
+bool IndentHandler::event( QEvent *event ) {
+    if ( event->type() == QEvent::WindowActivate ) {
+        int i = 0;
+        event->accept();
+        return true;
+    }
+    else if ( event->type() == QEvent::WindowDeactivate ) {
+        int i = 0;
+        event->accept();
+        return true;
+    } 
+    else {
+        event->ignore();
+        return QWidget::event(event);
+    }
+}
+
+
+void IndentHandler::setParameterChangedCallback( void(*paramChangedCallback)(void) ) {
+    parameterChangedCallback = paramChangedCallback;
 }

@@ -1,0 +1,178 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+#include "resource.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// German (Germany) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
+#ifdef _WIN32
+LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUT_DLG DIALOGEX 0, 0, 230, 123
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_BORDER | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "&Ok",1,89,102,50,14
+    LTEXT           "jens.plugin.npp@gmx.de",30551,65,41,80,8
+    LTEXT           "Author:\t\tJens Lorenz",-1,12,31,183,9
+    GROUPBOX        "Menu entries",-1,7,65,216,32
+    LTEXT           "eMail:",-1,12,41,21,8
+    LTEXT           "Dockable View...\t\tViews the dialog with toolbar.\nAbout...\t\t\tShows this dialog.",
+                    -1,15,77,203,17
+    CTEXT           "Plugin Template for Notepad++ v4.0                       v1.0",
+                    -1,7,7,216,17,SS_CENTERIMAGE,WS_EX_DLGMODALFRAME | 
+                    WS_EX_TRANSPARENT
+    LTEXT           "http://sourceforge.net/projects/npp-plugins/",30552,65,
+                    52,158,8
+    LTEXT           "URL:",-1,12,52,21,8
+END
+
+IDD_DOCK_DLG DIALOGEX 64536, 0, 164, 267
+STYLE DS_SETFONT | DS_3DLOOK | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | 
+    WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "Plugin Template"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    EDITTEXT        30501,0,0,163,266,ES_MULTILINE
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""resource.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_DOCK_DLG, DIALOG
+    BEGIN
+        RIGHTMARGIN, 163
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,0
+ PRODUCTVERSION 1,0,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040704b0"
+        BEGIN
+            VALUE "Comments", "Visit https://sourceforge.net/projects/npp-plugins"
+            VALUE "CompanyName", "Thomas Schweitzer"
+            VALUE "FileDescription", "UniversalIndentGUI Notepad++ Plugin : free source code"
+            VALUE "FileVersion", "1, 0, 0, 0"
+            VALUE "InternalName", "UniversalIndentGUI Notepad++ Plugin"
+            VALUE "LegalCopyright", "Copyright © 2007"
+            VALUE "OriginalFilename", "UniversalIndentGUI_NPP.dll"
+            VALUE "ProductName", "Thomas Schweitzer UniversalIndentGUI Notepad++ Plugin"
+            VALUE "ProductVersion", "1, 0, 0, 0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x407, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_TABBAR              ICON                    ".\\res\\WndMgr.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_TOOLBAR             BITMAP                  ".\\res\\ToolBar.bmp"
+IDB_EX_UNDO             BITMAP                  ".\\res\\undo.bmp"
+IDB_EX_REDO             BITMAP                  ".\\res\\redo.bmp"
+#endif    // German (Germany) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
