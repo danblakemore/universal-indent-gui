@@ -31,6 +31,7 @@
 #include "highlighter.h"
 #include "indenthandler.h"
 #include "updatecheckdialog.h"
+#include "SettingsPaths.h"
 
 #include <QWidget>
 #include <QString>
@@ -85,7 +86,6 @@ private:
     QString revision;
     QString buildDateStr;
     bool portableMode;
-	QString applicationBinaryPath;
 	QString globalFilesDirectoryStr;
 	QString indenterDirctoryStr;
     QString tempDirctoryStr;

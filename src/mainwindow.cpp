@@ -41,64 +41,12 @@ MainWindow::MainWindow(QString file2OpenOnStart, QWidget *parent) : QMainWindow(
     QDate buildDate(2008, 05, 26);
     buildDateStr = buildDate.toString("d. MMMM yyyy");
 
-    // Get the applications binary path, with respect to MacOSXs use of the .app folder. 
-	applicationBinaryPath = QCoreApplication::applicationDirPath();
-#ifdef Q_OS_MAC
-    // Because on Mac universal binaries are used, the binary path is not equal
-	// to the applications (.app) path. So get the .apps path here.
-    int indexOfDotApp = applicationBinaryPath.indexOf(".app");
-    if ( indexOfDotApp != -1 ) {
-		// Cut off after the dot of ".app".
-	    applicationBinaryPath = applicationBinaryPath.left( indexOfDotApp-1 );
-		// Cut off after the first slash that was in front of ".app" (normally this is the word "UniversalIndentGUI")
-	    applicationBinaryPath = applicationBinaryPath.left( applicationBinaryPath.lastIndexOf("/") );
-	}
-#endif
-
-   // If the "config" directory is a subdir of the applications binary path, use this one (portable mode)
-    settingsDirctoryStr = applicationBinaryPath + "/config";
-    if ( QFile::exists( settingsDirctoryStr ) ) {
-        portableMode = true;
-        QDir dirCreator;
-        globalFilesDirectoryStr = applicationBinaryPath;
-        indenterDirctoryStr = applicationBinaryPath + "/indenters";
-        dirCreator.mkpath( settingsDirctoryStr );
-        tempDirctoryStr = applicationBinaryPath + "/temp";
-        //TODO: If the portable drive has write protection, use local temp path and clean it up on exit.
-        dirCreator.mkpath( tempDirctoryStr );
-    }
-    // ... otherwise use the system specific global application data path.
-    else {
-        portableMode = false;
-        QDir dirCreator;
-#ifdef Q_OS_WIN
-        // Get the local users application settings directory.
-        settingsDirctoryStr = QDir::fromNativeSeparators( qgetenv("APPDATA") ) + "/UniversalIndentGUI";
-        // On windows systems the directories "indenters", "translations" are subdirs of the applicationBinaryPath.
-        globalFilesDirectoryStr = applicationBinaryPath;
-#else
-        settingsDirctoryStr = QDir::homePath() + "/.universalindentgui";
-        globalFilesDirectoryStr = "/usr/share/universalindentgui";
-#endif
-        dirCreator.mkpath( settingsDirctoryStr );
-        // If a highlighter config file does not exist in the users home config dir
-        // copy the default config file over there.
-        if ( !QFile::exists(settingsDirctoryStr+"/UiGuiSyntaxHighlightConfig.ini") ) {
-            QFile::copy( globalFilesDirectoryStr+"/config/UiGuiSyntaxHighlightConfig.ini", settingsDirctoryStr+"/UiGuiSyntaxHighlightConfig.ini" );
-        }
-        indenterDirctoryStr = globalFilesDirectoryStr + "/indenters";
-#ifdef Q_OS_WIN
-        tempDirctoryStr = QDir::tempPath() + "/UniversalIndentGUI";
-#else
-        tempDirctoryStr = QDir::tempPath() + "UniversalIndentGUI";
-#endif
-        dirCreator.mkpath( tempDirctoryStr );
-    }
-
-    qDebug() << "Using directories:\nsettings = " << settingsDirctoryStr;
-    qDebug() << "globalFiles = " << globalFilesDirectoryStr;
-    qDebug() << "indenterDirctoryStr = " << indenterDirctoryStr;
-    qDebug() << "tempDirctoryStr = " << tempDirctoryStr;
+    // Get all necessary paths.
+    settingsDirctoryStr = SettingsPaths::getSettingsPath();
+    globalFilesDirectoryStr = SettingsPaths::getGlobalFilesPath();
+    indenterDirctoryStr = SettingsPaths::getIndenterPath();
+    tempDirctoryStr = SettingsPaths::getTempPath();
+    portableMode = SettingsPaths::getPortableMode();
 
     // Init of some variables.
     sourceCodeChanged = false;
