@@ -247,26 +247,54 @@ HWND getCurrentHScintilla(int which)
 
 void indentText() {
     int currentEdit = 0;
+    int textLength = 0;
     char *fullEditorText = NULL;
 
     // Get scintilla text edit window handle
     //::SendMessage(nppData._nppHandle, WM_GETCURRENTSCINTILLA, 0, (LPARAM)&currentEdit);
 
-    int textLength = ::SendMessage(getCurrentHScintilla(currentEdit), SCI_GETTEXTLENGTH, 0, 0);
-    // Because the returned length is the index of the last character, increment the length.
-    textLength++;
+    // Get the length of the selected text plus a 0 byte ending.
+    textLength = ::SendMessage(getCurrentHScintilla(currentEdit), SCI_GETSELTEXT, 0, 0);
 
-    fullEditorText = new char[textLength];
+    // No text has been selected to format the whole text.
+    if ( textLength - 1 == 0 ) {
 
-    // Get whole text
-    ::SendMessage(getCurrentHScintilla(currentEdit), SCI_GETTEXT, textLength, (LPARAM)fullEditorText);
+        textLength = ::SendMessage(getCurrentHScintilla(currentEdit), SCI_GETTEXTLENGTH, 0, 0);
+        // Because we need space for a trailing 0 byte increment the length.
+        textLength++;
 
-    QString indentedText = indentHandler->callIndenter(fullEditorText, "cpp");
+        fullEditorText = new char[textLength];
 
-    QByteArray indentedTextByteArray = indentedText.toAscii();
+        // Get whole text
+        ::SendMessage(getCurrentHScintilla(currentEdit), SCI_GETTEXT, textLength, (LPARAM)fullEditorText);
 
-    // Set whole text
-    ::SendMessage(getCurrentHScintilla(currentEdit), SCI_SETTEXT, 0, (LPARAM)indentedTextByteArray.constData());
+        QString indentedText = indentHandler->callIndenter(fullEditorText, "cpp");
+
+        QByteArray indentedTextByteArray = indentedText.toAscii();
+
+        // Set whole text
+        ::SendMessage(getCurrentHScintilla(currentEdit), SCI_SETTEXT, 0, (LPARAM)indentedTextByteArray.constData());
+    }
+    // Format only the selected text.
+    else {
+        fullEditorText = new char[textLength];
+
+        // Get selection start.
+        int selectionStartPos = ::SendMessage(getCurrentHScintilla(currentEdit), SCI_GETSELECTIONSTART, 0, 0);
+
+        // Get the selected text.
+        ::SendMessage(getCurrentHScintilla(currentEdit), SCI_GETSELTEXT, 0, (LPARAM)fullEditorText);
+
+        QString indentedText = indentHandler->callIndenter(fullEditorText, "cpp");
+
+        QByteArray indentedTextByteArray = indentedText.toAscii();
+
+        // Replace selected text.
+        ::SendMessage(getCurrentHScintilla(currentEdit), SCI_REPLACESEL, 0, (LPARAM)indentedTextByteArray.constData());
+
+        // Set selection again.
+        ::SendMessage(getCurrentHScintilla(currentEdit), SCI_SETSEL, selectionStartPos, selectionStartPos + indentedTextByteArray.length() );
+    }
 
     delete fullEditorText;
     fullEditorText = NULL;
