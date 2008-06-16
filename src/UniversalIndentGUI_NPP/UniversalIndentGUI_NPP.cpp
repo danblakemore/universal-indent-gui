@@ -64,7 +64,7 @@ BOOL APIENTRY DllMain( HANDLE hModule, DWORD reasonForCall, LPVOID lpReserved )
                 int argc = 1;
                 char *argv[] = {"setup", NULL};
                 static QApplication qapp(argc, argv);
-                indentHandler = new IndentHandler("E:/EigeneDateien/Dokumente/Informatik/UniversalIndentGUI/indenters", "E:/EigeneDateien/Dokumente/Informatik/UniversalIndentGUI/config", "E:/EigeneDateien/Dokumente/Informatik/UniversalIndentGUI/temp", 0);
+                indentHandler = new IndentHandler( SettingsPaths::getIndenterPath(), SettingsPaths::getSettingsPath(), SettingsPaths::getTempPath(), 0);
                 indentHandler->setWindowModality( Qt::ApplicationModal );
                 indentHandler->setWindowTitle("UniversalIndentGUI");
                 //qapp.setActiveWindow(indentHandler);

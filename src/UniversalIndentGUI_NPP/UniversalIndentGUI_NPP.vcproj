@@ -77,7 +77,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="shlwapi.lib comctl32.lib qtmaind.lib QtGuid4.lib QtCored4.lib QtScriptd4.lib "
-				OutputFile="D:\Programme\Tools\Notepad++\plugins\$(ProjectName).dll"
+				OutputFile="C:\Programme\Notepad++\plugins\$(ProjectName).dll"
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(OutDir)/UniversalIndentGUI_NPP.pdb"
@@ -212,6 +212,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\SettingsPaths.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\uiguierrormessage.cpp"
 				>
 			</File>
@@ -271,6 +275,10 @@
 						Name="VCCLCompilerTool"
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\SettingsPaths.h"
+				>
 			</File>
 			<File
 				RelativePath="..\uiguierrormessage.h"

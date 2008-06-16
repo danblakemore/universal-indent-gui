@@ -33,6 +33,11 @@ bool SettingsPaths::portableMode = false;
 void SettingsPaths::init() {
     // Get the applications binary path, with respect to MacOSXs use of the .app folder. 
 	applicationBinaryPath = QCoreApplication::applicationDirPath();
+
+#ifdef UNIVERSALINDENTGUI_NPP_EXPORTS
+    applicationBinaryPath += "/plugins/uigui";
+#endif
+
 #ifdef Q_OS_MAC
     // Because on Mac universal binaries are used, the binary path is not equal
 	// to the applications (.app) path. So get the .apps path here.
@@ -84,6 +89,8 @@ void SettingsPaths::init() {
 #endif
         dirCreator.mkpath( tempPath );
     }
+
+    alreadyInitialized = true;
 }
 
 

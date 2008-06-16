@@ -28,6 +28,8 @@
 #include "Scintilla.h"
 #include <TCHAR.H>
 
+#include "SettingsPaths.h"
+
 /* menu position in funcItem */
 #define	TOGGLE_DOCKABLE_WINDOW_INDEX	0
 
