@@ -35,11 +35,11 @@
 
 
 /* ini file name */
-CONST TCHAR PLUGINTEMP_INI[]	= _T("\\PluginManager.ini");
+CONST TCHAR PLUGINTEMP_INI[]	= _T("\\UniversalIndentGUI.ini");
 
 /* param names of ini file */
 /* section */
-CONST TCHAR dlgTemp[]			= _T("Plugin Template");
+CONST TCHAR dlgTemp[]			= _T("UniversalIndentGUI");
 /* keys of section */
 CONST TCHAR Value1[]			= _T("Value1");
 CONST TCHAR Value2[]			= _T("Value2");

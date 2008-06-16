@@ -67,6 +67,8 @@ BOOL APIENTRY DllMain( HANDLE hModule, DWORD reasonForCall, LPVOID lpReserved )
                 indentHandler = new IndentHandler( SettingsPaths::getIndenterPath(), SettingsPaths::getSettingsPath(), SettingsPaths::getTempPath(), 0);
                 indentHandler->setWindowModality( Qt::ApplicationModal );
                 indentHandler->setWindowTitle("UniversalIndentGUI");
+                indentHandler->setWindowIcon(QIcon(QString::fromUtf8(":/mainWindow/icon2.png")));
+                indentHandler->setParameterChangedCallback( indentText );
                 //qapp.setActiveWindow(indentHandler);
             }
 
@@ -93,6 +95,7 @@ BOOL APIENTRY DllMain( HANDLE hModule, DWORD reasonForCall, LPVOID lpReserved )
 		case DLL_PROCESS_DETACH:
 		{
 			delete funcItem[0]._pShKey;
+            delete indentHandler;
 
 			/* save settings */
 			saveSettings();
@@ -139,7 +142,7 @@ extern "C" __declspec(dllexport) FuncItem * getFuncsArray(INT *nbF)
 /***
  *	beNotification()
  *
- *	This function is called, if a notification in Scantilla/Notepad++ occurs
+ *	This function is called, if a notification in Scintilla/Notepad++ occurs
  */
 extern "C" __declspec(dllexport) void beNotified(SCNotification *notifyCode)
 {
@@ -221,7 +224,18 @@ void toggleView(void)
 
 void aboutDlg(void)
 {
-    indentHandler->show();
+    HMENU	hMenu = ::GetMenu(nppData._nppHandle);
+    UINT state = ::GetMenuState(hMenu, funcItem[1]._cmdID, MF_BYCOMMAND);
+
+    if ( state & MF_CHECKED ) {
+        indentHandler->hide();
+        state = ::CheckMenuItem(hMenu, funcItem[1]._cmdID, MF_BYCOMMAND | MF_UNCHECKED);
+    }
+    else {
+        indentHandler->show();
+        state = ::CheckMenuItem(hMenu, funcItem[1]._cmdID, MF_BYCOMMAND | MF_CHECKED);
+    }
+
 }
 
 
@@ -230,16 +244,17 @@ HWND getCurrentHScintilla(int which)
     return (which == 0)?nppData._scintillaMainHandle:nppData._scintillaSecondHandle;
 };
 
+
 void indentText() {
     int currentEdit = 0;
-    const int maxLineLength = 2600;
     char *fullEditorText = NULL;
-    char wordsPerLineStr[maxLineLength];
 
     // Get scintilla text edit window handle
     //::SendMessage(nppData._nppHandle, WM_GETCURRENTSCINTILLA, 0, (LPARAM)&currentEdit);
 
     int textLength = ::SendMessage(getCurrentHScintilla(currentEdit), SCI_GETTEXTLENGTH, 0, 0);
+    // Because the returned length is the index of the last character, increment the length.
+    textLength++;
 
     fullEditorText = new char[textLength];
 
