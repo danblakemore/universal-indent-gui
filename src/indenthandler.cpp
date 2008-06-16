@@ -680,10 +680,10 @@ void IndentHandler::loadConfigFile(QString filePathName, bool resetValues) {
             paramValue = cfgFileData.mid( index, crPos - index ).toInt(NULL);
 
             // disable the signal-slot connection. Otherwise signal is emmitted each time when value is set
-            QObject::disconnect(pNumeric.spinBox, SIGNAL(valueChanged(int)), this, SIGNAL(indenterSettingsChanged()));
+            QObject::disconnect(pNumeric.spinBox, SIGNAL(valueChanged(int)), this, SLOT(handleChangedIndenterSettings()));
             pNumeric.spinBox->setValue( paramValue );
             pNumeric.valueEnabledChkBox->setChecked( true );
-            QObject::connect(pNumeric.spinBox, SIGNAL(valueChanged(int)), this, SIGNAL(indenterSettingsChanged()));
+            QObject::connect(pNumeric.spinBox, SIGNAL(valueChanged(int)), this, SLOT(handleChangedIndenterSettings()));
         }
         // parameter was not found in config file
         else {
@@ -903,8 +903,8 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
                 paramNumeric.valueEnabledChkBox = chkBox;
                 paramNumerics.append(paramNumeric);
 
-                QObject::connect(spinBox, SIGNAL(valueChanged(int)), this, SIGNAL(indenterSettingsChanged()));
-                QObject::connect(chkBox, SIGNAL(clicked()), this, SIGNAL(indenterSettingsChanged()));
+                QObject::connect(spinBox, SIGNAL(valueChanged(int)), this, SLOT(handleChangedIndenterSettings()));
+                QObject::connect(chkBox, SIGNAL(clicked()), this, SLOT(handleChangedIndenterSettings()));
             }
             // edit type is boolean so create a checkbox
             else if ( editType == "boolean" ) {
@@ -925,7 +925,7 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
                 paramBoolean.falseString = trueFalseStrings.at(1);
                 paramBooleans.append(paramBoolean);
 
-                QObject::connect(chkBox, SIGNAL(clicked()), this, SIGNAL(indenterSettingsChanged()));
+                QObject::connect(chkBox, SIGNAL(clicked()), this, SLOT(handleChangedIndenterSettings()));
             }
             // edit type is numeric so create a line edit with label
             else if ( editType == "string" ) {
@@ -973,8 +973,8 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
                 paramString.valueEnabledChkBox = chkBox;
                 paramStrings.append(paramString);
 
-                QObject::connect(lineEdit, SIGNAL(editingFinished()), this, SIGNAL(indenterSettingsChanged()));
-                QObject::connect(chkBox, SIGNAL(clicked()), this, SIGNAL(indenterSettingsChanged()));
+                QObject::connect(lineEdit, SIGNAL(editingFinished()), this, SLOT(handleChangedIndenterSettings()));
+                QObject::connect(chkBox, SIGNAL(clicked()), this, SLOT(handleChangedIndenterSettings()));
             }
             // edit type is multiple so create a combobox with label
             else if ( editType == "multiple" ) {
@@ -1020,8 +1020,8 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
                 paramMultiple.valueEnabledChkBox = chkBox;
                 paramMultiples.append(paramMultiple);
 
-                QObject::connect(comboBox, SIGNAL(activated(int)), this, SIGNAL(indenterSettingsChanged()));
-                QObject::connect(chkBox, SIGNAL(clicked()), this, SIGNAL(indenterSettingsChanged()));
+                QObject::connect(comboBox, SIGNAL(activated(int)), this, SLOT(handleChangedIndenterSettings()));
+                QObject::connect(chkBox, SIGNAL(clicked()), this, SLOT(handleChangedIndenterSettings()));
 #ifdef UNIVERSALINDENTGUI_NPP_EXPORTS
                 connect( comboBox, SIGNAL(activated(int)), comboBox, SLOT(repaint()) );
 #endif // UNIVERSALINDENTGUI_NPP_EXPORTS
@@ -1125,7 +1125,7 @@ void IndentHandler::setIndenter(int indenterID) {
     // Load the users last settings made for this indenter.
     loadConfigFile( settingsDirctoryStr + "/" + indenterFileName + ".cfg" );
 
-    emit( indenterSettingsChanged() );
+    handleChangedIndenterSettings();
 
     QApplication::restoreOverrideCursor();
 
@@ -1467,4 +1467,13 @@ bool IndentHandler::event( QEvent *event ) {
 
 void IndentHandler::setParameterChangedCallback( void(*paramChangedCallback)(void) ) {
     parameterChangedCallback = paramChangedCallback;
+}
+
+
+void IndentHandler::handleChangedIndenterSettings() {
+    emit( indenterSettingsChanged() );
+
+    if ( parameterChangedCallback != NULL ) {
+        parameterChangedCallback();
+    }
 }

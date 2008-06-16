@@ -88,6 +88,7 @@ private slots:
     void saveasIndentCfgFileDialog();
     void createIndenterCallShellScript();
     void resetIndenterParameter();
+    void handleChangedIndenterSettings();
 
 private:
     QString callExecutableIndenter(QString sourceCode, QString inputFileExtension);
