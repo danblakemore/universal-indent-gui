@@ -42,10 +42,8 @@ MainWindow::MainWindow(QString file2OpenOnStart, QWidget *parent) : QMainWindow(
     buildDateStr = buildDate.toString("d. MMMM yyyy");
 
     // Get all necessary paths.
-    settingsDirctoryStr = SettingsPaths::getSettingsPath();
     globalFilesDirectoryStr = SettingsPaths::getGlobalFilesPath();
     indenterDirctoryStr = SettingsPaths::getIndenterPath();
-    tempDirctoryStr = SettingsPaths::getTempPath();
     portableMode = SettingsPaths::getPortableMode();
 
     // Init of some variables.
@@ -331,7 +329,7 @@ void MainWindow::initIndenter() {
 	currentIndenterID = settings->getValueByName("LastSelectedIndenterID").toInt();
 
     // Create the indenter widget with the ID and add it to the layout.
-    indentHandler = new IndentHandler(indenterDirctoryStr, settingsDirctoryStr, tempDirctoryStr, currentIndenterID, this, centralwidget);
+    indentHandler = new IndentHandler(currentIndenterID, this, centralwidget);
     vboxLayout->addWidget(indentHandler);
 
     // If settings for the indenter have changed, let the main window know aboud it.

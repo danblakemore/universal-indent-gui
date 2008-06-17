@@ -40,7 +40,7 @@
     its \a indenterID, which is the number of found indenter ini files in alphabetic 
     order starting at index 0.
  */
-IndentHandler::IndentHandler(QString indenterDirPathStr, QString settingsDirPathStr, QString tempDirPathStr, int indenterID, QWidget *mainWindow, QWidget *parent)
+IndentHandler::IndentHandler(int indenterID, QWidget *mainWindow, QWidget *parent)
     : QWidget(parent)
 {
     Q_ASSERT_X( indenterID >= 0, "IndentHandler", "the selected indenterID is < 0" );
@@ -111,10 +111,10 @@ IndentHandler::IndentHandler(QString indenterDirPathStr, QString settingsDirPath
     indenterExecutableCallString = "";
     indenterExecutableSuffix = "";
 
-    indenterDirctoryStr = indenterDirPathStr;
-    tempDirctoryStr = tempDirPathStr;
-    settingsDirctoryStr = settingsDirPathStr;
-    QDir indenterDirctory = QDir(indenterDirPathStr);
+    indenterDirctoryStr = SettingsPaths::getIndenterPath();
+    tempDirctoryStr = SettingsPaths::getTempPath();
+    settingsDirctoryStr = SettingsPaths::getSettingsPath();
+    QDir indenterDirctory = QDir(indenterDirctoryStr);
 
     errorMessageDialog = new UiGuiErrorMessage(mainWindow);
 

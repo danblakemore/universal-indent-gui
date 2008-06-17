@@ -50,6 +50,7 @@
 #include "uiguierrormessage.h"
 #include "templateBatchScript.h"
 #include "uiguiIniFileParser.h"
+#include "SettingsPaths.h"
 
 
 class IndentHandler : public QWidget
@@ -57,7 +58,7 @@ class IndentHandler : public QWidget
     Q_OBJECT
 
 public:
-    IndentHandler(QString indenterDirPathStr, QString settingsDirPathStr, QString tempDirPathStr, int indenterID, QWidget *mainWindow = 0, QWidget *parent = 0);
+    IndentHandler(int indenterID, QWidget *mainWindow = 0, QWidget *parent = 0);
     ~IndentHandler();
 
     QString generateCommandlineCall(QString inputFileExtension);

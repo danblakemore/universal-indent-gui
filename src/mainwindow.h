@@ -88,8 +88,6 @@ private:
     bool portableMode;
 	QString globalFilesDirectoryStr;
 	QString indenterDirctoryStr;
-    QString tempDirctoryStr;
-    QString settingsDirctoryStr;
 	QString currentEncoding;
     QString sourceFileContent;
     QString sourceFormattedContent;
