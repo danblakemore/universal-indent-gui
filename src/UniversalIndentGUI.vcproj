@@ -249,6 +249,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\UiguiIndentServer.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\uiguiIniFileParser.cpp"
 				>
 			</File>
@@ -308,6 +312,10 @@
 			</File>
 			<File
 				RelativePath=".\uiguierrormessage.h"
+				>
+			</File>
+			<File
+				RelativePath=".\UiguiIndentServer.h"
 				>
 			</File>
 			<File
@@ -398,6 +406,10 @@
 			</File>
 			<File
 				RelativePath="$(OutDir)\tmp\moc\moc_uiguierrormessage.cpp"
+				>
+			</File>
+			<File
+				RelativePath="$(OutDir)\tmp\moc\moc_UiguiIndentServer.cpp"
 				>
 			</File>
 			<File

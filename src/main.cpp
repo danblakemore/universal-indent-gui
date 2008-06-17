@@ -20,6 +20,8 @@
 #include "mainwindow.h"
 #include <QApplication>
 
+#include "UiguiIndentServer.h"
+
 #include "uiguiIniFileParser.h"
 
 /*!
@@ -29,6 +31,9 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
     QString file2OpenOnStart = "";
+
+    UiguiIndentServer server;
+    server.startServer();
 
     if ( argc > 1 ) {
         file2OpenOnStart = argv[1];
