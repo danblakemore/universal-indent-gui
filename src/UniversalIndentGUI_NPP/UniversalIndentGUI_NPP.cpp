@@ -220,7 +220,9 @@ void toggleAutoUpdate(void)
         state = ::CheckMenuItem(hMenu, funcItem[TOGGLE_AUTO_UPDATE_INDEX]._cmdID, MF_BYCOMMAND | MF_UNCHECKED);
     }
     else {
-        showUiGUI();
+        if ( !indentHandler->isVisible() ) {
+        	showUiGUI();
+        }
         indentHandler->setParameterChangedCallback( indentText );
         state = ::CheckMenuItem(hMenu, funcItem[TOGGLE_AUTO_UPDATE_INDEX]._cmdID, MF_BYCOMMAND | MF_CHECKED);
     }
