@@ -28,7 +28,7 @@
 
 /* information for notepad */
 CONST INT	nbFunc	= 3;
-CONST CHAR	PLUGIN_NAME[] = "&UniversalIndentGUI_NPP";
+CONST CHAR	PLUGIN_NAME[] = "&UniversalIndentGUI";
 
 /* global values */
 HANDLE				g_hModule			= NULL;
@@ -57,9 +57,6 @@ BOOL APIENTRY DllMain( HANDLE hModule, DWORD reasonForCall, LPVOID lpReserved )
 	{
 		case DLL_PROCESS_ATTACH:
 		{
-            //IndentHandler *indentHandler = new IndentHandler("E:/EigeneDateien/Dokumente/Informatik/UniversalIndentGUI/indenters", "E:/EigeneDateien/Dokumente/Informatik/UniversalIndentGUI/config", "E:/EigeneDateien/Dokumente/Informatik/UniversalIndentGUI/temp", 0);
-            //indentHandler->show();
-            //app.exec();
             if (!qApp) {
                 int argc = 1;
                 char *argv[] = {"setup", NULL};
@@ -68,33 +65,33 @@ BOOL APIENTRY DllMain( HANDLE hModule, DWORD reasonForCall, LPVOID lpReserved )
                 indentHandler->setWindowModality( Qt::ApplicationModal );
                 indentHandler->setWindowTitle("UniversalIndentGUI");
                 indentHandler->setWindowIcon(QIcon(QString::fromUtf8(":/mainWindow/icon2.png")));
-                indentHandler->setParameterChangedCallback( indentText );
-                //qapp.setActiveWindow(indentHandler);
+                indentHandler->setParameterChangedCallback( NULL );
+                indentHandler->setWindowClosedCallback( showUiGUI );
             }
 
 			/* Set function pointers */
-			funcItem[0]._pFunc = toggleView;
-			funcItem[1]._pFunc = aboutDlg;
-            funcItem[2]._pFunc = indentText;
+			funcItem[TOGGLE_SHOW_UIGUI_INDEX]._pFunc = showUiGUI;
+			funcItem[EXECUTE_TEXT_INDENT_INDEX]._pFunc = indentText;
+            funcItem[TOGGLE_AUTO_UPDATE_INDEX]._pFunc = toggleAutoUpdate;
 		    	
 			/* Fill menu names */
-			strcpy(funcItem[0]._itemName, "&Show Dockable View");
-            strcpy(funcItem[1]._itemName, "&About...");
-            strcpy(funcItem[2]._itemName, "&Indent text");
+			strcpy(funcItem[TOGGLE_SHOW_UIGUI_INDEX]._itemName, "&Show Parameter Settings");
+            strcpy(funcItem[EXECUTE_TEXT_INDENT_INDEX]._itemName, "&Indent text");
+            strcpy(funcItem[TOGGLE_AUTO_UPDATE_INDEX]._itemName, "&Enable Text Auto Update");
 
 			/* Set shortcuts */
-			funcItem[0]._pShKey = new ShortcutKey;
-			funcItem[0]._pShKey->_isAlt		= true;
-			funcItem[0]._pShKey->_isCtrl	= true;
-			funcItem[0]._pShKey->_isShift	= true;
-			funcItem[0]._pShKey->_key		= 'T';
-            funcItem[1]._pShKey = NULL;
-            funcItem[2]._pShKey = NULL;
+			funcItem[TOGGLE_SHOW_UIGUI_INDEX]._pShKey = new ShortcutKey;
+			funcItem[TOGGLE_SHOW_UIGUI_INDEX]._pShKey->_isAlt	= true;
+			funcItem[TOGGLE_SHOW_UIGUI_INDEX]._pShKey->_isCtrl	= true;
+			funcItem[TOGGLE_SHOW_UIGUI_INDEX]._pShKey->_isShift	= true;
+			funcItem[TOGGLE_SHOW_UIGUI_INDEX]._pShKey->_key		= 'T';
+            funcItem[EXECUTE_TEXT_INDENT_INDEX]._pShKey = NULL;
+            funcItem[TOGGLE_AUTO_UPDATE_INDEX]._pShKey = NULL;
 			break;
 		}	
 		case DLL_PROCESS_DETACH:
 		{
-			delete funcItem[0]._pShKey;
+			delete funcItem[TOGGLE_SHOW_UIGUI_INDEX]._pShKey;
             delete indentHandler;
 
 			/* save settings */
@@ -152,7 +149,7 @@ extern "C" __declspec(dllexport) void beNotified(SCNotification *notifyCode)
 		if (notifyCode->nmhdr.code == NPPN_TBMODIFICATION)
 		{
 			g_TBWndMgr.hToolbarBmp = (HBITMAP)::LoadImage((HINSTANCE)g_hModule, MAKEINTRESOURCE(IDB_TOOLBAR), IMAGE_BITMAP, 0, 0, (LR_LOADMAP3DCOLORS));
-			::SendMessage(nppData._nppHandle, NPPM_ADDTOOLBARICON, (WPARAM)funcItem[TOGGLE_DOCKABLE_WINDOW_INDEX]._cmdID, (LPARAM)&g_TBWndMgr);
+			::SendMessage(nppData._nppHandle, NPPM_ADDTOOLBARICON, (WPARAM)funcItem[TOGGLE_AUTO_UPDATE_INDEX]._cmdID, (LPARAM)&g_TBWndMgr);
 		}
 	}
 }
@@ -213,27 +210,43 @@ void saveSettings(void)
 /**************************************************************************
  *	Interface functions
  */
-void toggleView(void)
+void toggleAutoUpdate(void)
 {
-	/* get menu and test if dockable dialog is open */
-	HMENU	hMenu = ::GetMenu(nppData._nppHandle);
-	UINT state = ::GetMenuState(hMenu, funcItem[TOGGLE_DOCKABLE_WINDOW_INDEX]._cmdID, MF_BYCOMMAND);
-	universalIndentGUI_NPPDialog.doDialog(state & MF_CHECKED ? false : true);
+    HMENU	hMenu = ::GetMenu(nppData._nppHandle);
+    UINT state = ::GetMenuState(hMenu, funcItem[TOGGLE_AUTO_UPDATE_INDEX]._cmdID, MF_BYCOMMAND);
+
+    if ( state & MF_CHECKED ) {
+        indentHandler->setParameterChangedCallback( NULL );
+        state = ::CheckMenuItem(hMenu, funcItem[TOGGLE_AUTO_UPDATE_INDEX]._cmdID, MF_BYCOMMAND | MF_UNCHECKED);
+    }
+    else {
+        showUiGUI();
+        indentHandler->setParameterChangedCallback( indentText );
+        state = ::CheckMenuItem(hMenu, funcItem[TOGGLE_AUTO_UPDATE_INDEX]._cmdID, MF_BYCOMMAND | MF_CHECKED);
+    }
+
+    indentText();
 }
 
 
-void aboutDlg(void)
+void showUiGUI(void)
 {
     HMENU	hMenu = ::GetMenu(nppData._nppHandle);
-    UINT state = ::GetMenuState(hMenu, funcItem[1]._cmdID, MF_BYCOMMAND);
+    UINT menuState = ::GetMenuState(hMenu, funcItem[TOGGLE_SHOW_UIGUI_INDEX]._cmdID, MF_BYCOMMAND);
+    bool windowIsVisible = indentHandler->isVisible();
 
-    if ( state & MF_CHECKED ) {
-        indentHandler->hide();
-        state = ::CheckMenuItem(hMenu, funcItem[1]._cmdID, MF_BYCOMMAND | MF_UNCHECKED);
+    if ( menuState & MF_CHECKED ) {
+        
+        if ( windowIsVisible ) {
+        	indentHandler->hide();
+        }
+        menuState = ::CheckMenuItem(hMenu, funcItem[TOGGLE_SHOW_UIGUI_INDEX]._cmdID, MF_BYCOMMAND | MF_UNCHECKED);
     }
     else {
-        indentHandler->show();
-        state = ::CheckMenuItem(hMenu, funcItem[1]._cmdID, MF_BYCOMMAND | MF_CHECKED);
+        if ( !windowIsVisible ) {
+        	indentHandler->show();
+        }
+        menuState = ::CheckMenuItem(hMenu, funcItem[TOGGLE_SHOW_UIGUI_INDEX]._cmdID, MF_BYCOMMAND | MF_CHECKED);
     }
 
 }
@@ -265,15 +278,22 @@ void indentText() {
 
         fullEditorText = new char[textLength];
 
-        // Get whole text
+        // Get whole text.
         ::SendMessage(getCurrentHScintilla(currentEdit), SCI_GETTEXT, textLength, (LPARAM)fullEditorText);
+
+        // Get the first visible line and add the max visible lines to it so later scrolling to the correct position is ensured.
+        int firstLine = ::SendMessage(getCurrentHScintilla(currentEdit), SCI_GETFIRSTVISIBLELINE, 0, 0);
+        firstLine += ::SendMessage(getCurrentHScintilla(currentEdit), SCI_LINESONSCREEN, 0, 0) - 1;
 
         QString indentedText = indentHandler->callIndenter(fullEditorText, "cpp");
 
         QByteArray indentedTextByteArray = indentedText.toAscii();
 
-        // Set whole text
+        // Set whole text.
         ::SendMessage(getCurrentHScintilla(currentEdit), SCI_SETTEXT, 0, (LPARAM)indentedTextByteArray.constData());
+
+        // Set first visible line again.
+        ::SendMessage(getCurrentHScintilla(currentEdit), SCI_GOTOLINE, firstLine, 0);
     }
     // Format only the selected text.
     else {

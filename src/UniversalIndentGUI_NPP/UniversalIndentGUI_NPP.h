@@ -31,7 +31,9 @@
 #include "SettingsPaths.h"
 
 /* menu position in funcItem */
-#define	TOGGLE_DOCKABLE_WINDOW_INDEX	0
+#define	TOGGLE_SHOW_UIGUI_INDEX	    0
+#define	EXECUTE_TEXT_INDENT_INDEX	1
+#define	TOGGLE_AUTO_UPDATE_INDEX	2
 
 
 /* ini file name */
@@ -57,8 +59,8 @@ void loadSettings(void);
 void saveSettings(void);
 
 /* menu functions */
-void toggleView(void);
-void aboutDlg(void);
+void showUiGUI(void);
+void toggleAutoUpdate(void);
 void indentText(void);
 
 

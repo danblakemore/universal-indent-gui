@@ -47,12 +47,7 @@ IndentHandler::IndentHandler(int indenterID, QWidget *mainWindow, QWidget *paren
 
     setObjectName(QString::fromUtf8("indentHandler"));
 
-    if ( mainWindow == NULL ) {
-        this->mainWindow = this;
-    }
-    else {
-        this->mainWindow = mainWindow;
-    }
+    this->mainWindow = mainWindow;
 
     parameterChangedCallback = NULL;
     indenterSettings = NULL;
@@ -116,7 +111,12 @@ IndentHandler::IndentHandler(int indenterID, QWidget *mainWindow, QWidget *paren
     settingsDirctoryStr = SettingsPaths::getSettingsPath();
     QDir indenterDirctory = QDir(indenterDirctoryStr);
 
-    errorMessageDialog = new UiGuiErrorMessage(mainWindow);
+    if ( mainWindow != NULL ) {
+        errorMessageDialog = new UiGuiErrorMessage(mainWindow);
+    }
+    else {
+        errorMessageDialog = new UiGuiErrorMessage(this);
+    }
 
     indenterIniFileList = indenterDirctory.entryList( QStringList("uigui_*.ini") );
     if ( indenterIniFileList.count() > 0 ) {
@@ -866,7 +866,9 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
                 spinBox->setToolTip( paramToolTip );
                 spinBox->setMaximumWidth(50);
                 spinBox->setMinimumWidth(50);
-                spinBox->installEventFilter( mainWindow );
+                if ( mainWindow != NULL ) {
+                    spinBox->installEventFilter( mainWindow );
+                }
                 if ( indenterSettings->value(indenterParameter + "/MinVal").toString() != "" ) {
                         spinBox->setMinimum( indenterSettings->value(indenterParameter + "/MinVal").toInt() );
                 }
@@ -885,7 +887,9 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
                 label->setText(indenterParameter);
                 label->setBuddy(spinBox);
                 label->setToolTip( paramToolTip );
-                label->installEventFilter( mainWindow );
+                if ( mainWindow != NULL ) {
+                    label->installEventFilter( mainWindow );
+                }
 
                 // put all into a layout and add it to the toolbox page
                 QHBoxLayout *hboxLayout = new QHBoxLayout();
@@ -913,7 +917,9 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
                 chkBox->setText(indenterParameter);
                 paramToolTip = indenterSettings->value(indenterParameter + "/Description").toString();
                 chkBox->setToolTip( paramToolTip );
-                chkBox->installEventFilter( mainWindow );
+                if ( mainWindow != NULL ) {
+                    chkBox->installEventFilter( mainWindow );
+                }
                 toolBoxPages.at(category).vboxLayout->addWidget(chkBox);
 
                 // remember parameter name and reference to its checkbox
@@ -947,7 +953,9 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
                 lineEdit->setToolTip( paramToolTip );
                 lineEdit->setMaximumWidth(50);
                 lineEdit->setMinimumWidth(50);
-                lineEdit->installEventFilter( mainWindow );
+                if ( mainWindow != NULL ) {
+                    lineEdit->installEventFilter( mainWindow );
+                }
 
                 // create the label
                 QLabel *label = new QLabel( toolBoxPages.at(category).page );
@@ -955,7 +963,9 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
                 label->setBuddy(lineEdit);
                 label->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
                 label->setToolTip( paramToolTip );
-                label->installEventFilter( mainWindow );
+                if ( mainWindow != NULL ) {
+                    label->installEventFilter( mainWindow );
+                }
 
                 // put all into a layout and add it to the toolbox page
                 QHBoxLayout *hboxLayout = new QHBoxLayout();
@@ -1002,7 +1012,9 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
 				}
                 paramToolTip = indenterSettings->value(indenterParameter + "/Description").toString();
                 comboBox->setToolTip( paramToolTip );
-                comboBox->installEventFilter( mainWindow );
+                if ( mainWindow != NULL ) {
+                    comboBox->installEventFilter( mainWindow );
+                }
 
                 // put all into a layout and add it to the toolbox page
                 QHBoxLayout *hboxLayout = new QHBoxLayout();
@@ -1476,4 +1488,17 @@ void IndentHandler::handleChangedIndenterSettings() {
     if ( parameterChangedCallback != NULL ) {
         parameterChangedCallback();
     }
+}
+
+
+void IndentHandler::setWindowClosedCallback( void(*winClosedCallback)(void) ) {
+    windowClosedCallback = winClosedCallback;
+}
+
+
+void IndentHandler::closeEvent(QCloseEvent *event) {
+    if ( windowClosedCallback != NULL ) {
+        windowClosedCallback();
+    }
+    event->accept();
 }
