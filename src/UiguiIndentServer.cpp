@@ -17,11 +17,14 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
+#include <QtDebug>
 
 #include "UiguiIndentServer.h"
 
 UiguiIndentServer::UiguiIndentServer(void) : QObject() {
     tcpServer = NULL;
+    currentClientConnection = NULL;
+    readyForHandleRequest = false;
 }
 
 
@@ -42,6 +45,8 @@ void UiguiIndentServer::startServer() {
     }
 
     connect( tcpServer, SIGNAL(newConnection()), this, SLOT(handleNewConnection()) );
+    readyForHandleRequest = true;
+    blockSize = 0;
 }
 
 
@@ -51,6 +56,8 @@ void UiguiIndentServer::stopServer() {
         delete tcpServer;
         tcpServer = NULL;
     }
+    currentClientConnection = NULL;
+    readyForHandleRequest = false;
 }
 
 
@@ -64,27 +71,66 @@ void UiguiIndentServer::handleNewConnection() {
 
 void UiguiIndentServer::handleReceivedData() {
 
-    QTcpSocket *clientConnection = qobject_cast<QTcpSocket*>( sender() );
-    quint16 blockSize = 0;
+    if ( !readyForHandleRequest ) {
+        return;
+    }
+
+    currentClientConnection = qobject_cast<QTcpSocket*>( sender() );
     QString receivedData = "";
 
-    if ( clientConnection != NULL ) {
-        QDataStream in(clientConnection);
-        //in.setVersion(QDataStream::Qt_4_0);
+    if ( currentClientConnection != NULL ) {
+        QDataStream in(currentClientConnection);
+        in.setVersion(QDataStream::Qt_4_0);
 
         if ( blockSize == 0 ) {
-            if ( clientConnection->bytesAvailable() < (int)sizeof(quint16) )
+            if ( currentClientConnection->bytesAvailable() < (int)sizeof(quint32) )
                 return;
 
             in >> blockSize;
         }
 
-        if ( clientConnection->bytesAvailable() < blockSize )
+        if ( currentClientConnection->bytesAvailable() < blockSize )
             return;
 
-        unsigned int l = clientConnection->bytesAvailable();
-        char *myData = new char[l];
-        in.readRawData( myData, l);
-        delete myData;
+        QString receivedMessage;
+        in >> receivedMessage;
+
+        blockSize = 0;
+
+        qDebug() << "receivedMessage: " << receivedMessage;
+
+        if ( receivedMessage == "ts" ) {
+            sendMessage("Toll");
+        }
+        else {
+            sendMessage("irgendwas");
+        }
+    }
+}
+
+
+void UiguiIndentServer::sendMessage( const QString &message )
+{
+    readyForHandleRequest = false;
+
+    dataToSend = "";
+    QDataStream out(&dataToSend, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_4_0);
+    out << (quint32)0;
+    out << message;
+    out.device()->seek(0);
+    out << (quint32)(dataToSend.size() - sizeof(quint32));
+
+    connect(currentClientConnection, SIGNAL(bytesWritten(qint64)), this, SLOT(checkIfReadyForHandleRequest()));
+    currentClientConnection->write(dataToSend);
+}
+
+
+void UiguiIndentServer::checkIfReadyForHandleRequest() {
+    if ( currentClientConnection->bytesToWrite() == 0 ) {
+        QString dataToSendStr = dataToSend.right( dataToSend.size() - sizeof(quint32) );
+        qDebug() << "checkIfReadyForHandleRequest dataToSend was: " << dataToSendStr;
+        disconnect(currentClientConnection, SIGNAL(bytesWritten(qint64)), this, SLOT(checkIfReadyForHandleRequest()));
+        readyForHandleRequest = true;
     }
 }

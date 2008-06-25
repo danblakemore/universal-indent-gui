@@ -39,9 +39,15 @@ public slots:
 private slots:
     void handleNewConnection();
     void handleReceivedData();
+    void sendMessage(const QString &message);
+    void checkIfReadyForHandleRequest();
 
 private:
     QTcpServer *tcpServer;
+    QByteArray dataToSend;
+    bool readyForHandleRequest;
+    QTcpSocket *currentClientConnection;
+    quint32 blockSize;
 };
 
 #endif // UIGUIINDENTSERVER_H
