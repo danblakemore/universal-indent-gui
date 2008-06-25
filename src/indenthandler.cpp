@@ -50,6 +50,7 @@ IndentHandler::IndentHandler(int indenterID, QWidget *mainWindow, QWidget *paren
     this->mainWindow = mainWindow;
 
     parameterChangedCallback = NULL;
+    windowClosedCallback = NULL;
     indenterSettings = NULL;
     menuIndenter = NULL;
     actionLoad_Indenter_Config_File = NULL;
