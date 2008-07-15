@@ -154,10 +154,12 @@ HEADERS += src/aboutdialog.h \
            src/indenthandler.h \
            src/mainwindow.h \
            src/uiguierrormessage.h \
-		   src/uiguiIniFileParser.h \
+	   src/uiguiIniFileParser.h \
            src/uiguisettings.h \
            src/uiguisettingsdialog.h \
-           src/updatecheckdialog.h
+           src/UiguiIndentServer.h \
+           src/updatecheckdialog.h \
+           src/SettingsPaths.h
 
 FORMS += src/mainwindow.ui \
          src/toolBarWidget.ui \
@@ -171,13 +173,15 @@ SOURCES += src/aboutdialog.cpp \
            src/main.cpp \
            src/mainwindow.cpp \
            src/uiguierrormessage.cpp \
-		   src/uiguiIniFileParser.cpp \
+           src/uiguiIniFileParser.cpp \
            src/uiguisettings.cpp \
            src/uiguisettingsdialog.cpp \
-           src/updatecheckdialog.cpp
+           src/UiguiIndentServer.cpp \
+           src/updatecheckdialog.cpp \
+           src/SettingsPaths.cpp
 #macx {
-#SOURCES += src/AboutDialogGraphicsView.cpp
-#HEADERS += src/AboutDialogGraphicsView.h
+SOURCES += src/AboutDialogGraphicsView.cpp
+HEADERS += src/AboutDialogGraphicsView.h
 #}
 
 RESOURCES += resources/Icons.qrc
