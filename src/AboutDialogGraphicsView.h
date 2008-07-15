@@ -24,6 +24,7 @@
 #include <QDesktopWidget>
 #include <QDate>
 #include <QTimeLine>
+#include <QPixmap>
 
 //Can't use this test, because MOC doesn't understand that code line
 //#if QT_VERSION >= 0x040400
@@ -36,6 +37,7 @@ class AboutDialogGraphicsView : public QGraphicsView
 public:
     AboutDialogGraphicsView(AboutDialog *aboutDialog, QWidget *parent = 0);
     ~AboutDialogGraphicsView(void);
+	void setScreenshotPixmap(const QPixmap &screenShot);
 
 public slots:
     void show();
@@ -51,6 +53,7 @@ private:
     int windowBorderWidth;
     int windowTitleBarWidth;
     bool firstRunOfAnimation;
+	QPixmap originalPixmap;
 
 private slots:
     void updateStep(int step);

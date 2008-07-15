@@ -24,7 +24,7 @@
 #include "ui_toolBarWidget.h"
 #include "aboutdialog.h"
 #if QT_VERSION >= 0x040400
-//#include "AboutDialogGraphicsView.h"
+#include "AboutDialogGraphicsView.h"
 #endif
 #include "uiguisettings.h"
 #include "uiguisettingsdialog.h"
@@ -96,7 +96,7 @@ private:
     QScrollBar *textEditVScrollBar;
     AboutDialog *aboutDialog;
 #if QT_VERSION >= 0x040400
-    //AboutDialogGraphicsView *aboutDialogGraphicsView;
+    AboutDialogGraphicsView *aboutDialogGraphicsView;
 #endif
 	UiGuiSettingsDialog *settingsDialog;
     int textEditLastScrollPos;
@@ -148,6 +148,7 @@ private slots:
     void updateRecentlyOpenedList();
     void openFileFromRecentlyOpenedList(QAction* recentlyOpenedAction);
     void clearRecentlyOpenedList();
+	void showAboutDialog();
 };
 
 #endif // MAINWINDOW_H

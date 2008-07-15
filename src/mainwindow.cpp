@@ -82,16 +82,16 @@ MainWindow::MainWindow(QString file2OpenOnStart, QWidget *parent) : QMainWindow(
 	
 
     // generate about dialog box
-/*#if QT_VERSION >= 0x040400
+#if QT_VERSION >= 0x040400
     aboutDialog = new AboutDialog(this, Qt::SplashScreen, version, revision, buildDateStr);
     aboutDialogGraphicsView = new AboutDialogGraphicsView(aboutDialog, this);
-    connect( toolBarWidget->pbAbout, SIGNAL(clicked()), aboutDialogGraphicsView, SLOT(show()) );
-    connect( actionAbout_UniversalIndentGUI, SIGNAL(activated()), aboutDialogGraphicsView, SLOT(show()) );
-#else */
+    connect( toolBarWidget->pbAbout, SIGNAL(clicked()), this, SLOT(showAboutDialog()) );
+    connect( actionAbout_UniversalIndentGUI, SIGNAL(activated()), this, SLOT(showAboutDialog()) );
+#else
     aboutDialog = new AboutDialog(this, Qt::Dialog, version, revision, buildDateStr);
     connect( actionAbout_UniversalIndentGUI, SIGNAL(activated()), aboutDialog, SLOT(exec()) );
     connect( toolBarWidget->pbAbout, SIGNAL(clicked()), aboutDialog, SLOT(exec()) );
-//#endif
+#endif
 
 	// generate settings dialog box
 	settingsDialog = new UiGuiSettingsDialog(this, settings);
@@ -122,7 +122,7 @@ MainWindow::MainWindow(QString file2OpenOnStart, QWidget *parent) : QMainWindow(
     \brief Initializes the main window by creating the main gui and make some settings.
  */
 void MainWindow::initMainWindow() {
-    // Generate gui as it is build in the file "mainwindow.ui"
+	   // Generate gui as it is build in the file "mainwindow.ui"
     setupUi(this);
 
 	// Handle last opened window size
@@ -135,7 +135,9 @@ void MainWindow::initMainWindow() {
 	if ( maximized ) {
 		showMaximized();
 	}
+#ifndef Q_OS_MAC // On Mac restoring the window state causes the screenshot no longer to work.
     restoreState( settings->getValueByName("MainWindowState").toByteArray() );
+#endif
 
     // Handle if first run of this version
     // -----------------------------------
@@ -1384,4 +1386,12 @@ void MainWindow::dropEvent(QDropEvent *event) {
     }
 
     event->acceptProposedAction();
+}
+
+
+void MainWindow::showAboutDialog() {
+	QPixmap originalPixmap = QPixmap::grabWindow(QApplication::desktop()->screen()->winId());
+	qDebug("in main pixmap width %d, numScreens = %d", originalPixmap.size().width(), QApplication::desktop()->availableGeometry().width());
+	aboutDialogGraphicsView->setScreenshotPixmap( originalPixmap );
+	aboutDialogGraphicsView->show();
 }
