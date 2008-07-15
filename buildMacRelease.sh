@@ -61,12 +61,16 @@ cp ./indenters/csstidy ./UniversalIndentGUI_mac/indenters/
 cp ./indenters/gc.exe ./UniversalIndentGUI_mac/indenters/
 cp ./indenters/gc.txt ./UniversalIndentGUI_mac/indenters/
 #cp ./indenters/.indent.pro ./UniversalIndentGUI_mac/indenters/
+cp ./indenters/hindent ./UniversalIndentGUI_mac/indenters/
+cp ./indenters/hindent.html ./UniversalIndentGUI_mac/indenters/
 cp ./indenters/indent ./UniversalIndentGUI_mac/indenters/
 cp ./indenters/indent.html ./UniversalIndentGUI_mac/indenters/
 cp ./indenters/JsDecoder.js ./UniversalIndentGUI_mac/indenters/
 cp ./indenters/perltidy ./UniversalIndentGUI_mac/indenters/
 cp ./indenters/PerlTidyLib.pm ./UniversalIndentGUI_mac/indenters/
 cp ./indenters/php_beautifier.html ./UniversalIndentGUI_mac/indenters/
+cp ./indenters/phpStylist.php ./UniversalIndentGUI_mac/indenters/
+cp ./indenters/phpStylist.txt ./UniversalIndentGUI_mac/indenters/
 cp ./indenters/shellindent.awk ./UniversalIndentGUI_mac/indenters/
 cp ./indenters/tidy ./UniversalIndentGUI_mac/indenters/
 #cp ./indenters/uncrustify.cfg ./UniversalIndentGUI_mac/indenters/
@@ -92,6 +96,6 @@ cp -r ./release/universalindentgui.app ./UniversalIndentGUI_mac/
 #cd UniversalIndentGUI_mac
 echo compressing UniversalIndentGUI_mac
 echo --------------------------------------
-tar czf universalindentgui_0.8.1_beta_mac.tgz UniversalIndentGUI_mac
+tar czf universalindentgui_0.8.2_mac.tgz UniversalIndentGUI_mac
 #cd ..
 read -p "press any key to continue"
