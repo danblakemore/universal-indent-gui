@@ -25,6 +25,7 @@
 #include <QDate>
 #include <QTimeLine>
 #include <QPixmap>
+#include <QSplashScreen>
 
 //Can't use this test, because MOC doesn't understand that code line
 //#if QT_VERSION >= 0x040400
@@ -49,7 +50,7 @@ private:
     QGraphicsScene *scene;
     QWidget *parent;
     QTimeLine *timeLine;
-    QLabel *aboutDialogAsLabel;
+    QSplashScreen *aboutDialogAsSplashScreen;
     int windowBorderWidth;
     int windowTitleBarWidth;
     bool firstRunOfAnimation;

@@ -24,6 +24,8 @@
 AboutDialogGraphicsView::AboutDialogGraphicsView(AboutDialog *aboutDialog, QWidget *parent) : QGraphicsView(parent) {
     this->parent = parent;
     setWindowFlags(Qt::SplashScreen);
+    //QRect geometryOfDesktopWhereUiGUIIs = QApplication::desktop()->availableGeometry( parent );
+    //QRect newGeometry = QRect( -1, -1, geometryOfDesktopWhereUiGUIIs.width()+2, geometryOfDesktopWhereUiGUIIs.height()+2 );
     QRect newGeometry = QRect( -1, -1, QApplication::desktop()->rect().width()+2, QApplication::desktop()->rect().height()+2 );
     setGeometry( newGeometry );
     //setTransform(QTransform()
@@ -36,12 +38,10 @@ AboutDialogGraphicsView::AboutDialogGraphicsView(AboutDialog *aboutDialog, QWidg
 
     scene = new QGraphicsScene(this);
     setSceneRect( newGeometry );
-    aboutDialogAsLabel = new QLabel(this, Qt::SplashScreen);
-    aboutDialogAsLabel->setPixmap( QPixmap::grabWidget(aboutDialog) );
-    graphicsProxyWidget = scene->addWidget(aboutDialogAsLabel, Qt::SplashScreen);
-    //graphicsProxyWidget->setCacheMode(QGraphicsItem::DeviceCoordinateCache);
-    //graphicsProxyWidget->setGeometry(newGeometry);
-    //graphicsProxyWidget->setWindowTitle( aboutDialog->windowTitle() );
+    aboutDialogAsSplashScreen = new QSplashScreen(this);
+    aboutDialogAsSplashScreen->setPixmap( QPixmap::grabWidget(aboutDialog) );
+    graphicsProxyWidget = scene->addWidget(aboutDialogAsSplashScreen);
+    graphicsProxyWidget->setWindowFlags( Qt::ToolTip );
 
     setScene( scene );
     setRenderHint(QPainter::Antialiasing);
@@ -64,9 +64,6 @@ AboutDialogGraphicsView::AboutDialogGraphicsView(AboutDialog *aboutDialog, QWidg
 
     windowBorderWidth = 0;
     windowTitleBarWidth = parent->geometry().y() - parent->y();
-	
-	originalPixmap = QPixmap::grabWindow(QApplication::desktop()->screen()->winId());
-	qDebug("pixmap width %d, numScreens = %d", originalPixmap.size().width(), QApplication::desktop()->availableGeometry().width());
 }
 
 AboutDialogGraphicsView::~AboutDialogGraphicsView(void) {
@@ -74,10 +71,10 @@ AboutDialogGraphicsView::~AboutDialogGraphicsView(void) {
 
 
 void AboutDialogGraphicsView::show() {
-    QPixmap originalPixmap = QPixmap::grabWindow(QApplication::desktop()->winId());
+    QPixmap originalPixmap = QPixmap::grabWindow(QApplication::desktop()->winId(), 0, 0, geometry().width(), geometry().height() );
     setBackgroundBrush(originalPixmap);
 
-    aboutDialogAsLabel->setPixmap( QPixmap::grabWidget(aboutDialog) );
+    aboutDialogAsSplashScreen->setPixmap( QPixmap::grabWidget(aboutDialog) );
     graphicsProxyWidget->setGeometry( aboutDialog->geometry() );
     if ( firstRunOfAnimation ) {
         graphicsProxyWidget->setPos( parent->geometry().x()+(parent->geometry().width()-graphicsProxyWidget->geometry().width()) / 2, parent->y()+windowTitleBarWidth);
@@ -96,7 +93,7 @@ void AboutDialogGraphicsView::show() {
         .translate(-r.width() / 2, windowTitleBarWidth));
 
     graphicsProxyWidget->show();
-    //aboutDialogAsLabel->show();
+    //aboutDialogAsSplashScreen->show();
     QGraphicsView::show();
 
     connect(timeLine, SIGNAL(finished()), this, SLOT(showAboutDialog()));
@@ -129,7 +126,7 @@ void AboutDialogGraphicsView::showAboutDialog() {
 
 
 void AboutDialogGraphicsView::hide() {
-    aboutDialogAsLabel->setPixmap( QPixmap::grabWidget(aboutDialog) );
+    aboutDialogAsSplashScreen->setPixmap( QPixmap::grabWidget(aboutDialog) );
     graphicsProxyWidget->setGeometry( aboutDialog->geometry() );
     //if ( firstRunOfAnimation ) {
         firstRunOfAnimation = false;
@@ -149,7 +146,7 @@ void AboutDialogGraphicsView::hide() {
         .translate(-r.width() / 2, windowTitleBarWidth));
 
     graphicsProxyWidget->show();
-    //aboutDialogAsLabel->show();
+    //aboutDialogAsSplashScreen->show();
     QGraphicsView::show();
 
     connect(timeLine, SIGNAL(finished()), this, SLOT(hideReally()));
