@@ -119,7 +119,6 @@ void AboutDialogGraphicsView::updateStep(int step)
 void AboutDialogGraphicsView::showAboutDialog() {
     //hide();
     disconnect(timeLine, SIGNAL(finished()), this, SLOT(showAboutDialog()));
-    graphicsProxyWidget->hide();
     aboutDialog->move( parent->geometry().x()+(parent->geometry().width()-graphicsProxyWidget->geometry().width())/2, parent->y()+windowTitleBarWidth );
     aboutDialog->exec();
 }
