@@ -422,6 +422,7 @@ echo ""
 echo "Packing the whole target dir"
 echo "----------------------------"
 if [ "$ext" = ".exe" ]; then
+	echo "Doing: zip -r9 ${targetName}_${version}_$targetSystem.zip $targetDir"
     zip -r9 ${targetName}_${version}_$targetSystem.zip $targetDir &> /dev/null
     if [ $? -gt 0 ]; then
         echo "ERROR: Could not create archive \"${targetName}_${version}_$targetSystem.zip\"!"
