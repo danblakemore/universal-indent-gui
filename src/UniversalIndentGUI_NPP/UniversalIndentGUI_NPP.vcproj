@@ -77,7 +77,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="shlwapi.lib comctl32.lib qtmaind.lib QtGuid4.lib QtCored4.lib QtScriptd4.lib "
-				OutputFile="C:\Programme\Notepad++\plugins\$(ProjectName).dll"
+				OutputFile="D:\Programme\Tools\Notepad++\plugins\$(ProjectName).dll"
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(OutDir)/UniversalIndentGUI_NPP.pdb"
@@ -227,10 +227,6 @@
 				RelativePath=".\UniversalIndentGUI_NPP.cpp"
 				>
 			</File>
-			<File
-				RelativePath=".\UniversalIndentGUI_NPPDialog.cpp"
-				>
-			</File>
 			<Filter
 				Name="NPPCommon"
 				>
@@ -297,17 +293,6 @@
 			</File>
 			<File
 				RelativePath=".\UniversalIndentGUI_NPP.h"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath=".\UniversalIndentGUI_NPPDialog.h"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"

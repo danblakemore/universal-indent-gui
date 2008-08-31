@@ -21,9 +21,6 @@
 /* include files */
 #include "stdafx.h"
 #include "UniversalIndentGUI_NPP.h"
-#include "UniversalIndentGUI_NPPDialog.h"
-
-#include "indenthandler.h"
 
 
 /* information for notepad */
@@ -37,10 +34,6 @@ FuncItem			funcItem[nbFunc];
 toolbarIcons		g_TBWndMgr;
 
 IndentHandler *indentHandler;
-
-/* dialog classes */
-UniversalIndentGUI_NPPDialog universalIndentGUI_NPPDialog;
-
 
 /* settings */
 TCHAR				configPath[MAX_PATH];
@@ -118,8 +111,7 @@ extern "C" __declspec(dllexport) void setInfo(NppData notpadPlusData)
 	loadSettings();
 
 	/* initial dialogs */
-	universalIndentGUI_NPPDialog.init((HINSTANCE)g_hModule, nppData, &pluginProp);
-	//nppAboutDialog.init((HINSTANCE)g_hModule, nppData);
+	//universalIndentGUI_NPPDialog.init((HINSTANCE)g_hModule, nppData, &pluginProp);
 }
 
 
@@ -148,8 +140,8 @@ extern "C" __declspec(dllexport) void beNotified(SCNotification *notifyCode)
 		/* on this notification code you can register your plugin icon in Notepad++ toolbar */
 		if (notifyCode->nmhdr.code == NPPN_TBMODIFICATION)
 		{
-			g_TBWndMgr.hToolbarBmp = (HBITMAP)::LoadImage((HINSTANCE)g_hModule, MAKEINTRESOURCE(IDB_TOOLBAR), IMAGE_BITMAP, 0, 0, (LR_LOADMAP3DCOLORS));
-			::SendMessage(nppData._nppHandle, NPPM_ADDTOOLBARICON, (WPARAM)funcItem[TOGGLE_AUTO_UPDATE_INDEX]._cmdID, (LPARAM)&g_TBWndMgr);
+			//g_TBWndMgr.hToolbarBmp = (HBITMAP)::LoadImage((HINSTANCE)g_hModule, MAKEINTRESOURCE(IDB_TOOLBAR), IMAGE_BITMAP, 0, 0, (LR_LOADMAP3DCOLORS));
+			//::SendMessage(nppData._nppHandle, NPPM_ADDTOOLBARICON, (WPARAM)funcItem[TOGGLE_AUTO_UPDATE_INDEX]._cmdID, (LPARAM)&g_TBWndMgr);
 		}
 	}
 }

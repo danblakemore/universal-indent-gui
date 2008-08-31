@@ -27,7 +27,9 @@
 #include "Notepad_plus_rc.h"
 #include "Scintilla.h"
 #include <TCHAR.H>
+#include <shlwapi.h>
 
+#include "indenthandler.h"
 #include "SettingsPaths.h"
 
 /* menu position in funcItem */
