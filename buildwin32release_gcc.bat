@@ -4,7 +4,7 @@ echo Making some environment settings
 echo --------------------------------
 rem set QTDIR=%QTDIR%_static
 rem set QTDIR=C:\Programmierung\qt.4.3.0_gcc_static
-set QTDIR=F:\Qt\qt.4.3.2_gpl_static
+set QTDIR=F:\Qt\qt.4.4.0_gpl_static
 set PATH=%QTDIR%\bin
 set PATH=%PATH%;D:\Programme\Informat\MingW\bin;D:\Programme\Tools\7-Zip
 set PATH=%PATH%;%SystemRoot%\System32
