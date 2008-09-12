@@ -174,8 +174,11 @@ p, li { white-space: pre-wrap; }
         </item>
         <item>
          <widget class="QPushButton" name="okButton" >
+          <property name="styleSheet" >
+           <string>QPushButton#okButton { background-color: qlineargradient( x1:0, y1:0, x2:0, y2:1, stop:0 #FFF284, stop:0.5 #C6B867, stop:1 #FFF284 ); border: 2px solid #A89C57; border-radius: 4px;}QPushButton:hover#okButton { background-color: qlineargradient( x1:0, y1:0, x2:0, y2:1, stop:0 #C6B867, stop:0.5 #FFF284, stop:1 #C6B867 ); } QPushButton#okButton { background-color: qlineargradient( x1:0, y1:0, x2:0, y2:1, stop:0 #FFF284, stop:0.5 #C6B867, stop:1 #FFF284 ); border: 2px solid #A89C57; border-radius: 4px;}QPushButton:pressed#okButton{ border: 2px solid #D8CB75 }</string>
+          </property>
           <property name="text" >
-           <string>OK</string>
+           <string>          OK          </string>
           </property>
          </widget>
         </item>
