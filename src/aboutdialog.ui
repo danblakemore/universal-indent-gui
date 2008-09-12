@@ -28,165 +28,174 @@
    <iconset resource="../resources/Icons.qrc" >:/mainWindow/info.png</iconset>
   </property>
   <layout class="QVBoxLayout" >
-   <property name="spacing" >
-    <number>4</number>
-   </property>
    <property name="leftMargin" >
-    <number>9</number>
+    <number>0</number>
    </property>
    <property name="topMargin" >
-    <number>9</number>
+    <number>0</number>
    </property>
    <property name="rightMargin" >
-    <number>9</number>
+    <number>0</number>
    </property>
    <property name="bottomMargin" >
-    <number>9</number>
+    <number>0</number>
    </property>
    <item>
-    <widget class="QLabel" name="bannerLabel" >
-     <property name="sizePolicy" >
-      <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="minimumSize" >
-      <size>
-       <width>570</width>
-       <height>87</height>
-      </size>
-     </property>
-     <property name="maximumSize" >
-      <size>
-       <width>570</width>
-       <height>87</height>
-      </size>
-     </property>
-     <property name="text" >
-      <string/>
-     </property>
-     <property name="pixmap" >
-      <pixmap resource="../resources/Icons.qrc" >:/aboutDialog/banner.png</pixmap>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QTextBrowser" name="versionTextBrowser" >
-     <property name="sizePolicy" >
-      <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="maximumSize" >
-      <size>
-       <width>16777215</width>
-       <height>25</height>
-      </size>
+    <widget class="QFrame" name="frame" >
+     <property name="styleSheet" >
+      <string>QFrame#frame { background-color: qlineargradient( x1:0, y1:0, x2:0, y2:1, stop:0 #FFF284, stop:0.5 #C6B867, stop:1 #FFF284 ); border: 2px solid #A89C57; border-radius: 4px;}</string>
      </property>
      <property name="frameShape" >
-      <enum>QFrame::NoFrame</enum>
+      <enum>QFrame::StyledPanel</enum>
      </property>
-     <property name="verticalScrollBarPolicy" >
-      <enum>Qt::ScrollBarAlwaysOff</enum>
-     </property>
-     <property name="html" >
-      <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
+     <layout class="QVBoxLayout" >
+      <item>
+       <widget class="QLabel" name="bannerLabel" >
+        <property name="sizePolicy" >
+         <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize" >
+         <size>
+          <width>570</width>
+          <height>87</height>
+         </size>
+        </property>
+        <property name="maximumSize" >
+         <size>
+          <width>570</width>
+          <height>87</height>
+         </size>
+        </property>
+        <property name="text" >
+         <string/>
+        </property>
+        <property name="pixmap" >
+         <pixmap resource="../resources/Icons.qrc" >:/aboutDialog/banner.png</pixmap>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QTextBrowser" name="versionTextBrowser" >
+        <property name="sizePolicy" >
+         <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="maximumSize" >
+         <size>
+          <width>16777215</width>
+          <height>25</height>
+         </size>
+        </property>
+        <property name="frameShape" >
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="verticalScrollBarPolicy" >
+         <enum>Qt::ScrollBarAlwaysOff</enum>
+        </property>
+        <property name="html" >
+         <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
 p, li { white-space: pre-wrap; }
-&lt;/style>&lt;/head>&lt;body style=" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;">
-&lt;p style=" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2'; font-size:12pt;">Version %1 rev.%2, %3 &lt;/p>&lt;/body>&lt;/html></string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QTextBrowser" name="authorTextBrowser" >
-     <property name="sizePolicy" >
-      <sizepolicy vsizetype="MinimumExpanding" hsizetype="Expanding" >
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="acceptDrops" >
-      <bool>false</bool>
-     </property>
-     <property name="frameShape" >
-      <enum>QFrame::NoFrame</enum>
-     </property>
-     <property name="verticalScrollBarPolicy" >
-      <enum>Qt::ScrollBarAlwaysOff</enum>
-     </property>
-     <property name="html" >
-      <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
+&lt;/style>&lt;/head>&lt;body style=" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;">
+&lt;p style=" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:12pt;">Version %1 rev.%2, %3 &lt;/p>&lt;/body>&lt;/html></string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QTextBrowser" name="authorTextBrowser" >
+        <property name="sizePolicy" >
+         <sizepolicy vsizetype="MinimumExpanding" hsizetype="Expanding" >
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="acceptDrops" >
+         <bool>false</bool>
+        </property>
+        <property name="frameShape" >
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="verticalScrollBarPolicy" >
+         <enum>Qt::ScrollBarAlwaysOff</enum>
+        </property>
+        <property name="html" >
+         <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
 p, li { white-space: pre-wrap; }
-&lt;/style>&lt;/head>&lt;body style=" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;">
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-family:'MS Shell Dlg 2';">... is a cross platform compatible GUI for several code formatter, beautifier and indenter like GreatCode, AStyle (Artistic Styler), GNU Indent, BCPP and so on. Main feature is a live preview to directly see how the selected formatting option affects the source code.&lt;/span>&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2';">&lt;br />Written by : &lt;a href="http://www.thomas-schweitzer.de">&lt;span style=" text-decoration: underline; color:#0000ff;">Thomas Schweitzer&lt;/span>&lt;/a>&lt;/p>
-&lt;p style=" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2';">Project Homepage : &lt;a href="http://universalindent.sourceforge.net">&lt;span style=" text-decoration: underline; color:#0000ff;">http://universalindent.sourceforge.net&lt;/span>&lt;/a>&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2';">License: UniversalIndentGui is released under the GPL 2. For details read the included file LICENSE.GPL visit &lt;a href="http://www.gnu.org/licenses/gpl.html">&lt;span style=" text-decoration: underline; color:#0000ff;">http://www.gnu.org/licenses/gpl.html&lt;/span>&lt;/a>.&lt;/p>
-&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2';">&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2';">Credits:&lt;/p>&lt;/body>&lt;/html></string>
-     </property>
+&lt;/style>&lt;/head>&lt;body style=" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;">
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; font-size:9pt;">&lt;span style=" font-family:'MS Shell Dlg 2';">... is a cross platform compatible GUI for several code formatter, beautifier and indenter like GreatCode, AStyle (Artistic Styler), GNU Indent, BCPP and so on. Main feature is a live preview to directly see how the selected formatting option affects the source code.&lt;/span>&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;">&lt;br />Written by : &lt;a href="http://www.thomas-schweitzer.de">&lt;span style=" text-decoration: underline; color:#0000ff;">Thomas Schweitzer&lt;/span>&lt;/a>&lt;/p>
+&lt;p style=" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;">Project Homepage : &lt;a href="http://universalindent.sourceforge.net">&lt;span style=" text-decoration: underline; color:#0000ff;">http://universalindent.sourceforge.net&lt;/span>&lt;/a>&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;">License: UniversalIndentGui is released under the GPL 2. For details read the included file LICENSE.GPL visit &lt;a href="http://www.gnu.org/licenses/gpl.html">&lt;span style=" text-decoration: underline; color:#0000ff;">http://www.gnu.org/licenses/gpl.html&lt;/span>&lt;/a>.&lt;/p>
+&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;">&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;">Credits:&lt;/p>&lt;/body>&lt;/html></string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QTextBrowser" name="creditsTextBrowser" >
+        <property name="verticalScrollBarPolicy" >
+         <enum>Qt::ScrollBarAlwaysOff</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" >
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+        <property name="leftMargin" >
+         <number>0</number>
+        </property>
+        <property name="topMargin" >
+         <number>0</number>
+        </property>
+        <property name="rightMargin" >
+         <number>0</number>
+        </property>
+        <property name="bottomMargin" >
+         <number>0</number>
+        </property>
+        <item>
+         <spacer>
+          <property name="orientation" >
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" >
+           <size>
+            <width>131</width>
+            <height>31</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="okButton" >
+          <property name="text" >
+           <string>OK</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer>
+          <property name="orientation" >
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" >
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+     </layout>
     </widget>
-   </item>
-   <item>
-    <widget class="QTextBrowser" name="creditsTextBrowser" >
-     <property name="verticalScrollBarPolicy" >
-      <enum>Qt::ScrollBarAlwaysOff</enum>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" >
-     <property name="spacing" >
-      <number>6</number>
-     </property>
-     <property name="leftMargin" >
-      <number>0</number>
-     </property>
-     <property name="topMargin" >
-      <number>0</number>
-     </property>
-     <property name="rightMargin" >
-      <number>0</number>
-     </property>
-     <property name="bottomMargin" >
-      <number>0</number>
-     </property>
-     <item>
-      <spacer>
-       <property name="orientation" >
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" >
-        <size>
-         <width>131</width>
-         <height>31</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="okButton" >
-       <property name="text" >
-        <string>OK</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer>
-       <property name="orientation" >
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" >
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-    </layout>
    </item>
   </layout>
  </widget>
