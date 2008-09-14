@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "setting Qt path"
 echo "---------------"
-QTDIR=/Users/thomas/Documents/Informatik/qt-static-release
+QTDIR=/Users/thomas/Documents/Informatik/qt.4.4.1_static
 export QTDIR
 PATH=$QTDIR/bin:$PATH
 export PATH
