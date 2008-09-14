@@ -121,6 +121,7 @@ private:
     Ui::toolBarWidget *toolBarWidget;
     IndentHandler *indentHandler;
     UpdateCheckDialog *updateCheckDialog;
+    QLabel *textEditLineColumnInfoLabel;
 
 protected:
     void closeEvent( QCloseEvent *event );
@@ -149,6 +150,7 @@ private slots:
     void openFileFromRecentlyOpenedList(QAction* recentlyOpenedAction);
     void clearRecentlyOpenedList();
 	void showAboutDialog();
+    void setStatusBarCursorPosInfo(int line, int column);
 };
 
 #endif // MAINWINDOW_H

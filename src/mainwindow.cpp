@@ -244,6 +244,10 @@ void MainWindow::initTextEditor() {
     // on the same line as before when turning preview on/off.
     textEditVScrollBar = txtedSourceCode->verticalScrollBar();
 
+    textEditLineColumnInfoLabel = new QLabel( tr("Line %1, Column %2").arg(1).arg(1) );
+    statusbar->addPermanentWidget(textEditLineColumnInfoLabel);
+    connect( txtedSourceCode, SIGNAL(cursorPositionChanged(int, int)), this, SLOT(setStatusBarCursorPosInfo(int, int)) );
+
     // Connect the text editor to dependent functions.
     connect( txtedSourceCode, SIGNAL(textChanged()), this, SLOT(sourceCodeChangedHelperSlot()) );
 	connect( txtedSourceCode, SIGNAL(linesChanged()), this, SLOT(numberOfLinesChanged()) );
@@ -1389,9 +1393,20 @@ void MainWindow::dropEvent(QDropEvent *event) {
 }
 
 
+/*!
+    \brief If the dropped in object contains urls/paths to a file, open that file.
+*/
 void MainWindow::showAboutDialog() {
 	QPixmap originalPixmap = QPixmap::grabWindow(QApplication::desktop()->screen()->winId());
 	qDebug("in main pixmap width %d, numScreens = %d", originalPixmap.size().width(), QApplication::desktop()->availableGeometry().width());
 	aboutDialogGraphicsView->setScreenshotPixmap( originalPixmap );
 	aboutDialogGraphicsView->show();
+}
+
+
+/*!
+    \brief Sets the label in the status bar to show the \a line and \a column number.
+*/
+void MainWindow::setStatusBarCursorPosInfo( int line, int column ) {
+    textEditLineColumnInfoLabel->setText( tr("Line %1, Column %2").arg(line+1).arg(column+1) );
 }
