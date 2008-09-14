@@ -18,14 +18,6 @@
     <normaloff>:/mainWindow/icon2.png</normaloff>:/mainWindow/icon2.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget" >
-   <property name="geometry" >
-    <rect>
-     <x>66</x>
-     <y>33</y>
-     <width>883</width>
-     <height>581</height>
-    </rect>
-   </property>
    <layout class="QHBoxLayout" >
     <property name="spacing" >
      <number>6</number>
@@ -45,16 +37,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QStatusBar" name="statusbar" >
-   <property name="geometry" >
-    <rect>
-     <x>0</x>
-     <y>614</y>
-     <width>949</width>
-     <height>19</height>
-    </rect>
-   </property>
-  </widget>
+  <widget class="QStatusBar" name="statusbar" />
   <widget class="QMenuBar" name="menuBar" >
    <property name="geometry" >
     <rect>
@@ -139,14 +122,6 @@
    <addaction name="menuHelp" />
   </widget>
   <widget class="QDockWidget" name="dockWidget" >
-   <property name="geometry" >
-    <rect>
-     <x>0</x>
-     <y>33</y>
-     <width>62</width>
-     <height>581</height>
-    </rect>
-   </property>
    <property name="sizePolicy" >
     <sizepolicy vsizetype="Preferred" hsizetype="MinimumExpanding" >
      <horstretch>0</horstretch>
@@ -166,14 +141,6 @@
     <number>1</number>
    </attribute>
    <widget class="QWidget" name="dockWidgetContents" >
-    <property name="geometry" >
-     <rect>
-      <x>0</x>
-      <y>22</y>
-      <width>62</width>
-      <height>559</height>
-     </rect>
-    </property>
     <layout class="QHBoxLayout" >
      <property name="spacing" >
       <number>6</number>
@@ -195,14 +162,6 @@
    </widget>
   </widget>
   <widget class="QToolBar" name="toolBar" >
-   <property name="geometry" >
-    <rect>
-     <x>0</x>
-     <y>21</y>
-     <width>949</width>
-     <height>12</height>
-    </rect>
-   </property>
    <property name="contextMenuPolicy" >
     <enum>Qt::PreventContextMenu</enum>
    </property>
