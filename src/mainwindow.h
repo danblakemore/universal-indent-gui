@@ -23,9 +23,7 @@
 #include "ui_mainwindow.h"
 #include "ui_toolBarWidget.h"
 #include "aboutdialog.h"
-#if QT_VERSION >= 0x040400
 #include "AboutDialogGraphicsView.h"
-#endif
 #include "uiguisettings.h"
 #include "uiguisettingsdialog.h"
 #include "highlighter.h"

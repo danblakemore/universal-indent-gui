@@ -23,6 +23,7 @@ macx {
  QMAKE-MAC_SDK = /Developer/SDKs/MacOSX10.4u.sdk
 }
 
+release {
 
 win32:pipe2nul = ">NUL"
 unix:pipe2nul = "&> /dev/null"
@@ -96,9 +97,9 @@ unix:INSTALLS += target \
                  highlighterconfig \
                  indenters \
                  translation \
-	             documentation
+                 documentation
 
-
+}
 
 #######################
 # remove linker flag "-mthreads" so the mingwm10.dll is no longer needed
@@ -154,12 +155,13 @@ HEADERS += src/aboutdialog.h \
            src/indenthandler.h \
            src/mainwindow.h \
            src/uiguierrormessage.h \
-	   src/uiguiIniFileParser.h \
+           src/uiguiIniFileParser.h \
            src/uiguisettings.h \
            src/uiguisettingsdialog.h \
            src/UiguiIndentServer.h \
            src/updatecheckdialog.h \
-           src/SettingsPaths.h
+           src/SettingsPaths.h \
+           src/AboutDialogGraphicsView.h
 
 FORMS += src/mainwindow.ui \
          src/toolBarWidget.ui \
@@ -178,11 +180,8 @@ SOURCES += src/aboutdialog.cpp \
            src/uiguisettingsdialog.cpp \
            src/UiguiIndentServer.cpp \
            src/updatecheckdialog.cpp \
-           src/SettingsPaths.cpp
-#macx {
-SOURCES += src/AboutDialogGraphicsView.cpp
-HEADERS += src/AboutDialogGraphicsView.h
-#}
+           src/SettingsPaths.cpp \
+           src/AboutDialogGraphicsView.cpp
 
 RESOURCES += resources/Icons.qrc
 RC_FILE    = resources/programicon.rc
