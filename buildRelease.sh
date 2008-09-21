@@ -276,9 +276,14 @@ echo ""
 
 echo "Copying ${targetName}$ext to target dir"
 echo "--------------------------------------------"
-cp ./release/$targetName$ext ./$targetDir/ &> /dev/null
+if [ "$targetSystem" = "macx" ]; then
+    cp -R ./release/$targetName.app ./$targetDir/ &> /dev/null
+else
+    cp ./release/$targetName$ext ./$targetDir/ &> /dev/null
+fi
+
 if [ $? -gt 0 ]; then
-    echo "ERROR: Could not copy file \"$targetName$ext\"!"
+    echo "ERROR: Could not copy file \"$targetName$ext\" \"./$targetDir/\"!"
     exit 1
 fi
 echo "Done"
@@ -287,7 +292,12 @@ echo ""
 
 echo "Copying the indenter executable files to the target indenters dir"
 echo "-----------------------------------------------------------------"
-indenters="astyle$ext astyle.html bcpp$ext bcpp.txt csstidy$ext gc.exe gc.txt htb.exe htb.html indent$ext indent.html tidy$ext tidy.html uncrustify$ext uncrustify.txt"
+if [ "$targetSystem" = "macx" ]; then
+    indenters="astyle$ext astyle.html hindent hindent.html JsDecoder.js perltidy perltidy.html PerlTidyLib.pm phpStylist.php phpStylist.txt rbeautify.rb ruby_formatter.rb shellindent.awk uncrustify$ext uncrustify.txt"
+else
+   indenters="astyle$ext astyle.html bcpp$ext bcpp.txt csstidy$ext gc.exe gc.txt htb.exe htb.html indent$ext indent.html tidy$ext tidy.html uncrustify$ext uncrustify.txt"
+fi
+
 if [ "$ext" = ".exe" ]; then
     indenters="$indenters libiconv-2.dll libintl-2.dll"
 fi
