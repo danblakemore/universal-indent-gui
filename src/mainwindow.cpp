@@ -86,16 +86,16 @@ MainWindow::MainWindow(QString file2OpenOnStart, QWidget *parent) : QMainWindow(
     aboutDialog = new AboutDialog(this, Qt::SplashScreen, version, revision, buildDateStr);
     aboutDialogGraphicsView = new AboutDialogGraphicsView(aboutDialog, this);
     connect( toolBarWidget->pbAbout, SIGNAL(clicked()), this, SLOT(showAboutDialog()) );
-    connect( actionAbout_UniversalIndentGUI, SIGNAL(activated()), this, SLOT(showAboutDialog()) );
+    connect( actionAbout_UniversalIndentGUI, SIGNAL(triggered()), this, SLOT(showAboutDialog()) );
 #else
     aboutDialog = new AboutDialog(this, Qt::Dialog, version, revision, buildDateStr);
-    connect( actionAbout_UniversalIndentGUI, SIGNAL(activated()), aboutDialog, SLOT(exec()) );
+    connect( actionAbout_UniversalIndentGUI, SIGNAL(triggered()), aboutDialog, SLOT(exec()) );
     connect( toolBarWidget->pbAbout, SIGNAL(clicked()), aboutDialog, SLOT(exec()) );
 #endif
 
 	// generate settings dialog box
 	settingsDialog = new UiGuiSettingsDialog(this, settings);
-    connect( actionShowSettings, SIGNAL(activated()), settingsDialog, SLOT(showDialog()) );
+    connect( actionShowSettings, SIGNAL(triggered()), settingsDialog, SLOT(showDialog()) );
 
     // If a file that should be opened on start has been handed over to the constructor exists, load it
     if ( QFile::exists(file2OpenOnStart) ) {
@@ -176,12 +176,12 @@ void MainWindow::initMainWindow() {
     connect( settings, SIGNAL(whiteSpaceIsVisible(bool)), this, SLOT(setWhiteSpaceVisibility(bool)) );
 
     // Connect the remaining menu items.
-    connect( actionOpen_Source_File, SIGNAL(activated()), this, SLOT(openSourceFileDialog()) );
-    connect( actionSave_Source_File_As, SIGNAL(activated()), this, SLOT(saveasSourceFileDialog()) );
-    connect( actionSave_Source_File, SIGNAL(activated()), this, SLOT(saveSourceFile()) );
-    connect( actionExportPDF, SIGNAL(activated()), this, SLOT(exportToPDF()) );
-    connect( actionExportHTML, SIGNAL(activated()), this, SLOT(exportToHTML()) );
-    connect( actionCheck_for_update, SIGNAL(activated()), updateCheckDialog, SLOT(checkForUpdateAndShowDialog()) );
+    connect( actionOpen_Source_File, SIGNAL(triggered()), this, SLOT(openSourceFileDialog()) );
+    connect( actionSave_Source_File_As, SIGNAL(triggered()), this, SLOT(saveasSourceFileDialog()) );
+    connect( actionSave_Source_File, SIGNAL(triggered()), this, SLOT(saveSourceFile()) );
+    connect( actionExportPDF, SIGNAL(triggered()), this, SLOT(exportToPDF()) );
+    connect( actionExportHTML, SIGNAL(triggered()), this, SLOT(exportToHTML()) );
+    connect( actionCheck_for_update, SIGNAL(triggered()), updateCheckDialog, SLOT(checkForUpdateAndShowDialog()) );
 
     // Init the menu for selecting one of the recently opened files.
     updateRecentlyOpenedList();

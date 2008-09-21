@@ -58,10 +58,10 @@ IndentHandler::IndentHandler(int indenterID, QWidget *mainWindow, QWidget *paren
     actionCreateShellScript = NULL;
     initIndenterMenu();
 
-    connect( actionLoad_Indenter_Config_File, SIGNAL(activated()), this, SLOT(openConfigFileDialog()) );
-    connect( actionSave_Indenter_Config_File, SIGNAL(activated()), this, SLOT(saveasIndentCfgFileDialog()) );
-    connect( actionCreateShellScript, SIGNAL(activated()), this, SLOT(createIndenterCallShellScript()) );
-    connect( actionResetIndenterParameters, SIGNAL(activated()), this, SLOT(resetIndenterParameter()) );
+    connect( actionLoad_Indenter_Config_File, SIGNAL(triggered()), this, SLOT(openConfigFileDialog()) );
+    connect( actionSave_Indenter_Config_File, SIGNAL(triggered()), this, SLOT(saveasIndentCfgFileDialog()) );
+    connect( actionCreateShellScript, SIGNAL(triggered()), this, SLOT(createIndenterCallShellScript()) );
+    connect( actionResetIndenterParameters, SIGNAL(triggered()), this, SLOT(resetIndenterParameter()) );
 
     // define this widgets size and resize behavior
     //this->setMaximumWidth(263);
@@ -72,7 +72,7 @@ IndentHandler::IndentHandler(int indenterID, QWidget *mainWindow, QWidget *paren
     vboxLayout->setMargin(2);
 
     // Create horizontal layout for indenter selector and help button.
-    QHBoxLayout *hboxLayout = new QHBoxLayout(this);
+    QHBoxLayout *hboxLayout = new QHBoxLayout();
     //hboxLayout->setMargin(2);
     vboxLayout->addLayout( hboxLayout );
 
