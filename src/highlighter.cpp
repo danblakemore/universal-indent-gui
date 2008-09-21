@@ -46,31 +46,38 @@ Highlighter::Highlighter(QsciScintilla *parent, bool portableMode, QString globa
         this->settings = new QSettings(QSettings::IniFormat, QSettings::UserScope, QCoreApplication::organizationName(), "UiGuiSyntaxHighlightConfig", this);
     }
 
-
     highlightningIsOn = true;
 
     mapHighlighternameToExtension["Bash"] = QStringList() << "sh";
     mapHighlighternameToExtension["Batch"] = QStringList() << "bat";
+    mapHighlighternameToExtension["CMake"] = QStringList() << "cmake";
     mapHighlighternameToExtension["C++"] = QStringList() << "c" << "h" << "cpp" << "hpp" << "cxx" << "hxx";
     mapHighlighternameToExtension["C#"] = QStringList() << "cs";
     mapHighlighternameToExtension["CSS"] = QStringList() << "css";
     mapHighlighternameToExtension["D"] = QStringList() << "d";
     mapHighlighternameToExtension["Diff"] = QStringList() << "diff";
+    mapHighlighternameToExtension["Fortran"] = QStringList() << "f" << "for";
+    mapHighlighternameToExtension["Fortran77"] = QStringList() << "f77";
     mapHighlighternameToExtension["HTML"] = QStringList() << "html";
     mapHighlighternameToExtension["IDL"] = QStringList() << "idl";
     mapHighlighternameToExtension["Java"] = QStringList() << "java";
     mapHighlighternameToExtension["JavaScript"] = QStringList() << "js";
     mapHighlighternameToExtension["LUA"] = QStringList() << "lua";
     mapHighlighternameToExtension["Makefile"] = QStringList() << "makefile";
+    mapHighlighternameToExtension["Pascal"] = QStringList() << "pas";
     mapHighlighternameToExtension["Perl"] = QStringList() << "perl" << "pl" << "pm";
     mapHighlighternameToExtension["PHP"] = QStringList() << "php";
+    mapHighlighternameToExtension["PostScript"] = QStringList() << "ps" << "eps" << "pdf" << "ai" << "fh";
     mapHighlighternameToExtension["POV"] = QStringList() << "pov";
     mapHighlighternameToExtension["Ini"] = QStringList() << "ini";
     mapHighlighternameToExtension["Python"] = QStringList() << "py";
-    mapHighlighternameToExtension["Ruby"] = QStringList() << "rub";
+    mapHighlighternameToExtension["Ruby"] = QStringList() << "rub" << "rb";
     mapHighlighternameToExtension["SQL"] = QStringList() << "sql";
+    mapHighlighternameToExtension["TCL"] = QStringList() << "tcl";
     mapHighlighternameToExtension["TeX"] = QStringList() << "tex";
+    mapHighlighternameToExtension["VHDL"] = QStringList() << "vhdl";
     mapHighlighternameToExtension["XML"] = QStringList() << "xml";
+    mapHighlighternameToExtension["YAML"] = QStringList() << "yaml";
 
     lexer = 0;
 
@@ -314,6 +321,9 @@ int Highlighter::setLexerForExtension( QString extension ) {
 	else if ( extension == "bat" ) {
 		lexer = new QsciLexerBatch();
 	}
+    else if ( extension == "cmake" ) {
+        lexer = new QsciLexerCMake();
+    }
 	else if ( extension == "cs" ) {
 		lexer = new QsciLexerCSharp();
 	}
@@ -326,6 +336,12 @@ int Highlighter::setLexerForExtension( QString extension ) {
 	else if ( extension == "diff" ) {
 		lexer = new QsciLexerDiff();
 	}
+    else if ( extension == "f" || extension == "for" ) {
+        lexer = new QsciLexerFortran();
+    }
+    else if ( extension == "f77" ) {
+        lexer = new QsciLexerFortran77();
+    }
 	else if ( extension == "html" ) {
 		lexer = new QsciLexerHTML();
 	}
@@ -344,12 +360,18 @@ int Highlighter::setLexerForExtension( QString extension ) {
     else if ( extension == "makefile" ) {
 		lexer = new QsciLexerMakefile();
 	}
+    else if ( extension == "pas" ) {
+        lexer = new QsciLexerPascal();
+    }
 	else if ( extension == "perl" || extension == "pl" || extension == "pm" ) {
 		lexer = new QsciLexerPerl();
 	}
     else if ( extension == "php" ) {
 		lexer = new QsciLexerHTML();
 	}
+    else if ( extension == "ps" || extension == "eps" || extension == "pdf" || extension == "ai" || extension == "fh") {
+        lexer = new QsciLexerPostScript();
+    }
 	else if ( extension == "pov" ) {
 		lexer = new QsciLexerPOV();
 	}
@@ -359,18 +381,27 @@ int Highlighter::setLexerForExtension( QString extension ) {
 	else if ( extension == "py" ) {
 		lexer = new QsciLexerPython();
 	}
-	else if ( extension == "rub" ) {
+	else if ( extension == "rub" || extension == "rb" ) {
 		lexer = new QsciLexerRuby();
 	}
 	else if ( extension == "sql" ) {
 		lexer = new QsciLexerSQL();
 	}
+    else if ( extension == "tcl" ) {
+        lexer = new QsciLexerTCL();
+    }
 	else if ( extension == "tex" ) {
 		lexer = new QsciLexerTeX();
 	}
+    else if ( extension == "vhdl" ) {
+        lexer = new QsciLexerVHDL();
+    }
     else if ( extension == "xml" ) {
-		lexer = new QsciLexerHTML();
+		lexer = new QsciLexerXML();
 	}
+    else if ( extension == "yaml" ) {
+        lexer = new QsciLexerYAML();
+    }
 	else {
 		lexer = new QsciLexerCPP();
         extension = "cpp";
