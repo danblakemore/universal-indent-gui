@@ -76,9 +76,11 @@ public:
     void contextMenuEvent( QContextMenuEvent *event );
     void setParameterChangedCallback( void(*paramChangedCallback)(void) );
     void setWindowClosedCallback( void(*winClosedCallback)(void) );
+    int getIndenterId();
 
 signals:
     void indenterSettingsChanged();
+    void selectedIndenterIndexChanged(int index);
 
 protected:
     bool event( QEvent *event );
@@ -148,7 +150,7 @@ private:
     };
     QVector<ParamMultiple> paramMultiples;
 
-    QComboBox *indenterSelectionComboBox;
+    QComboBox *indenterSelectionCombobox;
     QToolButton *indenterParameterHelpButton;
     QVBoxLayout *vboxLayout;
     QToolBox *toolBox;

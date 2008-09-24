@@ -19,6 +19,8 @@
 
 #include "indenthandler.h"
 
+#include "uiguisettings.h"
+
 //! \defgroup grp_Indenter All concerning handling of the indenter.
 
 /*!
@@ -77,11 +79,14 @@ IndentHandler::IndentHandler(int indenterID, QWidget *mainWindow, QWidget *paren
     vboxLayout->addLayout( hboxLayout );
 
     // Create the indenter selection combo box.
-    indenterSelectionComboBox = new QComboBox(this);
-    indenterSelectionComboBox->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
-    indenterSelectionComboBox->setMinimumContentsLength(20);
-    connect( indenterSelectionComboBox, SIGNAL(activated(int)), this, SLOT(setIndenter(int)) );
-    hboxLayout->addWidget( indenterSelectionComboBox );
+    indenterSelectionCombobox = new QComboBox(this);
+    indenterSelectionCombobox->setObjectName(QString::fromUtf8("indenterSelectionCombobox"));
+    indenterSelectionCombobox->setProperty("connectedSettingName", "SelectedIndenter");
+    indenterSelectionCombobox->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
+    indenterSelectionCombobox->setMinimumContentsLength(20);
+    connect( indenterSelectionCombobox, SIGNAL(activated(int)), UiGuiSettings::getInstance(), SLOT(handleValueChangeFromExtern(int)) );
+    connect( UiGuiSettings::getInstance(), SIGNAL(selectedIndenter(int)), this, SLOT(setIndenter(int)) );
+    hboxLayout->addWidget( indenterSelectionCombobox );
 
     // Create the indenter parameter help button.
     indenterParameterHelpButton = new QToolButton(this);
@@ -129,7 +134,7 @@ IndentHandler::IndentHandler(int indenterID, QWidget *mainWindow, QWidget *paren
             indenterID = indenterIniFileList.count() - 1;
         }
 
-        // reads and parses the by indenterID defined indent ini file and creates toolbox entries
+        // Reads and parses the by indenterID defined indent ini file and creates toolbox entries
         readIndentIniFile( indenterDirctoryStr + "/" + indenterIniFileList.at(indenterID) );
 
         // Find out how the indenter can be executed.
@@ -140,8 +145,9 @@ IndentHandler::IndentHandler(int indenterID, QWidget *mainWindow, QWidget *paren
 
         // Fill the indenter selection combo box with the list of available indenters.
         if ( !getAvailableIndenters().isEmpty() ) {
-            indenterSelectionComboBox->addItems( getAvailableIndenters() );
-            indenterSelectionComboBox->setCurrentIndex( indenterID );
+            indenterSelectionCombobox->addItems( getAvailableIndenters() );
+            indenterSelectionCombobox->setCurrentIndex( indenterID );
+            connect( indenterSelectionCombobox, SIGNAL(currentIndexChanged(int)), this, SIGNAL(selectedIndenterIndexChanged(int)) );
         }
     }
     else {
@@ -307,13 +313,13 @@ QString IndentHandler::generateCommandlineCall(QString inputFileExtension) {
     }
 
 #if defined(Q_OS_WIN32)
-    QString shellScript(templateBatchScript);
+    QString shellScript( TemplateBatchScript::getTemplateBatchScript() );
     shellScript = shellScript.replace("__INDENTERCALLSTRING2__", indenterCompleteCallString + "\n" + replaceInputFileCommand);
     indenterCompleteCallString = indenterCompleteCallString.replace("%1", "%%G");
     replaceInputFileCommand = replaceInputFileCommand.replace("%1", "%%G");
     shellScript = shellScript.replace("__INDENTERCALLSTRING1__", indenterCompleteCallString + "\n" + replaceInputFileCommand);
 #else
-    QString shellScript(templateBatchScript);
+    QString shellScript( TemplateBatchScript::getTemplateBatchScript() );
     shellScript = shellScript.replace("__INDENTERCALLSTRING2__", indenterCompleteCallString + "\n" + replaceInputFileCommand);
     indenterCompleteCallString = indenterCompleteCallString.replace("$1", "$file2indent");
     replaceInputFileCommand = replaceInputFileCommand.replace("$1", "$file2indent");
@@ -1326,7 +1332,7 @@ void IndentHandler::showIndenterManual() {
     \brief Can be called to update all widgets text to the currently selected language.
  */
 void IndentHandler::retranslateUi() {
-    indenterSelectionComboBox->setToolTip( tr("<html><head><meta name=\"qrichtext\" content=\"1\" /></head><body style=\" white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;\"><p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Shows the currently chosen indenters name and lets you choose other available indenters</p></body></html>") );
+    indenterSelectionCombobox->setToolTip( tr("<html><head><meta name=\"qrichtext\" content=\"1\" /></head><body style=\" white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;\"><p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Shows the currently chosen indenters name and lets you choose other available indenters</p></body></html>") );
     indenterParameterHelpButton->setToolTip( tr("Brings you to the online manual of the currently selected indenter, where you can get further help on the possible parameters.") );
 
     actionLoad_Indenter_Config_File->setText(QApplication::translate("IndentHandler", "Load Indenter Config File", 0, QApplication::UnicodeUTF8));
@@ -1351,7 +1357,7 @@ void IndentHandler::retranslateUi() {
     \brief Returns the name of the currently selected indenter.
  */
 QString IndentHandler::getCurrentIndenterName() {
-    QString currentIndenterName = indenterSelectionComboBox->currentText();
+    QString currentIndenterName = indenterSelectionCombobox->currentText();
 
     // Remove the supported programming languages from indenters name, which are set in braces.
     if ( currentIndenterName.indexOf("(") > 0 ) {
@@ -1440,7 +1446,7 @@ void IndentHandler::createIndenterCallShellScript() {
     outSrcFile.open( QFile::ReadWrite | QFile::Text );
     outSrcFile.write( indenterCallShellScript.toAscii() );
 #if !defined(Q_OS_WIN32)
-    // For none Windows systems the files executable flag
+    // For none Windows systems set the files executable flag
     outSrcFile.setPermissions( outSrcFile.permissions() | QFile::ExeOwner | QFile::ExeUser| QFile::ExeGroup );
 #endif
     outSrcFile.close();
@@ -1462,12 +1468,10 @@ void IndentHandler::resetIndenterParameter() {
 
 bool IndentHandler::event( QEvent *event ) {
     if ( event->type() == QEvent::WindowActivate ) {
-        int i = 0;
         event->accept();
         return true;
     }
     else if ( event->type() == QEvent::WindowDeactivate ) {
-        int i = 0;
         event->accept();
         return true;
     } 
@@ -1502,4 +1506,9 @@ void IndentHandler::closeEvent(QCloseEvent *event) {
         windowClosedCallback();
     }
     event->accept();
+}
+
+
+int IndentHandler::getIndenterId() {
+    return indenterSelectionCombobox->currentIndex();
 }

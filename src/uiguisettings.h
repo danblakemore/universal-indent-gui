@@ -33,10 +33,14 @@
 class UiGuiSettings : public QObject
 {
 	Q_OBJECT
+private:
+    UiGuiSettings();
+    static UiGuiSettings* instance;
 
 public:
-	UiGuiSettings(bool portableMode, QString globalFilesDirectoryStr);
-    virtual ~UiGuiSettings();
+	static UiGuiSettings* getInstance();
+    static void deleteInstance();
+    ~UiGuiSettings();
     bool loadSettings();
     bool saveSettings();
     bool setValueByName(QString settingName, QVariant value);
@@ -62,7 +66,7 @@ signals:
     void recentlyOpenedListSize(int value);
     void loadLastOpenedFileOnStartup(bool value);
     void lastOpenedFiles(QString value);
-    void lastSelectedIndenterID(int value);
+    void selectedIndenter(int value);
     void syntaxHighlightningEnabled(bool value);
     void whiteSpaceIsVisible(bool value);
     void indenterParameterTooltipsEnabled(bool value);

@@ -243,6 +243,10 @@
 				RelativePath=".\SettingsPaths.cpp"
 				>
 			</File>
+            <File
+				RelativePath=".\templateBatchScript.cpp"
+				>
+			</File>
 			<File
 				RelativePath=".\uiguierrormessage.cpp"
 				>

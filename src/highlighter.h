@@ -62,7 +62,7 @@ class Highlighter : public QObject
     Q_OBJECT
 
 public:
-    Highlighter(QsciScintilla *parent, bool portableMode, QString globalFilesDirectoryStr);
+    Highlighter(QsciScintilla *parent);
     void turnHighlightOff();
     void turnHighlightOn();
 	

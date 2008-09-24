@@ -16,16 +16,7 @@
    <property name="spacing" >
     <number>6</number>
    </property>
-   <property name="leftMargin" >
-    <number>0</number>
-   </property>
-   <property name="topMargin" >
-    <number>0</number>
-   </property>
-   <property name="rightMargin" >
-    <number>0</number>
-   </property>
-   <property name="bottomMargin" >
+   <property name="margin" >
     <number>0</number>
    </property>
    <item>
@@ -37,7 +28,8 @@
       <string> Open Source File </string>
      </property>
      <property name="icon" >
-      <iconset resource="../resources/Icons.qrc" >:/mainWindow/document-open.png</iconset>
+      <iconset resource="../resources/Icons.qrc" >
+       <normaloff>:/mainWindow/document-open.png</normaloff>:/mainWindow/document-open.png</iconset>
      </property>
     </widget>
    </item>
@@ -50,12 +42,13 @@
       <string>Live Indent Preview</string>
      </property>
      <property name="icon" >
-      <iconset resource="../resources/Icons.qrc" >:/mainWindow/live-preview.png</iconset>
+      <iconset resource="../resources/Icons.qrc" >
+       <normaloff>:/mainWindow/live-preview.png</normaloff>:/mainWindow/live-preview.png</iconset>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QCheckBox" name="uiGuiSyntaxHighlightningEnabled" >
+    <widget class="QCheckBox" name="enableSyntaxHighlightningCheckBox" >
      <property name="toolTip" >
       <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;/head>&lt;body style=" white-space: pre-wrap; font-family:MS Shell Dlg 2; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;">&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;">Enables and disables the highlightning of the source&lt;/p>&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;">code shown below. (Still needs some performance improvements) (Strg+H)&lt;/p>&lt;/body>&lt;/html></string>
      </property>
@@ -63,13 +56,17 @@
       <string>Syntax Highlight</string>
      </property>
      <property name="icon" >
-      <iconset resource="../resources/Icons.qrc" >:/mainWindow/syntax-highlight.png</iconset>
+      <iconset resource="../resources/Icons.qrc" >
+       <normaloff>:/mainWindow/syntax-highlight.png</normaloff>:/mainWindow/syntax-highlight.png</iconset>
      </property>
      <property name="shortcut" >
       <string>Ctrl+H</string>
      </property>
      <property name="checked" >
       <bool>true</bool>
+     </property>
+     <property name="connectedSettingName" stdset="0" >
+      <string>SyntaxHighlightningEnabled</string>
      </property>
     </widget>
    </item>
@@ -78,7 +75,7 @@
      <property name="orientation" >
       <enum>Qt::Horizontal</enum>
      </property>
-     <property name="sizeHint" >
+     <property name="sizeHint" stdset="0" >
       <size>
        <width>40</width>
        <height>20</height>
@@ -95,7 +92,8 @@
       <string>About</string>
      </property>
      <property name="icon" >
-      <iconset resource="../resources/Icons.qrc" >:/mainWindow/info.png</iconset>
+      <iconset resource="../resources/Icons.qrc" >
+       <normaloff>:/mainWindow/info.png</normaloff>:/mainWindow/info.png</iconset>
      </property>
     </widget>
    </item>
@@ -108,7 +106,8 @@
       <string>Exit</string>
      </property>
      <property name="icon" >
-      <iconset resource="../resources/Icons.qrc" >:/mainWindow/system-log-out.png</iconset>
+      <iconset resource="../resources/Icons.qrc" >
+       <normaloff>:/mainWindow/system-log-out.png</normaloff>:/mainWindow/system-log-out.png</iconset>
      </property>
     </widget>
    </item>

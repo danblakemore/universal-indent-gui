@@ -41,22 +41,12 @@ MainWindow::MainWindow(QString file2OpenOnStart, QWidget *parent) : QMainWindow(
     QDate buildDate(2008, 05, 26);
     buildDateStr = buildDate.toString("d. MMMM yyyy");
 
-    // Get all necessary paths.
-    globalFilesDirectoryStr = SettingsPaths::getGlobalFilesPath();
-    indenterDirctoryStr = SettingsPaths::getIndenterPath();
-    portableMode = SettingsPaths::getPortableMode();
-
     // Init of some variables.
     sourceCodeChanged = false;
     scrollPositionChanged = false;
 
-    // Set default values for all by UniversalIndentGUI used settings objects.
-    QCoreApplication::setOrganizationName("UniversalIndentGUI");
-    QCoreApplication::setOrganizationDomain("universalindent.sf.net");
-    QCoreApplication::setApplicationName("UniversalIndentGUI");
-
     // Create the settings object, which loads all UiGui settings from a file.
-	settings = new UiGuiSettings( portableMode, globalFilesDirectoryStr );
+	settings = UiGuiSettings::getInstance();
 
     // Initialize the language of the application.
     initApplicationLanguage();
@@ -82,16 +72,10 @@ MainWindow::MainWindow(QString file2OpenOnStart, QWidget *parent) : QMainWindow(
 	
 
     // generate about dialog box
-#if QT_VERSION >= 0x040400
     aboutDialog = new AboutDialog(this, Qt::SplashScreen, version, revision, buildDateStr);
     aboutDialogGraphicsView = new AboutDialogGraphicsView(aboutDialog, this);
     connect( toolBarWidget->pbAbout, SIGNAL(clicked()), this, SLOT(showAboutDialog()) );
     connect( actionAbout_UniversalIndentGUI, SIGNAL(triggered()), this, SLOT(showAboutDialog()) );
-#else
-    aboutDialog = new AboutDialog(this, Qt::Dialog, version, revision, buildDateStr);
-    connect( actionAbout_UniversalIndentGUI, SIGNAL(triggered()), aboutDialog, SLOT(exec()) );
-    connect( toolBarWidget->pbAbout, SIGNAL(clicked()), aboutDialog, SLOT(exec()) );
-#endif
 
 	// generate settings dialog box
 	settingsDialog = new UiGuiSettingsDialog(this, settings);
@@ -157,9 +141,9 @@ void MainWindow::initMainWindow() {
     updateCheckDialog = new UpdateCheckDialog(version, settings, this);
 
     // Register the syntax highlightning setting in the menu to the settings object.
-    connect( uiGuiSyntaxHighlightningEnabled, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern(bool)) );
-    connect( settings, SIGNAL(syntaxHighlightningEnabled(bool)), uiGuiSyntaxHighlightningEnabled, SLOT(setChecked(bool)) );
-    uiGuiSyntaxHighlightningEnabled->setChecked( settings->getValueByName("SyntaxHighlightningEnabled").toBool() );
+    connect( enableSyntaxHighlightningAction, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern(bool)) );
+    connect( settings, SIGNAL(syntaxHighlightningEnabled(bool)), enableSyntaxHighlightningAction, SLOT(setChecked(bool)) );
+    enableSyntaxHighlightningAction->setChecked( settings->getValueByName("SyntaxHighlightningEnabled").toBool() );
     // Tell the highlighter if it has to be enabled or disabled.
     connect( settings, SIGNAL(syntaxHighlightningEnabled(bool)), this, SLOT(turnHighlightOnOff(bool)) );
 
@@ -202,10 +186,10 @@ void MainWindow::initToolBar() {
     toolBar->setAllowedAreas( Qt::TopToolBarArea | Qt::BottomToolBarArea );
 
     // Connect the tool bar widgets to their functions.
-    connect( toolBarWidget->uiGuiSyntaxHighlightningEnabled, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern(bool)) );
-    connect( settings, SIGNAL(syntaxHighlightningEnabled(bool)), toolBarWidget->uiGuiSyntaxHighlightningEnabled, SLOT(setChecked(bool)) );
-    toolBarWidget->uiGuiSyntaxHighlightningEnabled->setChecked( settings->getValueByName("SyntaxHighlightningEnabled").toBool() );
-    toolBarWidget->uiGuiSyntaxHighlightningEnabled->hide();
+    connect( toolBarWidget->enableSyntaxHighlightningCheckBox, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern(bool)) );
+    connect( settings, SIGNAL(syntaxHighlightningEnabled(bool)), toolBarWidget->enableSyntaxHighlightningCheckBox, SLOT(setChecked(bool)) );
+    toolBarWidget->enableSyntaxHighlightningCheckBox->setChecked( settings->getValueByName("SyntaxHighlightningEnabled").toBool() );
+    toolBarWidget->enableSyntaxHighlightningCheckBox->hide();
     connect( toolBarWidget->pbOpen_Source_File, SIGNAL(clicked()), this, SLOT(openSourceFileDialog()) );
     connect( toolBarWidget->pbExit, SIGNAL(clicked()), this, SLOT(close()));
     connect( toolBarWidget->cbLivePreview, SIGNAL(toggled(bool)), this, SLOT(previewTurnedOnOff(bool)) );
@@ -261,7 +245,7 @@ void MainWindow::initTextEditor() {
  */
 void MainWindow::initSyntaxHighlighter() {
     // Create the highlighter.
-    highlighter = new Highlighter(txtedSourceCode, portableMode, globalFilesDirectoryStr);
+    highlighter = new Highlighter(txtedSourceCode);
 
     // Handle if syntax highlighting is enabled
 	bool syntaxHighlightningEnabled = settings->getValueByName("SyntaxHighlightningEnabled").toBool();
@@ -309,14 +293,14 @@ bool MainWindow::initApplicationLanguage() {
     // Load the Qt own translation file and set it for the application.
     qTTranslator = new QTranslator();
     bool translationFileLoaded;
-    translationFileLoaded = qTTranslator->load( globalFilesDirectoryStr + "/translations/qt_" + languageShort );
+    translationFileLoaded = qTTranslator->load( SettingsPaths::getGlobalFilesPath() + "/translations/qt_" + languageShort );
     if ( translationFileLoaded ) {
         qApp->installTranslator(qTTranslator);
     }
 
     // Load the uigui translation file and set it for the application.
     uiGuiTranslator = new QTranslator();
-    translationFileLoaded = uiGuiTranslator->load( globalFilesDirectoryStr + "/translations/universalindent_" + languageShort );
+    translationFileLoaded = uiGuiTranslator->load( SettingsPaths::getGlobalFilesPath() + "/translations/universalindent_" + languageShort );
     if ( translationFileLoaded ) {
         qApp->installTranslator(uiGuiTranslator);
     }
@@ -332,7 +316,7 @@ bool MainWindow::initApplicationLanguage() {
  */
 void MainWindow::initIndenter() {
     // Get Id of last selected indenter.
-	currentIndenterID = settings->getValueByName("LastSelectedIndenterID").toInt();
+	currentIndenterID = settings->getValueByName("SelectedIndenter").toInt();
 
     // Create the indenter widget with the ID and add it to the layout.
     indentHandler = new IndentHandler(currentIndenterID, this, centralwidget);
@@ -653,7 +637,6 @@ void MainWindow::sourceCodeChangedSlot() {
         bool charFound = false;
 
         // Search forward
-        int lineBreakCounter = 0;
         for ( cursorLine = saveCursorLine; cursorLine-saveCursorLine < 6 && cursorLine < txtedSourceCode->lines(); cursorLine++ ) {
             text = txtedSourceCode->text(cursorLine);
             while ( cursorPos < text.count() && enteredCharacter != text.at(cursorPos)) {
@@ -675,7 +658,7 @@ void MainWindow::sourceCodeChangedSlot() {
             if ( cursorPos >= text.count() ) {
                 cursorPos = text.count() - 1;
             }
-            int lineBreakCounter = 0;
+
             for ( cursorLine = saveCursorLine; saveCursorLine-cursorLine < 6 && cursorLine >= 0; cursorLine-- ) {
                 text = txtedSourceCode->text(cursorLine);
                 while ( cursorPos >= 0 && enteredCharacter != text.at(cursorPos)) {
@@ -893,8 +876,8 @@ void MainWindow::loadLastOpenedFile() {
 			sourceFileContent = loadFile(currentSourceFile);
 		}
         // If the last opened source code file does not exist, try to load the default example.cpp file.
-        else if ( QFile::exists(indenterDirctoryStr + "/example.cpp") ) {
-			QFileInfo fileInfo(indenterDirctoryStr + "/example.cpp");
+        else if ( QFile::exists( SettingsPaths::getIndenterPath() + "/example.cpp" ) ) {
+			QFileInfo fileInfo( SettingsPaths::getIndenterPath() + "/example.cpp" );
 			currentSourceFile = fileInfo.absoluteFilePath();
 			sourceFileContent = loadFile(currentSourceFile);
 		}
@@ -929,7 +912,7 @@ void MainWindow::saveSettings() {
     //    settings->setValueByName( "LastOpenedFiles", currentSourceFile );
     //}
 	//settings->setValueByName( "LoadLastOpenedFileOnStartup", uiGuiLoadLastOpenedFileOnStartup->isChecked() );
-    settings->setValueByName( "LastSelectedIndenterID", currentIndenterID );
+    //settings->setValueByName( "SelectedIndenter", indentHandler->getIndenterId() );
     //settings->setValueByName( "IndenterParameterTooltipsEnabled", uiGuiIndenterParameterTooltipsEnabled->isChecked() );
     //settings->setValueByName( "Language", language );
 	settings->setValueByName( "FileEncoding", currentEncoding );
@@ -1028,13 +1011,13 @@ void MainWindow::languageChanged(int languageIndex) {
 
     // Load the Qt own translation file and set it for the application.
     bool translationFileLoaded;
-    translationFileLoaded = qTTranslator->load( globalFilesDirectoryStr + "/translations/qt_" + languageShort );
+    translationFileLoaded = qTTranslator->load( SettingsPaths::getGlobalFilesPath() + "/translations/qt_" + languageShort );
     if ( translationFileLoaded ) {
         qApp->installTranslator(qTTranslator);
     }
 
     // Load the uigui translation file and set it for the application.
-    translationFileLoaded = uiGuiTranslator->load( globalFilesDirectoryStr + "/translations/universalindent_" + languageShort );
+    translationFileLoaded = uiGuiTranslator->load( SettingsPaths::getGlobalFilesPath() + "/translations/universalindent_" + languageShort );
     if ( translationFileLoaded ) {
         qApp->installTranslator(uiGuiTranslator);
     }

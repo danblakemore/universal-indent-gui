@@ -54,6 +54,7 @@ UiGuiSettingsDialog::UiGuiSettingsDialog(QWidget* parent, UiGuiSettings* setting
 	initTranslationSelection();
 }
 
+
 /*!
 	\brief By calling this function the combobox for selecting the application language will
 	be initialized. 
@@ -100,34 +101,49 @@ void UiGuiSettingsDialog::initTranslationSelection() {
 int UiGuiSettingsDialog::showDialog() {
     // Get the values for the check boxes from the settings object.
     foreach (QCheckBox* checkBox, checkBoxes) {
-        // Get the objects name and remove "uiGui" from its beginning.
-        QString objectName = checkBox->objectName();
-        objectName.remove(0,5);
+        // Get the corresponding setting name from the sender objects property.
+        QString settingName = sender()->property("connectedSettingName").toString();
+        // If the property is not set, try using the objects name for convenience.
+        if ( settingName.isEmpty() ) {
+            // Get the objects name and remove "uiGui" from its beginning and use that as setting name.
+            settingName = sender()->objectName();
+            settingName.remove(0,5);
+        }
 
         // Get value from settings and assign it to the checkbox.
-        bool value = settings->getValueByName( objectName ).toBool();
+        bool value = settings->getValueByName( settingName ).toBool();
         checkBox->setChecked(value);
     }
 
     // Get the values for the spin boxes from the settings object.
     foreach (QSpinBox* spinBox, spinBoxes) {
-        // Get the objects name and remove "uiGui" from its beginning.
-        QString objectName = spinBox->objectName();
-        objectName.remove(0,5);
+        // Get the corresponding setting name from the sender objects property.
+        QString settingName = sender()->property("connectedSettingName").toString();
+        // If the property is not set, try using the objects name for convenience.
+        if ( settingName.isEmpty() ) {
+            // Get the objects name and remove "uiGui" from its beginning and use that as setting name.
+            settingName = sender()->objectName();
+            settingName.remove(0,5);
+        }
 
         // Get value from settings and assign it to the checkbox.
-        int value = settings->getValueByName( objectName ).toInt();
+        int value = settings->getValueByName( settingName ).toInt();
         spinBox->setValue(value);
     }
 
     // Get the values for the combo boxes from the settings object.
     foreach (QComboBox* comboBox, comboBoxes) {
-        // Get the objects name and remove "uiGui" from its beginning.
-        QString objectName = comboBox->objectName();
-        objectName.remove(0,5);
+        // Get the corresponding setting name from the sender objects property.
+        QString settingName = sender()->property("connectedSettingName").toString();
+        // If the property is not set, try using the objects name for convenience.
+        if ( settingName.isEmpty() ) {
+            // Get the objects name and remove "uiGui" from its beginning and use that as setting name.
+            settingName = sender()->objectName();
+            settingName.remove(0,5);
+        }
 
         // Get value from settings and assign it to the checkbox.
-        int value = settings->getValueByName( objectName ).toInt();
+        int value = settings->getValueByName( settingName ).toInt();
         comboBox->setCurrentIndex(value);
     }
 

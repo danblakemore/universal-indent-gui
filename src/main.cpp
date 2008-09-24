@@ -23,6 +23,7 @@
 #include "UiguiIndentServer.h"
 
 #include "uiguiIniFileParser.h"
+#include "uiguisettings.h"
 
 /*!
     /brief Entry point to UniversalIndentGUI application.
@@ -72,6 +73,12 @@ int main(int argc, char *argv[])
             exit(1);
         }
     }
+    
+    
+    // Set default values for all by UniversalIndentGUI used settings objects.
+    QCoreApplication::setOrganizationName("UniversalIndentGUI");
+    QCoreApplication::setOrganizationDomain("universalindent.sf.net");
+    QCoreApplication::setApplicationName("UniversalIndentGUI");
 
     // Start normal with full gui and without server.
     if ( !startAsPlugin && !startAsServer ) {
@@ -90,4 +97,6 @@ int main(int argc, char *argv[])
     }
 
     return app.exec();
+    
+    UiGuiSettings::deleteInstance();
 }

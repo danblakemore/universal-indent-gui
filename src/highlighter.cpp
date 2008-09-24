@@ -21,6 +21,8 @@
 
 #include "highlighter.h"
 
+#include "SettingsPaths.h"
+
 //! \defgroup grp_EditorComponent All concerning editor widget.
 
 /*!
@@ -32,14 +34,14 @@
 /*!
     \brief The constructor initializes some regular expressions and keywords to identify cpp tokens
  */
-Highlighter::Highlighter(QsciScintilla *parent, bool portableMode, QString globalFilesDirectoryStr)
+Highlighter::Highlighter(QsciScintilla *parent)
 : QObject(parent)
 {
     this->parent = parent;
 
     // If a "indenters" subdir in the applications binary path exists, use local config files (portable mode)
-    if ( portableMode ) {
-        this->settings = new QSettings(globalFilesDirectoryStr + "/config/UiGuiSyntaxHighlightConfig.ini", QSettings::IniFormat, this);
+    if ( SettingsPaths::getPortableMode() ) {
+        this->settings = new QSettings(SettingsPaths::getGlobalFilesPath() + "/config/UiGuiSyntaxHighlightConfig.ini", QSettings::IniFormat, this);
     } 
     // ... otherwise use the users application data default dir.
     else {

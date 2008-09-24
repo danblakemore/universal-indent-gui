@@ -101,7 +101,7 @@
      </property>
     </widget>
     <addaction name="actionLive_Indent_Preview" />
-    <addaction name="uiGuiSyntaxHighlightningEnabled" />
+    <addaction name="enableSyntaxHighlightningAction" />
     <addaction name="uiGuiWhiteSpaceIsVisible" />
     <addaction name="highlighterMenu" />
     <addaction name="uiGuiIndenterParameterTooltipsEnabled" />
@@ -316,7 +316,7 @@
     <bool>false</bool>
    </property>
   </action>
-  <action name="uiGuiSyntaxHighlightningEnabled" >
+  <action name="enableSyntaxHighlightningAction" >
    <property name="checkable" >
     <bool>true</bool>
    </property>
@@ -338,6 +338,9 @@
    </property>
    <property name="statusTip" >
     <string>By enabling special key words of the source code are highlighted.</string>
+   </property>
+   <property name="connectedSettingName" stdset="0" >
+    <string>SyntaxHighlightningEnabled</string>
    </property>
   </action>
   <action name="uiGuiWhiteSpaceIsVisible" >

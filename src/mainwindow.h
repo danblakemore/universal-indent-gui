@@ -29,7 +29,6 @@
 #include "highlighter.h"
 #include "indenthandler.h"
 #include "updatecheckdialog.h"
-#include "SettingsPaths.h"
 
 #include <QWidget>
 #include <QString>
@@ -83,9 +82,7 @@ private:
     QString version;
     QString revision;
     QString buildDateStr;
-    bool portableMode;
-	QString globalFilesDirectoryStr;
-	QString indenterDirctoryStr;
+
 	QString currentEncoding;
     QString sourceFileContent;
     QString sourceFormattedContent;
@@ -93,9 +90,7 @@ private:
     Highlighter *highlighter;
     QScrollBar *textEditVScrollBar;
     AboutDialog *aboutDialog;
-#if QT_VERSION >= 0x040400
     AboutDialogGraphicsView *aboutDialogGraphicsView;
-#endif
 	UiGuiSettingsDialog *settingsDialog;
     int textEditLastScrollPos;
     int currentIndenterID;

@@ -19,18 +19,27 @@
 
 #include "uiguisettings.h"
 
+#include "SettingsPaths.h"
+
 //! \defgroup grp_Settings All concerning the settings.
 
 /*!
 	\class UiGuiSettings
     \ingroup grp_Settings
 	\brief Handles the settings of the program. Reads them on startup and saves them on exit.
+    Is a singleton class and can only be accessed via getInstance().
 */
+
+// Inits the single class instance pointer.
+ UiGuiSettings* UiGuiSettings::instance = NULL;
 
 /*!
 	\brief The constructor for the settings.
 */
-UiGuiSettings::UiGuiSettings(bool portableMode, QString globalFilesDirectoryStr) : QObject() {
+UiGuiSettings::UiGuiSettings() : QObject() {
+    portableMode = SettingsPaths::getPortableMode();
+    globalFilesDirectoryStr = SettingsPaths::getGlobalFilesPath();
+    
     // If a "indenters" subdir in the applications binary path exists, use local config files (portable mode)
     if ( portableMode ) {
         qsettings = new QSettings(globalFilesDirectoryStr + "/config/UniversalIndentGUI.ini", QSettings::IniFormat, this);
@@ -40,11 +49,30 @@ UiGuiSettings::UiGuiSettings(bool portableMode, QString globalFilesDirectoryStr)
         qsettings = new QSettings(QSettings::IniFormat, QSettings::UserScope, QCoreApplication::organizationName(), QCoreApplication::applicationName(), this);
     }
 
-    this->globalFilesDirectoryStr = globalFilesDirectoryStr;
-    this->portableMode = portableMode;
     indenterDirctoryStr = globalFilesDirectoryStr + "/indenters";
 	readAvailableTranslations();
 	loadSettings();
+}
+
+
+/*!
+    \brief Returns the instance of the settings class. If no instance exists, ONE will be created.
+ */
+UiGuiSettings* UiGuiSettings::getInstance() {
+    if ( instance == NULL ) {
+        // Create the settings object, which loads all UiGui settings from a file.
+    	instance = new UiGuiSettings();
+    }
+
+    return instance;
+}
+
+
+void UiGuiSettings::deleteInstance() {
+    if ( instance != NULL ) {
+        delete instance;
+        instance = NULL;
+    }
 }
 
 
@@ -95,66 +123,91 @@ QStringList UiGuiSettings::getAvailableTranslations() {
 /*!
     \brief Extern widgets can connect to this slot to change settings.
 
-    According to the objects name the corresponding setting is known and set.
+    According to the objects property "connectedSettingName" the corresponding
+    setting is known and set.
  */
 void UiGuiSettings::handleValueChangeFromExtern(int value) {
     if ( sender() ) {
-        // Get the objects name and remove "uiGui" from its beginning.
-        QString objectName = sender()->objectName();
-        objectName.remove(0,5);
+        // Get the corresponding setting name from the sender objects property.
+        QString settingName = sender()->property("connectedSettingName").toString();
+        // If the property is not set, try using the objects name for convenience.
+        if ( settingName.isEmpty() ) {
+            // Get the objects name and remove "uiGui" from its beginning and use that as setting name.
+            settingName = sender()->objectName();
+            settingName.remove(0,5);
+        }
 
         // Set the value of the setting to the objects value.
-        setValueByName( objectName, value );
+        setValueByName( settingName, value );
     }
 }
 
 
 /*!
-    \brief Extern widgets can connect to this slot to change settings. 
+    \brief Extern widgets can connect to this slot to change settings.
 
-    According to the objects name the corresponding setting is known and set.
+    According to the objects property "connectedSettingName" the corresponding
+    setting is known and set.
  */
 void UiGuiSettings::handleValueChangeFromExtern(bool value) {
     if ( sender() ) {
-        // Get the objects name and remove "uiGui" from its beginning.
-        QString objectName = sender()->objectName();
-        objectName.remove(0,5);
+        // Get the corresponding setting name from the sender objects property.
+        QString settingName = sender()->property("connectedSettingName").toString();
+        // If the property is not set, try using the objects name for convenience.
+        if ( settingName.isEmpty() ) {
+            // Get the objects name and remove "uiGui" from its beginning and use that as setting name.
+            settingName = sender()->objectName();
+            settingName.remove(0,5);
+        }
 
         // Set the value of the setting to the objects value.
-        setValueByName( objectName, value );
+        setValueByName( settingName, value );
     }
 }
 
-/*!
-    \brief Extern widgets can connect to this slot to change settings. 
 
-    According to the objects name the corresponding setting is known and set.
-*/
+/*!
+    \brief Extern widgets can connect to this slot to change settings.
+
+    According to the objects property "connectedSettingName" the corresponding
+    setting is known and set.
+ */
 void UiGuiSettings::handleValueChangeFromExtern(QDate value) {
     if ( sender() ) {
-        // Get the objects name and remove "uiGui" from its beginning.
-        QString objectName = sender()->objectName();
-        objectName.remove(0,5);
+        // Get the corresponding setting name from the sender objects property.
+        QString settingName = sender()->property("connectedSettingName").toString();
+        // If the property is not set, try using the objects name for convenience.
+        if ( settingName.isEmpty() ) {
+            // Get the objects name and remove "uiGui" from its beginning and use that as setting name.
+            settingName = sender()->objectName();
+            settingName.remove(0,5);
+        }
 
         // Set the value of the setting to the objects value.
-        setValueByName( objectName, value );
+        setValueByName( settingName, value );
     }
 }
 
 
 /*!
-    \brief Extern widgets can connect to this slot to change settings. 
+    \brief Extern widgets can connect to this slot to change settings.
 
-    According to the objects name the corresponding setting is known and set.
-*/
+    According to the objects property "connectedSettingName" the corresponding
+    setting is known and set.
+ */
 void UiGuiSettings::handleValueChangeFromExtern(QByteArray value) {
     if ( sender() ) {
-        // Get the objects name and remove "uiGui" from its beginning.
-        QString objectName = sender()->objectName();
-        objectName.remove(0,5);
+        // Get the corresponding setting name from the sender objects property.
+        QString settingName = sender()->property("connectedSettingName").toString();
+        // If the property is not set, try using the objects name for convenience.
+        if ( settingName.isEmpty() ) {
+            // Get the objects name and remove "uiGui" from its beginning and use that as setting name.
+            settingName = sender()->objectName();
+            settingName.remove(0,5);
+        }
 
         // Set the value of the setting to the objects value.
-        setValueByName( objectName, value );
+        setValueByName( settingName, value );
     }
 }
 
@@ -196,7 +249,7 @@ void UiGuiSettings::emitSignalForSetting(QString settingName) {
     else if ( settingName == "RecentlyOpenedListSize" ) emit recentlyOpenedListSize( settings[settingName].toInt() );
     else if ( settingName == "LoadLastOpenedFileOnStartup" ) emit loadLastOpenedFileOnStartup( settings[settingName].toBool() );
     else if ( settingName == "LastOpenedFiles" ) emit lastOpenedFiles( settings[settingName].toString() );
-    else if ( settingName == "LastSelectedIndenterID" ) emit lastSelectedIndenterID( settings[settingName].toInt() );
+    else if ( settingName == "SelectedIndenter" ) emit selectedIndenter( settings[settingName].toInt() );
     else if ( settingName == "SyntaxHighlightningEnabled" ) emit syntaxHighlightningEnabled( settings[settingName].toBool() );
     else if ( settingName == "WhiteSpaceIsVisible" ) emit whiteSpaceIsVisible( settings[settingName].toBool() );
     else if ( settingName == "IndenterParameterTooltipsEnabled" ) emit indenterParameterTooltipsEnabled( settings[settingName].toBool() );
@@ -214,7 +267,7 @@ void UiGuiSettings::emitSignalForSetting(QString settingName) {
         emit recentlyOpenedListSize( settings["RecentlyOpenedListSize"].toInt() );
         emit loadLastOpenedFileOnStartup( settings["LoadLastOpenedFileOnStartup"].toBool() );
         emit lastOpenedFiles( settings["LastOpenedFiles"].toString() );
-        emit lastSelectedIndenterID( settings["LastSelectedIndenterID"].toInt() );
+        emit selectedIndenter( settings["SelectedIndenter"].toInt() );
         emit syntaxHighlightningEnabled( settings["SyntaxHighlightningEnabled"].toBool() );
         emit whiteSpaceIsVisible( settings["WhiteSpaceIsVisible"].toBool() );
         emit indenterParameterTooltipsEnabled( settings["IndenterParameterTooltipsEnabled"].toBool() );
@@ -277,11 +330,11 @@ bool UiGuiSettings::loadSettings() {
 	settings["LastOpenedFiles"] = qsettings->value("UniversalIndentGUI/lastSourceCodeFile", indenterDirctoryStr+"/example.cpp").toString();
 
 	// Read last selected indenter from the settings file.
-	int LastSelectedIndenterID = qsettings->value("UniversalIndentGUI/lastSelectedIndenter", 0).toInt();
-	if ( LastSelectedIndenterID < 0 ) {
-		LastSelectedIndenterID = 0;
+	int SelectedIndenter = qsettings->value("UniversalIndentGUI/selectedIndenter", 0).toInt();
+	if ( SelectedIndenter < 0 ) {
+		SelectedIndenter = 0;
 	}
-	settings["LastSelectedIndenterID"] = LastSelectedIndenterID;
+	settings["SelectedIndenter"] = SelectedIndenter;
 
     // Read if syntax highlighting is enabled.
 	settings["SyntaxHighlightningEnabled"] = qsettings->value("UniversalIndentGUI/SyntaxHighlightningEnabled", true).toBool();
@@ -318,7 +371,7 @@ bool UiGuiSettings::saveSettings() {
 	qsettings->setValue( "UniversalIndentGUI/recentlyOpenedListSize", settings["RecentlyOpenedListSize"] );
     qsettings->setValue( "UniversalIndentGUI/lastSourceCodeFile", settings["LastOpenedFiles"] );
 	qsettings->setValue( "UniversalIndentGUI/loadLastSourceCodeFileOnStartup", settings["LoadLastOpenedFileOnStartup"] );
-    qsettings->setValue( "UniversalIndentGUI/lastSelectedIndenter", settings["LastSelectedIndenterID"] );
+    qsettings->setValue( "UniversalIndentGUI/selectedIndenter", settings["SelectedIndenter"] );
     qsettings->setValue( "UniversalIndentGUI/indenterParameterTooltipsEnabled", settings["IndenterParameterTooltipsEnabled"] );
     qsettings->setValue( "UniversalIndentGUI/language", availableTranslations[ settings["Language"].toInt() ] );
 	qsettings->setValue( "UniversalIndentGUI/encoding", settings["FileEncoding"] );

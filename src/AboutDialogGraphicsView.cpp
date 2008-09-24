@@ -19,8 +19,6 @@
 #include <QtGui>
 #include "AboutDialogGraphicsView.h"
 
-#if QT_VERSION >= 0x040400
-
 AboutDialogGraphicsView::AboutDialogGraphicsView(AboutDialog *aboutDialog, QWidget *parent) : QGraphicsView(parent) {
     this->parent = parent;
     setWindowFlags(Qt::SplashScreen);
@@ -119,7 +117,7 @@ void AboutDialogGraphicsView::updateStep(int step)
 void AboutDialogGraphicsView::showAboutDialog() {
     //hide();
     disconnect(timeLine, SIGNAL(finished()), this, SLOT(showAboutDialog()));
-    aboutDialog->move( parent->geometry().x()+(parent->geometry().width()-graphicsProxyWidget->geometry().width())/2, parent->y()+windowTitleBarWidth );
+    aboutDialog->move( int(parent->geometry().x()+(parent->geometry().width()-graphicsProxyWidget->geometry().width()) / 2), parent->y()+windowTitleBarWidth );
     aboutDialog->exec();
 }
 
@@ -162,6 +160,3 @@ void AboutDialogGraphicsView::hideReally() {
 void AboutDialogGraphicsView::setScreenshotPixmap(const QPixmap &screenShot) {
     originalPixmap = screenShot;
 }
-
-
-#endif // #if QT_VERSION >= 0x040400

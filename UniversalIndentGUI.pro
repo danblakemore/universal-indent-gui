@@ -181,7 +181,8 @@ SOURCES += src/aboutdialog.cpp \
            src/UiguiIndentServer.cpp \
            src/updatecheckdialog.cpp \
            src/SettingsPaths.cpp \
-           src/AboutDialogGraphicsView.cpp
+           src/AboutDialogGraphicsView.cpp \
+           src/templateBatchScript.cpp
 
 RESOURCES += resources/Icons.qrc
 RC_FILE    = resources/programicon.rc

@@ -27,9 +27,6 @@
 #include <QPixmap>
 #include <QSplashScreen>
 
-//Can't use this test, because MOC doesn't understand that code line
-//#if QT_VERSION >= 0x040400
-
 #include "aboutdialog.h"
 
 class AboutDialogGraphicsView : public QGraphicsView
@@ -63,5 +60,3 @@ private slots:
 };
 
 #endif // ABOUTDIALOGGRAPHICSVIEW_H
-
-//#endif // #if QT_VERSION >= 0x040400
