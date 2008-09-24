@@ -57,16 +57,17 @@ system($${lrelease} ./translations/universalindent_ru.ts -qm ./translations/univ
 system($${lrelease} ./translations/universalindent_uk.ts -qm ./translations/universalindent_uk.qm -silent)
 
 # Copy Qts own translation files to the local translation directory
+message ( Copy Qts own translation files to the local translation directory )
 qtTranslationInstallDir = $$[QT_INSTALL_TRANSLATIONS]
 win32:qtTranslationInstallDir = $$replace(qtTranslationInstallDir, /, \)
 unix:system(cp $${qtTranslationInstallDir}/qt_de.qm ./translations/ $$pipe2nul)
 unix:system(cp $${qtTranslationInstallDir}/qt_ja_jp.qm ./translations/qt_ja_JP.qm $$pipe2nul)
 unix:system(cp $${qtTranslationInstallDir}/qt_ru.qm ./translations/ $$pipe2nul)
 unix:system(cp $${qtTranslationInstallDir}/qt_uk.qm ./translations/ $$pipe2nul)
-win32:system(xcopy $${qtTranslationInstallDir}\qt_de.qm .\translations\ /Y $$pipe2nul)
-win32:system(xcopy $${qtTranslationInstallDir}\qt_ja_jp.qm .\translations\qt_ja_JP.qm /Y $$pipe2nul)
-win32:system(xcopy $${qtTranslationInstallDir}\qt_ru.qm .\translations\ /Y $$pipe2nul)
-win32:system(xcopy $${qtTranslationInstallDir}\qt_uk.qm .\translations\ /Y $$pipe2nul)
+win32:system(copy $${qtTranslationInstallDir}\qt_de.qm .\translations\ /Y $$pipe2nul)
+win32:system(copy $${qtTranslationInstallDir}\qt_ja_jp.qm .\translations\qt_ja_JP.qm /Y $$pipe2nul)
+win32:system(copy $${qtTranslationInstallDir}\qt_ru.qm .\translations\ /Y $$pipe2nul)
+win32:system(copy $${qtTranslationInstallDir}\qt_uk.qm .\translations\ /Y $$pipe2nul)
 
 # Defining files that shall be installed
 ########################################
@@ -109,6 +110,7 @@ unix:INSTALLS += target \
 #######################
 # remove linker flag "-mthreads" so the mingwm10.dll is no longer needed
 #######################
+message ( remove linker flag "-mthreads" so the mingwm10.dll is no longer needed )
 #message(old flags:$${QMAKE_LFLAGS})
 win32:parameters = $${QMAKE_LFLAGS}
 newFlags =
