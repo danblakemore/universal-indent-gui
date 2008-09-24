@@ -148,14 +148,14 @@ void MainWindow::initMainWindow() {
     connect( settings, SIGNAL(syntaxHighlightningEnabled(bool)), this, SLOT(turnHighlightOnOff(bool)) );
 
     // Register the load last file setting in the menu to the settings object.
-    connect( uiGuiLoadLastOpenedFileOnStartup, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern(bool)) );
-    connect( settings, SIGNAL(loadLastOpenedFileOnStartup(bool)), uiGuiLoadLastOpenedFileOnStartup, SLOT(setChecked(bool)) );
-    uiGuiLoadLastOpenedFileOnStartup->setChecked( settings->getValueByName("LoadLastOpenedFileOnStartup").toBool() );
+    connect( loadLastOpenedFileOnStartupAction, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern(bool)) );
+    connect( settings, SIGNAL(loadLastOpenedFileOnStartup(bool)), loadLastOpenedFileOnStartupAction, SLOT(setChecked(bool)) );
+    loadLastOpenedFileOnStartupAction->setChecked( settings->getValueByName("LoadLastOpenedFileOnStartup").toBool() );
 
     // Register the white space setting in the menu to the settings object.
-    connect( uiGuiWhiteSpaceIsVisible, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern(bool)) );
-    connect( settings, SIGNAL(whiteSpaceIsVisible(bool)), uiGuiWhiteSpaceIsVisible, SLOT(setChecked(bool)) );
-    uiGuiWhiteSpaceIsVisible->setChecked( settings->getValueByName("WhiteSpaceIsVisible").toBool() );
+    connect( whiteSpaceIsVisibleAction, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern(bool)) );
+    connect( settings, SIGNAL(whiteSpaceIsVisible(bool)), whiteSpaceIsVisibleAction, SLOT(setChecked(bool)) );
+    whiteSpaceIsVisibleAction->setChecked( settings->getValueByName("WhiteSpaceIsVisible").toBool() );
     // Tell the QScintilla editor if it has to show white space.
     connect( settings, SIGNAL(whiteSpaceIsVisible(bool)), this, SLOT(setWhiteSpaceVisibility(bool)) );
 
@@ -330,9 +330,9 @@ void MainWindow::initIndenter() {
     previewToggled = true;
 
     // Handle if indenter parameter tool tips are enabled
-    connect( uiGuiIndenterParameterTooltipsEnabled, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern(bool)) );
-    connect( settings, SIGNAL(indenterParameterTooltipsEnabled(bool)), uiGuiIndenterParameterTooltipsEnabled, SLOT(setChecked(bool)) );
-    uiGuiIndenterParameterTooltipsEnabled->setChecked( settings->getValueByName("IndenterParameterTooltipsEnabled").toBool() );
+    connect( indenterParameterTooltipsEnabledAction, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern(bool)) );
+    connect( settings, SIGNAL(indenterParameterTooltipsEnabled(bool)), indenterParameterTooltipsEnabledAction, SLOT(setChecked(bool)) );
+    indenterParameterTooltipsEnabledAction->setChecked( settings->getValueByName("IndenterParameterTooltipsEnabled").toBool() );
 
     // Add the indenters context menu to the mainwindows menu.
     menuIndenter->addActions( indentHandler->getIndenterMenuActions() );
@@ -913,7 +913,7 @@ void MainWindow::saveSettings() {
     //}
 	//settings->setValueByName( "LoadLastOpenedFileOnStartup", uiGuiLoadLastOpenedFileOnStartup->isChecked() );
     //settings->setValueByName( "SelectedIndenter", indentHandler->getIndenterId() );
-    //settings->setValueByName( "IndenterParameterTooltipsEnabled", uiGuiIndenterParameterTooltipsEnabled->isChecked() );
+    //settings->setValueByName( "IndenterParameterTooltipsEnabled", indenterParameterTooltipsEnabledAction->isChecked() );
     //settings->setValueByName( "Language", language );
 	settings->setValueByName( "FileEncoding", currentEncoding );
     settings->setValueByName( "VersionInSettingsFile", version );
@@ -924,7 +924,7 @@ void MainWindow::saveSettings() {
 	}
     settings->setValueByName( "MainWindowState", saveState() );
     //settings->setValueByName( "SyntaxHighlightningEnabled", uiGuiSyntaxHighlightningEnabled->isChecked() );
-    //settings->setValueByName( "WhiteSpaceIsVisible", uiGuiWhiteSpaceIsVisible->isChecked() );
+    //settings->setValueByName( "WhiteSpaceIsVisible", whiteSpaceIsVisibleAction->isChecked() );
     //settings->setValueByName( "TabWidth", txtedSourceCode->tabWidth() );
 
     //FIXME: Needs to be called explicit here, because the destructor of UiGuiSettings doesn't do it.
@@ -958,7 +958,7 @@ void MainWindow::closeEvent( QCloseEvent *event ) {
 bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 {
     if ( event->type() == QEvent::ToolTip) {
-        if ( uiGuiIndenterParameterTooltipsEnabled->isChecked() ) {
+        if ( indenterParameterTooltipsEnabledAction->isChecked() ) {
             return QMainWindow::eventFilter(obj, event);
         }
         else {
@@ -1127,7 +1127,7 @@ void MainWindow::createHighlighterMenu() {
 		highlighterAction->setCheckable(true);
 	}
 	highlighterMenu->addActions( highlighterActionGroup->actions() );
-    menuSettings->insertMenu(uiGuiIndenterParameterTooltipsEnabled, highlighterMenu );
+    menuSettings->insertMenu(indenterParameterTooltipsEnabledAction, highlighterMenu );
 
 	connect( highlighterActionGroup, SIGNAL(triggered(QAction*)), this, SLOT(highlighterChanged(QAction*)) );
 }

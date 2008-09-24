@@ -102,10 +102,10 @@
     </widget>
     <addaction name="actionLive_Indent_Preview" />
     <addaction name="enableSyntaxHighlightningAction" />
-    <addaction name="uiGuiWhiteSpaceIsVisible" />
+    <addaction name="whiteSpaceIsVisibleAction" />
     <addaction name="highlighterMenu" />
-    <addaction name="uiGuiIndenterParameterTooltipsEnabled" />
-    <addaction name="uiGuiLoadLastOpenedFileOnStartup" />
+    <addaction name="indenterParameterTooltipsEnabledAction" />
+    <addaction name="loadLastOpenedFileOnStartupAction" />
     <addaction name="actionShowSettings" />
    </widget>
    <widget class="QMenu" name="menuHelp" >
@@ -280,7 +280,7 @@
     <string>Export the currently visible source code as HTML document</string>
    </property>
   </action>
-  <action name="uiGuiIndenterParameterTooltipsEnabled" >
+  <action name="indenterParameterTooltipsEnabledAction" >
    <property name="checkable" >
     <bool>true</bool>
    </property>
@@ -296,6 +296,9 @@
    </property>
    <property name="statusTip" >
     <string>If checked, tool tips will show up if the mouse cursor remains over an indenter parameter for a while.</string>
+   </property>
+   <property name="connectedSettingName" stdset="0" >
+    <string>IndenterParameterTooltipsEnabled</string>
    </property>
   </action>
   <action name="actionLive_Indent_Preview" >
@@ -343,7 +346,7 @@
     <string>SyntaxHighlightningEnabled</string>
    </property>
   </action>
-  <action name="uiGuiWhiteSpaceIsVisible" >
+  <action name="whiteSpaceIsVisibleAction" >
    <property name="checkable" >
     <bool>true</bool>
    </property>
@@ -362,8 +365,11 @@
    <property name="visible" >
     <bool>false</bool>
    </property>
+   <property name="connectedSettingName" stdset="0" >
+    <string>WhiteSpaceIsVisible</string>
+   </property>
   </action>
-  <action name="uiGuiLoadLastOpenedFileOnStartup" >
+  <action name="loadLastOpenedFileOnStartupAction" >
    <property name="checkable" >
     <bool>true</bool>
    </property>
@@ -381,6 +387,9 @@
    </property>
    <property name="visible" >
     <bool>false</bool>
+   </property>
+   <property name="connectedSettingName" stdset="0" >
+    <string>LoadLastOpenedFileOnStartup</string>
    </property>
   </action>
   <action name="actionShowSettings" >
