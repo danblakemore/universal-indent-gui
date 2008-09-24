@@ -228,6 +228,7 @@ void MainWindow::initTextEditor() {
     // on the same line as before when turning preview on/off.
     textEditVScrollBar = txtedSourceCode->verticalScrollBar();
 
+    // Add a column row indicator to the status bar.
     textEditLineColumnInfoLabel = new QLabel( tr("Line %1, Column %2").arg(1).arg(1) );
     statusbar->addPermanentWidget(textEditLineColumnInfoLabel);
     connect( txtedSourceCode, SIGNAL(cursorPositionChanged(int, int)), this, SLOT(setStatusBarCursorPosInfo(int, int)) );
@@ -456,7 +457,7 @@ bool MainWindow::saveasSourceFileDialog(QAction *chosenEncodingAction) {
     currentSourceFileExtension = fileInfo.suffix();
 
     txtedSourceCode->setModified( false );
-    setWindowModified( txtedSourceCode->isModified() );
+    setWindowModified( false );
 
     updateWindowTitle();
     return true;
@@ -487,7 +488,7 @@ bool MainWindow::saveSourceFile() {
         outSrcFile.close();
 
         txtedSourceCode->setModified( false );
-        setWindowModified( txtedSourceCode->isModified() );
+        setWindowModified( false );
     }
     return true;
 }
@@ -533,9 +534,9 @@ void MainWindow::updateSourceView()
 
     if (previewToggled) {
         disconnect( txtedSourceCode, SIGNAL(textChanged ()), this, SLOT(sourceCodeChangedHelperSlot()) );
-		bool textIsModified = txtedSourceCode->isModified();
+		bool textIsModified = isWindowModified();
         txtedSourceCode->setText(sourceViewContent);
-		txtedSourceCode->setModified(textIsModified);
+		setWindowModified(textIsModified);
         previewToggled = false;
         connect( txtedSourceCode, SIGNAL(textChanged ()), this, SLOT(sourceCodeChangedHelperSlot()) );
     }
@@ -698,7 +699,7 @@ void MainWindow::sourceCodeChangedSlot() {
         setWindowModified( false );
     }
     else {
-        txtedSourceCode->setModified( true );
+        txtedSourceCode->setModified( true ); // Has no effect according to QScintilla docs.
         setWindowModified( true );
     }
 
@@ -743,11 +744,11 @@ void MainWindow::indentSettingsChangedSlot() {
 
     if ( savedSourceContent == txtedSourceCode->text() ) {
         txtedSourceCode->setModified( false );
-        setWindowModified( txtedSourceCode->isModified() );
+        setWindowModified( false );
     }
     else {
-        txtedSourceCode->setModified( true );
-        setWindowModified( txtedSourceCode->isModified() );
+        txtedSourceCode->setModified( true ); // Has no effect according to QScintilla docs.
+        setWindowModified( true );
     }
 }
 
@@ -782,11 +783,11 @@ void MainWindow::previewTurnedOnOff(bool turnOn) {
 
     if ( savedSourceContent == txtedSourceCode->text() ) {
         txtedSourceCode->setModified( false );
-        setWindowModified( txtedSourceCode->isModified() );
+        setWindowModified( false );
     }
     else {
         txtedSourceCode->setModified( true );
-        setWindowModified( txtedSourceCode->isModified() );
+        setWindowModified( true );
     }
 }
 
@@ -977,7 +978,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
  */
 bool MainWindow::maybeSave()
 {
-    if ( txtedSourceCode->isModified() ) {
+    if ( isWindowModified() ) {
         int ret = QMessageBox::warning(this, tr("Modified code"),
             tr("The source code has been modified.\n"
             "Do you want to save your changes?"),
