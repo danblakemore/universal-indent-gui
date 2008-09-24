@@ -1,3 +1,28 @@
+2008-09-30 Version 1.0.0
+[add] Made it possible to start UiGUI in different modes via parameters: Normal (full UI), plugin (only indenter menu, server active), server only.
+[add] Added a server functionality. Future plan is to let UiGUI run also as server so plugins from other editors can send indent requests over TCP/IP to it. Very early state right now.
+[add] Created a plugin for Notepad++. This plugin shows the indenter parameter menu and lets the user indent the selected or whole text. Live preview works also. Still has some eventloop graphic update problems
+[add] Added support for two (rather simple) Ruby beautifiers, ruby_formatter and rbeautify.
+[add] Feature Request ID 1985475 : Added the possibility to reset all indenter parameters to default values. http://universalindent.sf.net/issue/1985475
+[add] Feature Request ID 1989585 : Added a context menu in indenter parameters widget and moved all functions handling these actions from the main window to the indent handler. http://universalindent.sf.net/issue/1989585
+[add] Feature Request ID 1977033 : Now supporting the Cobol intender Cobol Beautifier. http://universalindent.sf.net/issue/1977033
+[add] Feature Request ID 2080832 : Now showing the cursors current line and column number in the statusbars down right corner. http://universalindent.sf.net/issue/2080832
+[change] Using Qt >= 4.4.x now and thereby implemented an animated 3D about dialog.
+[change] Using QScintilla >= 2.3 now and thereby added support for Cmake, Fortran[77], Pascal, PostScript, TCL, VHDL, XML and YAML.
+[change] Reformatted the about dialog to only contain one QTextEdit. Also added some more links to that text.
+[change] Limited the size of the combobox showing the indenters because with the supported programming languages in the name, the comobox was to large in width.
+[change] Prevent php file from being tried to be executed directly. That could happen if the file has the execution flag set. However that should never be the case, so this is a workaround.
+[change] Added a new class UiguiIniFileParser which will replace the currently used QSettings for reading the indenter parameters. Thus parameters appear in the menu in the same order as in the ini file and are no longer alphabetically sorted.
+[change] Redesigned the user interface and code a bit. The indenter selection combo box along with the manual button are now placed in docking widget where all indenter parameters are placed. This is done in preparation to pull out the complete indent handler, so it can be used as plugin for Notepad++ or Eclipse etc.]
+[change] Made reading the indenter config files more tolerant. If the user disobeys case sensitivity when editing the config file by hand, the values are correctly parsed anyway.
+[change] Feature Request ID 1989587 : There is no longer any need to have a current value setting in the ini files. A default value is enough. http://universalindent.sf.net/issue/1989587
+[change] Completely removed QT3Support functions.
+[change] Removed all compiler warnings.
+[change] Changed the way internal settings are handled. Using QObject propertys for connected setting name now.
+[fix] The by each indenter supported programming languages, written in braces, are removed from the created shell scripts name.
+[fix] Corrected the move/mv commands parameter in the created shell and batch script when calling recursive.
+[fix] Bug ID 1986471 : The file modification flag did not work properly. Reason was that QScintilla can not set its textedit component modified flag to true by a function call. http://universalindent.sf.net/issue/1986471
+
 2008-05-26 Version 0.8.2
 [add] Feature Request ID 1971206 : Now showing by the indenter supported programming languages next to indenter name.
 [add] Feature Request ID 1971181 : Added support for the HTML indenter HTB.
