@@ -908,14 +908,6 @@ void MainWindow::loadLastOpenedFile() {
     Settings are for example last selected indenter, last loaded config file and so on.
 */
 void MainWindow::saveSettings() {
-    //QFileInfo fileInfo(currentSourceFile);
-    //if ( fileInfo.isFile() ) {
-    //    settings->setValueByName( "LastOpenedFiles", currentSourceFile );
-    //}
-	//settings->setValueByName( "LoadLastOpenedFileOnStartup", uiGuiLoadLastOpenedFileOnStartup->isChecked() );
-    //settings->setValueByName( "SelectedIndenter", indentHandler->getIndenterId() );
-    //settings->setValueByName( "IndenterParameterTooltipsEnabled", indenterParameterTooltipsEnabledAction->isChecked() );
-    //settings->setValueByName( "Language", language );
 	settings->setValueByName( "FileEncoding", currentEncoding );
     settings->setValueByName( "VersionInSettingsFile", version );
 	settings->setValueByName( "WindowIsMaximized", isMaximized() );
@@ -924,13 +916,11 @@ void MainWindow::saveSettings() {
 		settings->setValueByName( "WindowSize", size() );
 	}
     settings->setValueByName( "MainWindowState", saveState() );
-    //settings->setValueByName( "SyntaxHighlightningEnabled", uiGuiSyntaxHighlightningEnabled->isChecked() );
-    //settings->setValueByName( "WhiteSpaceIsVisible", whiteSpaceIsVisibleAction->isChecked() );
-    //settings->setValueByName( "TabWidth", txtedSourceCode->tabWidth() );
 
     //FIXME: Needs to be called explicit here, because the destructor of UiGuiSettings doesn't do it.
 	settings->saveSettings();
 
+    // Also save the syntax highlight style for all lexers.
     highlighter->writeCurrentSettings("");
 }
 
