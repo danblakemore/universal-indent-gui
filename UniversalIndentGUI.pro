@@ -1,6 +1,3 @@
-CONFIG -= debug
-CONFIG -= release
-CONFIG += debug_and_release
 TEMPLATE = app
 QT += network
 QT += script 
@@ -23,7 +20,7 @@ macx {
  QMAKE-MAC_SDK = /Developer/SDKs/MacOSX10.4u.sdk
 }
 
-release {
+CONFIG(release, debug|release) {
 
 win32:pipe2nul = ">NUL"
 unix:pipe2nul = "&> /dev/null"
@@ -37,14 +34,22 @@ lrelease = lrelease
 unix:lrelease = lrelease-qt4
 macx:lrelease = lrelease
 # Update translation files
+message ( Updating universalindent.ts )
 system($${lupdate} src -ts ./translations/universalindent.ts -silent)
+message ( Updating universalindent_de.ts )
 system($${lupdate} src -ts ./translations/universalindent_de.ts -silent)
+message ( Updating universalindent_zh_TW.ts )
 system($${lupdate} src -ts ./translations/universalindent_zh_TW.ts -silent)
+message ( Updating universalindent_ja_JP.ts )
 system($${lupdate} src -ts ./translations/universalindent_ja_JP.ts -silent)
+message ( Updating universalindent_ru.ts )
 system($${lupdate} src -ts ./translations/universalindent_ru.ts -silent)
+message ( Updating universalindent_uk.ts )
 system($${lupdate} src -ts ./translations/universalindent_uk.ts -silent)
 
+
 # Create translation binaries
+message ( Creating translation binaries )
 system($${lrelease} ./translations/universalindent_de.ts -qm ./translations/universalindent_de.qm -silent)
 system($${lrelease} ./translations/universalindent_zh_TW.ts -qm ./translations/universalindent_zh_TW.qm -silent)
 system($${lrelease} ./translations/universalindent_ja_JP.ts -qm ./translations/universalindent_ja_JP.qm -silent)
