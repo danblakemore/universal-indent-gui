@@ -37,6 +37,8 @@ public:
     static bool getPortableMode();
 
 private:
+    SettingsPaths();
+    
     static bool alreadyInitialized;
     static QString applicationBinaryPath;
     static QString settingsPath;
