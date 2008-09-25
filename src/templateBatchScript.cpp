@@ -19,6 +19,17 @@
 
 #include "templateBatchScript.h"
 
+/*!
+    \brief The only and static function of this class returns a batch or shell script
+    as string that can be used to call an indenter with the current settings from 
+    the command line.
+    
+    The returned string contains some placeholders where the indenter name needs to
+    be filled in. The placeholders are "__INDENTERCALLSTRING1__" that should be replaced
+    by the indenter call string that indents a complete directory.
+    "__INDENTERCALLSTRING2__" the call string for indenting only one file.
+    And "__INDENTERCALLSTRINGSCRIPTNAME__" which is only the shown name of the indenter.
+ */
 const char* TemplateBatchScript::getTemplateBatchScript() {
     static const char* templateBatchScript =
 #if defined(Q_OS_WIN32)

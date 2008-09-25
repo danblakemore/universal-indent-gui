@@ -144,6 +144,9 @@ void AboutDialog::scroll() {
 }
 
 
+/*!
+    \brief Shows the about dialog and also starts the credits scroller.
+ */
 void AboutDialog::show() {
     timer->start(scrollSpeed);
     QDialog::show();

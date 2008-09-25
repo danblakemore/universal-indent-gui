@@ -158,6 +158,9 @@ IndentHandler::IndentHandler(int indenterID, QWidget *mainWindow, QWidget *paren
 }
 
 
+/*!
+    \brief Implicitly writes the current indenter parameters to the indenters config file.
+ */
 IndentHandler::~IndentHandler() {
     // Generate the parameter string that will be saved to the indenters config file.
     QString parameterString = getParameterString();
@@ -769,6 +772,7 @@ void IndentHandler::loadConfigFile(QString filePathName, bool resetValues) {
     }
 }
 
+
 /*!
     \brief Opens and parses the indenter ini file that is declared by \a iniFilePath.
  */
@@ -1370,9 +1374,9 @@ QString IndentHandler::getCurrentIndenterName() {
 
 
 /*!
-\brief Shows a file open dialog to open an existing config file for the currently selected indenter.
+    \brief Shows a file open dialog to open an existing config file for the currently selected indenter.
 
-If the file was successfully opened the indent handler is called to load the settings and update itself.
+    If the file was successfully opened the indent handler is called to load the settings and update itself.
 */
 void IndentHandler::openConfigFileDialog() {
     QString configFilePath;
@@ -1386,9 +1390,9 @@ void IndentHandler::openConfigFileDialog() {
 
 
 /*!
-\brief Calls the indenter config file save as dialog to save the config file under a chosen name.
+    \brief Calls the indenter config file save as dialog to save the config file under a chosen name.
 
-If the file already exists and it should be overwritten, a warning is shown before.
+    If the file already exists and it should be overwritten, a warning is shown before.
 */
 void IndentHandler::saveasIndentCfgFileDialog() {
     QString fileExtensions = tr("All files")+" (*.*)";
@@ -1407,10 +1411,10 @@ void IndentHandler::saveasIndentCfgFileDialog() {
 
 
 /*!
-\brief Invokes the indenter to create a shell script.
+    \brief Invokes the indenter to create a shell script.
 
-Lets the indenter create a shell script for calling the indenter out of any
-other application and open a save dialog for saving the shell script.
+    Lets the indenter create a shell script for calling the indenter out of any
+    other application and open a save dialog for saving the shell script.
 */
 void IndentHandler::createIndenterCallShellScript() {
     //QString indenterCallShellScript = generateCommandlineCall(currentSourceFileExtension);
@@ -1466,6 +1470,11 @@ void IndentHandler::resetIndenterParameter() {
 }
 
 
+/*!
+    \brief Catch some events and let some other be handled by the super class.
+    
+    Is needed for use as Notepad++ plugin.
+ */
 bool IndentHandler::event( QEvent *event ) {
     if ( event->type() == QEvent::WindowActivate ) {
         event->accept();
@@ -1482,11 +1491,22 @@ bool IndentHandler::event( QEvent *event ) {
 }
 
 
+/*!
+    \brief Sets the function pointer \a parameterChangedCallback to the given callback
+    function \a paramChangedCallback.
+    
+    Is needed for use as Notepad++ plugin.
+ */
 void IndentHandler::setParameterChangedCallback( void(*paramChangedCallback)(void) ) {
     parameterChangedCallback = paramChangedCallback;
 }
 
 
+/*!
+    \brief Emits the \a indenterSettingsChanged signal and if set executes the \a parameterChangedCallback function.
+   
+   Is needed for use as Notepad++ plugin.
+ */
 void IndentHandler::handleChangedIndenterSettings() {
     emit( indenterSettingsChanged() );
 
@@ -1496,11 +1516,21 @@ void IndentHandler::handleChangedIndenterSettings() {
 }
 
 
+/*!
+    \brief Sets a callback function that shall be called, when the this indenter parameter window gets closed.
+    
+   Is needed for use as Notepad++ plugin.
+ */
 void IndentHandler::setWindowClosedCallback( void(*winClosedCallback)(void) ) {
     windowClosedCallback = winClosedCallback;
 }
 
 
+/*!
+    \brief Is called on this indenter parameter window close and if set calls the function \a windowClosedCallback.
+     
+    Is needed for use as Notepad++ plugin.
+ */
 void IndentHandler::closeEvent(QCloseEvent *event) {
     if ( windowClosedCallback != NULL ) {
         windowClosedCallback();
@@ -1509,6 +1539,9 @@ void IndentHandler::closeEvent(QCloseEvent *event) {
 }
 
 
+/*!
+    \brief Returns the id (list index) of the currently selected indenter.
+ */
 int IndentHandler::getIndenterId() {
     return indenterSelectionCombobox->currentIndex();
 }

@@ -21,6 +21,25 @@
 
 #include <QTextStream>
 
+//! \defgroup grp_Settings All concerning applications settings.
+
+/*!
+    \class UiguiIniFileParser
+    \ingroup grp_Settings
+    \brief UiguiIniFileParser is a simple ini file format parser.
+    
+    These ini files need to have key-value pairs in the style
+    "keyname=keyvalue". Groups can be defined by writing the groupname
+    in the style [groupname] before some key-value pairs.
+    
+    The reason why I use my own class instead of QSettings is mainly, that
+    QSettings always internally sorts the groups alphabetically and also
+    rewrites a settings file sorted. Very annoying for me.
+*/
+
+/*!
+    \brief Init and empty all needed lists and strings.
+ */
 UiguiIniFileParser::UiguiIniFileParser(void)
 {
     sections.clear();
@@ -29,6 +48,9 @@ UiguiIniFileParser::UiguiIniFileParser(void)
 }
 
 
+/*!
+    \brief Directly loads and parses the file with name \a iniFileName.
+ */
 UiguiIniFileParser::UiguiIniFileParser(const QString &iniFileName)
 {
     UiguiIniFileParser::UiguiIniFileParser();

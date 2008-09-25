@@ -21,6 +21,15 @@
 #include "SettingsPaths.h"
 
 
+//! \defgroup grp_Settings All concerning applications settings.
+
+/*!
+    \class SettingsPaths
+    \ingroup grp_Settings
+    \brief SettingsPaths is a pure static functions class from which info about the
+    paths needed for settings can be retrieved.
+*/
+
 bool SettingsPaths::alreadyInitialized = false;
 QString SettingsPaths::applicationBinaryPath = "";
 QString SettingsPaths::settingsPath = "";
@@ -30,6 +39,16 @@ QString SettingsPaths::tempPath = "";
 bool SettingsPaths::portableMode = false;
 
 
+/*!
+    \brief Initializes all available information about the paths.
+    
+    Mainly during this init it is detected whether to start in portable mode or not. This is
+    done by testing whether the directory "config" is in the same directory as this 
+    applications executable file.
+    In portable mode all data is ONLY written to subdirectories of the applications executable file.
+    Means also that the directory "indenters" has to be there.
+    In not portable mode (multiuser mode) only users home directory is used for writing config data.
+ */
 void SettingsPaths::init() {
     // Get the applications binary path, with respect to MacOSXs use of the .app folder. 
 	applicationBinaryPath = QCoreApplication::applicationDirPath();
@@ -94,6 +113,9 @@ void SettingsPaths::init() {
 }
 
 
+/*!
+    \brief Returns the path of the applications executable.
+ */
 const QString SettingsPaths::getApplicationBinaryPath() {
     if ( !alreadyInitialized ) {
         SettingsPaths::init();
@@ -102,6 +124,9 @@ const QString SettingsPaths::getApplicationBinaryPath() {
 }
 
 
+/*!
+    \brief Returns the path where all settings are being/should be written to.
+ */
 const QString SettingsPaths::getSettingsPath() {
     if ( !alreadyInitialized ) {
         SettingsPaths::init();
@@ -110,6 +135,9 @@ const QString SettingsPaths::getSettingsPath() {
 }
 
 
+/*!
+    \brief Returns the path where the files concerning all users reside. For example translations.
+ */
 const QString SettingsPaths::getGlobalFilesPath() {
     if ( !alreadyInitialized ) {
         SettingsPaths::init();
@@ -118,6 +146,9 @@ const QString SettingsPaths::getGlobalFilesPath() {
 }
 
 
+/*!
+    \brief Returns the path where the indenter executables reside.
+ */
 const QString SettingsPaths::getIndenterPath() {
     if ( !alreadyInitialized ) {
         SettingsPaths::init();
@@ -126,6 +157,9 @@ const QString SettingsPaths::getIndenterPath() {
 }
 
 
+/*!
+    \brief Returns the path where the where all temporary data should be written to.
+ */
 const QString SettingsPaths::getTempPath() {
     if ( !alreadyInitialized ) {
         SettingsPaths::init();
@@ -134,6 +168,9 @@ const QString SettingsPaths::getTempPath() {
 }
 
 
+/*!
+    \brief Returns true if portable mode shall be used.
+ */
 bool SettingsPaths::getPortableMode() {
     if ( !alreadyInitialized ) {
         SettingsPaths::init();

@@ -21,6 +21,25 @@
 
 #include "UiguiIndentServer.h"
 
+//! \defgroup grp_Server All concerning the server component.
+
+/*!
+    \class UiguiIndentServer
+    \ingroup grp_Server
+    \brief UiguiIndentServer is in such an early state, that even the communication
+    protocol isn't completely planned. So this class lacks documentation until
+    I really know where all this will lead to.
+    
+    The plan however is to have a server that receives commands for selecting an
+    indenter and perhaps load some by the user predefined indenter config file. Then
+    the client can send a text to it and will receive it formatted.
+    The idea behind that is to make UiGUIs use as plugin or whatever more flexible.
+    So the plugin is developed for Eclipse for example and it takes the client role,
+    making it possible to use UiGUI from within Eclipse. Choosing a network protocol
+    makes everything platform and programming language independent, so it doesn't
+    matter for which application the plugin/client is developed.
+*/
+
 UiguiIndentServer::UiguiIndentServer(void) : QObject() {
     tcpServer = NULL;
     currentClientConnection = NULL;

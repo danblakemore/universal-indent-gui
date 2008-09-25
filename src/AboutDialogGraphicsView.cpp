@@ -19,6 +19,18 @@
 #include <QtGui>
 #include "AboutDialogGraphicsView.h"
 
+/*!
+    \class AboutDialogGraphicsView
+    \brief A container for the real \a AboutDialog. Makes the 3D animation possible.
+    
+    The 3D animation shall suggest the user, that he is looking at his desktop, while
+    this animation is done. Since this is not directly possible, \a AboutDialogGraphicsView
+    when shown starts in frameless fullscreen mode with a screenshot of the desktop as background.
+*/
+
+/*!
+    \brief The constructor initializes everything needed for the 3D animation.
+ */
 AboutDialogGraphicsView::AboutDialogGraphicsView(AboutDialog *aboutDialog, QWidget *parent) : QGraphicsView(parent) {
     this->parent = parent;
     setWindowFlags(Qt::SplashScreen);
@@ -64,10 +76,15 @@ AboutDialogGraphicsView::AboutDialogGraphicsView(AboutDialog *aboutDialog, QWidg
     windowTitleBarWidth = parent->geometry().y() - parent->y();
 }
 
+
 AboutDialogGraphicsView::~AboutDialogGraphicsView(void) {
 }
 
 
+/*!
+    \brief Grabs a screenshot of the full desktop and shows that as background. Above that background the
+    AboutDialog 3D animation is shown. Also grabs the content of the AboutDialog itself.
+ */
 void AboutDialogGraphicsView::show() {
     QPixmap originalPixmap = QPixmap::grabWindow(QApplication::desktop()->winId(), 0, 0, geometry().width(), geometry().height() );
     setBackgroundBrush(originalPixmap);
@@ -100,6 +117,9 @@ void AboutDialogGraphicsView::show() {
 }
 
 
+/*!
+    \brief Does the next calculation/transformation step.
+ */
 void AboutDialogGraphicsView::updateStep(int step)
 {
     QRectF r = graphicsProxyWidget->boundingRect();
@@ -114,6 +134,9 @@ void AboutDialogGraphicsView::updateStep(int step)
 }
 
 
+/*!
+    \brief Stops the 3D animation, moves the AboutDialog to the correct place and really shows it.
+ */
 void AboutDialogGraphicsView::showAboutDialog() {
     //hide();
     disconnect(timeLine, SIGNAL(finished()), this, SLOT(showAboutDialog()));
@@ -122,6 +145,9 @@ void AboutDialogGraphicsView::showAboutDialog() {
 }
 
 
+/*!
+    \brief Does not directly hide the AboutDialog but instead starts the "fade out" 3D animation.
+ */
 void AboutDialogGraphicsView::hide() {
     aboutDialogAsSplashScreen->setPixmap( QPixmap::grabWidget(aboutDialog) );
     graphicsProxyWidget->setGeometry( aboutDialog->geometry() );
@@ -151,12 +177,20 @@ void AboutDialogGraphicsView::hide() {
     timeLine->start();
 }
 
+
+/*!
+    \brief This slot really hides this AboutDialog container.
+ */
 void AboutDialogGraphicsView::hideReally() {
     disconnect(timeLine, SIGNAL(finished()), this, SLOT(hideReally()));
     QGraphicsView::hide();
 }
 
 
+/*!
+    \brief Makes it possible to set the screen shot used for the animation.
+ */
+//TODO: Test whether this function is really still needed. Not only for debug.
 void AboutDialogGraphicsView::setScreenshotPixmap(const QPixmap &screenShot) {
     originalPixmap = screenShot;
 }

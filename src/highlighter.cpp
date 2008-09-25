@@ -285,18 +285,27 @@ void Highlighter::writeCurrentSettings( const char *prefix )
 }
 
 
+/*!
+    \brief Sets the \a color for the given \a style.
+ */
 void Highlighter::setColor(const QColor &color, int style) {
     colorForStyles[style] = color;
     lexer->setColor( color, style );
 }
 
 
+/*!
+    \brief Sets the \a font for the given \a style.
+ */
 void Highlighter::setFont(const QFont &font, int style) {
     fontForStyles[style] = font;
     lexer->setFont( font, style );
 }
 
 
+/*!
+    \brief Sets the to be used lexer by giving his name.
+ */
 void Highlighter::setLexerByName( QString lexerName ) {
     setLexerForExtension( mapHighlighternameToExtension[lexerName].first() );
 }
