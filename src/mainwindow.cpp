@@ -202,8 +202,23 @@ void MainWindow::initToolBar() {
     \brief Create and initialize the text editor component. It uses the QScintilla widget.
  */
 void MainWindow::initTextEditor() {
+
+    QMessageBox infoQScintillaLoad(NULL);
+    infoQScintillaLoad.setWindowTitle("Loading QScintilla...");
+    infoQScintillaLoad.setText("Trying to load QScintilla library.\nIf anything fails during loading, it might be possible that the debug and release version of QScintilla are mixed.");
+    infoQScintillaLoad.show();
     // Create the QScintilla widget and add it to the layout.
-    txtedSourceCode = new QsciScintilla(this);
+    // Try and catch doesn't seem to catch the runtime error when starting UiGUI release with QScintilla debug lib and the other way around.
+    try {
+        txtedSourceCode = new QsciScintilla(this);
+    }
+    catch (...) {
+        QMessageBox::critical(this, "Error creating QScintilla text editor component!", 
+            "During trying to create the text editor component, that is based on QScintilla, an error occurred. Please make sure that you have installed QScintilla and not mixed release and debug versions." );
+        exit(1);
+    }
+    infoQScintillaLoad.hide();
+
 	hboxLayout1->addWidget(txtedSourceCode);
 
     // Make some settings for the QScintilla widget.

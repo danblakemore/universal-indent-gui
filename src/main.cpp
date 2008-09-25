@@ -53,6 +53,7 @@ int main(int argc, char *argv[])
         if ( currentArg == "-f" || currentArg == "--file" ) {
             // Test whether a parameter follows the file parameter.
             if ( i + 1 >= argc ) {
+                QMessageBox::information( NULL, "Need additional parameter", "The parameter -f / --file needs a following parameter defining the file to be opened at start." );
                 fprintf(stderr, "The parameter -f / --file needs a following parameter defining the file to be opened at start.");
                 exit(1);
             } 
@@ -69,6 +70,13 @@ int main(int argc, char *argv[])
             startAsServer = true;
         }
         else {
+            QString message = "Invalid parameter found. Allowed parameters are:\n" \
+                "No parameters starts without server and full gui.\n" \
+                "-f filename --file filename   : Opens the by filename defined file on start.\n" \
+                "-p --plugin  : Run as plugin. Server will be startet with a simplified gui.\n" \
+                "-s --server  : Run as server only without gui.\n"
+                "If -p and -s are set, -p will be used.";
+            QMessageBox::information( NULL, "Invalid parameter", message );
             fprintf(stderr, "Invalid parameter found. Allowed parameters are...");
             exit(1);
         }
