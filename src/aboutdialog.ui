@@ -25,25 +25,17 @@
    <string>About UniversalIndentGUI</string>
   </property>
   <property name="windowIcon" >
-   <iconset resource="../resources/Icons.qrc" >:/mainWindow/info.png</iconset>
+   <iconset resource="../resources/Icons.qrc" >
+    <normaloff>:/mainWindow/info.png</normaloff>:/mainWindow/info.png</iconset>
   </property>
   <layout class="QVBoxLayout" >
-   <property name="leftMargin" >
-    <number>0</number>
-   </property>
-   <property name="topMargin" >
-    <number>0</number>
-   </property>
-   <property name="rightMargin" >
-    <number>0</number>
-   </property>
-   <property name="bottomMargin" >
+   <property name="margin" >
     <number>0</number>
    </property>
    <item>
     <widget class="QFrame" name="frame" >
      <property name="styleSheet" >
-      <string>QFrame#frame { background-color: qlineargradient( x1:0, y1:0, x2:0, y2:1, stop:0 #FFF284, stop:0.5 #C6B867, stop:1 #FFF284 ); border: 2px solid #A89C57; border-radius: 4px;}</string>
+      <string notr="true" >QFrame#frame { background-color: qlineargradient( x1:0, y1:0, x2:0, y2:1, stop:0 #FDE505, stop:0.5 #D8C304, stop:1 #FDE505 ); border: 2px solid #A89C57; border-radius: 4px;}</string>
      </property>
      <property name="frameShape" >
       <enum>QFrame::StyledPanel</enum>
@@ -98,7 +90,8 @@
          <enum>Qt::ScrollBarAlwaysOff</enum>
         </property>
         <property name="html" >
-         <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
+         <string>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
 p, li { white-space: pre-wrap; }
 &lt;/style>&lt;/head>&lt;body style=" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;">
 &lt;p style=" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:12pt;">Version %1 rev.%2, %3 &lt;/p>&lt;/body>&lt;/html></string>
@@ -123,7 +116,8 @@ p, li { white-space: pre-wrap; }
          <enum>Qt::ScrollBarAlwaysOff</enum>
         </property>
         <property name="html" >
-         <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
+         <string>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
 p, li { white-space: pre-wrap; }
 &lt;/style>&lt;/head>&lt;body style=" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;">
 &lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; font-size:9pt;">&lt;span style=" font-family:'MS Shell Dlg 2';">... is a cross platform compatible GUI for several code formatter, beautifier and indenter like GreatCode, AStyle (Artistic Styler), GNU Indent, BCPP and so on. Main feature is a live preview to directly see how the selected formatting option affects the source code.&lt;/span>&lt;/p>
@@ -147,16 +141,7 @@ p, li { white-space: pre-wrap; }
         <property name="spacing" >
          <number>6</number>
         </property>
-        <property name="leftMargin" >
-         <number>0</number>
-        </property>
-        <property name="topMargin" >
-         <number>0</number>
-        </property>
-        <property name="rightMargin" >
-         <number>0</number>
-        </property>
-        <property name="bottomMargin" >
+        <property name="margin" >
          <number>0</number>
         </property>
         <item>
@@ -164,7 +149,7 @@ p, li { white-space: pre-wrap; }
           <property name="orientation" >
            <enum>Qt::Horizontal</enum>
           </property>
-          <property name="sizeHint" >
+          <property name="sizeHint" stdset="0" >
            <size>
             <width>131</width>
             <height>31</height>
@@ -175,7 +160,7 @@ p, li { white-space: pre-wrap; }
         <item>
          <widget class="QPushButton" name="okButton" >
           <property name="styleSheet" >
-           <string>QPushButton#okButton { background-color: qlineargradient( x1:0, y1:0, x2:0, y2:1, stop:0 #FFF284, stop:0.5 #C6B867, stop:1 #FFF284 ); border: 2px solid #A89C57; border-radius: 4px;}QPushButton:hover#okButton { background-color: qlineargradient( x1:0, y1:0, x2:0, y2:1, stop:0 #C6B867, stop:0.5 #FFF284, stop:1 #C6B867 ); } QPushButton#okButton { background-color: qlineargradient( x1:0, y1:0, x2:0, y2:1, stop:0 #FFF284, stop:0.5 #C6B867, stop:1 #FFF284 ); border: 2px solid #A89C57; border-radius: 4px;}QPushButton:pressed#okButton{ border: 2px solid #D8CB75 }</string>
+           <string notr="true" >QPushButton#okButton { background-color: qlineargradient( x1:0, y1:0, x2:0, y2:1, stop:0 #DCB28A, stop:0.5 #B8784B, stop:1 #DCB28A ); border: 2px solid #A89C57; border-radius: 4px;} QPushButton:hover#okButton { background-color: qlineargradient( x1:0, y1:0, x2:0, y2:1, stop:0 #B8784B, stop:0.5 #DCB28A, stop:1 #B8784B ); } QPushButton:pressed#okButton{ border: 2px solid #D8CB75 }</string>
           </property>
           <property name="text" >
            <string>          OK          </string>
@@ -187,7 +172,7 @@ p, li { white-space: pre-wrap; }
           <property name="orientation" >
            <enum>Qt::Horizontal</enum>
           </property>
-          <property name="sizeHint" >
+          <property name="sizeHint" stdset="0" >
            <size>
             <width>40</width>
             <height>20</height>
