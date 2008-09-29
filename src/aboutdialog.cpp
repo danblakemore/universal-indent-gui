@@ -69,7 +69,7 @@ AboutDialog::AboutDialog(QWidget *parent, Qt::WindowFlags flags, QString version
         "<p align='center'><b>Nirvash</b> for the initial japanese translation.</p></br>"
         "<p align='center'>The <b>Tango Project</b> for their icons.</p></br>"
         "<p align='center'><b>famfamfam</b> for the flag icons.</p></br>"
-        "<p align='center'><b>Trolltech</b> for their Qt.</p></br>"
+        "<p align='center'><b>Trolltech</b> for their really great GUI framework <img src=\":/aboutDialog/qt_logo.png\"  align=\"middle\"/>.</p></br>"
         "<h3 align='center'>My girlfriend for putting my head right and not sit all the time in front of my computer ;-)</h3>"
         "</body></html>");
 
