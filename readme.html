@@ -1,0 +1,235 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=windows-1250">
+    <title>UniversalIndentGUI ReadMe</title>
+
+<style type="text/css">
+<!--
+/* Links general
+/*******************************/
+a
+{
+    color: #36b;
+}
+/* Links external
+/*******************************/
+a.external
+{
+    background: url("homepage/images/externallinks.png") center right no-repeat;
+    padding-right: 13px;
+}
+-->
+</style>
+
+</head>
+
+<body style="font-family: Tahoma,serif;">
+<!--
+    <h1>UniversalIndentGUI</h1>
+-->
+    <div align="center"><img src="homepage/images/banner.jpg" alt="UiGUI Screenshot"></div>
+    <br clear="all" />
+    <br />
+    <p style="margin-left:40pt;">
+        Ever concerned about how your code looks like?<br />
+        Ever heard of different coding styles, for example K&amp;R?<br />
+        Ever received code from someone else who didn't care about code formatting?<br />
+        Ever tried to configure a code indenter to convert such code to your coding style?<br />
+        Ever got bored by that tedious "changing a parameter"-"call the indeter"-"try and error" procedure?<br />
+    </p>
+
+    <p>
+        Help is close to you. UniversalIndentGUI offers a live preview for setting the parameters of nearly any indenter.
+        You change the value of a parameter and directly see how your reformatted code will look like. Save your beauty looking
+        code or create an anywhere usable batch/shell script to reformat whole directories or just one file even out of the
+        editor of your choice that supports external tool calls.<br />
+
+        Many free available code beautifier, formatter and indenter are currently supported, like GNU Indent, Uncrustify,
+        Artistic Styler, PHP Stylist, Ruby Beautify, HTML Tidy and many other (look at features for complete list).
+        Currently not supported indenters can be easyly added by creating a configuration file for them.<br />
+
+        Thus UniversalIndentGUI is open for nearly any new indenter and many programming languages. Give it a try.
+        Perhaps you'll also find support for an indenter for your programming language that you even didn't know that it exists.
+    </p>
+
+
+    <h3>Features</h3>
+    <p>
+        <ul>
+            <li>Live Preview: change an indenter parameter and directly see how your formatted code will look like.</li>
+            <li>Support for nearly any existing indenter possible. Currently supported are:</li>
+            <img width="400" align="right" vspace="10" src="homepage/images/screenshot8.jpg" alt="UiGUI Screenshot">
+            <ul>
+                <li><a class="external" href="http://astyle.sourceforge.net/" target="_blank">Artistic Styler</a></li>
+                <li><a class="external" href="http://invisible-island.net/bcpp/" target="_blank">BCPP</a></li>
+                <li><a class="external" href="http://www.siber.com/sct/tools/cbl-beau.html" target="_blank">Cobol Beautify</a></li>
+                <li><a class="external" href="http://csstidy.sourceforge.net/" target="_blank">CSSTidy</a></li>
+                <li><a class="external" href="http://www.gnu.org/software/indent/" target="_blank">GNU Indent</a></li>
+                <li><a class="external" href="http://sourceforge.net/projects/gcgreatcode/" target="_blank">GreatCode</a></li>
+                <li><a class="external" href="http://packages.debian.org/de/lenny/hindent" target="_blank">hindent</a></li>
+                <li><a class="external" href="http://www.digital-mines.com/htb/" target="_blank">HTB</a></li>
+                <li><a class="external" href="http://code.gosu.pl/" target="_blank">Javascript Decoder</a></li>
+                <li><a class="external" href="http://perltidy.sourceforge.net/" target="_blank">Perl Tidy</a></li>
+                <li><a class="external" href="http://pear.php.net/package/PHP_Beautifier" target="_blank">PHP_Beautifier</a></li>
+                <li><a class="external" href="http://www.waterproof.fr/products/phpCodeBeautifier/" target="_blank">PHP Code Beautifier</a></li>
+                <li><a class="external" href="http://sourceforge.net/projects/phpstylist/" target="_blank">PHP Stylist</a></li>
+                <li><a class="external" href="http://www.arachnoid.com/ruby/rubyBeautifier.html" target="_blank">Ruby Beautify</a></li>
+                <li><a class="external" href="http://raa.ruby-lang.org/project/ruby_formatter/" target="_blank">Ruby Formatter</a></li>
+                <li><a class="external" href="http://www.bolthole.com/AWK.html" target="_blank">Shell Indent</a></li>
+                <li><a class="external" href="http://tidy.sourceforge.net/" target="_blank">(HTML) Tidy</a></li>
+                <li><a class="external" href="http://uncrustify.sourceforge.net/" target="_blank">Uncrustify</a></li>
+
+                Please note that Cobol Beautify and PHP Code Beautifier can not be distributed with a UiGUI package, because
+                they are only free available if you register at their homepage.
+            </ul>
+            <li>Easy adding of new indenters: just create a parameter definition file for the new indenter.</li>
+            <li>Load and save different indenter configurations.</li>
+            <li>Reset to indenters default parameters.</li>
+            <li>By the above named indenters currently supported programming languages:</li>
+            <img width="400" align="right" vspace="10" src="homepage/images/screenshot6.jpg" alt="UiGUI Screenshot">
+            <ul>
+                <li>C, C++</li>
+                <li>C#</li>
+                <li>D</li>
+                <li>Cobol</li>
+                <li>CSS</li>
+                <li>HTML</li>
+                <li>Java</li>
+                <li>JavaScript</li>
+                <li>Objective-C</li>
+                <li>Pawn</li>
+                <li>Perl</li>
+                <li>PHP</li>
+                <li>Ruby</li>
+                <li>Shellscript</li>
+                <li>VALA</li>
+                <li>XML</li>
+                <li>XSL</li>
+            </ul>
+            <li>Syntax highlighting for all of these languages except for Pawn and VALA</li>
+            <li>Really easy to handle user interface.</li>
+            <li>Tooltips for each indenter parameter.</li>
+            <li>Creation of batch/shell scripts.</li>
+            <li>HTML and PDF export of your code.</li>
+            <li>PortableMode and MultiUserMode: In portable mode only uses its own subdirectories for temporary writing.</li>
+            <li>Multiple languages: English, German, Traditional Chinese, Russian, Ukrainian, partly Japanese.</li>
+            <li>Drag'n Drop of source code files.</li>
+            <li>Support for many different file encodings, like Korean KOI8-R or Chinese BIG5.</li>
+            <li>Possibility to edit your code while live preview is turned on. Yeah, thats really live! (but positions cursor wrong sometimes depending on the used indenter :-( )</li>
+            <li>Code completion.</li>
+            <li>Automatic update check. Does check only once a day and can be disabled.</li>
+            <li>A nice about dialog. Errrmm, ok beneath all the mean stuff this is somehow the programmers playground ;-)</li>
+        </ul>
+    </p>
+    <p>
+        Also a Notepad++ plugin version is available. The programming project for that is currently only available as
+        Visual Studio C++ 2005 project file. Also this plugin has some problems with its event handling, because it is
+        running as a DLL inside of Notepad++ event loop. This will be replaced with the upcoming UiGUI server functionality.
+        See future plans for more about that.
+    </p>
+
+    <h3>Supported and tested platforms</h3>
+    <p>
+        <ul>
+            <li>Windows 32 bit</li>
+            <li>Linux 32 and 64 bit</li>
+            <li>Mac OS X >= 10.4 (currently Intel only. PPC produced mysterious linker error)</li>
+        </ul>
+    </p>
+
+    <h3>How to install / build UniversalIndentGUI</h3>
+    <p>
+        If you downloaded a complete binary package/archive for your system from SourceForge, you only need to unpack it and
+        can run it out of the box. Also all free available indenters for your platform are included. Doing it that way,
+        UiGUI will run in portable mode.
+    </p>
+    <p>
+        But if you'd like to build UiGUI from source, follow these steps:
+        <ol>
+            <li>Download, unpack, configure and compile
+            <a class="external" href="http://trolltech.com/downloads/opensource/appdev" target="_blank">Qt</a>
+            >= 4.4.0. Make your QTDIR and QMAKESPEC settings. Or install Qt via a package manager.</li>
+            <li>Download, unpack, compile and install
+            <a class="external" href="http://www.riverbankcomputing.com/software/qscintilla/download" target="_blank">QScintilla</a>
+            >= 2.3. This version is most likely not yet available via a package manager.</li>
+            <li>Checkout UiGUI: svn co https://universalindent.svn.sourceforge.net/svnroot/universalindent/trunk universalindentgui</li>
+            <li>In the checked out directory run "qmake".</li>
+            <li>Run "make release".</li>
+            <li>Install it</li>
+            <ol type="a">
+                <li>
+                    Windows and Mac:<br />
+                    For testing on Windows/Mac download the indenter binary package from sourceforge and extract it into the
+                    directory where you checked out the code (in the upper example that is "universalindentgui").
+                    Then move the file "UniversalIndentGUI.exe"/directory "UniversalIndentGUI" from the "release" directory also
+                    to that directory. Starting UiGUI from this directory will run it in portable mode.
+                </li>
+                <li>
+                    Linux:<br />
+                    Run "sudo make install" installs for multi user mode. Install supported indenters via package manager for
+                    example. For portable mode just skip "make install" and move the file "universalindentgui" from the "release"
+                    directory into the directory where you checked out the code (in the upper example that is
+                    "universalindentgui").
+                </li>
+            </ol>
+        </ol>
+        <b>Indenter binary packages</b> can be downloaded from the project at SourceForge
+        <a class="external" href="http://sourceforge.net/project/showfiles.php?group_id=167482&package_id=293094" target="_blank">here</a>.
+        <p>Beneath the possibility to build UiGUI using qmake, also project files for Visual Studio 2005
+        and XCode are included.</p>
+    </p>
+
+    <h3>Used Qt techniques</h3>
+    <p>This list shows some selected functionalities that Qt offers and that I use with UiGUI.</p>
+    <ul>
+        <li>Translations are done with
+        <a class="external" href="http://doc.trolltech.com/4.4/qtranslator.html" target="_blank">QTranslator</a>,
+        <a class="external" href="http://doc.trolltech.com/4.4/qlocale.html" target="_blank">QLocale</a> and Linguist.</li>
+        <li>File encodings are supported by using
+        <a class="external" href="http://doc.trolltech.com/4.4/qtextcodec.html" target="_blank">QTextCodec</a>
+        and <a class="external" href="http://doc.trolltech.com/4.4/qtextstream.html" target="_blank">QTextStream</a>.</li>
+        <li><a class="external" href="http://doc.trolltech.com/4.4/qscriptengine.html" target="_blank">QScriptEngine</a>
+        and <a class="external" href="http://doc.trolltech.com/4.4/qscriptvalue.html" target="_blank">QScriptValue</a>
+        is included for executing JavaScript files used as indenters.</li>
+        <li><a class="external" href="http://doc.trolltech.com/4.4/qgraphicsview.html" target="_blank">QGraphicsView</a>
+        and <a class="external" href="http://doc.trolltech.com/4.4/qgraphicsproxywidget.html" target="_blank">QGraphicsProxyWidget</a>
+        for creating an animated 3D about dialog, simulating that is done on the whole desktop by using
+        the screenshot capability of Qt.</li>
+        <li>Stylesheet settings give the about dialog a special look. Also gradients are used.</li>
+        <li><a class="external" href="http://doc.trolltech.com/4.4/qhttp.html" target="_blank">QHttp</a>
+        and <a class="external" href="http://doc.trolltech.com/4.4/qurl.html" target="_blank">QUrl</a>
+        are used for the update check.</li>
+        <li><a class="external" href="http://doc.trolltech.com/4.4/qsettings.html" target="_blank">QSettings</a>
+        is responsible for storing the application and syntax highlighter settings.</li>
+        <li><a class="external" href="http://doc.trolltech.com/4.4/qtcpserver.html" target="_blank">QTcpServer</a>
+        and <a class="external" href="http://doc.trolltech.com/4.4/qtcpsocket.html" target="_blank">QTcpSocket</a>
+        build the base for the UiGUI Server.</li>
+        <li>Of course I use the Qt tools qmake, lupdate, lrelease, Designer, Linguist and my very best friend the Assistant.</li>
+    </ul>
+
+    <h3>Future plans</h3>
+    <ul>
+        <li>Exchangeable source code view. Mainly adding a "Live Diff View" where you can see the unformatted
+        code and the formatted one side by side with changes highlighted.</li>
+        <li>Bring functionality to the UiGUI server so that he can be run anywhere and a client plugin in any editor
+        like Eclipse or Notepad++ can communicate with it. Thus the client plugin can be written in any language
+        supporting TCP/IP connections and send code to be formatted to the server. Also some settings might be
+        made via that conncection. Plans are going on, so stay tuned.</li>
+        <li>Batch/Multiple file and directory indenting, so that the user can throw a bunch of files or directories
+        into a list and click on "Do it", so they all will get formatted.</li>
+    </ul>
+
+    <h3>Thanks</h3>
+    Here I'd like to say "thank you" to all those guys, who helped me improving UiGUI. May it be doing some
+    translations, creating packages for Linux, letting me know about bugs or ways to improve or just saying
+    that they found my application helpful and that they like it. So:<br /><br />
+    <div align="center"><b>Thank you all out there!!</b></div>
+
+    <h3>Disclaimer</h3>
+    You may use this software on your own risk. I am not responsible for any system damage or loss of data.
+    Respect the GPL! UiGUI is being released under
+    <a class="external" href="http://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="_blank">GPL 2</a>.
+    You will also find the license in the included file "LICENSE.GPL".
+</body>
+</html>

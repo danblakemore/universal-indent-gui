@@ -96,7 +96,7 @@ As one path: https://universalindent.svn.sourceforge.net/svnroot/universalindent
 
 The Qt Framework Version >=4.4.x with source code is needed for compiling. It is available at www.trolltech.com. Please look there for more information. And pay attention, that there exist a commercial and a free GPL version of the Qt framework.
 
-The second needed library comes from the QScintilla project (http://www.riverbankcomputing.co.uk/qscintilla/). Since I am using Qt4 there is also need to use the Qt4 version of QScintilla which is called QScintilla v2. The latest version is allways available at http://www.riverbankcomputing.com/Downloads/Snapshots/QScintilla2/ and most of the time there is no problem using that snapshot.
+The second needed library comes from the QScintilla project (http://www.riverbankcomputing.co.uk/qscintilla/). Since I am using Qt4 there is also need to use the Qt4 version of QScintilla which is called QScintilla v2. The latest version is allways available at http://www.riverbankcomputing.com/software/qscintilla/download and most of the time there is no problem using that snapshot.
 
 For the Windows Visual Studio 2005 a solution file is included, named "UniversalIndentGUI.sln". Additional include and lib directories for Qt have to be set in the preferences. Have a look at the homepage "http://wiki.qgis.org/qgiswiki/Building_QT_4_with_Visual_C++_2005", where you will find a good guide how to make Qt's open source edition compileable with Visual Studio. Even though it is written for Qt 4.1.1 it also fits for the current version 4.x.
 
