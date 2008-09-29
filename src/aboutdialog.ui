@@ -35,7 +35,7 @@
    <item>
     <widget class="QFrame" name="frame" >
      <property name="styleSheet" >
-      <string notr="true" >QFrame#frame { background-color: qlineargradient( x1:0, y1:0, x2:0, y2:1, stop:0 #FDE505, stop:0.5 #D8C304, stop:1 #FDE505 ); border: 2px solid #A89C57; border-radius: 4px;}</string>
+      <string notr="true" >QFrame#frame { background-color: qlineargradient( x1:0, y1:0, x2:0, y2:1, stop:0 #FFFF60, stop:0.5 #D8C304, stop:1 #FFFF60 ); border: 2px solid #A89C57; border-radius: 4px;}</string>
      </property>
      <property name="frameShape" >
       <enum>QFrame::StyledPanel</enum>
