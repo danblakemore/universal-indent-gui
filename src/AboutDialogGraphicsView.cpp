@@ -34,13 +34,13 @@
 AboutDialogGraphicsView::AboutDialogGraphicsView(AboutDialog *aboutDialog, QWidget *parent) : QGraphicsView(parent) {
     this->parent = parent;
     setWindowFlags(Qt::SplashScreen);
-    //QRect geometryOfDesktopWhereUiGUIIs = QApplication::desktop()->availableGeometry( parent );
-    //QRect newGeometry = QRect( -1, -1, geometryOfDesktopWhereUiGUIIs.width()+2, geometryOfDesktopWhereUiGUIIs.height()+2 );
-    QRect newGeometry = QRect( -1, -1, QApplication::desktop()->rect().width()+2, QApplication::desktop()->rect().height()+2 );
+
+#ifdef Q_OS_LINUX
+    QRect newGeometry = QRect( QApplication::desktop()->availableGeometry().x(), QApplication::desktop()->availableGeometry().y(), QApplication::desktop()->availableGeometry().width(), QApplication::desktop()->availableGeometry().height() );
+#else
+    QRect newGeometry = QRect( -1,-1, QApplication::desktop()->rect().width()+2, QApplication::desktop()->rect().height()+2 );
+#endif
     setGeometry( newGeometry );
-    //setTransform(QTransform()
-    //    .translate(newGeometry.width() / 2, newGeometry.height() / 2));
-    //setWindowState(Qt::WindowFullScreen);
 
     this->aboutDialog = aboutDialog;
 
@@ -71,9 +71,6 @@ AboutDialogGraphicsView::AboutDialogGraphicsView(AboutDialog *aboutDialog, QWidg
     //timeLine->setUpdateInterval(10);
     //timeLine->setCurveShape(QTimeLine::EaseInCurve);
     connect(timeLine, SIGNAL(frameChanged(int)), this, SLOT(updateStep(int)));
-
-    windowBorderWidth = 0;
-    windowTitleBarWidth = parent->geometry().y() - parent->y();
 }
 
 
@@ -86,7 +83,15 @@ AboutDialogGraphicsView::~AboutDialogGraphicsView(void) {
     AboutDialog 3D animation is shown. Also grabs the content of the AboutDialog itself.
  */
 void AboutDialogGraphicsView::show() {
+    // Because on X11 system the window decoration is only available after a widget has been shown once,
+    // we can detect windowTitleBarWidth here for the first time.
+    windowTitleBarWidth = parent->geometry().y() - parent->y();
+#ifdef Q_OS_LINUX
+    QPixmap originalPixmap = QPixmap::grabWindow(QApplication::desktop()->winId(), 0, 0, QApplication::desktop()->availableGeometry().width(), QApplication::desktop()->availableGeometry().height() );
+#else
     QPixmap originalPixmap = QPixmap::grabWindow(QApplication::desktop()->winId(), 0, 0, geometry().width(), geometry().height() );
+#endif
+
     setBackgroundBrush(originalPixmap);
 
     aboutDialogAsSplashScreen->setPixmap( QPixmap::grabWidget(aboutDialog) );
@@ -95,7 +100,7 @@ void AboutDialogGraphicsView::show() {
         graphicsProxyWidget->setPos( parent->geometry().x()+(parent->geometry().width()-graphicsProxyWidget->geometry().width()) / 2, parent->y()+windowTitleBarWidth);
     } 
     else {
-        graphicsProxyWidget->setPos( parent->geometry().x()+(parent->geometry().width()-graphicsProxyWidget->geometry().width()) / 2+windowBorderWidth, parent->y()+windowTitleBarWidth);
+        graphicsProxyWidget->setPos( parent->geometry().x()+(parent->geometry().width()-graphicsProxyWidget->geometry().width()) / 2, parent->y()+windowTitleBarWidth);
     }
 
     QRectF r = graphicsProxyWidget->boundingRect();
@@ -156,7 +161,7 @@ void AboutDialogGraphicsView::hide() {
     //    graphicsProxyWidget->setPos( parent->geometry().x()+(parent->geometry().width()-graphicsProxyWidget->geometry().width()) / 2, parent->y());
     //} 
     //else {
-        graphicsProxyWidget->setPos( parent->geometry().x()+(parent->geometry().width()-graphicsProxyWidget->geometry().width()) / 2+windowBorderWidth, parent->y()+windowTitleBarWidth);
+        graphicsProxyWidget->setPos( parent->geometry().x()+(parent->geometry().width()-graphicsProxyWidget->geometry().width()) / 2, parent->y()+windowTitleBarWidth);
     //}
 
     QRectF r = graphicsProxyWidget->boundingRect();

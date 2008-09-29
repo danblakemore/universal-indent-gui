@@ -48,7 +48,6 @@ private:
     QWidget *parent;
     QTimeLine *timeLine;
     QSplashScreen *aboutDialogAsSplashScreen;
-    int windowBorderWidth;
     int windowTitleBarWidth;
     bool firstRunOfAnimation;
 	QPixmap originalPixmap;
