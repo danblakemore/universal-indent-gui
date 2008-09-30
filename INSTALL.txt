@@ -9,4 +9,4 @@ other system it is "UniversalIndentGUI".
 No additional libraries are needed.
 
 For information about how to build UniversalIndentGUI from source, have a look into the
-file README.txt.
+file readme.html.
