@@ -35,7 +35,9 @@ UiGuiSettingsDialog::UiGuiSettingsDialog(QWidget* parent, UiGuiSettings* setting
 
     // Init the user interface created by the UIC.
 	setupUi(this);
-	//TODO: This has to be removed when the properties for the highlighters can be set.
+    
+	//TODO: This call has to be removed when the properties for the highlighters can be set
+    // with the settings dialog.
 	groupBoxSyntaxHighlighterProperties->setToolTip( "(Will be implemented soon)" + groupBoxSyntaxHighlighterProperties->toolTip() );
 
     // Get all check boxes that are used for settings.
