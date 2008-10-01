@@ -1135,20 +1135,7 @@ void MainWindow::createHighlighterMenu() {
 	highlighterMenu->addActions( highlighterActionGroup->actions() );
     menuSettings->insertMenu(indenterParameterTooltipsEnabledAction, highlighterMenu );
 
-	connect( highlighterActionGroup, SIGNAL(triggered(QAction*)), this, SLOT(highlighterChanged(QAction*)) );
-}
-
-
-/*!
-    \brief This slot handles signals coming from selecting another syntax highlighter.
- */
-void MainWindow::highlighterChanged(QAction* highlighterAction) {
-	QString highlighterName = highlighterAction->text();
-    highlighter->setLexerByName( highlighterName );
-    //TODO: This is really no nice way. How do it better?
-    // Need to do this "text update" to update the syntax highlighting. Otherwise highlighting is wrong.
-    previewToggled = true;
-    updateSourceView();
+	connect( highlighterActionGroup, SIGNAL(triggered(QAction*)), highlighter, SLOT(setHighlighterByAction(QAction*)) );
 }
 
 

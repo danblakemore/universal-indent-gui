@@ -137,7 +137,6 @@ private slots:
     void exportToHTML();
 	void languageChanged(int languageIndex);
     void encodingChanged(QAction *encodingAction);
-    void highlighterChanged(QAction* highlighterAction);
 	void numberOfLinesChanged();
     void updateRecentlyOpenedList();
     void openFileFromRecentlyOpenedList(QAction* recentlyOpenedAction);
