@@ -230,10 +230,10 @@ void IndentHandler::contextMenuEvent( QContextMenuEvent *event ) {
 
 
 /*!
-    \brief Creates the content for a shell script that can be used as a external too call
-    to indent a as parameter defined file.
+    \brief Creates the content for a shell script that can be used as a external tool call
+    to indent an as parameter defined file.
  */
-QString IndentHandler::generateCommandlineCall(QString inputFileExtension) {
+QString IndentHandler::generateCommandlineCall() {
 
 	QString indenterCompleteCallString;
 	QString parameterInputFile;
@@ -241,7 +241,7 @@ QString IndentHandler::generateCommandlineCall(QString inputFileExtension) {
 	QString parameterParameterFile;
     QString replaceInputFileCommand;
 
-    // Define the placeholder for parameter variable either in batch or bash programming.
+    // Define the placeholder for parameter variables either in batch or bash programming.
 #if defined(Q_OS_WIN32)
     QString shellParameterPlaceholder = "%1";
 #else
@@ -255,11 +255,6 @@ QString IndentHandler::generateCommandlineCall(QString inputFileExtension) {
 		writeConfigFile( indenterDirctoryStr + "/" + configFilename, parameterString );
 	}
 
-    // Only add point to file extension if the string is not empty.
-    if ( !inputFileExtension.isEmpty() ) {
-        inputFileExtension = "." + inputFileExtension;
-    }
-
     parameterInputFile = " " + inputFileParameter + "\"" + shellParameterPlaceholder + "\"";
 
     if ( outputFileParameter != "none" && outputFileParameter != "stdout" ) {
@@ -267,7 +262,7 @@ QString IndentHandler::generateCommandlineCall(QString inputFileExtension) {
             parameterOuputFile = " " + outputFileParameter + "\"" + shellParameterPlaceholder + "\"";
         }
         else {
-            parameterOuputFile = " " + outputFileParameter + outputFileName + inputFileExtension;
+            parameterOuputFile = " " + outputFileParameter + outputFileName + ".tmp";
         }
     }
 
@@ -303,15 +298,15 @@ QString IndentHandler::generateCommandlineCall(QString inputFileExtension) {
 
     // If the indenter writes to stdout pipe the output into a file
     if ( outputFileParameter == "stdout" ) {
-        indenterCompleteCallString = indenterCompleteCallString + " >" + outputFileName + inputFileExtension;
+        indenterCompleteCallString = indenterCompleteCallString + " >" + outputFileName + ".tmp";
     }
 
     // If the output filename is not the same as the input filename copy the output over the input.
     if ( outputFileName != inputFileName ) {
 #if defined(Q_OS_WIN32)
-        replaceInputFileCommand = "move /Y " + outputFileName + inputFileExtension + " \"" + shellParameterPlaceholder + "\"\n";
+        replaceInputFileCommand = "move /Y " + outputFileName + ".tmp \"" + shellParameterPlaceholder + "\"\n";
 #else
-        replaceInputFileCommand = "mv " + outputFileName + inputFileExtension + " \"" + shellParameterPlaceholder + "\"\n";
+        replaceInputFileCommand = "mv " + outputFileName + ".tmp \"" + shellParameterPlaceholder + "\"\n";
 #endif
     }
 
@@ -1417,9 +1412,8 @@ void IndentHandler::saveasIndentCfgFileDialog() {
     other application and open a save dialog for saving the shell script.
 */
 void IndentHandler::createIndenterCallShellScript() {
-    //QString indenterCallShellScript = generateCommandlineCall(currentSourceFileExtension);
-    //TODO: Should be like previous call
-    QString indenterCallShellScript = generateCommandlineCall("");
+    // Get the content of the shell/batch script.
+    QString indenterCallShellScript = generateCommandlineCall();
 
     QString shellScriptExtension;
 #if defined(Q_OS_WIN32)

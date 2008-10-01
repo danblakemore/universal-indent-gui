@@ -61,7 +61,7 @@ public:
     IndentHandler(int indenterID, QWidget *mainWindow = NULL, QWidget *parent = NULL);
     ~IndentHandler();
 
-    QString generateCommandlineCall(QString inputFileExtension);
+    QString generateCommandlineCall();
     QString callIndenter(QString sourceCode, QString inputFileExtension);
     void loadConfigFile(QString filePathName, bool resetValues = false);
     QStringList getAvailableIndenters();
