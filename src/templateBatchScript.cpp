@@ -19,6 +19,9 @@
 
 #include "templateBatchScript.h"
 
+// Need to include QObject here so that platform specific defines like Q_OS_WIN32 are set.
+#include <QObject>
+
 /*!
     \brief The only and static function of this class returns a batch or shell script
     as string that can be used to call an indenter with the current settings from 
