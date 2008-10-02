@@ -336,7 +336,7 @@ QString IndentHandler::generateCommandlineCall() {
  */
 QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtension) {
     if ( indenterExecutableSuffix == ".js" ) {
-        return callJavaScriptIndenter(sourceCode, inputFileExtension);
+        return callJavaScriptIndenter(sourceCode);
     } 
     else {
         return callExecutableIndenter(sourceCode, inputFileExtension);
@@ -350,7 +350,7 @@ QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtensi
     The \a inputFileExtension has to be given as parameter so the called indenter 
     can identify the programming language if needed.
 */
-QString IndentHandler::callJavaScriptIndenter(QString sourceCode, QString inputFileExtension) {
+QString IndentHandler::callJavaScriptIndenter(QString sourceCode) {
     QScriptEngine engine;
 
     QScriptValue unformattedCode(&engine, sourceCode);

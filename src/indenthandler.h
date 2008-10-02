@@ -97,7 +97,7 @@ private slots:
 
 private:
     QString callExecutableIndenter(QString sourceCode, QString inputFileExtension);
-    QString callJavaScriptIndenter(QString sourceCode, QString inputFileExtension);
+    QString callJavaScriptIndenter(QString sourceCode);
     void writeConfigFile(QString filePathName, QString parameterString);
     void readIndentIniFile(QString iniFilePath);
     bool createIndenterCallString();
