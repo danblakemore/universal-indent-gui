@@ -17,8 +17,8 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef HIGHLIGHTER_H
-#define HIGHLIGHTER_H
+#ifndef UIGUIHIGHLIGHTER_H
+#define UIGUIHIGHLIGHTER_H
 
 #include <QObject>
 #include <QMap>
@@ -57,12 +57,12 @@
 #include <Qsci/qscilexeryaml.h>
 
 
-class Highlighter : public QObject
+class UiguiHighlighter : public QObject
 {
     Q_OBJECT
 
 public:
-    Highlighter(QsciScintilla *parent);
+    UiguiHighlighter(QsciScintilla *parent);
     void turnHighlightOff();
     void turnHighlightOn();
 	
@@ -96,4 +96,4 @@ public slots:
 	void setHighlighterByAction(QAction* highlighterAction);
 };
 
-#endif  // HIGHLIGHTER_H
+#endif  // UIGUIHIGHLIGHTER_H

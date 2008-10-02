@@ -87,7 +87,7 @@ private:
     QString sourceFileContent;
     QString sourceFormattedContent;
     QString sourceViewContent;
-    Highlighter *highlighter;
+    UiguiHighlighter *highlighter;
     QScrollBar *textEditVScrollBar;
     AboutDialog *aboutDialog;
     AboutDialogGraphicsView *aboutDialogGraphicsView;

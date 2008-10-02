@@ -261,7 +261,7 @@ void MainWindow::initTextEditor() {
  */
 void MainWindow::initSyntaxHighlighter() {
     // Create the highlighter.
-    highlighter = new Highlighter(txtedSourceCode);
+    highlighter = new UiguiHighlighter(txtedSourceCode);
 
     // Handle if syntax highlighting is enabled
 	bool syntaxHighlightningEnabled = settings->getValueByName("SyntaxHighlightningEnabled").toBool();

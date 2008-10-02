@@ -26,15 +26,15 @@
 //! \defgroup grp_EditorComponent All concerning editor widget.
 
 /*!
-    \class Highlighter
+    \class UiguiHighlighter
     \ingroup grp_EditorComponent
-    \brief Highlighter used by QTextEdit fields to syntax highlight cpp source code
+    \brief UiguiHighlighter used for selecting the syntax highlighter/lexer for the QsciScintilla component.
 */
 
 /*!
     \brief The constructor initializes some regular expressions and keywords to identify cpp tokens
  */
-Highlighter::Highlighter(QsciScintilla *parent)
+UiguiHighlighter::UiguiHighlighter(QsciScintilla *parent)
 : QObject(parent)
 {
     this->parent = parent;
@@ -98,7 +98,7 @@ Highlighter::Highlighter(QsciScintilla *parent)
 /*!
     \brief Returns the available highlighters as QStringList.
  */
-QStringList Highlighter::getAvailableHighlighters() {
+QStringList UiguiHighlighter::getAvailableHighlighters() {
     return mapHighlighternameToExtension.keys();
 }
 
@@ -106,7 +106,7 @@ QStringList Highlighter::getAvailableHighlighters() {
 /*!
     \brief This slot handles signals coming from selecting another syntax highlighter.
  */
-void Highlighter::setHighlighterByAction(QAction* highlighterAction) {
+void UiguiHighlighter::setHighlighterByAction(QAction* highlighterAction) {
 	QString highlighterName = highlighterAction->text();
     setLexerForExtension( mapHighlighternameToExtension[highlighterName].first() );
     //TODO: This is really no nice way. How do it better?
@@ -120,7 +120,7 @@ void Highlighter::setHighlighterByAction(QAction* highlighterAction) {
 /*!
     \brief Turns the syntax parser on.
 */
-void Highlighter::turnHighlightOn() {
+void UiguiHighlighter::turnHighlightOn() {
     highlightningIsOn = true;
 	parent->setLexer(lexer);
     readCurrentSettings("");
@@ -129,7 +129,7 @@ void Highlighter::turnHighlightOn() {
 /*!
     \brief Turns the syntax parser off.
 */
-void Highlighter::turnHighlightOff() {
+void UiguiHighlighter::turnHighlightOff() {
     highlightningIsOn = false;
 	parent->setLexer();
     parent->setFont( QFont("Courier", 10, QFont::Normal) );
@@ -140,7 +140,7 @@ void Highlighter::turnHighlightOff() {
 /*!
     \brief Read the settings for the current lexer from the settings file.
  */
-bool Highlighter::readCurrentSettings( const char *prefix )
+bool UiguiHighlighter::readCurrentSettings( const char *prefix )
 {
     bool ok, flag, rc = true;
     int num;
@@ -221,7 +221,7 @@ bool Highlighter::readCurrentSettings( const char *prefix )
 /*!
     \brief Write the settings for the current lexer to the settings file.
  */
-void Highlighter::writeCurrentSettings( const char *prefix )
+void UiguiHighlighter::writeCurrentSettings( const char *prefix )
 {
     QString key;
 
@@ -288,7 +288,7 @@ void Highlighter::writeCurrentSettings( const char *prefix )
 /*!
     \brief Sets the \a color for the given \a style.
  */
-void Highlighter::setColor(const QColor &color, int style) {
+void UiguiHighlighter::setColor(const QColor &color, int style) {
     colorForStyles[style] = color;
     lexer->setColor( color, style );
 }
@@ -297,7 +297,7 @@ void Highlighter::setColor(const QColor &color, int style) {
 /*!
     \brief Sets the \a font for the given \a style.
  */
-void Highlighter::setFont(const QFont &font, int style) {
+void UiguiHighlighter::setFont(const QFont &font, int style) {
     fontForStyles[style] = font;
     lexer->setFont( font, style );
 }
@@ -306,7 +306,7 @@ void Highlighter::setFont(const QFont &font, int style) {
 /*!
     \brief Sets the to be used lexer by giving his name.
  */
-void Highlighter::setLexerByName( QString lexerName ) {
+void UiguiHighlighter::setLexerByName( QString lexerName ) {
     setLexerForExtension( mapHighlighternameToExtension[lexerName].first() );
 }
 
@@ -314,7 +314,7 @@ void Highlighter::setLexerByName( QString lexerName ) {
 /*!
     \brief Sets the proper highlighter / lexer for the given file \a extension. Returns the index of the used lexer in the list.
  */
-int Highlighter::setLexerForExtension( QString extension ) {
+int UiguiHighlighter::setLexerForExtension( QString extension ) {
     int indexOfHighlighter = 0;
 	extension = extension.toLower();
 
