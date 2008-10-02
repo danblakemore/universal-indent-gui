@@ -65,6 +65,7 @@ AboutDialogGraphicsView::AboutDialogGraphicsView(AboutDialog *aboutDialog, QWidg
     
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    setStyleSheet("AboutDialogGraphicsView { border: 0px; }");
 
     timeLine = new QTimeLine(1000, this);
     timeLine->setFrameRange(270, 0);
