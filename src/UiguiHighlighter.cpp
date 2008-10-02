@@ -19,7 +19,7 @@
 
 #include <QtGui>
 
-#include "highlighter.h"
+#include "UiguiHighlighter.h"
 
 #include "SettingsPaths.h"
 

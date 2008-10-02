@@ -26,7 +26,7 @@
 #include "AboutDialogGraphicsView.h"
 #include "uiguisettings.h"
 #include "uiguisettingsdialog.h"
-#include "highlighter.h"
+#include "UiguiHighlighter.h"
 #include "indenthandler.h"
 #include "updatecheckdialog.h"
 

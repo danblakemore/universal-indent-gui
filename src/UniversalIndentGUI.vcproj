@@ -224,7 +224,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath=".\highlighter.cpp"
+				RelativePath=".\UiguiHighlighter.cpp"
 				>
 			</File>
 			<File
@@ -293,7 +293,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath=".\highlighter.h"
+				RelativePath=".\UiguiHighlighter.h"
 				>
 			</File>
 			<File
@@ -394,7 +394,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="$(OutDir)\tmp\moc\moc_highlighter.cpp"
+				RelativePath="$(OutDir)\tmp\moc\moc_UiguiHighlighter.cpp"
 				>
 			</File>
 			<File

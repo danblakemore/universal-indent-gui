@@ -158,7 +158,7 @@ RCC_DIR = $${DESTDIR}/qrc
 
 # Input
 HEADERS += src/aboutdialog.h \
-           src/highlighter.h \
+           src/UiguiHighlighter.h \
            src/indenthandler.h \
            src/mainwindow.h \
            src/uiguierrormessage.h \
@@ -177,7 +177,7 @@ FORMS += src/mainwindow.ui \
          src/UpdateCheckDialog.ui
 
 SOURCES += src/aboutdialog.cpp \
-           src/highlighter.cpp \
+           src/UiguiHighlighter.cpp \
            src/indenthandler.cpp \
            src/main.cpp \
            src/mainwindow.cpp \
