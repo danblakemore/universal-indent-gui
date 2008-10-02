@@ -46,7 +46,7 @@ MainWindow::MainWindow(QString file2OpenOnStart, QWidget *parent) : QMainWindow(
     scrollPositionChanged = false;
 
     // Create the settings object, which loads all UiGui settings from a file.
-	settings = UiGuiSettings::getInstance();
+	settings = UiguiSettings::getInstance();
 
     // Initialize the language of the application.
     initApplicationLanguage();
@@ -78,7 +78,7 @@ MainWindow::MainWindow(QString file2OpenOnStart, QWidget *parent) : QMainWindow(
     connect( actionAbout_UniversalIndentGUI, SIGNAL(triggered()), this, SLOT(showAboutDialog()) );
 
 	// generate settings dialog box
-	settingsDialog = new UiGuiSettingsDialog(this, settings);
+	settingsDialog = new UiguiSettingsDialog(this, settings);
     connect( actionShowSettings, SIGNAL(triggered()), settingsDialog, SLOT(showDialog()) );
 
     // If a file that should be opened on start has been handed over to the constructor exists, load it
@@ -932,7 +932,7 @@ void MainWindow::saveSettings() {
 	}
     settings->setValueByName( "MainWindowState", saveState() );
 
-    //FIXME: Needs to be called explicit here, because the destructor of UiGuiSettings doesn't do it.
+    //FIXME: Needs to be called explicit here, because the destructor of UiguiSettings doesn't do it.
 	settings->saveSettings();
 
     // Also save the syntax highlight style for all lexers.

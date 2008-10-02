@@ -24,12 +24,12 @@
 #include "ui_UiGuiSettingsDialog.h"
 #include "uiguisettings.h"
 
-class UiGuiSettingsDialog : public QDialog, private Ui::SettingsDialog
+class UiguiSettingsDialog : public QDialog, private Ui::SettingsDialog
 {
 	Q_OBJECT
 
 public:
-	UiGuiSettingsDialog(QWidget* parent, UiGuiSettings* settings);
+	UiguiSettingsDialog(QWidget* parent, UiguiSettings* settings);
 
 public slots:
     int showDialog();
@@ -41,7 +41,7 @@ private:
     void changeEvent(QEvent *event);
 	void initTranslationSelection();
 
-    UiGuiSettings* settings;
+    UiguiSettings* settings;
     QList<QCheckBox*> checkBoxes;
     QList<QSpinBox*> spinBoxes;
     QList<QComboBox*> comboBoxes;

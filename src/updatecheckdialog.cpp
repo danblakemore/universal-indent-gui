@@ -31,7 +31,7 @@
 /*!
     \brief Initializes member variables and stores the version of UiGui and a pointer to the settings object.
  */
-UpdateCheckDialog::UpdateCheckDialog(QString currentVersion, UiGuiSettings *settings, QWidget *parent) : QDialog(parent) {
+UpdateCheckDialog::UpdateCheckDialog(QString currentVersion, UiguiSettings *settings, QWidget *parent) : QDialog(parent) {
     setupUi(this);
 
     manualUpdateRequested = false;

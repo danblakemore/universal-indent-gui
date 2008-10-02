@@ -175,7 +175,7 @@ private:
     QString useCfgFileParameter;
     QString indenterShowHelpParameter;
     QWidget *mainWindow;
-    UiGuiErrorMessage *errorMessageDialog;
+    UiguiErrorMessage *errorMessageDialog;
     QString indenterExecutableCallString;
     QString indenterExecutableSuffix;
 

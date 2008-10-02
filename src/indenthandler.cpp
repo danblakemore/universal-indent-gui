@@ -84,8 +84,8 @@ IndentHandler::IndentHandler(int indenterID, QWidget *mainWindow, QWidget *paren
     indenterSelectionCombobox->setProperty("connectedSettingName", "SelectedIndenter");
     indenterSelectionCombobox->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
     indenterSelectionCombobox->setMinimumContentsLength(20);
-    connect( indenterSelectionCombobox, SIGNAL(activated(int)), UiGuiSettings::getInstance(), SLOT(handleValueChangeFromExtern(int)) );
-    connect( UiGuiSettings::getInstance(), SIGNAL(selectedIndenter(int)), this, SLOT(setIndenter(int)) );
+    connect( indenterSelectionCombobox, SIGNAL(activated(int)), UiguiSettings::getInstance(), SLOT(handleValueChangeFromExtern(int)) );
+    connect( UiguiSettings::getInstance(), SIGNAL(selectedIndenter(int)), this, SLOT(setIndenter(int)) );
     hboxLayout->addWidget( indenterSelectionCombobox );
 
     // Create the indenter parameter help button.
@@ -118,10 +118,10 @@ IndentHandler::IndentHandler(int indenterID, QWidget *mainWindow, QWidget *paren
     QDir indenterDirctory = QDir(indenterDirctoryStr);
 
     if ( mainWindow != NULL ) {
-        errorMessageDialog = new UiGuiErrorMessage(mainWindow);
+        errorMessageDialog = new UiguiErrorMessage(mainWindow);
     }
     else {
-        errorMessageDialog = new UiGuiErrorMessage(this);
+        errorMessageDialog = new UiguiErrorMessage(this);
     }
 
     indenterIniFileList = indenterDirctory.entryList( QStringList("uigui_*.ini") );

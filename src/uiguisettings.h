@@ -30,17 +30,17 @@
 #include <QStringList>
 #include <QCoreApplication>
 
-class UiGuiSettings : public QObject
+class UiguiSettings : public QObject
 {
 	Q_OBJECT
 private:
-    UiGuiSettings();
-    static UiGuiSettings* instance;
+    UiguiSettings();
+    static UiguiSettings* instance;
 
 public:
-	static UiGuiSettings* getInstance();
+	static UiguiSettings* getInstance();
     static void deleteInstance();
-    ~UiGuiSettings();
+    ~UiguiSettings();
     bool loadSettings();
     bool saveSettings();
     bool setValueByName(QString settingName, QVariant value);

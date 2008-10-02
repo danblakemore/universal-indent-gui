@@ -24,19 +24,19 @@
 //! \defgroup grp_Settings All concerning the settings.
 
 /*!
-	\class UiGuiSettings
+	\class UiguiSettings
     \ingroup grp_Settings
 	\brief Handles the settings of the program. Reads them on startup and saves them on exit.
     Is a singleton class and can only be accessed via getInstance().
 */
 
 // Inits the single class instance pointer.
- UiGuiSettings* UiGuiSettings::instance = NULL;
+ UiguiSettings* UiguiSettings::instance = NULL;
 
 /*!
 	\brief The constructor for the settings.
 */
-UiGuiSettings::UiGuiSettings() : QObject() {
+UiguiSettings::UiguiSettings() : QObject() {
     portableMode = SettingsPaths::getPortableMode();
     globalFilesDirectoryStr = SettingsPaths::getGlobalFilesPath();
     
@@ -58,17 +58,17 @@ UiGuiSettings::UiGuiSettings() : QObject() {
 /*!
     \brief Returns the instance of the settings class. If no instance exists, ONE will be created.
  */
-UiGuiSettings* UiGuiSettings::getInstance() {
+UiguiSettings* UiguiSettings::getInstance() {
     if ( instance == NULL ) {
         // Create the settings object, which loads all UiGui settings from a file.
-    	instance = new UiGuiSettings();
+    	instance = new UiguiSettings();
     }
 
     return instance;
 }
 
 
-void UiGuiSettings::deleteInstance() {
+void UiguiSettings::deleteInstance() {
     if ( instance != NULL ) {
         delete instance;
         instance = NULL;
@@ -79,7 +79,7 @@ void UiGuiSettings::deleteInstance() {
 /*!
     \brief The destructor saves the settings to a file.
  */
-UiGuiSettings::~UiGuiSettings() {
+UiguiSettings::~UiguiSettings() {
 	//FIXME: Is never called!!
     saveSettings();
 }
@@ -89,7 +89,7 @@ UiGuiSettings::~UiGuiSettings() {
 	\brief Scans the translations directory for available translation files and 
     stores them in the QList \a availableTranslations.
  */
-void UiGuiSettings::readAvailableTranslations() {
+void UiguiSettings::readAvailableTranslations() {
 	QString languageShort;
 	QStringList languageFileList;
 
@@ -115,7 +115,7 @@ void UiGuiSettings::readAvailableTranslations() {
 /*!
 	\brief Returns a list of the mnemonics of the available translations.
  */
-QStringList UiGuiSettings::getAvailableTranslations() {
+QStringList UiguiSettings::getAvailableTranslations() {
 	return availableTranslations;
 }
 
@@ -126,7 +126,7 @@ QStringList UiGuiSettings::getAvailableTranslations() {
     According to the objects property "connectedSettingName" the corresponding
     setting is known and set.
  */
-void UiGuiSettings::handleValueChangeFromExtern(int value) {
+void UiguiSettings::handleValueChangeFromExtern(int value) {
     if ( sender() ) {
         // Get the corresponding setting name from the sender objects property.
         QString settingName = sender()->property("connectedSettingName").toString();
@@ -149,7 +149,7 @@ void UiGuiSettings::handleValueChangeFromExtern(int value) {
     According to the objects property "connectedSettingName" the corresponding
     setting is known and set.
  */
-void UiGuiSettings::handleValueChangeFromExtern(bool value) {
+void UiguiSettings::handleValueChangeFromExtern(bool value) {
     if ( sender() ) {
         // Get the corresponding setting name from the sender objects property.
         QString settingName = sender()->property("connectedSettingName").toString();
@@ -172,7 +172,7 @@ void UiGuiSettings::handleValueChangeFromExtern(bool value) {
     According to the objects property "connectedSettingName" the corresponding
     setting is known and set.
  */
-void UiGuiSettings::handleValueChangeFromExtern(QDate value) {
+void UiguiSettings::handleValueChangeFromExtern(QDate value) {
     if ( sender() ) {
         // Get the corresponding setting name from the sender objects property.
         QString settingName = sender()->property("connectedSettingName").toString();
@@ -195,7 +195,7 @@ void UiGuiSettings::handleValueChangeFromExtern(QDate value) {
     According to the objects property "connectedSettingName" the corresponding
     setting is known and set.
  */
-void UiGuiSettings::handleValueChangeFromExtern(QByteArray value) {
+void UiguiSettings::handleValueChangeFromExtern(QByteArray value) {
     if ( sender() ) {
         // Get the corresponding setting name from the sender objects property.
         QString settingName = sender()->property("connectedSettingName").toString();
@@ -217,7 +217,7 @@ void UiGuiSettings::handleValueChangeFromExtern(QByteArray value) {
 
     The to \a settingsName corresponding signal is emitted, if the value has changed.
  */
-bool UiGuiSettings::setValueByName(QString settingName, QVariant value) {
+bool UiguiSettings::setValueByName(QString settingName, QVariant value) {
 	// Test if the named setting really exists.
 	if ( settings.contains(settingName) ) {
         // Test if the new value is different to the one before.
@@ -239,7 +239,7 @@ bool UiGuiSettings::setValueByName(QString settingName, QVariant value) {
     If \a settingName equals "all", all signals are emitted. This can be used to update all
     dependent widgets. \a value is the new value that is emitted along with the signal.
  */
-void UiGuiSettings::emitSignalForSetting(QString settingName) {
+void UiguiSettings::emitSignalForSetting(QString settingName) {
     // Emit the signal for the changed value.
     if ( settingName == "VersionInSettingsFile" ) emit versionInSettingsFile( settings[settingName].toString() );
     else if ( settingName == "WindowIsMaximized" ) emit windowIsMaximized( settings[settingName].toBool() );
@@ -284,7 +284,7 @@ void UiGuiSettings::emitSignalForSetting(QString settingName) {
     \brief Calls \sa emitSignalForSetting with settingName "all" to update all widgets or whatever
     is connected to each setting.
  */
-void UiGuiSettings::updateAllDependend() {
+void UiguiSettings::updateAllDependend() {
     emitSignalForSetting("all");
 }
 
@@ -294,7 +294,7 @@ void UiGuiSettings::updateAllDependend() {
 
 	If the named setting does not exist, 0 is being returned.
 */
-QVariant UiGuiSettings::getValueByName(QString settingName) {
+QVariant UiguiSettings::getValueByName(QString settingName) {
 	// Test if the named setting really exists.
 	if ( settings.contains(settingName) ) {
 		return settings[settingName];
@@ -308,7 +308,7 @@ QVariant UiGuiSettings::getValueByName(QString settingName) {
 
 	Settings are for example last selected indenter, last loaded source code file and so on.
 */
-bool UiGuiSettings::loadSettings() {
+bool UiguiSettings::loadSettings() {
 	// Read the version string saved in the settings file.
 	settings["VersionInSettingsFile"] = qsettings->value("UniversalIndentGUI/version", "").toString();
 
@@ -367,7 +367,7 @@ bool UiGuiSettings::loadSettings() {
 
     Settings are for example last selected indenter, last loaded source code file and so on.
 */
-bool UiGuiSettings::saveSettings() {
+bool UiguiSettings::saveSettings() {
 	qsettings->setValue( "UniversalIndentGUI/recentlyOpenedListSize", settings["RecentlyOpenedListSize"] );
     qsettings->setValue( "UniversalIndentGUI/lastSourceCodeFile", settings["LastOpenedFiles"] );
 	qsettings->setValue( "UniversalIndentGUI/loadLastSourceCodeFileOnStartup", settings["LoadLastOpenedFileOnStartup"] );

@@ -38,7 +38,7 @@ class UpdateCheckDialog : public QDialog, public Ui::UpdateCheckDialog
     Q_OBJECT
 
 public:
-    UpdateCheckDialog(QString currentVersion, UiGuiSettings *settings, QWidget *parent=0);
+    UpdateCheckDialog(QString currentVersion, UiguiSettings *settings, QWidget *parent=0);
 
 public slots:
     void checkForUpdateAndShowDialog();
@@ -50,7 +50,7 @@ private:
     void showNewVersionAvailableDialog(QString newVersion);
     void showNoNewVersionAvailableDialog();
 
-    UiGuiSettings *settings;
+    UiguiSettings *settings;
     bool manualUpdateRequested;
     QHttp *http;
     QString currentVersion;

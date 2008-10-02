@@ -77,7 +77,7 @@ private:
     void dropEvent(QDropEvent *event);
 
 	QsciScintilla *txtedSourceCode;
-	UiGuiSettings *settings;
+	UiguiSettings *settings;
 
     QString version;
     QString revision;
@@ -91,7 +91,7 @@ private:
     QScrollBar *textEditVScrollBar;
     AboutDialog *aboutDialog;
     AboutDialogGraphicsView *aboutDialogGraphicsView;
-	UiGuiSettingsDialog *settingsDialog;
+	UiguiSettingsDialog *settingsDialog;
     int textEditLastScrollPos;
     int currentIndenterID;
 	bool loadLastSourceCodeFileOnStartup;

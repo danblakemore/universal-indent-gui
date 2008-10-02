@@ -23,13 +23,13 @@
 #include <QErrorMessage>
 #include <QCheckBox>
 
-class UiGuiErrorMessage : public QErrorMessage
+class UiguiErrorMessage : public QErrorMessage
 {
     Q_OBJECT
 
 public:
-    UiGuiErrorMessage(QWidget *parent = 0);
-    ~UiGuiErrorMessage(void);
+    UiguiErrorMessage(QWidget *parent = 0);
+    ~UiguiErrorMessage(void);
     void showMessage( const QString &message );
     void showMessage( const QString &title, const QString &message );
 

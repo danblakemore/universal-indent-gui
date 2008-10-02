@@ -20,9 +20,9 @@
 #include "uiguierrormessage.h"
 
 /*!
-    \class UiGuiErrorMessage
+    \class UiguiErrorMessage
     \ingroup grp_Dialogs
-    \brief UiGuiErrorMessage is a child of QErrorMessage. But QErrorMessages
+    \brief UiguiErrorMessage is a child of QErrorMessage. But QErrorMessages
     "Do not show again" didn't work with my strings, so this is my own, working
     implementation of it.
 */
@@ -34,7 +34,7 @@
     Retrieves the object pointer to the \a showAgainCheckBox check box, sets the dialogs
     modality and for a working translation sets the check box text. 
  */
-UiGuiErrorMessage::UiGuiErrorMessage(QWidget *parent) : QErrorMessage(parent) {
+UiguiErrorMessage::UiguiErrorMessage(QWidget *parent) : QErrorMessage(parent) {
     showAgainCheckBox = findChild<QCheckBox *>();
     setWindowModality( Qt::ApplicationModal );
     showAgainCheckBox->setText( tr("Show this message again") );
@@ -44,7 +44,7 @@ UiGuiErrorMessage::UiGuiErrorMessage(QWidget *parent) : QErrorMessage(parent) {
 /*!
     \brief Just a lazy nothin doin destructive destructor.
  */
-UiGuiErrorMessage::~UiGuiErrorMessage(void) {
+UiguiErrorMessage::~UiguiErrorMessage(void) {
 }
 
 
@@ -55,7 +55,7 @@ UiGuiErrorMessage::~UiGuiErrorMessage(void) {
     already in that list and "Show this message again" is not checked, that
     message will not be shown.
  */
-void UiGuiErrorMessage::showMessage( const QString &title, const QString &message ) {
+void UiguiErrorMessage::showMessage( const QString &title, const QString &message ) {
     bool showAgain = true;
 
     if ( showAgainCheckBox != 0 ) {
@@ -80,6 +80,6 @@ void UiGuiErrorMessage::showMessage( const QString &title, const QString &messag
 /*!
     \brief For convinience, for showing a dialog box with the default title "UniversalIndentGUI".
  */
-void UiGuiErrorMessage::showMessage( const QString &message ) {
+void UiguiErrorMessage::showMessage( const QString &message ) {
     showMessage( "UniversalIndentGUI", message );
 }
