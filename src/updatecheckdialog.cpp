@@ -19,6 +19,8 @@
 
 #include "updatecheckdialog.h"
 
+#include <QRegExpValidator>
+
 /*!
     \class UpdateCheckDialog
     \ingroup grp_MainWindow
@@ -114,8 +116,12 @@ void UpdateCheckDialog::checkResultsOfFetchedPadXMLFile(bool errorOccurred) {
             // Get the pure version string from returned string.
             returnedString = returnedString.mid( leftPosition+17, rightPosition-(leftPosition+17) );
 
-            // Only show update dialog, if the current version string is not equal to the received one.
-            if ( returnedString != currentVersion ) {
+            // Create integer values from the version strings.
+            int versionOnServerInt = convertVersionStringToNumber( returnedString );
+            int currentVersionInt = convertVersionStringToNumber( currentVersion );
+
+            // Only show update dialog, if the current version number is lower than the one received from the server.
+            if ( versionOnServerInt > currentVersionInt && currentVersionInt >= 0 && versionOnServerInt >= 0 ) {
                 // Show message box whether to download the new version.
                 showNewVersionAvailableDialog(returnedString);
 
@@ -231,4 +237,32 @@ void UpdateCheckDialog::updateUpdateCheckProgressBar() {
 
     // Update the progress bar value.
     progressBar->setValue(updateCheckProgressCounter);
+}
+
+
+/*!
+    \brief Converts the as string given version \a versionString to an integer number.
+
+    The \a versionString must have the format x.x.x where each x represents a number
+    of a maximum of 999. If the input format is wrong, -1 will be returned.The first 
+    number will be multiplied by 1000000 the second by 1000 and then all three will
+    be summarized.
+
+    Thus for example 12.5.170 will result in 12005170.
+ */
+int UpdateCheckDialog::convertVersionStringToNumber(QString versionString) {
+    int versionInteger = 0;
+    int pos = 0;
+
+    QRegExp regEx("\\d{1,3}.\\d{1,3}.\\d{1,3}");
+    QRegExpValidator validator(regEx, NULL);
+
+    if ( validator.validate(versionString, pos) == QValidator::Acceptable ) {
+        QStringList versionNumberStringList = versionString.split(".");
+    }
+    else {
+        versionInteger = -1;
+    }
+
+    return versionInteger;
 }

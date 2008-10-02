@@ -57,6 +57,7 @@ private:
     QDialogButtonBox::ButtonRole roleOfClickedButton;
     QTimer *updateCheckProgressTimer;
     int updateCheckProgressCounter;
+    int convertVersionStringToNumber(QString versionString);
 
 private slots:
     void checkResultsOfFetchedPadXMLFile(bool errorOccurred);
