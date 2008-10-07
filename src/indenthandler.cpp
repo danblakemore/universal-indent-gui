@@ -81,7 +81,7 @@ IndentHandler::IndentHandler(int indenterID, QWidget *mainWindow, QWidget *paren
     // Create the indenter selection combo box.
     indenterSelectionCombobox = new QComboBox(this);
     indenterSelectionCombobox->setObjectName(QString::fromUtf8("indenterSelectionCombobox"));
-    indenterSelectionCombobox->setProperty("connectedSettingName", "SelectedIndenter");
+    indenterSelectionCombobox->setProperty("connectedSettingName", "DONOTTRANSLATE:SelectedIndenter");
     indenterSelectionCombobox->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
     indenterSelectionCombobox->setMinimumContentsLength(20);
     connect( indenterSelectionCombobox, SIGNAL(activated(int)), UiguiSettings::getInstance(), SLOT(handleValueChangeFromExtern(int)) );

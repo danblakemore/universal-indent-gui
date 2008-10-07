@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
-<defaultcodec></defaultcodec>
 <context>
     <name>AboutDialog</name>
     <message>
@@ -272,67 +271,42 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/UiGUI_Server_Test_Client/client.cpp" line="12"/>
         <source>&amp;Server name:</source>
-        <translation>&amp;Server Bame:</translation>
+        <translation type="obsolete">&amp;Server Bame:</translation>
     </message>
     <message>
         <location filename="../src/UiGUI_Server_Test_Client/client.cpp" line="13"/>
         <source>S&amp;erver port:</source>
-        <translation>S&amp;erver Port:</translation>
+        <translation type="obsolete">S&amp;erver Port:</translation>
     </message>
     <message>
         <location filename="../src/UiGUI_Server_Test_Client/client.cpp" line="14"/>
         <source>&amp;Message to send:</source>
-        <translation>&amp;Zu sendende Nachricht:</translation>
+        <translation type="obsolete">&amp;Zu sendende Nachricht:</translation>
     </message>
     <message>
         <location filename="../src/UiGUI_Server_Test_Client/client.cpp" line="15"/>
         <source>&amp;Received Message:</source>
-        <translation>&amp;Empfangene Nachricht:</translation>
-    </message>
-    <message>
-        <location filename="../src/UiGUI_Server_Test_Client/client.cpp" line="27"/>
-        <source>This examples requires that you run the Fortune Server example as well.</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">&amp;Empfangene Nachricht:</translation>
     </message>
     <message>
         <location filename="../src/UiGUI_Server_Test_Client/client.cpp" line="29"/>
         <source>Connect</source>
-        <translation>Verbinden</translation>
+        <translation type="obsolete">Verbinden</translation>
     </message>
     <message>
         <location filename="../src/UiGUI_Server_Test_Client/client.cpp" line="32"/>
         <source>Disconnect</source>
-        <translation>Trennen</translation>
+        <translation type="obsolete">Trennen</translation>
     </message>
     <message>
         <location filename="../src/UiGUI_Server_Test_Client/client.cpp" line="35"/>
         <source>Send</source>
-        <translation>Senden</translation>
+        <translation type="obsolete">Senden</translation>
     </message>
     <message>
         <location filename="../src/UiGUI_Server_Test_Client/client.cpp" line="60"/>
         <source>UiGUI Server Test Client</source>
-        <translation>UiGUI Server Test Client</translation>
-    </message>
-    <message>
-        <location filename="../src/UiGUI_Server_Test_Client/client.cpp" line="131"/>
-        <source>Fortune Client</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/UiGUI_Server_Test_Client/client.cpp" line="121"/>
-        <source>The host was not found. Please check the host name and port settings.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/UiGUI_Server_Test_Client/client.cpp" line="128"/>
-        <source>The connection was refused by the peer. Make sure the fortune server is running, and check that the host name and port settings are correct.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/UiGUI_Server_Test_Client/client.cpp" line="133"/>
-        <source>The following error occurred: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">UiGUI Server Test Client</translation>
     </message>
 </context>
 <context>
@@ -682,7 +656,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>IndentHandler</name>
     <message>
-        <location filename="../src/indenthandler.cpp" line="441"/>
+        <location filename="../src/indenthandler.cpp" line="436"/>
         <source>No indenter executable</source>
         <translation>Keine ausführbare Formatierer Datei</translation>
     </message>
@@ -697,7 +671,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">&quot; in dem Verzeichnis &quot;</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="494"/>
+        <location filename="../src/indenthandler.cpp" line="489"/>
         <source>Error calling Indenter</source>
         <translation>Fehler beim Aufruf des Formatierers</translation>
     </message>
@@ -708,7 +682,7 @@ Callstring was: </source>
         <translation type="obsolete">Der Aufruf lautete:</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="509"/>
+        <location filename="../src/indenthandler.cpp" line="504"/>
         <source>Indenter returned error</source>
         <translation>Fehler beim Ausführen des Formatierers</translation>
     </message>
@@ -727,22 +701,22 @@ Indent console output was:
 </translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1293"/>
+        <location filename="../src/indenthandler.cpp" line="1288"/>
         <source>wine not installed</source>
         <translation>wine nicht installiert</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1293"/>
+        <location filename="../src/indenthandler.cpp" line="1288"/>
         <source>There exists only a win32 executable of the indenter and wine does not seem to be installed. Please install wine to be able to run the indenter.</source>
         <translation>Es existiert nur eine Win32 Version des Formatierers, für dessen Ausführung wine benötigt wird. Wine scheint nicht installiert zu sein. Bitte installieren Sie es.</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="467"/>
+        <location filename="../src/indenthandler.cpp" line="462"/>
         <source>&lt;b&gt;Returned error message:&lt;/b&gt; </source>
         <translation>&lt;b&gt;Zurückgegebene Fehlermeldung:&lt;/b&gt; </translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="471"/>
+        <location filename="../src/indenthandler.cpp" line="466"/>
         <source>&lt;b&gt;Reason could be:&lt;/b&gt; </source>
         <translation>&lt;b&gt;Grund könnte sein:&lt;/b&gt; </translation>
     </message>
@@ -752,17 +726,17 @@ Indent console output was:
         <translation type="obsolete">&lt;b&gt;Der Aufruf lautete:&lt;/b&gt; </translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="505"/>
+        <location filename="../src/indenthandler.cpp" line="500"/>
         <source>&lt;b&gt;Indenter returned with exit code:&lt;/b&gt; </source>
         <translation>&lt;b&gt;Zurückgegebener Exit Code ist:&lt;/b&gt; </translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="506"/>
+        <location filename="../src/indenthandler.cpp" line="501"/>
         <source>&lt;b&gt;Indent console output was:&lt;/b&gt; </source>
         <translation>&lt;b&gt;Ausgabe des Formatierers war:&lt;/b&gt; </translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="507"/>
+        <location filename="../src/indenthandler.cpp" line="502"/>
         <source>&lt;br&gt;&lt;b&gt;Callstring was:&lt;/b&gt; </source>
         <translation>&lt;br&gt;&lt;b&gt;Der Aufruf lautete:&lt;/b&gt; </translation>
     </message>
@@ -777,117 +751,117 @@ Indent console output was:
         <translation>Es wurden keine ini-Dateien für Indenter gefunden. Suchpfad war &quot;</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="442"/>
+        <location filename="../src/indenthandler.cpp" line="437"/>
         <source>There exists no indenter executable with the name &quot;%1&quot; in the directory &quot;%2&quot; nor in the global environment.</source>
         <translation>Es wurde kein ausführbarer Formatierer mit dem Namen &quot;%1&quot; in dem Verzeichnis &quot;%2&quot; oder global über die Pathvariable gefunden.</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="492"/>
+        <location filename="../src/indenthandler.cpp" line="487"/>
         <source>&lt;br&gt;&lt;br&gt;&lt;b&gt;Indenter output was:&lt;/b&gt;&lt;pre&gt;</source>
         <translation>&lt;br&gt;&lt;br&gt;&lt;b&gt;Ausgabe des Formatierers:&lt;/b&gt;&lt;pre&gt;</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1248"/>
+        <location filename="../src/indenthandler.cpp" line="1243"/>
         <source>Interpreter needed</source>
         <translation>Interpreter benötigt</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1249"/>
+        <location filename="../src/indenthandler.cpp" line="1244"/>
         <source>To use the selected indenter the program &quot;%1&quot; needs to be available in the global environment. You should add an entry to your path settings.</source>
         <translation>Um den gewählten Formatierer benutzen zu können, muss das Programm &quot;%1&quot; global aufrufbar sein. Sie sollten den Pfad des Programms der Pathvariablen hinzufügen.</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1339"/>
+        <location filename="../src/indenthandler.cpp" line="1334"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Shows the currently chosen indenters name and lets you choose other available indenters&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Zeigt den aktuell gewählten und alle verfügbaren Formatierer an.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1340"/>
+        <location filename="../src/indenthandler.cpp" line="1335"/>
         <source>Brings you to the online manual of the currently selected indenter, where you can get further help on the possible parameters.</source>
         <translation>Öffnet die Webseite mit dem Benutzerhandbuch des gewählten Formatierers, wo Sie weitere Informationen zu den möglichen Parametern erhalten.</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1384"/>
+        <location filename="../src/indenthandler.cpp" line="1379"/>
         <source>Choose indenter config file</source>
         <translation>Formatierer Konfigurationsdatei wählen</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1431"/>
+        <location filename="../src/indenthandler.cpp" line="1425"/>
         <source>All files</source>
         <translation>Alle Dateien</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1401"/>
+        <location filename="../src/indenthandler.cpp" line="1396"/>
         <source>Save indent config file</source>
         <translation>Formatierer Konfiguration speichern</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1431"/>
+        <location filename="../src/indenthandler.cpp" line="1425"/>
         <source>Shell Script</source>
         <translation>Shell Skript</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1437"/>
+        <location filename="../src/indenthandler.cpp" line="1431"/>
         <source>Save shell script</source>
         <translation>Shell Skript speichern</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1342"/>
+        <location filename="../src/indenthandler.cpp" line="1337"/>
         <source>Load Indenter Config File</source>
         <translation>Formatierer Konfiguration laden</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1343"/>
+        <location filename="../src/indenthandler.cpp" line="1338"/>
         <source>Opens a file dialog to load the original config file of the indenter.</source>
         <translation>Öffnet ein Dialogfenster zum Laden einer Konfigurationsdatei des momentan gewählten Formatierers.</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1344"/>
+        <location filename="../src/indenthandler.cpp" line="1339"/>
         <source>Alt+O</source>
         <translation>Alt+O</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1346"/>
+        <location filename="../src/indenthandler.cpp" line="1341"/>
         <source>Save Indenter Config File</source>
         <translation>Formatierer Konfiguration speichern</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1347"/>
+        <location filename="../src/indenthandler.cpp" line="1342"/>
         <source>Opens a dialog to save the current indenter configuration to a file.</source>
         <translation>Öffnet ein Dialogfenster zum Speichern der Konfigurationsdatei des momentan gewählten Formatierers.</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1348"/>
+        <location filename="../src/indenthandler.cpp" line="1343"/>
         <source>Alt+S</source>
         <translation>Alt+S</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1350"/>
+        <location filename="../src/indenthandler.cpp" line="1345"/>
         <source>Create Indenter Call Shell Script</source>
         <translation>Formatierer Shell Skript erzeugen</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1352"/>
+        <location filename="../src/indenthandler.cpp" line="1347"/>
         <source>Create a shell script that calls the current selected indenter for formatting an as parameter given file with the current indent settings</source>
         <translation>Erzeugt ein Shell Skript mit dem sich der momentan gewählte Formatierer mit den momentanen Einstellungen zum Formatieren einer Datei aufrufen lässt.</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1354"/>
+        <location filename="../src/indenthandler.cpp" line="1349"/>
         <source>Reset indenter parameters</source>
         <translation>Parameter des Formatierers zurücksetzen</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1356"/>
+        <location filename="../src/indenthandler.cpp" line="1351"/>
         <source>Resets all indenter parameters to the default values.</source>
         <translation>Alle Parameter des Formatierers auf Standardwerte zurücksetzen.</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1466"/>
+        <location filename="../src/indenthandler.cpp" line="1460"/>
         <source>Really reset parameters?</source>
         <translation>Wirklich alle Parameter zurücksetzen?</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1466"/>
+        <location filename="../src/indenthandler.cpp" line="1460"/>
         <source>Do you really want to reset the indenter parameters to the default values?</source>
         <translation>Wollen Sie wirklich alle Parameter des Formatierers auf die Standardwerte zurücksetzen?</translation>
     </message>
@@ -992,7 +966,7 @@ Möchten Sie die Änderungen speichern?</translation>
         <translation type="obsolete"> als Programmsprache verwenden.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1200"/>
+        <location filename="../src/mainwindow.cpp" line="1187"/>
         <source>Reopen the currently opened source code file by using the text encoding scheme </source>
         <translation>Die momentan geöffnete Quellcodedatei erneut öffnen, unter Verwendung der Textkodierung </translation>
     </message>
@@ -1027,7 +1001,7 @@ Möchten Sie die Änderungen speichern?</translation>
         <translation type="obsolete">Chinesisch</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1214"/>
+        <location filename="../src/mainwindow.cpp" line="1201"/>
         <source>Set the syntax highlightning to </source>
         <translation>Setzte Syntax-Hervorhebung für </translation>
     </message>
@@ -1052,12 +1026,12 @@ Möchten Sie die Änderungen speichern?</translation>
         <translation type="obsolete">Shell SKript</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1352"/>
+        <location filename="../src/mainwindow.cpp" line="1339"/>
         <source>File no longer exists</source>
         <translation>Datei existiert nicht mehr</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1352"/>
+        <location filename="../src/mainwindow.cpp" line="1339"/>
         <source>The file %1 in the list of recently opened files does no longer exist.</source>
         <translation>Die Datei %1 in der Liste der zuletzt geöffneten Dateien existiert nicht mehr.</translation>
     </message>
@@ -1096,12 +1070,12 @@ Wollen Sie zu Download Website geleitet werden?</translation>
         <translation type="obsolete">Sie haben bereits die aktuellste Version von UniversalIndentGUI.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1206"/>
+        <location filename="../src/mainwindow.cpp" line="1193"/>
         <source>Save the currently opened source code file by using the text encoding scheme </source>
         <translation>Die momentan geöffnete Quellcodedatei speichern, unter Verwendung der Textkodierung </translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1400"/>
+        <location filename="../src/mainwindow.cpp" line="1387"/>
         <source>Line %1, Column %2</source>
         <translation>Zeile %1, Spalte %2</translation>
     </message>
@@ -1389,24 +1363,24 @@ Wollen Sie zu Download Website geleitet werden?</translation>
         <translation>Indenter Einstellungen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="346"/>
-        <source>SyntaxHighlightningEnabled</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.ui" line="392"/>
-        <source>LoadLastOpenedFileOnStartup</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../src/mainwindow.ui" line="301"/>
-        <source>IndenterParameterTooltipsEnabled</source>
-        <translation></translation>
+        <source>DONOTTRANSLATE:IndenterParameterTooltipsEnabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="346"/>
+        <source>DONOTTRANSLATE:SyntaxHighlightningEnabled</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="369"/>
-        <source>WhiteSpaceIsVisible</source>
-        <translation></translation>
+        <source>DONOTTRANSLATE:WhiteSpaceIsVisible</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="392"/>
+        <source>DONOTTRANSLATE:LoadLastOpenedFileOnStartup</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1562,52 +1536,44 @@ Wollen Sie zu Download Website geleitet werden?</translation>
         <translation>Auf Update bei Programmstart prüfen</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="341"/>
-        <source>SyntaxHighlightningEnabled</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="82"/>
-        <source>Language</source>
-        <translation></translation>
+        <source>DONOTTRANSLATE:Language</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="110"/>
-        <source>LoadLastOpenedFileOnStartup</source>
-        <translation></translation>
+        <source>DONOTTRANSLATE:LoadLastOpenedFileOnStartup</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="123"/>
-        <source>IndenterParameterTooltipsEnabled</source>
-        <translation></translation>
+        <source>DONOTTRANSLATE:IndenterParameterTooltipsEnabled</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="166"/>
-        <source>RecentlyOpenedListSize</source>
-        <translation></translation>
+        <source>DONOTTRANSLATE:RecentlyOpenedListSize</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="194"/>
-        <source>CheckForUpdate</source>
-        <translation></translation>
+        <source>DONOTTRANSLATE:CheckForUpdate</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="237"/>
-        <source>WhiteSpaceIsVisible</source>
-        <translation></translation>
+        <source>DONOTTRANSLATE:WhiteSpaceIsVisible</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="283"/>
-        <source>TabWidth</source>
-        <translation></translation>
+        <source>DONOTTRANSLATE:TabWidth</source>
+        <translation type="unfinished"></translation>
     </message>
-</context>
-<context>
-    <name>UiGuiErrorMessage</name>
     <message>
-        <location filename="../src/uiguierrormessage.cpp" line="40"/>
-        <source>Show this message again</source>
-        <translation></translation>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="341"/>
+        <source>DONOTTRANSLATE:SyntaxHighlightningEnabled</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1615,12 +1581,12 @@ Wollen Sie zu Download Website geleitet werden?</translation>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="228"/>
         <source>English</source>
-        <translation>Englisch</translation>
+        <translation type="obsolete">Englisch</translation>
     </message>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="231"/>
         <source>German</source>
-        <translation>Deutsch</translation>
+        <translation type="obsolete">Deutsch</translation>
     </message>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="191"/>
@@ -1630,27 +1596,35 @@ Wollen Sie zu Download Website geleitet werden?</translation>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="237"/>
         <source>Japanese</source>
-        <translation>Japanisch</translation>
+        <translation type="obsolete">Japanisch</translation>
     </message>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="246"/>
         <source>Unknown language mnemonic </source>
-        <translation>Unbekanntes Sprachkürzel </translation>
+        <translation type="obsolete">Unbekanntes Sprachkürzel </translation>
     </message>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="234"/>
         <source>Chinese (Taiwan)</source>
-        <translation>Chinesisch (Taiwan)</translation>
+        <translation type="obsolete">Chinesisch (Taiwan)</translation>
     </message>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="240"/>
         <source>Russian</source>
-        <translation>Russisch</translation>
+        <translation type="obsolete">Russisch</translation>
     </message>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="243"/>
         <source>Ukrainian</source>
-        <translation>Ukrainisch</translation>
+        <translation type="obsolete">Ukrainisch</translation>
+    </message>
+</context>
+<context>
+    <name>UiguiErrorMessage</name>
+    <message>
+        <location filename="../src/uiguierrormessage.cpp" line="40"/>
+        <source>Show this message again</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1667,6 +1641,49 @@ Wollen Sie zu Download Website geleitet werden?</translation>
     </message>
 </context>
 <context>
+    <name>UiguiSettingsDialog</name>
+    <message>
+        <location filename="../src/uiguisettingsdialog.cpp" line="234"/>
+        <source>English</source>
+        <translation type="unfinished">Englisch</translation>
+    </message>
+    <message>
+        <location filename="../src/uiguisettingsdialog.cpp" line="240"/>
+        <source>German</source>
+        <translation type="unfinished">Deutsch</translation>
+    </message>
+    <message>
+        <location filename="../src/uiguisettingsdialog.cpp" line="243"/>
+        <source>Chinese (Taiwan)</source>
+        <translation type="unfinished">Chinesisch (Taiwan)</translation>
+    </message>
+    <message>
+        <location filename="../src/uiguisettingsdialog.cpp" line="246"/>
+        <source>Japanese</source>
+        <translation type="unfinished">Japanisch</translation>
+    </message>
+    <message>
+        <location filename="../src/uiguisettingsdialog.cpp" line="249"/>
+        <source>Russian</source>
+        <translation type="unfinished">Russisch</translation>
+    </message>
+    <message>
+        <location filename="../src/uiguisettingsdialog.cpp" line="252"/>
+        <source>Ukrainian</source>
+        <translation type="unfinished">Ukrainisch</translation>
+    </message>
+    <message>
+        <location filename="../src/uiguisettingsdialog.cpp" line="255"/>
+        <source>Unknown language mnemonic </source>
+        <translation type="unfinished">Unbekanntes Sprachkürzel </translation>
+    </message>
+    <message>
+        <location filename="../src/uiguisettingsdialog.cpp" line="237"/>
+        <source>French</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>UpdateCheckDialog</name>
     <message>
         <location filename="../src/UpdateCheckDialog.ui" line="16"/>
@@ -1679,12 +1696,12 @@ Wollen Sie zu Download Website geleitet werden?</translation>
         <translation>Prüfe ob eine neuere Version verfügbar ist</translation>
     </message>
     <message>
-        <location filename="../src/updatecheckdialog.cpp" line="173"/>
+        <location filename="../src/updatecheckdialog.cpp" line="179"/>
         <source>Update available</source>
         <translation>Update verfügbar</translation>
     </message>
     <message>
-        <location filename="../src/updatecheckdialog.cpp" line="174"/>
+        <location filename="../src/updatecheckdialog.cpp" line="180"/>
         <source>A newer version of UniversalIndentGUI is available.
 Your version is %1. New version is %2.
 Do you want to go to the download website?</source>
@@ -1693,12 +1710,12 @@ Ihre Version ist %1. Die neue Version ist %2.
 Wollen Sie zur Download Website geleitet werden?</translation>
     </message>
     <message>
-        <location filename="../src/updatecheckdialog.cpp" line="185"/>
+        <location filename="../src/updatecheckdialog.cpp" line="191"/>
         <source>No new update available</source>
         <translation>Kein Update verfügbar</translation>
     </message>
     <message>
-        <location filename="../src/updatecheckdialog.cpp" line="186"/>
+        <location filename="../src/updatecheckdialog.cpp" line="192"/>
         <source>You already have the latest version of UniversalIndentGUI.</source>
         <translation>Sie haben bereits die aktuellste Version von UniversalIndentGUI.</translation>
     </message>
@@ -1787,8 +1804,8 @@ Wollen Sie zur Download Website geleitet werden?</translation>
     </message>
     <message>
         <location filename="../src/toolBarWidget.ui" line="69"/>
-        <source>SyntaxHighlightningEnabled</source>
-        <translation></translation>
+        <source>DONOTTRANSLATE:SyntaxHighlightningEnabled</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

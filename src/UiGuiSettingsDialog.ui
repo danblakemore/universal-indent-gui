@@ -79,7 +79,7 @@
             <string>Displays all available translations for UniversalIndentGui and lets you choose one.</string>
            </property>
            <property name="connectedSettingName" stdset="0" >
-            <string>Language</string>
+            <string>DONOTTRANSLATE:Language</string>
            </property>
           </widget>
          </item>
@@ -107,7 +107,7 @@
           <string>Automatically open last file on startup</string>
          </property>
          <property name="connectedSettingName" stdset="0" >
-          <string>LoadLastOpenedFileOnStartup</string>
+          <string>DONOTTRANSLATE:LoadLastOpenedFileOnStartup</string>
          </property>
         </widget>
        </item>
@@ -120,7 +120,7 @@
           <string>Enable Parameter Tooltips</string>
          </property>
          <property name="connectedSettingName" stdset="0" >
-          <string>IndenterParameterTooltipsEnabled</string>
+          <string>DONOTTRANSLATE:IndenterParameterTooltipsEnabled</string>
          </property>
         </widget>
        </item>
@@ -163,7 +163,7 @@
             <number>1</number>
            </property>
            <property name="connectedSettingName" stdset="0" >
-            <string>RecentlyOpenedListSize</string>
+            <string>DONOTTRANSLATE:RecentlyOpenedListSize</string>
            </property>
           </widget>
          </item>
@@ -191,7 +191,7 @@
           <string>Check online for update on program start</string>
          </property>
          <property name="connectedSettingName" stdset="0" >
-          <string>CheckForUpdate</string>
+          <string>DONOTTRANSLATE:CheckForUpdate</string>
          </property>
         </widget>
        </item>
@@ -234,7 +234,7 @@
           <string>Display white space character (tabs, spaces, etc.)</string>
          </property>
          <property name="connectedSettingName" stdset="0" >
-          <string>WhiteSpaceIsVisible</string>
+          <string>DONOTTRANSLATE:WhiteSpaceIsVisible</string>
          </property>
         </widget>
        </item>
@@ -280,7 +280,7 @@
             <number>1</number>
            </property>
            <property name="connectedSettingName" stdset="0" >
-            <string>TabWidth</string>
+            <string>DONOTTRANSLATE:TabWidth</string>
            </property>
           </widget>
          </item>
@@ -338,7 +338,7 @@
           <string>Enable syntax highlighting</string>
          </property>
          <property name="connectedSettingName" stdset="0" >
-          <string>SyntaxHighlightningEnabled</string>
+          <string>DONOTTRANSLATE:SyntaxHighlightningEnabled</string>
          </property>
         </widget>
        </item>

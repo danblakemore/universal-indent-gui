@@ -298,7 +298,7 @@
     <string>If checked, tool tips will show up if the mouse cursor remains over an indenter parameter for a while.</string>
    </property>
    <property name="connectedSettingName" stdset="0" >
-    <string>IndenterParameterTooltipsEnabled</string>
+    <string>DONOTTRANSLATE:IndenterParameterTooltipsEnabled</string>
    </property>
   </action>
   <action name="actionLive_Indent_Preview" >
@@ -343,7 +343,7 @@
     <string>By enabling special key words of the source code are highlighted.</string>
    </property>
    <property name="connectedSettingName" stdset="0" >
-    <string>SyntaxHighlightningEnabled</string>
+    <string>DONOTTRANSLATE:SyntaxHighlightningEnabled</string>
    </property>
   </action>
   <action name="whiteSpaceIsVisibleAction" >
@@ -366,7 +366,7 @@
     <bool>false</bool>
    </property>
    <property name="connectedSettingName" stdset="0" >
-    <string>WhiteSpaceIsVisible</string>
+    <string>DONOTTRANSLATE:WhiteSpaceIsVisible</string>
    </property>
   </action>
   <action name="loadLastOpenedFileOnStartupAction" >
@@ -389,7 +389,7 @@
     <bool>false</bool>
    </property>
    <property name="connectedSettingName" stdset="0" >
-    <string>LoadLastOpenedFileOnStartup</string>
+    <string>DONOTTRANSLATE:LoadLastOpenedFileOnStartup</string>
    </property>
   </action>
   <action name="actionShowSettings" >

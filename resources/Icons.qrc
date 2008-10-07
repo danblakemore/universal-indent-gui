@@ -6,6 +6,7 @@
   <qresource prefix="/language" >
     <file>language-de.png</file>
     <file>language-en.png</file>
+    <file>language-fr.png</file>
     <file>language-ru.png</file>
     <file>language-uk.png</file>
     <file>language-ja_JP.png</file>

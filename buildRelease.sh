@@ -333,6 +333,7 @@ cp $QTDIR/translations/qt_de.qm ./$targetDir/translations/ &> /dev/null
 cp $QTDIR/translations/qt_ja_jp.qm ./$targetDir/translations/qt_ja_JP.qm &> /dev/null
 cp $QTDIR/translations/qt_ru.qm ./$targetDir/translations/ &> /dev/null
 cp $QTDIR/translations/qt_uk.qm ./$targetDir/translations/ &> /dev/null
+cp $QTDIR/translations/qt_fr.qm ./$targetDir/translations/ &> /dev/null
 for i in $languages
 do
     cp ./translations/universalindent_$i.qm ./$targetDir/translations/ &> /dev/null

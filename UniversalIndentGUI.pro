@@ -46,6 +46,8 @@ message ( Updating universalindent_ru.ts )
 system($${lupdate} src -ts ./translations/universalindent_ru.ts -silent)
 message ( Updating universalindent_uk.ts )
 system($${lupdate} src -ts ./translations/universalindent_uk.ts -silent)
+message ( Updating universalindent_fr.ts )
+system($${lupdate} src -ts ./translations/universalindent_fr.ts -silent)
 
 
 # Create translation binaries
@@ -55,6 +57,7 @@ system($${lrelease} ./translations/universalindent_zh_TW.ts -qm ./translations/u
 system($${lrelease} ./translations/universalindent_ja_JP.ts -qm ./translations/universalindent_ja_JP.qm -silent)
 system($${lrelease} ./translations/universalindent_ru.ts -qm ./translations/universalindent_ru.qm -silent)
 system($${lrelease} ./translations/universalindent_uk.ts -qm ./translations/universalindent_uk.qm -silent)
+system($${lrelease} ./translations/universalindent_fr.ts -qm ./translations/universalindent_fr.qm -silent)
 
 # Copy Qts own translation files to the local translation directory
 message ( Copy Qts own translation files to the local translation directory )
@@ -64,10 +67,12 @@ unix:system(cp $${qtTranslationInstallDir}/qt_de.qm ./translations/ $$pipe2nul)
 unix:system(cp $${qtTranslationInstallDir}/qt_ja_jp.qm ./translations/qt_ja_JP.qm $$pipe2nul)
 unix:system(cp $${qtTranslationInstallDir}/qt_ru.qm ./translations/ $$pipe2nul)
 unix:system(cp $${qtTranslationInstallDir}/qt_uk.qm ./translations/ $$pipe2nul)
+unix:system(cp $${qtTranslationInstallDir}/qt_fr.qm ./translations/ $$pipe2nul)
 win32:system(copy $${qtTranslationInstallDir}\qt_de.qm .\translations\ /Y $$pipe2nul)
 win32:system(copy $${qtTranslationInstallDir}\qt_ja_jp.qm .\translations\qt_ja_JP.qm /Y $$pipe2nul)
 win32:system(copy $${qtTranslationInstallDir}\qt_ru.qm .\translations\ /Y $$pipe2nul)
 win32:system(copy $${qtTranslationInstallDir}\qt_uk.qm .\translations\ /Y $$pipe2nul)
+win32:system(copy $${qtTranslationInstallDir}\qt_fr.qm .\translations\ /Y $$pipe2nul)
 
 # Defining files that shall be installed
 ########################################

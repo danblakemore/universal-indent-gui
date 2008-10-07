@@ -128,8 +128,8 @@ QStringList UiguiSettings::getAvailableTranslations() {
  */
 void UiguiSettings::handleValueChangeFromExtern(int value) {
     if ( sender() ) {
-        // Get the corresponding setting name from the sender objects property.
-        QString settingName = sender()->property("connectedSettingName").toString();
+        // Get the corresponding setting name from the sender objects property and remove "DONOTTRANSLATE:" from its beginning..
+        QString settingName = sender()->property("connectedSettingName").toString().remove(0, 15);
         // If the property is not set, try using the objects name for convenience.
         if ( settingName.isEmpty() ) {
             // Get the objects name and remove "uiGui" from its beginning and use that as setting name.
@@ -151,8 +151,8 @@ void UiguiSettings::handleValueChangeFromExtern(int value) {
  */
 void UiguiSettings::handleValueChangeFromExtern(bool value) {
     if ( sender() ) {
-        // Get the corresponding setting name from the sender objects property.
-        QString settingName = sender()->property("connectedSettingName").toString();
+        // Get the corresponding setting name from the sender objects property and remove "DONOTTRANSLATE:" from its beginning.
+        QString settingName = sender()->property("connectedSettingName").toString().remove(0, 15);
         // If the property is not set, try using the objects name for convenience.
         if ( settingName.isEmpty() ) {
             // Get the objects name and remove "uiGui" from its beginning and use that as setting name.
@@ -174,8 +174,8 @@ void UiguiSettings::handleValueChangeFromExtern(bool value) {
  */
 void UiguiSettings::handleValueChangeFromExtern(QDate value) {
     if ( sender() ) {
-        // Get the corresponding setting name from the sender objects property.
-        QString settingName = sender()->property("connectedSettingName").toString();
+        // Get the corresponding setting name from the sender objects property and remove "DONOTTRANSLATE:" from its beginning.
+        QString settingName = sender()->property("connectedSettingName").toString().remove(0, 15);
         // If the property is not set, try using the objects name for convenience.
         if ( settingName.isEmpty() ) {
             // Get the objects name and remove "uiGui" from its beginning and use that as setting name.

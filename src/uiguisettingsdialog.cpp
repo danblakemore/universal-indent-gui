@@ -73,6 +73,9 @@ void UiguiSettingsDialog::initTranslationSelection() {
 		if ( languageShort == "en" ) {
 			uiGuiLanguageSelectionComboBox->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("English") );
 		}
+        else if ( languageShort == "fr" ) {
+            uiGuiLanguageSelectionComboBox->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("French") );
+        }
 		else if ( languageShort == "de" ) {
 			uiGuiLanguageSelectionComboBox->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("German") );
 		}
@@ -88,6 +91,7 @@ void UiguiSettingsDialog::initTranslationSelection() {
         else if ( languageShort == "uk" ) {
             uiGuiLanguageSelectionComboBox->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("Ukrainian") );
         }
+
 		else {
 			uiGuiLanguageSelectionComboBox->addItem( tr("Unknown language mnemonic ") + languageShort );
 		}
@@ -103,8 +107,8 @@ void UiguiSettingsDialog::initTranslationSelection() {
 int UiguiSettingsDialog::showDialog() {
     // Get the values for the check boxes from the settings object.
     foreach (QCheckBox* checkBox, checkBoxes) {
-        // Get the corresponding setting name from the check boxs property.
-        QString settingName = checkBox->property("connectedSettingName").toString();
+        // Get the corresponding setting name from the check boxs property and remove "DONOTTRANSLATE:" from its beginning.
+        QString settingName = checkBox->property("connectedSettingName").toString().remove(0, 15);
         // If the property is not set, try using the objects name for convenience.
         if ( settingName.isEmpty() ) {
             // Get the objects name and remove "uiGui" from its beginning and use that as setting name.
@@ -119,8 +123,8 @@ int UiguiSettingsDialog::showDialog() {
 
     // Get the values for the spin boxes from the settings object.
     foreach (QSpinBox* spinBox, spinBoxes) {
-        // Get the corresponding setting name from the spin boxs property.
-        QString settingName = spinBox->property("connectedSettingName").toString();
+        // Get the corresponding setting name from the spin boxs property and remove "DONOTTRANSLATE:" from its beginning.
+        QString settingName = spinBox->property("connectedSettingName").toString().remove(0, 15);
         // If the property is not set, try using the objects name for convenience.
         if ( settingName.isEmpty() ) {
             // Get the objects name and remove "uiGui" from its beginning and use that as setting name.
@@ -135,8 +139,8 @@ int UiguiSettingsDialog::showDialog() {
 
     // Get the values for the combo boxes from the settings object.
     foreach (QComboBox* comboBox, comboBoxes) {
-        // Get the corresponding setting name from the combo boxs property.
-        QString settingName = comboBox->property("connectedSettingName").toString();
+        // Get the corresponding setting name from the combo boxs property and remove "DONOTTRANSLATE:" from its beginning.
+        QString settingName = comboBox->property("connectedSettingName").toString().remove(0, 15);
         // If the property is not set, try using the objects name for convenience.
         if ( settingName.isEmpty() ) {
             // Get the objects name and remove "uiGui" from its beginning and use that as setting name.
@@ -162,8 +166,8 @@ int UiguiSettingsDialog::showDialog() {
 void UiguiSettingsDialog::writeWidgetValuesToSettings() {
     // Write the values of the check boxes to the settings object.
     foreach (QCheckBox* checkBox, checkBoxes) {
-        // Get the corresponding setting name from the check boxs property.
-        QString settingName = checkBox->property("connectedSettingName").toString();
+        // Get the corresponding setting name from the check boxs property and remove "DONOTTRANSLATE:" from its beginning.
+        QString settingName = checkBox->property("connectedSettingName").toString().remove(0, 15);
         // If the property is not set, try using the objects name for convenience.
         if ( settingName.isEmpty() ) {
             // Get the objects name and remove "uiGui" from its beginning and use that as setting name.
@@ -177,8 +181,8 @@ void UiguiSettingsDialog::writeWidgetValuesToSettings() {
 
     // Write the values for the spin boxes to the settings object.
     foreach (QSpinBox* spinBox, spinBoxes) {
-        // Get the corresponding setting name from the spin boxs property.
-        QString settingName = spinBox->property("connectedSettingName").toString();
+        // Get the corresponding setting name from the spin boxs property and remove "DONOTTRANSLATE:" from its beginning.
+        QString settingName = spinBox->property("connectedSettingName").toString().remove(0, 15);
         // If the property is not set, try using the objects name for convenience.
         if ( settingName.isEmpty() ) {
             // Get the objects name and remove "uiGui" from its beginning and use that as setting name.
@@ -192,8 +196,8 @@ void UiguiSettingsDialog::writeWidgetValuesToSettings() {
 
     // Write the values for the spin boxes to the settings object.
     foreach (QComboBox* comboBox, comboBoxes) {
-        // Get the corresponding setting name from the combo boxs property.
-        QString settingName = comboBox->property("connectedSettingName").toString();
+        // Get the corresponding setting name from the combo boxs property and remove "DONOTTRANSLATE:" from its beginning.
+        QString settingName = comboBox->property("connectedSettingName").toString().remove(0, 15);
         // If the property is not set, try using the objects name for convenience.
         if ( settingName.isEmpty() ) {
             // Get the objects name and remove "uiGui" from its beginning and use that as setting name.
@@ -228,6 +232,9 @@ void UiguiSettingsDialog::changeEvent(QEvent *event) {
             // Identify the language mnemonic and set the full name.
             if ( languageShort == "en" ) {
                 uiGuiLanguageSelectionComboBox->setItemText( i, tr("English") );
+            }
+            else if ( languageShort == "fr" ) {
+                uiGuiLanguageSelectionComboBox->setItemText( i, tr("French") );
             }
             else if ( languageShort == "de" ) {
                 uiGuiLanguageSelectionComboBox->setItemText( i, tr("German") );

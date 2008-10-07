@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="zh_TW">
-<defaultcodec></defaultcodec>
 <context>
     <name>AboutDialog</name>
     <message>
@@ -151,74 +150,6 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;&quot;&gt;License: UniversalIndentGui is released under the GPL 2. For details read the included file LICENSE.GPL visit &lt;a href=&quot;http://www.gnu.org/licenses/gpl.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.gnu.org/licenses/gpl.html&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;&quot;&gt;Credits:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Client</name>
-    <message>
-        <location filename="../src/UiGUI_Server_Test_Client/client.cpp" line="12"/>
-        <source>&amp;Server name:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/UiGUI_Server_Test_Client/client.cpp" line="13"/>
-        <source>S&amp;erver port:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/UiGUI_Server_Test_Client/client.cpp" line="14"/>
-        <source>&amp;Message to send:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/UiGUI_Server_Test_Client/client.cpp" line="15"/>
-        <source>&amp;Received Message:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/UiGUI_Server_Test_Client/client.cpp" line="27"/>
-        <source>This examples requires that you run the Fortune Server example as well.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/UiGUI_Server_Test_Client/client.cpp" line="29"/>
-        <source>Connect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/UiGUI_Server_Test_Client/client.cpp" line="32"/>
-        <source>Disconnect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/UiGUI_Server_Test_Client/client.cpp" line="35"/>
-        <source>Send</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/UiGUI_Server_Test_Client/client.cpp" line="60"/>
-        <source>UiGUI Server Test Client</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/UiGUI_Server_Test_Client/client.cpp" line="131"/>
-        <source>Fortune Client</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/UiGUI_Server_Test_Client/client.cpp" line="121"/>
-        <source>The host was not found. Please check the host name and port settings.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/UiGUI_Server_Test_Client/client.cpp" line="128"/>
-        <source>The connection was refused by the peer. Make sure the fortune server is running, and check that the host name and port settings are correct.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/UiGUI_Server_Test_Client/client.cpp" line="133"/>
-        <source>The following error occurred: %1.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -544,37 +475,37 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">&lt;b&gt;呼叫字串是：&lt;/b&gt; </translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="506"/>
+        <location filename="../src/indenthandler.cpp" line="501"/>
         <source>&lt;b&gt;Indent console output was:&lt;/b&gt; </source>
         <translation>&lt;b&gt;重整工具命令列輸出為：&lt;/b&gt; </translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="505"/>
+        <location filename="../src/indenthandler.cpp" line="500"/>
         <source>&lt;b&gt;Indenter returned with exit code:&lt;/b&gt; </source>
         <translation>&lt;b&gt;重整工具傳回的錯誤代碼：&lt;/b&gt; </translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="471"/>
+        <location filename="../src/indenthandler.cpp" line="466"/>
         <source>&lt;b&gt;Reason could be:&lt;/b&gt; </source>
         <translation>&lt;b&gt;原因可能是：&lt;/b&gt; </translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="467"/>
+        <location filename="../src/indenthandler.cpp" line="462"/>
         <source>&lt;b&gt;Returned error message:&lt;/b&gt; </source>
         <translation>&lt;b&gt;傳回的錯誤訊息：&lt;/b&gt; </translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="494"/>
+        <location filename="../src/indenthandler.cpp" line="489"/>
         <source>Error calling Indenter</source>
         <translation>呼叫重整工具時發生錯誤</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="509"/>
+        <location filename="../src/indenthandler.cpp" line="504"/>
         <source>Indenter returned error</source>
         <translation>重整工具傳回錯誤</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="441"/>
+        <location filename="../src/indenthandler.cpp" line="436"/>
         <source>No indenter executable</source>
         <translation>找不到重整工具</translation>
     </message>
@@ -584,17 +515,17 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">找不到重整工具 &quot;</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1293"/>
+        <location filename="../src/indenthandler.cpp" line="1288"/>
         <source>There exists only a win32 executable of the indenter and wine does not seem to be installed. Please install wine to be able to run the indenter.</source>
         <translation>該重整工具只有 Win32 版本，而你似乎尚未安裝 wine。請安裝 wine 以便執行該重整工具。</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1293"/>
+        <location filename="../src/indenthandler.cpp" line="1288"/>
         <source>wine not installed</source>
         <translation>尚未安裝 wine</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="507"/>
+        <location filename="../src/indenthandler.cpp" line="502"/>
         <source>&lt;br&gt;&lt;b&gt;Callstring was:&lt;/b&gt; </source>
         <translation>&lt;br&gt;&lt;b&gt;呼叫方式是：&lt;/b&gt; </translation>
     </message>
@@ -609,117 +540,117 @@ p, li { white-space: pre-wrap; }
         <translation>本目錄下找不到重整工具所需的 INI 檔 &quot;</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="442"/>
+        <location filename="../src/indenthandler.cpp" line="437"/>
         <source>There exists no indenter executable with the name &quot;%1&quot; in the directory &quot;%2&quot; nor in the global environment.</source>
         <translation>找不到重整工具 &quot;%1&quot; 於目錄 &quot;%2&quot; 下及全域環境變數下。</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="492"/>
+        <location filename="../src/indenthandler.cpp" line="487"/>
         <source>&lt;br&gt;&lt;br&gt;&lt;b&gt;Indenter output was:&lt;/b&gt;&lt;pre&gt;</source>
         <translation>&lt;br&gt;&lt;br&gt;&lt;b&gt;重整工具的輸出結果：&lt;/b&gt;&lt;pre&gt;</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1248"/>
+        <location filename="../src/indenthandler.cpp" line="1243"/>
         <source>Interpreter needed</source>
         <translation>需要直譯器</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1249"/>
+        <location filename="../src/indenthandler.cpp" line="1244"/>
         <source>To use the selected indenter the program &quot;%1&quot; needs to be available in the global environment. You should add an entry to your path settings.</source>
         <translation>要使用這個重整工具，你必須將程式 &quot;%1&quot; 加到全域的 Path 變數中。</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1339"/>
+        <location filename="../src/indenthandler.cpp" line="1334"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Shows the currently chosen indenters name and lets you choose other available indenters&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;顯示目前使用的重整工具名稱，並讓你選擇其他可用的重整工具&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1340"/>
+        <location filename="../src/indenthandler.cpp" line="1335"/>
         <source>Brings you to the online manual of the currently selected indenter, where you can get further help on the possible parameters.</source>
         <translation>這會開啟當前重整工具的線上手冊，你將能找到更多關於可用參數的說明。</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1384"/>
+        <location filename="../src/indenthandler.cpp" line="1379"/>
         <source>Choose indenter config file</source>
         <translation>選擇重整工具設定檔</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1431"/>
+        <location filename="../src/indenthandler.cpp" line="1425"/>
         <source>All files</source>
         <translation>所有檔案</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1401"/>
+        <location filename="../src/indenthandler.cpp" line="1396"/>
         <source>Save indent config file</source>
         <translation>儲存重整工具的設定</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1431"/>
+        <location filename="../src/indenthandler.cpp" line="1425"/>
         <source>Shell Script</source>
         <translation>批次檔</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1437"/>
+        <location filename="../src/indenthandler.cpp" line="1431"/>
         <source>Save shell script</source>
         <translation>儲存批次檔</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1342"/>
+        <location filename="../src/indenthandler.cpp" line="1337"/>
         <source>Load Indenter Config File</source>
         <translation>載入重整工具設定檔</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1343"/>
+        <location filename="../src/indenthandler.cpp" line="1338"/>
         <source>Opens a file dialog to load the original config file of the indenter.</source>
         <translation>載入目前重整工具的設定</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1344"/>
+        <location filename="../src/indenthandler.cpp" line="1339"/>
         <source>Alt+O</source>
         <translation>Alt+O</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1346"/>
+        <location filename="../src/indenthandler.cpp" line="1341"/>
         <source>Save Indenter Config File</source>
         <translation>儲存重整工具設定檔</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1347"/>
+        <location filename="../src/indenthandler.cpp" line="1342"/>
         <source>Opens a dialog to save the current indenter configuration to a file.</source>
         <translation>儲存目前重整工具的設定</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1348"/>
+        <location filename="../src/indenthandler.cpp" line="1343"/>
         <source>Alt+S</source>
         <translation>Alt+S</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1350"/>
+        <location filename="../src/indenthandler.cpp" line="1345"/>
         <source>Create Indenter Call Shell Script</source>
         <translation>建立重整工具批次檔</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1352"/>
+        <location filename="../src/indenthandler.cpp" line="1347"/>
         <source>Create a shell script that calls the current selected indenter for formatting an as parameter given file with the current indent settings</source>
         <translation>建立批次檔呼叫目前的重整工具。它會接受檔案路徑作為參數，接著呼叫重整工具並套用目前的重整設定，適合讓 IDE 作為外部工具呼叫。</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1354"/>
+        <location filename="../src/indenthandler.cpp" line="1349"/>
         <source>Reset indenter parameters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1356"/>
+        <location filename="../src/indenthandler.cpp" line="1351"/>
         <source>Resets all indenter parameters to the default values.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1466"/>
+        <location filename="../src/indenthandler.cpp" line="1460"/>
         <source>Really reset parameters?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1466"/>
+        <location filename="../src/indenthandler.cpp" line="1460"/>
         <source>Do you really want to reset the indenter parameters to the default values?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -797,7 +728,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">用別的編碼方式重新開啟</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1200"/>
+        <location filename="../src/mainwindow.cpp" line="1187"/>
         <source>Reopen the currently opened source code file by using the text encoding scheme </source>
         <translation>重新開啟目前的檔案，編碼使用 </translation>
     </message>
@@ -859,7 +790,7 @@ Do you want to save your changes?</source>
         <translation type="obsolete">Chinese (Taiwan)</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1214"/>
+        <location filename="../src/mainwindow.cpp" line="1201"/>
         <source>Set the syntax highlightning to </source>
         <translation>將語法高亮度方式設為 </translation>
     </message>
@@ -874,12 +805,12 @@ Do you want to save your changes?</source>
         <translation type="obsolete">批次檔</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1352"/>
+        <location filename="../src/mainwindow.cpp" line="1339"/>
         <source>File no longer exists</source>
         <translation>檔案不存在</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1352"/>
+        <location filename="../src/mainwindow.cpp" line="1339"/>
         <source>The file %1 in the list of recently opened files does no longer exist.</source>
         <translation>找不到檔案清單裡的「%1」</translation>
     </message>
@@ -903,12 +834,12 @@ Do you want to go to the download website?</source>
 你想要開啟下載頁面嗎？</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1206"/>
+        <location filename="../src/mainwindow.cpp" line="1193"/>
         <source>Save the currently opened source code file by using the text encoding scheme </source>
         <translation>另存目前的檔案，編碼使用 </translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1400"/>
+        <location filename="../src/mainwindow.cpp" line="1387"/>
         <source>Line %1, Column %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1196,24 +1127,24 @@ Do you want to go to the download website?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="346"/>
-        <source>SyntaxHighlightningEnabled</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.ui" line="392"/>
-        <source>LoadLastOpenedFileOnStartup</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../src/mainwindow.ui" line="301"/>
-        <source>IndenterParameterTooltipsEnabled</source>
-        <translation></translation>
+        <source>DONOTTRANSLATE:IndenterParameterTooltipsEnabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="346"/>
+        <source>DONOTTRANSLATE:SyntaxHighlightningEnabled</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="369"/>
-        <source>WhiteSpaceIsVisible</source>
-        <translation></translation>
+        <source>DONOTTRANSLATE:WhiteSpaceIsVisible</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="392"/>
+        <source>DONOTTRANSLATE:LoadLastOpenedFileOnStartup</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1369,44 +1300,44 @@ Do you want to go to the download website?</source>
         <translation>程式啟動時自動檢查更新</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="341"/>
-        <source>SyntaxHighlightningEnabled</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="82"/>
-        <source>Language</source>
-        <translation></translation>
+        <source>DONOTTRANSLATE:Language</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="110"/>
-        <source>LoadLastOpenedFileOnStartup</source>
-        <translation></translation>
+        <source>DONOTTRANSLATE:LoadLastOpenedFileOnStartup</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="123"/>
-        <source>IndenterParameterTooltipsEnabled</source>
-        <translation></translation>
+        <source>DONOTTRANSLATE:IndenterParameterTooltipsEnabled</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="166"/>
-        <source>RecentlyOpenedListSize</source>
-        <translation></translation>
+        <source>DONOTTRANSLATE:RecentlyOpenedListSize</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="194"/>
-        <source>CheckForUpdate</source>
-        <translation></translation>
+        <source>DONOTTRANSLATE:CheckForUpdate</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="237"/>
-        <source>WhiteSpaceIsVisible</source>
-        <translation></translation>
+        <source>DONOTTRANSLATE:WhiteSpaceIsVisible</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="283"/>
-        <source>TabWidth</source>
-        <translation></translation>
+        <source>DONOTTRANSLATE:TabWidth</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="341"/>
+        <source>DONOTTRANSLATE:SyntaxHighlightningEnabled</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1414,7 +1345,7 @@ Do you want to go to the download website?</source>
     <message>
         <location filename="../src/uiguierrormessage.cpp" line="40"/>
         <source>Show this message again</source>
-        <translation>下次繼續顯示這個訊息</translation>
+        <translation type="obsolete">下次繼續顯示這個訊息</translation>
     </message>
 </context>
 <context>
@@ -1422,12 +1353,12 @@ Do you want to go to the download website?</source>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="228"/>
         <source>English</source>
-        <translation>英文</translation>
+        <translation type="obsolete">英文</translation>
     </message>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="231"/>
         <source>German</source>
-        <translation>德文</translation>
+        <translation type="obsolete">德文</translation>
     </message>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="191"/>
@@ -1437,27 +1368,35 @@ Do you want to go to the download website?</source>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="237"/>
         <source>Japanese</source>
-        <translation>日文</translation>
+        <translation type="obsolete">日文</translation>
     </message>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="246"/>
         <source>Unknown language mnemonic </source>
-        <translation>未知語言 </translation>
+        <translation type="obsolete">未知語言 </translation>
     </message>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="234"/>
         <source>Chinese (Taiwan)</source>
-        <translation>中文（台灣）</translation>
+        <translation type="obsolete">中文（台灣）</translation>
     </message>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="240"/>
         <source>Russian</source>
-        <translation>俄文</translation>
+        <translation type="obsolete">俄文</translation>
     </message>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="243"/>
         <source>Ukrainian</source>
-        <translation>烏克蘭文</translation>
+        <translation type="obsolete">烏克蘭文</translation>
+    </message>
+</context>
+<context>
+    <name>UiguiErrorMessage</name>
+    <message>
+        <location filename="../src/uiguierrormessage.cpp" line="40"/>
+        <source>Show this message again</source>
+        <translation type="unfinished">下次繼續顯示這個訊息</translation>
     </message>
 </context>
 <context>
@@ -1474,6 +1413,49 @@ Do you want to go to the download website?</source>
     </message>
 </context>
 <context>
+    <name>UiguiSettingsDialog</name>
+    <message>
+        <location filename="../src/uiguisettingsdialog.cpp" line="234"/>
+        <source>English</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/uiguisettingsdialog.cpp" line="240"/>
+        <source>German</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/uiguisettingsdialog.cpp" line="243"/>
+        <source>Chinese (Taiwan)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/uiguisettingsdialog.cpp" line="246"/>
+        <source>Japanese</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/uiguisettingsdialog.cpp" line="249"/>
+        <source>Russian</source>
+        <translation type="unfinished">俄文</translation>
+    </message>
+    <message>
+        <location filename="../src/uiguisettingsdialog.cpp" line="252"/>
+        <source>Ukrainian</source>
+        <translation type="unfinished">烏克蘭文</translation>
+    </message>
+    <message>
+        <location filename="../src/uiguisettingsdialog.cpp" line="255"/>
+        <source>Unknown language mnemonic </source>
+        <translation type="unfinished">未知語言 </translation>
+    </message>
+    <message>
+        <location filename="../src/uiguisettingsdialog.cpp" line="237"/>
+        <source>French</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>UpdateCheckDialog</name>
     <message>
         <location filename="../src/UpdateCheckDialog.ui" line="16"/>
@@ -1486,12 +1468,12 @@ Do you want to go to the download website?</source>
         <translation>正在檢查是否有新版本</translation>
     </message>
     <message>
-        <location filename="../src/updatecheckdialog.cpp" line="173"/>
+        <location filename="../src/updatecheckdialog.cpp" line="179"/>
         <source>Update available</source>
         <translation>找到新版本</translation>
     </message>
     <message>
-        <location filename="../src/updatecheckdialog.cpp" line="174"/>
+        <location filename="../src/updatecheckdialog.cpp" line="180"/>
         <source>A newer version of UniversalIndentGUI is available.
 Your version is %1. New version is %2.
 Do you want to go to the download website?</source>
@@ -1500,12 +1482,12 @@ Do you want to go to the download website?</source>
 你想要開啟下載頁面嗎？</translation>
     </message>
     <message>
-        <location filename="../src/updatecheckdialog.cpp" line="185"/>
+        <location filename="../src/updatecheckdialog.cpp" line="191"/>
         <source>No new update available</source>
         <translation>沒有找到新版本</translation>
     </message>
     <message>
-        <location filename="../src/updatecheckdialog.cpp" line="186"/>
+        <location filename="../src/updatecheckdialog.cpp" line="192"/>
         <source>You already have the latest version of UniversalIndentGUI.</source>
         <translation>你使用的是最新版的 UniversalIndentGUI</translation>
     </message>
@@ -1594,8 +1576,8 @@ Do you want to go to the download website?</source>
     </message>
     <message>
         <location filename="../src/toolBarWidget.ui" line="69"/>
-        <source>SyntaxHighlightningEnabled</source>
-        <translation></translation>
+        <source>DONOTTRANSLATE:SyntaxHighlightningEnabled</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
