@@ -42,7 +42,6 @@ public slots:
     void show();
 
 private slots:
-    void restoreTextBrowserContentAndOpenLink(const QUrl &link);
     void scroll();
 
 private:
