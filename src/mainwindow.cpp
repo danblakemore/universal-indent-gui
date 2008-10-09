@@ -1201,6 +1201,11 @@ void MainWindow::changeEvent(QEvent *event) {
             highlighterAction->setStatusTip( tr("Set the syntax highlightning to ") + highlighterName );
             i++;
         }
+
+        // Translate the line and column indicators in the statusbar.
+        int line, column;
+        txtedSourceCode->getCursorPosition( &line, &column );
+        setStatusBarCursorPosInfo( line, column );
     } 
     else {
         QWidget::changeEvent(event);
