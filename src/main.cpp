@@ -104,7 +104,21 @@ int main(int argc, char *argv[])
         server.startServer();
     }
 
-    return app.exec();
+    int returnValue = app.exec();
+
+    // Delete the correct objects.
+    if ( !startAsPlugin && !startAsServer && mainWindow != NULL) {
+        delete mainWindow;
+    }
+    else if ( startAsPlugin && indentHandler != NULL) {
+        server.stopServer();
+        delete indentHandler;
+    }
+    else if ( startAsServer ) {
+        server.stopServer();
+    }
     
     UiguiSettings::deleteInstance();
+
+    return returnValue;
 }

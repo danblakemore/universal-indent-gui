@@ -140,8 +140,8 @@ IndentHandler::IndentHandler(int indenterID, QWidget *mainWindow, QWidget *paren
         // Find out how the indenter can be executed.
         createIndenterCallString();
 
-        // Load the users last settings made for this indenter.
-        loadConfigFile( settingsDirctoryStr + "/" + indenterFileName + ".cfg" );
+        // Load the users last settings made for this indenter or use default values if file not found.
+        loadConfigFile( settingsDirctoryStr + "/" + indenterFileName + ".cfg", true );
 
         // Fill the indenter selection combo box with the list of available indenters.
         if ( !getAvailableIndenters().isEmpty() ) {
@@ -578,6 +578,7 @@ QString IndentHandler::getParameterString() {
 /*!
     \brief Write settings for the indenter to a config file.
  */
+//TODO: rename to saveConfigFile
 void IndentHandler::writeConfigFile(QString filePathName, QString paramString) {
     QFile::remove( filePathName );
     QFile cfgFile( filePathName );
@@ -592,9 +593,9 @@ void IndentHandler::writeConfigFile(QString filePathName, QString paramString) {
     \brief Load the config file for the indenter and apply the settings made there.
 
     Optionally this function can be used to reset everything to the indenter default values
-    if the \a filePathName is left empty and \a resetValues set true.
+    if the \a filePathName is left empty and \a loadDefaultValues set true.
  */
-void IndentHandler::loadConfigFile(QString filePathName, bool resetValues) {
+void IndentHandler::loadConfigFile(QString filePathName, bool loadDefaultValues) {
 
     QFile cfgFile(filePathName);
     int index;
@@ -603,9 +604,9 @@ void IndentHandler::loadConfigFile(QString filePathName, bool resetValues) {
     QString paramValueStr;
     QString cfgFileData = "";
 
-    // If the to be loaded config file does not exist and resetValues is false, 
+    // If the to be loaded config file does not exist and loadDefaultValues is false, 
     // leave all values as they are and return.
-    if ( !cfgFile.exists() && resetValues == false ) {
+    if ( !cfgFile.exists() && loadDefaultValues == false ) {
         return;
     }
 
@@ -1141,7 +1142,7 @@ void IndentHandler::setIndenter(int indenterID) {
     createIndenterCallString();
 
     // Load the users last settings made for this indenter.
-    loadConfigFile( settingsDirctoryStr + "/" + indenterFileName + ".cfg" );
+    loadConfigFile( settingsDirctoryStr + "/" + indenterFileName + ".cfg", true );
 
     handleChangedIndenterSettings();
 

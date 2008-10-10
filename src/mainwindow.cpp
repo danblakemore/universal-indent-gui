@@ -210,6 +210,7 @@ void MainWindow::initTextEditor() {
     // Create the QScintilla widget and add it to the layout.
     // Try and catch doesn't seem to catch the runtime error when starting UiGUI release with QScintilla debug lib and the other way around.
     try {
+        //TODO: rename to QScintillaSourceCodeEditor
         txtedSourceCode = new QsciScintilla(this);
     }
     catch (...) {
@@ -931,9 +932,6 @@ void MainWindow::saveSettings() {
 		settings->setValueByName( "WindowSize", size() );
 	}
     settings->setValueByName( "MainWindowState", saveState() );
-
-    //FIXME: Needs to be called explicit here, because the destructor of UiguiSettings doesn't do it.
-	settings->saveSettings();
 
     // Also save the syntax highlight style for all lexers.
     highlighter->writeCurrentSettings("");

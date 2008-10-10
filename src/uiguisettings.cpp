@@ -80,7 +80,6 @@ void UiguiSettings::deleteInstance() {
     \brief The destructor saves the settings to a file.
  */
 UiguiSettings::~UiguiSettings() {
-	//FIXME: Is never called!!
     saveSettings();
 }
 
