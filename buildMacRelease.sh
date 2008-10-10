@@ -76,6 +76,8 @@ cp ./indenters/tidy ./UniversalIndentGUI_mac/indenters/
 #cp ./indenters/uncrustify.cfg ./UniversalIndentGUI_mac/indenters/
 cp ./indenters/uncrustify ./UniversalIndentGUI_mac/indenters/
 cp ./indenters/uncrustify.txt ./UniversalIndentGUI_mac/indenters/
+cp ./indenters/xmlindent ./UniversalIndentGUI_mac/indenters/
+cp ./indenters/xmlindent.txt ./UniversalIndentGUI_mac/indenters/
 
 cp ./indenters/uigui_*.ini ./UniversalIndentGUI_mac/indenters/
 

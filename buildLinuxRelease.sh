@@ -73,6 +73,8 @@ cp ./indenters/tidy ./universalindentgui_linux32/indenters/
 #cp ./indenters/uncrustify.cfg ./universalindentgui_linux32/indenters/
 cp ./indenters/uncrustify ./universalindentgui_linux32/indenters/
 cp ./indenters/uncrustify.txt ./universalindentgui_linux32/indenters/
+cp ./indenters/xmlindent ./UniversalIndentGUI_mac/indenters/
+cp ./indenters/xmlindent.txt ./UniversalIndentGUI_mac/indenters/
 
 cp ./indenters/uigui_*.ini ./universalindentgui_linux32/indenters/
 

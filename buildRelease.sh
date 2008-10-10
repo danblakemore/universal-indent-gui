@@ -293,7 +293,7 @@ echo ""
 echo "Copying the indenter executable files to the target indenters dir"
 echo "-----------------------------------------------------------------"
 if [ "$targetSystem" = "macx" ]; then
-    indenters="astyle$ext astyle.html hindent hindent.html JsDecoder.js perltidy perltidy.html PerlTidyLib.pm phpStylist.php phpStylist.txt rbeautify.rb ruby_formatter.rb shellindent.awk uncrustify$ext uncrustify.txt"
+    indenters="astyle$ext astyle.html hindent hindent.html JsDecoder.js perltidy perltidy.html PerlTidyLib.pm phpStylist.php phpStylist.txt rbeautify.rb ruby_formatter.rb shellindent.awk uncrustify$ext uncrustify.txt xmlindent$ext xmlindent.txt"
 else
    indenters="astyle$ext astyle.html bcpp$ext bcpp.txt csstidy$ext gc.exe gc.txt htb.exe htb.html indent$ext indent.html tidy$ext tidy.html uncrustify$ext uncrustify.txt"
 fi
