@@ -165,7 +165,7 @@ IndentHandler::~IndentHandler() {
     // Generate the parameter string that will be saved to the indenters config file.
     QString parameterString = getParameterString();
     if ( !indenterFileName.isEmpty() ) {
-        writeConfigFile( settingsDirctoryStr + "/" + indenterFileName + ".cfg", parameterString );
+        saveConfigFile( settingsDirctoryStr + "/" + indenterFileName + ".cfg", parameterString );
     }
 
     delete errorMessageDialog;
@@ -252,7 +252,7 @@ QString IndentHandler::generateCommandlineCall() {
     QString parameterString = getParameterString();
 
 	if ( !configFilename.isEmpty() ) {
-		writeConfigFile( indenterDirctoryStr + "/" + configFilename, parameterString );
+		saveConfigFile( indenterDirctoryStr + "/" + configFilename, parameterString );
 	}
 
     parameterInputFile = " " + inputFileParameter + "\"" + shellParameterPlaceholder + "\"";
@@ -391,7 +391,7 @@ QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputF
     QString parameterString = getParameterString();
 
 	if ( !configFilename.isEmpty() ) {
-		writeConfigFile( tempDirctoryStr + "/" + configFilename, parameterString );
+		saveConfigFile( tempDirctoryStr + "/" + configFilename, parameterString );
 	}
 
     // Only add a dot to file extension if the string is not empty
@@ -578,8 +578,7 @@ QString IndentHandler::getParameterString() {
 /*!
     \brief Write settings for the indenter to a config file.
  */
-//TODO: rename to saveConfigFile
-void IndentHandler::writeConfigFile(QString filePathName, QString paramString) {
+void IndentHandler::saveConfigFile(QString filePathName, QString paramString) {
     QFile::remove( filePathName );
     QFile cfgFile( filePathName );
 
@@ -1102,7 +1101,7 @@ void IndentHandler::setIndenter(int indenterID) {
     // Generate the parameter string that will be saved to the indenters config file.
     QString parameterString = getParameterString();
     if ( !indenterFileName.isEmpty() ) {
-        writeConfigFile( settingsDirctoryStr + "/" + indenterFileName + ".cfg", parameterString );
+        saveConfigFile( settingsDirctoryStr + "/" + indenterFileName + ".cfg", parameterString );
     }
 
     // Take care if the selected indenterID is smaller or greater than the number of existing indenters
