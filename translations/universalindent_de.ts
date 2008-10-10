@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
+<defaultcodec></defaultcodec>
 <context>
     <name>AboutDialog</name>
     <message>
@@ -1275,7 +1276,7 @@ Wollen Sie zu Download Website geleitet werden?</translation>
     <message>
         <location filename="../src/mainwindow.ui" line="316"/>
         <source>Ctrl+L</source>
-        <translation>Ctrl+E</translation>
+        <translation>Strg+L</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="337"/>
@@ -1365,22 +1366,22 @@ Wollen Sie zu Download Website geleitet werden?</translation>
     <message>
         <location filename="../src/mainwindow.ui" line="301"/>
         <source>DONOTTRANSLATE:IndenterParameterTooltipsEnabled</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="346"/>
         <source>DONOTTRANSLATE:SyntaxHighlightningEnabled</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="369"/>
         <source>DONOTTRANSLATE:WhiteSpaceIsVisible</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="392"/>
         <source>DONOTTRANSLATE:LoadLastOpenedFileOnStartup</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -1538,42 +1539,42 @@ Wollen Sie zu Download Website geleitet werden?</translation>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="82"/>
         <source>DONOTTRANSLATE:Language</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="110"/>
         <source>DONOTTRANSLATE:LoadLastOpenedFileOnStartup</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="123"/>
         <source>DONOTTRANSLATE:IndenterParameterTooltipsEnabled</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="166"/>
         <source>DONOTTRANSLATE:RecentlyOpenedListSize</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="194"/>
         <source>DONOTTRANSLATE:CheckForUpdate</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="237"/>
         <source>DONOTTRANSLATE:WhiteSpaceIsVisible</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="283"/>
         <source>DONOTTRANSLATE:TabWidth</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="341"/>
         <source>DONOTTRANSLATE:SyntaxHighlightningEnabled</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -1624,7 +1625,7 @@ Wollen Sie zu Download Website geleitet werden?</translation>
     <message>
         <location filename="../src/uiguierrormessage.cpp" line="40"/>
         <source>Show this message again</source>
-        <translation type="unfinished"></translation>
+        <translation>Meldung immer wieder anzeigen</translation>
     </message>
 </context>
 <context>
@@ -1645,42 +1646,42 @@ Wollen Sie zu Download Website geleitet werden?</translation>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="234"/>
         <source>English</source>
-        <translation type="unfinished">Englisch</translation>
+        <translation>Englisch</translation>
     </message>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="240"/>
         <source>German</source>
-        <translation type="unfinished">Deutsch</translation>
+        <translation>Deutsch</translation>
     </message>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="243"/>
         <source>Chinese (Taiwan)</source>
-        <translation type="unfinished">Chinesisch (Taiwan)</translation>
+        <translation>Chinesisch (Taiwan)</translation>
     </message>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="246"/>
         <source>Japanese</source>
-        <translation type="unfinished">Japanisch</translation>
+        <translation>Japanisch</translation>
     </message>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="249"/>
         <source>Russian</source>
-        <translation type="unfinished">Russisch</translation>
+        <translation>Russisch</translation>
     </message>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="252"/>
         <source>Ukrainian</source>
-        <translation type="unfinished">Ukrainisch</translation>
+        <translation>Ukrainisch</translation>
     </message>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="255"/>
         <source>Unknown language mnemonic </source>
-        <translation type="unfinished">Unbekanntes Sprachkürzel </translation>
+        <translation>Unbekanntes Sprachkürzel </translation>
     </message>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="237"/>
         <source>French</source>
-        <translation type="unfinished"></translation>
+        <translation>Französisch</translation>
     </message>
 </context>
 <context>
@@ -1805,12 +1806,12 @@ Wollen Sie zur Download Website geleitet werden?</translation>
     <message>
         <location filename="../src/toolBarWidget.ui" line="69"/>
         <source>DONOTTRANSLATE:SyntaxHighlightningEnabled</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/toolBarWidget.ui" line="53"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg 2; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;Enables and disables the highlightning of the source&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;code shown below. (Still needs some performance improvements) (Ctrl+H)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg 2; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;Schaltet die Syntaxhervorhebung für den Quellcode ein und aus.&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;(Benötigt noch Performanz Verbesserungen.) (Strg+H)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 </TS>
