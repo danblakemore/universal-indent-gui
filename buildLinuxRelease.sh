@@ -21,16 +21,8 @@ echo "calling qmake"
 echo "-------------"
 qmake
 
-echo calling lrelease release
-echo ------------------------
-lrelease ./translations/universalindent_de.ts -qm ./translations/universalindent_de.qm
-lrelease ./translations/universalindent_zh_TW.ts -qm ./translations/universalindent_zh_TW.qm
-lrelease ./translations/universalindent_ja_JP.ts -qm ./translations/universalindent_ja_JP.qm
-lrelease ./translations/universalindent_ru.ts -qm ./translations/universalindent_ru.qm
-lrelease ./translations/universalindent_uk.ts -qm ./translations/universalindent_uk.qm
-
-echo calling make release
-echo --------------------
+echo "calling make release"
+echo "--------------------"
 make release
 
 echo calling rm -r universalindentgui_linux32
@@ -73,8 +65,8 @@ cp ./indenters/tidy ./universalindentgui_linux32/indenters/
 #cp ./indenters/uncrustify.cfg ./universalindentgui_linux32/indenters/
 cp ./indenters/uncrustify ./universalindentgui_linux32/indenters/
 cp ./indenters/uncrustify.txt ./universalindentgui_linux32/indenters/
-cp ./indenters/xmlindent ./UniversalIndentGUI_mac/indenters/
-cp ./indenters/xmlindent.txt ./UniversalIndentGUI_mac/indenters/
+cp ./indenters/xmlindent ./universalindentgui_linux32/indenters/
+cp ./indenters/xmlindent.txt ./universalindentgui_linux32/indenters/
 
 cp ./indenters/uigui_*.ini ./universalindentgui_linux32/indenters/
 

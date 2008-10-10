@@ -32,7 +32,6 @@ fi
 
 if [ "$targetSystem" = "win32" ] || [ "$targetSystem" = "macx" ]; then
     targetName=UniversalIndentGUI # The targetname must be identical with the targetname set in the qmake project file.
-    QMAKESPEC=${targetSystem}-g++
 else
     targetName=universalindentgui # The targetname must be identical with the targetname set in the qmake project file.
 fi
@@ -40,9 +39,9 @@ fi
 
 # Configuration
 # -------------
-version=0.8.2
+version=1.0.1
 doSVNUpdate=false
-languages="de zh_TW ja_JP ru uk"
+
 
 if [ "$targetSystem" = "src" ]; then
     targetDir=${targetName}-$version
@@ -50,14 +49,16 @@ else
     targetDir=${targetName}_$targetSystem
 fi
 
-# Set QTDIR and QMAKESPEC for each platform
+# Set QTDIR for each platform if not given as command line parameter.
 if [ "$targetSystem" = "win32" ] && [ ! -n "$2" ]; then
-    QTDIR=/c/Programmierung/qt.4.3.2_gcc
+    QTDIR=/f/Qt/qt.4.4.3_gpl_static
 else
     if [ "$targetSystem" = "macx" ] && [ ! -n "$2" ]; then
         QTDIR=/Users/thomas/Documents/Informatik/qt-static-release
     fi
 fi
+
+QMAKESPEC=${targetSystem}-g++
 
 echo "Making some environment settings"
 echo "--------------------------------"
@@ -107,6 +108,11 @@ if [ $? -gt 0 ]; then
     echo "ERROR: Creating dir doc failed!"
     exit 1
 fi
+mkdir $targetDir/doc/images &> /dev/null
+if [ $? -gt 0 ]; then
+    echo "ERROR: Creating dir doc/images failed!"
+    exit 1
+fi
 mkdir $targetDir/translations &> /dev/null
 if [ $? -gt 0 ]; then
     echo "ERROR: Creating dir translations failed!"
@@ -147,6 +153,11 @@ if [ "$doSVNUpdate" = "true" ]; then
     echo ""
 fi
 
+
+###################### source release begin ########################
+if [ "$targetSystem" = "src" ]; then
+
+
 echo "Updating the translation files"
 echo "------------------------------"
 lupdate src -ts ./translations/universalindent.ts &> /dev/null
@@ -154,6 +165,7 @@ if [ $? -gt 0 ]; then
     echo "ERROR: Could not update file \"universalindent.ts\"!"
     exit 1
 fi
+languages="de fr ja_jp ru uk zh_TW"
 for i in $languages
 do
     lupdate src -ts ./translations/universalindent_$i.ts &> /dev/null
@@ -165,24 +177,13 @@ done
 echo "Done"
 echo ""
 
-###################### source release begin ########################
-if [ "$targetSystem" = "src" ]; then
-
 echo "Copying the translation files to the target translation dir"
 echo "-----------------------------------------------------------"
-cp ./translations/universalindent.ts ./$targetDir/translations/ &> /dev/null
+cp ./translations/universalindent*.ts ./$targetDir/translations/ &> /dev/null
 if [ $? -gt 0 ]; then
     echo "ERROR: Could not copy file \"universalindent.ts\"!"
     exit 1
 fi
-for i in $languages
-do
-    cp ./translations/universalindent_$i.ts ./$targetDir/translations/ &> /dev/null
-    if [ $? -gt 0 ]; then
-        echo "ERROR: Could not copy file \"universalindent_$i.ts\"!"
-        exit 1
-    fi
-done
 echo "Done"
 echo ""
 
@@ -232,20 +233,13 @@ echo ""
 else
 ###################### binary release begin ########################
 
-echo "Cleaning up release/debug dirs"
-echo "------------------------------"
+echo "Cleaning up release dirs"
+echo "------------------------"
 if [ -d "release" ]; then
     rm -r release &> /dev/null
 fi
 if [ $? -gt 0 ]; then
     echo "ERROR: Could not delete release dir!"
-    exit 1
-fi
-if [ -d "debug" ]; then
-    rm -r debug &> /dev/null
-fi
-if [ $? -gt 0 ]; then
-    echo "ERROR: Could not delete debug dir!"
     exit 1
 fi
 echo "Done"
@@ -292,11 +286,13 @@ echo ""
 
 echo "Copying the indenter executable files to the target indenters dir"
 echo "-----------------------------------------------------------------"
-if [ "$targetSystem" = "macx" ]; then
-    indenters="astyle$ext astyle.html hindent hindent.html JsDecoder.js perltidy perltidy.html PerlTidyLib.pm phpStylist.php phpStylist.txt rbeautify.rb ruby_formatter.rb shellindent.awk uncrustify$ext uncrustify.txt xmlindent$ext xmlindent.txt"
-else
-   indenters="astyle$ext astyle.html bcpp$ext bcpp.txt csstidy$ext gc.exe gc.txt htb.exe htb.html indent$ext indent.html tidy$ext tidy.html uncrustify$ext uncrustify.txt"
+# This list does not include script based indenters. These are copied somewhere below.
+indenters="astyle$ext astyle.html uncrustify$ext uncrustify.txt xmlindent$ext xmlindent.txt"
+# For win32 and Linux add some indenters that do not run or exist under MaxOSX
+if [ "$targetSystem" = "win32" ] || [ "$targetSystem" = "linux" ]; then
+    indenters="$indenters bcpp$ext bcpp.txt csstidy$ext gc.exe gc.txt htb.exe htb.html indent$ext indent.html tidy$ext tidy.html"
 fi
+   
 
 if [ "$ext" = ".exe" ]; then
     indenters="$indenters libiconv-2.dll libintl-2.dll"
@@ -305,22 +301,8 @@ for i in $indenters
 do
     cp ./indenters/$i ./$targetDir/indenters/ &> /dev/null
     if [ $? -gt 0 ]; then
-        echo "ERROR: Could not copy file \"$i\"!"
-        exit 1
-    fi
-done
-echo "Done"
-echo ""
-
-
-echo "Generating the translation binaries"
-echo "-----------------------------------"
-for i in $languages
-do
-    lrelease ./translations/universalindent_$i.ts -qm ./translations/universalindent_$i.qm
-    if [ $? -gt 0 ]; then
-        echo "ERROR: Could not create translation file \"universalindent_$i.qm\"!"
-        exit 1
+        echo "WARNING: Could not copy indenter file \"$i\"!"
+        WARNINGOCCURRED=true
     fi
 done
 echo "Done"
@@ -329,19 +311,16 @@ echo ""
 
 echo "Copying the translation binaries to the target translation dir"
 echo "--------------------------------------------------------------"
-cp $QTDIR/translations/qt_de.qm ./$targetDir/translations/ &> /dev/null
-cp $QTDIR/translations/qt_ja_jp.qm ./$targetDir/translations/qt_ja_JP.qm &> /dev/null
-cp $QTDIR/translations/qt_ru.qm ./$targetDir/translations/ &> /dev/null
-cp $QTDIR/translations/qt_uk.qm ./$targetDir/translations/ &> /dev/null
-cp $QTDIR/translations/qt_fr.qm ./$targetDir/translations/ &> /dev/null
-for i in $languages
-do
-    cp ./translations/universalindent_$i.qm ./$targetDir/translations/ &> /dev/null
-    if [ $? -gt 0 ]; then
-        echo "ERROR: Could not copy file \"universalindent_$i.qm\"!"
-        exit 1
-    fi
-done
+cp ./translations/qt_*.qm ./$targetDir/translations/ &> /dev/null
+if [ $? -gt 0 ]; then
+    echo "ERROR: Could not copy file \"qt_*.qm\"!"
+    exit 1
+fi
+cp ./translations/universalindent_*.qm ./$targetDir/translations/ &> /dev/null    
+if [ $? -gt 0 ]; then
+    echo "ERROR: Could not copy file \"universalindent_*.qm\"!"
+    exit 1
+fi
 echo "Done"
 echo ""
 
@@ -352,7 +331,7 @@ fi
 
 echo "Copying the script based indenters to the target indenters dir"
 echo "--------------------------------------------------------------"
-indenters="hindent hindent.html JsDecoder.js perltidy PerlTidyLib.pm php_beautifier.html phpStylist.php phpStylist.txt shellindent.awk"
+indenters="hindent hindent.html JsDecoder.js perltidy PerlTidyLib.pm php_beautifier.html phpStylist.php phpStylist.txt rbeautify.rb ruby_formatter.rb shellindent.awk"
 for i in $indenters
 do
     cp ./indenters/$i ./$targetDir/indenters/ &> /dev/null
@@ -399,7 +378,7 @@ echo ""
 
 echo "Copying some other files (README, CHANGELOG etc)"
 echo "------------------------------------------------"
-otherfiles="CHANGELOG.txt LICENSE.GPL INSTALL.txt README.txt"
+otherfiles="CHANGELOG.txt LICENSE.GPL INSTALL.txt readme.html"
 for i in $otherfiles
 do
     cp ./$i ./$targetDir/ &> /dev/null
@@ -426,6 +405,11 @@ do
         exit 1
     fi
 done
+cp ./doc/images/* ./$targetDir/doc/images/ &> /dev/null
+if [ $? -gt 0 ]; then
+    echo "ERROR: Could not copy files from directory doc/images !"
+    exit 1
+fi
 echo "Done"
 echo ""
 
@@ -466,4 +450,7 @@ echo ""
 
 
 echo "Everything completed successfully!"
+if [ "$WARNINGOCCURRED" = "true" ]; then
+    echo "====> But there were some warnings. Please check that!"
+fi
 #read -p "press any key to continue"

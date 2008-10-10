@@ -76,7 +76,7 @@ private:
     void dragEnterEvent(QDragEnterEvent *event);
     void dropEvent(QDropEvent *event);
 
-	QsciScintilla *txtedSourceCode;
+	QsciScintilla *qSciSourceCodeEditor;
 	UiguiSettings *settings;
 
     QString version;

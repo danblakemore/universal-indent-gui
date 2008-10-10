@@ -19,14 +19,6 @@ echo "calling qmake"
 echo "-------------"
 qmake
 
-echo calling lrelease release
-echo ------------------------
-lrelease ./translations/universalindent_de.ts -qm ./translations/universalindent_de.qm
-lrelease ./translations/universalindent_zh_TW.ts -qm ./translations/universalindent_zh_TW.qm
-lrelease ./translations/universalindent_ja_JP.ts -qm ./translations/universalindent_ja_JP.qm
-lrelease ./translations/universalindent_ru.ts -qm ./translations/universalindent_ru.qm
-lrelease ./translations/universalindent_uk.ts -qm ./translations/universalindent_uk.qm
-
 echo calling make release
 echo --------------------
 make release

@@ -36,9 +36,9 @@
  */
 MainWindow::MainWindow(QString file2OpenOnStart, QWidget *parent) : QMainWindow(parent) {
     // set the program version, revision and date, which is shown in the main window title and in the about dialog.
-    version = "1.0.0";
+    version = "1.0.1";
     revision = "800";
-    QDate buildDate(2008, 9, 29);
+    QDate buildDate(2008, 10, 9);
     buildDateStr = buildDate.toString("d. MMMM yyyy");
 
     // Init of some variables.
@@ -210,8 +210,7 @@ void MainWindow::initTextEditor() {
     // Create the QScintilla widget and add it to the layout.
     // Try and catch doesn't seem to catch the runtime error when starting UiGUI release with QScintilla debug lib and the other way around.
     try {
-        //TODO: rename to QScintillaSourceCodeEditor
-        txtedSourceCode = new QsciScintilla(this);
+        qSciSourceCodeEditor = new QsciScintilla(this);
     }
     catch (...) {
         QMessageBox::critical(this, "Error creating QScintilla text editor component!", 
@@ -220,17 +219,17 @@ void MainWindow::initTextEditor() {
     }
     infoQScintillaLoad.hide();
 
-	hboxLayout1->addWidget(txtedSourceCode);
+	hboxLayout1->addWidget(qSciSourceCodeEditor);
 
     // Make some settings for the QScintilla widget.
-    txtedSourceCode->setUtf8(true);
-    txtedSourceCode->setMarginLineNumbers(1, true);
-	txtedSourceCode->setMarginWidth(1, QString("10000") );
-	txtedSourceCode->setBraceMatching(txtedSourceCode->SloppyBraceMatch);
-	txtedSourceCode->setMatchedBraceForegroundColor( QColor("red") );
-	txtedSourceCode->setFolding(QsciScintilla::BoxedTreeFoldStyle);
-	txtedSourceCode->setAutoCompletionSource(QsciScintilla::AcsAll);
-	txtedSourceCode->setAutoCompletionThreshold(3);
+    qSciSourceCodeEditor->setUtf8(true);
+    qSciSourceCodeEditor->setMarginLineNumbers(1, true);
+	qSciSourceCodeEditor->setMarginWidth(1, QString("10000") );
+	qSciSourceCodeEditor->setBraceMatching(qSciSourceCodeEditor->SloppyBraceMatch);
+	qSciSourceCodeEditor->setMatchedBraceForegroundColor( QColor("red") );
+	qSciSourceCodeEditor->setFolding(QsciScintilla::BoxedTreeFoldStyle);
+	qSciSourceCodeEditor->setAutoCompletionSource(QsciScintilla::AcsAll);
+	qSciSourceCodeEditor->setAutoCompletionThreshold(3);
 
     // Handle if white space is set to be visible
 	bool whiteSpaceIsVisible = settings->getValueByName("WhiteSpaceIsVisible").toBool();
@@ -238,22 +237,22 @@ void MainWindow::initTextEditor() {
 
     // Handle the width of tabs in spaces
     int tabWidth = settings->getValueByName("TabWidth").toInt();
-    txtedSourceCode->setTabWidth(tabWidth);
+    qSciSourceCodeEditor->setTabWidth(tabWidth);
 
     // Remember a pointer to the scrollbar of the QScintilla widget used to keep
     // on the same line as before when turning preview on/off.
-    textEditVScrollBar = txtedSourceCode->verticalScrollBar();
+    textEditVScrollBar = qSciSourceCodeEditor->verticalScrollBar();
 
     // Add a column row indicator to the status bar.
     textEditLineColumnInfoLabel = new QLabel( tr("Line %1, Column %2").arg(1).arg(1) );
     statusbar->addPermanentWidget(textEditLineColumnInfoLabel);
-    connect( txtedSourceCode, SIGNAL(cursorPositionChanged(int, int)), this, SLOT(setStatusBarCursorPosInfo(int, int)) );
+    connect( qSciSourceCodeEditor, SIGNAL(cursorPositionChanged(int, int)), this, SLOT(setStatusBarCursorPosInfo(int, int)) );
 
     // Connect the text editor to dependent functions.
-    connect( txtedSourceCode, SIGNAL(textChanged()), this, SLOT(sourceCodeChangedHelperSlot()) );
-	connect( txtedSourceCode, SIGNAL(linesChanged()), this, SLOT(numberOfLinesChanged()) );
-    connect( settings, SIGNAL(tabWidth(int)), txtedSourceCode, SLOT(setTabWidth(int)) );
-    txtedSourceCode->setTabWidth( settings->getValueByName("TabWidth").toInt() );
+    connect( qSciSourceCodeEditor, SIGNAL(textChanged()), this, SLOT(sourceCodeChangedHelperSlot()) );
+	connect( qSciSourceCodeEditor, SIGNAL(linesChanged()), this, SLOT(numberOfLinesChanged()) );
+    connect( settings, SIGNAL(tabWidth(int)), qSciSourceCodeEditor, SLOT(setTabWidth(int)) );
+    qSciSourceCodeEditor->setTabWidth( settings->getValueByName("TabWidth").toInt() );
 }
 
 
@@ -262,7 +261,7 @@ void MainWindow::initTextEditor() {
  */
 void MainWindow::initSyntaxHighlighter() {
     // Create the highlighter.
-    highlighter = new UiguiHighlighter(txtedSourceCode);
+    highlighter = new UiguiHighlighter(qSciSourceCodeEditor);
 
     // Handle if syntax highlighting is enabled
 	bool syntaxHighlightningEnabled = settings->getValueByName("SyntaxHighlightningEnabled").toBool();
@@ -293,6 +292,12 @@ bool MainWindow::initApplicationLanguage() {
     // If no language was set, indicated by a negative index, use the system language.
     if ( languageIndex < 0 ) {
         languageShort = QLocale::system().name();
+
+        // Chinese and Japanese language consist of country and language code.
+        // For all others the language code will be cut off.
+        if ( languageShort.left(2) != "zh" && languageShort.left(2) != "ja" ) {
+            languageShort = languageShort.left(2);
+        }
 
         // If no translation file for the systems local language exist, fall back to English.
         if ( settings->getAvailableTranslations().indexOf(languageShort) < 0 ) {
@@ -426,7 +431,7 @@ void MainWindow::openSourceFileDialog(QString fileName) {
         textEditVScrollBar->setValue( textEditLastScrollPos );
 
         savedSourceContent = openedSourceFileContent;
-        txtedSourceCode->setModified( false );
+        qSciSourceCodeEditor->setModified( false );
         setWindowModified( false );
     }
 }
@@ -450,7 +455,7 @@ bool MainWindow::saveasSourceFileDialog(QAction *chosenEncodingAction) {
         return false;
     }
 
-    savedSourceContent = txtedSourceCode->text();
+    savedSourceContent = qSciSourceCodeEditor->text();
 
     currentSourceFile = fileName;
     QFile::remove(fileName);
@@ -472,7 +477,7 @@ bool MainWindow::saveasSourceFileDialog(QAction *chosenEncodingAction) {
     QFileInfo fileInfo(fileName);
     currentSourceFileExtension = fileInfo.suffix();
 
-    txtedSourceCode->setModified( false );
+    qSciSourceCodeEditor->setModified( false );
     setWindowModified( false );
 
     updateWindowTitle();
@@ -493,7 +498,7 @@ bool MainWindow::saveSourceFile() {
     else {
         QFile::remove(currentSourceFile);
         QFile outSrcFile(currentSourceFile);
-        savedSourceContent = txtedSourceCode->text();
+        savedSourceContent = qSciSourceCodeEditor->text();
         outSrcFile.open( QFile::ReadWrite | QFile::Text );
 
         // Get current encoding.
@@ -503,7 +508,7 @@ bool MainWindow::saveSourceFile() {
         outSrcStrm << savedSourceContent;
         outSrcFile.close();
 
-        txtedSourceCode->setModified( false );
+        qSciSourceCodeEditor->setModified( false );
         setWindowModified( false );
     }
     return true;
@@ -549,12 +554,12 @@ void MainWindow::updateSourceView()
     }
 
     if (previewToggled) {
-        disconnect( txtedSourceCode, SIGNAL(textChanged ()), this, SLOT(sourceCodeChangedHelperSlot()) );
+        disconnect( qSciSourceCodeEditor, SIGNAL(textChanged ()), this, SLOT(sourceCodeChangedHelperSlot()) );
 		bool textIsModified = isWindowModified();
-        txtedSourceCode->setText(sourceViewContent);
+        qSciSourceCodeEditor->setText(sourceViewContent);
 		setWindowModified(textIsModified);
         previewToggled = false;
-        connect( txtedSourceCode, SIGNAL(textChanged ()), this, SLOT(sourceCodeChangedHelperSlot()) );
+        connect( qSciSourceCodeEditor, SIGNAL(textChanged ()), this, SLOT(sourceCodeChangedHelperSlot()) );
     }
 
     textEditVScrollBar->setValue( textEditLastScrollPos );
@@ -612,7 +617,7 @@ void MainWindow::sourceCodeChangedSlot() {
     }
 
     // Get the content text of the text editor.
-    sourceFileContent = txtedSourceCode->text();
+    sourceFileContent = qSciSourceCodeEditor->text();
 	
     // Get the position of the cursor in the unindented text.
     if ( sourceFileContent.isEmpty() ) {
@@ -624,9 +629,9 @@ void MainWindow::sourceCodeChangedSlot() {
         enteredCharacter = sourceFileContent.at(cursorPosAbsolut);
     }
     else {
-        txtedSourceCode->getCursorPosition(&cursorLine, &cursorPos);
-        cursorPosAbsolut = txtedSourceCode->SendScintilla(QsciScintillaBase::SCI_GETCURRENTPOS);
-	    text = txtedSourceCode->text(cursorLine);
+        qSciSourceCodeEditor->getCursorPosition(&cursorLine, &cursorPos);
+        cursorPosAbsolut = qSciSourceCodeEditor->SendScintilla(QsciScintillaBase::SCI_GETCURRENTPOS);
+	    text = qSciSourceCodeEditor->text(cursorLine);
         if ( cursorPosAbsolut > 0 ) {
             cursorPosAbsolut--;
         }
@@ -654,8 +659,8 @@ void MainWindow::sourceCodeChangedSlot() {
         bool charFound = false;
 
         // Search forward
-        for ( cursorLine = saveCursorLine; cursorLine-saveCursorLine < 6 && cursorLine < txtedSourceCode->lines(); cursorLine++ ) {
-            text = txtedSourceCode->text(cursorLine);
+        for ( cursorLine = saveCursorLine; cursorLine-saveCursorLine < 6 && cursorLine < qSciSourceCodeEditor->lines(); cursorLine++ ) {
+            text = qSciSourceCodeEditor->text(cursorLine);
             while ( cursorPos < text.count() && enteredCharacter != text.at(cursorPos)) {
                 cursorPos++;
             }
@@ -670,19 +675,19 @@ void MainWindow::sourceCodeChangedSlot() {
 
         // If foward search did not find the character, search backward
         if ( !charFound ) {
-            text = txtedSourceCode->text(saveCursorLine);
+            text = qSciSourceCodeEditor->text(saveCursorLine);
             cursorPos = saveCursorPos;
             if ( cursorPos >= text.count() ) {
                 cursorPos = text.count() - 1;
             }
 
             for ( cursorLine = saveCursorLine; saveCursorLine-cursorLine < 6 && cursorLine >= 0; cursorLine-- ) {
-                text = txtedSourceCode->text(cursorLine);
+                text = qSciSourceCodeEditor->text(cursorLine);
                 while ( cursorPos >= 0 && enteredCharacter != text.at(cursorPos)) {
                     cursorPos--;
                 }
                 if ( cursorPos < 0 ) {
-                    cursorPos = txtedSourceCode->lineLength(cursorLine-1) - 1;
+                    cursorPos = qSciSourceCodeEditor->lineLength(cursorLine-1) - 1;
                 } 
                 else {
                     charFound = true;
@@ -693,16 +698,16 @@ void MainWindow::sourceCodeChangedSlot() {
 
         // If the character was found set its new cursor position...
         if ( charFound ) {
-            txtedSourceCode->setCursorPosition( cursorLine, cursorPos+1 );
+            qSciSourceCodeEditor->setCursorPosition( cursorLine, cursorPos+1 );
         }
         // ...if it was not found, set the previous cursor position.
         else {
-            txtedSourceCode->setCursorPosition( saveCursorLine, saveCursorPos+1 );
+            qSciSourceCodeEditor->setCursorPosition( saveCursorLine, saveCursorPos+1 );
         }
     }
     // set the previous cursor position.
     else if ( enteredCharacter == 10 ) {
-        txtedSourceCode->setCursorPosition( cursorLine, cursorPos );
+        qSciSourceCodeEditor->setCursorPosition( cursorLine, cursorPos );
     }
 
 
@@ -710,18 +715,18 @@ void MainWindow::sourceCodeChangedSlot() {
         sourceCodeChanged = false;
     }
 
-    if ( savedSourceContent == txtedSourceCode->text() ) {
-        txtedSourceCode->setModified( false );
+    if ( savedSourceContent == qSciSourceCodeEditor->text() ) {
+        qSciSourceCodeEditor->setModified( false );
         setWindowModified( false );
     }
     else {
-        txtedSourceCode->setModified( true ); // Has no effect according to QScintilla docs.
+        qSciSourceCodeEditor->setModified( true ); // Has no effect according to QScintilla docs.
         setWindowModified( true );
     }
 
     // Could set cursor this way and use normal linear search in text instead of columns and rows.
-    //txtedSourceCode->SendScintilla(QsciScintillaBase::SCI_SETCURRENTPOS, 50);
-    //txtedSourceCode->SendScintilla(QsciScintillaBase::SCI_SETANCHOR, 50);
+    //qSciSourceCodeEditor->SendScintilla(QsciScintillaBase::SCI_SETCURRENTPOS, 50);
+    //qSciSourceCodeEditor->SendScintilla(QsciScintillaBase::SCI_SETANCHOR, 50);
 }
 
 
@@ -735,7 +740,7 @@ void MainWindow::indentSettingsChangedSlot() {
     indentSettingsChanged = true;
 
 	int cursorLine, cursorPos;
-	txtedSourceCode->getCursorPosition(&cursorLine, &cursorPos);
+	qSciSourceCodeEditor->getCursorPosition(&cursorLine, &cursorPos);
 
     if ( toolBarWidget->cbLivePreview->isChecked() ) {
         callIndenter();
@@ -743,12 +748,12 @@ void MainWindow::indentSettingsChangedSlot() {
 
         updateSourceView();
         if (sourceCodeChanged) {
-/*            savedCursor = txtedSourceCode->textCursor();
-            if ( cursorPos >= txtedSourceCode->text().count() ) {
-                cursorPos = txtedSourceCode->text().count() - 1;
+/*            savedCursor = qSciSourceCodeEditor->textCursor();
+            if ( cursorPos >= qSciSourceCodeEditor->text().count() ) {
+                cursorPos = qSciSourceCodeEditor->text().count() - 1;
             }
             savedCursor.setPosition( cursorPos );
-            txtedSourceCode->setTextCursor( savedCursor );
+            qSciSourceCodeEditor->setTextCursor( savedCursor );
 */
             sourceCodeChanged = false;
         }
@@ -758,12 +763,12 @@ void MainWindow::indentSettingsChangedSlot() {
         updateSourceView();
     }
 
-    if ( savedSourceContent == txtedSourceCode->text() ) {
-        txtedSourceCode->setModified( false );
+    if ( savedSourceContent == qSciSourceCodeEditor->text() ) {
+        qSciSourceCodeEditor->setModified( false );
         setWindowModified( false );
     }
     else {
-        txtedSourceCode->setModified( true ); // Has no effect according to QScintilla docs.
+        qSciSourceCodeEditor->setModified( true ); // Has no effect according to QScintilla docs.
         setWindowModified( true );
     }
 }
@@ -779,30 +784,30 @@ void MainWindow::previewTurnedOnOff(bool turnOn) {
     previewToggled = true;
 
 	int cursorLine, cursorPos;
-	txtedSourceCode->getCursorPosition(&cursorLine, &cursorPos);
+	qSciSourceCodeEditor->getCursorPosition(&cursorLine, &cursorPos);
 
     if ( turnOn && (indentSettingsChanged || sourceCodeChanged) ) {
         callIndenter();
     }
     updateSourceView();
     if (sourceCodeChanged) {
-/*        savedCursor = txtedSourceCode->textCursor();
-        if ( cursorPos >= txtedSourceCode->text().count() ) {
-            cursorPos = txtedSourceCode->text().count() - 1;
+/*        savedCursor = qSciSourceCodeEditor->textCursor();
+        if ( cursorPos >= qSciSourceCodeEditor->text().count() ) {
+            cursorPos = qSciSourceCodeEditor->text().count() - 1;
         }
         savedCursor.setPosition( cursorPos );
-        txtedSourceCode->setTextCursor( savedCursor );
+        qSciSourceCodeEditor->setTextCursor( savedCursor );
 */
         sourceCodeChanged = false;
     }
     indentSettingsChanged = false;
 
-    if ( savedSourceContent == txtedSourceCode->text() ) {
-        txtedSourceCode->setModified( false );
+    if ( savedSourceContent == qSciSourceCodeEditor->text() ) {
+        qSciSourceCodeEditor->setModified( false );
         setWindowModified( false );
     }
     else {
-        txtedSourceCode->setModified( true );
+        qSciSourceCodeEditor->setModified( true );
         setWindowModified( true );
     }
 }
@@ -834,7 +839,7 @@ void MainWindow::exportToPDF() {
         QsciPrinter printer(QPrinter::HighResolution);
         printer.setOutputFormat(QPrinter::PdfFormat);
         printer.setOutputFileName(fileName);
-		printer.printRange(txtedSourceCode);
+		printer.printRange(qSciSourceCodeEditor);
     }
 }
 
@@ -854,7 +859,7 @@ void MainWindow::exportToHTML() {
 
     if ( !fileName.isEmpty() ) {
         // Create a document from which HTML code can be generated.
-        QTextDocument sourceCodeDocument( txtedSourceCode->text() );
+        QTextDocument sourceCodeDocument( qSciSourceCodeEditor->text() );
         sourceCodeDocument.setDefaultFont( QFont("Courier", 12, QFont::Normal) );
         QString sourceCodeAsHTML = sourceCodeDocument.toHtml();
         // To ensure that empty lines are kept in the HTML code make this replacement.
@@ -1108,8 +1113,8 @@ void MainWindow::encodingChanged(QAction* encodingAction) {
             fileContent = inSrcStrm.readAll();
             QApplication::restoreOverrideCursor();
             inSrcFile.close();
-            txtedSourceCode->setText( fileContent );
-			txtedSourceCode->setModified(false);
+            qSciSourceCodeEditor->setText( fileContent );
+			qSciSourceCodeEditor->setModified(false);
         }
     }
 }
@@ -1142,10 +1147,10 @@ void MainWindow::createHighlighterMenu() {
  */
 void MainWindow::setWhiteSpaceVisibility(bool visible) {
 	if ( visible ) {
-		txtedSourceCode->setWhitespaceVisibility(QsciScintilla::WsVisible);
+		qSciSourceCodeEditor->setWhitespaceVisibility(QsciScintilla::WsVisible);
 	}
 	else {
-		txtedSourceCode->setWhitespaceVisibility(QsciScintilla::WsInvisible);
+		qSciSourceCodeEditor->setWhitespaceVisibility(QsciScintilla::WsInvisible);
 	}
 }
 
@@ -1155,8 +1160,8 @@ void MainWindow::setWhiteSpaceVisibility(bool visible) {
 */
 void MainWindow::numberOfLinesChanged() {
 	QString lineNumbers;
-	lineNumbers.setNum( txtedSourceCode->lines()*10 );
-	txtedSourceCode->setMarginWidth(1, lineNumbers);
+	lineNumbers.setNum( qSciSourceCodeEditor->lines()*10 );
+	qSciSourceCodeEditor->setMarginWidth(1, lineNumbers);
 }
 
 
@@ -1202,7 +1207,7 @@ void MainWindow::changeEvent(QEvent *event) {
 
         // Translate the line and column indicators in the statusbar.
         int line, column;
-        txtedSourceCode->getCursorPosition( &line, &column );
+        qSciSourceCodeEditor->getCursorPosition( &line, &column );
         setStatusBarCursorPosInfo( line, column );
     } 
     else {

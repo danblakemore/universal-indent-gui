@@ -3,8 +3,8 @@
 echo Making some environment settings
 echo --------------------------------
 rem set QTDIR=%QTDIR%_static
-set QTDIR=C:\Programmierung\qt.4.4.3_gpl_static
-rem set QTDIR=F:\Qt\qt.4.4.0_gpl_static
+::set QTDIR=C:\Programmierung\qt.4.4.3_gpl_static
+set QTDIR=F:\Qt\qt.4.4.3_gpl_static
 set PATH=%QTDIR%\bin
 set PATH=%PATH%;D:\Programme\Informat\MingW\bin;D:\Programme\Tools\7-Zip
 set PATH=%QTDIR%\bin;C:\Programmierung\MingW\bin;%PATH%;C:\Programme\7-Zip
@@ -13,11 +13,12 @@ set QMAKESPEC=win32-g++
 echo Done.
 echo.
 
+set warningsoccurred=false
 
 echo Calling qmake
 echo -------------
-rem qmake
-rem IF ERRORLEVEL 1 goto ERROR
+qmake
+IF ERRORLEVEL 1 goto ERROR
 echo Done.
 echo.
 
@@ -56,11 +57,12 @@ echo Copying the indenter executables and example file to the release indenters 
 echo ------------------------------------------------------------------------------
 FOR %%A IN ( astyle.exe, astyle.html, bcpp.exe, bcpp.txt, csstidy.exe, gc.exe, gc.txt, indent.exe, libiconv-2.dll, libintl-2.dll, indent.html, JsDecoder.js, perltidy, PerlTidyLib.pm, phpStylist.php, phpStylist.txt, rbeautify.rb, ruby_formatter.rb, shellindent.awk, tidy.exe, tidy.html, uncrustify.exe, uncrustify.txt, xmlindent.exe, xmlindent.txt ) DO (
     if not exist .\indenters\%%A (
-        echo File .\indenters\%%A not found!
-        goto ERROR
-    )
-    copy .\indenters\%%A .\UniversalIndentGUI_win32\indenters\ >NUL
-    IF ERRORLEVEL 1 goto ERROR
+        echo WARNING!! File .\indenters\%%A not found!
+		set warningsoccurred=true
+    ) else (
+        copy .\indenters\%%A .\UniversalIndentGUI_win32\indenters\ >NUL
+        IF ERRORLEVEL 1 goto ERROR
+	)
 )
 echo Done.
 echo.
@@ -135,6 +137,7 @@ echo.
 
 :SUCCESS
 echo Everything completed successfull!
+IF "%warningsoccurred%" == "true" echo "===> But there were some warnings. Please have a look."
 goto END
 
 :ERROR

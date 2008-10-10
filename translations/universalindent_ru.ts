@@ -590,32 +590,32 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1102"/>
+        <location filename="../src/mainwindow.cpp" line="1105"/>
         <source>Error opening file</source>
         <translation>Ошибка открытия файла</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1102"/>
+        <location filename="../src/mainwindow.cpp" line="1105"/>
         <source>Cannot read the file </source>
         <translation>Невозможно прочитать файл </translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="441"/>
+        <location filename="../src/mainwindow.cpp" line="447"/>
         <source>Supported by indenter</source>
         <translation>Поддерживается отступатором</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="442"/>
+        <location filename="../src/mainwindow.cpp" line="448"/>
         <source>All files</source>
         <translation>Все файлы</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="406"/>
+        <location filename="../src/mainwindow.cpp" line="412"/>
         <source>Choose source code file</source>
         <translation>Выбрать файл исходного кода</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="445"/>
+        <location filename="../src/mainwindow.cpp" line="451"/>
         <source>Save source code file</source>
         <translation>Сохранить файл исходного кода</translation>
     </message>
@@ -630,34 +630,34 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Выбрать конфигурационный файл отступатора</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="823"/>
+        <location filename="../src/mainwindow.cpp" line="829"/>
         <source>PDF Document</source>
         <translation>Документ PDF</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="852"/>
+        <location filename="../src/mainwindow.cpp" line="858"/>
         <source>Export source code file</source>
         <translation>Экспорт файла исходного кода</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="845"/>
+        <location filename="../src/mainwindow.cpp" line="851"/>
         <source>HTML Document</source>
         <translation>Документ HTML</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="987"/>
+        <location filename="../src/mainwindow.cpp" line="990"/>
         <source>Modified code</source>
         <translation>Измененный код</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="989"/>
+        <location filename="../src/mainwindow.cpp" line="992"/>
         <source>The source code has been modified.
 Do you want to save your changes?</source>
         <translation>Исходный код изменен.
 Хотите сохранить изменения?</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1187"/>
+        <location filename="../src/mainwindow.cpp" line="1190"/>
         <source>Reopen the currently opened source code file by using the text encoding scheme </source>
         <translation>Повторно открыть текущий открытый файл исходного кода, используя схему кодирования текста </translation>
     </message>
@@ -672,7 +672,7 @@ Do you want to save your changes?</source>
         <translation type="obsolete">Не существуют ini-файлы отступатора в папке &quot;</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1201"/>
+        <location filename="../src/mainwindow.cpp" line="1204"/>
         <source>Set the syntax highlightning to </source>
         <translation>Задать подсветку синтаксиса на </translation>
     </message>
@@ -687,22 +687,22 @@ Do you want to save your changes?</source>
         <translation type="obsolete">Сохранить скрипт оболочки</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1339"/>
+        <location filename="../src/mainwindow.cpp" line="1347"/>
         <source>File no longer exists</source>
         <translation>Файл больше не существует</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1339"/>
+        <location filename="../src/mainwindow.cpp" line="1347"/>
         <source>The file %1 in the list of recently opened files does no longer exist.</source>
         <translation>Файл %1 из списка недавно открытых файлов больше не существует.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1193"/>
+        <location filename="../src/mainwindow.cpp" line="1196"/>
         <source>Save the currently opened source code file by using the text encoding scheme </source>
         <translation>Сохранить текущий открытый файл исходного кода с использованием схемы кодирования текста(sp)</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1387"/>
+        <location filename="../src/mainwindow.cpp" line="1395"/>
         <source>Line %1, Column %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -745,7 +745,7 @@ Do you want to save your changes?</source>
         <translation>Сохранить исходный файл с другой кодировкой как</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="404"/>
+        <location filename="../src/mainwindow.ui" line="410"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
@@ -840,122 +840,122 @@ Do you want to save your changes?</source>
         <translation type="obsolete">Alt+S</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="238"/>
+        <location filename="../src/mainwindow.ui" line="241"/>
         <source>About UniversalIndentGUI</source>
         <translation>О UniversalIndentGUI</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="241"/>
+        <location filename="../src/mainwindow.ui" line="244"/>
         <source>Shows info about UniversalIndentGUI.</source>
         <translation>Показывает информацию о UniversalIndentGUI.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="250"/>
+        <location filename="../src/mainwindow.ui" line="253"/>
         <source>Exit</source>
         <translation>Выход</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="253"/>
+        <location filename="../src/mainwindow.ui" line="256"/>
         <source>Quits the UniversalIndentGUI.</source>
         <translation>Выходит из UniversalIndentGUI.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="256"/>
+        <location filename="../src/mainwindow.ui" line="259"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="265"/>
+        <location filename="../src/mainwindow.ui" line="268"/>
         <source>PDF</source>
         <translation>PDF</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="268"/>
+        <location filename="../src/mainwindow.ui" line="271"/>
         <source>Export the currently visible source code as PDF document</source>
         <translation>Экспорт текущего видимого исходного кода в документ PDF</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="277"/>
+        <location filename="../src/mainwindow.ui" line="280"/>
         <source>HTML</source>
         <translation>HTML</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="280"/>
+        <location filename="../src/mainwindow.ui" line="283"/>
         <source>Export the currently visible source code as HTML document</source>
         <translation>Экспорт текущего видимого исходного кода в документ HTML</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="295"/>
+        <location filename="../src/mainwindow.ui" line="298"/>
         <source>Parameter Tooltips</source>
         <translation>Подсказки параметра</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="298"/>
+        <location filename="../src/mainwindow.ui" line="301"/>
         <source>If checked, tool tips will show up if the mouse cursor remains over an indenter parameter for a while.</source>
         <translation>Если выбрано, будут появляться подсказки, если курсор мыши задерживается на некоторое время над параметром.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="313"/>
+        <location filename="../src/mainwindow.ui" line="316"/>
         <source>Live Indent Preview</source>
         <translation>Живой просмотр отступа</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="316"/>
+        <location filename="../src/mainwindow.ui" line="319"/>
         <source>Ctrl+L</source>
         <translation>Ctrl+L</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="337"/>
+        <location filename="../src/mainwindow.ui" line="340"/>
         <source>Syntax Highlighting</source>
         <translation>Подсветка синтаксиса</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="340"/>
+        <location filename="../src/mainwindow.ui" line="343"/>
         <source>Enables or disables syntax highlighting for the source code.</source>
         <translation>Включает или отключает подсветку синтаксиса для исходного кода.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="343"/>
+        <location filename="../src/mainwindow.ui" line="346"/>
         <source>By enabling special key words of the source code are highlighted.</source>
         <translation>При включении подсвечиваются специальные ключевые слова исходного кода.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="357"/>
+        <location filename="../src/mainwindow.ui" line="363"/>
         <source>White Space Visible</source>
         <translation>Видимые пробелы</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="360"/>
+        <location filename="../src/mainwindow.ui" line="366"/>
         <source>Set white space visible</source>
         <translation>Задать видимые пробелы</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="363"/>
+        <location filename="../src/mainwindow.ui" line="369"/>
         <source>Enables or disables diplaying of white space characters in the editor.</source>
         <translation>Включает или выключает показ символов пробелов в редакторе.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="380"/>
+        <location filename="../src/mainwindow.ui" line="386"/>
         <source>Auto Open Last File</source>
         <translation>Автооткрытие последнего файла</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="383"/>
+        <location filename="../src/mainwindow.ui" line="389"/>
         <source>Auto open last source file on startup</source>
         <translation>Автооткрытие последнего исходного файла при загрузке</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="386"/>
+        <location filename="../src/mainwindow.ui" line="392"/>
         <source>If selected opens last source code file on startup</source>
         <translation>Если выбрано, при загрузке открывается последний файл исходного кода</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="407"/>
+        <location filename="../src/mainwindow.ui" line="413"/>
         <source>Opens the settings dialog</source>
         <translation>Открывает диалог настроек</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="410"/>
+        <location filename="../src/mainwindow.ui" line="416"/>
         <source>Opens the settings dialog, to set language etc.</source>
         <translation>Открывает диалог настроек для установки языка, и т. д.</translation>
     </message>
@@ -970,17 +970,17 @@ Do you want to save your changes?</source>
         <translation type="obsolete">Создать скрипт оболочки, вызывающий текущий выбранный отступатор для форматирования по параметрам данного файла с текущими настройками отступов</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="419"/>
+        <location filename="../src/mainwindow.ui" line="425"/>
         <source>Check for update</source>
         <translation>Проверить обновление</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="425"/>
+        <location filename="../src/mainwindow.ui" line="431"/>
         <source>Checks online whether a new version of UniversalIndentGUI is available.</source>
         <translation>Проверить в сети доступность новой версии UniversalIndentGUI.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="434"/>
+        <location filename="../src/mainwindow.ui" line="440"/>
         <source>Clear Recently Opened List</source>
         <translation>Очистить список недавно открытых</translation>
     </message>
@@ -990,24 +990,34 @@ Do you want to save your changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="301"/>
+        <location filename="../src/mainwindow.ui" line="304"/>
         <source>DONOTTRANSLATE:IndenterParameterTooltipsEnabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="346"/>
+        <location filename="../src/mainwindow.ui" line="352"/>
         <source>DONOTTRANSLATE:SyntaxHighlightningEnabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="369"/>
+        <location filename="../src/mainwindow.ui" line="375"/>
         <source>DONOTTRANSLATE:WhiteSpaceIsVisible</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="392"/>
+        <location filename="../src/mainwindow.ui" line="398"/>
         <source>DONOTTRANSLATE:LoadLastOpenedFileOnStartup</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="232"/>
+        <source>Ctrl+Shift+S</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="349"/>
+        <source>Ctrl+H</source>
+        <translation type="unfinished">Ctrl+H</translation>
     </message>
 </context>
 <context>
@@ -1365,32 +1375,32 @@ Do you want to go to the download website?</source>
         <translation type="obsolete">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg 2; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;Включает и выключает подсветку исходного&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;кода, показанного ниже. (Все еще нужно доработать эффективность) (Strg+H)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/toolBarWidget.ui" line="56"/>
+        <location filename="../src/toolBarWidget.ui" line="59"/>
         <source>Syntax Highlight</source>
         <translation>Подсветка синтаксиса</translation>
     </message>
     <message>
-        <location filename="../src/toolBarWidget.ui" line="63"/>
+        <location filename="../src/toolBarWidget.ui" line="66"/>
         <source>Ctrl+H</source>
         <translation>Ctrl+H</translation>
     </message>
     <message>
-        <location filename="../src/toolBarWidget.ui" line="89"/>
+        <location filename="../src/toolBarWidget.ui" line="92"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Shows info about UniversalIndentGUI&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Показывает информацию о UniversalIndentGUI&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/toolBarWidget.ui" line="92"/>
+        <location filename="../src/toolBarWidget.ui" line="95"/>
         <source>About</source>
         <translation>О</translation>
     </message>
     <message>
-        <location filename="../src/toolBarWidget.ui" line="103"/>
+        <location filename="../src/toolBarWidget.ui" line="106"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Quits the UniversalIndentGUI&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Выходит из UniversalIndentGUI&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/toolBarWidget.ui" line="106"/>
+        <location filename="../src/toolBarWidget.ui" line="109"/>
         <source>Exit</source>
         <translation>Выход</translation>
     </message>
@@ -1405,14 +1415,19 @@ Do you want to go to the download website?</source>
         <translation type="obsolete">Ведет к онлайн-руководству текущего выбранного отступатора, где можна найти дальнейшую помощь по возможным параметрам.</translation>
     </message>
     <message>
-        <location filename="../src/toolBarWidget.ui" line="69"/>
+        <location filename="../src/toolBarWidget.ui" line="72"/>
         <source>DONOTTRANSLATE:SyntaxHighlightningEnabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/toolBarWidget.ui" line="53"/>
+        <location filename="../src/toolBarWidget.ui" line="56"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg 2; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;Enables and disables the highlightning of the source&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;code shown below. (Still needs some performance improvements) (Ctrl+H)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/toolBarWidget.ui" line="49"/>
+        <source>Ctrl+L</source>
+        <translation type="unfinished">Ctrl+L</translation>
     </message>
 </context>
 </TS>
