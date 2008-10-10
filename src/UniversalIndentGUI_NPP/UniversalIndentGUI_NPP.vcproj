@@ -216,11 +216,19 @@
 				>
 			</File>
 			<File
+				RelativePath="..\templateBatchScript.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\uiguierrormessage.cpp"
 				>
 			</File>
 			<File
 				RelativePath="..\uiguiIniFileParser.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\uiguisettings.cpp"
 				>
 			</File>
 			<File
@@ -277,6 +285,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\templateBatchScript.h"
+				>
+			</File>
+			<File
 				RelativePath="..\uiguierrormessage.h"
 				>
 			</File>
@@ -290,6 +302,10 @@
 						Name="VCCustomBuildTool"
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\uiguisettings.h"
+				>
 			</File>
 			<File
 				RelativePath=".\UniversalIndentGUI_NPP.h"
@@ -478,6 +494,10 @@
 			</File>
 			<File
 				RelativePath="$(OutDir)\tmp\moc\moc_uiguierrormessage.cpp"
+				>
+			</File>
+			<File
+				RelativePath="$(OutDir)\tmp\moc\moc_uiguisettings.cpp"
 				>
 			</File>
 			<File
