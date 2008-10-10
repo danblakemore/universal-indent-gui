@@ -228,6 +228,9 @@
    <property name="statusTip" >
     <string>Opens a file dialog to save the currently shown source code.</string>
    </property>
+   <property name="shortcut" >
+    <string>Ctrl+Shift+S</string>
+   </property>
   </action>
   <action name="actionAbout_UniversalIndentGUI" >
    <property name="icon" >
@@ -341,6 +344,9 @@
    </property>
    <property name="statusTip" >
     <string>By enabling special key words of the source code are highlighted.</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+H</string>
    </property>
    <property name="connectedSettingName" stdset="0" >
     <string>DONOTTRANSLATE:SyntaxHighlightningEnabled</string>

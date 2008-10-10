@@ -45,6 +45,9 @@
       <iconset resource="../resources/Icons.qrc" >
        <normaloff>:/mainWindow/live-preview.png</normaloff>:/mainWindow/live-preview.png</iconset>
      </property>
+     <property name="shortcut" >
+      <string>Ctrl+L</string>
+     </property>
     </widget>
    </item>
    <item>
