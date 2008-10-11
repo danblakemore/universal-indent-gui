@@ -1,4 +1,14 @@
-2008-09-30 Version 1.0.0
+2008-10-14 Version 1.0.1
+[add] Feature Request ID 1867563 : Added support for the indenter XML Indent.
+[add] Support for French language. Thanks to Erwan "leg".
+[change] Some small translation corrections.
+[change] Improved the "new version available" check.
+[change] On Mac and Linux a one pixel frame was shown around the whole screen when about dialog is visible. Removed that.
+[fix] The distributed version of GNU Indent was using a misspelled configuration file, thus lieve preview didn't correctly work. Using original GNU Win32 version now.
+[fix] In version 1.0.0 the creation of batch files for indenters undet Windows always created a bash/shell script instead of batch.
+[fix] Keyboard shortcuts for enabling/disabling "Live Preview" and syntax highlighting didn't work.
+
+2008-09-30 Version 1.0.0 non public release. Only presented for Qt Centre programming contest.
 [add] Made it possible to start UiGUI in different modes via parameters: Normal (full UI), plugin (only indenter menu, server active), server only.
 [add] Added a server functionality. Future plan is to let UiGUI run also as server so plugins from other editors can send indent requests over TCP/IP to it. Very early state right now.
 [add] Created a plugin for Notepad++. This plugin shows the indenter parameter menu and lets the user indent the selected or whole text. Live preview works also. Still has some eventloop graphic update problems
