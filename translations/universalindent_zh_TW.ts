@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="zh_TW">
+<defaultcodec></defaultcodec>
 <context>
     <name>AboutDialog</name>
     <message>
@@ -127,7 +128,7 @@ Credits:</source>
     <message>
         <location filename="../src/aboutdialog.ui" line="166"/>
         <source>          OK          </source>
-        <translation type="unfinished"></translation>
+        <translation>確定</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.ui" line="93"/>
@@ -136,7 +137,11 @@ Credits:</source>
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:12pt;&quot;&gt;Version %1 rev.%2, %3 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:12pt;&quot;&gt;Version %1 rev.%2, %3 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.ui" line="119"/>
@@ -150,7 +155,16 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;&quot;&gt;License: UniversalIndentGui is released under the GPL 2. For details read the included file LICENSE.GPL visit &lt;a href=&quot;http://www.gnu.org/licenses/gpl.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.gnu.org/licenses/gpl.html&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;&quot;&gt;Credits:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;;&quot;&gt;這是一套跨平台、支援多種程式碼重整 / 美化 / 縮排工具的圖形化使用者介面，GreatCode、AStyle (Artistic Styler)、GNU Indent、BCPP 及其他工具皆在支援名單裡頭。本工具最大的特色在於可以讓你即時預覽原始程式碼重整之後的結果。&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;&quot;&gt;&lt;br /&gt;開發者：&lt;a href=&quot;http://www.thomas-schweitzer.de&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Thomas Schweitzer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;&quot;&gt;專案首頁：&lt;a href=&quot;http://universalindent.sourceforge.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://universalindent.sourceforge.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;&quot;&gt;授權協定：UniversalIndentGui 採用 GPL 2 授權。詳情請參閱附帶的 LICENSE.GPL 文件，或拜訪 &lt;a href=&quot;http://www.gnu.org/licenses/gpl.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.gnu.org/licenses/gpl.html&lt;/span&gt;&lt;/a&gt; 取得進一步的資訊。&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;&quot;&gt;致謝名單：&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -637,22 +651,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/indenthandler.cpp" line="1349"/>
         <source>Reset indenter parameters</source>
-        <translation type="unfinished"></translation>
+        <translation>恢復為預設值</translation>
     </message>
     <message>
         <location filename="../src/indenthandler.cpp" line="1351"/>
         <source>Resets all indenter parameters to the default values.</source>
-        <translation type="unfinished"></translation>
+        <translation>將所有重整參數設定恢復為預設值。</translation>
     </message>
     <message>
         <location filename="../src/indenthandler.cpp" line="1460"/>
         <source>Really reset parameters?</source>
-        <translation type="unfinished"></translation>
+        <translation>確定要恢復為預設值？</translation>
     </message>
     <message>
         <location filename="../src/indenthandler.cpp" line="1460"/>
         <source>Do you really want to reset the indenter parameters to the default values?</source>
-        <translation type="unfinished"></translation>
+        <translation>你真的要將參數恢復為預設值嗎？</translation>
     </message>
 </context>
 <context>
@@ -841,7 +855,7 @@ Do you want to go to the download website?</source>
     <message>
         <location filename="../src/mainwindow.cpp" line="1395"/>
         <source>Line %1, Column %2</source>
-        <translation type="unfinished"></translation>
+        <translation>列 %1，行 %2</translation>
     </message>
 </context>
 <context>
@@ -1124,37 +1138,37 @@ Do you want to go to the download website?</source>
     <message>
         <location filename="../src/mainwindow.ui" line="138"/>
         <source>Indenter Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>重整工具設定</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="304"/>
         <source>DONOTTRANSLATE:IndenterParameterTooltipsEnabled</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="352"/>
         <source>DONOTTRANSLATE:SyntaxHighlightningEnabled</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="375"/>
         <source>DONOTTRANSLATE:WhiteSpaceIsVisible</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="398"/>
         <source>DONOTTRANSLATE:LoadLastOpenedFileOnStartup</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="232"/>
         <source>Ctrl+Shift+S</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+S</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="349"/>
         <source>Ctrl+H</source>
-        <translation type="unfinished">Ctrl+H</translation>
+        <translation>Ctrl+H</translation>
     </message>
 </context>
 <context>
@@ -1312,42 +1326,42 @@ Do you want to go to the download website?</source>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="82"/>
         <source>DONOTTRANSLATE:Language</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="110"/>
         <source>DONOTTRANSLATE:LoadLastOpenedFileOnStartup</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="123"/>
         <source>DONOTTRANSLATE:IndenterParameterTooltipsEnabled</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="166"/>
         <source>DONOTTRANSLATE:RecentlyOpenedListSize</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="194"/>
         <source>DONOTTRANSLATE:CheckForUpdate</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="237"/>
         <source>DONOTTRANSLATE:WhiteSpaceIsVisible</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="283"/>
         <source>DONOTTRANSLATE:TabWidth</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="341"/>
         <source>DONOTTRANSLATE:SyntaxHighlightningEnabled</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -1406,7 +1420,7 @@ Do you want to go to the download website?</source>
     <message>
         <location filename="../src/uiguierrormessage.cpp" line="40"/>
         <source>Show this message again</source>
-        <translation type="unfinished">下次繼續顯示這個訊息</translation>
+        <translation>下次繼續顯示這個訊息</translation>
     </message>
 </context>
 <context>
@@ -1414,12 +1428,12 @@ Do you want to go to the download website?</source>
     <message>
         <location filename="../src/UiguiIndentServer.cpp" line="61"/>
         <source>UiGUI Server</source>
-        <translation type="unfinished"></translation>
+        <translation>UiGUI 伺服器</translation>
     </message>
     <message>
         <location filename="../src/UiguiIndentServer.cpp" line="61"/>
         <source>Unable to start the server: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>無法連到伺服器：%1。</translation>
     </message>
 </context>
 <context>
@@ -1427,42 +1441,42 @@ Do you want to go to the download website?</source>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="234"/>
         <source>English</source>
-        <translation type="unfinished"></translation>
+        <translation>英文</translation>
     </message>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="240"/>
         <source>German</source>
-        <translation type="unfinished"></translation>
+        <translation>德文</translation>
     </message>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="243"/>
         <source>Chinese (Taiwan)</source>
-        <translation type="unfinished"></translation>
+        <translation>繁體中文（台灣）</translation>
     </message>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="246"/>
         <source>Japanese</source>
-        <translation type="unfinished"></translation>
+        <translation>日文</translation>
     </message>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="249"/>
         <source>Russian</source>
-        <translation type="unfinished">俄文</translation>
+        <translation>俄文</translation>
     </message>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="252"/>
         <source>Ukrainian</source>
-        <translation type="unfinished">烏克蘭文</translation>
+        <translation>烏克蘭文</translation>
     </message>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="255"/>
         <source>Unknown language mnemonic </source>
-        <translation type="unfinished">未知語言 </translation>
+        <translation>未知語言 </translation>
     </message>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="237"/>
         <source>French</source>
-        <translation type="unfinished"></translation>
+        <translation>法文</translation>
     </message>
 </context>
 <context>
@@ -1587,17 +1601,17 @@ Do you want to go to the download website?</source>
     <message>
         <location filename="../src/toolBarWidget.ui" line="72"/>
         <source>DONOTTRANSLATE:SyntaxHighlightningEnabled</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/toolBarWidget.ui" line="56"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg 2; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;Enables and disables the highlightning of the source&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;code shown below. (Still needs some performance improvements) (Ctrl+H)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg 2; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;啟用或停用程式碼高亮度功能。效能尚待改進。(Ctrl+H)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/toolBarWidget.ui" line="49"/>
         <source>Ctrl+L</source>
-        <translation type="unfinished">Ctrl+L</translation>
+        <translation>Ctrl+L</translation>
     </message>
 </context>
 </TS>
