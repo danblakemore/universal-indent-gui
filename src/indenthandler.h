@@ -63,7 +63,8 @@ public:
 
     QString generateCommandlineCall();
     QString callIndenter(QString sourceCode, QString inputFileExtension);
-    void loadConfigFile(QString filePathName, bool resetValues = false);
+    bool loadConfigFile(QString filePathName);
+    void resetToDefaultValues();
     QStringList getAvailableIndenters();
     QString getPossibleIndenterFileExtensions();
     QString getParameterString();

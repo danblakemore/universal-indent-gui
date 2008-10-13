@@ -140,8 +140,8 @@ IndentHandler::IndentHandler(int indenterID, QWidget *mainWindow, QWidget *paren
         // Find out how the indenter can be executed.
         createIndenterCallString();
 
-        // Load the users last settings made for this indenter or use default values if file not found.
-        loadConfigFile( settingsDirctoryStr + "/" + indenterFileName + ".cfg", true );
+        // Load the users last settings made for this indenter.
+        loadConfigFile( settingsDirctoryStr + "/" + indenterFileName + ".cfg" );
 
         // Fill the indenter selection combo box with the list of available indenters.
         if ( !getAvailableIndenters().isEmpty() ) {
@@ -590,11 +590,8 @@ void IndentHandler::saveConfigFile(QString filePathName, QString paramString) {
 
 /*!
     \brief Load the config file for the indenter and apply the settings made there.
-
-    Optionally this function can be used to reset everything to the indenter default values
-    if the \a filePathName is left empty and \a loadDefaultValues set true.
  */
-void IndentHandler::loadConfigFile(QString filePathName, bool loadDefaultValues) {
+bool IndentHandler::loadConfigFile(QString filePathName) {
 
     QFile cfgFile(filePathName);
     int index;
@@ -603,20 +600,19 @@ void IndentHandler::loadConfigFile(QString filePathName, bool loadDefaultValues)
     QString paramValueStr;
     QString cfgFileData = "";
 
-    // If the to be loaded config file does not exist and loadDefaultValues is false, 
-    // leave all values as they are and return.
-    if ( !cfgFile.exists() && loadDefaultValues == false ) {
-        return;
+    // If the to be loaded config file does not exist leave all values as they are and return false.
+    if ( !cfgFile.exists() ) {
+        return false;
     }
-
-    if ( cfgFile.exists() ) {
-        // open the config file and read all data
+    // else if the to be read config file exists, retrieve its whole content.
+    else {
+        // Open the config file and read all data
         cfgFile.open( QFile::ReadOnly | QFile::Text );
         cfgFileData = cfgFile.readAll();
         cfgFile.close();
     }
 
-    // search for name of each boolean parameter and set its value if found
+    // Search for name of each boolean parameter and set its value if found.
     foreach (ParamBoolean pBoolean, paramBooleans) {
 
         // boolean value that will be assigned to the checkbox
@@ -646,7 +642,6 @@ void IndentHandler::loadConfigFile(QString filePathName, bool loadDefaultValues)
         }
         // the false parameter string is longer than the true string
         else {
-
             // search for the false string
             index = cfgFileData.indexOf( pBoolean.falseString, 0, Qt::CaseInsensitive );
             // if false string found set the parameter value to false
@@ -669,7 +664,7 @@ void IndentHandler::loadConfigFile(QString filePathName, bool loadDefaultValues)
         pBoolean.checkBox->setChecked(paramValue);
     }
 
-    // search for name of each numeric parameter and set the value found behind it
+    // Search for name of each numeric parameter and set the value found behind it.
     foreach (ParamNumeric pNumeric, paramNumerics) {
         index = cfgFileData.indexOf( pNumeric.paramCallName, 0, Qt::CaseInsensitive );
         // parameter was found in config file
@@ -693,13 +688,12 @@ void IndentHandler::loadConfigFile(QString filePathName, bool loadDefaultValues)
         // parameter was not found in config file
         else {
             int defaultValue = indenterSettings->value(pNumeric.paramName + "/ValueDefault").toInt();
-
-            pNumeric.valueEnabledChkBox->setChecked( false );
             pNumeric.spinBox->setValue( defaultValue );
+            pNumeric.valueEnabledChkBox->setChecked( false );
         }
     }
 
-    // search for name of each string parameter and set it
+    // Search for name of each string parameter and set it.
     foreach (ParamString pString, paramStrings) {
         paramValueStr = "";
         // The number of the found values for this parameter name.
@@ -735,9 +729,8 @@ void IndentHandler::loadConfigFile(QString filePathName, bool loadDefaultValues)
         // Parameter was not found in config file
         else {
             paramValueStr = indenterSettings->value(pString.paramName + "/ValueDefault").toString();
-
-            pString.valueEnabledChkBox->setChecked( false );
             pString.lineEdit->setText( paramValueStr );
+            pString.valueEnabledChkBox->setChecked( false );
         }
     }
 
@@ -760,10 +753,48 @@ void IndentHandler::loadConfigFile(QString filePathName, bool loadDefaultValues)
         // parameter was not set in config file, so use default value
         if ( index == -1 ) {
             int defaultValue = indenterSettings->value(pMultiple.paramName + "/ValueDefault").toInt();
-
-            pMultiple.valueEnabledChkBox->setChecked( false );
             pMultiple.comboBox->setCurrentIndex( defaultValue );
+            pMultiple.valueEnabledChkBox->setChecked( false );
         }
+    }
+
+    return true;
+}
+
+
+/*!
+    \brief Sets all indenter parameters to their default values defined in the ini file.
+ */
+void IndentHandler::resetToDefaultValues() {
+
+    // Search for name of each boolean parameter and set its value if found.
+    foreach (ParamBoolean pBoolean, paramBooleans) {
+        // Boolean value that will be assigned to the checkbox.
+        bool defaultValue = indenterSettings->value(pBoolean.paramName + "/ValueDefault").toBool();
+        pBoolean.checkBox->setChecked( defaultValue );
+    }
+
+    // Search for name of each numeric parameter and set the value found behind it.
+    foreach (ParamNumeric pNumeric, paramNumerics) {
+        int defaultValue = indenterSettings->value(pNumeric.paramName + "/ValueDefault").toInt();
+        pNumeric.spinBox->setValue( defaultValue );
+        pNumeric.valueEnabledChkBox->setChecked( indenterSettings->value(pNumeric.paramName + "/Enabled").toBool() );
+
+    }
+
+    // Search for name of each string parameter and set it.
+    foreach (ParamString pString, paramStrings) {
+        QString defaultValue = indenterSettings->value(pString.paramName + "/ValueDefault").toString();
+        pString.lineEdit->setText( defaultValue );
+        pString.valueEnabledChkBox->setChecked( indenterSettings->value(pString.paramName + "/Enabled").toBool() );
+    }
+
+    // Search for name of each multiple choice parameter and set it.
+    foreach (ParamMultiple pMultiple, paramMultiples) {
+        int defaultValue = indenterSettings->value(pMultiple.paramName + "/ValueDefault").toInt();
+        pMultiple.comboBox->setCurrentIndex( defaultValue );
+        pMultiple.valueEnabledChkBox->setChecked( indenterSettings->value(pMultiple.paramName + "/Enabled").toBool() );
+
     }
 }
 
@@ -911,6 +942,7 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
                 paramNumeric.spinBox = spinBox;
                 paramNumeric.label = label;
                 paramNumeric.valueEnabledChkBox = chkBox;
+                paramNumeric.spinBox->setValue( indenterSettings->value(paramNumeric.paramName + "/ValueDefault").toInt() );
                 paramNumerics.append(paramNumeric);
 
                 QObject::connect(spinBox, SIGNAL(valueChanged(int)), this, SLOT(handleChangedIndenterSettings()));
@@ -935,6 +967,7 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
                 QStringList trueFalseStrings = indenterSettings->value(indenterParameter + "/TrueFalse").toString().split("|");
                 paramBoolean.trueString = trueFalseStrings.at(0);
                 paramBoolean.falseString = trueFalseStrings.at(1);
+                paramBoolean.checkBox->setChecked( indenterSettings->value(paramBoolean.paramName + "/ValueDefault").toBool() );
                 paramBooleans.append(paramBoolean);
 
                 QObject::connect(chkBox, SIGNAL(clicked()), this, SLOT(handleChangedIndenterSettings()));
@@ -987,6 +1020,7 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
                 paramString.lineEdit = lineEdit;
                 paramString.label = label;
                 paramString.valueEnabledChkBox = chkBox;
+                paramString.lineEdit->setText( indenterSettings->value(paramString.paramName + "/ValueDefault").toString() );
                 paramStrings.append(paramString);
 
                 QObject::connect(lineEdit, SIGNAL(editingFinished()), this, SLOT(handleChangedIndenterSettings()));
@@ -1036,6 +1070,7 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
 				paramMultiple.choicesStrings = choicesStrings;
 				paramMultiple.choicesStringsReadable = choicesStringsReadable;
                 paramMultiple.valueEnabledChkBox = chkBox;
+                paramMultiple.comboBox->setCurrentIndex( indenterSettings->value(paramMultiple.paramName + "/ValueDefault").toInt() );
                 paramMultiples.append(paramMultiple);
 
                 QObject::connect(comboBox, SIGNAL(activated(int)), this, SLOT(handleChangedIndenterSettings()));
@@ -1141,7 +1176,7 @@ void IndentHandler::setIndenter(int indenterID) {
     createIndenterCallString();
 
     // Load the users last settings made for this indenter.
-    loadConfigFile( settingsDirctoryStr + "/" + indenterFileName + ".cfg", true );
+    loadConfigFile( settingsDirctoryStr + "/" + indenterFileName + ".cfg" );
 
     handleChangedIndenterSettings();
 
@@ -1459,7 +1494,7 @@ void IndentHandler::resetIndenterParameter() {
     
     int messageBoxAnswer = QMessageBox::question(this, tr("Really reset parameters?"), tr("Do you really want to reset the indenter parameters to the default values?"), QMessageBox::Yes | QMessageBox::Abort );
     if ( messageBoxAnswer == QMessageBox::Yes ) {
-        loadConfigFile("", true);
+        resetToDefaultValues();
     }
 }
 
