@@ -117,7 +117,7 @@ unix:INSTALLS += target \
 #######################
 # remove linker flag "-mthreads" so the mingwm10.dll is no longer needed
 #######################
-message ( remove linker flag "-mthreads" so the mingwm10.dll is no longer needed )
+win32:message ( remove linker flag "-mthreads" so the mingwm10.dll is no longer needed )
 #message(old flags:$${QMAKE_LFLAGS})
 win32:parameters = $${QMAKE_LFLAGS}
 newFlags =
