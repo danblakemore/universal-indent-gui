@@ -1,4 +1,5 @@
 2008-10-14 Version 1.0.1
+[add] Feature Request ID 1883444 : Added support for the indenter JSPPP.
 [add] Feature Request ID 1867563 : Added support for the indenter XML Indent.
 [add] Support for French language. Thanks to Erwan "leg".
 [change] Some small translation corrections.
