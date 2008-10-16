@@ -1,10 +1,12 @@
 2008-10-14 Version 1.0.1
-[add] Feature Request ID 1883444 : Added support for the indenter JSPPP.
-[add] Feature Request ID 1867563 : Added support for the indenter XML Indent.
+[add] Feature Request ID 2161471 : Added support for the Python indenter pindent.
+[add] Feature Request ID 1883444 : Added support for the JSP indenter JSPPP.
+[add] Feature Request ID 1867563 : Added support for the XML indenter XML Indent.
 [add] Support for French language. Thanks to Erwan "leg".
 [change] Some small translation corrections.
 [change] Improved the "new version available" check.
 [change] On Mac and Linux a one pixel frame was shown around the whole screen when about dialog is visible. Removed that.
+[change] Updated to Uncrustify version 0.49 from SVN repository.
 [fix] The distributed version of GNU Indent was using a misspelled configuration file, thus lieve preview didn't correctly work. Using original GNU Win32 version now.
 [fix] In version 1.0.0 the creation of batch files for indenters undet Windows always created a bash/shell script instead of batch.
 [fix] Keyboard shortcuts for enabling/disabling "Live Preview" and syntax highlighting didn't work.
@@ -12,7 +14,7 @@
 2008-09-30 Version 1.0.0 non public release. Only presented for Qt Centre programming contest.
 [add] Made it possible to start UiGUI in different modes via parameters: Normal (full UI), plugin (only indenter menu, server active), server only.
 [add] Added a server functionality. Future plan is to let UiGUI run also as server so plugins from other editors can send indent requests over TCP/IP to it. Very early state right now.
-[add] Created a plugin for Notepad++. This plugin shows the indenter parameter menu and lets the user indent the selected or whole text. Live preview works also. Still has some eventloop graphic update problems
+[add] Created a plugin for Notepad++. This plugin shows the indenter parameter menu and lets the user indent the selected or whole text. Live preview works also. Still has some eventloop graphic update problems.
 [add] Added support for two (rather simple) Ruby beautifiers, ruby_formatter and rbeautify.
 [add] Feature Request ID 1985475 : Added the possibility to reset all indenter parameters to default values. http://universalindent.sf.net/issue/1985475
 [add] Feature Request ID 1989585 : Added a context menu in indenter parameters widget and moved all functions handling these actions from the main window to the indent handler. http://universalindent.sf.net/issue/1989585
