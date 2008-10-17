@@ -15,6 +15,7 @@
   </qresource>
   <qresource prefix="/mainWindow" >
     <file>Icon1.png</file>
+    <file>universalIndentGUI.svg</file>
     <file>document-open.png</file>
     <file>document-save-as.png</file>
     <file>document-save.png</file>
