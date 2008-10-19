@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="zh_TW">
-<defaultcodec></defaultcodec>
 <context>
     <name>AboutDialog</name>
     <message>
@@ -529,12 +528,12 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">找不到重整工具 &quot;</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1288"/>
+        <location filename="../src/indenthandler.cpp" line="1323"/>
         <source>There exists only a win32 executable of the indenter and wine does not seem to be installed. Please install wine to be able to run the indenter.</source>
         <translation>該重整工具只有 Win32 版本，而你似乎尚未安裝 wine。請安裝 wine 以便執行該重整工具。</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1288"/>
+        <location filename="../src/indenthandler.cpp" line="1323"/>
         <source>wine not installed</source>
         <translation>尚未安裝 wine</translation>
     </message>
@@ -564,107 +563,107 @@ p, li { white-space: pre-wrap; }
         <translation>&lt;br&gt;&lt;br&gt;&lt;b&gt;重整工具的輸出結果：&lt;/b&gt;&lt;pre&gt;</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1243"/>
+        <location filename="../src/indenthandler.cpp" line="1278"/>
         <source>Interpreter needed</source>
         <translation>需要直譯器</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1244"/>
+        <location filename="../src/indenthandler.cpp" line="1279"/>
         <source>To use the selected indenter the program &quot;%1&quot; needs to be available in the global environment. You should add an entry to your path settings.</source>
         <translation>要使用這個重整工具，你必須將程式 &quot;%1&quot; 加到全域的 Path 變數中。</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1334"/>
+        <location filename="../src/indenthandler.cpp" line="1369"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Shows the currently chosen indenters name and lets you choose other available indenters&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;顯示目前使用的重整工具名稱，並讓你選擇其他可用的重整工具&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1335"/>
+        <location filename="../src/indenthandler.cpp" line="1370"/>
         <source>Brings you to the online manual of the currently selected indenter, where you can get further help on the possible parameters.</source>
         <translation>這會開啟當前重整工具的線上手冊，你將能找到更多關於可用參數的說明。</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1379"/>
+        <location filename="../src/indenthandler.cpp" line="1414"/>
         <source>Choose indenter config file</source>
         <translation>選擇重整工具設定檔</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1425"/>
+        <location filename="../src/indenthandler.cpp" line="1460"/>
         <source>All files</source>
         <translation>所有檔案</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1396"/>
+        <location filename="../src/indenthandler.cpp" line="1431"/>
         <source>Save indent config file</source>
         <translation>儲存重整工具的設定</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1425"/>
+        <location filename="../src/indenthandler.cpp" line="1460"/>
         <source>Shell Script</source>
         <translation>批次檔</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1431"/>
+        <location filename="../src/indenthandler.cpp" line="1466"/>
         <source>Save shell script</source>
         <translation>儲存批次檔</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1337"/>
+        <location filename="../src/indenthandler.cpp" line="1372"/>
         <source>Load Indenter Config File</source>
         <translation>載入重整工具設定檔</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1338"/>
+        <location filename="../src/indenthandler.cpp" line="1373"/>
         <source>Opens a file dialog to load the original config file of the indenter.</source>
         <translation>載入目前重整工具的設定</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1339"/>
+        <location filename="../src/indenthandler.cpp" line="1374"/>
         <source>Alt+O</source>
         <translation>Alt+O</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1341"/>
+        <location filename="../src/indenthandler.cpp" line="1376"/>
         <source>Save Indenter Config File</source>
         <translation>儲存重整工具設定檔</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1342"/>
+        <location filename="../src/indenthandler.cpp" line="1377"/>
         <source>Opens a dialog to save the current indenter configuration to a file.</source>
         <translation>儲存目前重整工具的設定</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1343"/>
+        <location filename="../src/indenthandler.cpp" line="1378"/>
         <source>Alt+S</source>
         <translation>Alt+S</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1345"/>
+        <location filename="../src/indenthandler.cpp" line="1380"/>
         <source>Create Indenter Call Shell Script</source>
         <translation>建立重整工具批次檔</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1347"/>
+        <location filename="../src/indenthandler.cpp" line="1382"/>
         <source>Create a shell script that calls the current selected indenter for formatting an as parameter given file with the current indent settings</source>
         <translation>建立批次檔呼叫目前的重整工具。它會接受檔案路徑作為參數，接著呼叫重整工具並套用目前的重整設定，適合讓 IDE 作為外部工具呼叫。</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1349"/>
+        <location filename="../src/indenthandler.cpp" line="1384"/>
         <source>Reset indenter parameters</source>
         <translation>恢復為預設值</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1351"/>
+        <location filename="../src/indenthandler.cpp" line="1386"/>
         <source>Resets all indenter parameters to the default values.</source>
         <translation>將所有重整參數設定恢復為預設值。</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1460"/>
+        <location filename="../src/indenthandler.cpp" line="1495"/>
         <source>Really reset parameters?</source>
         <translation>確定要恢復為預設值？</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1460"/>
+        <location filename="../src/indenthandler.cpp" line="1495"/>
         <source>Do you really want to reset the indenter parameters to the default values?</source>
         <translation>你真的要將參數恢復為預設值嗎？</translation>
     </message>

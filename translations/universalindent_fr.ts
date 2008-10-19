@@ -283,12 +283,12 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">&quot; dans le répertoire &quot;</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1288"/>
+        <location filename="../src/indenthandler.cpp" line="1323"/>
         <source>wine not installed</source>
         <translation>Wine n&apos;est pas installé</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1288"/>
+        <location filename="../src/indenthandler.cpp" line="1323"/>
         <source>There exists only a win32 executable of the indenter and wine does not seem to be installed. Please install wine to be able to run the indenter.</source>
         <translation>Il n&apos;existe qu&apos;une version win32 du fichier exécutable de l&apos;indenteur et Wine ne semble pas installé. Prière d&apos;installer Wine pour être en mesure de lancer le logiciel.</translation>
     </message>
@@ -353,107 +353,107 @@ p, li { white-space: pre-wrap; }
         <translation>&lt;br&gt;&lt;br&gt;&lt;b&gt;La sortie de l&apos;indenteur était :&lt;/b&gt;&lt;pre&gt;</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1243"/>
+        <location filename="../src/indenthandler.cpp" line="1278"/>
         <source>Interpreter needed</source>
         <translation>Interpréteur nécessaire</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1244"/>
+        <location filename="../src/indenthandler.cpp" line="1279"/>
         <source>To use the selected indenter the program &quot;%1&quot; needs to be available in the global environment. You should add an entry to your path settings.</source>
         <translation>Pour utiliser l&apos;indenteur chois, le programme « %1 » doit être disponible dans l&apos;environnement global. Vous devriez l&apos;ajouter dans votre PATH.</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1334"/>
+        <location filename="../src/indenthandler.cpp" line="1369"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Shows the currently chosen indenters name and lets you choose other available indenters&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Montre le nom de l&apos;indenteur actuellement sélectionné et vous propose les autres indenteurs disponibles&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1335"/>
+        <location filename="../src/indenthandler.cpp" line="1370"/>
         <source>Brings you to the online manual of the currently selected indenter, where you can get further help on the possible parameters.</source>
         <translation>Vous conduit au manuel en ligne de l&apos;indenteur actuellement sélectionné, où vous pouvez obtenir plus d&apos;aide sur les paramètres possibles.</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1337"/>
+        <location filename="../src/indenthandler.cpp" line="1372"/>
         <source>Load Indenter Config File</source>
         <translation>Charger un fichier de configuration d&apos;indenteur</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1338"/>
+        <location filename="../src/indenthandler.cpp" line="1373"/>
         <source>Opens a file dialog to load the original config file of the indenter.</source>
         <translation>Ouvrir une boite de dialogue d&apos;ouverture de fichier pour charger le fichier de configuration d&apos;origine de l&apos;indenteur.</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1339"/>
+        <location filename="../src/indenthandler.cpp" line="1374"/>
         <source>Alt+O</source>
         <translation>Alt+O</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1341"/>
+        <location filename="../src/indenthandler.cpp" line="1376"/>
         <source>Save Indenter Config File</source>
         <translation>Enregistrer le fichier de configuration de l&apos;indenteur</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1342"/>
+        <location filename="../src/indenthandler.cpp" line="1377"/>
         <source>Opens a dialog to save the current indenter configuration to a file.</source>
         <translation>Ouvrir une boite de dialogue d&apos;enregistrement de fichier pour enregistrer le fichier de configuration de l&apos;indenteur.</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1343"/>
+        <location filename="../src/indenthandler.cpp" line="1378"/>
         <source>Alt+S</source>
         <translation>Alt+S</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1345"/>
+        <location filename="../src/indenthandler.cpp" line="1380"/>
         <source>Create Indenter Call Shell Script</source>
         <translation>Créer un script shell d&apos;appel de l&apos;indenteur</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1347"/>
+        <location filename="../src/indenthandler.cpp" line="1382"/>
         <source>Create a shell script that calls the current selected indenter for formatting an as parameter given file with the current indent settings</source>
         <translation>Créé un script shell qui appelle l&apos;indenteur actuellement sélectionné pour l&apos;appliquer à un fichier passé en paramètre avec les réglages actuels</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1349"/>
+        <location filename="../src/indenthandler.cpp" line="1384"/>
         <source>Reset indenter parameters</source>
         <translation>Réinitialiser les paramètres de l&apos;indenteur</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1351"/>
+        <location filename="../src/indenthandler.cpp" line="1386"/>
         <source>Resets all indenter parameters to the default values.</source>
         <translation>Réinitialiser tous les paramètres de l&apos;indenteur à leur valeur par défaut.</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1379"/>
+        <location filename="../src/indenthandler.cpp" line="1414"/>
         <source>Choose indenter config file</source>
         <translation>Sélectionner le fichier de configuration de l&apos;indenteur</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1425"/>
+        <location filename="../src/indenthandler.cpp" line="1460"/>
         <source>All files</source>
         <translation>Tous les fichiers</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1396"/>
+        <location filename="../src/indenthandler.cpp" line="1431"/>
         <source>Save indent config file</source>
         <translation>Enregistrer le fichier de configuration de l&apos;indenteur</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1425"/>
+        <location filename="../src/indenthandler.cpp" line="1460"/>
         <source>Shell Script</source>
         <translation>Script shell</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1431"/>
+        <location filename="../src/indenthandler.cpp" line="1466"/>
         <source>Save shell script</source>
         <translation>Sauvegarder le script shell</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1460"/>
+        <location filename="../src/indenthandler.cpp" line="1495"/>
         <source>Really reset parameters?</source>
         <translation>Êtes-vous sûr de vouloir réinitialiser les paramètres de l&apos;indenteur ?</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1460"/>
+        <location filename="../src/indenthandler.cpp" line="1495"/>
         <source>Do you really want to reset the indenter parameters to the default values?</source>
         <translation>Êtes-vous sûr de vouloir réinitialiser tous les paramètres de l&apos;indenteur à leur valeur par défaut ?</translation>
     </message>

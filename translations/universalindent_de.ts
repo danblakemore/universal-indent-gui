@@ -701,12 +701,12 @@ Indent console output was:
 </translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1288"/>
+        <location filename="../src/indenthandler.cpp" line="1323"/>
         <source>wine not installed</source>
         <translation>wine nicht installiert</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1288"/>
+        <location filename="../src/indenthandler.cpp" line="1323"/>
         <source>There exists only a win32 executable of the indenter and wine does not seem to be installed. Please install wine to be able to run the indenter.</source>
         <translation>Es existiert nur eine Win32 Version des Formatierers, für dessen Ausführung wine benötigt wird. Wine scheint nicht installiert zu sein. Bitte installieren Sie es.</translation>
     </message>
@@ -761,107 +761,107 @@ Indent console output was:
         <translation>&lt;br&gt;&lt;br&gt;&lt;b&gt;Ausgabe des Formatierers:&lt;/b&gt;&lt;pre&gt;</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1243"/>
+        <location filename="../src/indenthandler.cpp" line="1278"/>
         <source>Interpreter needed</source>
         <translation>Interpreter benötigt</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1244"/>
+        <location filename="../src/indenthandler.cpp" line="1279"/>
         <source>To use the selected indenter the program &quot;%1&quot; needs to be available in the global environment. You should add an entry to your path settings.</source>
         <translation>Um den gewählten Formatierer benutzen zu können, muss das Programm &quot;%1&quot; global aufrufbar sein. Sie sollten den Pfad des Programms der Pathvariablen hinzufügen.</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1334"/>
+        <location filename="../src/indenthandler.cpp" line="1369"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Shows the currently chosen indenters name and lets you choose other available indenters&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Zeigt den aktuell gewählten und alle verfügbaren Formatierer an.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1335"/>
+        <location filename="../src/indenthandler.cpp" line="1370"/>
         <source>Brings you to the online manual of the currently selected indenter, where you can get further help on the possible parameters.</source>
         <translation>Öffnet die Webseite mit dem Benutzerhandbuch des gewählten Formatierers, wo Sie weitere Informationen zu den möglichen Parametern erhalten.</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1379"/>
+        <location filename="../src/indenthandler.cpp" line="1414"/>
         <source>Choose indenter config file</source>
         <translation>Formatierer Konfigurationsdatei wählen</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1425"/>
+        <location filename="../src/indenthandler.cpp" line="1460"/>
         <source>All files</source>
         <translation>Alle Dateien</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1396"/>
+        <location filename="../src/indenthandler.cpp" line="1431"/>
         <source>Save indent config file</source>
         <translation>Formatierer Konfiguration speichern</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1425"/>
+        <location filename="../src/indenthandler.cpp" line="1460"/>
         <source>Shell Script</source>
         <translation>Shell Skript</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1431"/>
+        <location filename="../src/indenthandler.cpp" line="1466"/>
         <source>Save shell script</source>
         <translation>Shell Skript speichern</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1337"/>
+        <location filename="../src/indenthandler.cpp" line="1372"/>
         <source>Load Indenter Config File</source>
         <translation>Formatierer Konfiguration laden</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1338"/>
+        <location filename="../src/indenthandler.cpp" line="1373"/>
         <source>Opens a file dialog to load the original config file of the indenter.</source>
         <translation>Öffnet ein Dialogfenster zum Laden einer Konfigurationsdatei des momentan gewählten Formatierers.</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1339"/>
+        <location filename="../src/indenthandler.cpp" line="1374"/>
         <source>Alt+O</source>
         <translation>Alt+O</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1341"/>
+        <location filename="../src/indenthandler.cpp" line="1376"/>
         <source>Save Indenter Config File</source>
         <translation>Formatierer Konfiguration speichern</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1342"/>
+        <location filename="../src/indenthandler.cpp" line="1377"/>
         <source>Opens a dialog to save the current indenter configuration to a file.</source>
         <translation>Öffnet ein Dialogfenster zum Speichern der Konfigurationsdatei des momentan gewählten Formatierers.</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1343"/>
+        <location filename="../src/indenthandler.cpp" line="1378"/>
         <source>Alt+S</source>
         <translation>Alt+S</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1345"/>
+        <location filename="../src/indenthandler.cpp" line="1380"/>
         <source>Create Indenter Call Shell Script</source>
         <translation>Formatierer Shell Skript erzeugen</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1347"/>
+        <location filename="../src/indenthandler.cpp" line="1382"/>
         <source>Create a shell script that calls the current selected indenter for formatting an as parameter given file with the current indent settings</source>
         <translation>Erzeugt ein Shell Skript mit dem sich der momentan gewählte Formatierer mit den momentanen Einstellungen zum Formatieren einer Datei aufrufen lässt.</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1349"/>
+        <location filename="../src/indenthandler.cpp" line="1384"/>
         <source>Reset indenter parameters</source>
         <translation>Parameter des Formatierers zurücksetzen</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1351"/>
+        <location filename="../src/indenthandler.cpp" line="1386"/>
         <source>Resets all indenter parameters to the default values.</source>
         <translation>Alle Parameter des Formatierers auf Standardwerte zurücksetzen.</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1460"/>
+        <location filename="../src/indenthandler.cpp" line="1495"/>
         <source>Really reset parameters?</source>
         <translation>Wirklich alle Parameter zurücksetzen?</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1460"/>
+        <location filename="../src/indenthandler.cpp" line="1495"/>
         <source>Do you really want to reset the indenter parameters to the default values?</source>
         <translation>Wollen Sie wirklich alle Parameter des Formatierers auf die Standardwerte zurücksetzen?</translation>
     </message>

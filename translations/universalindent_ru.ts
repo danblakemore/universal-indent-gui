@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="ru">
+<defaultcodec></defaultcodec>
 <context>
     <name>AboutDialog</name>
     <message>
@@ -95,7 +96,7 @@ Credits:</source>
     <message>
         <location filename="../src/aboutdialog.ui" line="166"/>
         <source>          OK          </source>
-        <translation type="unfinished"></translation>
+        <translation>(sp)(sp)(sp)(sp)(sp)(sp)(sp)(sp)(sp)(sp)OK(sp)(sp)(sp)(sp)(sp)(sp)(sp)(sp)(sp)(sp)</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.ui" line="93"/>
@@ -104,7 +105,11 @@ Credits:</source>
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:12pt;&quot;&gt;Version %1 rev.%2, %3 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:12pt;&quot;&gt;Версия %1 ред.%2, %3 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.ui" line="119"/>
@@ -118,7 +123,16 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;&quot;&gt;License: UniversalIndentGui is released under the GPL 2. For details read the included file LICENSE.GPL visit &lt;a href=&quot;http://www.gnu.org/licenses/gpl.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.gnu.org/licenses/gpl.html&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;&quot;&gt;Credits:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;;&quot;&gt;... кросс-платформенный совместимый ГИП для нескольких форматтеров, украсителей и отступаторов, как GreatCode, AStyle (Artistic Styler), GNU Indent, BCPP, и так далее. Основной функцией является живой просмотр, чтобы сразу видеть, как выбранный вариант форматирования влияет на исходный код.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;&quot;&gt;&lt;br /&gt;Написано: &lt;a href=&quot;http://www.thomas-schweitzer.de&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Томасом Швайцером&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;&quot;&gt;Страница проекта : &lt;a href=&quot;http://universalindent.sourceforge.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://universalindent.sourceforge.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;&quot;&gt;Лицензия: UniversalIndentGui выдается в рамках GPL 2. О деталях читайте присоединенный файл LICENSE.GPL Посетите &lt;a href=&quot;http://www.gnu.org/licenses/gpl.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.gnu.org/licenses/gpl.html&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;&quot;&gt;Участники проекта:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -417,24 +431,24 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">&quot; в папке &quot;</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1288"/>
+        <location filename="../src/indenthandler.cpp" line="1323"/>
         <source>wine not installed</source>
         <translation>вино не установлено</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1288"/>
+        <location filename="../src/indenthandler.cpp" line="1323"/>
         <source>There exists only a win32 executable of the indenter and wine does not seem to be installed. Please install wine to be able to run the indenter.</source>
         <translation>Существует только win32-программа отступатора, а вино, кажется, не установлено. Пожалуйста, установите вино, чтобы запустить отступатор.</translation>
     </message>
     <message>
         <location filename="../src/indenthandler.cpp" line="462"/>
         <source>&lt;b&gt;Returned error message:&lt;/b&gt; </source>
-        <translation>&lt;b&gt;Возвращенное сообщение об ошибке:&lt;/b&gt; </translation>
+        <translation>&lt;b&gt;Возвращенное сообщение об ошибке:&lt;/b&gt;(sp)</translation>
     </message>
     <message>
         <location filename="../src/indenthandler.cpp" line="466"/>
         <source>&lt;b&gt;Reason could be:&lt;/b&gt; </source>
-        <translation>&lt;b&gt;Причиной может быть:&lt;/b&gt; </translation>
+        <translation>&lt;b&gt;Причиной может быть:&lt;/b&gt;(sp)</translation>
     </message>
     <message>
         <location filename="../src/indenthandler.cpp" line="489"/>
@@ -444,17 +458,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/indenthandler.cpp" line="500"/>
         <source>&lt;b&gt;Indenter returned with exit code:&lt;/b&gt; </source>
-        <translation>&lt;b&gt;Отступатор возвратился с кодом выхода:&lt;/b&gt; </translation>
+        <translation>&lt;b&gt;Отступатор возвратился с кодом выхода:&lt;/b&gt;(sp)</translation>
     </message>
     <message>
         <location filename="../src/indenthandler.cpp" line="501"/>
         <source>&lt;b&gt;Indent console output was:&lt;/b&gt; </source>
-        <translation>&lt;b&gt;Выходом консоли отступатора было:&lt;/b&gt; </translation>
+        <translation>&lt;b&gt;Выходом консоли отступатора было:&lt;/b&gt;(sp)</translation>
     </message>
     <message>
         <location filename="../src/indenthandler.cpp" line="502"/>
         <source>&lt;br&gt;&lt;b&gt;Callstring was:&lt;/b&gt; </source>
-        <translation>&lt;br&gt;&lt;b&gt;Строкой вызова было:&lt;/b&gt; </translation>
+        <translation>&lt;br&gt;&lt;b&gt;Строкой вызова было:&lt;/b&gt;(sp)</translation>
     </message>
     <message>
         <location filename="../src/indenthandler.cpp" line="154"/>
@@ -482,109 +496,109 @@ p, li { white-space: pre-wrap; }
         <translation>Отступатор возвратил ошибку</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1243"/>
+        <location filename="../src/indenthandler.cpp" line="1278"/>
         <source>Interpreter needed</source>
         <translation>Требуется интерпретатор</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1244"/>
+        <location filename="../src/indenthandler.cpp" line="1279"/>
         <source>To use the selected indenter the program &quot;%1&quot; needs to be available in the global environment. You should add an entry to your path settings.</source>
         <translation>Для использования выбранного отступатора, программа &quot;%1&quot; должна быть доступна в глобальной среде. Добавьте пункт к настройкам пути.</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1334"/>
+        <location filename="../src/indenthandler.cpp" line="1369"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Shows the currently chosen indenters name and lets you choose other available indenters&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Показывает название текущего выбранного отступатора и позволяет выбрать другие доступные отступаторы&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1335"/>
+        <location filename="../src/indenthandler.cpp" line="1370"/>
         <source>Brings you to the online manual of the currently selected indenter, where you can get further help on the possible parameters.</source>
         <translation>Ведет к онлайн-руководству текущего выбранного отступатора, где можна найти дальнейшую помощь по возможным параметрам.</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1379"/>
+        <location filename="../src/indenthandler.cpp" line="1414"/>
         <source>Choose indenter config file</source>
         <translation>Выбрать конфигурационный файл отступатора</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1425"/>
+        <location filename="../src/indenthandler.cpp" line="1460"/>
         <source>All files</source>
         <translation>Все файлы</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1396"/>
+        <location filename="../src/indenthandler.cpp" line="1431"/>
         <source>Save indent config file</source>
         <translation>Сохранить конфигурационный файл отступатора</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1425"/>
+        <location filename="../src/indenthandler.cpp" line="1460"/>
         <source>Shell Script</source>
         <translation>Скрипт оболочки</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1431"/>
+        <location filename="../src/indenthandler.cpp" line="1466"/>
         <source>Save shell script</source>
         <translation>Сохранить скрипт оболочки</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1337"/>
+        <location filename="../src/indenthandler.cpp" line="1372"/>
         <source>Load Indenter Config File</source>
         <translation>Загрузить конфигурационный файл отступатора</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1338"/>
+        <location filename="../src/indenthandler.cpp" line="1373"/>
         <source>Opens a file dialog to load the original config file of the indenter.</source>
         <translation>Открывает файловый диалог для загрузки начального конфигурационного файла отступатора.</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1339"/>
+        <location filename="../src/indenthandler.cpp" line="1374"/>
         <source>Alt+O</source>
         <translation>Alt+O</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1341"/>
+        <location filename="../src/indenthandler.cpp" line="1376"/>
         <source>Save Indenter Config File</source>
         <translation>Сохранить конфигурационный файл отступатора</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1342"/>
+        <location filename="../src/indenthandler.cpp" line="1377"/>
         <source>Opens a dialog to save the current indenter configuration to a file.</source>
         <translation>Открывает диалог для сохранения текущей конфигурации отступатора в файл.</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1343"/>
+        <location filename="../src/indenthandler.cpp" line="1378"/>
         <source>Alt+S</source>
         <translation>Alt+S</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1345"/>
+        <location filename="../src/indenthandler.cpp" line="1380"/>
         <source>Create Indenter Call Shell Script</source>
         <translation>Создать скрипт оболочки вызова отступатора</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1347"/>
+        <location filename="../src/indenthandler.cpp" line="1382"/>
         <source>Create a shell script that calls the current selected indenter for formatting an as parameter given file with the current indent settings</source>
         <translation>Создать скрипт оболочки, вызывающий текущий выбранный отступатор для форматирования по параметрам данного файла с текущими настройками отступов</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1349"/>
+        <location filename="../src/indenthandler.cpp" line="1384"/>
         <source>Reset indenter parameters</source>
-        <translation type="unfinished"></translation>
+        <translation>Скинуть параметры отступатора</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1351"/>
+        <location filename="../src/indenthandler.cpp" line="1386"/>
         <source>Resets all indenter parameters to the default values.</source>
-        <translation type="unfinished"></translation>
+        <translation>Скидывает все параметры отступатора на значения по умолчанию.</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1460"/>
+        <location filename="../src/indenthandler.cpp" line="1495"/>
         <source>Really reset parameters?</source>
-        <translation type="unfinished"></translation>
+        <translation>Действительно скинуть параметры?</translation>
     </message>
     <message>
-        <location filename="../src/indenthandler.cpp" line="1460"/>
+        <location filename="../src/indenthandler.cpp" line="1495"/>
         <source>Do you really want to reset the indenter parameters to the default values?</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы действительно хотите скинуть параметры отступатора на значения по умолчанию?</translation>
     </message>
 </context>
 <context>
@@ -597,7 +611,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/mainwindow.cpp" line="1105"/>
         <source>Cannot read the file </source>
-        <translation>Невозможно прочитать файл </translation>
+        <translation>Невозможно прочитать файл(sp)</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="447"/>
@@ -659,7 +673,7 @@ Do you want to save your changes?</source>
     <message>
         <location filename="../src/mainwindow.cpp" line="1190"/>
         <source>Reopen the currently opened source code file by using the text encoding scheme </source>
-        <translation>Повторно открыть текущий открытый файл исходного кода, используя схему кодирования текста </translation>
+        <translation>Повторно открыть текущий открытый файл исходного кода, используя схему кодирования текста(sp)</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="324"/>
@@ -674,7 +688,7 @@ Do you want to save your changes?</source>
     <message>
         <location filename="../src/mainwindow.cpp" line="1204"/>
         <source>Set the syntax highlightning to </source>
-        <translation>Задать подсветку синтаксиса на </translation>
+        <translation>Задать подсветку синтаксиса на(sp)</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="1335"/>
@@ -704,7 +718,7 @@ Do you want to save your changes?</source>
     <message>
         <location filename="../src/mainwindow.cpp" line="1395"/>
         <source>Line %1, Column %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Строка %1, колонка %2</translation>
     </message>
 </context>
 <context>
@@ -987,37 +1001,37 @@ Do you want to save your changes?</source>
     <message>
         <location filename="../src/mainwindow.ui" line="138"/>
         <source>Indenter Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Настройки отступатора</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="304"/>
         <source>DONOTTRANSLATE:IndenterParameterTooltipsEnabled</source>
-        <translation type="unfinished"></translation>
+        <translation>НЕПЕРЕВОДИТЬ:ВключеныПодсказкиПараметровОтступатора</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="352"/>
         <source>DONOTTRANSLATE:SyntaxHighlightningEnabled</source>
-        <translation type="unfinished"></translation>
+        <translation>НЕПЕРЕВОДИТЬ:ВключенаПодсветкаСинтаксиса</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="375"/>
         <source>DONOTTRANSLATE:WhiteSpaceIsVisible</source>
-        <translation type="unfinished"></translation>
+        <translation>НЕПЕРЕВОДИТЬ:ВидимыеПробелы</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="398"/>
         <source>DONOTTRANSLATE:LoadLastOpenedFileOnStartup</source>
-        <translation type="unfinished"></translation>
+        <translation>НЕПЕРЕВОДИТЬ:ЗагружатьПоследнийОткрытыйФайлПриЗагрузке</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="232"/>
         <source>Ctrl+Shift+S</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+S</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="349"/>
         <source>Ctrl+H</source>
-        <translation type="unfinished">Ctrl+H</translation>
+        <translation>Ctrl+H</translation>
     </message>
 </context>
 <context>
@@ -1165,42 +1179,42 @@ Do you want to save your changes?</source>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="82"/>
         <source>DONOTTRANSLATE:Language</source>
-        <translation type="unfinished"></translation>
+        <translation>НЕПЕРЕВОДИТЬ:Язык</translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="110"/>
         <source>DONOTTRANSLATE:LoadLastOpenedFileOnStartup</source>
-        <translation type="unfinished"></translation>
+        <translation>НЕПЕРЕВОДИТЬ:ЗагружатьПоследнийОткрытыйФайлПриЗагрузке</translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="123"/>
         <source>DONOTTRANSLATE:IndenterParameterTooltipsEnabled</source>
-        <translation type="unfinished"></translation>
+        <translation>НЕПЕРЕВОДИТЬ:ВключеныПодсказкиПараметровОтступатора</translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="166"/>
         <source>DONOTTRANSLATE:RecentlyOpenedListSize</source>
-        <translation type="unfinished"></translation>
+        <translation>НЕПЕРЕВОДИТЬ:РазмерСпискаНедавноОткрытых</translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="194"/>
         <source>DONOTTRANSLATE:CheckForUpdate</source>
-        <translation type="unfinished"></translation>
+        <translation>НЕПЕРЕВОДИТЬ:ПроверкаОбновлений</translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="237"/>
         <source>DONOTTRANSLATE:WhiteSpaceIsVisible</source>
-        <translation type="unfinished"></translation>
+        <translation>НЕПЕРЕВОДИТЬ:ВидимыеПробелы</translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="283"/>
         <source>DONOTTRANSLATE:TabWidth</source>
-        <translation type="unfinished"></translation>
+        <translation>НЕПЕРЕВОДИТЬ:ШиринаТабуляции</translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="341"/>
         <source>DONOTTRANSLATE:SyntaxHighlightningEnabled</source>
-        <translation type="unfinished"></translation>
+        <translation>НЕПЕРЕВОДИТЬ:ВключенаПодсветкаСинтаксиса</translation>
     </message>
 </context>
 <context>
@@ -1246,7 +1260,7 @@ Do you want to save your changes?</source>
     <message>
         <location filename="../src/uiguierrormessage.cpp" line="40"/>
         <source>Show this message again</source>
-        <translation type="unfinished"></translation>
+        <translation>Показать это сообщение снова</translation>
     </message>
 </context>
 <context>
@@ -1254,12 +1268,12 @@ Do you want to save your changes?</source>
     <message>
         <location filename="../src/UiguiIndentServer.cpp" line="61"/>
         <source>UiGUI Server</source>
-        <translation type="unfinished"></translation>
+        <translation>Сервер UiGUI</translation>
     </message>
     <message>
         <location filename="../src/UiguiIndentServer.cpp" line="61"/>
         <source>Unable to start the server: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно запустить сервер: %1.</translation>
     </message>
 </context>
 <context>
@@ -1267,42 +1281,42 @@ Do you want to save your changes?</source>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="234"/>
         <source>English</source>
-        <translation type="unfinished">Английский</translation>
+        <translation>Английский</translation>
     </message>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="240"/>
         <source>German</source>
-        <translation type="unfinished">Немецкий</translation>
+        <translation>Немецкий</translation>
     </message>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="243"/>
         <source>Chinese (Taiwan)</source>
-        <translation type="unfinished">Китайский (Тайвань)</translation>
+        <translation>Китайский (Тайвань)</translation>
     </message>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="246"/>
         <source>Japanese</source>
-        <translation type="unfinished">Японский</translation>
+        <translation>Японский</translation>
     </message>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="249"/>
         <source>Russian</source>
-        <translation type="unfinished">Русский</translation>
+        <translation>Русский</translation>
     </message>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="252"/>
         <source>Ukrainian</source>
-        <translation type="unfinished">Украинский</translation>
+        <translation>Украинский</translation>
     </message>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="255"/>
         <source>Unknown language mnemonic </source>
-        <translation type="unfinished">Неизвестный мнемокод языка </translation>
+        <translation>Неизвестный мнемокод языка(sp)</translation>
     </message>
     <message>
         <location filename="../src/uiguisettingsdialog.cpp" line="237"/>
         <source>French</source>
-        <translation type="unfinished"></translation>
+        <translation>Французский</translation>
     </message>
 </context>
 <context>
@@ -1357,7 +1371,7 @@ Do you want to go to the download website?</source>
     <message>
         <location filename="../src/toolBarWidget.ui" line="28"/>
         <source> Open Source File </source>
-        <translation> Открыть исходный файл </translation>
+        <translation> (sp)Открыть исходный файл(sp)</translation>
     </message>
     <message>
         <location filename="../src/toolBarWidget.ui" line="47"/>
@@ -1417,17 +1431,17 @@ Do you want to go to the download website?</source>
     <message>
         <location filename="../src/toolBarWidget.ui" line="72"/>
         <source>DONOTTRANSLATE:SyntaxHighlightningEnabled</source>
-        <translation type="unfinished"></translation>
+        <translation>НЕПЕРЕВОДИТЬ:ВключенаПодсветкаСинтаксиса</translation>
     </message>
     <message>
         <location filename="../src/toolBarWidget.ui" line="56"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg 2; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;Enables and disables the highlightning of the source&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;code shown below. (Still needs some performance improvements) (Ctrl+H)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg 2; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;Включает и выключает подсветку исходного&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;кода, показанного ниже. (Все еще нужно доработать эффективность) (Ctrl+H)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/toolBarWidget.ui" line="49"/>
         <source>Ctrl+L</source>
-        <translation type="unfinished">Ctrl+L</translation>
+        <translation>Ctrl+L</translation>
     </message>
 </context>
 </TS>
