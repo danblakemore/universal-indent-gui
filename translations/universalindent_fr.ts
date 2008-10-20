@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="fr_FR">
+<defaultcodec></defaultcodec>
 <context>
     <name>AboutDialog</name>
     <message>
@@ -828,22 +829,22 @@ Souhaitez-vous enregistrer vos modifications ?</translation>
     <message>
         <location filename="../src/mainwindow.ui" line="304"/>
         <source>DONOTTRANSLATE:IndenterParameterTooltipsEnabled</source>
-        <translation>DONOTTRANSLATE:IndenterParameterTooltipsEnabled</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="352"/>
         <source>DONOTTRANSLATE:SyntaxHighlightningEnabled</source>
-        <translation>DONOTTRANSLATE:SyntaxHighlightningEnabled</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="375"/>
         <source>DONOTTRANSLATE:WhiteSpaceIsVisible</source>
-        <translation>DONOTTRANSLATE:WhiteSpaceIsVisible</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="398"/>
         <source>DONOTTRANSLATE:LoadLastOpenedFileOnStartup</source>
-        <translation>DONOTTRANSLATE:LoadLastOpenedFileOnStartup</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="232"/>
@@ -1006,42 +1007,42 @@ Souhaitez-vous enregistrer vos modifications ?</translation>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="82"/>
         <source>DONOTTRANSLATE:Language</source>
-        <translation>DONOTTRANSLATE:Language</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="110"/>
         <source>DONOTTRANSLATE:LoadLastOpenedFileOnStartup</source>
-        <translation>DONOTTRANSLATE:LoadLastOpenedFileOnStartup</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="123"/>
         <source>DONOTTRANSLATE:IndenterParameterTooltipsEnabled</source>
-        <translation>DONOTTRANSLATE:IndenterParameterTooltipsEnabled</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="166"/>
         <source>DONOTTRANSLATE:RecentlyOpenedListSize</source>
-        <translation>DONOTTRANSLATE:RecentlyOpenedListSize</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="194"/>
         <source>DONOTTRANSLATE:CheckForUpdate</source>
-        <translation>DONOTTRANSLATE:CheckForUpdate</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="237"/>
         <source>DONOTTRANSLATE:WhiteSpaceIsVisible</source>
-        <translation>DONOTTRANSLATE:WhiteSpaceIsVisible</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="283"/>
         <source>DONOTTRANSLATE:TabWidth</source>
-        <translation>DONOTTRANSLATE:TabWidth</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/UiGuiSettingsDialog.ui" line="341"/>
         <source>DONOTTRANSLATE:SyntaxHighlightningEnabled</source>
-        <translation>DONOTTRANSLATE:SyntaxHighlightningEnabled</translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -1225,7 +1226,7 @@ Voulez-vous allez sur le site de téléchargement ?</translation>
     <message>
         <location filename="../src/toolBarWidget.ui" line="72"/>
         <source>DONOTTRANSLATE:SyntaxHighlightningEnabled</source>
-        <translation>DONOTTRANSLATE:SyntaxHighlightningEnabled</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/toolBarWidget.ui" line="56"/>

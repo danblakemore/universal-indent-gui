@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
+<defaultcodec></defaultcodec>
 <context>
     <name>AboutDialog</name>
     <message>
@@ -1110,7 +1111,7 @@ Wollen Sie zu Download Website geleitet werden?</translation>
     <message>
         <location filename="../src/mainwindow.ui" line="75"/>
         <source>Reopen File with other Encoding</source>
-        <translation></translation>
+        <translation>Datei mit anderer Kodierung erneut öffnen</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="80"/>
