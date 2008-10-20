@@ -88,7 +88,7 @@ void AboutDialogGraphicsView::show() {
     // we can detect windowTitleBarWidth here for the first time.
     windowTitleBarWidth = parent->geometry().y() - parent->y();
 #ifdef Q_OS_LINUX
-    QPixmap originalPixmap = QPixmap::grabWindow(QApplication::desktop()->winId(), 0, 0, QApplication::desktop()->availableGeometry().width(), QApplication::desktop()->availableGeometry().height() );
+    QPixmap originalPixmap = QPixmap::grabWindow(QApplication::desktop()->winId(), 0, 0, QApplication::desktop()->availableGeometry().width(), QApplication::desktop()->availableGeometry().height()+windowTitleBarWidth+1 );
 #else
     QPixmap originalPixmap = QPixmap::grabWindow(QApplication::desktop()->winId(), 0, 0, geometry().width(), geometry().height() );
 #endif
