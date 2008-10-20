@@ -259,7 +259,7 @@ echo ""
 
 echo "Calling make release"
 echo "--------------------"
-make release --silent
+make --silent
 if [ $? -gt 0 ]; then
     echo "ERROR: Calling make release failed!"
     exit 1
@@ -290,7 +290,7 @@ echo "-----------------------------------------------------------------"
 indenters="astyle$ext astyle.html uncrustify$ext uncrustify.txt xmlindent$ext xmlindent.txt"
 # For win32 and Linux add some indenters that do not run or exist under MaxOSX
 if [ "$targetSystem" = "win32" ] || [ "$targetSystem" = "linux" ]; then
-    indenters="$indenters bcpp$ext bcpp.txt csstidy$ext gc.exe gc.txt htb.exe htb.html indent$ext indent.html tidy$ext tidy.html"
+    indenters="$indenters bcpp$ext bcpp.txt csstidy$ext greatcode.exe greatcode.txt htb.exe htb.html indent$ext indent.html tidy$ext tidy.html xmlindent$ext xmlindent.html"
 fi
    
 
