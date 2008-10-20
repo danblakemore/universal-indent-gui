@@ -1,10 +1,13 @@
 #!/bin/sh
 
 # Command line syntax:
-# buildRelease [targetsystem qtdir]
+# buildRelease [targetsystem qtdir] [--rebuild]
 # Example:
 # buildRelease win32 /c/qt.4.3.2
 # Default values are targetsystem=src, qtdir=""
+# if "--rebuild" is set the release directory
+
+#TODO: Parse all input parameters to enable a flexible syntax.
 
 # 1. param is target system
 if [ -n "$1" ]; then
@@ -16,6 +19,13 @@ fi
 # 2. param, which is QTDIR
 if [ -n "$2" ]; then
     QTDIR=$2
+fi
+
+# 3. param is for setting "complete rebuild" to true
+if [ -n "$3" ] && [ "$3" = "--rebuild" ]; then
+    COMPLETEREBUILD="true";
+else
+    COMPLETEREBUILD="false";
 fi
 
 # Only allow the build targets win32, macx and linux.
@@ -39,6 +49,7 @@ fi
 
 # Configuration
 # -------------
+#TODO: get version from source code file.
 version=1.0.1
 doSVNUpdate=false
 
@@ -50,10 +61,15 @@ else
 fi
 
 # Set QTDIR for each platform if not given as command line parameter.
+#TODO: Check whether QTDIR is valid and qmake can be executed if QTDIR hasn't been set via command line.
 if [ "$targetSystem" = "win32" ] && [ ! -n "$2" ]; then
+    echo "The QTDIR has not been set via command line parameter!"
+    exit 1
     QTDIR=/f/Qt/qt.4.4.3_gpl_static
 else
     if [ "$targetSystem" = "macx" ] && [ ! -n "$2" ]; then
+        echo "The QTDIR has not been set via command line parameter!"
+        exit 1
         QTDIR=/Users/thomas/Documents/Informatik/qt-static-release
     fi
 fi
@@ -233,18 +249,17 @@ echo ""
 else
 ###################### binary release begin ########################
 
-echo "Cleaning up release dirs"
-echo "------------------------"
-if [ -d "release" ]; then
+if [ -d "release" ] && [ "$COMPLETEREBUILD" = "true" ]; then
+    echo "Cleaning up release dirs"
+    echo "------------------------"
     rm -r release &> /dev/null
+    if [ $? -gt 0 ]; then
+        echo "ERROR: Could not delete release dir!"
+        exit 1
+    fi
+    echo "Done"
+    echo ""
 fi
-if [ $? -gt 0 ]; then
-    echo "ERROR: Could not delete release dir!"
-    exit 1
-fi
-echo "Done"
-echo ""
-
 
 echo "Calling qmake"
 echo "-------------"
@@ -290,7 +305,7 @@ echo "-----------------------------------------------------------------"
 indenters="astyle$ext astyle.html uncrustify$ext uncrustify.txt xmlindent$ext xmlindent.txt"
 # For win32 and Linux add some indenters that do not run or exist under MaxOSX
 if [ "$targetSystem" = "win32" ] || [ "$targetSystem" = "linux" ]; then
-    indenters="$indenters bcpp$ext bcpp.txt csstidy$ext greatcode.exe greatcode.txt htb.exe htb.html indent$ext indent.html tidy$ext tidy.html xmlindent$ext xmlindent.html"
+    indenters="$indenters bcpp$ext bcpp.txt csstidy$ext greatcode.exe greatcode.txt htb.exe htb.html indent$ext indent.html tidy$ext tidy.html"
 fi
    
 
@@ -331,7 +346,7 @@ fi
 
 echo "Copying the script based indenters to the target indenters dir"
 echo "--------------------------------------------------------------"
-indenters="hindent hindent.html JsDecoder.js perltidy PerlTidyLib.pm php_beautifier.html phpStylist.php phpStylist.txt rbeautify.rb ruby_formatter.rb shellindent.awk"
+indenters="hindent hindent.html JsDecoder.js perltidy PerlTidyLib.pm php_beautifier.html phpStylist.php phpStylist.txt pindent.py pindent.txt rbeautify.rb ruby_formatter.rb shellindent.awk"
 for i in $indenters
 do
     cp ./indenters/$i ./$targetDir/indenters/ &> /dev/null
