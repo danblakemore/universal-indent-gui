@@ -346,7 +346,7 @@ fi
 
 echo "Copying the script based indenters to the target indenters dir"
 echo "--------------------------------------------------------------"
-indenters="hindent hindent.html JsDecoder.js perltidy PerlTidyLib.pm php_beautifier.html phpStylist.php phpStylist.txt pindent.py pindent.txt rbeautify.rb ruby_formatter.rb shellindent.awk"
+indenters="hindent hindent.html JsDecoder.js perltidy PerlTidyLib.pm phpStylist.php phpStylist.txt pindent.py pindent.txt rbeautify.rb ruby_formatter.rb shellindent.awk"
 for i in $indenters
 do
     cp ./indenters/$i ./$targetDir/indenters/ &> /dev/null
