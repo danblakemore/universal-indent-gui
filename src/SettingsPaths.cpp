@@ -52,6 +52,10 @@ bool SettingsPaths::portableMode = false;
 void SettingsPaths::init() {
     // Get the applications binary path, with respect to MacOSXs use of the .app folder. 
 	applicationBinaryPath = QCoreApplication::applicationDirPath();
+    // Remove any trailing slashes
+    while ( applicationBinaryPath.right(1) == "/" ) {
+        applicationBinaryPath.chop(1);
+    }
 
 #ifdef UNIVERSALINDENTGUI_NPP_EXPORTS
     applicationBinaryPath += "/plugins/uigui";
@@ -87,11 +91,22 @@ void SettingsPaths::init() {
         QDir dirCreator;
 #ifdef Q_OS_WIN
         // Get the local users application settings directory.
-        settingsPath = QDir::fromNativeSeparators( qgetenv("APPDATA") ) + "/UniversalIndentGUI";
+        // Remove any trailing slashes.
+        settingsPath = QDir::fromNativeSeparators( qgetenv("APPDATA") );
+        while ( settingsPath.right(1) == "/" ) {
+            settingsPath.chop(1);
+        }
+        settingsPath = settingsPath + "/UniversalIndentGUI";
+        
         // On windows systems the directories "indenters", "translations" are subdirs of the applicationBinaryPath.
         globalFilesPath = applicationBinaryPath;
 #else
-        settingsPath = QDir::homePath() + "/.universalindentgui";
+        // Remove any trailing slashes.
+        settingsPath = QDir::homePath();
+        while ( settingsPath.right(1) == "/" ) {
+            settingsPath.chop(1);
+        }
+        settingsPath = settingsPath + "/.universalindentgui";
         globalFilesPath = "/usr/share/universalindentgui";
 #endif
         dirCreator.mkpath( settingsPath );
@@ -101,11 +116,15 @@ void SettingsPaths::init() {
             QFile::copy( globalFilesPath+"/config/UiGuiSyntaxHighlightConfig.ini", settingsPath+"/UiGuiSyntaxHighlightConfig.ini" );
         }
         indenterPath = globalFilesPath + "/indenters";
-#ifdef Q_OS_WIN
+
+        // On different systems it may be that "QDir::tempPath()" ends with a "/" or not. So check this.
+        // Remove any trailing slashes.
+        tempPath = QDir::tempPath();
+        while ( tempPath.right(1) == "/" ) {
+            tempPath.chop(1);
+        }
         tempPath = QDir::tempPath() + "/UniversalIndentGUI";
-#else
-        tempPath = QDir::tempPath() + "UniversalIndentGUI";
-#endif
+
         dirCreator.mkpath( tempPath );
     }
 
