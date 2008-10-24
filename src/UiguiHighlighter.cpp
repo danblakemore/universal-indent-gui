@@ -39,14 +39,8 @@ UiguiHighlighter::UiguiHighlighter(QsciScintilla *parent)
 {
     this->parent = parent;
 
-    // If a "indenters" subdir in the applications binary path exists, use local config files (portable mode)
-    if ( SettingsPaths::getPortableMode() ) {
-        this->settings = new QSettings(SettingsPaths::getGlobalFilesPath() + "/config/UiGuiSyntaxHighlightConfig.ini", QSettings::IniFormat, this);
-    } 
-    // ... otherwise use the users application data default dir.
-    else {
-        this->settings = new QSettings(QSettings::IniFormat, QSettings::UserScope, QCoreApplication::organizationName(), "UiGuiSyntaxHighlightConfig", this);
-    }
+    // Create the highlighter settings object from the UiGuiSyntaxHighlightConfig.ini file.
+    this->settings = new QSettings(SettingsPaths::getSettingsPath() + "/UiGuiSyntaxHighlightConfig.ini", QSettings::IniFormat, this);
 
     highlightningIsOn = true;
 
