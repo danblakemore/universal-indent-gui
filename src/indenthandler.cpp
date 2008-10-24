@@ -817,6 +817,7 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
     //  parse ini file indenter header
     //
 
+    //TODO: Add warning message if header info can not be read correctly.
     indenterName = indenterSettings->value("header/indenterName").toString();
     indenterFileName = indenterSettings->value("header/indenterFileName").toString();
     configFilename = indenterSettings->value("header/configFilename").toString();
@@ -1211,7 +1212,7 @@ QString IndentHandler::getIndenterCfgFile() {
  */
 bool IndentHandler::createIndenterCallString() {
     QProcess indentProcess;
-
+    
     // First try to call the indenter inside of the data dir, using some suffix
     // ------------------------------------------------------------------------
 
