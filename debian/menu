@@ -1,0 +1,6 @@
+?package(universalindentgui):\
+  needs="X11"\
+  section="Applications/Programming"\
+  title="UniversalIndentGUI"\
+  command="/usr/bin/universalindentgui"
+

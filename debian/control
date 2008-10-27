@@ -1,0 +1,21 @@
+Source: universalindentgui
+Section: devel
+Priority: optional
+Maintainer: Thomas Schweitzer <mail@thomas-schweitzer.de>
+Build-Depends: debhelper (>= 7), libqt4-dev (>= 4.4), libqscintilla2-dev
+Standards-Version: 3.7.3
+Uploaders: Marcela Tiznado <mlt@debian.org>
+Homepage: http://universalindent.sourceforge.net/
+
+Package: universalindentgui
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Recommends: astyle, bcpp, csstidy, hindent, indent, tidy, uncrustify (>= 0.50), xmlindent
+Description: GUI frontend for nearly any code beautifier
+ UniversalIndentGui is a GUI fontend for nearly any code beautifier, currently
+ supporting Artistic Style (Astyle), BCPP, CSSTidy, GNU Indent, GreatCode,
+ HTML Tidy, PerlTidy, phpCodeBeautifier (phpCB) and Uncrustify.
+ UniversalIndentGui allows you to tune a beautifier's configuration and see
+ how the changes affects a source example live. It is especially useful to
+ compare different C/C++ beautifiers when you have to choose one of them.
+

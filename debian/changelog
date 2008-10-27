@@ -1,0 +1,21 @@
+universalindentgui (1.0.1-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Thomas Schweitzer <mail@thomas-schweitzer.de>  Mon, 27 Oct 2008 12:35:20 +0100
+
+universalindentgui (0.8.1-1) unstable; urgency=low
+
+  * New upstream release
+  * debian/rules: Do not delete perltidy as it's no longer shipped
+  * debian/rules: Cleanup extended
+
+ -- Sebastian Pipping <webmaster@hartwork.org>  Wed, 02 April 2008 04:45:00 +0100
+
+universalindentgui (0.8.0-1) unstable; urgency=low
+
+  * Initial release (Closes: #459671)
+  * Add man page missing in release archive (svn revision 603 plus fixes)
+
+ -- Sebastian Pipping <webmaster@hartwork.org>  Tue, 08 Jan 2008 15:13:53 +0100
+
