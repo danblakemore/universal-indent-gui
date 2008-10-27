@@ -52,28 +52,38 @@ UiguiHighlighter::UiguiHighlighter(QsciScintilla *parent)
     mapHighlighternameToExtension["CSS"] = QStringList() << "css";
     mapHighlighternameToExtension["D"] = QStringList() << "d";
     mapHighlighternameToExtension["Diff"] = QStringList() << "diff";
+#if ( QSCINTILLA_VERSION >= 0x020300 )
     mapHighlighternameToExtension["Fortran"] = QStringList() << "f" << "for";
     mapHighlighternameToExtension["Fortran77"] = QStringList() << "f77";
-    mapHighlighternameToExtension["HTML"] = QStringList() << "html";
+#endif
+    mapHighlighternameToExtension["HTML"] = QStringList() << "html" << "htm";
     mapHighlighternameToExtension["IDL"] = QStringList() << "idl";
     mapHighlighternameToExtension["Java"] = QStringList() << "java";
     mapHighlighternameToExtension["JavaScript"] = QStringList() << "js";
     mapHighlighternameToExtension["LUA"] = QStringList() << "lua";
     mapHighlighternameToExtension["Makefile"] = QStringList() << "makefile";
+#if ( QSCINTILLA_VERSION >= 0x020300 )
     mapHighlighternameToExtension["Pascal"] = QStringList() << "pas";
+#endif
     mapHighlighternameToExtension["Perl"] = QStringList() << "perl" << "pl" << "pm";
     mapHighlighternameToExtension["PHP"] = QStringList() << "php";
+#if ( QSCINTILLA_VERSION >= 0x020300 )
     mapHighlighternameToExtension["PostScript"] = QStringList() << "ps" << "eps" << "pdf" << "ai" << "fh";
+#endif
     mapHighlighternameToExtension["POV"] = QStringList() << "pov";
     mapHighlighternameToExtension["Ini"] = QStringList() << "ini";
     mapHighlighternameToExtension["Python"] = QStringList() << "py";
     mapHighlighternameToExtension["Ruby"] = QStringList() << "rub" << "rb";
     mapHighlighternameToExtension["SQL"] = QStringList() << "sql";
+#if ( QSCINTILLA_VERSION >= 0x020300 )
     mapHighlighternameToExtension["TCL"] = QStringList() << "tcl";
+#endif
     mapHighlighternameToExtension["TeX"] = QStringList() << "tex";
     mapHighlighternameToExtension["VHDL"] = QStringList() << "vhdl";
     mapHighlighternameToExtension["XML"] = QStringList() << "xml";
+#if ( QSCINTILLA_VERSION >= 0x020300 )
     mapHighlighternameToExtension["YAML"] = QStringList() << "yaml";
+#endif
 
     lexer = 0;
 
@@ -341,13 +351,15 @@ int UiguiHighlighter::setLexerForExtension( QString extension ) {
 	else if ( extension == "diff" ) {
 		lexer = new QsciLexerDiff();
 	}
+#if ( QSCINTILLA_VERSION >= 0x020300 )
     else if ( extension == "f" || extension == "for" ) {
         lexer = new QsciLexerFortran();
     }
     else if ( extension == "f77" ) {
         lexer = new QsciLexerFortran77();
     }
-	else if ( extension == "html" ) {
+#endif
+	else if ( extension == "html" || extension == "htm" ) {
 		lexer = new QsciLexerHTML();
 	}
 	else if ( extension == "idl" ) {
@@ -365,18 +377,22 @@ int UiguiHighlighter::setLexerForExtension( QString extension ) {
     else if ( extension == "makefile" ) {
 		lexer = new QsciLexerMakefile();
 	}
+#if ( QSCINTILLA_VERSION >= 0x020300 )
     else if ( extension == "pas" ) {
         lexer = new QsciLexerPascal();
     }
+#endif
 	else if ( extension == "perl" || extension == "pl" || extension == "pm" ) {
 		lexer = new QsciLexerPerl();
 	}
     else if ( extension == "php" ) {
 		lexer = new QsciLexerHTML();
 	}
+#if ( QSCINTILLA_VERSION >= 0x020300 )
     else if ( extension == "ps" || extension == "eps" || extension == "pdf" || extension == "ai" || extension == "fh") {
         lexer = new QsciLexerPostScript();
     }
+#endif
 	else if ( extension == "pov" ) {
 		lexer = new QsciLexerPOV();
 	}
@@ -392,9 +408,11 @@ int UiguiHighlighter::setLexerForExtension( QString extension ) {
 	else if ( extension == "sql" ) {
 		lexer = new QsciLexerSQL();
 	}
+#if ( QSCINTILLA_VERSION >= 0x020300 )
     else if ( extension == "tcl" ) {
         lexer = new QsciLexerTCL();
     }
+#endif
 	else if ( extension == "tex" ) {
 		lexer = new QsciLexerTeX();
 	}
@@ -402,11 +420,17 @@ int UiguiHighlighter::setLexerForExtension( QString extension ) {
         lexer = new QsciLexerVHDL();
     }
     else if ( extension == "xml" ) {
+#if ( QSCINTILLA_VERSION >= 0x020300 )
 		lexer = new QsciLexerXML();
+#else
+        lexer = new QsciLexerHTML();
+#endif
 	}
+#if ( QSCINTILLA_VERSION >= 0x020300 )
     else if ( extension == "yaml" ) {
         lexer = new QsciLexerYAML();
     }
+#endif
 	else {
 		lexer = new QsciLexerCPP();
         extension = "cpp";
