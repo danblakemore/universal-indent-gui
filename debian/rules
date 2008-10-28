@@ -54,7 +54,7 @@ install: build
 	dh_installdirs
 
 	# Add here commands to install the package into debian/universalindentgui.
-	$(MAKE) DESTDIR=$(CURDIR)/debian/universalindentgui install
+	$(MAKE) INSTALL_ROOT=$(CURDIR)/debian/universalindentgui install
 
 
 # Build architecture-independent files here.
@@ -69,7 +69,7 @@ binary-arch: build install
 	dh_installdocs
 	dh_installexamples
 #	dh_install
-#	dh_installmenu
+	dh_installmenu
 #	dh_installdebconf	
 #	dh_installlogrotate
 #	dh_installemacsen
