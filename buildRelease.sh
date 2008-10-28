@@ -216,6 +216,8 @@ if [ $? -gt 0 ]; then
     echo "ERROR: Could not copy dir \"src\"!"
     exit 1
 fi
+# Deleting backup files
+rm ./$targetDir/src/*.*~ &> /dev/null
 echo "Done"
 echo ""
 
