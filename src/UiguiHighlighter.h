@@ -82,11 +82,11 @@ public:
 
 private:
     bool highlightningIsOn;
-    QsciScintilla *parent;
+    QsciScintilla *qsciEditorParent;
     QMap<int, QFont> fontForStyles;
     QMap<int, QColor> colorForStyles;
-	QsciLexer* lexer;
-	QSettings *settings;
+    QsciLexer* lexer;
+    QSettings *settings;
     QMap<QString, QStringList> mapHighlighternameToExtension;
 
 public slots:

@@ -37,7 +37,7 @@
 UiguiHighlighter::UiguiHighlighter(QsciScintilla *parent)
 : QObject(parent)
 {
-    this->parent = parent;
+    this->qsciEditorParent = parent;
 
     // Create the highlighter settings object from the UiGuiSyntaxHighlightConfig.ini file.
     this->settings = new QSettings(SettingsPaths::getSettingsPath() + "/UiGuiSyntaxHighlightConfig.ini", QSettings::IniFormat, this);
@@ -85,7 +85,7 @@ UiguiHighlighter::UiguiHighlighter(QsciScintilla *parent)
     mapHighlighternameToExtension["YAML"] = QStringList() << "yaml";
 #endif
 
-    lexer = 0;
+    lexer = NULL;
 
     // This code is only for testing.
     /*
@@ -115,9 +115,9 @@ void UiguiHighlighter::setHighlighterByAction(QAction* highlighterAction) {
     setLexerForExtension( mapHighlighternameToExtension[highlighterName].first() );
     //TODO: This is really no nice way. How do it better?
     // Need to do this "text update" to update the syntax highlighting. Otherwise highlighting is wrong.
-    int scrollPos = parent->verticalScrollBar()->value();
-    parent->setText( parent->text() );
-    parent->verticalScrollBar()->setValue(scrollPos);
+    int scrollPos = qsciEditorParent->verticalScrollBar()->value();
+    qsciEditorParent->setText( qsciEditorParent->text() );
+    qsciEditorParent->verticalScrollBar()->setValue(scrollPos);
 }
 
 
@@ -126,7 +126,7 @@ void UiguiHighlighter::setHighlighterByAction(QAction* highlighterAction) {
 */
 void UiguiHighlighter::turnHighlightOn() {
     highlightningIsOn = true;
-	parent->setLexer(lexer);
+    qsciEditorParent->setLexer(lexer);
     readCurrentSettings("");
 }
 
@@ -135,15 +135,16 @@ void UiguiHighlighter::turnHighlightOn() {
 */
 void UiguiHighlighter::turnHighlightOff() {
     highlightningIsOn = false;
-	parent->setLexer();
-    parent->setFont( QFont("Courier", 10, QFont::Normal) );
-    parent->setMarginsFont( QFont("Courier", 10, QFont::Normal) );
+    qsciEditorParent->setLexer();
+    qsciEditorParent->setFont( QFont("Courier", 10, QFont::Normal) );
+    qsciEditorParent->setMarginsFont( QFont("Courier", 10, QFont::Normal) );
 }
 
 
 /*!
     \brief Read the settings for the current lexer from the settings file.
  */
+//TODO: Refactor this function so that the coding style and variable names suit better.
 bool UiguiHighlighter::readCurrentSettings( const char *prefix )
 {
     bool ok, flag, rc = true;
@@ -153,6 +154,12 @@ bool UiguiHighlighter::readCurrentSettings( const char *prefix )
     // Reset lists containing fonts and colors for each style
     fontForStyles.clear();
     colorForStyles.clear();
+
+// Somehow I get crashes when using default libqscintilla2-3 and libqscintilla2-dev packages.
+// Do not know currently where they come from, but to avoid these return here.
+#if ( QSCINTILLA_VERSION < 0x020300 )
+    return false;
+#endif
 
     // Read the styles.
     for (int i = 0; i < 128; ++i)
@@ -322,7 +329,7 @@ int UiguiHighlighter::setLexerForExtension( QString extension ) {
     int indexOfHighlighter = 0;
 	extension = extension.toLower();
 
-	if ( lexer ) {
+	if ( lexer != NULL ) {
 		writeCurrentSettings("");
 		delete lexer;
 	}
@@ -444,7 +451,7 @@ int UiguiHighlighter::setLexerForExtension( QString extension ) {
 
     // Set the lexer for the QScintilla widget.
     if ( highlightningIsOn ) {
-	    parent->setLexer(lexer);
+	    qsciEditorParent->setLexer(lexer);
     }
 
     // Read the settings for the lexer properties from file.
