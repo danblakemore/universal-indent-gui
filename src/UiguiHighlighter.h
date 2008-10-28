@@ -34,27 +34,37 @@
 #include <Qsci/qscilexercss.h>
 #include <Qsci/qscilexerd.h>
 #include <Qsci/qscilexerdiff.h>
+#if ( QSCINTILLA_VERSION >= 0x020300 )
 #include <Qsci/qscilexerfortran.h>
 #include <Qsci/qscilexerfortran77.h>
+#endif
 #include <Qsci/qscilexerhtml.h>
 #include <Qsci/qscilexeridl.h>
 #include <Qsci/qscilexerjava.h>
 #include <Qsci/qscilexerjavascript.h>
 #include <Qsci/qscilexerlua.h>
 #include <Qsci/qscilexermakefile.h>
+#if ( QSCINTILLA_VERSION >= 0x020300 )
 #include <Qsci/qscilexerpascal.h>
+#endif
 #include <Qsci/qscilexerperl.h>
+#if ( QSCINTILLA_VERSION >= 0x020300 )
 #include <Qsci/qscilexerpostscript.h>
+#endif
 #include <Qsci/qscilexerpov.h>
 #include <Qsci/qscilexerproperties.h>
 #include <Qsci/qscilexerpython.h>
 #include <Qsci/qscilexerruby.h>
 #include <Qsci/qscilexersql.h>
+#if ( QSCINTILLA_VERSION >= 0x020300 )
 #include <Qsci/qscilexertcl.h>
+#endif
 #include <Qsci/qscilexertex.h>
 #include <Qsci/qscilexervhdl.h>
+#if ( QSCINTILLA_VERSION >= 0x020300 )
 #include <Qsci/qscilexerxml.h>
 #include <Qsci/qscilexeryaml.h>
+#endif
 
 
 class UiguiHighlighter : public QObject
