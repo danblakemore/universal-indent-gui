@@ -1382,7 +1382,7 @@ void MainWindow::dropEvent(QDropEvent *event) {
 */
 void MainWindow::showAboutDialog() {
 	QPixmap originalPixmap = QPixmap::grabWindow(QApplication::desktop()->screen()->winId());
-	qDebug("in main pixmap width %d, numScreens = %d", originalPixmap.size().width(), QApplication::desktop()->availableGeometry().width());
+	//qDebug("in main pixmap width %d, numScreens = %d", originalPixmap.size().width(), QApplication::desktop()->availableGeometry().width());
 	aboutDialogGraphicsView->setScreenshotPixmap( originalPixmap );
 	aboutDialogGraphicsView->show();
 }
