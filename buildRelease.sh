@@ -252,11 +252,16 @@ else
 ###################### binary release begin ########################
 
 if [ -d "release" ] && [ "$COMPLETEREBUILD" = "true" ]; then
-    echo "Cleaning up release dirs"
-    echo "------------------------"
+    echo "Cleaning up release dirs and deleting makefiles"
+    echo "-----------------------------------------------"
     rm -r release &> /dev/null
     if [ $? -gt 0 ]; then
         echo "ERROR: Could not delete release dir!"
+        exit 1
+    fi
+    rm Makefile* &> /dev/null
+    if [ $? -gt 0 ]; then
+        echo "ERROR: Could not delete the makefiles!"
         exit 1
     fi
     echo "Done"
@@ -276,7 +281,13 @@ echo ""
 
 echo "Calling make release"
 echo "--------------------"
-make --silent
+if [ -f "Makefile.Release" ]; then
+    echo "calling \"make release --silent\""
+    make release --silent
+else
+    echo "calling \"make --silent\""
+    make --silent
+fi
 if [ $? -gt 0 ]; then
     echo "ERROR: Calling make release failed!"
     exit 1
