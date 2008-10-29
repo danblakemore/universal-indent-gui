@@ -378,6 +378,10 @@ QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputF
     Q_ASSERT_X( !inputFileName.isEmpty(), "callIndenter", "inputFileName is empty" );
 //    Q_ASSERT_X( !outputFileName.isEmpty(), "callIndenter", "outputFileName is empty" );
     Q_ASSERT_X( !indenterFileName.isEmpty(), "callIndenter", "indenterFileName is empty" );
+    
+    if ( indenterFileName.isEmpty() ) {
+        return "";
+    }
 
 	QString formattedSourceCode;
 	QString indenterCompleteCallString;
@@ -827,6 +831,11 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
         cfgFileParameterEnding = "\n";
     }
     indenterShowHelpParameter = indenterSettings->value("header/showHelpParameter").toString();
+    
+    if ( indenterFileName.isEmpty() ) {
+        errorMessageDialog->showMessage( tr("Indenter ini file header error"), 
+            tr("The loaded indenter ini file \"%1\"has a faulty header. At least the indenters file name is not set.").arg(iniFilePath) );
+    }
 
 	// Read the parameter order. Possible values are (p=parameter[file] i=inputfile o=outputfile)
 	// pio, ipo, iop
@@ -1212,6 +1221,10 @@ QString IndentHandler::getIndenterCfgFile() {
  */
 bool IndentHandler::createIndenterCallString() {
     QProcess indentProcess;
+    
+    if ( indenterFileName.isEmpty() ) {
+        return false;
+    }
     
     // First try to call the indenter inside of the data dir, using some suffix
     // ------------------------------------------------------------------------
