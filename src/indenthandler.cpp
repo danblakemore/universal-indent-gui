@@ -821,7 +821,6 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
     //  parse ini file indenter header
     //
 
-    //TODO: Add warning message if header info can not be read correctly.
     indenterName = indenterSettings->value("header/indenterName").toString();
     indenterFileName = indenterSettings->value("header/indenterFileName").toString();
     configFilename = indenterSettings->value("header/configFilename").toString();
@@ -837,9 +836,9 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
             tr("The loaded indenter ini file \"%1\"has a faulty header. At least the indenters file name is not set.").arg(iniFilePath) );
     }
 
-	// Read the parameter order. Possible values are (p=parameter[file] i=inputfile o=outputfile)
-	// pio, ipo, iop
-	parameterOrder = indenterSettings->value("header/parameterOrder", "pio").toString();
+    // Read the parameter order. Possible values are (p=parameter[file] i=inputfile o=outputfile)
+    // pio, ipo, iop
+    parameterOrder = indenterSettings->value("header/parameterOrder", "pio").toString();
     inputFileParameter = indenterSettings->value("header/inputFileParameter").toString();
     inputFileName = indenterSettings->value("header/inputFileName").toString();
     outputFileParameter = indenterSettings->value("header/outputFileParameter").toString();
