@@ -60,13 +60,28 @@ done
 
 cd $targetDir
 
+echo "Unpacking the source archive"
+echo "----------------------------"
 tar -xzvf $sourcefilenameorig
+echo ""
 
+echo "Copying the debian package build files"
+echo "--------------------------------------"
 cp -r ../debian ./$sourcedirname
 
 cd $sourcedirname/debian
 rm -Rfv .svn
+echo ""
+
+echo "Creating the debian source package"
+echo "----------------------------------"
 debuild -S -us -uc
+echo ""
+
+echo "Creating the debian binary package for the current platform"
+echo "-----------------------------------------------------------"
+debuild -us -uc
+echo ""
 
 echo "Everything completed successfully!"
 if [ "$WARNINGOCCURRED" = "true" ]; then
