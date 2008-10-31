@@ -2,5 +2,6 @@
   needs="X11"\
   section="Applications/Programming"\
   title="UniversalIndentGUI"\
-  command="/usr/bin/universalindentgui"
+  command="/usr/bin/universalindentgui"\
+  icon="/usr/share/pixmaps/universalIndentGUI_32x32.xpm"
 

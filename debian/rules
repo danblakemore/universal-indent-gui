@@ -56,6 +56,9 @@ install: build
 
 	# Add here commands to install the package into debian/universalindentgui.
 	$(MAKE) INSTALL_ROOT=$(CURDIR)/debian/universalindentgui install
+	
+	mkdir -p $(CURDIR)/debian/universalindentgui/usr/share/pixmaps
+	cp $(CURDIR)/resources/universalIndentGUI_32x32.xpm $(CURDIR)/debian/universalindentgui/usr/share/pixmaps/
 
 
 # Build architecture-independent files here.
