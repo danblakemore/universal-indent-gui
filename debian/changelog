@@ -1,8 +1,8 @@
-universalindentgui (1.0.1-1) unstable; urgency=low
+universalindentgui (1.0.2-1) unstable; urgency=low
 
   * New upstream release
 
- -- Thomas Schweitzer <mail@thomas-schweitzer.de>  Mon, 27 Oct 2008 12:35:20 +0100
+ -- Thomas Schweitzer <mail@thomas-schweitzer.de>  Mon, 03 Nov 2008 12:35:20 +0100
 
 universalindentgui (0.8.1-1) unstable; urgency=low
 

@@ -2,9 +2,9 @@
 
 ./buildRelease.sh
 
-sourcedirname=universalindentgui-1.0.1
+sourcedirname=universalindentgui-1.0.2
 sourcefilename=$sourcedirname.tar.gz
-sourcefilenameorig=universalindentgui_1.0.1.orig.tar.gz
+sourcefilenameorig=universalindentgui_1.0.2.orig.tar.gz
 
 targetDir=packaging
 

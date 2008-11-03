@@ -10,7 +10,7 @@ Homepage: http://universalindent.sourceforge.net/
 Package: universalindentgui
 Architecture: any
 Depends: ${shlibs:Depends}
-Recommends: astyle, bcpp, csstidy, hindent, indent, tidy, uncrustify (>= 0.50), xmlindent
+Recommends: astyle, bcpp, csstidy, hindent, indent, perltidy, tidy, uncrustify, xmlindent
 Description: GUI frontend for nearly any code beautifier
  UniversalIndentGui is a GUI fontend for nearly any code beautifier.
  It allows you to comfortably change each parameter of a beautifier and

@@ -1,3 +1,9 @@
+2008-11-03 Version 1.0.2
+[change] Made the source code be compilable with the slightly older QScintilla version 2.2.
+[change] When starting the very first time without any existing application settings, do not show the mainwindow at position 0,0. On Mac the window couldn't be moved because the window title bar was hidden under the Mac menu bar.
+[fix] Avoid a crash if an uigui ini file with faulty header info is read, where the indenter executable was emtpy.
+[fix] Some application settings were tried to be read from a wrong directory when running in multi user mode.
+
 2008-10-14 Version 1.0.1
 [add] Feature Request ID 2161471 : Added support for the Python indenter pindent.
 [add] Feature Request ID 1883444 : Added support for the JSP indenter JSPPP.
