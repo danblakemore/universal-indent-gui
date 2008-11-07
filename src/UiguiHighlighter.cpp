@@ -136,8 +136,13 @@ void UiguiHighlighter::turnHighlightOn() {
 void UiguiHighlighter::turnHighlightOff() {
     highlightningIsOn = false;
     qsciEditorParent->setLexer();
+#ifdef Q_OS_WIN
     qsciEditorParent->setFont( QFont("Courier", 10, QFont::Normal) );
     qsciEditorParent->setMarginsFont( QFont("Courier", 10, QFont::Normal) );
+#else
+    qsciEditorParent->setFont( QFont("Monospace", 10, QFont::Normal) );
+    qsciEditorParent->setMarginsFont( QFont("Monospace", 10, QFont::Normal) );
+#endif
 }
 
 
@@ -154,12 +159,6 @@ bool UiguiHighlighter::readCurrentSettings( const char *prefix )
     // Reset lists containing fonts and colors for each style
     fontForStyles.clear();
     colorForStyles.clear();
-
-// Somehow I get crashes when using default libqscintilla2-3 and libqscintilla2-dev packages.
-// Do not know currently where they come from, but to avoid these return here.
-#if ( QSCINTILLA_VERSION < 0x020300 )
-    return false;
-#endif
 
     // Read the styles.
     for (int i = 0; i < 128; ++i)
@@ -199,7 +198,14 @@ bool UiguiHighlighter::readCurrentSettings( const char *prefix )
         {
             QFont f;
 
+#ifdef Q_OS_WIN
             f.setFamily(fdesc[0]);
+#else
+            if ( fdesc[0].contains("courier", Qt::CaseInsensitive) )
+                f.setFamily("Monospace");
+            else
+                f.setFamily(fdesc[0]);
+#endif
             f.setPointSize(fdesc[1].toInt());
             f.setBold(fdesc[2].toInt());
             f.setItalic(fdesc[3].toInt());
