@@ -1,18 +1,16 @@
 window_sizes 1154 619 300 848 497 70
 windows_style
 diagrams
-  usecasediagram_ref 128002 // MassConvert
+  usecasediagram_ref 128002 // Use Cases
     743 411 130 4 0 0
   classdiagram_ref 128130 // Class Diagram
     708 469 100 4 0 0
-  active  classdiagram_ref 129282 // Analyse
+  active  classdiagram_ref 129282 // Analyse Diagram
     746 404 100 4 0 0
 end
 show_stereotypes
-selected operation_ref 130434 // showWhiteSpace
+selected classdiagram_ref 128130 // Class Diagram
 open
-  usecaseview_ref 128002 // UiGUI
-  classdiagram_ref 129282 // Analyse
-  class_ref 128130 // CodeViewInterface
+  classview_ref 128002 // UiGUI class view
 end
 end
