@@ -32,7 +32,7 @@ AboutDialog::AboutDialog(QWidget *parent, Qt::WindowFlags flags, QString version
     QDialog(parent, flags)
 {
     this->parent = parent;
-	qApp->setStyleSheet("QTextBrowser{background-color:transparent}");
+    qApp->setStyleSheet("QTextBrowser{background-color:transparent}");
     setupUi(this);
     creditsTextBrowser->setStyleSheet("QTextBrowser#creditsTextBrowser{background-color:white}");
 
@@ -53,22 +53,22 @@ AboutDialog::AboutDialog(QWidget *parent, Qt::WindowFlags flags, QString version
         "<p align='center'><a href=\"http://www.hartwork.org/\"><b>Sebastian Pipping</b></a> for helping me bring UiGUI into the Debian repository and other good ideas.</p></br>"
         "<p align='center'><a href=\"http://korytskyy.lviv.ua/\"><b>Oleksandr</b></a> for Ukrainian and Russian translation.</p></br>"
         "<p align='center'><b>Erwan &quot;leg&quot;</b> for French translation and the new icon logo.</p></br>"
-		"<p align='center'>The <a href=\"http://www.scintilla.org/\"><b>Scintilla</b></a> project for their great text editing component.</p></br>"
+        "<p align='center'>The <a href=\"http://www.scintilla.org/\"><b>Scintilla</b></a> project for their great text editing component.</p></br>"
         "<p align='center'><a href=\"http://www.riverbankcomputing.co.uk/software/qscintilla/\"><b>Riverbank</b></a> for their Scintlla Qt wrapper QScintilla.</p></br>"
         "<p align='center'>The <a href=\"http://astyle.sourceforge.net/\"><b>Artistic Style</b></a> project.</p></br>"
         "<p align='center'>The <a href=\"http://invisible-island.net/bcpp/\"><b>BCPP</b></a> project.</p></br>"
         "<p align='center'>The <a href=\"http://www.siber.com/sct/tools/cbl-beau.html\"><b>Cobol Beautifier</b></a> project.</p></br>"
-		"<p align='center'>The <a href=\"http://csstidy.sourceforge.net/\"><b>CSSTidy</b></a> project.</p></br>"
+        "<p align='center'>The <a href=\"http://csstidy.sourceforge.net/\"><b>CSSTidy</b></a> project.</p></br>"
         "<p align='center'>The <a href=\"http://www.gnu.org/software/indent/\"><b>GNU Indent</b></a> project.</p></br>"
         "<p align='center'>The <a href=\"http://sourceforge.net/projects/gcgreatcode/\"><b>GreatCode</b></a> project.</p></br>"
         "<p align='center'>The <a href=\"http://linux.com.hk/penguin/man/1/hindent.html\"><b>hindent</b></a> project.</p></br>"
         "<p align='center'>The <a href=\"http://www.digital-mines.com/htb/\"><b>HTB</b></a> project.</p></br>"
         "<p align='center'>The <a href=\"http://tidy.sourceforge.net/\"><b>HTML Tidy</b></a> project.</p></br>"
-		"<p align='center'>The <a href=\"http://code.gosu.pl/\"><b>JsDecoder</b></a> project.</p></br>"
+        "<p align='center'>The <a href=\"http://code.gosu.pl/\"><b>JsDecoder</b></a> project.</p></br>"
         "<p align='center'>The <a href=\"http://jsppp.sourceforge.net/\"><b>JSPPP</b></a> project.</p></br>"
-		"<p align='center'>The <a href=\"http://perltidy.sourceforge.net/\"><b>Perltidy</b></a> project.</p></br>"
+        "<p align='center'>The <a href=\"http://perltidy.sourceforge.net/\"><b>Perltidy</b></a> project.</p></br>"
         "<p align='center'>The <a href=\"http://beautifyphp.sourceforge.net/\"><b>PHP_Beautifier</b></a> project.</p></br>"
-		"<p align='center'>The <a href=\"http://www.waterproof.fr/products/phpCodeBeautifier/\"><b>phpCB</b></a> project.</p></br>"
+        "<p align='center'>The <a href=\"http://www.waterproof.fr/products/phpCodeBeautifier/\"><b>phpCB</b></a> project.</p></br>"
         "<p align='center'>The <a href=\"http://sourceforge.net/projects/phpstylist/\"><b>PHP Stylist</b></a> project.</p></br>"
         "<p align='center'>The <a href=\"http://www.arachnoid.com/ruby/rubyBeautifier.html\"><b>Ruby Beautifier</b></a> project.</p></br>"
         "<p align='center'>The <a href=\"http://raa.ruby-lang.org/project/ruby_formatter/\"><b>Ruby Formatter</b></a> project.</p></br>"
@@ -100,7 +100,7 @@ void AboutDialog::changeEvent(QEvent *event) {
         QString versionString = versionTextBrowser->toHtml();
         versionString = versionString.arg(version).arg(revision).arg(buildDate);
         versionTextBrowser->setHtml(versionString);
-    } 
+    }
     else {
         QWidget::changeEvent(event);
     }

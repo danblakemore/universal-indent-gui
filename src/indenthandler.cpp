@@ -36,10 +36,10 @@
 
 
 /*!
-    \brief Constructor of the indent handler. 
-    
-    By calling this constructor the indenter to be loaded, can be selected by setting 
-    its \a indenterID, which is the number of found indenter ini files in alphabetic 
+    \brief Constructor of the indent handler.
+
+    By calling this constructor the indenter to be loaded, can be selected by setting
+    its \a indenterID, which is the number of found indenter ini files in alphabetic
     order starting at index 0.
  */
 IndentHandler::IndentHandler(int indenterID, QWidget *mainWindow, QWidget *parent)
@@ -103,7 +103,7 @@ IndentHandler::IndentHandler(int indenterID, QWidget *mainWindow, QWidget *paren
 #ifdef UNIVERSALINDENTGUI_NPP_EXPORTS
     connect( toolBox, SIGNAL(currentChanged(int)), this, SLOT(repaint()) );
 #endif // UNIVERSALINDENTGUI_NPP_EXPORTS
-    
+
     //toolBox->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
     //toolBox->setMaximumSize(QSize(16777215, 16777215));
     // insert the toolbox into the vlayout
@@ -234,11 +234,10 @@ void IndentHandler::contextMenuEvent( QContextMenuEvent *event ) {
     to indent an as parameter defined file.
  */
 QString IndentHandler::generateCommandlineCall() {
-
-	QString indenterCompleteCallString;
-	QString parameterInputFile;
-	QString parameterOuputFile;
-	QString parameterParameterFile;
+    QString indenterCompleteCallString;
+    QString parameterInputFile;
+    QString parameterOuputFile;
+    QString parameterParameterFile;
     QString replaceInputFileCommand;
 
     // Define the placeholder for parameter variables either in batch or bash programming.
@@ -251,9 +250,9 @@ QString IndentHandler::generateCommandlineCall() {
     // Generate the parameter string that will be saved to the indenters config file.
     QString parameterString = getParameterString();
 
-	if ( !configFilename.isEmpty() ) {
-		saveConfigFile( indenterDirctoryStr + "/" + configFilename, parameterString );
-	}
+    if ( !configFilename.isEmpty() ) {
+        saveConfigFile( indenterDirctoryStr + "/" + configFilename, parameterString );
+    }
 
     parameterInputFile = " " + inputFileParameter + "\"" + shellParameterPlaceholder + "\"";
 
@@ -266,28 +265,28 @@ QString IndentHandler::generateCommandlineCall() {
         }
     }
 
-	// If the config file name is empty it is assumed that all parameters are sent via command line call
-	if ( configFilename.isEmpty() ) {
-		parameterParameterFile = " " + parameterString;
-	}
-	// else if needed add the parameter to the indenter call string where the config file can be found.
-	else if (useCfgFileParameter != "none") {
-		parameterParameterFile = " " + useCfgFileParameter + "\"" + indenterDirctoryStr + "/" + configFilename + "\"";
-	}
+    // If the config file name is empty it is assumed that all parameters are sent via command line call
+    if ( configFilename.isEmpty() ) {
+        parameterParameterFile = " " + parameterString;
+    }
+    // else if needed add the parameter to the indenter call string where the config file can be found.
+    else if (useCfgFileParameter != "none") {
+        parameterParameterFile = " " + useCfgFileParameter + "\"" + indenterDirctoryStr + "/" + configFilename + "\"";
+    }
 
-	// Assemble indenter call string for parameters according to the set order.
-	if ( parameterOrder == "ipo" ) {
-		indenterCompleteCallString = parameterInputFile + parameterParameterFile + parameterOuputFile;
-	} 
-	else if ( parameterOrder == "pio" ) {
-		indenterCompleteCallString = parameterParameterFile + parameterInputFile + parameterOuputFile;
-	}
+    // Assemble indenter call string for parameters according to the set order.
+    if ( parameterOrder == "ipo" ) {
+        indenterCompleteCallString = parameterInputFile + parameterParameterFile + parameterOuputFile;
+    }
+    else if ( parameterOrder == "pio" ) {
+        indenterCompleteCallString = parameterParameterFile + parameterInputFile + parameterOuputFile;
+    }
     else if ( parameterOrder == "poi" ) {
-		indenterCompleteCallString = parameterParameterFile + parameterOuputFile + parameterInputFile;
-	}
-	else {
-		indenterCompleteCallString = parameterInputFile + parameterOuputFile + parameterParameterFile;
-	}
+        indenterCompleteCallString = parameterParameterFile + parameterOuputFile + parameterInputFile;
+    }
+    else {
+        indenterCompleteCallString = parameterInputFile + parameterOuputFile + parameterParameterFile;
+    }
 
     // Generate the indenter call string either for win32 or other systems.
 #if defined(Q_OS_WIN32)
@@ -329,15 +328,15 @@ QString IndentHandler::generateCommandlineCall() {
 
 
 /*!
-    \brief Format \a sourceCode by calling the indenter. 
-   
-    The \a inputFileExtension has to be given as parameter so the called indenter 
+    \brief Format \a sourceCode by calling the indenter.
+
+    The \a inputFileExtension has to be given as parameter so the called indenter
     can identify the programming language if needed.
  */
 QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtension) {
     if ( indenterExecutableSuffix == ".js" ) {
         return callJavaScriptIndenter(sourceCode);
-    } 
+    }
     else {
         return callExecutableIndenter(sourceCode, inputFileExtension);
     }
@@ -345,9 +344,9 @@ QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtensi
 
 
 /*!
-    \brief Format \a sourceCode by calling the interpreted JavaScript code of the indenter. 
+    \brief Format \a sourceCode by calling the interpreted JavaScript code of the indenter.
 
-    The \a inputFileExtension has to be given as parameter so the called indenter 
+    The \a inputFileExtension has to be given as parameter so the called indenter
     can identify the programming language if needed.
 */
 QString IndentHandler::callJavaScriptIndenter(QString sourceCode) {
@@ -369,34 +368,34 @@ QString IndentHandler::callJavaScriptIndenter(QString sourceCode) {
 
 
 /*!
-    \brief Format \a sourceCode by calling the binary executable of the indenter. 
+    \brief Format \a sourceCode by calling the binary executable of the indenter.
 
-    The \a inputFileExtension has to be given as parameter so the called indenter 
+    The \a inputFileExtension has to be given as parameter so the called indenter
     can identify the programming language if needed.
 */
 QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputFileExtension) {
     Q_ASSERT_X( !inputFileName.isEmpty(), "callIndenter", "inputFileName is empty" );
 //    Q_ASSERT_X( !outputFileName.isEmpty(), "callIndenter", "outputFileName is empty" );
     Q_ASSERT_X( !indenterFileName.isEmpty(), "callIndenter", "indenterFileName is empty" );
-    
+
     if ( indenterFileName.isEmpty() ) {
         return "";
     }
 
-	QString formattedSourceCode;
-	QString indenterCompleteCallString;
-	QString parameterInputFile;
-	QString parameterOuputFile;
-	QString parameterParameterFile;
-	QProcess indentProcess;
-	QString processReturnString;
+    QString formattedSourceCode;
+    QString indenterCompleteCallString;
+    QString parameterInputFile;
+    QString parameterOuputFile;
+    QString parameterParameterFile;
+    QProcess indentProcess;
+    QString processReturnString;
 
     // Generate the parameter string that will be saved to the indenters config file
     QString parameterString = getParameterString();
 
-	if ( !configFilename.isEmpty() ) {
-		saveConfigFile( tempDirctoryStr + "/" + configFilename, parameterString );
-	}
+    if ( !configFilename.isEmpty() ) {
+        saveConfigFile( tempDirctoryStr + "/" + configFilename, parameterString );
+    }
 
     // Only add a dot to file extension if the string is not empty
     if ( !inputFileExtension.isEmpty() ) {
@@ -404,40 +403,40 @@ QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputF
     }
 
     // Delete any previously used input src file and create a new input src file.
-	QFile::remove(tempDirctoryStr + "/" + inputFileName + inputFileExtension);
-	QFile inputSrcFile(tempDirctoryStr + "/" + inputFileName + inputFileExtension);
-	parameterInputFile = " " + inputFileParameter + inputFileName + inputFileExtension;
+    QFile::remove(tempDirctoryStr + "/" + inputFileName + inputFileExtension);
+    QFile inputSrcFile(tempDirctoryStr + "/" + inputFileName + inputFileExtension);
+    parameterInputFile = " " + inputFileParameter + inputFileName + inputFileExtension;
 
     if ( outputFileParameter != "none" && outputFileParameter != "stdout" ) {
         parameterOuputFile = " " + outputFileParameter + outputFileName + inputFileExtension;
     }
 
-	// If the config file name is empty it is assumed that all parameters are sent via command line call
-	if ( configFilename.isEmpty() ) {
-		parameterParameterFile = " " + parameterString;
-	}
-	// if needed add the parameter to the indenter call string where the config file can be found
-	else if (useCfgFileParameter != "none") {
-		parameterParameterFile = " " + useCfgFileParameter + "\"" + tempDirctoryStr + "/" + configFilename + "\"";
-	}
+    // If the config file name is empty it is assumed that all parameters are sent via command line call
+    if ( configFilename.isEmpty() ) {
+        parameterParameterFile = " " + parameterString;
+    }
+    // if needed add the parameter to the indenter call string where the config file can be found
+    else if (useCfgFileParameter != "none") {
+        parameterParameterFile = " " + useCfgFileParameter + "\"" + tempDirctoryStr + "/" + configFilename + "\"";
+    }
 
-	// Assemble indenter call string for parameters according to the set order.
-	if ( parameterOrder == "ipo" ) {
-		indenterCompleteCallString = parameterInputFile + parameterParameterFile + parameterOuputFile;
-	} 
-	else if ( parameterOrder == "pio" ) {
-		indenterCompleteCallString = parameterParameterFile + parameterInputFile + parameterOuputFile;
-	}
+    // Assemble indenter call string for parameters according to the set order.
+    if ( parameterOrder == "ipo" ) {
+        indenterCompleteCallString = parameterInputFile + parameterParameterFile + parameterOuputFile;
+    }
+    else if ( parameterOrder == "pio" ) {
+        indenterCompleteCallString = parameterParameterFile + parameterInputFile + parameterOuputFile;
+    }
     else if ( parameterOrder == "poi" ) {
-		indenterCompleteCallString = parameterParameterFile + parameterOuputFile + parameterInputFile;
-	}
-	else {
-		indenterCompleteCallString = parameterInputFile + parameterOuputFile + parameterParameterFile;
-	}
+        indenterCompleteCallString = parameterParameterFile + parameterOuputFile + parameterInputFile;
+    }
+    else {
+        indenterCompleteCallString = parameterInputFile + parameterOuputFile + parameterParameterFile;
+    }
 
     // If no indenter executable call string could be created before, show an error message.
     if ( indenterExecutableCallString.isEmpty() ) {
-        errorMessageDialog->showMessage(tr("No indenter executable"), 
+        errorMessageDialog->showMessage(tr("No indenter executable"),
             tr("There exists no indenter executable with the name \"%1\" in the directory \"%2\" nor in the global environment.").arg(indenterFileName).arg(indenterDirctoryStr) );
         return sourceCode;
     }
@@ -465,25 +464,25 @@ QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputF
         processReturnString += tr("<b>Returned error message:</b> ") + indentProcess.errorString() + "<br>";
 
         switch ( indentProcess.error() ) {
-            case QProcess::FailedToStart :
+            case QProcess::FailedToStart:
                 processReturnString += tr("<b>Reason could be:</b> ") + "The process failed to start. Either the invoked program is missing, or you may have insufficient permissions to invoke the program.<br>";
                 break;
-            case QProcess::Crashed :
+            case QProcess::Crashed:
                 processReturnString += "The process crashed some time after starting successfully.<br>";
                 break;
-            case QProcess::Timedout :
+            case QProcess::Timedout:
                 processReturnString += "The called indenter did not response for over 10 seconds, so aborted its execution.<br>";
                 break;
-            case QProcess::WriteError :
+            case QProcess::WriteError:
                 processReturnString += "An error occurred when attempting to write to the process. For example, the process may not be running, or it may have closed its input channel.<br>";
                 break;
-            case QProcess::ReadError :
+            case QProcess::ReadError:
                 processReturnString += "An error occurred when attempting to read from the process. For example, the process may not be running.<br>";
                 break;
-            case QProcess::UnknownError :
+            case QProcess::UnknownError:
                 processReturnString += "An unknown error occurred. This is the default return value of error().<br>";
                 break;
-            default :
+            default:
                 break;
         }
         processReturnString += tr("<br><b>Callstring was:</b> ") + indenterCompleteCallString;
@@ -501,25 +500,25 @@ QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputF
         QString exitCode;
         exitCode.setNum(indentProcess.exitCode());
         processReturnString = tr("<b>Indenter returned with exit code:</b> ") + exitCode + "<br>" +
-            tr("<b>Indent console output was:</b> ") + processReturnString + "<br>" +
-            tr("<br><b>Callstring was:</b> ") + indenterCompleteCallString + "</html></body>";
+                              tr("<b>Indent console output was:</b> ") + processReturnString + "<br>" +
+                              tr("<br><b>Callstring was:</b> ") + indenterCompleteCallString + "</html></body>";
         QApplication::restoreOverrideCursor();
         errorMessageDialog->showMessage( tr("Indenter returned error"), processReturnString );
     }
 
     // If the indenter results are written to stdout, read them from there...
-	if ( indentProcess.exitCode() == 0 && outputFileParameter == "stdout"  ) {
-		formattedSourceCode = processReturnString;
-	}
+    if ( indentProcess.exitCode() == 0 && outputFileParameter == "stdout"  ) {
+        formattedSourceCode = processReturnString;
+    }
     // ... else read the output file generated by the indenter call.
-	else {
-		QFile outSrcFile(tempDirctoryStr + "/" + outputFileName + inputFileExtension);
-		outSrcFile.open(QFile::ReadOnly | QFile::Text);
-		QTextStream outSrcStrm(&outSrcFile);
-		outSrcStrm.setCodec( QTextCodec::codecForName("UTF-8") );
-		formattedSourceCode = outSrcStrm.readAll();
-		outSrcFile.close();
-	}
+    else {
+        QFile outSrcFile(tempDirctoryStr + "/" + outputFileName + inputFileExtension);
+        outSrcFile.open(QFile::ReadOnly | QFile::Text);
+        QTextStream outSrcStrm(&outSrcFile);
+        outSrcStrm.setCodec( QTextCodec::codecForName("UTF-8") );
+        formattedSourceCode = outSrcStrm.readAll();
+        outSrcFile.close();
+    }
 
     // Delete the temporary input and output files.
     QFile::remove(tempDirctoryStr + "/" + outputFileName + inputFileExtension);
@@ -533,7 +532,6 @@ QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputF
     \brief Generates and returns a string with all parameters needed to call the indenter.
  */
 QString IndentHandler::getParameterString() {
-
     QString parameterString = "";
 
     // generate parameter string for all boolean values
@@ -595,7 +593,6 @@ void IndentHandler::saveConfigFile(QString filePathName, QString paramString) {
     \brief Load the config file for the indenter and apply the settings made there.
  */
 bool IndentHandler::loadConfigFile(QString filePathName) {
-
     QFile cfgFile(filePathName);
     int index;
     int crPos;
@@ -617,7 +614,6 @@ bool IndentHandler::loadConfigFile(QString filePathName) {
 
     // Search for name of each boolean parameter and set its value if found.
     foreach (ParamBoolean pBoolean, paramBooleans) {
-
         // boolean value that will be assigned to the checkbox
         bool paramValue = false;
 
@@ -721,7 +717,7 @@ bool IndentHandler::loadConfigFile(QString filePathName) {
                 else {
                     paramValueStr = paramValueStr + "|" + QString( cfgFileData.mid( index, crPos - index ) );
                 }
-                
+
                 // Get next value for this setting, if one exists.
                 index = cfgFileData.indexOf( pString.paramCallName, crPos+1, Qt::CaseInsensitive );
             }
@@ -769,7 +765,6 @@ bool IndentHandler::loadConfigFile(QString filePathName) {
     \brief Sets all indenter parameters to their default values defined in the ini file.
  */
 void IndentHandler::resetToDefaultValues() {
-
     // Search for name of each boolean parameter and set its value if found.
     foreach (ParamBoolean pBoolean, paramBooleans) {
         // Boolean value that will be assigned to the checkbox.
@@ -782,7 +777,6 @@ void IndentHandler::resetToDefaultValues() {
         int defaultValue = indenterSettings->value(pNumeric.paramName + "/ValueDefault").toInt();
         pNumeric.spinBox->setValue( defaultValue );
         pNumeric.valueEnabledChkBox->setChecked( indenterSettings->value(pNumeric.paramName + "/Enabled").toBool() );
-
     }
 
     // Search for name of each string parameter and set it.
@@ -797,7 +791,6 @@ void IndentHandler::resetToDefaultValues() {
         int defaultValue = indenterSettings->value(pMultiple.paramName + "/ValueDefault").toInt();
         pMultiple.comboBox->setCurrentIndex( defaultValue );
         pMultiple.valueEnabledChkBox->setChecked( indenterSettings->value(pMultiple.paramName + "/Enabled").toBool() );
-
     }
 }
 
@@ -829,9 +822,9 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
         cfgFileParameterEnding = "\n";
     }
     indenterShowHelpParameter = indenterSettings->value("header/showHelpParameter").toString();
-    
+
     if ( indenterFileName.isEmpty() ) {
-        errorMessageDialog->showMessage( tr("Indenter ini file header error"), 
+        errorMessageDialog->showMessage( tr("Indenter ini file header error"),
             tr("The loaded indenter ini file \"%1\"has a faulty header. At least the indenters file name is not set.").arg(iniFilePath) );
     }
 
@@ -848,10 +841,10 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
     // read the categories names which are separated by "|"
     QString categoriesStr = indenterSettings->value("header/categories").toString();
     categories = categoriesStr.split("|");
-	// Assure that the category list is never empty. At least contain a "general" section.
-	if ( categories.isEmpty() ) {
-		categories.append("General");
-	}
+    // Assure that the category list is never empty. At least contain a "general" section.
+    if ( categories.isEmpty() ) {
+        categories.append("General");
+    }
 
     ToolBoxPage toolBoxPage;
 
@@ -878,13 +871,12 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
 
     // read each parameter to create the corresponding input field
     foreach (QString indenterParameter, indenterParameters) {
-
         // if it is not the indent header definition read the parameter and add it to
         // the corresponding category toolbox page
         if ( indenterParameter != "header") {
             // read to which category the parameter belongs
             int category = indenterSettings->value(indenterParameter + "/Category").toInt();
-			// Assure that the category number is never greater than the available categories.
+            // Assure that the category number is never greater than the available categories.
             if ( category > toolBoxPages.size()-1 ) {
                 category = toolBoxPages.size()-1;
             }
@@ -915,13 +907,13 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
                     spinBox->installEventFilter( mainWindow );
                 }
                 if ( indenterSettings->value(indenterParameter + "/MinVal").toString() != "" ) {
-                        spinBox->setMinimum( indenterSettings->value(indenterParameter + "/MinVal").toInt() );
+                    spinBox->setMinimum( indenterSettings->value(indenterParameter + "/MinVal").toInt() );
                 }
                 else {
                     spinBox->setMinimum( 0 );
                 }
                 if ( indenterSettings->value(indenterParameter + "/MaxVal").toString() != "" ) {
-                        spinBox->setMaximum( indenterSettings->value(indenterParameter + "/MaxVal").toInt() );
+                    spinBox->setMaximum( indenterSettings->value(indenterParameter + "/MaxVal").toInt() );
                 }
                 else {
                     spinBox->setMaximum( 2000 );
@@ -1050,14 +1042,14 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
 
                 // create the combo box
                 QComboBox *comboBox = new QComboBox( toolBoxPages.at(category).page );
-				QStringList choicesStrings = indenterSettings->value(indenterParameter + "/Choices").toString().split("|");
-				QStringList choicesStringsReadable = indenterSettings->value(indenterParameter + "/ChoicesReadable").toString().split("|", QString::SkipEmptyParts);
-				if ( choicesStringsReadable.isEmpty() ) {
-					comboBox->addItems( choicesStrings );
-				}
-				else {
-					comboBox->addItems( choicesStringsReadable );
-				}
+                QStringList choicesStrings = indenterSettings->value(indenterParameter + "/Choices").toString().split("|");
+                QStringList choicesStringsReadable = indenterSettings->value(indenterParameter + "/ChoicesReadable").toString().split("|", QString::SkipEmptyParts);
+                if ( choicesStringsReadable.isEmpty() ) {
+                    comboBox->addItems( choicesStrings );
+                }
+                else {
+                    comboBox->addItems( choicesStringsReadable );
+                }
                 paramToolTip = indenterSettings->value(indenterParameter + "/Description").toString();
                 comboBox->setToolTip( paramToolTip );
                 if ( mainWindow != NULL ) {
@@ -1075,8 +1067,8 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
                 paramMultiple.paramName = indenterParameter;
                 paramMultiple.paramCallName = parameterCallName;
                 paramMultiple.comboBox = comboBox;
-				paramMultiple.choicesStrings = choicesStrings;
-				paramMultiple.choicesStringsReadable = choicesStringsReadable;
+                paramMultiple.choicesStrings = choicesStrings;
+                paramMultiple.choicesStringsReadable = choicesStringsReadable;
                 paramMultiple.valueEnabledChkBox = chkBox;
                 paramMultiple.comboBox->setCurrentIndex( indenterSettings->value(paramMultiple.paramName + "/ValueDefault").toInt() );
                 paramMultiples.append(paramMultiple);
@@ -1087,7 +1079,6 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
                 connect( comboBox, SIGNAL(activated(int)), comboBox, SLOT(repaint()) );
 #endif // UNIVERSALINDENTGUI_NPP_EXPORTS
             }
-
         }
     }
 
@@ -1109,7 +1100,6 @@ QStringList IndentHandler::getAvailableIndenters() {
 
     // Loop for every existing uigui ini file
     foreach (QString indenterIniFile, indenterIniFileList) {
-
         // Open the ini file and search for the indenter name
         QFile file(indenterDirctoryStr + "/" + indenterIniFile);
         if ( file.open(QIODevice::ReadOnly | QIODevice::Text) ) {
@@ -1219,11 +1209,11 @@ QString IndentHandler::getIndenterCfgFile() {
  */
 bool IndentHandler::createIndenterCallString() {
     QProcess indentProcess;
-    
+
     if ( indenterFileName.isEmpty() ) {
         return false;
     }
-    
+
     // First try to call the indenter inside of the data dir, using some suffix
     // ------------------------------------------------------------------------
 
@@ -1237,7 +1227,6 @@ bool IndentHandler::createIndenterCallString() {
 
         // Only try to call the indenter, if the file exists.
         if ( QFile::exists(indenterExecutableCallString) ) {
-        
             // Only try to call the indenter directly if it is no php file
             if ( QFileInfo(indenterExecutableCallString).suffix().toLower() != "php" ) {
                 indentProcess.start( "\"" + indenterExecutableCallString +  + "\" " + indenterShowHelpParameter );
@@ -1250,7 +1239,7 @@ bool IndentHandler::createIndenterCallString() {
                     return true;
                 }
             }
-            
+
             // Test for needed interpreters
             // ----------------------------
             // If the file could not be executed, try to find a shebang at its start or test if its a php file.
@@ -1287,7 +1276,7 @@ bool IndentHandler::createIndenterCallString() {
                 }
                 // now we know an interpreter is needed but it could not be called, so inform the user.
                 else {
-                    errorMessageDialog->showMessage( tr("Interpreter needed"), 
+                    errorMessageDialog->showMessage( tr("Interpreter needed"),
                         tr("To use the selected indenter the program \"%1\" needs to be available in the global environment. You should add an entry to your path settings.").arg(interpreterName) );
                     return true;
                 }
@@ -1503,7 +1492,6 @@ void IndentHandler::createIndenterCallShellScript() {
     but asks the user whether to do it really.
  */
 void IndentHandler::resetIndenterParameter() {
-    
     int messageBoxAnswer = QMessageBox::question(this, tr("Really reset parameters?"), tr("Do you really want to reset the indenter parameters to the default values?"), QMessageBox::Yes | QMessageBox::Abort );
     if ( messageBoxAnswer == QMessageBox::Yes ) {
         resetToDefaultValues();
@@ -1513,7 +1501,7 @@ void IndentHandler::resetIndenterParameter() {
 
 /*!
     \brief Catch some events and let some other be handled by the super class.
-    
+
     Is needed for use as Notepad++ plugin.
  */
 bool IndentHandler::event( QEvent *event ) {
@@ -1524,7 +1512,7 @@ bool IndentHandler::event( QEvent *event ) {
     else if ( event->type() == QEvent::WindowDeactivate ) {
         event->accept();
         return true;
-    } 
+    }
     else {
         event->ignore();
         return QWidget::event(event);
@@ -1535,7 +1523,7 @@ bool IndentHandler::event( QEvent *event ) {
 /*!
     \brief Sets the function pointer \a parameterChangedCallback to the given callback
     function \a paramChangedCallback.
-    
+
     Is needed for use as Notepad++ plugin.
  */
 void IndentHandler::setParameterChangedCallback( void(*paramChangedCallback)(void) ) {
@@ -1545,7 +1533,7 @@ void IndentHandler::setParameterChangedCallback( void(*paramChangedCallback)(voi
 
 /*!
     \brief Emits the \a indenterSettingsChanged signal and if set executes the \a parameterChangedCallback function.
-   
+
    Is needed for use as Notepad++ plugin.
  */
 void IndentHandler::handleChangedIndenterSettings() {
@@ -1559,7 +1547,7 @@ void IndentHandler::handleChangedIndenterSettings() {
 
 /*!
     \brief Sets a callback function that shall be called, when the this indenter parameter window gets closed.
-    
+
    Is needed for use as Notepad++ plugin.
  */
 void IndentHandler::setWindowClosedCallback( void(*winClosedCallback)(void) ) {
@@ -1569,7 +1557,7 @@ void IndentHandler::setWindowClosedCallback( void(*winClosedCallback)(void) ) {
 
 /*!
     \brief Is called on this indenter parameter window close and if set calls the function \a windowClosedCallback.
-     
+
     Is needed for use as Notepad++ plugin.
  */
 void IndentHandler::closeEvent(QCloseEvent *event) {

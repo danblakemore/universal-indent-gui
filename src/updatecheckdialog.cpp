@@ -95,8 +95,8 @@ void UpdateCheckDialog::getPadXMLFile() {
 /*!
     \brief This slot is called after the update check has returned, either by successfully
     retrieving the pad file, or on any kind of network error.
-    
-    Shows a message if check was successful or not. Offers the user to go to the 
+
+    Shows a message if check was successful or not. Offers the user to go to the
     download page if a newer version exists. In case of an error during update
     check, a message box with the error will be displayed.
  */
@@ -112,7 +112,6 @@ void UpdateCheckDialog::checkResultsOfFetchedPadXMLFile(bool errorOccurred) {
 
         // If the version string could be found in the returned string, show an update dialog and set last update check date.
         if ( leftPosition != -1 && rightPosition != -1 ) {
-
             // Get the pure version string from returned string.
             returnedString = returnedString.mid( leftPosition+17, rightPosition-(leftPosition+17) );
 
@@ -244,7 +243,7 @@ void UpdateCheckDialog::updateUpdateCheckProgressBar() {
     \brief Converts the as string given version \a versionString to an integer number.
 
     The \a versionString must have the format x.x.x where each x represents a number
-    of a maximum of 999. If the input format is wrong, -1 will be returned.The first 
+    of a maximum of 999. If the input format is wrong, -1 will be returned.The first
     number will be multiplied by 1000000 the second by 1000 and then all three will
     be summarized.
 

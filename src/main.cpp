@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
                 QMessageBox::information( NULL, "Need additional parameter", "The parameter -f / --file needs a following parameter defining the file to be opened at start." );
                 fprintf(stderr, "The parameter -f / --file needs a following parameter defining the file to be opened at start.");
                 exit(1);
-            } 
+            }
             // Set the file that shall be opened a start.
             else {
                 i++;
@@ -71,18 +71,18 @@ int main(int argc, char *argv[])
         }
         else {
             QString message = "Invalid parameter found. Allowed parameters are:\n" \
-                "No parameters starts without server and full gui.\n" \
-                "-f filename --file filename   : Opens the by filename defined file on start.\n" \
-                "-p --plugin  : Run as plugin. Server will be startet with a simplified gui.\n" \
-                "-s --server  : Run as server only without gui.\n"
-                "If -p and -s are set, -p will be used.";
+                              "No parameters starts without server and full gui.\n" \
+                              "-f filename --file filename   : Opens the by filename defined file on start.\n" \
+                              "-p --plugin  : Run as plugin. Server will be startet with a simplified gui.\n" \
+                              "-s --server  : Run as server only without gui.\n"
+                              "If -p and -s are set, -p will be used.";
             QMessageBox::information( NULL, "Invalid parameter", message );
             fprintf(stderr, "Invalid parameter found. Allowed parameters are...");
             exit(1);
         }
     }
-    
-    
+
+
     // Set default values for all by UniversalIndentGUI used settings objects.
     QCoreApplication::setOrganizationName("UniversalIndentGUI");
     QCoreApplication::setOrganizationDomain("universalindent.sf.net");
@@ -117,7 +117,7 @@ int main(int argc, char *argv[])
     else if ( startAsServer ) {
         server.stopServer();
     }
-    
+
     UiguiSettings::deleteInstance();
 
     return returnValue;

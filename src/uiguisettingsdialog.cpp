@@ -20,13 +20,13 @@
 #include "uiguisettingsdialog.h"
 
 /*!
-	\class UiguiSettingsDialog
+    \class UiguiSettingsDialog
     \ingroup grp_Settings
-	\brief Displays a dialog window with settings for UniversalIndentGUI
+    \brief Displays a dialog window with settings for UniversalIndentGUI
 */
 
 /*!
-	\brief The constructor calls the setup function for the ui created by uic. and adds
+    \brief The constructor calls the setup function for the ui created by uic. and adds
 */
 UiguiSettingsDialog::UiguiSettingsDialog(QWidget* parent, UiguiSettings* settings) : QDialog(parent)
 {
@@ -34,11 +34,11 @@ UiguiSettingsDialog::UiguiSettingsDialog(QWidget* parent, UiguiSettings* setting
     this->settings = settings;
 
     // Init the user interface created by the UIC.
-	setupUi(this);
-    
-	//TODO: This call has to be removed when the properties for the highlighters can be set
+    setupUi(this);
+
+    //TODO: This call has to be removed when the properties for the highlighters can be set
     // with the settings dialog.
-	groupBoxSyntaxHighlighterProperties->setToolTip( "(Will be implemented soon)" + groupBoxSyntaxHighlighterProperties->toolTip() );
+    groupBoxSyntaxHighlighterProperties->setToolTip( "(Will be implemented soon)" + groupBoxSyntaxHighlighterProperties->toolTip() );
 
     // Get all check boxes that are used for settings.
     checkBoxes = findChildren<QCheckBox*>( QRegExp("uiGui*") );
@@ -52,39 +52,39 @@ UiguiSettingsDialog::UiguiSettingsDialog(QWidget* parent, UiguiSettings* setting
     // Connect the accepted signal to own function, to write values back to the UiguiSettings object.
     connect(this, SIGNAL(accepted()), this, SLOT(writeWidgetValuesToSettings()) );
 
-	// Init the language selection combobox.
-	initTranslationSelection();
+    // Init the language selection combobox.
+    initTranslationSelection();
 }
 
 
 /*!
-	\brief By calling this function the combobox for selecting the application language will
-	be initialized. 
-    
+    \brief By calling this function the combobox for selecting the application language will
+    be initialized.
+
     Also the translation itself will be reinitialized.
  */
 void UiguiSettingsDialog::initTranslationSelection() {
-	// First empty the combo box.
-	uiGuiLanguageSelectionComboBox->clear();
-	
-	// Now add an entry into the box for every language short.
-	foreach (QString languageShort, settings->getAvailableTranslations() ) {
-		// Identify the language mnemonic and set the full name.
-		if ( languageShort == "en" ) {
-			uiGuiLanguageSelectionComboBox->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("English") );
-		}
+    // First empty the combo box.
+    uiGuiLanguageSelectionComboBox->clear();
+
+    // Now add an entry into the box for every language short.
+    foreach (QString languageShort, settings->getAvailableTranslations() ) {
+        // Identify the language mnemonic and set the full name.
+        if ( languageShort == "en" ) {
+            uiGuiLanguageSelectionComboBox->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("English") );
+        }
         else if ( languageShort == "fr" ) {
             uiGuiLanguageSelectionComboBox->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("French") );
         }
-		else if ( languageShort == "de" ) {
-			uiGuiLanguageSelectionComboBox->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("German") );
-		}
-		else if ( languageShort == "zh_TW" ) {
-			uiGuiLanguageSelectionComboBox->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("Chinese (Taiwan)") );
-		}
-		else if ( languageShort == "ja_jp" ) {
-			uiGuiLanguageSelectionComboBox->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("Japanese") );
-		}
+        else if ( languageShort == "de" ) {
+            uiGuiLanguageSelectionComboBox->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("German") );
+        }
+        else if ( languageShort == "zh_TW" ) {
+            uiGuiLanguageSelectionComboBox->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("Chinese (Taiwan)") );
+        }
+        else if ( languageShort == "ja_jp" ) {
+            uiGuiLanguageSelectionComboBox->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("Japanese") );
+        }
         else if ( languageShort == "ru" ) {
             uiGuiLanguageSelectionComboBox->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("Russian") );
         }
@@ -92,16 +92,16 @@ void UiguiSettingsDialog::initTranslationSelection() {
             uiGuiLanguageSelectionComboBox->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("Ukrainian") );
         }
 
-		else {
-			uiGuiLanguageSelectionComboBox->addItem( tr("Unknown language mnemonic ") + languageShort );
-		}
-	}
+        else {
+            uiGuiLanguageSelectionComboBox->addItem( tr("Unknown language mnemonic ") + languageShort );
+        }
+    }
 }
 
 
 /*!
-    \brief Displays the dialog by calling the dialogs exec function. 
-    
+    \brief Displays the dialog by calling the dialogs exec function.
+
     Before it gets all the values needed from the UiguiSettings object.
  */
 int UiguiSettingsDialog::showDialog() {
@@ -220,8 +220,8 @@ void UiguiSettingsDialog::changeEvent(QEvent *event) {
         // If this is not explicit set here, Qt < 4.3.0 does not translate the buttons.
         buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::NoButton|QDialogButtonBox::Ok);
 
-		//TODO: This has to be removed when the properties for the highlighters can be set.
-		groupBoxSyntaxHighlighterProperties->setToolTip( "(Will be implemented soon)" + groupBoxSyntaxHighlighterProperties->toolTip() );
+        //TODO: This has to be removed when the properties for the highlighters can be set.
+        groupBoxSyntaxHighlighterProperties->setToolTip( "(Will be implemented soon)" + groupBoxSyntaxHighlighterProperties->toolTip() );
 
         QStringList languageShortList = settings->getAvailableTranslations();
 
@@ -255,7 +255,7 @@ void UiguiSettingsDialog::changeEvent(QEvent *event) {
                 uiGuiLanguageSelectionComboBox->setItemText( i, tr("Unknown language mnemonic ") + languageShort );
             }
         }
-    } 
+    }
     else {
         QWidget::changeEvent(event);
     }

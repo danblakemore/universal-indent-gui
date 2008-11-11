@@ -24,9 +24,9 @@
 
 /*!
     \brief The only and static function of this class returns a batch or shell script
-    as string that can be used to call an indenter with the current settings from 
+    as string that can be used to call an indenter with the current settings from
     the command line.
-    
+
     The returned string contains some placeholders where the indenter name needs to
     be filled in. The placeholders are "__INDENTERCALLSTRING1__" that should be replaced
     by the indenter call string that indents a complete directory.
@@ -36,65 +36,65 @@
 const char* TemplateBatchScript::getTemplateBatchScript() {
     static const char* templateBatchScript =
 #if defined(Q_OS_WIN32)
-    "@echo off\n"
-    "\n"
-    "IF (%1)==() GOTO error\n"
-    "dir /b /ad %1 >nul 2>nul && GOTO indentDir\n"
-    "IF NOT EXIST %1 GOTO error\n"
-    "goto indentFile\n"
-    "\n"
-    ":indentDir\n"
-    "set searchdir=%1\n"
-    "\n"
-    "IF (%2)==() GOTO assignDefaultSuffix\n"
-    "set filesuffix=%2\n"
-    "\n"
-    "GOTO run\n"
-    "\n"
-    ":assignDefaultSuffix\n"
-    "::echo !!!!DEFAULT SUFFIX!!!\n"
-    "set filesuffix=*\n"
-    "\n"
-    ":run\n"
-    "FOR /F \"tokens=*\" %%G IN ('DIR /B /S %searchdir%\\*.%filesuffix%') DO (\n"
+        "@echo off\n"
+        "\n"
+        "IF (%1)==() GOTO error\n"
+        "dir /b /ad %1 >nul 2>nul && GOTO indentDir\n"
+        "IF NOT EXIST %1 GOTO error\n"
+        "goto indentFile\n"
+        "\n"
+        ":indentDir\n"
+        "set searchdir=%1\n"
+        "\n"
+        "IF (%2)==() GOTO assignDefaultSuffix\n"
+        "set filesuffix=%2\n"
+        "\n"
+        "GOTO run\n"
+        "\n"
+        ":assignDefaultSuffix\n"
+        "::echo !!!!DEFAULT SUFFIX!!!\n"
+        "set filesuffix=*\n"
+        "\n"
+        ":run\n"
+        "FOR /F \"tokens=*\" %%G IN ('DIR /B /S %searchdir%\\*.%filesuffix%') DO (\n"
         "echo Indenting file \"%%G\"\n"
         "__INDENTERCALLSTRING1__\n"
-    ")\n"
-    "GOTO ende\n"
-    "\n"
-    ":indentFile\n"
-    "echo Indenting one file %1\n"
-    "__INDENTERCALLSTRING2__\n"
-    "\n"
-    "GOTO ende\n"
-    "\n"
-    ":error\n"
-    "echo .\n"
-    "echo ERROR: As parameter given directory or file does not exist!\n"
-    "echo Syntax is: __INDENTERCALLSTRINGSCRIPTNAME__ dirname filesuffix\n"
-    "echo Syntax is: __INDENTERCALLSTRINGSCRIPTNAME__ filename\n"
-    "echo Example: recurse.bat temp cpp\n"
-    "echo .\n"
-    "\n"
-    ":ende\n";
+        ")\n"
+        "GOTO ende\n"
+        "\n"
+        ":indentFile\n"
+        "echo Indenting one file %1\n"
+        "__INDENTERCALLSTRING2__\n"
+        "\n"
+        "GOTO ende\n"
+        "\n"
+        ":error\n"
+        "echo .\n"
+        "echo ERROR: As parameter given directory or file does not exist!\n"
+        "echo Syntax is: __INDENTERCALLSTRINGSCRIPTNAME__ dirname filesuffix\n"
+        "echo Syntax is: __INDENTERCALLSTRINGSCRIPTNAME__ filename\n"
+        "echo Example: recurse.bat temp cpp\n"
+        "echo .\n"
+        "\n"
+        ":ende\n";
 
 #else
 
-    "#!/bin/sh \n"
-    "\n"
-    "if [ ! -n \"$1\" ]; then\n"
+        "#!/bin/sh \n"
+        "\n"
+        "if [ ! -n \"$1\" ]; then\n"
         "echo \"Syntax is: recurse.sh dirname filesuffix\"\n"
         "echo \"Syntax is: recurse.sh filename\"\n"
         "echo \"Example: recurse.sh temp cpp\"\n"
         "exit 1\n"
-    "fi\n"
-    "\n"
-    "if [ -d \"$1\" ]; then\n"
+        "fi\n"
+        "\n"
+        "if [ -d \"$1\" ]; then\n"
         "#echo \"Dir ${1} exists\"\n"
         "if [ -n \"$2\" ]; then\n"
-            "filesuffix=$2\n"
+        "filesuffix=$2\n"
         "else\n"
-            "filesuffix=\"*\"\n"
+        "filesuffix=\"*\"\n"
         "fi\n"
         "\n"
         "#echo \"Filtering files using suffix ${filesuffix}\"\n"
@@ -102,21 +102,21 @@ const char* TemplateBatchScript::getTemplateBatchScript() {
         "file_list=`find ${1} -name \"*.${filesuffix}\" -type f`\n"
         "for file2indent in $file_list\n"
         "do \n"
-            "echo \"Indenting file $file2indent\"\n"
-            "__INDENTERCALLSTRING1__\n"
+        "echo \"Indenting file $file2indent\"\n"
+        "__INDENTERCALLSTRING1__\n"
         "done\n"
-    "else\n"
-        "if [ -f \"$1\" ]; then\n"
-            "echo \"Indenting one file $1\"\n"
-            "__INDENTERCALLSTRING2__\n"
         "else\n"
-            "echo \"ERROR: As parameter given directory or file does not exist!\"\n"
-            "echo \"Syntax is: __INDENTERCALLSTRINGSCRIPTNAME__ dirname filesuffix\"\n"
-            "echo \"Syntax is: __INDENTERCALLSTRINGSCRIPTNAME__ filename\"\n"
-            "echo \"Example: recurse.sh temp cpp\"\n"
-            "exit 1\n"
+        "if [ -f \"$1\" ]; then\n"
+        "echo \"Indenting one file $1\"\n"
+        "__INDENTERCALLSTRING2__\n"
+        "else\n"
+        "echo \"ERROR: As parameter given directory or file does not exist!\"\n"
+        "echo \"Syntax is: __INDENTERCALLSTRINGSCRIPTNAME__ dirname filesuffix\"\n"
+        "echo \"Syntax is: __INDENTERCALLSTRINGSCRIPTNAME__ filename\"\n"
+        "echo \"Example: recurse.sh temp cpp\"\n"
+        "exit 1\n"
         "fi\n"
-    "fi\n";
+        "fi\n";
 #endif // #if defined(Q_OS_WIN32)
     return templateBatchScript;
 }
@@ -146,7 +146,7 @@ set filesuffix=*
 FOR /F "tokens=*" %%G IN ('DIR /B /S %searchdir%\*.%filesuffix%') DO (
     echo Indenting file "%%G"
     ::call call_CSSTidy.bat "%%G"
-	"C:/Dokumente und Einstellungen/ts/Eigene Dateien/Visual Studio 2005/Projects/UiGuixy/indenters/csstidy.exe" "%%G" --timestamp=true --allow_html_in_templates=false --compress_colors=true --compress_font=true --lowercase_s=false --preserve_css=false --remove_last_;=false --remove_bslash=true --sort_properties=false --sort_selectors=false  indentoutput.css
+    "C:/Dokumente und Einstellungen/ts/Eigene Dateien/Visual Studio 2005/Projects/UiGuixy/indenters/csstidy.exe" "%%G" --timestamp=true --allow_html_in_templates=false --compress_colors=true --compress_font=true --lowercase_s=false --preserve_css=false --remove_last_;=false --remove_bslash=true --sort_properties=false --sort_selectors=false  indentoutput.css
     move /Y indentoutput.css "%%G"
 )
 GOTO ende

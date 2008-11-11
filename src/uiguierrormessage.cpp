@@ -30,9 +30,9 @@
 
 /*!
     \brief Initializes the dialog.
-    
+
     Retrieves the object pointer to the \a showAgainCheckBox check box, sets the dialogs
-    modality and for a working translation sets the check box text. 
+    modality and for a working translation sets the check box text.
  */
 UiguiErrorMessage::UiguiErrorMessage(QWidget *parent) : QErrorMessage(parent) {
     showAgainCheckBox = findChild<QCheckBox *>();
@@ -50,7 +50,7 @@ UiguiErrorMessage::~UiguiErrorMessage(void) {
 
 /*!
     \brief Shows an error \a message in a dialog box with \a title.
-    
+
     The shown \a message is added to a list, if not already in there. If it is
     already in that list and "Show this message again" is not checked, that
     message will not be shown.

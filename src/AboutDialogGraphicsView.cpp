@@ -22,7 +22,7 @@
 /*!
     \class AboutDialogGraphicsView
     \brief A container for the real \a AboutDialog. Makes the 3D animation possible.
-    
+
     The 3D animation shall suggest the user, that he is looking at his desktop, while
     this animation is done. Since this is not directly possible, \a AboutDialogGraphicsView
     when shown starts in frameless fullscreen mode with a screenshot of the desktop as background.
@@ -62,7 +62,7 @@ AboutDialogGraphicsView::AboutDialogGraphicsView(AboutDialog *aboutDialog, QWidg
     connect(aboutDialog, SIGNAL(finished(int)), this, SLOT(hide()));
 
     //setWindowOpacity(0.9);
-    
+
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setStyleSheet("AboutDialogGraphicsView { border: 0px; }");
@@ -99,7 +99,7 @@ void AboutDialogGraphicsView::show() {
     graphicsProxyWidget->setGeometry( aboutDialog->geometry() );
     if ( firstRunOfAnimation ) {
         graphicsProxyWidget->setPos( parent->geometry().x()+(parent->geometry().width()-graphicsProxyWidget->geometry().width()) / 2, parent->y()+windowTitleBarWidth);
-    } 
+    }
     else {
         graphicsProxyWidget->setPos( parent->geometry().x()+(parent->geometry().width()-graphicsProxyWidget->geometry().width()) / 2, parent->y()+windowTitleBarWidth);
     }
@@ -158,11 +158,11 @@ void AboutDialogGraphicsView::hide() {
     aboutDialogAsSplashScreen->setPixmap( QPixmap::grabWidget(aboutDialog) );
     graphicsProxyWidget->setGeometry( aboutDialog->geometry() );
     //if ( firstRunOfAnimation ) {
-        firstRunOfAnimation = false;
+    firstRunOfAnimation = false;
     //    graphicsProxyWidget->setPos( parent->geometry().x()+(parent->geometry().width()-graphicsProxyWidget->geometry().width()) / 2, parent->y());
-    //} 
+    //}
     //else {
-        graphicsProxyWidget->setPos( parent->geometry().x()+(parent->geometry().width()-graphicsProxyWidget->geometry().width()) / 2, parent->y()+windowTitleBarWidth);
+    graphicsProxyWidget->setPos( parent->geometry().x()+(parent->geometry().width()-graphicsProxyWidget->geometry().width()) / 2, parent->y()+windowTitleBarWidth);
     //}
 
     QRectF r = graphicsProxyWidget->boundingRect();

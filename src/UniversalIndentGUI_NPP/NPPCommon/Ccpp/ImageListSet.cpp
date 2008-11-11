@@ -20,51 +20,49 @@
 
 void ToolBarIcons::init(ToolBarButtonUnit *buttonUnitArray, int arraySize)
 {
-	for (int i = 0 ; i < arraySize ; i++)
-		_tbiis.push_back(buttonUnitArray[i]);
+    for (int i = 0 ; i < arraySize ; i++)
+        _tbiis.push_back(buttonUnitArray[i]);
 }
 
 void ToolBarIcons::create(HINSTANCE hInst, int iconSize)
 {
-	_iconListVector.push_back(IconList());
-	_iconListVector.push_back(IconList());
-	_iconListVector.push_back(IconList());
-	//_iconListVector.push_back(IconList());
+    _iconListVector.push_back(IconList());
+    _iconListVector.push_back(IconList());
+    _iconListVector.push_back(IconList());
+    //_iconListVector.push_back(IconList());
 
-	_iconListVector[HLIST_DEFAULT].create(hInst, iconSize);
-	_iconListVector[HLIST_HOT].create(hInst, iconSize);
-	_iconListVector[HLIST_DISABLE].create(hInst, iconSize);
-	//_iconListVector[HLIST_UGLY].create(hInst, 16);
+    _iconListVector[HLIST_DEFAULT].create(hInst, iconSize);
+    _iconListVector[HLIST_HOT].create(hInst, iconSize);
+    _iconListVector[HLIST_DISABLE].create(hInst, iconSize);
+    //_iconListVector[HLIST_UGLY].create(hInst, 16);
 
-	for (size_t i = 0 ; i < _tbiis.size() ; i++)
-	{
-		_cmdArray[_nbCmd++] = _tbiis[i]._cmdID;
-		if (_tbiis[i]._defaultIcon != IDI_SEPARATOR_ICON)
-		{
-			_iconListVector[HLIST_DEFAULT].addIcon(_tbiis[i]._defaultIcon);
-			_iconListVector[HLIST_HOT].addIcon(_tbiis[i]._hotIcon);
-			_iconListVector[HLIST_DISABLE].addIcon(_tbiis[i]._grayIcon);
-			//_iconListVector[HLIST_UGLY].addImage(_tbiis[i]._uglyIcon);
-		}
-	}
+    for (size_t i = 0 ; i < _tbiis.size() ; i++) {
+        _cmdArray[_nbCmd++] = _tbiis[i]._cmdID;
+        if (_tbiis[i]._defaultIcon != IDI_SEPARATOR_ICON) {
+            _iconListVector[HLIST_DEFAULT].addIcon(_tbiis[i]._defaultIcon);
+            _iconListVector[HLIST_HOT].addIcon(_tbiis[i]._hotIcon);
+            _iconListVector[HLIST_DISABLE].addIcon(_tbiis[i]._grayIcon);
+            //_iconListVector[HLIST_UGLY].addImage(_tbiis[i]._uglyIcon);
+        }
+    }
 }
 
 void ToolBarIcons::destroy()
 {
-	_iconListVector[HLIST_DEFAULT].destroy();
-	_iconListVector[HLIST_HOT].destroy();
-	_iconListVector[HLIST_DISABLE].destroy();
-	//_iconListVector[HLIST_UGLY].destroy();
+    _iconListVector[HLIST_DEFAULT].destroy();
+    _iconListVector[HLIST_HOT].destroy();
+    _iconListVector[HLIST_DISABLE].destroy();
+    //_iconListVector[HLIST_UGLY].destroy();
 }
 /*
-bool IconList::changeIcon(int index, const char *iconLocation) const 
+bool IconList::changeIcon(int index, const char *iconLocation) const
 {
-	HBITMAP hBmp = (HBITMAP)::LoadImage(_hInst, iconLocation, IMAGE_ICON, _iconSize, _iconSize, LR_LOADFROMFILE	);
-	if (!hBmp)
-		return false;
-	int i = ImageList_ReplaceIcon(_hImglst, index, (HICON)hBmp);
-	::DeleteObject(hBmp);
-	return (i == index);
+    HBITMAP hBmp = (HBITMAP)::LoadImage(_hInst, iconLocation, IMAGE_ICON, _iconSize, _iconSize, LR_LOADFROMFILE	);
+    if (!hBmp)
+        return false;
+    int i = ImageList_ReplaceIcon(_hImglst, index, (HICON)hBmp);
+    ::DeleteObject(hBmp);
+    return (i == index);
 }
 */
 

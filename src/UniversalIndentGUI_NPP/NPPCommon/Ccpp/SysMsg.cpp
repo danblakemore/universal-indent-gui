@@ -23,8 +23,7 @@
 DWORD ShortToLongPathName(LPCTSTR lpszShortPath, LPTSTR lpszLongPath, DWORD cchBuffer)
 {
     // Catch null pointers.
-    if (!lpszShortPath || !lpszLongPath)
-    {
+    if (!lpszShortPath || !lpszLongPath) {
         SetLastError(ERROR_INVALID_PARAMETER);
         return 0;
     }
@@ -43,7 +42,7 @@ DWORD ShortToLongPathName(LPCTSTR lpszShortPath, LPTSTR lpszLongPath, DWORD cchB
     typedef tstring::size_type size;
     size const npos = tstring::npos;
 
-    // Copy the short path into the work buffer and convert forward 
+    // Copy the short path into the work buffer and convert forward
     // slashes to backslashes.
     tstring path = lpszShortPath;
     std::replace(path.begin(), path.end(), '/', sep);
@@ -53,36 +52,27 @@ DWORD ShortToLongPathName(LPCTSTR lpszShortPath, LPTSTR lpszLongPath, DWORD cchB
     size right = 0;
 
     // Parse the first bit of the path.
-    if (path.length() >= 2 && isalpha(path[0]) && colon == path[1]) // Drive letter?
-    {
-        if (2 == path.length()) // 'bare' drive letter
-        {
+    if (path.length() >= 2 && isalpha(path[0]) && colon == path[1]) { // Drive letter?
+        if (2 == path.length()) { // 'bare' drive letter
             right = npos; // skip main block
         }
-        else if (sep == path[2]) // drive letter + backslash
-        {
+        else if (sep == path[2]) { // drive letter + backslash
             // FindFirstFile doesn't like "X:\"
-            if (3 == path.length())
-            {
+            if (3 == path.length()) {
                 right = npos; // skip main block
             }
-            else
-            {
+            else{
                 left = right = 3;
             }
         }
         else return 0; // parsing failure
     }
-    else if (path.length() >= 1 && sep == path[0])
-    {
-        if (1 == path.length()) // 'bare' backslash
-        {
+    else if (path.length() >= 1 && sep == path[0]) {
+        if (1 == path.length()) { // 'bare' backslash
             right = npos;  // skip main block
         }
-        else 
-        {
-            if (sep == path[1]) // is it UNC?
-            {
+        else{
+            if (sep == path[1]) { // is it UNC?
                 // Find end of machine name
                 right = path.find_first_of(sep, 2);
                 if (npos == right)
@@ -102,8 +92,7 @@ DWORD ShortToLongPathName(LPCTSTR lpszShortPath, LPTSTR lpszLongPath, DWORD cchB
     WIN32_FIND_DATA fd;
 
     // Main parse block - step through path.
-    while (npos != right)
-    {
+    while (npos != right) {
         left = right; // catch up
 
         // Find next separator.
@@ -130,8 +119,7 @@ DWORD ShortToLongPathName(LPCTSTR lpszShortPath, LPTSTR lpszLongPath, DWORD cchB
         path.replace(left, old_len, fd.cFileName, new_len);
 
         // More to do?
-        if (npos != right)
-        {
+        if (npos != right) {
             // Yes - move past separator .
             right = left + new_len + 1;
 
@@ -152,14 +140,14 @@ DWORD ShortToLongPathName(LPCTSTR lpszShortPath, LPTSTR lpszLongPath, DWORD cchB
 
 void systemMessage(const char *title)
 {
-  LPVOID lpMsgBuf;
-  FormatMessage( FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
-                 NULL,
-				 ::GetLastError(),
-                 MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), // Default language
-                 (LPTSTR) &lpMsgBuf,
-                 0,
-                 NULL );// Process any inserts in lpMsgBuf.
-  MessageBox( NULL, (LPTSTR)lpMsgBuf, title, MB_OK | MB_ICONSTOP);
+    LPVOID lpMsgBuf;
+    FormatMessage( FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
+        NULL,
+        ::GetLastError(),
+        MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),          // Default language
+        (LPTSTR) &lpMsgBuf,
+        0,
+        NULL );         // Process any inserts in lpMsgBuf.
+    MessageBox( NULL, (LPTSTR)lpMsgBuf, title, MB_OK | MB_ICONSTOP);
 }
 

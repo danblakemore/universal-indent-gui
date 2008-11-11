@@ -27,11 +27,11 @@
     \class UiguiIniFileParser
     \ingroup grp_Settings
     \brief UiguiIniFileParser is a simple ini file format parser.
-    
+
     These ini files need to have key-value pairs in the style
     "keyname=keyvalue". Groups can be defined by writing the groupname
     in the style [groupname] before some key-value pairs.
-    
+
     The reason why I use my own class instead of QSettings is mainly, that
     QSettings always internally sorts the groups alphabetically and also
     rewrites a settings file sorted. Very annoying for me.
@@ -73,7 +73,7 @@ QStringList UiguiIniFileParser::childGroups()
 
     for( unsigned int i = 0; i < sections.size(); i++ ) {
         sectionsStringList << sections[i];
-    }  
+    }
 
     return sectionsStringList;
 }
@@ -89,7 +89,7 @@ QStringList UiguiIniFileParser::childGroups()
  */
 QVariant UiguiIniFileParser::value(const QString &keyName, const QString &defaultValue)
 {
-    return keyValueMap.value( keyName, defaultValue );   
+    return keyValueMap.value( keyName, defaultValue );
 }
 
 
@@ -113,7 +113,7 @@ void UiguiIniFileParser::parseIniFile()
 
         while ( !iniFileStream.atEnd() ) {
             line = iniFileStream.readLine().trimmed();
-            
+
             // Test if the read line is a section name and if so remeber it.
             if ( line.startsWith("[") && line.endsWith("]") ) {
                 currentSectionName = line.remove(0, 1);

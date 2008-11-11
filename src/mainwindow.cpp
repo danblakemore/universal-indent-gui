@@ -46,7 +46,7 @@ MainWindow::MainWindow(QString file2OpenOnStart, QWidget *parent) : QMainWindow(
     scrollPositionChanged = false;
 
     // Create the settings object, which loads all UiGui settings from a file.
-	settings = UiguiSettings::getInstance();
+    settings = UiguiSettings::getInstance();
 
     // Initialize the language of the application.
     initApplicationLanguage();
@@ -69,7 +69,7 @@ MainWindow::MainWindow(QString file2OpenOnStart, QWidget *parent) : QMainWindow(
     // Create some menus.
     createEncodingMenu();
     createHighlighterMenu();
-	
+
 
     // generate about dialog box
     aboutDialog = new AboutDialog(this, Qt::SplashScreen, version, revision, buildDateStr);
@@ -77,8 +77,8 @@ MainWindow::MainWindow(QString file2OpenOnStart, QWidget *parent) : QMainWindow(
     connect( toolBarWidget->pbAbout, SIGNAL(clicked()), this, SLOT(showAboutDialog()) );
     connect( actionAbout_UniversalIndentGUI, SIGNAL(triggered()), this, SLOT(showAboutDialog()) );
 
-	// generate settings dialog box
-	settingsDialog = new UiguiSettingsDialog(this, settings);
+    // generate settings dialog box
+    settingsDialog = new UiguiSettingsDialog(this, settings);
     connect( actionShowSettings, SIGNAL(triggered()), settingsDialog, SLOT(showDialog()) );
 
     // If a file that should be opened on start has been handed over to the constructor exists, load it
@@ -106,19 +106,19 @@ MainWindow::MainWindow(QString file2OpenOnStart, QWidget *parent) : QMainWindow(
     \brief Initializes the main window by creating the main gui and make some settings.
  */
 void MainWindow::initMainWindow() {
-	   // Generate gui as it is build in the file "mainwindow.ui"
+    // Generate gui as it is build in the file "mainwindow.ui"
     setupUi(this);
 
-	// Handle last opened window size
-	// ------------------------------
-	bool maximized = settings->getValueByName("WindowIsMaximized").toBool();
-	QPoint pos = settings->getValueByName("WindowPosition").toPoint();
-	QSize size = settings->getValueByName("WindowSize").toSize();
-	resize(size);
-	move(pos);
-	if ( maximized ) {
-		showMaximized();
-	}
+    // Handle last opened window size
+    // ------------------------------
+    bool maximized = settings->getValueByName("WindowIsMaximized").toBool();
+    QPoint pos = settings->getValueByName("WindowPosition").toPoint();
+    QSize size = settings->getValueByName("WindowSize").toSize();
+    resize(size);
+    move(pos);
+    if ( maximized ) {
+        showMaximized();
+    }
 #ifndef Q_OS_MAC // On Mac restoring the window state causes the screenshot no longer to work.
     restoreState( settings->getValueByName("MainWindowState").toByteArray() );
 #endif
@@ -126,17 +126,17 @@ void MainWindow::initMainWindow() {
     // Handle if first run of this version
     // -----------------------------------
     QString readVersion = settings->getValueByName("VersionInSettingsFile").toString();
-	// If version strings are not equal set first run true.
-	if ( readVersion != version ) {
-		isFirstRunOfThisVersion = true;
-	}
-	else {
-		isFirstRunOfThisVersion = false;
-	}
+    // If version strings are not equal set first run true.
+    if ( readVersion != version ) {
+        isFirstRunOfThisVersion = true;
+    }
+    else {
+        isFirstRunOfThisVersion = false;
+    }
 
     // Get last selected file encoding
-	// -------------------------------
-	currentEncoding = settings->getValueByName("FileEncoding").toString();
+    // -------------------------------
+    currentEncoding = settings->getValueByName("FileEncoding").toString();
 
     updateCheckDialog = new UpdateCheckDialog(version, settings, this);
 
@@ -202,7 +202,6 @@ void MainWindow::initToolBar() {
     \brief Create and initialize the text editor component. It uses the QScintilla widget.
  */
 void MainWindow::initTextEditor() {
-
     QMessageBox infoQScintillaLoad(NULL);
     infoQScintillaLoad.setWindowTitle("Loading QScintilla...");
     infoQScintillaLoad.setText("Trying to load QScintilla library.\nIf anything fails during loading, it might be possible that the debug and release version of QScintilla are mixed.");
@@ -213,26 +212,26 @@ void MainWindow::initTextEditor() {
         qSciSourceCodeEditor = new QsciScintilla(this);
     }
     catch (...) {
-        QMessageBox::critical(this, "Error creating QScintilla text editor component!", 
+        QMessageBox::critical(this, "Error creating QScintilla text editor component!",
             "During trying to create the text editor component, that is based on QScintilla, an error occurred. Please make sure that you have installed QScintilla and not mixed release and debug versions." );
         exit(1);
     }
     infoQScintillaLoad.hide();
 
-	hboxLayout1->addWidget(qSciSourceCodeEditor);
+    hboxLayout1->addWidget(qSciSourceCodeEditor);
 
     // Make some settings for the QScintilla widget.
     qSciSourceCodeEditor->setUtf8(true);
     qSciSourceCodeEditor->setMarginLineNumbers(1, true);
-	qSciSourceCodeEditor->setMarginWidth(1, QString("10000") );
-	qSciSourceCodeEditor->setBraceMatching(qSciSourceCodeEditor->SloppyBraceMatch);
-	qSciSourceCodeEditor->setMatchedBraceForegroundColor( QColor("red") );
-	qSciSourceCodeEditor->setFolding(QsciScintilla::BoxedTreeFoldStyle);
-	qSciSourceCodeEditor->setAutoCompletionSource(QsciScintilla::AcsAll);
-	qSciSourceCodeEditor->setAutoCompletionThreshold(3);
+    qSciSourceCodeEditor->setMarginWidth(1, QString("10000") );
+    qSciSourceCodeEditor->setBraceMatching(qSciSourceCodeEditor->SloppyBraceMatch);
+    qSciSourceCodeEditor->setMatchedBraceForegroundColor( QColor("red") );
+    qSciSourceCodeEditor->setFolding(QsciScintilla::BoxedTreeFoldStyle);
+    qSciSourceCodeEditor->setAutoCompletionSource(QsciScintilla::AcsAll);
+    qSciSourceCodeEditor->setAutoCompletionThreshold(3);
 
     // Handle if white space is set to be visible
-	bool whiteSpaceIsVisible = settings->getValueByName("WhiteSpaceIsVisible").toBool();
+    bool whiteSpaceIsVisible = settings->getValueByName("WhiteSpaceIsVisible").toBool();
     setWhiteSpaceVisibility( whiteSpaceIsVisible );
 
     // Handle the width of tabs in spaces
@@ -250,7 +249,7 @@ void MainWindow::initTextEditor() {
 
     // Connect the text editor to dependent functions.
     connect( qSciSourceCodeEditor, SIGNAL(textChanged()), this, SLOT(sourceCodeChangedHelperSlot()) );
-	connect( qSciSourceCodeEditor, SIGNAL(linesChanged()), this, SLOT(numberOfLinesChanged()) );
+    connect( qSciSourceCodeEditor, SIGNAL(linesChanged()), this, SLOT(numberOfLinesChanged()) );
     connect( settings, SIGNAL(tabWidth(int)), qSciSourceCodeEditor, SLOT(setTabWidth(int)) );
     qSciSourceCodeEditor->setTabWidth( settings->getValueByName("TabWidth").toInt() );
 }
@@ -264,8 +263,8 @@ void MainWindow::initSyntaxHighlighter() {
     highlighter = new UiguiHighlighter(qSciSourceCodeEditor);
 
     // Handle if syntax highlighting is enabled
-	bool syntaxHighlightningEnabled = settings->getValueByName("SyntaxHighlightningEnabled").toBool();
-	if ( syntaxHighlightningEnabled ) {
+    bool syntaxHighlightningEnabled = settings->getValueByName("SyntaxHighlightningEnabled").toBool();
+    if ( syntaxHighlightningEnabled ) {
         highlighter->turnHighlightOn();
     }
     else {
@@ -287,7 +286,7 @@ bool MainWindow::initApplicationLanguage() {
     QString languageShort;
 
     // Get the language settings from the settings object.
-	int languageIndex = settings->getValueByName("Language").toInt();
+    int languageIndex = settings->getValueByName("Language").toInt();
 
     // If no language was set, indicated by a negative index, use the system language.
     if ( languageIndex < 0 ) {
@@ -338,7 +337,7 @@ bool MainWindow::initApplicationLanguage() {
  */
 void MainWindow::initIndenter() {
     // Get Id of last selected indenter.
-	currentIndenterID = settings->getValueByName("SelectedIndenter").toInt();
+    currentIndenterID = settings->getValueByName("SelectedIndenter").toInt();
 
     // Create the indenter widget with the ID and add it to the layout.
     indentHandler = new IndentHandler(currentIndenterID, this, centralwidget);
@@ -358,7 +357,6 @@ void MainWindow::initIndenter() {
 
     // Add the indenters context menu to the mainwindows menu.
     menuIndenter->addActions( indentHandler->getIndenterMenuActions() );
-    
 }
 
 
@@ -368,7 +366,6 @@ void MainWindow::initIndenter() {
     If the file could not be loaded a error dialog will be shown.
  */
 QString MainWindow::loadFile(QString filePath) {
-
     QFile inSrcFile(filePath);
     QString fileContent = "";
 
@@ -383,9 +380,9 @@ QString MainWindow::loadFile(QString filePath) {
         QApplication::restoreOverrideCursor();
         inSrcFile.close();
 
-		QFileInfo fileInfo(filePath);
-		currentSourceFileExtension = fileInfo.suffix();
-		int indexOfHighlighter = highlighter->setLexerForExtension( currentSourceFileExtension );
+        QFileInfo fileInfo(filePath);
+        currentSourceFileExtension = fileInfo.suffix();
+        int indexOfHighlighter = highlighter->setLexerForExtension( currentSourceFileExtension );
         highlighterActionGroup->actions().at(indexOfHighlighter)->setChecked(true);
     }
     return fileContent;
@@ -408,9 +405,9 @@ void MainWindow::openSourceFileDialog(QString fileName) {
                              ");;"+tr("All files")+" (*.*)";
 
     //QString openedSourceFileContent = openFileDialog( tr("Choose source code file"), "./", fileExtensions );
-	if ( fileName.isEmpty() ) {
-		fileName = QFileDialog::getOpenFileName( this, tr("Choose source code file"), currentSourceFile, fileExtensions);
-	}
+    if ( fileName.isEmpty() ) {
+        fileName = QFileDialog::getOpenFileName( this, tr("Choose source code file"), currentSourceFile, fileExtensions);
+    }
 
     if (fileName != "") {
         currentSourceFile = fileName;
@@ -461,7 +458,7 @@ bool MainWindow::saveasSourceFileDialog(QAction *chosenEncodingAction) {
     QFile::remove(fileName);
     QFile outSrcFile(fileName);
     outSrcFile.open( QFile::ReadWrite | QFile::Text );
-    
+
     // Get current encoding.
     if ( chosenEncodingAction != NULL ) {
         encoding = chosenEncodingAction->text();
@@ -522,7 +519,6 @@ bool MainWindow::saveSourceFile() {
     and with a file mask defined by \a fileMaskStr. Returns the contents of the file as QString.
  */
 QString MainWindow::openFileDialog(QString dialogHeaderStr, QString startPath, QString fileMaskStr) {
-
     QString fileContent = "";
 
     QString fileName = QFileDialog::getOpenFileName( NULL, dialogHeaderStr, startPath, fileMaskStr);
@@ -555,9 +551,9 @@ void MainWindow::updateSourceView()
 
     if (previewToggled) {
         disconnect( qSciSourceCodeEditor, SIGNAL(textChanged ()), this, SLOT(sourceCodeChangedHelperSlot()) );
-		bool textIsModified = isWindowModified();
+        bool textIsModified = isWindowModified();
         qSciSourceCodeEditor->setText(sourceViewContent);
-		setWindowModified(textIsModified);
+        setWindowModified(textIsModified);
         previewToggled = false;
         connect( qSciSourceCodeEditor, SIGNAL(textChanged ()), this, SLOT(sourceCodeChangedHelperSlot()) );
     }
@@ -598,7 +594,7 @@ void MainWindow::turnHighlightOnOff(bool turnOn) {
     \brief Added this slot to avoid multiple calls because of changed text.
  */
 void MainWindow::sourceCodeChangedHelperSlot() {
-	QTimer::singleShot(0, this, SLOT(sourceCodeChangedSlot()));
+    QTimer::singleShot(0, this, SLOT(sourceCodeChangedSlot()));
 }
 
 
@@ -608,8 +604,8 @@ void MainWindow::sourceCodeChangedHelperSlot() {
  */
 void MainWindow::sourceCodeChangedSlot() {
     QChar enteredCharacter;
-	int cursorPos, cursorPosAbsolut, cursorLine;
-	QString text;
+    int cursorPos, cursorPosAbsolut, cursorLine;
+    QString text;
 
     sourceCodeChanged = true;
     if ( scrollPositionChanged ) {
@@ -618,7 +614,7 @@ void MainWindow::sourceCodeChangedSlot() {
 
     // Get the content text of the text editor.
     sourceFileContent = qSciSourceCodeEditor->text();
-	
+
     // Get the position of the cursor in the unindented text.
     if ( sourceFileContent.isEmpty() ) {
         // Add this line feed, because AStyle has problems with a totally emtpy file.
@@ -631,7 +627,7 @@ void MainWindow::sourceCodeChangedSlot() {
     else {
         qSciSourceCodeEditor->getCursorPosition(&cursorLine, &cursorPos);
         cursorPosAbsolut = qSciSourceCodeEditor->SendScintilla(QsciScintillaBase::SCI_GETCURRENTPOS);
-	    text = qSciSourceCodeEditor->text(cursorLine);
+        text = qSciSourceCodeEditor->text(cursorLine);
         if ( cursorPosAbsolut > 0 ) {
             cursorPosAbsolut--;
         }
@@ -666,7 +662,7 @@ void MainWindow::sourceCodeChangedSlot() {
             }
             if ( cursorPos >= text.count() ) {
                 cursorPos = 0;
-            } 
+            }
             else {
                 charFound = true;
                 break;
@@ -688,7 +684,7 @@ void MainWindow::sourceCodeChangedSlot() {
                 }
                 if ( cursorPos < 0 ) {
                     cursorPos = qSciSourceCodeEditor->lineLength(cursorLine-1) - 1;
-                } 
+                }
                 else {
                     charFound = true;
                     break;
@@ -739,8 +735,8 @@ void MainWindow::sourceCodeChangedSlot() {
 void MainWindow::indentSettingsChangedSlot() {
     indentSettingsChanged = true;
 
-	int cursorLine, cursorPos;
-	qSciSourceCodeEditor->getCursorPosition(&cursorLine, &cursorPos);
+    int cursorLine, cursorPos;
+    qSciSourceCodeEditor->getCursorPosition(&cursorLine, &cursorPos);
 
     if ( toolBarWidget->cbLivePreview->isChecked() ) {
         callIndenter();
@@ -783,8 +779,8 @@ void MainWindow::indentSettingsChangedSlot() {
 void MainWindow::previewTurnedOnOff(bool turnOn) {
     previewToggled = true;
 
-	int cursorLine, cursorPos;
-	qSciSourceCodeEditor->getCursorPosition(&cursorLine, &cursorPos);
+    int cursorLine, cursorPos;
+    qSciSourceCodeEditor->getCursorPosition(&cursorLine, &cursorPos);
 
     if ( turnOn && (indentSettingsChanged || sourceCodeChanged) ) {
         callIndenter();
@@ -839,7 +835,7 @@ void MainWindow::exportToPDF() {
         QsciPrinter printer(QPrinter::HighResolution);
         printer.setOutputFormat(QPrinter::PdfFormat);
         printer.setOutputFileName(fileName);
-		printer.printRange(qSciSourceCodeEditor);
+        printer.printRange(qSciSourceCodeEditor);
     }
 }
 
@@ -848,7 +844,7 @@ void MainWindow::exportToPDF() {
     \brief Opens a dialog to save the current source code as a HTML document.
  */
 void MainWindow::exportToHTML() {
-	QString fileExtensions = tr("HTML Document")+" (*.html)";
+    QString fileExtensions = tr("HTML Document")+" (*.html)";
 
     QString fileName = currentSourceFile;
     QFileInfo fileInfo(fileName);
@@ -876,46 +872,46 @@ void MainWindow::exportToHTML() {
 
 
 /*!
-    \brief Loads the last opened file if this option is enabled in the settings. 
-    
+    \brief Loads the last opened file if this option is enabled in the settings.
+
     If the file does not exist, the default example file is tried to be loaded. If even that
     fails a very small code example is shown.
     If the setting for opening the last file is disabled, the editor is empty on startup.
 */
 void MainWindow::loadLastOpenedFile() {
     // Get setting for last opened source code file.
-	loadLastSourceCodeFileOnStartup = settings->getValueByName("LoadLastOpenedFileOnStartup").toBool();
+    loadLastSourceCodeFileOnStartup = settings->getValueByName("LoadLastOpenedFileOnStartup").toBool();
 
-	// Only load last source code file if set to do so
-	if ( loadLastSourceCodeFileOnStartup ) {
+    // Only load last source code file if set to do so
+    if ( loadLastSourceCodeFileOnStartup ) {
         // From the list of last opened files get the first one.
         currentSourceFile = settings->getValueByName("LastOpenedFiles").toString().split("|").first();
 
-		// If source file exist load it.
-		if ( QFile::exists(currentSourceFile) ) {
-			QFileInfo fileInfo(currentSourceFile);
-			currentSourceFile = fileInfo.absoluteFilePath();
-			sourceFileContent = loadFile(currentSourceFile);
-		}
+        // If source file exist load it.
+        if ( QFile::exists(currentSourceFile) ) {
+            QFileInfo fileInfo(currentSourceFile);
+            currentSourceFile = fileInfo.absoluteFilePath();
+            sourceFileContent = loadFile(currentSourceFile);
+        }
         // If the last opened source code file does not exist, try to load the default example.cpp file.
         else if ( QFile::exists( SettingsPaths::getIndenterPath() + "/example.cpp" ) ) {
-			QFileInfo fileInfo( SettingsPaths::getIndenterPath() + "/example.cpp" );
-			currentSourceFile = fileInfo.absoluteFilePath();
-			sourceFileContent = loadFile(currentSourceFile);
-		}
-		// If neither the example source code file exists show some small code example.
-		else {
-			currentSourceFile = "untitled.cpp";
-			currentSourceFileExtension = "cpp";
-			sourceFileContent = "if(x==\"y\"){x=z;}";
-		}
-	}
-	// if last opened source file should not be loaded make some default settings.
-	else {
-		currentSourceFile = "untitled.cpp";
-		currentSourceFileExtension = "cpp";
-		sourceFileContent = "";
-	}
+            QFileInfo fileInfo( SettingsPaths::getIndenterPath() + "/example.cpp" );
+            currentSourceFile = fileInfo.absoluteFilePath();
+            sourceFileContent = loadFile(currentSourceFile);
+        }
+        // If neither the example source code file exists show some small code example.
+        else {
+            currentSourceFile = "untitled.cpp";
+            currentSourceFileExtension = "cpp";
+            sourceFileContent = "if(x==\"y\"){x=z;}";
+        }
+    }
+    // if last opened source file should not be loaded make some default settings.
+    else {
+        currentSourceFile = "untitled.cpp";
+        currentSourceFileExtension = "cpp";
+        sourceFileContent = "";
+    }
     savedSourceContent = sourceFileContent;
 
     // Update the mainwindow title to show the name of the loaded source code file.
@@ -929,13 +925,13 @@ void MainWindow::loadLastOpenedFile() {
     Settings are for example last selected indenter, last loaded config file and so on.
 */
 void MainWindow::saveSettings() {
-	settings->setValueByName( "FileEncoding", currentEncoding );
+    settings->setValueByName( "FileEncoding", currentEncoding );
     settings->setValueByName( "VersionInSettingsFile", version );
-	settings->setValueByName( "WindowIsMaximized", isMaximized() );
-	if ( !isMaximized() ) {
-		settings->setValueByName( "WindowPosition", pos() );
-		settings->setValueByName( "WindowSize", size() );
-	}
+    settings->setValueByName( "WindowIsMaximized", isMaximized() );
+    if ( !isMaximized() ) {
+        settings->setValueByName( "WindowPosition", pos() );
+        settings->setValueByName( "WindowSize", size() );
+    }
     settings->setValueByName( "MainWindowState", saveState() );
 
     // Also save the syntax highlight style for all lexers.
@@ -958,10 +954,10 @@ void MainWindow::closeEvent( QCloseEvent *event ) {
 
 
 /*!
-    \brief This function is setup to capture tooltip events. 
-    
-    All widgets that are created by the indentHandler object and are responsible 
-    for indenter parameters are connected with this event filter. 
+    \brief This function is setup to capture tooltip events.
+
+    All widgets that are created by the indentHandler object and are responsible
+    for indenter parameters are connected with this event filter.
     So depending on the settings the tooltips can be enabled and disabled for these widgets.
  */
 bool MainWindow::eventFilter(QObject *obj, QEvent *event)
@@ -974,7 +970,8 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
             //QToolTip::showText( QPoint(100,100) , "Test1");
             return true;
         }
-    } else {
+    }
+    else {
         // pass the event on to the parent class
         return QMainWindow::eventFilter(obj, event);
     }
@@ -989,7 +986,7 @@ bool MainWindow::maybeSave()
     if ( isWindowModified() ) {
         int ret = QMessageBox::warning(this, tr("Modified code"),
             tr("The source code has been modified.\n"
-            "Do you want to save your changes?"),
+                "Do you want to save your changes?"),
             QMessageBox::Yes | QMessageBox::Default,
             QMessageBox::No,
             QMessageBox::Cancel | QMessageBox::Escape);
@@ -1010,13 +1007,13 @@ bool MainWindow::maybeSave()
  */
 void MainWindow::languageChanged(int languageIndex) {
     // Get the mnemonic of the new selected language.
-	QString languageShort = settings->getAvailableTranslations().at(languageIndex);
+    QString languageShort = settings->getAvailableTranslations().at(languageIndex);
 
-	// Remove the old qt translation.
-	qApp->removeTranslator( qTTranslator );
+    // Remove the old qt translation.
+    qApp->removeTranslator( qTTranslator );
 
     // Remove the old uigui translation.
-	qApp->removeTranslator( uiGuiTranslator );
+    qApp->removeTranslator( uiGuiTranslator );
 
     // Load the Qt own translation file and set it for the application.
     bool translationFileLoaded;
@@ -1041,10 +1038,10 @@ void MainWindow::createEncodingMenu() {
     QString encodingName;
 
     encodingsList = QStringList() << "UTF-8" << "UTF-16" << "UTF-16BE" << "UTF-16LE"
-            << "Apple Roman" << "Big5" << "Big5-HKSCS" << "EUC-JP" << "EUC-KR" << "GB18030-0"
-            << "IBM 850" << "IBM 866" << "IBM 874" << "ISO 2022-JP" << "ISO 8859-1" << "ISO 8859-13"
-            << "Iscii-Bng" << "JIS X 0201" << "JIS X 0208" << "KOI8-R" << "KOI8-U" << "MuleLao-1"
-            << "ROMAN8" << "Shift-JIS" << "TIS-620" << "TSCII" << "Windows-1250" << "WINSAMI2";
+                    << "Apple Roman" << "Big5" << "Big5-HKSCS" << "EUC-JP" << "EUC-KR" << "GB18030-0"
+                    << "IBM 850" << "IBM 866" << "IBM 874" << "ISO 2022-JP" << "ISO 8859-1" << "ISO 8859-13"
+                    << "Iscii-Bng" << "JIS X 0201" << "JIS X 0208" << "KOI8-R" << "KOI8-U" << "MuleLao-1"
+                    << "ROMAN8" << "Shift-JIS" << "TIS-620" << "TSCII" << "Windows-1250" << "WINSAMI2";
 
     encodingActionGroup = new QActionGroup(this);
     saveEncodedActionGroup = new QActionGroup(this);
@@ -1108,60 +1105,60 @@ void MainWindow::encodingChanged(QAction* encodingAction) {
             QTextStream inSrcStrm(&inSrcFile);
             QApplication::setOverrideCursor(Qt::WaitCursor);
             QString encodingName = encodingAction->text();
-			currentEncoding = encodingName;
+            currentEncoding = encodingName;
             inSrcStrm.setCodec( QTextCodec::codecForName(encodingName.toAscii()) );
             fileContent = inSrcStrm.readAll();
             QApplication::restoreOverrideCursor();
             inSrcFile.close();
             qSciSourceCodeEditor->setText( fileContent );
-			qSciSourceCodeEditor->setModified(false);
+            qSciSourceCodeEditor->setModified(false);
         }
     }
 }
 
 
 /*!
-	\brief Creates a menu entry under the settings menu for all available text encodings.
+    \brief Creates a menu entry under the settings menu for all available text encodings.
 */
 void MainWindow::createHighlighterMenu() {
-	QAction *highlighterAction;
-	QString highlighterName;
+    QAction *highlighterAction;
+    QString highlighterName;
 
-	highlighterActionGroup = new QActionGroup(this);
+    highlighterActionGroup = new QActionGroup(this);
 
-	// Loop for each known highlighter
+    // Loop for each known highlighter
     foreach ( highlighterName, highlighter->getAvailableHighlighters() ) {
-		highlighterAction = new QAction(highlighterName, highlighterActionGroup);
-		highlighterAction->setStatusTip( tr("Set the syntax highlightning to ") + highlighterName );
-		highlighterAction->setCheckable(true);
-	}
-	highlighterMenu->addActions( highlighterActionGroup->actions() );
+        highlighterAction = new QAction(highlighterName, highlighterActionGroup);
+        highlighterAction->setStatusTip( tr("Set the syntax highlightning to ") + highlighterName );
+        highlighterAction->setCheckable(true);
+    }
+    highlighterMenu->addActions( highlighterActionGroup->actions() );
     menuSettings->insertMenu(indenterParameterTooltipsEnabledAction, highlighterMenu );
 
-	connect( highlighterActionGroup, SIGNAL(triggered(QAction*)), highlighter, SLOT(setHighlighterByAction(QAction*)) );
+    connect( highlighterActionGroup, SIGNAL(triggered(QAction*)), highlighter, SLOT(setHighlighterByAction(QAction*)) );
 }
 
 
 /*!
-	\brief Is called whenever the white space visibility is being changed in the menu.
+    \brief Is called whenever the white space visibility is being changed in the menu.
  */
 void MainWindow::setWhiteSpaceVisibility(bool visible) {
-	if ( visible ) {
-		qSciSourceCodeEditor->setWhitespaceVisibility(QsciScintilla::WsVisible);
-	}
-	else {
-		qSciSourceCodeEditor->setWhitespaceVisibility(QsciScintilla::WsInvisible);
-	}
+    if ( visible ) {
+        qSciSourceCodeEditor->setWhitespaceVisibility(QsciScintilla::WsVisible);
+    }
+    else {
+        qSciSourceCodeEditor->setWhitespaceVisibility(QsciScintilla::WsInvisible);
+    }
 }
 
 /*!
-	\brief This slot is called whenever the number of lines in the editor changes
-	and adapts the margin for the displayed line numbers.
+    \brief This slot is called whenever the number of lines in the editor changes
+    and adapts the margin for the displayed line numbers.
 */
 void MainWindow::numberOfLinesChanged() {
-	QString lineNumbers;
-	lineNumbers.setNum( qSciSourceCodeEditor->lines()*10 );
-	qSciSourceCodeEditor->setMarginWidth(1, lineNumbers);
+    QString lineNumbers;
+    lineNumbers.setNum( qSciSourceCodeEditor->lines()*10 );
+    qSciSourceCodeEditor->setMarginWidth(1, lineNumbers);
 }
 
 
@@ -1184,7 +1181,7 @@ void MainWindow::changeEvent(QEvent *event) {
         // Translate the indent handler widget.
         indentHandler->retranslateUi();
 
-         // Translate the load encoding menu.
+        // Translate the load encoding menu.
         QList<QAction *> encodingActionList = encodingActionGroup->actions();
         for ( i = 0; i < encodingActionList.size(); i++ ) {
             encodingActionList.at(i)->setStatusTip( tr("Reopen the currently opened source code file by using the text encoding scheme ") + encodingsList.at(i) );
@@ -1209,7 +1206,7 @@ void MainWindow::changeEvent(QEvent *event) {
         int line, column;
         qSciSourceCodeEditor->getCursorPosition( &line, &column );
         setStatusBarCursorPosInfo( line, column );
-    } 
+    }
     else {
         QWidget::changeEvent(event);
     }
@@ -1218,16 +1215,15 @@ void MainWindow::changeEvent(QEvent *event) {
 
 
 /*!
-    \brief Updates the list of recently opened files. 
-    
-    Therefore the currently open file is set at the lists first position 
-    regarding the in the settings set maximum list length. Overheads of the 
-    list will be cut off. The new list will be updated to the settings and 
+    \brief Updates the list of recently opened files.
+
+    Therefore the currently open file is set at the lists first position
+    regarding the in the settings set maximum list length. Overheads of the
+    list will be cut off. The new list will be updated to the settings and
     the recently opened menu will be updated too.
  */
 void MainWindow::updateRecentlyOpenedList() {
-
-	QString fileName;
+    QString fileName;
     QString filePath;
     QStringList recentlyOpenedList = settings->getValueByName("LastOpenedFiles").toString().split("|");
     QList<QAction*> recentlyOpenedActionList = menuRecently_Opened_Files->actions();
@@ -1243,28 +1239,28 @@ void MainWindow::updateRecentlyOpenedList() {
     // Put the current file at the first position if it not already is and is not empty.
     else if ( indexOfCurrentFile == -1 && !currentSourceFile.isEmpty() ) {
         recentlyOpenedList.insert(0, currentSourceFile);
-		QAction *recentlyOpenedAction = new QAction(QFileInfo(currentSourceFile).fileName(), menuRecently_Opened_Files);
-		recentlyOpenedAction->setStatusTip(currentSourceFile);
+        QAction *recentlyOpenedAction = new QAction(QFileInfo(currentSourceFile).fileName(), menuRecently_Opened_Files);
+        recentlyOpenedAction->setStatusTip(currentSourceFile);
         recentlyOpenedActionList.insert(0, recentlyOpenedAction );
     }
 
-	// Get the maximum recently opened list size.
-	int recentlyOpenedListMaxSize = settings->getValueByName("RecentlyOpenedListSize").toInt();
+    // Get the maximum recently opened list size.
+    int recentlyOpenedListMaxSize = settings->getValueByName("RecentlyOpenedListSize").toInt();
 
-	// Loop for each filepath in the recently opened list, remove non existing files and
-	// loop only as long as maximum allowed list entries are set.
+    // Loop for each filepath in the recently opened list, remove non existing files and
+    // loop only as long as maximum allowed list entries are set.
     for ( int i = 0; i < recentlyOpenedList.size() && i < recentlyOpenedListMaxSize; ) {
-		filePath = recentlyOpenedList.at(i);
+        filePath = recentlyOpenedList.at(i);
         QFileInfo fileInfo(filePath);
 
-		// If the file does no longer exist, remove it from the list.
-		if ( !fileInfo.exists() ) {
-			recentlyOpenedList.takeAt(i);
+        // If the file does no longer exist, remove it from the list.
+        if ( !fileInfo.exists() ) {
+            recentlyOpenedList.takeAt(i);
             if ( i < recentlyOpenedActionList.size()-2 ) {
                 QAction* action = recentlyOpenedActionList.takeAt(i);
                 delete action;
             }
-		}
+        }
         // else if its not already in the menu, add it to the menu.
         else {
             if ( i >= recentlyOpenedActionList.size()-2 ) {
@@ -1274,14 +1270,14 @@ void MainWindow::updateRecentlyOpenedList() {
             }
             i++;
         }
-	}
+    }
 
-	// Trim the list to its in the settings allowed maximum size.
-	while ( recentlyOpenedList.size() > recentlyOpenedListMaxSize ) {
-		recentlyOpenedList.takeLast();
+    // Trim the list to its in the settings allowed maximum size.
+    while ( recentlyOpenedList.size() > recentlyOpenedListMaxSize ) {
+        recentlyOpenedList.takeLast();
         QAction* action = recentlyOpenedActionList.takeAt( recentlyOpenedActionList.size()-3 );
         delete action;
-	}
+    }
 
     // Add all actions to the menu.
     menuRecently_Opened_Files->addActions(recentlyOpenedActionList);
@@ -1307,10 +1303,10 @@ void MainWindow::clearRecentlyOpenedList() {
     QList<QAction*> recentlyOpenedActionList = menuRecently_Opened_Files->actions();
 
     while ( recentlyOpenedList.size() > 0 ) {
-		recentlyOpenedList.takeLast();
+        recentlyOpenedList.takeLast();
         QAction* action = recentlyOpenedActionList.takeAt( recentlyOpenedActionList.size()-3 );
         delete action;
-	}
+    }
 
     // Write the new recently opened list to the settings.
     settings->setValueByName( "LastOpenedFiles", recentlyOpenedList.join("|") );
@@ -1336,21 +1332,21 @@ void MainWindow::openFileFromRecentlyOpenedList(QAction* recentlyOpenedAction) {
     int indexOfSelectedFile = menuRecently_Opened_Files->actions().indexOf( recentlyOpenedAction );
     QStringList recentlyOpenedList = settings->getValueByName("LastOpenedFiles").toString().split("|");
     QString filePath = recentlyOpenedList.at(indexOfSelectedFile);
-	QFileInfo fileInfo(filePath);
+    QFileInfo fileInfo(filePath);
 
-	// If the file exists, open it.
-	if ( fileInfo.exists() ) {
-		openSourceFileDialog(filePath);
-	}
-	// If it does not exist, show a warning message and update the list of recently opened files.
-	else {
-		QMessageBox::warning(NULL, tr("File no longer exists"), tr("The file %1 in the list of recently opened files does no longer exist.") );
+    // If the file exists, open it.
+    if ( fileInfo.exists() ) {
+        openSourceFileDialog(filePath);
+    }
+    // If it does not exist, show a warning message and update the list of recently opened files.
+    else {
+        QMessageBox::warning(NULL, tr("File no longer exists"), tr("The file %1 in the list of recently opened files does no longer exist.") );
         // The function updateRecentlyOpenedList() has to be called via a singleShot so it is executed after this
         // function (openFileFromRecentlyOpenedList) has already been left. This has to be done because
         // a Qt3Support function tries to emit a signal based on the existing actions and deleting
         // any of these actions in updateRecentlyOpenedList() causes an error.
-		QTimer::singleShot(0, this, SLOT(updateRecentlyOpenedList()) );
-	}
+        QTimer::singleShot(0, this, SLOT(updateRecentlyOpenedList()) );
+    }
 }
 
 
@@ -1381,10 +1377,10 @@ void MainWindow::dropEvent(QDropEvent *event) {
     \brief If the dropped in object contains urls/paths to a file, open that file.
 */
 void MainWindow::showAboutDialog() {
-	QPixmap originalPixmap = QPixmap::grabWindow(QApplication::desktop()->screen()->winId());
-	//qDebug("in main pixmap width %d, numScreens = %d", originalPixmap.size().width(), QApplication::desktop()->availableGeometry().width());
-	aboutDialogGraphicsView->setScreenshotPixmap( originalPixmap );
-	aboutDialogGraphicsView->show();
+    QPixmap originalPixmap = QPixmap::grabWindow(QApplication::desktop()->screen()->winId());
+    //qDebug("in main pixmap width %d, numScreens = %d", originalPixmap.size().width(), QApplication::desktop()->availableGeometry().width());
+    aboutDialogGraphicsView->setScreenshotPixmap( originalPixmap );
+    aboutDialogGraphicsView->show();
 }
 
 

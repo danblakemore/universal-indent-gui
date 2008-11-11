@@ -41,17 +41,17 @@ bool SettingsPaths::portableMode = false;
 
 /*!
     \brief Initializes all available information about the paths.
-    
+
     Mainly during this init it is detected whether to start in portable mode or not. This is
-    done by testing whether the directory "config" is in the same directory as this 
+    done by testing whether the directory "config" is in the same directory as this
     applications executable file.
     In portable mode all data is ONLY written to subdirectories of the applications executable file.
     Means also that the directory "indenters" has to be there.
     In not portable mode (multiuser mode) only users home directory is used for writing config data.
  */
 void SettingsPaths::init() {
-    // Get the applications binary path, with respect to MacOSXs use of the .app folder. 
-	applicationBinaryPath = QCoreApplication::applicationDirPath();
+    // Get the applications binary path, with respect to MacOSXs use of the .app folder.
+    applicationBinaryPath = QCoreApplication::applicationDirPath();
     // Remove any trailing slashes
     while ( applicationBinaryPath.right(1) == "/" ) {
         applicationBinaryPath.chop(1);
@@ -63,14 +63,14 @@ void SettingsPaths::init() {
 
 #ifdef Q_OS_MAC
     // Because on Mac universal binaries are used, the binary path is not equal
-	// to the applications (.app) path. So get the .apps path here.
+    // to the applications (.app) path. So get the .apps path here.
     int indexOfDotApp = applicationBinaryPath.indexOf(".app");
     if ( indexOfDotApp != -1 ) {
-		// Cut off after the dot of ".app".
-	    applicationBinaryPath = applicationBinaryPath.left( indexOfDotApp-1 );
-		// Cut off after the first slash that was in front of ".app" (normally this is the word "UniversalIndentGUI")
-	    applicationBinaryPath = applicationBinaryPath.left( applicationBinaryPath.lastIndexOf("/") );
-	}
+        // Cut off after the dot of ".app".
+        applicationBinaryPath = applicationBinaryPath.left( indexOfDotApp-1 );
+        // Cut off after the first slash that was in front of ".app" (normally this is the word "UniversalIndentGUI")
+        applicationBinaryPath = applicationBinaryPath.left( applicationBinaryPath.lastIndexOf("/") );
+    }
 #endif
 
     // If the "config" directory is a subdir of the applications binary path, use this one (portable mode)
@@ -97,7 +97,7 @@ void SettingsPaths::init() {
             settingsPath.chop(1);
         }
         settingsPath = settingsPath + "/UniversalIndentGUI";
-        
+
         // On windows systems the directories "indenters", "translations" are subdirs of the applicationBinaryPath.
         globalFilesPath = applicationBinaryPath;
 #else

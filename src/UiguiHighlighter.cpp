@@ -35,7 +35,7 @@
     \brief The constructor initializes some regular expressions and keywords to identify cpp tokens
  */
 UiguiHighlighter::UiguiHighlighter(QsciScintilla *parent)
-: QObject(parent)
+    : QObject(parent)
 {
     this->qsciEditorParent = parent;
 
@@ -111,7 +111,7 @@ QStringList UiguiHighlighter::getAvailableHighlighters() {
     \brief This slot handles signals coming from selecting another syntax highlighter.
  */
 void UiguiHighlighter::setHighlighterByAction(QAction* highlighterAction) {
-	QString highlighterName = highlighterAction->text();
+    QString highlighterName = highlighterAction->text();
     setLexerForExtension( mapHighlighternameToExtension[highlighterName].first() );
     //TODO: This is really no nice way. How do it better?
     // Need to do this "text update" to update the syntax highlighting. Otherwise highlighting is wrong.
@@ -161,14 +161,13 @@ bool UiguiHighlighter::readCurrentSettings( const char *prefix )
     colorForStyles.clear();
 
     // Read the styles.
-    for (int i = 0; i < 128; ++i)
-    {
+    for (int i = 0; i < 128; ++i) {
         // Ignore invalid styles.
         if ( lexer->description(i).isEmpty() )
             continue;
 
         key.sprintf( "%s/%s/style%d/", prefix, lexer->language(), i );
-		key.replace("+", "p");
+        key.replace("+", "p");
 
         // Read the foreground color.
         ok = settings->contains(key + "color");
@@ -194,8 +193,7 @@ bool UiguiHighlighter::readCurrentSettings( const char *prefix )
         ok = settings->contains(key + "font");
         fdesc = settings->value(key + "font").toStringList();
 
-        if (ok && fdesc.count() == 5)
-        {
+        if (ok && fdesc.count() == 5) {
             QFont f;
 
 #ifdef Q_OS_WIN
@@ -252,18 +250,18 @@ void UiguiHighlighter::writeCurrentSettings( const char *prefix )
         QColor c;
 
         key.sprintf( "%s/%s/style%d/", prefix, lexer->language(), i );
-		key.replace("+", "p");
+        key.replace("+", "p");
 
-		// Write style name
-		settings->setValue( key + "", lexer->description(i) );
+        // Write style name
+        settings->setValue( key + "", lexer->description(i) );
 
         // Write the foreground color.
-		if ( colorForStyles.contains(i) ) {
-			c = colorForStyles[i];
-		}
-		else {
-			c = lexer->color(i);
-		}
+        if ( colorForStyles.contains(i) ) {
+            c = colorForStyles[i];
+        }
+        else {
+            c = lexer->color(i);
+        }
         num = (c.red() << 16) | (c.green() << 8) | c.blue();
 
         settings->setValue(key + "color", num);
@@ -276,12 +274,12 @@ void UiguiHighlighter::writeCurrentSettings( const char *prefix )
         QString fmt("%1");
         QFont f;
 
-		if ( fontForStyles.contains(i) ) {
-			f = fontForStyles[i];
-		}
-		else {
-			f = lexer->font(i);
-		}
+        if ( fontForStyles.contains(i) ) {
+            f = fontForStyles[i];
+        }
+        else {
+            f = lexer->font(i);
+        }
 
         fdesc += f.family();
         fdesc += fmt.arg( f.pointSize() );
@@ -333,37 +331,37 @@ void UiguiHighlighter::setLexerByName( QString lexerName ) {
  */
 int UiguiHighlighter::setLexerForExtension( QString extension ) {
     int indexOfHighlighter = 0;
-	extension = extension.toLower();
+    extension = extension.toLower();
 
-	if ( lexer != NULL ) {
-		writeCurrentSettings("");
-		delete lexer;
-	}
+    if ( lexer != NULL ) {
+        writeCurrentSettings("");
+        delete lexer;
+    }
 
-	if ( extension == "cpp" || extension == "hpp" || extension == "c" || extension == "h" || extension == "cxx" || extension == "hxx" ) {
-		lexer = new QsciLexerCPP();
-	} 
-	else if ( extension == "sh" ) {
-		lexer = new QsciLexerBash();
-	}
-	else if ( extension == "bat" ) {
-		lexer = new QsciLexerBatch();
-	}
+    if ( extension == "cpp" || extension == "hpp" || extension == "c" || extension == "h" || extension == "cxx" || extension == "hxx" ) {
+        lexer = new QsciLexerCPP();
+    }
+    else if ( extension == "sh" ) {
+        lexer = new QsciLexerBash();
+    }
+    else if ( extension == "bat" ) {
+        lexer = new QsciLexerBatch();
+    }
     else if ( extension == "cmake" ) {
         lexer = new QsciLexerCMake();
     }
-	else if ( extension == "cs" ) {
-		lexer = new QsciLexerCSharp();
-	}
-	else if ( extension == "css" ) {
-		lexer = new QsciLexerCSS();
-	}
-	else if ( extension == "d" ) {
-		lexer = new QsciLexerD();
-	}
-	else if ( extension == "diff" ) {
-		lexer = new QsciLexerDiff();
-	}
+    else if ( extension == "cs" ) {
+        lexer = new QsciLexerCSharp();
+    }
+    else if ( extension == "css" ) {
+        lexer = new QsciLexerCSS();
+    }
+    else if ( extension == "d" ) {
+        lexer = new QsciLexerD();
+    }
+    else if ( extension == "diff" ) {
+        lexer = new QsciLexerDiff();
+    }
 #if ( QSCINTILLA_VERSION >= 0x020300 )
     else if ( extension == "f" || extension == "for" ) {
         lexer = new QsciLexerFortran();
@@ -372,82 +370,82 @@ int UiguiHighlighter::setLexerForExtension( QString extension ) {
         lexer = new QsciLexerFortran77();
     }
 #endif
-	else if ( extension == "html" || extension == "htm" ) {
-		lexer = new QsciLexerHTML();
-	}
-	else if ( extension == "idl" ) {
-		lexer = new QsciLexerIDL();
-	}
-	else if ( extension == "java" ) {
-		lexer = new QsciLexerJava();
-	}
-	else if ( extension == "js" ) {
-		lexer = new QsciLexerJavaScript();
-	}
-	else if ( extension == "lua" ) {
-		lexer = new QsciLexerLua();
-	}
+    else if ( extension == "html" || extension == "htm" ) {
+        lexer = new QsciLexerHTML();
+    }
+    else if ( extension == "idl" ) {
+        lexer = new QsciLexerIDL();
+    }
+    else if ( extension == "java" ) {
+        lexer = new QsciLexerJava();
+    }
+    else if ( extension == "js" ) {
+        lexer = new QsciLexerJavaScript();
+    }
+    else if ( extension == "lua" ) {
+        lexer = new QsciLexerLua();
+    }
     else if ( extension == "makefile" ) {
-		lexer = new QsciLexerMakefile();
-	}
+        lexer = new QsciLexerMakefile();
+    }
 #if ( QSCINTILLA_VERSION >= 0x020300 )
     else if ( extension == "pas" ) {
         lexer = new QsciLexerPascal();
     }
 #endif
-	else if ( extension == "perl" || extension == "pl" || extension == "pm" ) {
-		lexer = new QsciLexerPerl();
-	}
+    else if ( extension == "perl" || extension == "pl" || extension == "pm" ) {
+        lexer = new QsciLexerPerl();
+    }
     else if ( extension == "php" ) {
-		lexer = new QsciLexerHTML();
-	}
+        lexer = new QsciLexerHTML();
+    }
 #if ( QSCINTILLA_VERSION >= 0x020300 )
     else if ( extension == "ps" || extension == "eps" || extension == "pdf" || extension == "ai" || extension == "fh") {
         lexer = new QsciLexerPostScript();
     }
 #endif
-	else if ( extension == "pov" ) {
-		lexer = new QsciLexerPOV();
-	}
-	else if ( extension == "ini" ) {
-		lexer = new QsciLexerProperties();
-	}
-	else if ( extension == "py" ) {
-		lexer = new QsciLexerPython();
-	}
-	else if ( extension == "rub" || extension == "rb" ) {
-		lexer = new QsciLexerRuby();
-	}
-	else if ( extension == "sql" ) {
-		lexer = new QsciLexerSQL();
-	}
+    else if ( extension == "pov" ) {
+        lexer = new QsciLexerPOV();
+    }
+    else if ( extension == "ini" ) {
+        lexer = new QsciLexerProperties();
+    }
+    else if ( extension == "py" ) {
+        lexer = new QsciLexerPython();
+    }
+    else if ( extension == "rub" || extension == "rb" ) {
+        lexer = new QsciLexerRuby();
+    }
+    else if ( extension == "sql" ) {
+        lexer = new QsciLexerSQL();
+    }
 #if ( QSCINTILLA_VERSION >= 0x020300 )
     else if ( extension == "tcl" ) {
         lexer = new QsciLexerTCL();
     }
 #endif
-	else if ( extension == "tex" ) {
-		lexer = new QsciLexerTeX();
-	}
+    else if ( extension == "tex" ) {
+        lexer = new QsciLexerTeX();
+    }
     else if ( extension == "vhdl" ) {
         lexer = new QsciLexerVHDL();
     }
     else if ( extension == "xml" ) {
 #if ( QSCINTILLA_VERSION >= 0x020300 )
-		lexer = new QsciLexerXML();
+        lexer = new QsciLexerXML();
 #else
         lexer = new QsciLexerHTML();
 #endif
-	}
+    }
 #if ( QSCINTILLA_VERSION >= 0x020300 )
     else if ( extension == "yaml" ) {
         lexer = new QsciLexerYAML();
     }
 #endif
-	else {
-		lexer = new QsciLexerCPP();
+    else {
+        lexer = new QsciLexerCPP();
         extension = "cpp";
-	}
+    }
 
     // Find the index of the selected lexer.
     indexOfHighlighter = 0;
@@ -457,11 +455,11 @@ int UiguiHighlighter::setLexerForExtension( QString extension ) {
 
     // Set the lexer for the QScintilla widget.
     if ( highlightningIsOn ) {
-	    qsciEditorParent->setLexer(lexer);
+        qsciEditorParent->setLexer(lexer);
     }
 
     // Read the settings for the lexer properties from file.
-	readCurrentSettings("");
+    readCurrentSettings("");
 
     return indexOfHighlighter;
 }

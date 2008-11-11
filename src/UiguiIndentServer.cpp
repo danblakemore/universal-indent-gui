@@ -29,7 +29,7 @@
     \brief UiguiIndentServer is in such an early state, that even the communication
     protocol isn't completely planned. So this class lacks documentation until
     I really know where all this will lead to.
-    
+
     The plan however is to have a server that receives commands for selecting an
     indenter and perhaps load some by the user predefined indenter config file. Then
     the client can send a text to it and will receive it formatted.
@@ -89,7 +89,6 @@ void UiguiIndentServer::handleNewConnection() {
 
 
 void UiguiIndentServer::handleReceivedData() {
-
     if ( !readyForHandleRequest ) {
         return;
     }
