@@ -25,7 +25,7 @@
 #include <QDesktopServices>
 #include <QScrollBar>
 #include <QTimer>
-#include "ui_aboutdialog.h"
+#include "ui_AboutDialog.h"
 
 #include <QLocale>
 
