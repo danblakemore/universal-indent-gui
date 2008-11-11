@@ -53,6 +53,10 @@ echo "Done"
 echo ""
 
 # wait until the copied files have been really created
+while [ ! -f "./$targetDir/$sourcefilename" ]
+do
+    sleep 1
+done
 while [ ! -f "./$targetDir/$sourcefilenameorig" ]
 do
     sleep 1
@@ -64,6 +68,17 @@ echo "Unpacking the source archive"
 echo "----------------------------"
 tar -xzvf $sourcefilenameorig
 echo ""
+
+# wait until the files have been really extracted
+while [ ! -f "./$sourcedirname/src/UpdateCheckDialog.ui" ]
+do
+    sleep 1
+done
+while [ ! -f "./$sourcedirname/resources/universalIndentGUI.svg" ]
+do
+    sleep 1
+done
+
 
 echo "Copying the debian package build files"
 echo "--------------------------------------"
