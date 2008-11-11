@@ -293,6 +293,7 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\UiGuiHighlighter.h"
 				>
 			</File>
 			<File
@@ -409,6 +410,7 @@
 				>
 			</File>
 			<File
+				RelativePath="$(OutDir)\tmp\moc\moc_UiGuiIndentServer.cpp"
 				>
 			</File>
 			<File
