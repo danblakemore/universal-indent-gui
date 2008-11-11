@@ -73,7 +73,7 @@ const char* TemplateBatchScript::getTemplateBatchScript() {
         "echo ERROR: As parameter given directory or file does not exist!\n"
         "echo Syntax is: __INDENTERCALLSTRINGSCRIPTNAME__ dirname filesuffix\n"
         "echo Syntax is: __INDENTERCALLSTRINGSCRIPTNAME__ filename\n"
-        "echo Example: recurse.bat temp cpp\n"
+        "echo Example: __INDENTERCALLSTRINGSCRIPTNAME__ temp cpp\n"
         "echo .\n"
         "\n"
         ":ende\n";
@@ -113,7 +113,7 @@ const char* TemplateBatchScript::getTemplateBatchScript() {
         "echo \"ERROR: As parameter given directory or file does not exist!\"\n"
         "echo \"Syntax is: __INDENTERCALLSTRINGSCRIPTNAME__ dirname filesuffix\"\n"
         "echo \"Syntax is: __INDENTERCALLSTRINGSCRIPTNAME__ filename\"\n"
-        "echo \"Example: recurse.sh temp cpp\"\n"
+        "echo \"Example: __INDENTERCALLSTRINGSCRIPTNAME__ temp cpp\"\n"
         "exit 1\n"
         "fi\n"
         "fi\n";
