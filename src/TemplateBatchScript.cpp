@@ -17,7 +17,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "templateBatchScript.h"
+#include "TemplateBatchScript.h"
 
 // Need to include QObject here so that platform specific defines like Q_OS_WIN32 are set.
 #include <QObject>

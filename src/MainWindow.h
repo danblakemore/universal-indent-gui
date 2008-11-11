@@ -20,15 +20,15 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "ui_mainwindow.h"
-#include "ui_toolBarWidget.h"
-#include "aboutdialog.h"
+#include "ui_MainWindow.h"
+#include "ui_ToolBarWidget.h"
+#include "AboutDialog.h"
 #include "AboutDialogGraphicsView.h"
-#include "uiguisettings.h"
-#include "uiguisettingsdialog.h"
-#include "UiguiHighlighter.h"
-#include "indenthandler.h"
-#include "updatecheckdialog.h"
+#include "UiGuiSettings.h"
+#include "UiGuiSettingsDialog.h"
+#include "UiGuiHighlighter.h"
+#include "IndentHandler.h"
+#include "UpdateCheckDialog.h"
 
 #include <QWidget>
 #include <QString>
@@ -77,7 +77,7 @@ private:
     void dropEvent(QDropEvent *event);
 
 	QsciScintilla *qSciSourceCodeEditor;
-	UiguiSettings *settings;
+	UiGuiSettings *settings;
 
     QString version;
     QString revision;
@@ -87,11 +87,11 @@ private:
     QString sourceFileContent;
     QString sourceFormattedContent;
     QString sourceViewContent;
-    UiguiHighlighter *highlighter;
+    UiGuiHighlighter *highlighter;
     QScrollBar *textEditVScrollBar;
     AboutDialog *aboutDialog;
     AboutDialogGraphicsView *aboutDialogGraphicsView;
-	UiguiSettingsDialog *settingsDialog;
+	UiGuiSettingsDialog *settingsDialog;
     int textEditLastScrollPos;
     int currentIndenterID;
 	bool loadLastSourceCodeFileOnStartup;
@@ -111,7 +111,7 @@ private:
     bool previewToggled;
 	QStringList encodingsList;
 
-    Ui::toolBarWidget *toolBarWidget;
+    Ui::ToolBarWidget *toolBarWidget;
     IndentHandler *indentHandler;
     UpdateCheckDialog *updateCheckDialog;
     QLabel *textEditLineColumnInfoLabel;

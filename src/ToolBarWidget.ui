@@ -1,5 +1,5 @@
 <ui version="4.0" >
- <class>toolBarWidget</class>
+ <class>ToolBarWidget</class>
  <widget class="QWidget" name="toolBarWidget" >
   <property name="geometry" >
    <rect>

@@ -17,9 +17,9 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "indenthandler.h"
+#include "IndentHandler.h"
 
-#include "uiguisettings.h"
+#include "UiGuiSettings.h"
 
 //! \defgroup grp_Indenter All concerning handling of the indenter.
 
@@ -82,8 +82,8 @@ IndentHandler::IndentHandler(int indenterID, QWidget *mainWindow, QWidget *paren
     indenterSelectionCombobox->setProperty("connectedSettingName", "DONOTTRANSLATE:SelectedIndenter");
     indenterSelectionCombobox->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
     indenterSelectionCombobox->setMinimumContentsLength(20);
-    connect( indenterSelectionCombobox, SIGNAL(activated(int)), UiguiSettings::getInstance(), SLOT(handleValueChangeFromExtern(int)) );
-    connect( UiguiSettings::getInstance(), SIGNAL(selectedIndenter(int)), this, SLOT(setIndenter(int)) );
+    connect( indenterSelectionCombobox, SIGNAL(activated(int)), UiGuiSettings::getInstance(), SLOT(handleValueChangeFromExtern(int)) );
+    connect( UiGuiSettings::getInstance(), SIGNAL(selectedIndenter(int)), this, SLOT(setIndenter(int)) );
     hboxLayout->addWidget( indenterSelectionCombobox );
 
     // Create the indenter parameter help button.
@@ -116,10 +116,10 @@ IndentHandler::IndentHandler(int indenterID, QWidget *mainWindow, QWidget *paren
     QDir indenterDirctory = QDir(indenterDirctoryStr);
 
     if ( mainWindow != NULL ) {
-        errorMessageDialog = new UiguiErrorMessage(mainWindow);
+        errorMessageDialog = new UiGuiErrorMessage(mainWindow);
     }
     else {
-        errorMessageDialog = new UiguiErrorMessage(this);
+        errorMessageDialog = new UiGuiErrorMessage(this);
     }
 
     indenterIniFileList = indenterDirctory.entryList( QStringList("uigui_*.ini") );
@@ -800,7 +800,7 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
     Q_ASSERT_X( !iniFilePath.isEmpty(), "readIndentIniFile", "iniFilePath is empty" );
 
     // open the ini-file that contains all available indenter settings with their additional infos
-    indenterSettings = new UiguiIniFileParser(iniFilePath);
+    indenterSettings = new UiGuiIniFileParser(iniFilePath);
 
     QStringList categories;
     //QString indenterGroupString = "";

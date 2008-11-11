@@ -19,22 +19,22 @@
 
 #include <QtGui>
 
-#include "UiguiHighlighter.h"
+#include "UiGuiHighlighter.h"
 
 #include "SettingsPaths.h"
 
 //! \defgroup grp_EditorComponent All concerning editor widget.
 
 /*!
-    \class UiguiHighlighter
+    \class UiGuiHighlighter
     \ingroup grp_EditorComponent
-    \brief UiguiHighlighter used for selecting the syntax highlighter/lexer for the QsciScintilla component.
+    \brief UiGuiHighlighter used for selecting the syntax highlighter/lexer for the QsciScintilla component.
 */
 
 /*!
     \brief The constructor initializes some regular expressions and keywords to identify cpp tokens
  */
-UiguiHighlighter::UiguiHighlighter(QsciScintilla *parent) : QObject(parent) {
+UiGuiHighlighter::UiGuiHighlighter(QsciScintilla *parent) : QObject(parent) {
     this->qsciEditorParent = parent;
 
     // Create the highlighter settings object from the UiGuiSyntaxHighlightConfig.ini file.
@@ -100,7 +100,7 @@ UiguiHighlighter::UiguiHighlighter(QsciScintilla *parent) : QObject(parent) {
 /*!
     \brief Returns the available highlighters as QStringList.
  */
-QStringList UiguiHighlighter::getAvailableHighlighters() {
+QStringList UiGuiHighlighter::getAvailableHighlighters() {
     return mapHighlighternameToExtension.keys();
 }
 
@@ -108,7 +108,7 @@ QStringList UiguiHighlighter::getAvailableHighlighters() {
 /*!
     \brief This slot handles signals coming from selecting another syntax highlighter.
  */
-void UiguiHighlighter::setHighlighterByAction(QAction* highlighterAction) {
+void UiGuiHighlighter::setHighlighterByAction(QAction* highlighterAction) {
     QString highlighterName = highlighterAction->text();
     setLexerForExtension( mapHighlighternameToExtension[highlighterName].first() );
     //TODO: This is really no nice way. How do it better?
@@ -122,7 +122,7 @@ void UiguiHighlighter::setHighlighterByAction(QAction* highlighterAction) {
 /*!
     \brief Turns the syntax parser on.
 */
-void UiguiHighlighter::turnHighlightOn() {
+void UiGuiHighlighter::turnHighlightOn() {
     highlightningIsOn = true;
     qsciEditorParent->setLexer(lexer);
     readCurrentSettings("");
@@ -131,7 +131,7 @@ void UiguiHighlighter::turnHighlightOn() {
 /*!
     \brief Turns the syntax parser off.
 */
-void UiguiHighlighter::turnHighlightOff() {
+void UiGuiHighlighter::turnHighlightOff() {
     highlightningIsOn = false;
     qsciEditorParent->setLexer();
 #ifdef Q_OS_WIN
@@ -148,7 +148,7 @@ void UiguiHighlighter::turnHighlightOff() {
     \brief Read the settings for the current lexer from the settings file.
  */
 //TODO: Refactor this function so that the coding style and variable names suit better.
-bool UiguiHighlighter::readCurrentSettings( const char *prefix ) {
+bool UiGuiHighlighter::readCurrentSettings( const char *prefix ) {
     bool ok, flag, rc = true;
     int num;
     QString key;
@@ -233,7 +233,7 @@ bool UiguiHighlighter::readCurrentSettings( const char *prefix ) {
 /*!
     \brief Write the settings for the current lexer to the settings file.
  */
-void UiguiHighlighter::writeCurrentSettings( const char *prefix ) {
+void UiGuiHighlighter::writeCurrentSettings( const char *prefix ) {
     QString key;
 
     // Write the styles.
@@ -299,7 +299,7 @@ void UiguiHighlighter::writeCurrentSettings( const char *prefix ) {
 /*!
     \brief Sets the \a color for the given \a style.
  */
-void UiguiHighlighter::setColor(const QColor &color, int style) {
+void UiGuiHighlighter::setColor(const QColor &color, int style) {
     colorForStyles[style] = color;
     lexer->setColor( color, style );
 }
@@ -308,7 +308,7 @@ void UiguiHighlighter::setColor(const QColor &color, int style) {
 /*!
     \brief Sets the \a font for the given \a style.
  */
-void UiguiHighlighter::setFont(const QFont &font, int style) {
+void UiGuiHighlighter::setFont(const QFont &font, int style) {
     fontForStyles[style] = font;
     lexer->setFont( font, style );
 }
@@ -317,7 +317,7 @@ void UiguiHighlighter::setFont(const QFont &font, int style) {
 /*!
     \brief Sets the to be used lexer by giving his name.
  */
-void UiguiHighlighter::setLexerByName( QString lexerName ) {
+void UiGuiHighlighter::setLexerByName( QString lexerName ) {
     setLexerForExtension( mapHighlighternameToExtension[lexerName].first() );
 }
 
@@ -325,7 +325,7 @@ void UiguiHighlighter::setLexerByName( QString lexerName ) {
 /*!
     \brief Sets the proper highlighter / lexer for the given file \a extension. Returns the index of the used lexer in the list.
  */
-int UiguiHighlighter::setLexerForExtension( QString extension ) {
+int UiGuiHighlighter::setLexerForExtension( QString extension ) {
     int indexOfHighlighter = 0;
     extension = extension.toLower();
 

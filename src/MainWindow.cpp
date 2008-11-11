@@ -17,7 +17,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "mainwindow.h"
+#include "MainWindow.h"
 
 //! \defgroup grp_MainWindow All concerning main window functionality.
 
@@ -46,7 +46,7 @@ MainWindow::MainWindow(QString file2OpenOnStart, QWidget *parent) : QMainWindow(
     scrollPositionChanged = false;
 
     // Create the settings object, which loads all UiGui settings from a file.
-    settings = UiguiSettings::getInstance();
+    settings = UiGuiSettings::getInstance();
 
     // Initialize the language of the application.
     initApplicationLanguage();
@@ -78,7 +78,7 @@ MainWindow::MainWindow(QString file2OpenOnStart, QWidget *parent) : QMainWindow(
     connect( actionAbout_UniversalIndentGUI, SIGNAL(triggered()), this, SLOT(showAboutDialog()) );
 
     // generate settings dialog box
-    settingsDialog = new UiguiSettingsDialog(this, settings);
+    settingsDialog = new UiGuiSettingsDialog(this, settings);
     connect( actionShowSettings, SIGNAL(triggered()), settingsDialog, SLOT(showDialog()) );
 
     // If a file that should be opened on start has been handed over to the constructor exists, load it
@@ -179,7 +179,7 @@ void MainWindow::initMainWindow() {
  */
 void MainWindow::initToolBar() {
     // Create the tool bar and add it to the main window.
-    toolBarWidget = new Ui::toolBarWidget();
+    toolBarWidget = new Ui::ToolBarWidget();
     QWidget* helpWidget = new QWidget();
     toolBarWidget->setupUi(helpWidget);
     toolBar->addWidget(helpWidget);
@@ -260,7 +260,7 @@ void MainWindow::initTextEditor() {
  */
 void MainWindow::initSyntaxHighlighter() {
     // Create the highlighter.
-    highlighter = new UiguiHighlighter(qSciSourceCodeEditor);
+    highlighter = new UiGuiHighlighter(qSciSourceCodeEditor);
 
     // Handle if syntax highlighting is enabled
     bool syntaxHighlightningEnabled = settings->getValueByName("SyntaxHighlightningEnabled").toBool();

@@ -209,7 +209,7 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\aboutdialog.cpp"
+				RelativePath=".\AboutDialog.cpp"
 				>
 			</File>
 			<File
@@ -224,11 +224,11 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath=".\UiguiHighlighter.cpp"
+				RelativePath=".\UiGuiHighlighter.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\indenthandler.cpp"
+				RelativePath=".\IndentHandler.cpp"
 				>
 			</File>
 			<File
@@ -236,7 +236,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\mainwindow.cpp"
+				RelativePath=".\MainWindow.cpp"
 				>
 			</File>
 			<File
@@ -244,31 +244,31 @@
 				>
 			</File>
             <File
-				RelativePath=".\templateBatchScript.cpp"
+				RelativePath=".\TemplateBatchScript.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\uiguierrormessage.cpp"
+				RelativePath=".\UiGuiErrorMessage.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\UiguiIndentServer.cpp"
+				RelativePath=".\UiGuiIndentServer.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\uiguiIniFileParser.cpp"
+				RelativePath=".\UiGuiIniFileParser.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\uiguisettings.cpp"
+				RelativePath=".\UiGuiSettings.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\uiguisettingsdialog.cpp"
+				RelativePath=".\UiGuiSettingsDialog.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\updatecheckdialog.cpp"
+				RelativePath=".\UpdateCheckDialog.cpp"
 				>
 			</File>
 		</Filter>
@@ -278,7 +278,7 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\aboutdialog.h"
+				RelativePath=".\AboutDialog.h"
 				>
 			</File>
 			<File
@@ -293,15 +293,14 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath=".\UiguiHighlighter.h"
 				>
 			</File>
 			<File
-				RelativePath=".\indenthandler.h"
+				RelativePath=".\IndentHandler.h"
 				>
 			</File>
 			<File
-				RelativePath=".\mainwindow.h"
+				RelativePath=".\MainWindow.h"
 				>
 			</File>
 			<File
@@ -309,31 +308,31 @@
 				>
 			</File>
 			<File
-				RelativePath=".\templateBatchScript.h"
+				RelativePath=".\TemplateBatchScript.h"
 				>
 			</File>
 			<File
-				RelativePath=".\uiguierrormessage.h"
+				RelativePath=".\UiGuiErrorMessage.h"
 				>
 			</File>
 			<File
-				RelativePath=".\UiguiIndentServer.h"
+				RelativePath=".\UiGuiIndentServer.h"
 				>
 			</File>
 			<File
-				RelativePath=".\uiguiIniFileParser.h"
+				RelativePath=".\UiGuiIniFileParser.h"
 				>
 			</File>
 			<File
-				RelativePath=".\uiguisettings.h"
+				RelativePath=".\UiGuiSettings.h"
 				>
 			</File>
 			<File
-				RelativePath=".\uiguisettingsdialog.h"
+				RelativePath=".\UiGuiSettingsDialog.h"
 				>
 			</File>
 			<File
-				RelativePath=".\updatecheckdialog.h"
+				RelativePath=".\UpdateCheckDialog.h"
 				>
 			</File>
 		</Filter>
@@ -355,15 +354,15 @@
 			Name="Forms (UI)"
 			>
 			<File
-				RelativePath=".\aboutdialog.ui"
+				RelativePath=".\AboutDialog.ui"
 				>
 			</File>
 			<File
-				RelativePath=".\mainwindow.ui"
+				RelativePath=".\MainWindow.ui"
 				>
 			</File>
 			<File
-				RelativePath=".\toolBarWidget.ui"
+				RelativePath=".\ToolBarWidget.ui"
 				>
 			</File>
 			<File
@@ -379,7 +378,7 @@
 			Name="Generated"
 			>
 			<File
-				RelativePath="$(OutDir)\tmp\moc\moc_aboutdialog.cpp"
+				RelativePath="$(OutDir)\tmp\moc\moc_AboutDialog.cpp"
 				>
 			</File>
 			<File
@@ -394,35 +393,34 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="$(OutDir)\tmp\moc\moc_UiguiHighlighter.cpp"
+				RelativePath="$(OutDir)\tmp\moc\moc_UiGuiHighlighter.cpp"
 				>
 			</File>
 			<File
-				RelativePath="$(OutDir)\tmp\moc\moc_indenthandler.cpp"
+				RelativePath="$(OutDir)\tmp\moc\moc_IndentHandler.cpp"
 				>
 			</File>
 			<File
-				RelativePath="$(OutDir)\tmp\moc\moc_mainwindow.cpp"
+				RelativePath="$(OutDir)\tmp\moc\moc_MainWindow.cpp"
 				>
 			</File>
 			<File
-				RelativePath="$(OutDir)\tmp\moc\moc_uiguierrormessage.cpp"
+				RelativePath="$(OutDir)\tmp\moc\moc_UiGuiErrorMessage.cpp"
 				>
 			</File>
 			<File
-				RelativePath="$(OutDir)\tmp\moc\moc_UiguiIndentServer.cpp"
 				>
 			</File>
 			<File
-				RelativePath="$(OutDir)\tmp\moc\moc_uiguisettings.cpp"
+				RelativePath="$(OutDir)\tmp\moc\moc_UiGuiSettings.cpp"
 				>
 			</File>
 			<File
-				RelativePath="$(OutDir)\tmp\moc\moc_uiguisettingsdialog.cpp"
+				RelativePath="$(OutDir)\tmp\moc\moc_UiGuiSettingsDialog.cpp"
 				>
 			</File>
 			<File
-				RelativePath="$(OutDir)\tmp\moc\moc_updatecheckdialog.cpp"
+				RelativePath="$(OutDir)\tmp\moc\moc_UpdateCheckDialog.cpp"
 				>
 			</File>
 			<File
@@ -430,7 +428,7 @@
 				>
 			</File>
 			<File
-				RelativePath="$(OutDir)\tmp\uic\ui_aboutdialog.h"
+				RelativePath="$(OutDir)\tmp\uic\ui_AboutDialog.h"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"
@@ -450,7 +448,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="$(OutDir)\tmp\uic\ui_mainwindow.h"
+				RelativePath="$(OutDir)\tmp\uic\ui_MainWindow.h"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"
@@ -470,7 +468,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="$(OutDir)\tmp\uic\ui_toolBarWidget.h"
+				RelativePath="$(OutDir)\tmp\uic\ui_ToolBarWidget.h"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"

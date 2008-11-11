@@ -27,7 +27,7 @@
 #include <QPixmap>
 #include <QSplashScreen>
 
-#include "aboutdialog.h"
+#include "AboutDialog.h"
 
 class AboutDialogGraphicsView : public QGraphicsView
 {

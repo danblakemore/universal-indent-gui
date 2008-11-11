@@ -17,25 +17,37 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef UIGUIERRORMESSAGE_H
-#define UIGUIERRORMESSAGE_H
+#ifndef UIGUIINDENTSERVER_H
+#define UIGUIINDENTSERVER_H
 
-#include <QErrorMessage>
-#include <QCheckBox>
+#include <QTcpServer>
+#include <QTcpSocket>
+#include <QMessageBox>
 
-class UiguiErrorMessage : public QErrorMessage
+class UiGuiIndentServer : public QObject
 {
     Q_OBJECT
 
 public:
-    UiguiErrorMessage(QWidget *parent = 0);
-    ~UiguiErrorMessage(void);
-    void showMessage( const QString &message );
-    void showMessage( const QString &title, const QString &message );
+    UiGuiIndentServer(void);
+    ~UiGuiIndentServer(void);
+
+public slots:
+    void startServer();
+    void stopServer();
+
+private slots:
+    void handleNewConnection();
+    void handleReceivedData();
+    void sendMessage(const QString &message);
+    void checkIfReadyForHandleRequest();
 
 private:
-    QCheckBox *showAgainCheckBox;
-    QStringList errorMessageList;
+    QTcpServer *tcpServer;
+    QByteArray dataToSend;
+    bool readyForHandleRequest;
+    QTcpSocket *currentClientConnection;
+    quint32 blockSize;
 };
 
-#endif // UIGUIERRORMESSAGE_H
+#endif // UIGUIINDENTSERVER_H

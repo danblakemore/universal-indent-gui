@@ -164,39 +164,38 @@ RCC_DIR = $${DESTDIR}/qrc
 #message ( destdir is $${DESTDIR}. uic is $${UI_DIR}. moc is $${MOC_DIR})
 
 # Input
-HEADERS += src/aboutdialog.h \
-           src/UiguiHighlighter.h \
-           src/indenthandler.h \
-           src/mainwindow.h \
-           src/uiguierrormessage.h \
-           src/uiguiIniFileParser.h \
-           src/uiguisettings.h \
-           src/uiguisettingsdialog.h \
-           src/UiguiIndentServer.h \
-           src/updatecheckdialog.h \
+HEADERS += src/AboutDialog.h \
+           src/UiGuiHighlighter.h \
+           src/IndentHandler.h \
+           src/MainWindow.h \
+           src/UiGuiErrorMessage.h \
+           src/UiGuiSettings.h \
+           src/UiGuiSettingsDialog.h \
+           src/UiGuiIndentServer.h \
+           src/UpdateCheckDialog.h \
            src/SettingsPaths.h \
            src/AboutDialogGraphicsView.h
 
-FORMS += src/mainwindow.ui \
-         src/toolBarWidget.ui \
+FORMS += src/MainWindow.ui \
+         src/ToolBarWidget.ui \
          src/UiGuiSettingsDialog.ui \
-         src/aboutdialog.ui \
+         src/AboutDialog.ui \
          src/UpdateCheckDialog.ui
 
-SOURCES += src/aboutdialog.cpp \
-           src/UiguiHighlighter.cpp \
-           src/indenthandler.cpp \
+SOURCES += src/AboutDialog.cpp \
+           src/UiGuiHighlighter.cpp \
+           src/IndentHandler.cpp \
            src/main.cpp \
-           src/mainwindow.cpp \
-           src/uiguierrormessage.cpp \
-           src/uiguiIniFileParser.cpp \
-           src/uiguisettings.cpp \
-           src/uiguisettingsdialog.cpp \
-           src/UiguiIndentServer.cpp \
-           src/updatecheckdialog.cpp \
+           src/MainWindow.cpp \
+           src/UiGuiErrorMessage.cpp \
+           src/UiGuiIniFileParser.cpp \
+           src/UiGuiSettings.cpp \
+           src/UiGuiSettingsDialog.cpp \
+           src/UiGuiIndentServer.cpp \
+           src/UpdateCheckDialog.cpp \
            src/SettingsPaths.cpp \
            src/AboutDialogGraphicsView.cpp \
-           src/templateBatchScript.cpp
+           src/TemplateBatchScript.cpp
 
 RESOURCES += resources/Icons.qrc
 RC_FILE    = resources/programicon.rc

@@ -17,36 +17,25 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef UIGUIINIFILEPARSER_H
-#define UIGUIINIFILEPARSER_H
+#ifndef UIGUIERRORMESSAGE_H
+#define UIGUIERRORMESSAGE_H
 
-#include <QFile>
-#include <QString>
-#include <QMap>
-#include <QVariant>
-#include <QStringList>
-#include <vector>
+#include <QErrorMessage>
+#include <QCheckBox>
 
-/*!
-    \class UiguiIniFileParser
-    \brief This class can be used to parse and access the contents of well formed ini files, but only readable.
- */
-
-class UiguiIniFileParser
+class UiGuiErrorMessage : public QErrorMessage
 {
+    Q_OBJECT
+
 public:
-    UiguiIniFileParser(void);
-    UiguiIniFileParser(const QString &iniFileName);
-    ~UiguiIniFileParser(void);
-    QVariant value(const QString &keyName, const QString &defaultValue="");
-    QStringList childGroups();
+    UiGuiErrorMessage(QWidget *parent = 0);
+    ~UiGuiErrorMessage(void);
+    void showMessage( const QString &message );
+    void showMessage( const QString &title, const QString &message );
 
 private:
-    void parseIniFile();
-
-    QString iniFileName;
-    std::vector<QString> sections;
-    QMap<QString, QVariant> keyValueMap;
+    QCheckBox *showAgainCheckBox;
+    QStringList errorMessageList;
 };
 
-#endif // UIGUIINIFILEPARSER_H
+#endif // UIGUIERRORMESSAGE_H

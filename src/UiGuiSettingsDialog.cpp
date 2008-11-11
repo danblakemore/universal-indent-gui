@@ -17,10 +17,10 @@
 *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
 ***************************************************************************/
 
-#include "uiguisettingsdialog.h"
+#include "UiGuiSettingsDialog.h"
 
 /*!
-    \class UiguiSettingsDialog
+    \class UiGuiSettingsDialog
     \ingroup grp_Settings
     \brief Displays a dialog window with settings for UniversalIndentGUI
 */
@@ -28,8 +28,8 @@
 /*!
     \brief The constructor calls the setup function for the ui created by uic. and adds
 */
-UiguiSettingsDialog::UiguiSettingsDialog(QWidget* parent, UiguiSettings* settings) : QDialog(parent) {
-    // Remember pointer to the UiguiSettings object.
+UiGuiSettingsDialog::UiGuiSettingsDialog(QWidget* parent, UiGuiSettings* settings) : QDialog(parent) {
+    // Remember pointer to the UiGuiSettings object.
     this->settings = settings;
 
     // Init the user interface created by the UIC.
@@ -48,7 +48,7 @@ UiguiSettingsDialog::UiguiSettingsDialog(QWidget* parent, UiguiSettings* setting
     // Get all combo boxes that are used for settings.
     comboBoxes = findChildren<QComboBox*>( QRegExp("uiGui*") );
 
-    // Connect the accepted signal to own function, to write values back to the UiguiSettings object.
+    // Connect the accepted signal to own function, to write values back to the UiGuiSettings object.
     connect(this, SIGNAL(accepted()), this, SLOT(writeWidgetValuesToSettings()) );
 
     // Init the language selection combobox.
@@ -62,7 +62,7 @@ UiguiSettingsDialog::UiguiSettingsDialog(QWidget* parent, UiguiSettings* setting
 
     Also the translation itself will be reinitialized.
  */
-void UiguiSettingsDialog::initTranslationSelection() {
+void UiGuiSettingsDialog::initTranslationSelection() {
     // First empty the combo box.
     uiGuiLanguageSelectionComboBox->clear();
 
@@ -101,9 +101,9 @@ void UiguiSettingsDialog::initTranslationSelection() {
 /*!
     \brief Displays the dialog by calling the dialogs exec function.
 
-    Before it gets all the values needed from the UiguiSettings object.
+    Before it gets all the values needed from the UiGuiSettings object.
  */
-int UiguiSettingsDialog::showDialog() {
+int UiGuiSettingsDialog::showDialog() {
     // Get the values for the check boxes from the settings object.
     foreach (QCheckBox* checkBox, checkBoxes) {
         // Get the corresponding setting name from the check boxs property and remove "DONOTTRANSLATE:" from its beginning.
@@ -160,9 +160,9 @@ int UiguiSettingsDialog::showDialog() {
 /*!
     \brief This slot is called when the dialog box is closed by pressing the Ok button.
 
-    Writes all settings to the UiguiSettings object.
+    Writes all settings to the UiGuiSettings object.
  */
-void UiguiSettingsDialog::writeWidgetValuesToSettings() {
+void UiGuiSettingsDialog::writeWidgetValuesToSettings() {
     // Write the values of the check boxes to the settings object.
     foreach (QCheckBox* checkBox, checkBoxes) {
         // Get the corresponding setting name from the check boxs property and remove "DONOTTRANSLATE:" from its beginning.
@@ -213,7 +213,7 @@ void UiguiSettingsDialog::writeWidgetValuesToSettings() {
 /*!
     \brief Catches language change events and retranslates all needed widgets.
  */
-void UiguiSettingsDialog::changeEvent(QEvent *event) {
+void UiGuiSettingsDialog::changeEvent(QEvent *event) {
     if (event->type() == QEvent::LanguageChange) {
         retranslateUi(this);
         // If this is not explicit set here, Qt < 4.3.0 does not translate the buttons.

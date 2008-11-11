@@ -47,9 +47,9 @@
 #include <QContextMenuEvent>
 #include <QFileDialog>
 
-#include "uiguierrormessage.h"
-#include "templateBatchScript.h"
-#include "uiguiIniFileParser.h"
+#include "UiGuiErrorMessage.h"
+#include "TemplateBatchScript.h"
+#include "UiGuiIniFileParser.h"
 #include "SettingsPaths.h"
 
 
@@ -155,7 +155,7 @@ private:
     QToolButton *indenterParameterHelpButton;
     QVBoxLayout *vboxLayout;
     QToolBox *toolBox;
-    UiguiIniFileParser *indenterSettings;
+    UiGuiIniFileParser *indenterSettings;
     QStringList indenterParameters;
     //! The indenters name in a descriptive form
     QString indenterName;
@@ -176,7 +176,7 @@ private:
     QString useCfgFileParameter;
     QString indenterShowHelpParameter;
     QWidget *mainWindow;
-    UiguiErrorMessage *errorMessageDialog;
+    UiGuiErrorMessage *errorMessageDialog;
     QString indenterExecutableCallString;
     QString indenterExecutableSuffix;
 

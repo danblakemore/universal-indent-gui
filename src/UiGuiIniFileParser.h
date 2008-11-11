@@ -17,52 +17,36 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef UPDATECHECKDIALOG_H
-#define UPDATECHECKDIALOG_H
+#ifndef UIGUIINIFILEPARSER_H
+#define UIGUIINIFILEPARSER_H
 
-#include <QDialog>
-#include <QMessageBox>
-#include <QDesktopServices>
-#include <QHttp>
-#include <QUrl>
-#include <QDate>
-#include <QHBoxLayout>
-#include <QLabel>
-#include <QTimer>
+#include <QFile>
+#include <QString>
+#include <QMap>
+#include <QVariant>
+#include <QStringList>
+#include <vector>
 
-#include "ui_UpdateCheckDialog.h"
-#include "uiguisettings.h"
+/*!
+    \class UiGuiIniFileParser
+    \brief This class can be used to parse and access the contents of well formed ini files, but only readable.
+ */
 
-class UpdateCheckDialog : public QDialog, public Ui::UpdateCheckDialog
+class UiGuiIniFileParser
 {
-    Q_OBJECT
-
 public:
-    UpdateCheckDialog(QString currentVersion, UiguiSettings *settings, QWidget *parent=0);
-
-public slots:
-    void checkForUpdateAndShowDialog();
-    void checkForUpdate();
+    UiGuiIniFileParser(void);
+    UiGuiIniFileParser(const QString &iniFileName);
+    ~UiGuiIniFileParser(void);
+    QVariant value(const QString &keyName, const QString &defaultValue="");
+    QStringList childGroups();
 
 private:
-    void getPadXMLFile();
-    void showCheckingForUpdateDialog();
-    void showNewVersionAvailableDialog(QString newVersion);
-    void showNoNewVersionAvailableDialog();
+    void parseIniFile();
 
-    UiguiSettings *settings;
-    bool manualUpdateRequested;
-    QHttp *http;
-    QString currentVersion;
-    QDialogButtonBox::ButtonRole roleOfClickedButton;
-    QTimer *updateCheckProgressTimer;
-    int updateCheckProgressCounter;
-    int convertVersionStringToNumber(QString versionString);
-
-private slots:
-    void checkResultsOfFetchedPadXMLFile(bool errorOccurred);
-    void handleUpdateCheckDialogButtonClicked(QAbstractButton *clickedButton);
-    void updateUpdateCheckProgressBar();
+    QString iniFileName;
+    std::vector<QString> sections;
+    QMap<QString, QVariant> keyValueMap;
 };
 
-#endif // UPDATECHECKDIALOG_H
+#endif // UIGUIINIFILEPARSER_H

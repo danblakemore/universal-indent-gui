@@ -17,37 +17,52 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef UIGUIINDENTSERVER_H
-#define UIGUIINDENTSERVER_H
+#ifndef UPDATECHECKDIALOG_H
+#define UPDATECHECKDIALOG_H
 
-#include <QTcpServer>
-#include <QTcpSocket>
+#include <QDialog>
 #include <QMessageBox>
+#include <QDesktopServices>
+#include <QHttp>
+#include <QUrl>
+#include <QDate>
+#include <QHBoxLayout>
+#include <QLabel>
+#include <QTimer>
 
-class UiguiIndentServer : public QObject
+#include "ui_UpdateCheckDialog.h"
+#include "UiGuiSettings.h"
+
+class UpdateCheckDialog : public QDialog, public Ui::UpdateCheckDialog
 {
     Q_OBJECT
 
 public:
-    UiguiIndentServer(void);
-    ~UiguiIndentServer(void);
+    UpdateCheckDialog(QString currentVersion, UiGuiSettings *settings, QWidget *parent=0);
 
 public slots:
-    void startServer();
-    void stopServer();
-
-private slots:
-    void handleNewConnection();
-    void handleReceivedData();
-    void sendMessage(const QString &message);
-    void checkIfReadyForHandleRequest();
+    void checkForUpdateAndShowDialog();
+    void checkForUpdate();
 
 private:
-    QTcpServer *tcpServer;
-    QByteArray dataToSend;
-    bool readyForHandleRequest;
-    QTcpSocket *currentClientConnection;
-    quint32 blockSize;
+    void getPadXMLFile();
+    void showCheckingForUpdateDialog();
+    void showNewVersionAvailableDialog(QString newVersion);
+    void showNoNewVersionAvailableDialog();
+
+    UiGuiSettings *settings;
+    bool manualUpdateRequested;
+    QHttp *http;
+    QString currentVersion;
+    QDialogButtonBox::ButtonRole roleOfClickedButton;
+    QTimer *updateCheckProgressTimer;
+    int updateCheckProgressCounter;
+    int convertVersionStringToNumber(QString versionString);
+
+private slots:
+    void checkResultsOfFetchedPadXMLFile(bool errorOccurred);
+    void handleUpdateCheckDialogButtonClicked(QAbstractButton *clickedButton);
+    void updateUpdateCheckProgressBar();
 };
 
-#endif // UIGUIINDENTSERVER_H
+#endif // UPDATECHECKDIALOG_H

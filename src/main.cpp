@@ -17,13 +17,13 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "mainwindow.h"
+#include "MainWindow.h"
 #include <QApplication>
 
-#include "UiguiIndentServer.h"
+#include "UiGuiIndentServer.h"
 
-#include "uiguiIniFileParser.h"
-#include "uiguisettings.h"
+#include "UiGuiIniFileParser.h"
+#include "UiGuiSettings.h"
 
 /*!
     /brief Entry point to UniversalIndentGUI application.
@@ -41,7 +41,7 @@ int main(int argc, char *argv[]) {
     bool startAsPlugin = false;
     bool startAsServer = false;
 
-    UiguiIndentServer server;
+    UiGuiIndentServer server;
     MainWindow *mainWindow = NULL;
     IndentHandler *indentHandler = NULL;
 
@@ -117,7 +117,7 @@ int main(int argc, char *argv[]) {
         server.stopServer();
     }
 
-    UiguiSettings::deleteInstance();
+    UiGuiSettings::deleteInstance();
 
     return returnValue;
 }

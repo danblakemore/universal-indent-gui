@@ -67,12 +67,12 @@
 #endif
 
 
-class UiguiHighlighter : public QObject
+class UiGuiHighlighter : public QObject
 {
     Q_OBJECT
 
 public:
-    UiguiHighlighter(QsciScintilla *parent);
+    UiGuiHighlighter(QsciScintilla *parent);
     void turnHighlightOff();
     void turnHighlightOn();
 	
