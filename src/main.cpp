@@ -35,8 +35,7 @@
     -s --server  : Run as server only without gui.
     If -p and -s are set, -p will be used.
  */
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
     QString file2OpenOnStart = "";
     bool startAsPlugin = false;

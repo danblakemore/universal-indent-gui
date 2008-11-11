@@ -127,8 +127,7 @@ void UiguiIndentServer::handleReceivedData() {
 }
 
 
-void UiguiIndentServer::sendMessage( const QString &message )
-{
+void UiguiIndentServer::sendMessage( const QString &message ) {
     readyForHandleRequest = false;
 
     dataToSend = "";

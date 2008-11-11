@@ -25,8 +25,7 @@ const int WS_TOOLBARSTYLE = WS_CHILD | WS_CLIPCHILDREN | WS_CLIPSIBLINGS | TBSTY
 
 bool ToolBar::init(HINSTANCE hInst, HWND hPere, int iconSize,
                    ToolBarButtonUnit *buttonUnitArray, int arraySize,
-                   bool doUglyStandardIcon, int *bmpArray, int bmpArraySize)
-{
+                   bool doUglyStandardIcon, int *bmpArray, int bmpArraySize) {
     Window::init(hInst, hPere);
     _state = doUglyStandardIcon ? TB_STANDARD : (iconSize >= 32 ? TB_LARGE : TB_SMALL);
     _bmpArray = bmpArray;
@@ -120,8 +119,7 @@ bool ToolBar::init(HINSTANCE hInst, HWND hPere, int iconSize,
     return true;
 }
 
-void ToolBar::reset()
-{
+void ToolBar::reset() {
     setDefaultImageList();
     setHotImageList();
     setDisableImageList();
@@ -160,8 +158,7 @@ void ToolBar::reset()
     ::SendMessage(_hSelf, TB_AUTOSIZE, 0, 0);
 }
 
-void ToolBar::setToUglyIcons()
-{
+void ToolBar::setToUglyIcons() {
     if (_state == TB_STANDARD)
         return;
 
@@ -237,8 +234,7 @@ void ToolBar::setToUglyIcons()
     _state = TB_STANDARD;
 }
 
-void ReBar::init(HINSTANCE hInst, HWND hPere, ToolBar *pToolBar)
-{
+void ReBar::init(HINSTANCE hInst, HWND hPere, ToolBar *pToolBar) {
     Window::init(hInst, hPere);
     _pToolBar = pToolBar;
     _hSelf = CreateWindowEx(WS_EX_TOOLWINDOW,

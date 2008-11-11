@@ -18,14 +18,12 @@
 #include "ImageListSet.h"
 //#include "resource.h"
 
-void ToolBarIcons::init(ToolBarButtonUnit *buttonUnitArray, int arraySize)
-{
+void ToolBarIcons::init(ToolBarButtonUnit *buttonUnitArray, int arraySize) {
     for (int i = 0 ; i < arraySize ; i++)
         _tbiis.push_back(buttonUnitArray[i]);
 }
 
-void ToolBarIcons::create(HINSTANCE hInst, int iconSize)
-{
+void ToolBarIcons::create(HINSTANCE hInst, int iconSize) {
     _iconListVector.push_back(IconList());
     _iconListVector.push_back(IconList());
     _iconListVector.push_back(IconList());
@@ -47,8 +45,7 @@ void ToolBarIcons::create(HINSTANCE hInst, int iconSize)
     }
 }
 
-void ToolBarIcons::destroy()
-{
+void ToolBarIcons::destroy() {
     _iconListVector[HLIST_DEFAULT].destroy();
     _iconListVector[HLIST_HOT].destroy();
     _iconListVector[HLIST_DISABLE].destroy();

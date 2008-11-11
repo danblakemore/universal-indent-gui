@@ -538,8 +538,7 @@ QString MainWindow::openFileDialog(QString dialogHeaderStr, QString startPath, Q
     Reassigns the line numbers and in case of switch between preview and none preview keeps the text field
     at the same line number.
  */
-void MainWindow::updateSourceView()
-{
+void MainWindow::updateSourceView() {
     textEditLastScrollPos = textEditVScrollBar->value();
 
     if ( toolBarWidget->cbLivePreview->isChecked() ) {
@@ -960,8 +959,7 @@ void MainWindow::closeEvent( QCloseEvent *event ) {
     for indenter parameters are connected with this event filter.
     So depending on the settings the tooltips can be enabled and disabled for these widgets.
  */
-bool MainWindow::eventFilter(QObject *obj, QEvent *event)
-{
+bool MainWindow::eventFilter(QObject *obj, QEvent *event) {
     if ( event->type() == QEvent::ToolTip) {
         if ( indenterParameterTooltipsEnabledAction->isChecked() ) {
             return QMainWindow::eventFilter(obj, event);
@@ -981,8 +979,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 /*!
     \brief Is called at application exit and asks whether to save the source code file, if it has been changed.
  */
-bool MainWindow::maybeSave()
-{
+bool MainWindow::maybeSave() {
     if ( isWindowModified() ) {
         int ret = QMessageBox::warning(this, tr("Modified code"),
             tr("The source code has been modified.\n"

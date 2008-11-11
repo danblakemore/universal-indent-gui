@@ -42,8 +42,7 @@ tPluginProp         pluginProp;
 
 
 /* main function of dll */
-BOOL APIENTRY DllMain( HANDLE hModule, DWORD reasonForCall, LPVOID lpReserved )
-{
+BOOL APIENTRY DllMain( HANDLE hModule, DWORD reasonForCall, LPVOID lpReserved ) {
     g_hModule = hModule;
 
     switch (reasonForCall)
@@ -102,8 +101,7 @@ BOOL APIENTRY DllMain( HANDLE hModule, DWORD reasonForCall, LPVOID lpReserved )
 }
 
 
-extern "C" __declspec(dllexport) void setInfo(NppData notpadPlusData)
-{
+extern "C" __declspec(dllexport) void setInfo(NppData notpadPlusData) {
     /* stores notepad data */
     nppData = notpadPlusData;
 
@@ -115,8 +113,7 @@ extern "C" __declspec(dllexport) void setInfo(NppData notpadPlusData)
 }
 
 
-extern "C" __declspec(dllexport) LPCSTR getName()
-{
+extern "C" __declspec(dllexport) LPCSTR getName() {
     return PLUGIN_NAME;
 }
 
@@ -133,8 +130,7 @@ extern "C" __declspec(dllexport) FuncItem * getFuncsArray(INT *nbF)
  *
  *	This function is called, if a notification in Scintilla/Notepad++ occurs
  */
-extern "C" __declspec(dllexport) void beNotified(SCNotification *notifyCode)
-{
+extern "C" __declspec(dllexport) void beNotified(SCNotification *notifyCode) {
     if (notifyCode->nmhdr.hwndFrom == nppData._nppHandle) {
         /* on this notification code you can register your plugin icon in Notepad++ toolbar */
         if (notifyCode->nmhdr.code == NPPN_TBMODIFICATION) {
@@ -150,8 +146,7 @@ extern "C" __declspec(dllexport) void beNotified(SCNotification *notifyCode)
  *
  *	This function is called, if a notification from Notepad occurs
  */
-extern "C" __declspec(dllexport) LRESULT messageProc(UINT Message, WPARAM wParam, LPARAM lParam)
-{
+extern "C" __declspec(dllexport) LRESULT messageProc(UINT Message, WPARAM wParam, LPARAM lParam) {
     return TRUE;
 }
 
@@ -161,8 +156,7 @@ extern "C" __declspec(dllexport) LRESULT messageProc(UINT Message, WPARAM wParam
  *
  *	Load the parameters of plugin
  */
-void loadSettings(void)
-{
+void loadSettings(void) {
     /* initialize the config directory */
     ::SendMessage(nppData._nppHandle, NPPM_GETPLUGINSCONFIGDIR, MAX_PATH, (LPARAM)configPath);
 
@@ -187,8 +181,7 @@ void loadSettings(void)
  *
  *	Saves the parameters of plugin
  */
-void saveSettings(void)
-{
+void saveSettings(void) {
     TCHAR   temp[16];
 
     ::WritePrivateProfileString(dlgTemp, Value1, _itoa(pluginProp.iValue1, temp, 10), iniFilePath);
@@ -199,8 +192,7 @@ void saveSettings(void)
 /**************************************************************************
  *	Interface functions
  */
-void toggleAutoUpdate(void)
-{
+void toggleAutoUpdate(void) {
     HMENU   hMenu = ::GetMenu(nppData._nppHandle);
     UINT state = ::GetMenuState(hMenu, funcItem[TOGGLE_AUTO_UPDATE_INDEX]._cmdID, MF_BYCOMMAND);
 
@@ -220,8 +212,7 @@ void toggleAutoUpdate(void)
 }
 
 
-void showUiGUI(void)
-{
+void showUiGUI(void) {
     HMENU   hMenu = ::GetMenu(nppData._nppHandle);
     UINT menuState = ::GetMenuState(hMenu, funcItem[TOGGLE_SHOW_UIGUI_INDEX]._cmdID, MF_BYCOMMAND);
     bool windowIsVisible = indentHandler->isVisible();
@@ -241,8 +232,7 @@ void showUiGUI(void)
 }
 
 
-HWND getCurrentHScintilla(int which)
-{
+HWND getCurrentHScintilla(int which) {
     return (which == 0) ? nppData._scintillaMainHandle : nppData._scintillaSecondHandle;
 };
 

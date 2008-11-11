@@ -126,8 +126,7 @@ void AboutDialogGraphicsView::show() {
 /*!
     \brief Does the next calculation/transformation step.
  */
-void AboutDialogGraphicsView::updateStep(int step)
-{
+void AboutDialogGraphicsView::updateStep(int step) {
     QRectF r = graphicsProxyWidget->boundingRect();
     graphicsProxyWidget->setTransform(QTransform()
         .translate(r.width() / 2, -windowTitleBarWidth)

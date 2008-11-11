@@ -41,8 +41,7 @@ static LPTSTR szToolTip[5] = {
     "Redo"
 };
 
-void UniversalIndentGUI_NPPDialog::GetNameStrFromCmd(UINT resID, LPTSTR tip)
-{
+void UniversalIndentGUI_NPPDialog::GetNameStrFromCmd(UINT resID, LPTSTR tip) {
     strcpy(tip, szToolTip[resID - IDM_EX_UNDO]);
 }
 /**************************** end of toolbar layout ****************************/
@@ -51,25 +50,21 @@ void UniversalIndentGUI_NPPDialog::GetNameStrFromCmd(UINT resID, LPTSTR tip)
 
 
 /* Note: Within constructor send dialog IDD to DockingDlgInterface class */
-UniversalIndentGUI_NPPDialog::UniversalIndentGUI_NPPDialog(void) : DockingDlgInterface(IDD_DOCK_DLG), _hEdit(NULL)
-{
+UniversalIndentGUI_NPPDialog::UniversalIndentGUI_NPPDialog(void) : DockingDlgInterface(IDD_DOCK_DLG), _hEdit(NULL) {
 }
 
-UniversalIndentGUI_NPPDialog::~UniversalIndentGUI_NPPDialog(void)
-{
+UniversalIndentGUI_NPPDialog::~UniversalIndentGUI_NPPDialog(void) {
 }
 
 
-void UniversalIndentGUI_NPPDialog::init(HINSTANCE hInst, NppData nppData, tPluginProp *pPluginProp)
-{
+void UniversalIndentGUI_NPPDialog::init(HINSTANCE hInst, NppData nppData, tPluginProp *pPluginProp) {
     _nppData = nppData;
     _pPluginProp = pPluginProp;
     DockingDlgInterface::init(hInst, nppData._nppHandle);
 }
 
 
-void UniversalIndentGUI_NPPDialog::doDialog(bool willBeShown)
-{
+void UniversalIndentGUI_NPPDialog::doDialog(bool willBeShown) {
     if (!isCreated()) {
         create(&_data);
 
@@ -84,8 +79,7 @@ void UniversalIndentGUI_NPPDialog::doDialog(bool willBeShown)
 }
 
 
-BOOL CALLBACK UniversalIndentGUI_NPPDialog::run_dlgProc(HWND hWnd, UINT Message, WPARAM wParam, LPARAM lParam)
-{
+BOOL CALLBACK UniversalIndentGUI_NPPDialog::run_dlgProc(HWND hWnd, UINT Message, WPARAM wParam, LPARAM lParam) {
     switch (Message)
     {
         case WM_INITDIALOG:
@@ -179,8 +173,7 @@ BOOL CALLBACK UniversalIndentGUI_NPPDialog::run_dlgProc(HWND hWnd, UINT Message,
     return FALSE;
 }
 
-void UniversalIndentGUI_NPPDialog::InitialDialog(void)
-{
+void UniversalIndentGUI_NPPDialog::InitialDialog(void) {
     /* get handle of dialogs */
     _hEdit          = ::GetDlgItem(_hSelf, IDC_EDIT_TEMP);
 
@@ -191,8 +184,7 @@ void UniversalIndentGUI_NPPDialog::InitialDialog(void)
     _Rebar.display();
 }
 
-void UniversalIndentGUI_NPPDialog::tb_cmd(UINT message)
-{
+void UniversalIndentGUI_NPPDialog::tb_cmd(UINT message) {
     switch (message)
     {
         case IDM_EX_UNDO:

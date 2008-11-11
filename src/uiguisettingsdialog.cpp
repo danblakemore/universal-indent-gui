@@ -28,8 +28,7 @@
 /*!
     \brief The constructor calls the setup function for the ui created by uic. and adds
 */
-UiguiSettingsDialog::UiguiSettingsDialog(QWidget* parent, UiguiSettings* settings) : QDialog(parent)
-{
+UiguiSettingsDialog::UiguiSettingsDialog(QWidget* parent, UiguiSettings* settings) : QDialog(parent) {
     // Remember pointer to the UiguiSettings object.
     this->settings = settings;
 

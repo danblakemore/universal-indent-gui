@@ -42,9 +42,7 @@
     its \a indenterID, which is the number of found indenter ini files in alphabetic
     order starting at index 0.
  */
-IndentHandler::IndentHandler(int indenterID, QWidget *mainWindow, QWidget *parent)
-    : QWidget(parent)
-{
+IndentHandler::IndentHandler(int indenterID, QWidget *mainWindow, QWidget *parent) : QWidget(parent) {
     Q_ASSERT_X( indenterID >= 0, "IndentHandler", "the selected indenterID is < 0" );
 
     setObjectName(QString::fromUtf8("indentHandler"));

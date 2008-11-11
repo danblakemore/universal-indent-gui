@@ -20,8 +20,7 @@
 #include <string>
 #include <algorithm>
 
-DWORD ShortToLongPathName(LPCTSTR lpszShortPath, LPTSTR lpszLongPath, DWORD cchBuffer)
-{
+DWORD ShortToLongPathName(LPCTSTR lpszShortPath, LPTSTR lpszLongPath, DWORD cchBuffer) {
     // Catch null pointers.
     if (!lpszShortPath || !lpszLongPath) {
         SetLastError(ERROR_INVALID_PARAMETER);
@@ -138,8 +137,7 @@ DWORD ShortToLongPathName(LPCTSTR lpszShortPath, LPTSTR lpszLongPath, DWORD cchB
     return (DWORD)path.length();
 }
 
-void systemMessage(const char *title)
-{
+void systemMessage(const char *title) {
     LPVOID lpMsgBuf;
     FormatMessage( FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
         NULL,

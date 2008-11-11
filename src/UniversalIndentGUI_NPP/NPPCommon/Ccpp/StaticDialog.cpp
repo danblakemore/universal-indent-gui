@@ -21,8 +21,7 @@
 #define WS_EX_LAYOUTRTL 0x00400000L
 
 
-void StaticDialog::goToCenter()
-{
+void StaticDialog::goToCenter() {
     RECT rc;
     ::GetClientRect(_hParent, &rc);
     POINT center;
@@ -36,8 +35,7 @@ void StaticDialog::goToCenter()
     ::SetWindowPos(_hSelf, HWND_TOP, x, y, _rc.right - _rc.left, _rc.bottom - _rc.top, SWP_SHOWWINDOW);
 }
 
-HGLOBAL StaticDialog::makeRTLResource(int dialogID, DLGTEMPLATE **ppMyDlgTemplate)
-{
+HGLOBAL StaticDialog::makeRTLResource(int dialogID, DLGTEMPLATE **ppMyDlgTemplate) {
     // Get Dlg Template resource
     HRSRC  hDialogRC = ::FindResource(_hInst, MAKEINTRESOURCE(dialogID), RT_DIALOG);
     HGLOBAL  hDlgTemplate = ::LoadResource(_hInst, hDialogRC);
@@ -59,8 +57,7 @@ HGLOBAL StaticDialog::makeRTLResource(int dialogID, DLGTEMPLATE **ppMyDlgTemplat
     return hMyDlgTemplate;
 }
 
-void StaticDialog::create(int dialogID, bool isRTL)
-{
+void StaticDialog::create(int dialogID, bool isRTL) {
     if (isRTL) {
         DLGTEMPLATE *pMyDlgTemplate = NULL;
         HGLOBAL hMyDlgTemplate = makeRTLResource(dialogID, &pMyDlgTemplate);
@@ -78,8 +75,7 @@ void StaticDialog::create(int dialogID, bool isRTL)
     ::SendMessage(_hParent, NPPM_MODELESSDIALOG, MODELESSDIALOGADD, (WPARAM)_hSelf);
 }
 
-BOOL CALLBACK StaticDialog::dlgProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
-{
+BOOL CALLBACK StaticDialog::dlgProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) {
     switch (message)
     {
         case WM_INITDIALOG:
@@ -103,8 +99,7 @@ BOOL CALLBACK StaticDialog::dlgProc(HWND hwnd, UINT message, WPARAM wParam, LPAR
     }
 }
 
-void StaticDialog::alignWith(HWND handle, HWND handle2Align, PosAlign pos, POINT & point)
-{
+void StaticDialog::alignWith(HWND handle, HWND handle2Align, PosAlign pos, POINT & point) {
     RECT rc, rc2;
     ::GetWindowRect(handle, &rc);
 

@@ -28,9 +28,7 @@
     \brief The constructor calls the setup function for the ui created by uic and adds
     the GPL text to the text edit.
  */
-AboutDialog::AboutDialog(QWidget *parent, Qt::WindowFlags flags, QString version, QString revision, QString buildDate) :
-    QDialog(parent, flags)
-{
+AboutDialog::AboutDialog(QWidget *parent, Qt::WindowFlags flags, QString version, QString revision, QString buildDate) : QDialog(parent, flags) {
     this->parent = parent;
     qApp->setStyleSheet("QTextBrowser{background-color:transparent}");
     setupUi(this);

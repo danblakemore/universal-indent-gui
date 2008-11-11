@@ -34,9 +34,7 @@
 /*!
     \brief The constructor initializes some regular expressions and keywords to identify cpp tokens
  */
-UiguiHighlighter::UiguiHighlighter(QsciScintilla *parent)
-    : QObject(parent)
-{
+UiguiHighlighter::UiguiHighlighter(QsciScintilla *parent) : QObject(parent) {
     this->qsciEditorParent = parent;
 
     // Create the highlighter settings object from the UiGuiSyntaxHighlightConfig.ini file.
@@ -150,8 +148,7 @@ void UiguiHighlighter::turnHighlightOff() {
     \brief Read the settings for the current lexer from the settings file.
  */
 //TODO: Refactor this function so that the coding style and variable names suit better.
-bool UiguiHighlighter::readCurrentSettings( const char *prefix )
-{
+bool UiguiHighlighter::readCurrentSettings( const char *prefix ) {
     bool ok, flag, rc = true;
     int num;
     QString key;
@@ -236,8 +233,7 @@ bool UiguiHighlighter::readCurrentSettings( const char *prefix )
 /*!
     \brief Write the settings for the current lexer to the settings file.
  */
-void UiguiHighlighter::writeCurrentSettings( const char *prefix )
-{
+void UiguiHighlighter::writeCurrentSettings( const char *prefix ) {
     QString key;
 
     // Write the styles.

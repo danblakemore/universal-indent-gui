@@ -40,8 +40,7 @@
 /*!
     \brief Init and empty all needed lists and strings.
  */
-UiguiIniFileParser::UiguiIniFileParser(void)
-{
+UiguiIniFileParser::UiguiIniFileParser(void) {
     sections.clear();
     keyValueMap.clear();
     iniFileName = "";
@@ -51,24 +50,21 @@ UiguiIniFileParser::UiguiIniFileParser(void)
 /*!
     \brief Directly loads and parses the file with name \a iniFileName.
  */
-UiguiIniFileParser::UiguiIniFileParser(const QString &iniFileName)
-{
+UiguiIniFileParser::UiguiIniFileParser(const QString &iniFileName) {
     UiguiIniFileParser::UiguiIniFileParser();
     this->iniFileName = iniFileName;
     parseIniFile();
 }
 
 
-UiguiIniFileParser::~UiguiIniFileParser(void)
-{
+UiguiIniFileParser::~UiguiIniFileParser(void) {
 }
 
 
 /*!
     \brief Returns the group/section names in the same order as they occurr in the ini file as QStringList.
  */
-QStringList UiguiIniFileParser::childGroups()
-{
+QStringList UiguiIniFileParser::childGroups() {
     QStringList sectionsStringList;
 
     for( unsigned int i = 0; i < sections.size(); i++ ) {
@@ -87,8 +83,7 @@ QStringList UiguiIniFileParser::childGroups()
     <code>[NiceSection]</br>niceKeyName=2</code> you would have to call
     value("NiceSection/niceKeyName").
  */
-QVariant UiguiIniFileParser::value(const QString &keyName, const QString &defaultValue)
-{
+QVariant UiguiIniFileParser::value(const QString &keyName, const QString &defaultValue) {
     return keyValueMap.value( keyName, defaultValue );
 }
 
@@ -96,8 +91,7 @@ QVariant UiguiIniFileParser::value(const QString &keyName, const QString &defaul
 /*!
     \brief Parses the ini file and stores the key value pairs in the internal vectors \a keys and \a values.
  */
-void UiguiIniFileParser::parseIniFile()
-{
+void UiguiIniFileParser::parseIniFile() {
     QFile iniFile(iniFileName);
 
     if ( iniFile.open(QFile::ReadOnly) ) {
