@@ -35,6 +35,7 @@ public:
     static const QString getIndenterPath();
     static const QString getTempPath();
     static bool getPortableMode();
+    static void cleanAndRemoveTempDir();
 
 private:
     SettingsPaths();

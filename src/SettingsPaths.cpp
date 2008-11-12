@@ -18,6 +18,11 @@
  ***************************************************************************/
 
 
+#include <stdlib.h>
+#include <QDirIterator>
+#include <QStack>
+#include <QtDebug>
+
 #include "SettingsPaths.h"
 
 
@@ -123,9 +128,20 @@ void SettingsPaths::init() {
         while ( tempPath.right(1) == "/" ) {
             tempPath.chop(1);
         }
-        tempPath = QDir::tempPath() + "/UniversalIndentGUI";
+        tempPath = tempPath + "/UniversalIndentGUI";
 
+#if defined(Q_OS_WIN32)
         dirCreator.mkpath( tempPath );
+#else
+        // On Unix based systems create a random temporary directory for security
+        // reasons. Otherwise an evil human being could create a symbolic link
+        // to an important existing file which gets overwritten when UiGUI writes
+        // into this normally temporary but linked file.
+        char *pathTemplate = new char[tempPath.length()+8];
+        pathTemplate = QString(tempPath + "-XXXXXX").toAscii().data();
+        pathTemplate = mkdtemp( pathTemplate );
+        tempPath = pathTemplate;
+#endif
     }
 
     alreadyInitialized = true;
@@ -195,4 +211,44 @@ bool SettingsPaths::getPortableMode() {
         SettingsPaths::init();
     }
     return portableMode;
+}
+
+
+/*!
+    \brief Returns true if portable mode shall be used.
+ */
+void SettingsPaths::cleanAndRemoveTempDir() {
+    QDirIterator dirIterator(tempPath, QDirIterator::Subdirectories);
+    QStack<QString> directoryStack;
+    bool noErrorsOccurred = true;
+    
+    while ( dirIterator.hasNext() ) {
+        QString currentDirOrFile = dirIterator.next();
+        // If this dummy call isn't done here, calling "dirIterator.fileInfo().isDir()" later somehow fails.
+        dirIterator.fileInfo();
+
+        if ( !currentDirOrFile.isEmpty() && dirIterator.fileName() != "." && dirIterator.fileName() != ".." ) {
+            // There is a path on the stack but the current path doesn't start with that path.
+            // So we changed into another parent directory and the one on the stack can be deleted
+            // since it must be empty.
+            if ( !directoryStack.isEmpty() && !currentDirOrFile.startsWith(directoryStack.top()) ) {
+                QString dirToBeRemoved = directoryStack.pop();
+                noErrorsOccurred &= QDir(dirToBeRemoved).rmdir(dirToBeRemoved);
+                //qDebug() << "Removing Dir " << directoryStack.pop();
+            }
+            
+            // If the iterator currently points to a directory push it onto the stack.
+            if ( dirIterator.fileInfo().isDir() ) {
+                directoryStack.push( currentDirOrFile );
+                //qDebug() << "Pushing onto Stack " << currentDirOrFile;
+            }
+            // otherwise it must be a file, so delete it.
+            else {
+                noErrorsOccurred &= QFile::remove( currentDirOrFile );
+                //qDebug() << "Removing File " << currentDirOrFile;
+            }
+        }
+    }
+    noErrorsOccurred &= QDir(tempPath).rmdir(tempPath);
+    //qDebug() << "Removing tempPath " << tempPath;
 }

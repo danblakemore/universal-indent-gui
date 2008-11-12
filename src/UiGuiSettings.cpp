@@ -58,8 +58,11 @@ UiGuiSettings* UiGuiSettings::getInstance() {
     return instance;
 }
 
-
+/*!
+    \brief Deletes the existing instance of UiGuiSettings and removes the created temp dir.
+ */
 void UiGuiSettings::deleteInstance() {
+    SettingsPaths::cleanAndRemoveTempDir();
     if ( instance != NULL ) {
         delete instance;
         instance = NULL;
