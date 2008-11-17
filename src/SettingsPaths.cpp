@@ -138,7 +138,8 @@ void SettingsPaths::init() {
         // to an important existing file which gets overwritten when UiGUI writes
         // into this normally temporary but linked file.
         char *pathTemplate = new char[tempPath.length()+8];
-        pathTemplate = QString(tempPath + "-XXXXXX").toAscii().data();
+        QByteArray pathTemplateQBA = QString(tempPath + "-XXXXXX").toAscii();
+        pathTemplate = pathTemplateQBA.data();
         pathTemplate = mkdtemp( pathTemplate );
         tempPath = pathTemplate;
 #endif
