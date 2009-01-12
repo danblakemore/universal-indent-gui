@@ -22,9 +22,7 @@
 #define UNIVERSALINDENTGUI_NPP_H
 
 #define WIN32_LEAN_AND_MEAN
-#include "SysMsg.h"
 #include "PluginInterface.h"
-#include "Notepad_plus_rc.h"
 #include "Scintilla.h"
 #include <TCHAR.H>
 #include <shlwapi.h>

@@ -19,19 +19,18 @@
 
 
 /* include files */
-#include "stdafx.h"
 #include "UniversalIndentGUI_NPP.h"
 
 
 /* information for notepad */
 CONST INT   nbFunc  = 3;
-CONST CHAR  PLUGIN_NAME[] = "&UniversalIndentGUI";
+CONST TCHAR  PLUGIN_NAME[] = _T("&UniversalIndentGUI");
 
 /* global values */
 HANDLE              g_hModule           = NULL;
 NppData             nppData;
 FuncItem            funcItem[nbFunc];
-toolbarIcons        g_TBWndMgr;
+//toolbarIcons        g_TBWndMgr;
 
 IndentHandler *indentHandler;
 
@@ -47,7 +46,7 @@ BOOL APIENTRY DllMain( HANDLE hModule, DWORD reasonForCall, LPVOID lpReserved ) 
 
     switch (reasonForCall)
     {
-        case DLL_PROCESS_ATTACH:
+    case DLL_PROCESS_ATTACH:
         {
             if (!qApp) {
                 int argc = 1;
@@ -67,9 +66,15 @@ BOOL APIENTRY DllMain( HANDLE hModule, DWORD reasonForCall, LPVOID lpReserved ) 
             funcItem[TOGGLE_AUTO_UPDATE_INDEX]._pFunc = toggleAutoUpdate;
 
             /* Fill menu names */
+#ifdef UNICODE
+            wcscpy(funcItem[TOGGLE_SHOW_UIGUI_INDEX]._itemName, _T("&Show Parameter Settings"));
+            wcscpy(funcItem[EXECUTE_TEXT_INDENT_INDEX]._itemName, _T("&Indent text"));
+            wcscpy(funcItem[TOGGLE_AUTO_UPDATE_INDEX]._itemName, _T("&Enable Text Auto Update"));
+#else
             strcpy(funcItem[TOGGLE_SHOW_UIGUI_INDEX]._itemName, "&Show Parameter Settings");
             strcpy(funcItem[EXECUTE_TEXT_INDENT_INDEX]._itemName, "&Indent text");
             strcpy(funcItem[TOGGLE_AUTO_UPDATE_INDEX]._itemName, "&Enable Text Auto Update");
+#endif
 
             /* Set shortcuts */
             funcItem[TOGGLE_SHOW_UIGUI_INDEX]._pShKey = new ShortcutKey;
@@ -81,7 +86,7 @@ BOOL APIENTRY DllMain( HANDLE hModule, DWORD reasonForCall, LPVOID lpReserved ) 
             funcItem[TOGGLE_AUTO_UPDATE_INDEX]._pShKey = NULL;
             break;
         }
-        case DLL_PROCESS_DETACH:
+    case DLL_PROCESS_DETACH:
         {
             delete funcItem[TOGGLE_SHOW_UIGUI_INDEX]._pShKey;
             delete indentHandler;
@@ -90,11 +95,11 @@ BOOL APIENTRY DllMain( HANDLE hModule, DWORD reasonForCall, LPVOID lpReserved ) 
             saveSettings();
             break;
         }
-        case DLL_THREAD_ATTACH:
-            break;
+    case DLL_THREAD_ATTACH:
+        break;
 
-        case DLL_THREAD_DETACH:
-            break;
+    case DLL_THREAD_DETACH:
+        break;
     }
 
     return TRUE;
@@ -113,7 +118,7 @@ extern "C" __declspec(dllexport) void setInfo(NppData notpadPlusData) {
 }
 
 
-extern "C" __declspec(dllexport) LPCSTR getName() {
+extern "C" __declspec(dllexport) const TCHAR * getName() {
     return PLUGIN_NAME;
 }
 
@@ -125,11 +130,18 @@ extern "C" __declspec(dllexport) FuncItem * getFuncsArray(INT *nbF)
 }
 
 
+#ifdef UNICODE
+extern "C" __declspec(dllexport) BOOL isUnicode() {
+    return true;
+}
+#endif //UNICODE
+
+
 /***
- *	beNotification()
- *
- *	This function is called, if a notification in Scintilla/Notepad++ occurs
- */
+*	beNotification()
+*
+*	This function is called, if a notification in Scintilla/Notepad++ occurs
+*/
 extern "C" __declspec(dllexport) void beNotified(SCNotification *notifyCode) {
     if (notifyCode->nmhdr.hwndFrom == nppData._nppHandle) {
         /* on this notification code you can register your plugin icon in Notepad++ toolbar */
@@ -142,20 +154,20 @@ extern "C" __declspec(dllexport) void beNotified(SCNotification *notifyCode) {
 
 
 /***
- *	messageProc()
- *
- *	This function is called, if a notification from Notepad occurs
- */
+*	messageProc()
+*
+*	This function is called, if a notification from Notepad occurs
+*/
 extern "C" __declspec(dllexport) LRESULT messageProc(UINT Message, WPARAM wParam, LPARAM lParam) {
     return TRUE;
 }
 
 
 /***
- *	loadSettings()
- *
- *	Load the parameters of plugin
- */
+*	loadSettings()
+*
+*	Load the parameters of plugin
+*/
 void loadSettings(void) {
     /* initialize the config directory */
     ::SendMessage(nppData._nppHandle, NPPM_GETPLUGINSCONFIGDIR, MAX_PATH, (LPARAM)configPath);
@@ -165,8 +177,14 @@ void loadSettings(void) {
         ::CreateDirectory(configPath, NULL);
     }
 
+#ifdef UNICODE
+    wcscpy(iniFilePath, configPath);
+    wcscat(iniFilePath, PLUGINTEMP_INI);
+#else
     strcpy(iniFilePath, configPath);
     strcat(iniFilePath, PLUGINTEMP_INI);
+#endif
+
     if (PathFileExists(iniFilePath) == FALSE) {
         ::CloseHandle(::CreateFile(iniFilePath, GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL));
     }
@@ -177,21 +195,26 @@ void loadSettings(void) {
 
 
 /***
- *	saveSettings()
- *
- *	Saves the parameters of plugin
- */
+*	saveSettings()
+*
+*	Saves the parameters of plugin
+*/
 void saveSettings(void) {
     TCHAR   temp[16];
 
+#ifdef UNICODE
+    ::WritePrivateProfileString(dlgTemp, Value1, _itow(pluginProp.iValue1, temp, 10), iniFilePath);
+    ::WritePrivateProfileString(dlgTemp, Value2, _itow(pluginProp.iValue2, temp, 10), iniFilePath);
+#else
     ::WritePrivateProfileString(dlgTemp, Value1, _itoa(pluginProp.iValue1, temp, 10), iniFilePath);
     ::WritePrivateProfileString(dlgTemp, Value2, _itoa(pluginProp.iValue2, temp, 10), iniFilePath);
+#endif
 }
 
 
 /**************************************************************************
- *	Interface functions
- */
+*	Interface functions
+*/
 void toggleAutoUpdate(void) {
     HMENU   hMenu = ::GetMenu(nppData._nppHandle);
     UINT state = ::GetMenuState(hMenu, funcItem[TOGGLE_AUTO_UPDATE_INDEX]._cmdID, MF_BYCOMMAND);
