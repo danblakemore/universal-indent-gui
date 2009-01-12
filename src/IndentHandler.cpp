@@ -99,7 +99,7 @@ IndentHandler::IndentHandler(int indenterID, QWidget *mainWindow, QWidget *paren
     toolBox->setObjectName(QString::fromUtf8("toolBox"));
 
 #ifdef UNIVERSALINDENTGUI_NPP_EXPORTS
-    connect( toolBox, SIGNAL(currentChanged(int)), this, SLOT(repaint()) );
+    connect( toolBox, SIGNAL(currentChanged(int)), this, SLOT(updateDrawing()) );
 #endif // UNIVERSALINDENTGUI_NPP_EXPORTS
 
     //toolBox->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
@@ -945,6 +945,9 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
 
                 QObject::connect(spinBox, SIGNAL(valueChanged(int)), this, SLOT(handleChangedIndenterSettings()));
                 QObject::connect(chkBox, SIGNAL(clicked()), this, SLOT(handleChangedIndenterSettings()));
+#ifdef UNIVERSALINDENTGUI_NPP_EXPORTS
+                connect( spinBox, SIGNAL(valueChanged(int)), this, SLOT(updateDrawing()) );
+#endif // UNIVERSALINDENTGUI_NPP_EXPORTS
             }
             // edit type is boolean so create a checkbox
             else if ( editType == "boolean" ) {
@@ -1023,6 +1026,9 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
 
                 QObject::connect(lineEdit, SIGNAL(editingFinished()), this, SLOT(handleChangedIndenterSettings()));
                 QObject::connect(chkBox, SIGNAL(clicked()), this, SLOT(handleChangedIndenterSettings()));
+#ifdef UNIVERSALINDENTGUI_NPP_EXPORTS
+                connect( lineEdit, SIGNAL(textChanged(const QString)), this, SLOT(updateDrawing()) );
+#endif // UNIVERSALINDENTGUI_NPP_EXPORTS
             }
             // edit type is multiple so create a combobox with label
             else if ( editType == "multiple" ) {
@@ -1074,8 +1080,9 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
                 QObject::connect(comboBox, SIGNAL(activated(int)), this, SLOT(handleChangedIndenterSettings()));
                 QObject::connect(chkBox, SIGNAL(clicked()), this, SLOT(handleChangedIndenterSettings()));
 #ifdef UNIVERSALINDENTGUI_NPP_EXPORTS
-                connect( comboBox, SIGNAL(activated(int)), comboBox, SLOT(repaint()) );
+                connect( comboBox, SIGNAL(activated(int)), this, SLOT(updateDrawing()) );
 #endif // UNIVERSALINDENTGUI_NPP_EXPORTS
+
             }
         }
     }
@@ -1126,7 +1133,7 @@ void IndentHandler::setIndenter(int indenterID) {
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
 #ifdef UNIVERSALINDENTGUI_NPP_EXPORTS
-    disconnect( toolBox, SIGNAL(currentChanged(int)), this, SLOT(repaint()) );
+    disconnect( toolBox, SIGNAL(currentChanged(int)), this, SLOT(updateDrawing()) );
 #endif // UNIVERSALINDENTGUI_NPP_EXPORTS
 
     // Generate the parameter string that will be saved to the indenters config file.
@@ -1179,7 +1186,7 @@ void IndentHandler::setIndenter(int indenterID) {
     QApplication::restoreOverrideCursor();
 
 #ifdef UNIVERSALINDENTGUI_NPP_EXPORTS
-    connect( toolBox, SIGNAL(currentChanged(int)), this, SLOT(repaint()) );
+    connect( toolBox, SIGNAL(currentChanged(int)), this, SLOT(updateDrawing()) );
     toolBox->removeItem( toolBox->indexOf(&dummyWidget) );
 #endif // UNIVERSALINDENTGUI_NPP_EXPORTS
 }
@@ -1571,4 +1578,23 @@ void IndentHandler::closeEvent(QCloseEvent *event) {
  */
 int IndentHandler::getIndenterId() {
     return indenterSelectionCombobox->currentIndex();
+}
+
+
+void IndentHandler::updateDrawing() {
+#ifdef UNIVERSALINDENTGUI_NPP_EXPORTS
+    if ( isVisible() ) {
+        QRect savedGeometry = geometry();
+        setGeometry( savedGeometry.adjusted(0,0,0,1) );
+        repaint();
+        setGeometry( savedGeometry );
+    }
+#endif // UNIVERSALINDENTGUI_NPP_EXPORTS
+}
+
+void IndentHandler::wheelEvent( QWheelEvent *event ) {
+#ifdef UNIVERSALINDENTGUI_NPP_EXPORTS
+    QWidget::wheelEvent( event );
+    updateDrawing();
+#endif // UNIVERSALINDENTGUI_NPP_EXPORTS
 }

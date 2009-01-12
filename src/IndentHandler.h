@@ -86,6 +86,7 @@ signals:
 protected:
     bool event( QEvent *event );
     void closeEvent(QCloseEvent *event);
+    void wheelEvent( QWheelEvent *event );
     
 private slots:
     void setIndenter(int indenterID);
@@ -95,6 +96,7 @@ private slots:
     void createIndenterCallShellScript();
     void resetIndenterParameter();
     void handleChangedIndenterSettings();
+    void updateDrawing();
 
 private:
     QString callExecutableIndenter(QString sourceCode, QString inputFileExtension);

@@ -30,7 +30,6 @@ CONST TCHAR  PLUGIN_NAME[] = _T("&UniversalIndentGUI");
 HANDLE              g_hModule           = NULL;
 NppData             nppData;
 FuncItem            funcItem[nbFunc];
-//toolbarIcons        g_TBWndMgr;
 
 IndentHandler *indentHandler;
 
