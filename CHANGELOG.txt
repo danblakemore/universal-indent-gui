@@ -1,4 +1,4 @@
-2009-02-03 Version 1.0.2
+2009-02-04 Version 1.0.2
 [change] Made the source code be compilable with the slightly older QScintilla version 2.2.
 [change] When starting the very first time without any existing application settings, do not show the mainwindow at position 0,0. On Mac the window couldn't be moved because the window title bar was hidden under the Mac menu bar.
 [change] When using a non Windows system the default editor font type is now Monospace instead of Courier. The latter was not found properly.

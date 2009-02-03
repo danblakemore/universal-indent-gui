@@ -37,8 +37,8 @@
 MainWindow::MainWindow(QString file2OpenOnStart, QWidget *parent) : QMainWindow(parent) {
     // set the program version, revision and date, which is shown in the main window title and in the about dialog.
     version = "1.0.2";
-    revision = "888";
-    QDate buildDate(2008, 11, 3);
+    revision = "907";
+    QDate buildDate(2009, 1, 4);
     buildDateStr = buildDate.toString("d. MMMM yyyy");
 
     // Init of some variables.

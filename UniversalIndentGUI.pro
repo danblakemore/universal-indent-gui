@@ -92,6 +92,12 @@ unix:indenters.path = /usr/share/universalindentgui/indenters
 unix:indenters.files = indenters/uigui_*.ini
 unix:indenters.files += indenters/example.*
 unix:indenters.files += indenters/JsDecoder.js
+unix:indenters.files += indenters/phpStylist.php
+unix:indenters.files += indenters/phpStylist.txt
+unix:indenters.files += indenters/pindent.py
+unix:indenters.files += indenters/pindent.txt
+unix:indenters.files += indenters/rbeautify.rb
+unix:indenters.files += indenters/ruby_formatter.rb
 unix:indenters.files += indenters/shellindent.awk
 
 # Install translation files

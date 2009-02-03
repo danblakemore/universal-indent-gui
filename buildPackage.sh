@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# Call this script to create the source code archive.
 ./buildRelease.sh
 
 sourcedirname=universalindentgui-1.0.2
