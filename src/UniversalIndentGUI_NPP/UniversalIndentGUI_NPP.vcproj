@@ -78,7 +78,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="shlwapi.lib comctl32.lib qtmaind.lib QtGuid4.lib QtCored4.lib QtScriptd4.lib "
-				OutputFile="C:\Programme\Notepad++\plugins\$(ProjectName).dll"
+				OutputFile="D:\Programme\Tools\Notepad++\plugins\$(ProjectName).dll"
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(OutDir)\$(TargetName).pdb"
@@ -165,7 +165,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="shlwapi.lib comctl32.lib qtmain.lib QtGui4.lib QtCore4.lib QtScript4.lib"
-				OutputFile="C:\Programme\Notepad++\plugins\$(ProjectName).dll"
+				OutputFile="D:\Programme\Tools\Notepad++\plugins\$(ProjectName).dll"
 				LinkIncremental="1"
 				GenerateDebugInformation="false"
 				SubSystem="2"
@@ -320,24 +320,28 @@
 				RelativePath="..\..\resources\Icons.qrc"
 				>
 			</File>
+			<File
+				RelativePath="..\..\resources\programicon.rc"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Generated"
 			>
 			<File
-				RelativePath="$(OutDir)\tmp\moc\moc_indenthandler.cpp"
+				RelativePath="$(OutDir)\tmp\moc\moc_IndentHandler.cpp"
 				>
 			</File>
 			<File
-				RelativePath="$(OutDir)\tmp\moc\moc_uiguierrormessage.cpp"
+				RelativePath="$(OutDir)\tmp\moc\moc_UiGuiErrorMessage.cpp"
 				>
 			</File>
 			<File
-				RelativePath="$(OutDir)\tmp\moc\moc_uiguisettings.cpp"
+				RelativePath="$(OutDir)\tmp\moc\moc_UiGuiSettings.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\debug_npp\tmp\qrc\qrc_Icons.cpp"
+				RelativePath="$(OutDir)\tmp\qrc\qrc_Icons.cpp"
 				>
 			</File>
 		</Filter>

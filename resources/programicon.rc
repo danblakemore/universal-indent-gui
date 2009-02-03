@@ -17,7 +17,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "UiGuiVersion.h"
+#include "..\src\UiGuiVersion.h"
 
 #define APSTUDIO_READONLY_SYMBOLS
 /////////////////////////////////////////////////////////////////////////////
@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", PROGRAM_TITLE "\0"
             VALUE "FileVersion", RESOURCE_VERSION_STRING
             VALUE "InternalName", "UiGUI\0"
-            VALUE "LegalCopyright", "Copyright Â© Thomas Schweitzer 2009\0"
+            VALUE "LegalCopyright", "Copyright © Thomas Schweitzer 2009\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "UniversalIndentGUI.exe\0"
             VALUE "PrivateBuild", "\0"
@@ -83,6 +83,8 @@ BEGIN
 END
 
 #endif    // !_MAC
+
+#endif // #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
 
 
 /////////////////////////////////////////////////////////////////////////////
