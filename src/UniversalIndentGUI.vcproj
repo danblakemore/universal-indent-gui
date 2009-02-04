@@ -215,17 +215,6 @@
 			<File
 				RelativePath=".\AboutDialogGraphicsView.cpp"
 				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath=".\UiGuiHighlighter.cpp"
-				>
 			</File>
 			<File
 				RelativePath=".\IndentHandler.cpp"
@@ -243,12 +232,16 @@
 				RelativePath=".\SettingsPaths.cpp"
 				>
 			</File>
-            <File
+			<File
 				RelativePath=".\TemplateBatchScript.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\UiGuiErrorMessage.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\UiGuiHighlighter.cpp"
 				>
 			</File>
 			<File
@@ -268,6 +261,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\UiGuiVersion.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\UpdateCheckDialog.cpp"
 				>
 			</File>
@@ -283,17 +280,6 @@
 			</File>
 			<File
 				RelativePath=".\AboutDialogGraphicsView.h"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="MOC"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath=".\UiGuiHighlighter.h"
 				>
 			</File>
 			<File
@@ -317,6 +303,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\UiGuiHighlighter.h"
+				>
+			</File>
+			<File
 				RelativePath=".\UiGuiIndentServer.h"
 				>
 			</File>
@@ -330,6 +320,10 @@
 			</File>
 			<File
 				RelativePath=".\UiGuiSettingsDialog.h"
+				>
+			</File>
+			<File
+				RelativePath=".\UiGuiVersion.h"
 				>
 			</File>
 			<File
@@ -385,17 +379,6 @@
 			<File
 				RelativePath="$(OutDir)\tmp\moc\moc_AboutDialogGraphicsView.cpp"
 				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="$(OutDir)\tmp\moc\moc_UiGuiHighlighter.cpp"
-				>
 			</File>
 			<File
 				RelativePath="$(OutDir)\tmp\moc\moc_IndentHandler.cpp"
@@ -407,6 +390,10 @@
 			</File>
 			<File
 				RelativePath="$(OutDir)\tmp\moc\moc_UiGuiErrorMessage.cpp"
+				>
+			</File>
+			<File
+				RelativePath="$(OutDir)\tmp\moc\moc_UiGuiHighlighter.cpp"
 				>
 			</File>
 			<File

@@ -19,51 +19,45 @@
 
 #include "UiGuiVersion.h"
 
-#include "stdlib.h"
-#include "string.h"
+#include <QString>
+#include <QStringList>
+#include <QDate>
 
-const int programVersionDate()
-{
-    static int version = 0;
+namespace UiGuiVersion {
 
-    if (0 == version) {
-        union timeUnion {
-            struct {
-                char Mmm[3];
-                char space1;
-                char dd[2];
-                char space2;
-                char yyyy[4];
-                char terminator;
-            };
-            char timeString[12];
-        };
-        timeUnion timeVar;
-        //get date from system
-        const char * dateString = __DATE__;
-        //copy to internal
-        strncpy((char *)&timeVar.timeString, dateString, 11);
-        //terminate string
-        timeVar.timeString[11] = 0;
-        //swap characters
-        char convertString[9];
-        strncpy((char *)&convertString, (char *)&timeVar.yyyy, 4);
-        strncpy((char *)&convertString[6], (char *)&timeVar.dd, 2);
-        //convert month
-        const char * month[] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dez", NULL};
-        const char * monthNumbers[] = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "00"};
-        //find string in table
-        for (int i = 0; month[i] != NULL; i++) {
-            if (strncmp(month[i], (char *)&timeVar.Mmm, 2) == 0) {
-                strncpy((char *)&convertString[4], monthNumbers[i], 2);
-                break;
-            }
-        }
-        //terminate string
-        convertString[8] = 0;
-        version = atoi((char *)&convertString);
+/*!
+    \brief Returns the build date as a localized string, e.g. "9. Februar 2009". If
+    there was some kind of error, the returned string is empty.
+ */
+QString getBuildDate() {
+    QStringList monthNames;
+    QString buildDateString = "";
+
+    monthNames << "Jan" << "Feb" << "Mar" << "Apr" << "May" << "Jun" << "Jul" << "Aug" << "Sep" << "Oct" << "Nov" << "Dez";
+    QStringList buildDateStringList = QString(__DATE__).simplified().split(' '); // __DATE__ returns eg "Feb  4 2009"
+    
+    if ( buildDateStringList.count() == 3 ) {
+        QDate buildDate(buildDateStringList.last().toInt(), monthNames.indexOf( buildDateStringList.first() )+1, buildDateStringList.at(1).toInt());
+        buildDateString = buildDate.toString("d. MMMM yyyy");
     }
 
-    return version;
-    //return PROGRAM_DATE; //ORIGINAL 24.11.2008!!!
+    return buildDateString;
 }
+
+
+/*!
+    \brief Returns the revision number, that the current build is based on, as string. If
+    there was some kind of error, the returned string is empty.
+ */
+QString getBuildRevision() {
+    QString buildRevision = "";
+    QStringList buildRevisionStringList = QString(PROGRAM_REVISION).simplified().split(' ');
+
+    if ( buildRevisionStringList.count() == 3 ) {
+        buildRevision = buildRevisionStringList.at(1);  // PROGRAM_REVISION is eg "$Revision: 907 $"
+    }
+
+    return buildRevision;
+}
+
+}  // namespace UiGuiVersion

@@ -79,10 +79,6 @@ private:
 	QsciScintilla *qSciSourceCodeEditor;
 	UiGuiSettings *settings;
 
-    QString version;
-    QString revision;
-    QString buildDateStr;
-
 	QString currentEncoding;
     QString sourceFileContent;
     QString sourceFormattedContent;

@@ -52,10 +52,9 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/D _CRT_SECURE_NO_DEPRECATE"
 				Optimization="0"
 				AdditionalIncludeDirectories="&quot;$(QTDIR)\include\QtScript&quot;;.;NPPCommon;.."
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;UNIVERSALINDENTGUI_NPP_EXPORTS;__STDC_WANT_SECURE_LIB__=0;_CRT_NONSTDC_NO_DEPRECATE"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;UNIVERSALINDENTGUI_NPP_EXPORTS;_CRT_NONSTDC_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -71,6 +70,7 @@
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_VC80_UPGRADE=0x0700;UNIVERSALINDENTGUI_NPP_EXPORTS"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
@@ -78,7 +78,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="shlwapi.lib comctl32.lib qtmaind.lib QtGuid4.lib QtCored4.lib QtScriptd4.lib "
-				OutputFile="D:\Programme\Tools\Notepad++\plugins\$(ProjectName).dll"
+				OutputFile="C:\temp\smallwebserve\WebdevelopmentIDE\devtools\npp\plugins\$(ProjectName).dll"
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(OutDir)\$(TargetName).pdb"
@@ -146,7 +146,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalIncludeDirectories="&quot;$(QTDIR)\include\QtScript&quot;;.;NPPCommon;.."
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;UNIVERSALINDENTGUI_NPP_EXPORTS;__STDC_WANT_SECURE_LIB__=0;_CRT_NONSTDC_NO_DEPRECATE"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;UNIVERSALINDENTGUI_NPP_EXPORTS;_CRT_NONSTDC_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
@@ -158,6 +158,7 @@
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_VC80_UPGRADE=0x0700;UNIVERSALINDENTGUI_NPP_EXPORTS"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
@@ -165,7 +166,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="shlwapi.lib comctl32.lib qtmain.lib QtGui4.lib QtCore4.lib QtScript4.lib"
-				OutputFile="D:\Programme\Tools\Notepad++\plugins\$(ProjectName).dll"
+				OutputFile="C:\temp\smallwebserve\WebdevelopmentIDE\devtools\npp\plugins\$(ProjectName).dll"
 				LinkIncremental="1"
 				GenerateDebugInformation="false"
 				SubSystem="2"
@@ -271,6 +272,10 @@
 			</File>
 			<File
 				RelativePath="..\uiguisettings.h"
+				>
+			</File>
+			<File
+				RelativePath="..\UiGuiVersion.h"
 				>
 			</File>
 			<File

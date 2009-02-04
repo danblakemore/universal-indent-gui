@@ -19,6 +19,7 @@
 
 #include "UpdateCheckDialog.h"
 
+#include "UiGuiVersion.h"
 #include <QRegExpValidator>
 
 /*!
@@ -31,7 +32,7 @@
 /*!
     \brief Initializes member variables and stores the version of UiGui and a pointer to the settings object.
  */
-UpdateCheckDialog::UpdateCheckDialog(QString currentVersion, UiGuiSettings *settings, QWidget *parent) : QDialog(parent) {
+UpdateCheckDialog::UpdateCheckDialog(UiGuiSettings *settings, QWidget *parent) : QDialog(parent) {
     setupUi(this);
 
     manualUpdateRequested = false;
@@ -50,7 +51,6 @@ UpdateCheckDialog::UpdateCheckDialog(QString currentVersion, UiGuiSettings *sett
     // Connect the dialogs buttonbox with a button click handler.
     connect( buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(handleUpdateCheckDialogButtonClicked(QAbstractButton*)) );
 
-    this->currentVersion = currentVersion;
     this->settings = settings;
 
     // This dialog is always modal.
@@ -117,7 +117,7 @@ void UpdateCheckDialog::checkResultsOfFetchedPadXMLFile(bool errorOccurred) {
 
             // Create integer values from the version strings.
             int versionOnServerInt = convertVersionStringToNumber( returnedString );
-            int currentVersionInt = convertVersionStringToNumber( currentVersion );
+            int currentVersionInt = convertVersionStringToNumber( PROGRAM_VERSION_STRING );
 
             // Only show update dialog, if the current version number is lower than the one received from the server.
             if ( versionOnServerInt > currentVersionInt && currentVersionInt >= 0 && versionOnServerInt >= 0 ) {
@@ -176,7 +176,7 @@ void UpdateCheckDialog::showCheckingForUpdateDialog() {
 void UpdateCheckDialog::showNewVersionAvailableDialog(QString newVersion) {
     progressBar->hide();
     setWindowTitle( tr("Update available") );
-    label->setText( tr("A newer version of UniversalIndentGUI is available.\nYour version is %1. New version is %2.\nDo you want to go to the download website?").arg(currentVersion).arg(newVersion) );
+    label->setText( tr("A newer version of UniversalIndentGUI is available.\nYour version is %1. New version is %2.\nDo you want to go to the download website?").arg(PROGRAM_VERSION_STRING).arg(newVersion) );
     buttonBox->setStandardButtons(QDialogButtonBox::No|QDialogButtonBox::NoButton|QDialogButtonBox::Yes);
     exec();
 }

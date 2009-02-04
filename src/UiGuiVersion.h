@@ -20,13 +20,20 @@
 #ifndef UIGUIVERSION_H
 #define UIGUIVERSION_H
 
-#define PROGRAM_VERSION 1.0.2
-#define PROGRAM_VERSION_STRING "1.0.2"
-#define RESOURCE_VERSION 1,0,2,0
-#define RESOURCE_VERSION_STRING "1,0,2,0\0"
-#define PROGRAM_REVISION "$Revision: 2831 $"
-#define PROGRAM_TITLE "UniversalIndentGUI"
+class QString;
 
-const int programVersionDate();
+// Define the version number here. Update this as the last file before a release.
+#define PROGRAM_VERSION 1.0.1
+#define PROGRAM_VERSION_STRING "1.0.1"
+#define RESOURCE_VERSION 1,0,1,0
+#define RESOURCE_VERSION_STRING "1,0,1,0\0"
+#define PROGRAM_REVISION "$Revision$"
+
+namespace UiGuiVersion {
+
+    QString getBuildDate();
+    QString getBuildRevision();
+
+}
 
 #endif  // UIGUIVERSION_H

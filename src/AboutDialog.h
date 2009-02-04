@@ -35,7 +35,7 @@ class AboutDialog : public QDialog, private Ui::AboutDialog
     Q_OBJECT
 
 public:
-    AboutDialog(QWidget *parent = 0, Qt::WindowFlags flags = 0, QString version = "", QString revision = "", QString buildDate = "");
+    AboutDialog(QWidget *parent = 0, Qt::WindowFlags flags = 0);
 
 public slots:
     int exec();

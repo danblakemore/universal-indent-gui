@@ -19,6 +19,8 @@
 
 #include "MainWindow.h"
 
+#include "UiGuiVersion.h"
+
 //! \defgroup grp_MainWindow All concerning main window functionality.
 
 /*!
@@ -35,12 +37,6 @@
     \brief Constructs the main window.
  */
 MainWindow::MainWindow(QString file2OpenOnStart, QWidget *parent) : QMainWindow(parent) {
-    // set the program version, revision and date, which is shown in the main window title and in the about dialog.
-    version = "1.0.2";
-    revision = "907";
-    QDate buildDate(2009, 1, 4);
-    buildDateStr = buildDate.toString("d. MMMM yyyy");
-
     // Init of some variables.
     sourceCodeChanged = false;
     scrollPositionChanged = false;
@@ -71,13 +67,13 @@ MainWindow::MainWindow(QString file2OpenOnStart, QWidget *parent) : QMainWindow(
     createHighlighterMenu();
 
 
-    // generate about dialog box
-    aboutDialog = new AboutDialog(this, Qt::SplashScreen, version, revision, buildDateStr);
+    // Generate about dialog box
+    aboutDialog = new AboutDialog(this, Qt::SplashScreen);
     aboutDialogGraphicsView = new AboutDialogGraphicsView(aboutDialog, this);
     connect( toolBarWidget->pbAbout, SIGNAL(clicked()), this, SLOT(showAboutDialog()) );
     connect( actionAbout_UniversalIndentGUI, SIGNAL(triggered()), this, SLOT(showAboutDialog()) );
 
-    // generate settings dialog box
+    // Generate settings dialog box
     settingsDialog = new UiGuiSettingsDialog(this, settings);
     connect( actionShowSettings, SIGNAL(triggered()), settingsDialog, SLOT(showDialog()) );
 
@@ -127,7 +123,7 @@ void MainWindow::initMainWindow() {
     // -----------------------------------
     QString readVersion = settings->getValueByName("VersionInSettingsFile").toString();
     // If version strings are not equal set first run true.
-    if ( readVersion != version ) {
+    if ( readVersion != PROGRAM_VERSION_STRING ) {
         isFirstRunOfThisVersion = true;
     }
     else {
@@ -138,7 +134,7 @@ void MainWindow::initMainWindow() {
     // -------------------------------
     currentEncoding = settings->getValueByName("FileEncoding").toString();
 
-    updateCheckDialog = new UpdateCheckDialog(version, settings, this);
+    updateCheckDialog = new UpdateCheckDialog(settings, this);
 
     // Register the syntax highlightning setting in the menu to the settings object.
     connect( enableSyntaxHighlightningAction, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern(bool)) );
@@ -813,7 +809,7 @@ void MainWindow::previewTurnedOnOff(bool turnOn) {
     source code filename.
  */
 void MainWindow::updateWindowTitle() {
-    this->setWindowTitle( "UniversalIndentGUI " + version +" [*]"+ currentSourceFile);
+    this->setWindowTitle( "UniversalIndentGUI " + QString(PROGRAM_VERSION_STRING) + " [*]" + currentSourceFile );
 }
 
 
@@ -925,7 +921,7 @@ void MainWindow::loadLastOpenedFile() {
 */
 void MainWindow::saveSettings() {
     settings->setValueByName( "FileEncoding", currentEncoding );
-    settings->setValueByName( "VersionInSettingsFile", version );
+    settings->setValueByName( "VersionInSettingsFile", PROGRAM_VERSION_STRING );
     settings->setValueByName( "WindowIsMaximized", isMaximized() );
     if ( !isMaximized() ) {
         settings->setValueByName( "WindowPosition", pos() );

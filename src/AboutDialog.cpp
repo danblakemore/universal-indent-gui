@@ -19,6 +19,8 @@
 
 #include "AboutDialog.h"
 
+#include "UiGuiVersion.h"
+
 /*!
     \class AboutDialog
     \brief Displays a dialog window with information about UniversalIndentGUI
@@ -28,7 +30,7 @@
     \brief The constructor calls the setup function for the ui created by uic and adds
     the GPL text to the text edit.
  */
-AboutDialog::AboutDialog(QWidget *parent, Qt::WindowFlags flags, QString version, QString revision, QString buildDate) : QDialog(parent, flags) {
+AboutDialog::AboutDialog(QWidget *parent, Qt::WindowFlags flags) : QDialog(parent, flags) {
     this->parent = parent;
     qApp->setStyleSheet("QTextBrowser{background-color:transparent}");
     setupUi(this);
@@ -37,9 +39,10 @@ AboutDialog::AboutDialog(QWidget *parent, Qt::WindowFlags flags, QString version
     authorTextBrowser->setOpenExternalLinks( true );
     creditsTextBrowser->setOpenExternalLinks( true );
 
-    this->version = version;
-    this->revision = revision;
-    this->buildDate = buildDate;
+    this->version = PROGRAM_VERSION_STRING;
+    this->revision = UiGuiVersion::getBuildRevision();
+    this->buildDate = UiGuiVersion::getBuildDate();
+
     QString versionString = versionTextBrowser->toHtml();
     versionString = versionString.arg(version).arg(revision).arg(buildDate);
     versionTextBrowser->setHtml(versionString);
