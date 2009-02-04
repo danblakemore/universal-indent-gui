@@ -39,12 +39,8 @@ AboutDialog::AboutDialog(QWidget *parent, Qt::WindowFlags flags) : QDialog(paren
     authorTextBrowser->setOpenExternalLinks( true );
     creditsTextBrowser->setOpenExternalLinks( true );
 
-    this->version = PROGRAM_VERSION_STRING;
-    this->revision = UiGuiVersion::getBuildRevision();
-    this->buildDate = UiGuiVersion::getBuildDate();
-
     QString versionString = versionTextBrowser->toHtml();
-    versionString = versionString.arg(version).arg(revision).arg(buildDate);
+    versionString = versionString.arg(PROGRAM_VERSION_STRING).arg( UiGuiVersion::getBuildRevision() ).arg( UiGuiVersion::getBuildDate() );
     versionTextBrowser->setHtml(versionString);
 
     creditsTextBrowser->setHtml("<html><head></head><body>"
@@ -99,7 +95,7 @@ void AboutDialog::changeEvent(QEvent *event) {
         retranslateUi(this);
 
         QString versionString = versionTextBrowser->toHtml();
-        versionString = versionString.arg(version).arg(revision).arg(buildDate);
+        versionString = versionString.arg(PROGRAM_VERSION_STRING).arg( UiGuiVersion::getBuildRevision() ).arg( UiGuiVersion::getBuildDate() );
         versionTextBrowser->setHtml(versionString);
     }
     else {

@@ -49,9 +49,6 @@ private:
 
     QString gplText;
     QString textBrowserSavedContent;
-    QString version;
-    QString revision;
-    QString buildDate;
     int scrollDirection;
     int scrollSpeed;
     QTimer *timer;
