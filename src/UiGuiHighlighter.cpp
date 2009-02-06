@@ -51,7 +51,7 @@ UiGuiHighlighter::UiGuiHighlighter(QsciScintilla *parent) : QObject(parent) {
     mapHighlighternameToExtension["D"] = QStringList() << "d";
     mapHighlighternameToExtension["Diff"] = QStringList() << "diff";
 #if ( QSCINTILLA_VERSION >= 0x020300 )
-    mapHighlighternameToExtension["Fortran"] = QStringList() << "f" << "for";
+    mapHighlighternameToExtension["Fortran"] = QStringList() << "f" << "for" << "f90";
     mapHighlighternameToExtension["Fortran77"] = QStringList() << "f77";
 #endif
     mapHighlighternameToExtension["HTML"] = QStringList() << "html" << "htm";
@@ -359,7 +359,7 @@ int UiGuiHighlighter::setLexerForExtension( QString extension ) {
         lexer = new QsciLexerDiff();
     }
 #if ( QSCINTILLA_VERSION >= 0x020300 )
-    else if ( extension == "f" || extension == "for" ) {
+    else if ( extension == "f" || extension == "for" || extension == "f90" ) {
         lexer = new QsciLexerFortran();
     }
     else if ( extension == "f77" ) {
