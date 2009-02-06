@@ -189,6 +189,8 @@ private:
     QAction *actionResetIndenterParameters;
     void(*parameterChangedCallback)(void);
     void(*windowClosedCallback)(void);
+
+    QString encodeToHTML(const QString &text);
 };
 
 #endif // INDENTHANDLER_H

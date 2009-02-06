@@ -403,8 +403,21 @@ QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputF
     // Delete any previously used input src file and create a new input src file.
     QFile::remove(tempDirctoryStr + "/" + inputFileName + inputFileExtension);
     QFile inputSrcFile(tempDirctoryStr + "/" + inputFileName + inputFileExtension);
-    parameterInputFile = " " + inputFileParameter + inputFileName + inputFileExtension;
+    // Write the source code to the input file for the indenter
+    inputSrcFile.open( QFile::ReadWrite | QFile::Text );
+    inputSrcFile.write( sourceCode.toUtf8() );
+    inputSrcFile.close();
 
+    // Set the input file for the to be called indenter.
+    if ( inputFileParameter.trimmed() == "<" || inputFileParameter == "stdin" ) {
+        parameterInputFile = "";
+        indentProcess.setStandardInputFile( inputSrcFile.fileName() );
+    }
+    else {
+        parameterInputFile = " " + inputFileParameter + inputFileName + inputFileExtension;
+    }
+
+    // Set the output file for the to be called indenter.
     if ( outputFileParameter != "none" && outputFileParameter != "stdout" ) {
         parameterOuputFile = " " + outputFileParameter + outputFileName + inputFileExtension;
     }
@@ -442,13 +455,8 @@ QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputF
     // Generate the indenter call string either for win32 or other systems.
     indenterCompleteCallString = indenterExecutableCallString + indenterCompleteCallString;
 
-    // Write the source code to the input file for the indenter
-    inputSrcFile.open( QFile::ReadWrite | QFile::Text );
-    inputSrcFile.write( sourceCode.toUtf8() );
-    inputSrcFile.close();
-
     // errors and standard outputs from the process call are merged together
-    indentProcess.setReadChannelMode(QProcess::MergedChannels);
+    //indentProcess.setReadChannelMode(QProcess::MergedChannels);
 
     // Set the directory for the indenter execution
     indentProcess.setWorkingDirectory( QFileInfo(tempDirctoryStr).absoluteFilePath() );
@@ -456,8 +464,9 @@ QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputF
     indentProcess.start(indenterCompleteCallString);
 
     processReturnString = "";
+    bool calledProcessSuccessfully = indentProcess.waitForFinished(10000);
     // test if there was an error during starting the process of the indenter
-    if ( !indentProcess.waitForFinished(10000) ) {
+    if ( !calledProcessSuccessfully ) {
         processReturnString = "<html><body>";
         processReturnString += tr("<b>Returned error message:</b> ") + indentProcess.errorString() + "<br>";
 
@@ -483,39 +492,47 @@ QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputF
             default:
                 break;
         }
-        processReturnString += tr("<br><b>Callstring was:</b> ") + indenterCompleteCallString;
-        processReturnString += tr("<br><br><b>Indenter output was:</b><pre>") + indentProcess.readAll() + "</pre></html></body>";
+        processReturnString += tr("<br><b>Callstring was:</b> ") + encodeToHTML(indenterCompleteCallString);
+        processReturnString += tr("<br><br><b>Indenter output was:</b><pre>") + "<br>" +
+                               "(STDOUT):" + encodeToHTML( indentProcess.readAllStandardOutput() ) + "<br>" +
+                               "(STDERR):" + encodeToHTML( indentProcess.readAllStandardError() ) + "<br>" +
+                               "</pre></html></body>";
         QApplication::restoreOverrideCursor();
         errorMessageDialog->showMessage(tr("Error calling Indenter"), processReturnString);
     }
-    // there was no problem starting the process/indenter so fetch, what it returned
-    else {
-        processReturnString += indentProcess.readAll();
-    }
 
-    // if the indenter returned an errorcode != 0 show its output
+    // If the indenter returned an error code != 0 show its output.
     if ( indentProcess.exitCode() != 0 ) {
         QString exitCode;
         exitCode.setNum(indentProcess.exitCode());
         processReturnString = tr("<b>Indenter returned with exit code:</b> ") + exitCode + "<br>" +
-                              tr("<b>Indent console output was:</b> ") + processReturnString + "<br>" +
-                              tr("<br><b>Callstring was:</b> ") + indenterCompleteCallString + "</html></body>";
+                              tr("<b>Indent console output was:</b> ") + "<br>" +
+                              "(STDOUT):" + encodeToHTML( indentProcess.readAllStandardOutput() ) + "<br>" +
+                              "(STDERR):" + encodeToHTML( indentProcess.readAllStandardError() ) + "<br>" +
+                              tr("<br><b>Callstring was:</b> ") + encodeToHTML(indenterCompleteCallString) + 
+                              "</html></body>";
         QApplication::restoreOverrideCursor();
         errorMessageDialog->showMessage( tr("Indenter returned error"), processReturnString );
     }
 
-    // If the indenter results are written to stdout, read them from there...
-    if ( indentProcess.exitCode() == 0 && outputFileParameter == "stdout"  ) {
-        formattedSourceCode = processReturnString;
+    // Only get the formatted source code, if calling the indenter did succeed.
+    if ( calledProcessSuccessfully ) {
+        // If the indenter results are written to stdout, read them from there...
+        if ( indentProcess.exitCode() == 0 && outputFileParameter == "stdout"  ) {
+            formattedSourceCode = indentProcess.readAllStandardOutput();
+        }
+        // ... else read the output file generated by the indenter call.
+        else {
+            QFile outSrcFile(tempDirctoryStr + "/" + outputFileName + inputFileExtension);
+            outSrcFile.open(QFile::ReadOnly | QFile::Text);
+            QTextStream outSrcStrm(&outSrcFile);
+            outSrcStrm.setCodec( QTextCodec::codecForName("UTF-8") );
+            formattedSourceCode = outSrcStrm.readAll();
+            outSrcFile.close();
+        }
     }
-    // ... else read the output file generated by the indenter call.
     else {
-        QFile outSrcFile(tempDirctoryStr + "/" + outputFileName + inputFileExtension);
-        outSrcFile.open(QFile::ReadOnly | QFile::Text);
-        QTextStream outSrcStrm(&outSrcFile);
-        outSrcStrm.setCodec( QTextCodec::codecForName("UTF-8") );
-        formattedSourceCode = outSrcStrm.readAll();
-        outSrcFile.close();
+        return sourceCode;
     }
 
     // Delete the temporary input and output files.
@@ -1597,4 +1614,22 @@ void IndentHandler::wheelEvent( QWheelEvent *event ) {
     QWidget::wheelEvent( event );
     updateDrawing();
 #endif // UNIVERSALINDENTGUI_NPP_EXPORTS
+}
+
+
+/*!
+    \brief Converts characters < > and & in the \a text to HTML codes &lt &gt and &amp.
+ */
+QString IndentHandler::encodeToHTML(const QString &text) {
+    QString htmlText = text;
+    htmlText.replace("&", "&amp;");
+    htmlText.replace("<", "&lt;");
+    htmlText.replace(">", "&gt;");
+    htmlText.replace('"', "&quot;");
+    htmlText.replace("'", "&#39;");
+    htmlText.replace("^", "&circ;");
+    htmlText.replace("~", "&tilde;");
+    htmlText.replace("€", "&euro;");
+    htmlText.replace("©", "&copy;");
+    return htmlText;
 }
