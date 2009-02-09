@@ -1,20 +1,22 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>iniFileFormat</title>
 </head>
 <body>
-Fileformat of the UniversalIndentGUI indent description ini files<br>
-=================================================================<br>
-<br>
-1. General<br>
-----------<br>
-The ini file has equal base format as common used ini files. It contains groups, which are written in brackets []. These groups can contain keys, to which a value can be assigned by the equal sign =.<br>
-<br>
-2. Ini file header<br>
-------------------<br>
-At the beginning of the ini file the header is located. It is named [header]. In the following a ini file header is shown:<br>
+<p>
+Fileformat of the UniversalIndentGUI indent description ini files<br />
+=================================================================<br />
+<br />
+1. General<br />
+----------<br />
+The ini file has equal base format as common used ini files. It contains groups, which are written in brackets []. These groups can contain keys, to which a value can be assigned by the equal sign =.<br />
+<br />
+2. Ini file header<br />
+------------------<br />
+At the beginning of the ini file the header is located. It is named [header]. In the following a ini file header is shown:<br />
+</p>
 <pre>
 [header]
 categories=Predefined Style|Tab and Bracket|Indentation|Formatting
@@ -25,81 +27,84 @@ indenterFileName=astyle
 indenterName=Artistic Style
 inputFileName=indentinput
 inputFileParameter=
-manual="http://website.of.onlinemanual"
+manual=&quot;http://website.of.onlinemanual&quot;
 outputFileName=indentinput
 outputFileParameter=none
 parameterOrder=ipo
 stringparaminquotes=false
-useCfgFileParameter="--options="
+useCfgFileParameter=&quot;--options=&quot;
 version=1.21
 </pre>
-
-"categories" defines the categories, where each parameter can be assigned to. It is a list of strings, with each category name divied by a "|" from the other.<br>
-<br>
-"cfgFileParameterEnding" defines how each parameter setting in the indenters config file is seperated from the other. Possible values are "cr" for CarriageReturn or any other string (also space signs, which are normally used if parameters are only set via commandline).<br>
-<br>
-"configFilename" is the filename of the indenters default config file. It is used when the indenter is being called and might be explicit handed over as argument by setting the parameter "useCfgFileParameter". If "configFilename" is left empty, all parameters are set with the commandline call of the indenter. (As needed for csstidy and phpCB for example.)<br>
-<br>
-"fileTypes" is a list of fileendings used for the selection in the "open source file" file dialog.<br>
-<br>
-"indenterFileName" is the name of the indenters executable without any extension. Under linux it is tested, whether only a file with the extension ".exe" exists. If so, wine will be used to call the indenter.<br>
-<br>
-"indenterName"  is the name of the indenter as it will be shown in UniversalIndentGUIs indenters selection. Theoretic it can be any string.<br>
-<br>
-"inputFileName" defines the file used as input file for the called indenter. It is a copy of the previous opened source code file.<br>
-<br>
-"inputFileParameter" sets the eventually needed parameter in front of "inputFileName" to tell the indenter and the command line call that the following string is the input file. If set to "none" no special output file will be set.<br>
-<br>
-"manual" is a string that points to a website that hosts the indenters online manual.<br>
-<br>
-"outputFileName" the file name where the indenter writes its formatted source code to. Also the file UniversalIndentGUI reads after the indenter call to show it in the preview. Some times an indenter overwrites the content of the inputfile by default and creates a backup (as AStyle does). In this case "outputFileName" is equal to "inputFileName" but the parameter "outputFileParameter" has to be set to "none". No  output file name will be selected for the indenter but UniversalIndentGUI knows where the output was written to.<br>
-<br>
-"outputFileParameter" same as for "inputFileParameter" with respect to the special case mentioned for "inputFileParameter" if the input file will be overwritten. If the indenter only writes to standard output (stdout) this value has to be set to "stdout" (see uigui_phpCB.ini). In that case "outputFileName" can be left empty. It will be ignored anyway.<br>
-<br>
-"parameterOrder" Some indenters need a strict order of the command line parameters for input file, output file and eventually indent settings. "parameterOrder" can be set to "iop", "ipo" and "pio" to define the order of input, ouput and paramters at the commandline call.<br>
-<br>
-"stringparaminquotes" tells UniversalIndentGUI that all string values should be written to the indenter config file in quotes.<br>
-<br>
-"useCfgFileParameter" is the parameter for the indenter used to tell the indenter where to find the config file, set in "configFilename", that it should use. If this parameter is left empty you should read the indenters manual where it searches by default for the config file.<br>
-<br>
-"version" is not evaluated by UiGUI, but by this it is easier to see for which version of the indenter the configuration file has been written for.<br>
-<br>
-3. The indenters parameters<br>
----------------------------<br>
-After the header definition the paramters used by the indenter are defined. Each paramter name is written in brackets [] again, but the name is only descriptive and not functional. Each parameter consists of keys with values (same as in header). There are four types of parameters: boolean, numeric, string and multiple. All have the following keys in common:<br>
-"Category" defines to which category they belong and are corresponding only shown there in the GUI.<br>
-<br>
-"Description" holds a text describing the parameter and it options. It is formatted as html, so source code examples can be embedded via &lt;pre&gt;&lt;/pre&gt; for example. This text is shown as tool tip for each parameter.<br>
-<br>
-"EditorType" defines whether the parameter is boolean, numeric, string or multiple.<br>
-<br>
-"ValueDefault" is the default value that is normally used by the indenter if this parameter is not defined. It is needed if the config file of an indenter is loaded but this parameter value is not defined there. For boolean 0 is equal to false and 1 is equal to true. In case of multiple the number defines which of the multiple choice parameters is selected, starting with 0.<br>
-<br>
-"Enabled" is not used for boolean but for all other parameters. Defines whether the value should be written to the indenters config file or not. If it is disabled it will not be written and the indenter uses its default value.<br>
-<br>
-<br>
-3.1. Boolean parameters<br>
-<br>
-Example:<br>
+<p>
+&quot;categories&quot; defines the categories, where each parameter can be assigned to. It is a list of strings, with each category name divied by a &quot;|&quot; from the other.<br />
+<br />
+&quot;cfgFileParameterEnding&quot; defines how each parameter setting in the indenters config file is seperated from the other. Possible values are &quot;cr&quot; for CarriageReturn or any other string (also space signs, which are normally used if parameters are only set via commandline).<br />
+<br />
+&quot;configFilename&quot; is the filename of the indenters default config file. It is used when the indenter is being called and might be explicit handed over as argument by setting the parameter &quot;useCfgFileParameter&quot;. If &quot;configFilename&quot; is left empty, all parameters are set with the commandline call of the indenter. (As needed for csstidy and phpCB for example.)<br />
+<br />
+&quot;fileTypes&quot; is a list of fileendings used for the selection in the &quot;open source file&quot; file dialog.<br />
+<br />
+&quot;indenterFileName&quot; is the name of the indenters executable without any extension. Under linux it is tested, whether only a file with the extension &quot;.exe&quot; exists. If so, wine will be used to call the indenter.<br />
+<br />
+&quot;indenterName&quot;  is the name of the indenter as it will be shown in UniversalIndentGUIs indenters selection. Theoretic it can be any string.<br />
+<br />
+&quot;inputFileName&quot; defines the file used as input file for the called indenter. It is a copy of the previous opened source code file.<br />
+<br />
+&quot;inputFileParameter&quot; sets the eventually needed parameter in front of &quot;inputFileName&quot; to tell the indenter and the command line call that the following string is the input file. If set to &quot;none&quot; no special output file will be set.
+If set to &quot;&lt;&quot; or &quot;stdin&quot; the to be formatted source code will be sent to the indenter using the standard input stdin.<br />
+<br />
+&quot;manual&quot; is a string that points to a website that hosts the indenters online manual.<br />
+<br />
+&quot;outputFileName&quot; the file name where the indenter writes its formatted source code to. Also the file UniversalIndentGUI reads after the indenter call to show it in the preview. Some times an indenter overwrites the content of the inputfile by default and creates a backup (as AStyle does). In this case &quot;outputFileName&quot; is equal to &quot;inputFileName&quot; but the parameter &quot;outputFileParameter&quot; has to be set to &quot;none&quot;. No  output file name will be selected for the indenter but UniversalIndentGUI knows where the output was written to.<br />
+<br />
+&quot;outputFileParameter&quot; same as for &quot;inputFileParameter&quot; with respect to the special case mentioned for &quot;inputFileParameter&quot; if the input file will be overwritten. If the indenter only writes to standard output (stdout) this value has to be set to &quot;stdout&quot; (see uigui_phpCB.ini). In that case &quot;outputFileName&quot; can be left empty. It will be ignored anyway.<br />
+<br />
+&quot;parameterOrder&quot; Some indenters need a strict order of the command line parameters for input file, output file and eventually indent settings. &quot;parameterOrder&quot; can be set to &quot;iop&quot;, &quot;ipo&quot; and &quot;pio&quot; to define the order of input, ouput and paramters at the commandline call.<br />
+<br />
+&quot;stringparaminquotes&quot; tells UniversalIndentGUI that all string values should be written to the indenter config file in quotes.<br />
+<br />
+&quot;useCfgFileParameter&quot; is the parameter for the indenter used to tell the indenter where to find the config file, set in &quot;configFilename&quot;, that it should use. If this parameter is left empty you should read the indenters manual where it searches by default for the config file.<br />
+<br />
+&quot;version&quot; is not evaluated by UiGUI, but by this it is easier to see for which version of the indenter the configuration file has been written for.<br />
+<br />
+3. The indenters parameters<br />
+---------------------------<br />
+After the header definition the paramters used by the indenter are defined. Each paramter name is written in brackets [] again, but the name is only descriptive and not functional. Each parameter consists of keys with values (same as in header). There are four types of parameters: boolean, numeric, string and multiple. All have the following keys in common:<br />
+&quot;Category&quot; defines to which category they belong and are corresponding only shown there in the GUI.<br />
+<br />
+&quot;Description&quot; holds a text describing the parameter and it options. It is formatted as html, so source code examples can be embedded via &lt;pre&gt;&lt;/pre&gt; for example. This text is shown as tool tip for each parameter.<br />
+<br />
+&quot;EditorType&quot; defines whether the parameter is boolean, numeric, string or multiple.<br />
+<br />
+&quot;ValueDefault&quot; is the default value that is normally used by the indenter if this parameter is not defined. It is needed if the config file of an indenter is loaded but this parameter value is not defined there. For boolean 0 is equal to false and 1 is equal to true. In case of multiple the number defines which of the multiple choice parameters is selected, starting with 0.<br />
+<br />
+&quot;Enabled&quot; is not used for boolean but for all other parameters. Defines whether the value should be written to the indenters config file or not. If it is disabled it will not be written and the indenter uses its default value.<br />
+<br />
+<br />
+3.1. Boolean parameters<br />
+<br />
+Example:<br />
+</p>
 <pre>
 [ANSI style formatting]
 Category=0
-Description="&lt;html&gt;ANSI style formatting/indenting.&lt;/html&gt;"
+Description=&quot;&lt;html&gt;ANSI style formatting/indenting.&lt;/html&gt;&quot;
 EditorType=boolean
-TrueFalse="--style=ansi|"
+TrueFalse=&quot;--style=ansi|&quot;
 Value=0
 ValueDefault=0
 </pre>
-
-The only special here is the key "TrueFalse". The string is a parameter list always consists of two parameters devided by a "|" sign, where the first one defines the true case and the second the false case. Some indenters like GreatCode have a parameter for true and false, some other like AStyle in this example only have a parameter for the false case, so the second parameter is empty.<br>
-<br>
-<br>
-3.2. Numeric parameters<br>
+<p>
+The only special here is the key &quot;TrueFalse&quot;. The string is a parameter list always consists of two parameters devided by a &quot;|&quot; sign, where the first one defines the true case and the second the false case. Some indenters like GreatCode have a parameter for true and false, some other like AStyle in this example only have a parameter for the false case, so the second parameter is empty.<br />
+<br />
+<br />
+3.2. Numeric parameters<br />
+</p>
 <pre>
 [Indent spaces]
-CallName="--indent=spaces="
+CallName=&quot;--indent=spaces=&quot;
 Category=1
-Description="&lt;html&gt;Indent using # spaces per indent&lt;/html&gt;"
+Description=&quot;&lt;html&gt;Indent using # spaces per indent&lt;/html&gt;&quot;
 EditorType=numeric
 Enabled=false
 MaxVal=20
@@ -107,41 +112,46 @@ MinVal=2
 Value=4
 ValueDefault=4
 </pre>
-
-Numeric parameters have defined a maximum value "MaxVal" and a minimum value "MinVal" which can/should not be exceeded. The "CallName" is the parameter as string as it will be written to the indenters config file. At its ending "Value" will be appended.<br>
-<br>
-<br>
-3.3. String parameters<br>
+<p>
+Numeric parameters have defined a maximum value &quot;MaxVal&quot; and a minimum value &quot;MinVal&quot; which can/should not be exceeded. The &quot;CallName&quot; is the parameter as string as it will be written to the indenters config file. At its ending &quot;Value&quot; will be appended.<br />
+<br />
+<br />
+3.3. String parameters<br />
+</p>
 <pre>
 [Comment separation char]
 CallName=-cmt_sep_char_4-
 Category=5
-Description="&lt;html&gt;Set the special character to fill automatic comments.&lt;/html&gt;"
+Description=&quot;&lt;html&gt;Set the special character to fill automatic comments.&lt;/html&gt;&quot;
 EditorType=string
 Enabled=true
 Value=*
 ValueDefault=*
 </pre>
-
-The "CallName" is the parameter as string as it will be written to the indenters config file. At its ending "Value" will be appended. Value can also be a list of strings separated by the "|" sign. By this the parameter is written to the config file with each value in the list. <br>
-In the upper example value could be "C|c|K". The result in the ouput file would be:<br>
+<p>
+The &quot;CallName&quot; is the parameter as string as it will be written to the indenters config file. At its ending &quot;Value&quot; will be appended. Value can also be a list of strings separated by the &quot;|&quot; sign. By this the parameter is written to the config file with each value in the list. <br />
+In the upper example value could be &quot;C|c|K&quot;. The result in the ouput file would be:<br />
 -cmt_sep_char_4-C
 -cmt_sep_char_4-c
 -cmt_sep_char_4-K
-<br>
-<br>
-<br>
-3.4. Multiple parameters<br>
+<br />
+<br />
+<br />
+3.4. Multiple parameters<br />
+</p>
 <pre>
 [Bracket style]
 Category=1
-Choices="--brackets=break|--brackets=attach|--brackets=linux|--brackets=break-closing-headers"
-ChoicesReadable="Break brackets|Attach brackets|Break brackets Linux like|Break closing headers"
-Description="&lt;html&gt;Sets the bracket style.&lt;/html&gt;"
+Choices=&quot;--brackets=break|--brackets=attach|--brackets=linux|--brackets=break-closing-headers&quot;
+ChoicesReadable=&quot;Break brackets|Attach brackets|Break brackets Linux like|Break closing headers&quot;
+Description=&quot;&lt;html&gt;Sets the bracket style.&lt;/html&gt;&quot;
 EditorType=multiple
 Enabled=false
 Value=1
 ValueDefault=-1
 </pre>
-Multiple parameters can have exactly one parameter out of a list selected. "Choices" is a parameter list consisting of parameters devided by a "|" sign. Each parameter in the list will be exactly written to the indenters config file as defined here. The list "ChoicesReadable" can be used to show more readable text in the combo box, instead of the "Choices" text. "ChoicesReadable" must have as many entries as "Choices".<br></body>
+<p>
+Multiple parameters can have exactly one parameter out of a list selected. &quot;Choices&quot; is a parameter list consisting of parameters devided by a &quot;|&quot; sign. Each parameter in the list will be exactly written to the indenters config file as defined here. The list &quot;ChoicesReadable&quot; can be used to show more readable text in the combo box, instead of the &quot;Choices&quot; text. &quot;ChoicesReadable&quot; must have as many entries as &quot;Choices&quot;.<br />
+</p>
+</body>
 </html>
