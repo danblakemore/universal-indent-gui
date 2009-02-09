@@ -210,7 +210,7 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\indenthandler.cpp"
+				RelativePath="..\IndentHandler.cpp"
 				>
 			</File>
 			<File
@@ -218,19 +218,19 @@
 				>
 			</File>
 			<File
-				RelativePath="..\templateBatchScript.cpp"
+				RelativePath="..\TemplateBatchScript.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\uiguierrormessage.cpp"
+				RelativePath="..\UiGuiErrorMessage.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\uiguiIniFileParser.cpp"
+				RelativePath="..\UiGuiIniFileParser.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\uiguisettings.cpp"
+				RelativePath="..\UiGuiSettings.cpp"
 				>
 			</File>
 			<File
@@ -244,7 +244,7 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath="..\indenthandler.h"
+				RelativePath="..\IndentHandler.h"
 				>
 			</File>
 			<File
@@ -252,26 +252,19 @@
 				>
 			</File>
 			<File
-				RelativePath="..\templateBatchScript.h"
+				RelativePath="..\TemplateBatchScript.h"
 				>
 			</File>
 			<File
-				RelativePath="..\uiguierrormessage.h"
+				RelativePath="..\UiGuiErrorMessage.h"
 				>
 			</File>
 			<File
-				RelativePath="..\uiguiIniFileParser.h"
+				RelativePath="..\UiGuiIniFileParser.h"
 				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCustomBuildTool"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\uiguisettings.h"
+				RelativePath="..\UiGuiSettings.h"
 				>
 			</File>
 			<File

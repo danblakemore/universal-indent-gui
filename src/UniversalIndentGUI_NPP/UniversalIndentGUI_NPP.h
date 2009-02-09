@@ -24,10 +24,10 @@
 #define WIN32_LEAN_AND_MEAN
 #include "PluginInterface.h"
 #include "Scintilla.h"
-#include <TCHAR.H>
+#include <tchar.h>
 #include <shlwapi.h>
 
-#include "indenthandler.h"
+#include "IndentHandler.h"
 #include "SettingsPaths.h"
 
 /* menu position in funcItem */
