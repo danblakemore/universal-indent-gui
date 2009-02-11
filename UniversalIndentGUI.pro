@@ -173,16 +173,20 @@ RCC_DIR = $${DESTDIR}/qrc
 
 # Input
 HEADERS += src/AboutDialog.h \
-           src/UiGuiHighlighter.h \
+           src/AboutDialogGraphicsView.h \
            src/IndentHandler.h \
            src/MainWindow.h \
+           src/SettingsPaths.h \
+           src/TemplateBatchScript.h \
            src/UiGuiErrorMessage.h \
+           src/UiGuiHighlighter.h \
+           src/UiGuiIndentServer.h \
+           src/UiGuiIniFileParser.h \
            src/UiGuiSettings.h \
            src/UiGuiSettingsDialog.h \
-           src/UiGuiIndentServer.h \
-           src/UpdateCheckDialog.h \
-           src/SettingsPaths.h \
-           src/AboutDialogGraphicsView.h
+           src/UiGuiVersion.h \
+           src/UpdateCheckDialog.h
+
 
 FORMS += src/MainWindow.ui \
          src/ToolBarWidget.ui \
@@ -191,19 +195,20 @@ FORMS += src/MainWindow.ui \
          src/UpdateCheckDialog.ui
 
 SOURCES += src/AboutDialog.cpp \
-           src/UiGuiHighlighter.cpp \
+           src/AboutDialogGraphicsView.cpp \
            src/IndentHandler.cpp \
            src/main.cpp \
            src/MainWindow.cpp \
+           src/SettingsPaths.cpp \
+           src/TemplateBatchScript.cpp \
            src/UiGuiErrorMessage.cpp \
+           src/UiGuiHighlighter.cpp \
+           src/UiGuiIndentServer.cpp \
            src/UiGuiIniFileParser.cpp \
            src/UiGuiSettings.cpp \
            src/UiGuiSettingsDialog.cpp \
-           src/UiGuiIndentServer.cpp \
-           src/UpdateCheckDialog.cpp \
-           src/SettingsPaths.cpp \
-           src/AboutDialogGraphicsView.cpp \
-           src/TemplateBatchScript.cpp
+           src/UiGuiVersion.cpp \
+           src/UpdateCheckDialog.cpp
 
 RESOURCES += resources/Icons.qrc
 RC_FILE    = resources/programicon.rc
