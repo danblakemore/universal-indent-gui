@@ -23,10 +23,10 @@
 class QString;
 
 // Define the version number here. Update this as the last file before a release.
-#define PROGRAM_VERSION 1.0.1
-#define PROGRAM_VERSION_STRING "1.0.1"
-#define RESOURCE_VERSION 1,0,1,0
-#define RESOURCE_VERSION_STRING "1,0,1,0\0"
+#define PROGRAM_VERSION 1.0.2
+#define PROGRAM_VERSION_STRING "1.0.2"
+#define RESOURCE_VERSION 1,0,2,0
+#define RESOURCE_VERSION_STRING "1,0,2,0\0"
 #define PROGRAM_REVISION "$Revision$"
 
 namespace UiGuiVersion {
