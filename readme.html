@@ -65,20 +65,24 @@ a.external
                 <li><a class="external" href="http://invisible-island.net/bcpp/">BCPP</a></li>
                 <li><a class="external" href="http://www.siber.com/sct/tools/cbl-beau.html">Cobol Beautify</a></li>
                 <li><a class="external" href="http://csstidy.sourceforge.net/">CSSTidy</a></li>
+                <li><a class="external" href="ftp://ftp.ifremer.fr/ifremer/ditigo/fortran90/">Fortran 90 PPR</a></li>
                 <li><a class="external" href="http://www.gnu.org/software/indent/">GNU Indent</a></li>
                 <li><a class="external" href="http://sourceforge.net/projects/gcgreatcode/">GreatCode</a></li>
                 <li><a class="external" href="http://packages.debian.org/de/lenny/hindent">hindent</a></li>
                 <li><a class="external" href="http://www.digital-mines.com/htb/">HTB</a></li>
                 <li><a class="external" href="http://code.gosu.pl/">Javascript Decoder</a></li>
+                <li><a class="external" href="http://jsppp.sourceforge.net/">JSPPP</a></li>
                 <li><a class="external" href="http://perltidy.sourceforge.net/">Perl Tidy</a></li>
                 <li><a class="external" href="http://pear.php.net/package/PHP_Beautifier">PHP_Beautifier</a></li>
                 <li><a class="external" href="http://www.waterproof.fr/products/phpCodeBeautifier/">PHP Code Beautifier</a></li>
                 <li><a class="external" href="http://sourceforge.net/projects/phpstylist/">PHP Stylist</a></li>
+                <li><a class="external" href="http://coverage.livinglogic.de/Tools/scripts/pindent.py.html">pindent</a></li>
                 <li><a class="external" href="http://www.arachnoid.com/ruby/rubyBeautifier.html">Ruby Beautify</a></li>
                 <li><a class="external" href="http://raa.ruby-lang.org/project/ruby_formatter/">Ruby Formatter</a></li>
                 <li><a class="external" href="http://www.bolthole.com/AWK.html">Shell Indent</a></li>
                 <li><a class="external" href="http://tidy.sourceforge.net/">(HTML) Tidy</a></li>
                 <li><a class="external" href="http://uncrustify.sourceforge.net/">Uncrustify</a></li>
+                <li><a class="external" href="http://xmlindent.sourceforge.net/">XML Indent</a></li>
 
                 Please note that Cobol Beautify and PHP Code Beautifier can not be distributed with a UiGUI package, because
                 they are only free available if you register at their homepage.
@@ -91,16 +95,19 @@ a.external
             <ul>
                 <li>C, C++</li>
                 <li>C#</li>
-                <li>D</li>
                 <li>Cobol</li>
                 <li>CSS</li>
+                <li>D</li>
+                <li>Fortran</li>
                 <li>HTML</li>
                 <li>Java</li>
                 <li>JavaScript</li>
+                <li>JSP</li>
                 <li>Objective-C</li>
                 <li>Pawn</li>
                 <li>Perl</li>
                 <li>PHP</li>
+                <li>Python</li>
                 <li>Ruby</li>
                 <li>Shellscript</li>
                 <li>VALA</li>
@@ -148,13 +155,13 @@ a.external
         But if you'd like to build UiGUI from source, follow these steps:
         <ol>
             <li>Download, unpack, configure and compile
-            <a class="external" href="http://trolltech.com/downloads/opensource/appdev">Qt</a>
+            <a class="external" href="http://www.qtsoftware.com/downloads/opensource/appdev">Qt</a>
             >= 4.4.0. Make your QTDIR and QMAKESPEC settings. Or install Qt via a package manager.</li>
             <li>Download, unpack, compile and install
             <a class="external" href="http://www.riverbankcomputing.com/software/qscintilla/download">QScintilla</a>
-            >= 2.3. This version is most likely not yet available via a package manager.</li>
+            >= 2.2.</li>
             <li>Checkout UiGUI: svn co https://universalindent.svn.sourceforge.net/svnroot/universalindent/trunk universalindentgui</li>
-            <li>In the checked out directory run "qmake".</li>
+            <li>In the checked out directory run "qmake UniversalIndentGUI.pro".</li>
             <li>Run "make release".</li>
             <li>Install it</li>
             <ol type="a">
@@ -215,7 +222,7 @@ a.external
         code and the formatted one side by side with changes highlighted.</li>
         <li>Bring functionality to the UiGUI server so that he can be run anywhere and a client plugin in any editor
         like Eclipse or Notepad++ can communicate with it. Thus the client plugin can be written in any language
-        supporting TCP/IP connections and send code to be formatted to the server. Also some settings might be
+        supporting TCP/IP connections and send to be formatted code to the server. Also some settings might be
         made via that conncection. Plans are going on, so stay tuned.</li>
         <li>Batch/Multiple file and directory indenting, so that the user can throw a bunch of files or directories
         into a list and click on "Do it", so they all will get formatted.</li>
