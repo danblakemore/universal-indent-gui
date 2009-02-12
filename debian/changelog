@@ -1,8 +1,11 @@
 universalindentgui (1.0.2-1) unstable; urgency=low
 
   * New upstream release
+  * Using a temporary directory with a random name for security reasons (Closes: #504726)
+  * Using correct mono spaced font on Linux systems (Closes: #483873)
+  * Corrected the path endings to always end with a slash (Closes: #486577)
 
- -- Thomas Schweitzer <mail@thomas-schweitzer.de>  Mon, 03 Nov 2008 12:35:20 +0100
+ -- Thomas Schweitzer <mail@thomas-schweitzer.de>  Thu, 12 Feb 2009 17:15:00 +0100
 
 universalindentgui (0.8.1-1) unstable; urgency=low
 
