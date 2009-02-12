@@ -81,7 +81,11 @@ BOOL APIENTRY DllMain( HANDLE hModule, DWORD reasonForCall, LPVOID lpReserved ) 
             funcItem[TOGGLE_SHOW_UIGUI_INDEX]._pShKey->_isCtrl  = true;
             funcItem[TOGGLE_SHOW_UIGUI_INDEX]._pShKey->_isShift = true;
             funcItem[TOGGLE_SHOW_UIGUI_INDEX]._pShKey->_key     = 'T';
-            funcItem[EXECUTE_TEXT_INDENT_INDEX]._pShKey = NULL;
+            funcItem[EXECUTE_TEXT_INDENT_INDEX]._pShKey = new ShortcutKey;
+            funcItem[EXECUTE_TEXT_INDENT_INDEX]._pShKey->_isAlt   = true;
+            funcItem[EXECUTE_TEXT_INDENT_INDEX]._pShKey->_isCtrl  = true;
+            funcItem[EXECUTE_TEXT_INDENT_INDEX]._pShKey->_isShift = true;
+            funcItem[EXECUTE_TEXT_INDENT_INDEX]._pShKey->_key     = 'J';
             funcItem[TOGGLE_AUTO_UPDATE_INDEX]._pShKey = NULL;
             break;
         }
