@@ -1,0 +1,33 @@
+New version file changes
+------------------------
+- CHANGELOG.txt
+- homepage/features.php
+- homepage/index.php
+- homepage/universalindentgui_pad.xml
+- debian/changelog
+- debian/control
+- debian/copyright
+- debian/files
+- doc/Doxyfile
+- doc/universalindentgui.man
+- src/UiGuiVersion.h
+- buildPackage.sh
+- buildRelease.sh
+- SourceForge News
+
+New indenter file changes
+-------------------------
+- src/AboutDialog.cpp
+- readme.html
+- homepage/features.php
+- buildRelease.sh
+
+New year
+--------
+- Every copyright note in src files
+- debian/copyright
+
+Changes on UiGUI ini file syntax
+--------------------------------
+- All uigui_*.ini files
+- doc/iniFileFormat.html
