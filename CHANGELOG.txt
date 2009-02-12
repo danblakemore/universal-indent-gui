@@ -1,5 +1,5 @@
 2009-02-12 Version 1.0.2
-[add] Feature Request ID 2498654 : Added support for the Fortran indenter F90ppr. http://universalindent.sf.net/issue/2498654
+[add] Feature Request ID 2498654 : Added support for the Fortran indenter F90ppr. http://universalindent.sf.net/issue/feature/2498654
 [add] Made it possible to define "stdin" to be used for an indenter calling.
 [change] Made the source code be compilable with the slightly older QScintilla version 2.2.
 [change] When starting the very first time without any existing application settings, do not show the mainwindow at position 0,0. On Mac the window couldn't be moved because the window title bar was hidden under the Mac menu bar.
