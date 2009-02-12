@@ -308,6 +308,17 @@ if [ $? -gt 0 ]; then
     echo "ERROR: Could not copy file \"$targetName$ext\" \"./$targetDir/\"!"
     exit 1
 fi
+
+# Try to compress the executable with UPX.
+if [ "$targetSystem" = "win32" ] || [ "$targetSystem" = "linux" ]; then
+    echo "Trying to compress the executalbe using UPX."
+    upx$ext --best ./$targetDir/$targetName$ext &> /dev/null
+fi
+if [ $? -gt 0 ]; then
+    echo "Compressing the executable using UPX failed. Perhaps UPX doesn't exist."
+else
+    echo "Compressed the executable using UPX."
+fi
 echo "Done"
 echo ""
 
