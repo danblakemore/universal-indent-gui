@@ -258,6 +258,9 @@ int UpdateCheckDialog::convertVersionStringToNumber(QString versionString) {
 
     if ( validator.validate(versionString, pos) == QValidator::Acceptable ) {
         QStringList versionNumberStringList = versionString.split(".");
+        versionInteger = versionNumberStringList.at(0).toInt() * 1000000;
+        versionInteger += versionNumberStringList.at(1).toInt() * 1000;
+        versionInteger += versionNumberStringList.at(2).toInt();
     }
     else {
         versionInteger = -1;
