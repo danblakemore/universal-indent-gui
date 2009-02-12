@@ -26,6 +26,7 @@ New year
 --------
 - Every copyright note in src files
 - debian/copyright
+- resources/programicon.rc
 
 Changes on UiGUI ini file syntax
 --------------------------------
