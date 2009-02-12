@@ -6,6 +6,8 @@
 [change] When using a non Windows system the default editor font type is now Monospace instead of Courier. The latter was not found properly.
 [change] For security reason using a randomly generated temporary directory name on Unix based systems.
 [change] Improved the GUI updates for the Notepad++ plugin a bit. Not what I would call "good" yet.
+[fix] Bug ID 2284777 : The Notepad++ plugin was falsely linked against Qt debug dlls, which were not included. http://universalindent.sf.net/issue/bug/2284777
+[fix] Bug ID 2594251 : The new version available check didn't work anymore since version 1.0.1. http://universalindent.sf.net/issue/bug/2594251
 [fix] Avoid a crash if an uigui ini file with faulty header info is read, where the indenter executable was empty.
 [fix] Some application settings were tried to be read from a wrong directory when running in multi user mode.
 
