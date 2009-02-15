@@ -139,6 +139,7 @@ void SettingsPaths::init() {
         // into this normally temporary but linked file.
         char *pathTemplate = new char[tempPath.length()+8];
         QByteArray pathTemplateQBA = QString(tempPath + "-XXXXXX").toAscii();
+        delete pathTemplate;
         pathTemplate = pathTemplateQBA.data();
         pathTemplate = mkdtemp( pathTemplate );
         tempPath = pathTemplate;
