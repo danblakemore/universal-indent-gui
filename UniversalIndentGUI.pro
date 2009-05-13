@@ -15,6 +15,8 @@ INCLUDEPATH += src
 
 LIBS += -lqscintilla2
 
+CONFIG += debug_and_release
+
 macx {
  CONFIG += x86 sdk
  QMAKE-MAC_SDK = /Developer/SDKs/MacOSX10.4u.sdk
