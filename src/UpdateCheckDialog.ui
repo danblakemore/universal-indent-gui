@@ -1,44 +1,45 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>UpdateCheckDialog</class>
- <widget class="QDialog" name="UpdateCheckDialog" >
-  <property name="windowModality" >
+ <widget class="QDialog" name="UpdateCheckDialog">
+  <property name="windowModality">
    <enum>Qt::WindowModal</enum>
   </property>
-  <property name="geometry" >
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>317</width>
-    <height>91</height>
+    <width>322</width>
+    <height>108</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>Checking for update...</string>
   </property>
-  <layout class="QVBoxLayout" >
+  <layout class="QVBoxLayout">
    <item>
-    <widget class="QLabel" name="label" >
-     <property name="text" >
+    <widget class="QLabel" name="label">
+     <property name="text">
       <string>Checking whether a newer version is available</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QProgressBar" name="progressBar" >
-     <property name="value" >
+    <widget class="QProgressBar" name="progressBar">
+     <property name="value">
       <number>0</number>
      </property>
-     <property name="textVisible" >
+     <property name="textVisible">
       <bool>false</bool>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QDialogButtonBox" name="buttonBox" >
-     <property name="standardButtons" >
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="standardButtons">
       <set>QDialogButtonBox::Cancel</set>
      </property>
-     <property name="centerButtons" >
+     <property name="centerButtons">
       <bool>true</bool>
      </property>
     </widget>

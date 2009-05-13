@@ -1,10 +1,11 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>SettingsDialog</class>
- <widget class="QDialog" name="SettingsDialog" >
-  <property name="windowModality" >
+ <widget class="QDialog" name="SettingsDialog">
+  <property name="windowModality">
    <enum>Qt::ApplicationModal</enum>
   </property>
-  <property name="geometry" >
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -12,83 +13,83 @@
     <height>285</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>Settings</string>
   </property>
-  <property name="windowIcon" >
-   <iconset resource="../resources/Icons.qrc" >
+  <property name="windowIcon">
+   <iconset resource="../resources/Icons.qrc">
     <normaloff>:/mainWindow/preferences-system.png</normaloff>:/mainWindow/preferences-system.png</iconset>
   </property>
-  <layout class="QVBoxLayout" >
-   <property name="spacing" >
+  <layout class="QVBoxLayout">
+   <property name="spacing">
     <number>6</number>
    </property>
-   <property name="margin" >
+   <property name="margin">
     <number>9</number>
    </property>
    <item>
-    <widget class="QTabWidget" name="tabWidget" >
-     <property name="currentIndex" >
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
       <number>0</number>
      </property>
-     <widget class="QWidget" name="tab" >
-      <attribute name="title" >
-       <string>Common</string>
-      </attribute>
-      <attribute name="icon" >
-       <iconset resource="../resources/Icons.qrc" >
+     <widget class="QWidget" name="tab">
+      <attribute name="icon">
+       <iconset resource="../resources/Icons.qrc">
         <normaloff>:/settingsDialog/applications-system.png</normaloff>:/settingsDialog/applications-system.png</iconset>
       </attribute>
-      <layout class="QVBoxLayout" >
-       <property name="spacing" >
+      <attribute name="title">
+       <string>Common</string>
+      </attribute>
+      <layout class="QVBoxLayout">
+       <property name="spacing">
         <number>6</number>
        </property>
-       <property name="margin" >
+       <property name="margin">
         <number>9</number>
        </property>
        <item>
-        <layout class="QHBoxLayout" >
-         <property name="spacing" >
+        <layout class="QHBoxLayout">
+         <property name="spacing">
           <number>6</number>
          </property>
-         <property name="margin" >
+         <property name="margin">
           <number>0</number>
          </property>
          <item>
-          <widget class="QLabel" name="label" >
-           <property name="toolTip" >
+          <widget class="QLabel" name="label">
+           <property name="toolTip">
             <string>Displays all available translations for UniversalIndentGui and lets you choose one.</string>
            </property>
-           <property name="text" >
+           <property name="text">
             <string>Application language</string>
            </property>
-           <property name="buddy" >
+           <property name="buddy">
             <cstring>uiGuiLanguageSelectionComboBox</cstring>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QComboBox" name="uiGuiLanguageSelectionComboBox" >
-           <property name="sizePolicy" >
-            <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+          <widget class="QComboBox" name="uiGuiLanguageSelectionComboBox">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
-           <property name="toolTip" >
+           <property name="toolTip">
             <string>Displays all available translations for UniversalIndentGui and lets you choose one.</string>
            </property>
-           <property name="connectedSettingName" stdset="0" >
+           <property name="connectedSettingName" stdset="0">
             <string>DONOTTRANSLATE:Language</string>
            </property>
           </widget>
          </item>
          <item>
           <spacer>
-           <property name="orientation" >
+           <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
-           <property name="sizeHint" stdset="0" >
+           <property name="sizeHint" stdset="0">
             <size>
              <width>40</width>
              <height>20</height>
@@ -99,80 +100,80 @@
         </layout>
        </item>
        <item>
-        <widget class="QCheckBox" name="uiGuiLoadLastOpenedFileOnStartupComboBox" >
-         <property name="toolTip" >
+        <widget class="QCheckBox" name="uiGuiLoadLastOpenedFileOnStartupComboBox">
+         <property name="toolTip">
           <string>If selected opens the source code file on startup that was opened last time.</string>
          </property>
-         <property name="text" >
+         <property name="text">
           <string>Automatically open last file on startup</string>
          </property>
-         <property name="connectedSettingName" stdset="0" >
+         <property name="connectedSettingName" stdset="0">
           <string>DONOTTRANSLATE:LoadLastOpenedFileOnStartup</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="uiGuiEnableIndenterParameterTooltipsCheckBox" >
-         <property name="toolTip" >
+        <widget class="QCheckBox" name="uiGuiEnableIndenterParameterTooltipsCheckBox">
+         <property name="toolTip">
           <string>If checked, tool tips will show up if the mouse cursor remains over an indenter parameter for a while.</string>
          </property>
-         <property name="text" >
+         <property name="text">
           <string>Enable Parameter Tooltips</string>
          </property>
-         <property name="connectedSettingName" stdset="0" >
+         <property name="connectedSettingName" stdset="0">
           <string>DONOTTRANSLATE:IndenterParameterTooltipsEnabled</string>
          </property>
         </widget>
        </item>
        <item>
-        <layout class="QHBoxLayout" >
-         <property name="spacing" >
+        <layout class="QHBoxLayout">
+         <property name="spacing">
           <number>6</number>
          </property>
-         <property name="margin" >
+         <property name="margin">
           <number>0</number>
          </property>
          <item>
-          <widget class="QLabel" name="labelRecentlyOpenedListSize" >
-           <property name="toolTip" >
+          <widget class="QLabel" name="labelRecentlyOpenedListSize">
+           <property name="toolTip">
             <string>Sets how many files should be remembered in the list of recently opened files.</string>
            </property>
-           <property name="text" >
+           <property name="text">
             <string>Number of files in recently opened list</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QSpinBox" name="uiGuiRecentlyOpenedListSizeSpinBox" >
-           <property name="sizePolicy" >
-            <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+          <widget class="QSpinBox" name="uiGuiRecentlyOpenedListSizeSpinBox">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
-           <property name="toolTip" >
+           <property name="toolTip">
             <string>Sets how many files should be remembered in the list of recently opened files.</string>
            </property>
-           <property name="minimum" >
+           <property name="minimum">
             <number>1</number>
            </property>
-           <property name="maximum" >
+           <property name="maximum">
             <number>30</number>
            </property>
-           <property name="value" >
+           <property name="value">
             <number>1</number>
            </property>
-           <property name="connectedSettingName" stdset="0" >
+           <property name="connectedSettingName" stdset="0">
             <string>DONOTTRANSLATE:RecentlyOpenedListSize</string>
            </property>
           </widget>
          </item>
          <item>
           <spacer>
-           <property name="orientation" >
+           <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
-           <property name="sizeHint" stdset="0" >
+           <property name="sizeHint" stdset="0">
             <size>
              <width>40</width>
              <height>20</height>
@@ -183,24 +184,24 @@
         </layout>
        </item>
        <item>
-        <widget class="QCheckBox" name="uiGuiCheckForUpdateCheckBox" >
-         <property name="toolTip" >
+        <widget class="QCheckBox" name="uiGuiCheckForUpdateCheckBox">
+         <property name="toolTip">
           <string>Checks whether a new version of UniversalIndentGUI exists on program start, but only once a day.</string>
          </property>
-         <property name="text" >
+         <property name="text">
           <string>Check online for update on program start</string>
          </property>
-         <property name="connectedSettingName" stdset="0" >
+         <property name="connectedSettingName" stdset="0">
           <string>DONOTTRANSLATE:CheckForUpdate</string>
          </property>
         </widget>
        </item>
        <item>
         <spacer>
-         <property name="orientation" >
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>40</height>
@@ -210,86 +211,86 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_2" >
-      <attribute name="title" >
-       <string>Editor</string>
-      </attribute>
-      <attribute name="icon" >
-       <iconset resource="../resources/Icons.qrc" >
+     <widget class="QWidget" name="tab_2">
+      <attribute name="icon">
+       <iconset resource="../resources/Icons.qrc">
         <normaloff>:/settingsDialog/accessories-text-editor.png</normaloff>:/settingsDialog/accessories-text-editor.png</iconset>
       </attribute>
-      <layout class="QVBoxLayout" >
-       <property name="spacing" >
+      <attribute name="title">
+       <string>Editor</string>
+      </attribute>
+      <layout class="QVBoxLayout">
+       <property name="spacing">
         <number>6</number>
        </property>
-       <property name="margin" >
+       <property name="margin">
         <number>9</number>
        </property>
        <item>
-        <widget class="QCheckBox" name="uiGuiWhiteSpaceIsVisibleCheckBox" >
-         <property name="toolTip" >
+        <widget class="QCheckBox" name="uiGuiWhiteSpaceIsVisibleCheckBox">
+         <property name="toolTip">
           <string>Enables or disables displaying of white space characters in the editor.</string>
          </property>
-         <property name="text" >
+         <property name="text">
           <string>Display white space character (tabs, spaces, etc.)</string>
          </property>
-         <property name="connectedSettingName" stdset="0" >
+         <property name="connectedSettingName" stdset="0">
           <string>DONOTTRANSLATE:WhiteSpaceIsVisible</string>
          </property>
         </widget>
        </item>
        <item>
-        <layout class="QHBoxLayout" >
-         <property name="spacing" >
+        <layout class="QHBoxLayout">
+         <property name="spacing">
           <number>6</number>
          </property>
-         <property name="margin" >
+         <property name="margin">
           <number>0</number>
          </property>
          <item>
-          <widget class="QLabel" name="labelTabWidth" >
-           <property name="toolTip" >
+          <widget class="QLabel" name="labelTabWidth">
+           <property name="toolTip">
             <string>Sets width in single spaces used for tabs</string>
            </property>
-           <property name="statusTip" >
+           <property name="statusTip">
             <string>Defines how many spaces should be displayed in the editor for one tab.</string>
            </property>
-           <property name="text" >
+           <property name="text">
             <string>Displayed width of tabs</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QSpinBox" name="uiGuiTabWidthSpinBox" >
-           <property name="sizePolicy" >
-            <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+          <widget class="QSpinBox" name="uiGuiTabWidthSpinBox">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
-           <property name="toolTip" >
+           <property name="toolTip">
             <string>Defines how many spaces should be displayed in the editor for one tab character.</string>
            </property>
-           <property name="minimum" >
+           <property name="minimum">
             <number>1</number>
            </property>
-           <property name="maximum" >
+           <property name="maximum">
             <number>99</number>
            </property>
-           <property name="value" >
+           <property name="value">
             <number>1</number>
            </property>
-           <property name="connectedSettingName" stdset="0" >
+           <property name="connectedSettingName" stdset="0">
             <string>DONOTTRANSLATE:TabWidth</string>
            </property>
           </widget>
          </item>
          <item>
           <spacer>
-           <property name="orientation" >
+           <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
-           <property name="sizeHint" stdset="0" >
+           <property name="sizeHint" stdset="0">
             <size>
              <width>40</width>
              <height>20</height>
@@ -301,10 +302,10 @@
        </item>
        <item>
         <spacer>
-         <property name="orientation" >
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>40</height>
@@ -314,100 +315,100 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_3" >
-      <attribute name="title" >
-       <string>Syntax Highlighting</string>
-      </attribute>
-      <attribute name="icon" >
-       <iconset resource="../resources/Icons.qrc" >
+     <widget class="QWidget" name="tab_3">
+      <attribute name="icon">
+       <iconset resource="../resources/Icons.qrc">
         <normaloff>:/settingsDialog/syntax-highlight.png</normaloff>:/settingsDialog/syntax-highlight.png</iconset>
       </attribute>
-      <layout class="QVBoxLayout" >
-       <property name="spacing" >
+      <attribute name="title">
+       <string>Syntax Highlighting</string>
+      </attribute>
+      <layout class="QVBoxLayout">
+       <property name="spacing">
         <number>6</number>
        </property>
-       <property name="margin" >
+       <property name="margin">
         <number>9</number>
        </property>
        <item>
-        <widget class="QCheckBox" name="uiGuiEnableSyntaxHighlightningCheckBox" >
-         <property name="toolTip" >
+        <widget class="QCheckBox" name="uiGuiEnableSyntaxHighlightningCheckBox">
+         <property name="toolTip">
           <string>By enabling special key words of the source code are highlighted.</string>
          </property>
-         <property name="text" >
+         <property name="text">
           <string>Enable syntax highlighting</string>
          </property>
-         <property name="connectedSettingName" stdset="0" >
+         <property name="connectedSettingName" stdset="0">
           <string>DONOTTRANSLATE:SyntaxHighlightningEnabled</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="groupBoxSyntaxHighlighterProperties" >
-         <property name="enabled" >
+        <widget class="QGroupBox" name="groupBoxSyntaxHighlighterProperties">
+         <property name="enabled">
           <bool>false</bool>
          </property>
-         <property name="toolTip" >
+         <property name="toolTip">
           <string>Lets you make settings for all properties of the available syntax highlighters, like font and color.</string>
          </property>
-         <property name="title" >
+         <property name="title">
           <string>Highlighter settings</string>
          </property>
-         <layout class="QHBoxLayout" >
-          <property name="spacing" >
+         <layout class="QHBoxLayout">
+          <property name="spacing">
            <number>6</number>
           </property>
-          <property name="margin" >
+          <property name="margin">
            <number>9</number>
           </property>
           <item>
-           <widget class="QListWidget" name="listWidget" >
-            <property name="currentRow" >
+           <widget class="QListWidget" name="listWidget">
+            <property name="currentRow">
              <number>-1</number>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QListWidget" name="listWidget_2" >
-            <property name="currentRow" >
+           <widget class="QListWidget" name="listWidget_2">
+            <property name="currentRow">
              <number>-1</number>
             </property>
            </widget>
           </item>
           <item>
-           <layout class="QVBoxLayout" >
-            <property name="spacing" >
+           <layout class="QVBoxLayout">
+            <property name="spacing">
              <number>6</number>
             </property>
-            <property name="margin" >
+            <property name="margin">
              <number>0</number>
             </property>
             <item>
-             <widget class="QPushButton" name="pushButton_2" >
-              <property name="toolTip" >
+             <widget class="QPushButton" name="pushButton_2">
+              <property name="toolTip">
                <string>Set the font for the current selected highlighter property.</string>
               </property>
-              <property name="text" >
+              <property name="text">
                <string>Set Font</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton" >
-              <property name="toolTip" >
+             <widget class="QPushButton" name="pushButton">
+              <property name="toolTip">
                <string>Set the color for the current selected highlighter property.</string>
               </property>
-              <property name="text" >
+              <property name="text">
                <string>Set Color</string>
               </property>
              </widget>
             </item>
             <item>
              <spacer>
-              <property name="orientation" >
+              <property name="orientation">
                <enum>Qt::Vertical</enum>
               </property>
-              <property name="sizeHint" stdset="0" >
+              <property name="sizeHint" stdset="0">
                <size>
                 <width>20</width>
                 <height>40</height>
@@ -422,10 +423,10 @@
        </item>
        <item>
         <spacer>
-         <property name="orientation" >
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>40</height>
@@ -438,11 +439,11 @@
     </widget>
    </item>
    <item>
-    <widget class="QDialogButtonBox" name="buttonBox" >
-     <property name="orientation" >
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
-     <property name="standardButtons" >
+     <property name="standardButtons">
       <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
      </property>
     </widget>
@@ -450,7 +451,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../resources/Icons.qrc" />
+  <include location="../resources/Icons.qrc"/>
  </resources>
  <connections>
   <connection>
@@ -459,11 +460,11 @@
    <receiver>SettingsDialog</receiver>
    <slot>accept()</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>244</x>
      <y>224</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>153</x>
      <y>236</y>
     </hint>
@@ -475,11 +476,11 @@
    <receiver>SettingsDialog</receiver>
    <slot>reject()</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>321</x>
      <y>227</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>282</x>
      <y>236</y>
     </hint>
