@@ -21,6 +21,10 @@
 
 #include "UiGuiSettings.h"
 
+#ifdef Q_OS_WIN32
+#include <Windows.h>
+#endif
+
 //! \defgroup grp_Indenter All concerning handling of the indenter.
 
 /*!
@@ -421,6 +425,37 @@ QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputF
     if ( outputFileParameter != "none" && outputFileParameter != "stdout" ) {
         parameterOuputFile = " " + outputFileParameter + outputFileName + inputFileExtension;
     }
+
+#ifdef Q_OS_WIN32
+    // Paths may contain Unicode or other foreign characters. Windows commands line tools will
+    // receive als falsely encoded path string by QProcess or they connot correctly handle
+    // the Unicode path on their own.
+    // Because of this the path gets converted to Windows short paths using the 8.3 notation.
+
+    // At first convert the temp path to Windows like separators.
+    QString tempDirctoryStrHelper = QDir::toNativeSeparators(tempDirctoryStr).replace("\\", "\\\\");
+    // Then convert the QString to a WCHAR array and NULL terminate it.
+    WCHAR *tempDirctoryWindowsStr = new WCHAR[ tempDirctoryStrHelper.length()+1 ];
+    tempDirctoryStrHelper.toWCharArray( tempDirctoryWindowsStr );
+    tempDirctoryWindowsStr[ tempDirctoryStrHelper.length() ] = (WCHAR)NULL;
+
+    // Get the length of the resulting short path.
+    long length = 0;
+    TCHAR *buffer = NULL;
+    length = GetShortPathName((LPCTSTR)tempDirctoryWindowsStr, NULL, 0);
+
+    // If the short path could be retrieved, create a correct sized buffer, store the
+    // short path in it and convert all back to QString.
+    if ( length != 0 ) {
+        buffer = new WCHAR[length];
+        length = GetShortPathName((LPCTSTR)tempDirctoryWindowsStr, buffer, length);
+        tempDirctoryStrHelper = QString::fromWCharArray( buffer );
+        tempDirctoryStr = QDir::fromNativeSeparators(tempDirctoryStrHelper).replace("//", "/");
+        delete buffer;
+    }
+
+    delete tempDirctoryWindowsStr;
+#endif
 
     // If the config file name is empty it is assumed that all parameters are sent via command line call
     if ( configFilename.isEmpty() ) {
@@ -1629,7 +1664,7 @@ QString IndentHandler::encodeToHTML(const QString &text) {
     htmlText.replace("'", "&#39;");
     htmlText.replace("^", "&circ;");
     htmlText.replace("~", "&tilde;");
-    htmlText.replace("€", "&euro;");
-    htmlText.replace("©", "&copy;");
+    htmlText.replace("â‚¬", "&euro;");
+    htmlText.replace("Â©", "&copy;");
     return htmlText;
 }
