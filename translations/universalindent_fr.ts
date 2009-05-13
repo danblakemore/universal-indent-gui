@@ -5,35 +5,35 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="../src/AboutDialog.ui" line="25"/>
+        <location filename="../src/AboutDialog.ui" line="26"/>
         <source>About UniversalIndentGUI</source>
         <translation>À propos d&apos;UniversalIdentGUI</translation>
     </message>
     <message>
-        <location filename="../src/AboutDialog.ui" line="93"/>
+        <location filename="../src/AboutDialog.ui" line="94"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:12pt;&quot;&gt;Version %1 rev.%2, %3 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:12pt;&quot;&gt;Version %1 rev.%2, %3 &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:12pt;&quot;&gt;Version %1 rev.%2, %3 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/AboutDialog.ui" line="119"/>
+        <location filename="../src/AboutDialog.ui" line="120"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;;&quot;&gt;... is a cross platform compatible GUI for several code formatter, beautifier and indenter like GreatCode, AStyle (Artistic Styler), GNU Indent, BCPP and so on. Main feature is a live preview to directly see how the selected formatting option affects the source code.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;&quot;&gt;&lt;br /&gt;Written by : &lt;a href=&quot;http://www.thomas-schweitzer.de&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Thomas Schweitzer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;&quot;&gt;Project Homepage : &lt;a href=&quot;http://universalindent.sourceforge.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://universalindent.sourceforge.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;&quot;&gt;License: UniversalIndentGui is released under the GPL 2. For details read the included file LICENSE.GPL visit &lt;a href=&quot;http://www.gnu.org/licenses/gpl.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.gnu.org/licenses/gpl.html&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;&quot;&gt;Credits:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:9pt;&quot;&gt;... is a cross platform compatible GUI for several code formatter, beautifier and indenter like GreatCode, AStyle (Artistic Styler), GNU Indent, BCPP and so on. Main feature is a live preview to directly see how the selected formatting option affects the source code.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;Written by : &lt;/span&gt;&lt;a href=&quot;http://www.thomas-schweitzer.de&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:9pt; text-decoration: underline; color:#0000ff;&quot;&gt;Thomas Schweitzer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:9pt;&quot;&gt;Project Homepage : &lt;/span&gt;&lt;a href=&quot;http://universalindent.sourceforge.net&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:9pt; text-decoration: underline; color:#0000ff;&quot;&gt;http://universalindent.sourceforge.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:9pt;&quot;&gt;License: UniversalIndentGui is released under the GPL 2. For details read the included file LICENSE.GPL visit &lt;/span&gt;&lt;a href=&quot;http://www.gnu.org/licenses/gpl.html&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:9pt; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.gnu.org/licenses/gpl.html&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:9pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;MS Shell Dlg 2&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:9pt;&quot;&gt;Credits:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;;&quot;&gt;… est une surcouche graphique multiplateforme pour de nombreux outils de formatage, embellisseurs et indenteurs de code tels GreatCode, AStyle (Artistic Styler), GNU Indent, BCPP, etc. La fonctionnalité principale en est une vue « temps réel » qui permet de juger immédiatement de l&apos;impact du choix d&apos;une option de formatage sur le code source.&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;&quot;&gt;&lt;br /&gt;Créé par : &lt;a href=&quot;http://www.thomas-schweitzer.de&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Thomas Schweitzer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;&quot;&gt;Site du projet : &lt;a href=&quot;http://universalindent.sourceforge.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://universalindent.sourceforge.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;&quot;&gt;License : UniversalIndentGui est diffusé sous licence GPL 2. Pour plus de détails, lire le fichier inclus LICENSE.GPL et visiter &lt;a href=&quot;http://www.gnu.org/licenses/gpl.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.gnu.org/licenses/gpl.html&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;&quot;&gt;&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;&quot;&gt;Crédits :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/AboutDialog.ui" line="166"/>
+        <location filename="../src/AboutDialog.ui" line="167"/>
         <source>          OK          </source>
         <translation>OK</translation>
     </message>
@@ -607,186 +607,259 @@ Souhaitez-vous enregistrer vos modifications ?</translation>
 <context>
     <name>SettingsDialog</name>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="16"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="17"/>
         <source>Settings</source>
         <translation>Préférences</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="36"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="41"/>
         <source>Common</source>
         <translation>Général</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="60"/>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="79"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="61"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="80"/>
         <source>Displays all available translations for UniversalIndentGui and lets you choose one.</source>
         <translation>Affiche toutes les versions linguistiques d&apos;UniversalIndentGui et vous permet d&apos;en sélectionner une.</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="63"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="64"/>
         <source>Application language</source>
         <translation>Langue de l&apos;application</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="104"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="105"/>
         <source>If selected opens the source code file on startup that was opened last time.</source>
         <translation>Si cativé, ouvre le fichier de code source qui était ouvert la dernière fois.</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="107"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="108"/>
         <source>Automatically open last file on startup</source>
         <translation>Réouverture automatique du dernier fichier</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="117"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="118"/>
         <source>If checked, tool tips will show up if the mouse cursor remains over an indenter parameter for a while.</source>
         <translation>Si coché, les bulles d&apos;aide apparaitront si le curseur de la souris s&apos;immobilise sur un paramètre d&apos;indenteur quelque temps.</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="120"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="121"/>
         <source>Enable Parameter Tooltips</source>
         <translation>Activer les bulles d&apos;aide sur les paramètres</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="138"/>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="154"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="139"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="155"/>
         <source>Sets how many files should be remembered in the list of recently opened files.</source>
         <translation>Définit combien de noms de fichiers apparaissent dans la liste des fichiers récemment ouverts.</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="141"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="142"/>
         <source>Number of files in recently opened list</source>
         <translation>Nombre de fichiers dans la liste des fichiers récents</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="188"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="189"/>
         <source>Checks whether a new version of UniversalIndentGUI exists on program start, but only once a day.</source>
         <translation>Recherche si une nouvelle version d&apos;UniversalIndentGUI est disponible au démarrage du programme, mais une fois par jour seulement.</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="191"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="192"/>
         <source>Check online for update on program start</source>
         <translation>Rechercher si une nouvelle version est disponible au démarrage du programme</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="215"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="220"/>
         <source>Editor</source>
         <translation>Éditeur</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="231"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="232"/>
         <source>Enables or disables displaying of white space characters in the editor.</source>
         <translation>(Dés-)active l&apos;affichage des espaces blancs dans l&apos;éditeur.</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="234"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="235"/>
         <source>Display white space character (tabs, spaces, etc.)</source>
         <translation>Afficher les espaces blancs (tabulations, espaces, etc.)</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="252"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="253"/>
         <source>Sets width in single spaces used for tabs</source>
         <translation>Régler la largeur en espaces simples pour les tabulations</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="255"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="256"/>
         <source>Defines how many spaces should be displayed in the editor for one tab.</source>
         <translation>Définit combien d&apos;espaces blancs doivent être affichés pour une tabulation, dans l&apos;éditeur.</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="258"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="259"/>
         <source>Displayed width of tabs</source>
         <translation>Affiche la largeur des tabulations</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="271"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="272"/>
         <source>Defines how many spaces should be displayed in the editor for one tab character.</source>
         <translation>Définit combien d&apos;espaces blancs doivent être affichés pour une tabulation, dans l&apos;éditeur.</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="319"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="324"/>
         <source>Syntax Highlighting</source>
         <translation>Coloration syntaxique</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="335"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="336"/>
         <source>By enabling special key words of the source code are highlighted.</source>
         <translation>L&apos;activation met en valeur les mots-clefs du code source.</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="338"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="339"/>
         <source>Enable syntax highlighting</source>
         <translation>Activer la coloration syntaxique</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="351"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="352"/>
         <source>Lets you make settings for all properties of the available syntax highlighters, like font and color.</source>
         <translation>Vous permet de régler toutes les propriétés des outils de coloration syntaxique disponibles, comme la police de caractère et la couleur.</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="354"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="355"/>
         <source>Highlighter settings</source>
         <translation>Réglage de l&apos;outil de coloration syntaxique</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="388"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="389"/>
         <source>Set the font for the current selected highlighter property.</source>
         <translation>Choisir la police de caractère comme propriété de l&apos;outil de coloration syntaxique sélectionné.</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="391"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="392"/>
         <source>Set Font</source>
         <translation>Choisir la police</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="398"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="399"/>
         <source>Set the color for the current selected highlighter property.</source>
         <translation>Choisir la couleur comme propriété de l&apos;outil de coloration syntaxique sélectionné.</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="401"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="402"/>
         <source>Set Color</source>
         <translation>Choisir la couleur</translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="82"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="83"/>
         <source>DONOTTRANSLATE:Language</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="110"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="111"/>
         <source>DONOTTRANSLATE:LoadLastOpenedFileOnStartup</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="123"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="124"/>
         <source>DONOTTRANSLATE:IndenterParameterTooltipsEnabled</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="166"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="167"/>
         <source>DONOTTRANSLATE:RecentlyOpenedListSize</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="194"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="195"/>
         <source>DONOTTRANSLATE:CheckForUpdate</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="237"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="238"/>
         <source>DONOTTRANSLATE:WhiteSpaceIsVisible</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="283"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="284"/>
         <source>DONOTTRANSLATE:TabWidth</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/UiGuiSettingsDialog.ui" line="341"/>
+        <location filename="../src/UiGuiSettingsDialog.ui" line="342"/>
         <source>DONOTTRANSLATE:SyntaxHighlightningEnabled</source>
         <translation></translation>
+    </message>
+</context>
+<context>
+    <name>ToolBarWidget</name>
+    <message>
+        <location filename="../src/ToolBarWidget.ui" line="14"/>
+        <source>Form</source>
+        <translation>Formulaire</translation>
+    </message>
+    <message>
+        <location filename="../src/ToolBarWidget.ui" line="26"/>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Opens a dialog for selecting a source code file.&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;&quot;&gt;This file will be used to show what the indent tool changes.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Ouvrir une boite de dialogue pour choisir un fichier source.&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;&quot;&gt;Ce fichier va être utilisé pour montrer les altérations apportées par l&apos;outil d&apos;indentation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/ToolBarWidget.ui" line="29"/>
+        <source>Open Source File </source>
+        <translation>Ouvrir un fichier source</translation>
+    </message>
+    <message>
+        <location filename="../src/ToolBarWidget.ui" line="40"/>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg 2; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;Turns the preview of the reformatted source code on and off.&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;In other words it switches between formatted and nonformatted code. (Ctrl+L)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg 2; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;(Dés-)active la prévisualisation du code source reformaté.&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;En d&apos;autres termes, bascule entre code source formaté et non formaté.  (Ctrl+L)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/ToolBarWidget.ui" line="43"/>
+        <source>Live Indent Preview</source>
+        <translation>Prévisualisation « temps réel » de l&apos;indentation</translation>
+    </message>
+    <message>
+        <location filename="../src/ToolBarWidget.ui" line="50"/>
+        <source>Ctrl+L</source>
+        <translation>Ctrl+L</translation>
+    </message>
+    <message>
+        <location filename="../src/ToolBarWidget.ui" line="57"/>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg 2; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;Enables and disables the highlightning of the source&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;code shown below. (Still needs some performance improvements) (Ctrl+H)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg 2; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;(Dés-)active la coloration syntaxique du code&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;source présenté ci-dessous. (nécessite encore des améliorations de performances) (Ctrl+H)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/ToolBarWidget.ui" line="60"/>
+        <source>Syntax Highlight</source>
+        <translation>Coloration syntaxique</translation>
+    </message>
+    <message>
+        <location filename="../src/ToolBarWidget.ui" line="67"/>
+        <source>Ctrl+H</source>
+        <translation>Ctrl+H</translation>
+    </message>
+    <message>
+        <location filename="../src/ToolBarWidget.ui" line="73"/>
+        <source>DONOTTRANSLATE:SyntaxHighlightningEnabled</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/ToolBarWidget.ui" line="93"/>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Shows info about UniversalIndentGUI&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Présente des informations à propos d&apos;UniversalIndentGUI&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/ToolBarWidget.ui" line="96"/>
+        <source>About</source>
+        <translation>À propos</translation>
+    </message>
+    <message>
+        <location filename="../src/ToolBarWidget.ui" line="107"/>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Quits the UniversalIndentGUI&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Quitter UniversalIndentGUI&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/ToolBarWidget.ui" line="110"/>
+        <source>Exit</source>
+        <translation>Quitter</translation>
     </message>
 </context>
 <context>
@@ -865,13 +938,13 @@ Souhaitez-vous enregistrer vos modifications ?</translation>
     <name>UpdateCheckDialog</name>
     <message>
         <location filename="../src/UpdateCheckDialog.cpp" line="166"/>
-        <location filename="../src/UpdateCheckDialog.ui" line="16"/>
+        <location filename="../src/UpdateCheckDialog.ui" line="17"/>
         <source>Checking for update...</source>
         <translation>Rechercher les mises à jour…</translation>
     </message>
     <message>
         <location filename="../src/UpdateCheckDialog.cpp" line="167"/>
-        <location filename="../src/UpdateCheckDialog.ui" line="22"/>
+        <location filename="../src/UpdateCheckDialog.ui" line="23"/>
         <source>Checking whether a newer version is available</source>
         <translation>Rechercher si une nouvelle version est disponible</translation>
     </message>
@@ -898,79 +971,6 @@ Voulez-vous allez sur le site de téléchargement ?</translation>
         <location filename="../src/UpdateCheckDialog.cpp" line="191"/>
         <source>You already have the latest version of UniversalIndentGUI.</source>
         <translation>Vous possédez déjà la dernière version d&apos;UniversalIndentGUI.</translation>
-    </message>
-</context>
-<context>
-    <name>toolBarWidget</name>
-    <message>
-        <location filename="../src/ToolBarWidget.ui" line="14"/>
-        <source>Form</source>
-        <translation>Formulaire</translation>
-    </message>
-    <message>
-        <location filename="../src/ToolBarWidget.ui" line="26"/>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Opens a dialog for selecting a source code file.&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;&quot;&gt;This file will be used to show what the indent tool changes.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Ouvrir une boite de dialogue pour choisir un fichier source.&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;&quot;&gt;Ce fichier va être utilisé pour montrer les altérations apportées par l&apos;outil d&apos;indentation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <location filename="../src/ToolBarWidget.ui" line="43"/>
-        <source>Live Indent Preview</source>
-        <translation>Prévisualisation « temps réel » de l&apos;indentation</translation>
-    </message>
-    <message>
-        <location filename="../src/ToolBarWidget.ui" line="60"/>
-        <source>Syntax Highlight</source>
-        <translation>Coloration syntaxique</translation>
-    </message>
-    <message>
-        <location filename="../src/ToolBarWidget.ui" line="67"/>
-        <source>Ctrl+H</source>
-        <translation>Ctrl+H</translation>
-    </message>
-    <message>
-        <location filename="../src/ToolBarWidget.ui" line="73"/>
-        <source>DONOTTRANSLATE:SyntaxHighlightningEnabled</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../src/ToolBarWidget.ui" line="93"/>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Shows info about UniversalIndentGUI&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Présente des informations à propos d&apos;UniversalIndentGUI&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <location filename="../src/ToolBarWidget.ui" line="96"/>
-        <source>About</source>
-        <translation>À propos</translation>
-    </message>
-    <message>
-        <location filename="../src/ToolBarWidget.ui" line="107"/>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Quits the UniversalIndentGUI&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Quitter UniversalIndentGUI&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <location filename="../src/ToolBarWidget.ui" line="110"/>
-        <source>Exit</source>
-        <translation>Quitter</translation>
-    </message>
-    <message>
-        <location filename="../src/ToolBarWidget.ui" line="40"/>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg 2; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;Turns the preview of the reformatted source code on and off.&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;In other words it switches between formatted and nonformatted code. (Ctrl+L)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg 2; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;(Dés-)active la prévisualisation du code source reformaté.&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;En d&apos;autres termes, bascule entre code source formaté et non formaté.  (Ctrl+L)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <location filename="../src/ToolBarWidget.ui" line="29"/>
-        <source>Open Source File </source>
-        <translation>Ouvrir un fichier source</translation>
-    </message>
-    <message>
-        <location filename="../src/ToolBarWidget.ui" line="57"/>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg 2; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;Enables and disables the highlightning of the source&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;code shown below. (Still needs some performance improvements) (Ctrl+H)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg 2; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;(Dés-)active la coloration syntaxique du code&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:MS Shell Dlg; font-size:8pt;&quot;&gt;source présenté ci-dessous. (nécessite encore des améliorations de performances) (Ctrl+H)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <location filename="../src/ToolBarWidget.ui" line="50"/>
-        <source>Ctrl+L</source>
-        <translation>Ctrl+L</translation>
     </message>
 </context>
 </TS>
