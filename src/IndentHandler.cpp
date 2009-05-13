@@ -1401,8 +1401,8 @@ void IndentHandler::retranslateUi() {
     actionSave_Indenter_Config_File->setShortcut(QApplication::translate("IndentHandler", "Alt+S", 0, QApplication::UnicodeUTF8));
 
     actionCreateShellScript->setText(QApplication::translate("IndentHandler", "Create Indenter Call Shell Script", 0, QApplication::UnicodeUTF8));
-    actionCreateShellScript->setToolTip(QApplication::translate("IndentHandler", "Create a shell script that calls the current selected indenter for formatting an as parameter given file with the current indent settings", 0, QApplication::UnicodeUTF8));
-    actionCreateShellScript->setStatusTip(QApplication::translate("IndentHandler", "Create a shell script that calls the current selected indenter for formatting an as parameter given file with the current indent settings", 0, QApplication::UnicodeUTF8));
+    actionCreateShellScript->setToolTip(QApplication::translate("IndentHandler", "Create a shell script that calls the current selected indenter for formatting an as parameter given file with the current indent settings.", 0, QApplication::UnicodeUTF8));
+    actionCreateShellScript->setStatusTip(QApplication::translate("IndentHandler", "Create a shell script that calls the current selected indenter for formatting an as parameter given file with the current indent settings.", 0, QApplication::UnicodeUTF8));
 
     actionResetIndenterParameters->setText(QApplication::translate("IndentHandler", "Reset indenter parameters", 0, QApplication::UnicodeUTF8));
     actionResetIndenterParameters->setToolTip(QApplication::translate("IndentHandler", "Resets all indenter parameters to the default values.", 0, QApplication::UnicodeUTF8));
