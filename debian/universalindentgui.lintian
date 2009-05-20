@@ -1,0 +1,4 @@
+# intended behavior. We don't want to depends on ruby.
+universalindentgui: ruby-script-but-no-ruby-dep ./usr/share/universalindentgui/indenters/example.rb
+universalindentgui: ruby-script-but-no-ruby-dep ./usr/share/universalindentgui/indenters/rbeautify.rb
+universalindentgui: ruby-script-but-no-ruby-dep ./usr/share/universalindentgui/indenters/ruby_formatter.rb

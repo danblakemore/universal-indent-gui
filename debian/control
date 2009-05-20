@@ -2,22 +2,44 @@ Source: universalindentgui
 Section: devel
 Priority: optional
 Maintainer: Thomas Schweitzer <mail@thomas-schweitzer.de>
-Build-Depends: debhelper (>= 6), libqt4-dev (>= 4.4), libqscintilla2-dev
-Standards-Version: 3.8.0
-Uploaders: Marcela Tiznado <mlt@debian.org>
-Homepage: http://universalindent.sourceforge.net/
+Uploaders: Fathi Boudra <fabo@debian.org>
+Build-Depends: quilt, debhelper (>= 7), libqt4-dev, libqscintilla2-dev
+Standards-Version: 3.8.1
+Homepage: http://universalindent.sourceforge.net
 
 Package: universalindentgui
 Architecture: any
-Depends: ${shlibs:Depends}
-Recommends: astyle, bcpp, csstidy, hindent, indent, perltidy, tidy, uncrustify, xmlindent
-Description: GUI frontend for nearly any code beautifier
- UniversalIndentGui is a GUI fontend for nearly any code beautifier.
- It allows you to comfortably change each parameter of a beautifier and
- directly see how the source code is affected done by a live preview.
- Many free available code beautifier, formatter and indenter are currently
- supported, like GNU Indent, Uncrustify, Artistic Styler, PHP Stylist,
- Ruby Beautify, HTML Tidy and many other (look at features for complete list).
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Recommends: astyle, bcpp, csstidy, hindent, indent, perltidy, tidy, uncrustify,
+ xmlindent
+Description: GUI frontend for several code beautifiers
+ UniversalIndentGui is a GUI fontend for several code beautifiers, currently
+ supporting:
+  * Artistic Styler
+  * BCPP
+  * Cobol Beautify
+  * CSSTidy
+  * Fortran 90 PPR
+  * GNU Indent
+  * GreatCode
+  * hindent
+  * HTB
+  * Javascript Decoder
+  * JSPPP
+  * Perl Tidy
+  * PHP_Beautifier
+  * PHP Code Beautifier
+  * PHP Stylist
+  * pindent
+  * Ruby Beautify
+  * Ruby Formatter
+  * Shell Indent
+  * (HTML) Tidy
+  * Uncrustify
+  * XML Indent
+ .
+ UniversalIndentGui allows you to tune a beautifier's configuration and see
+ how the changes affects a source example live. It is especially useful to
+ compare different beautifiers when you have to choose one of them.
  Currently not supported indenters can be easyly added by creating a
  configuration file for them.
- 

@@ -1,41 +1,59 @@
-This package was debianized by Thomas Schweitzer <mail@thomas-schweitzer.de> on
-Thu, 12 Feb 2009 17:15:00 +0100.
+This package was debianized by:
+
+    Fathi Boudra <fabo@debian.org> on Wed, 29 Apr 2009 10:50:58 +0200
 
 It was downloaded from:
 
-    <http://downloads.sourceforge.net/universalindent/universalindentgui-1.0.2.tar.gz>
-
-And the project homepage is:
-
-    <http://universalindent.sourceforge.net/>
+    http://universalindent.sourceforge.net
 
 Upstream Author:
 
-    Thomas Schweitzer <thomas_-_s@users.sourceforge.net>
+    Thomas Schweitzer <mail@thomas-schweitzer.de>
 
 Copyright:
 
-    <Copyright (C) 2006-2009 Thomas Schweitzer>
+    Copyright (C) 2006-2009 Thomas Schweitzer
 
-License:
+Copyright for indenters/PerlTidyLib.pm file:
 
-  - The sources of UniversalIndentGui are:
+    Copyright (C) 2000-2007 Steve Hancock
 
-    | Copyright (c) 2006-2009, Thomas Schweitzer
+    This file is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
 
-    | This program is free software; you can redistribute it and/or modify
-    | it under the terms of the GNU General Public License version 2.0 as
-    | published by the Free Software Foundation.
-    |
-    | This program is distributed in the hope that it will be useful,
-    | but WITHOUT ANY WARRANTY; without even the implied warranty of
-    | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    | GNU General Public License for more details.
-    |
-    | You should have received a copy of the GNU General Public License
-    | along with this program; if not, write to the Free Software
-    | Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
+Copyright for indenters/JsDecoder.js file:
 
-The Debian packaging is (C) 2009, Thomas Schweitzer <mail@thomas-schweitzer.de> and
-is licensed under the GPL 2, see `/usr/share/common-licenses/GPL-2'.
+    Copyright (C) 2004-2008 Cezary Tomczak
 
+    This file is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+UniversalIndentGUI license:
+
+    This package is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License version 2 as
+    published by the Free Software Foundation.
+
+    This package is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this package; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
+
+On Debian systems, the complete text of the GNU General
+Public License version 2 can be found in `/usr/share/common-licenses/GPL-2'
+and the GPL version 3 can be found in `/usr/share/common-licenses/GPL-3'.
+
+The Debian packaging is:
+
+    Copyright (C) 2009 Fathi Boudra <fabo@debian.org>
+
+and is licensed under the GPL version 2, 
+see `/usr/share/common-licenses/GPL-2'.

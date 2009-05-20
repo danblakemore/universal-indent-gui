@@ -1,11 +1,40 @@
 universalindentgui (1.0.2-1) unstable; urgency=low
 
-  * New upstream release
-  * Using a temporary directory with a random name for security reasons (Closes: #504726)
-  * Using correct mono spaced font on Linux systems (Closes: #483873)
-  * Corrected the path endings to always end with a slash (Closes: #486577)
+  * New upstream release:
+    - The default editor font type is now Monospace instead of Courier.
+      (Closes: #483873)
+  * Add 01_disable_check_for_update.diff patch:
+    Automatic check for update is disabled by default. (Closes: #514999)
+  * Bump debian/compat to 7.
+  * Update debian/control:
+    - Set Thomas Schweitzer as maintainer and myself as uploader.
+      (Closes: #483068)
+    - Bump debhelper build-dependency to 7.
+    - Bump Standards-Version to 3.8.1. No changes needed.
+    - Update recommended beautifier list.
+    - Update description to list all supported beautifiers.
+  * Update debian/copyright:
+    - Add PerlTidy.pm and JsDecoder.js missing copyrights.
+  * Cleanup debian/rules.
 
- -- Thomas Schweitzer <mail@thomas-schweitzer.de>  Thu, 12 Feb 2009 17:15:00 +0100
+ -- Fathi Boudra <fabo@debian.org>  Wed, 29 Apr 2009 10:50:58 +0200
+
+universalindentgui (0.8.1-1.2) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Avoid symlink attacks by using mkdtemp (Closes: 504726)
+
+ -- Eddy Petrișor <eddy.petrisor@gmail.com>  Wed, 12 Nov 2008 01:34:23 +0200
+
+universalindentgui (0.8.1-1.1) unstable; urgency=high
+
+  * Non-maintainer upload.
+  * urgency high since universalindentgui is actually useless by default
+    (can be hacked to work by setting TMPDIR='/tmp/a')
+  * fixed temporary path asamblation so indents can work
+    (Closes: 486577)
+
+ -- Eddy Petrișor <eddy.petrisor@gmail.com>  Wed, 05 Nov 2008 03:51:48 +0200
 
 universalindentgui (0.8.1-1) unstable; urgency=low
 
@@ -21,4 +50,3 @@ universalindentgui (0.8.0-1) unstable; urgency=low
   * Add man page missing in release archive (svn revision 603 plus fixes)
 
  -- Sebastian Pipping <webmaster@hartwork.org>  Tue, 08 Jan 2008 15:13:53 +0100
-

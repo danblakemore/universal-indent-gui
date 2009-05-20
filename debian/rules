@@ -1,95 +1,83 @@
 #!/usr/bin/make -f
-# -*- makefile -*-
-# Sample debian/rules that uses debhelper.
-# This file was originally written by Joey Hess and Craig Small.
-# As a special exception, when this file is copied by dh-make into a
-# dh-make output file, you may use that output file without restriction.
-# This special exception was added by Craig Small in version 0.37 of dh-make.
 
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
-
-
-
+include /usr/share/quilt/quilt.make
 
 configure: configure-stamp
-configure-stamp:
+configure-stamp: $(QUILT_STAMPFN)
 	dh_testdir
-	# Add here commands to configure the package.
+
+	# Fix executable problem
+	find . -type f -exec chmod a-x '{}' \;
+	chmod a+x debian/rules
+
 	qmake-qt4
-	rm -fv translations/qt_*.qm
 
 	touch configure-stamp
 
-
 build: build-stamp
-
-build-stamp: configure-stamp  
+build-stamp: configure-stamp
 	dh_testdir
 
-	# Add here commands to compile the package.
 	$(MAKE)
-	#docbook-to-man debian/universalindentgui.sgml > universalindentgui.1
 
 	touch $@
 
-clean: 
+clean: unpatch
 	dh_testdir
 	dh_testroot
 	rm -f build-stamp configure-stamp
 
-	# Add here commands to clean up after the build process.
-	#$(MAKE) clean
-	[ ! -f Makefile ] || $(MAKE) clean
-	rm -Rfv debug release
-	rm -fv translations/*.qm Makefile.* Makefile
-	rm -fv doc/universalindentgui.1.gz
+	[ ! -f Makefile ] || $(MAKE) distclean
+	rm -rf debug release
+	rm -f translations/*.qm Makefile.* doc/universalindentgui.1.gz
 
-	dh_clean 
+	dh_clean
 
 install: build
 	dh_testdir
 	dh_testroot
-	dh_clean -k 
+	dh_prep
 	dh_installdirs
 
-	# Add here commands to install the package into debian/universalindentgui.
 	$(MAKE) INSTALL_ROOT=$(CURDIR)/debian/universalindentgui install
-	
+
 	mkdir -p $(CURDIR)/debian/universalindentgui/usr/share/pixmaps
 	cp $(CURDIR)/resources/universalIndentGUI_32x32.xpm $(CURDIR)/debian/universalindentgui/usr/share/pixmaps/
+	
+	# Remove shellindent
+	#rm -f debian/universalindentgui/usr/share/universalindentgui/indenters/example.sh	
+	#rm -f debian/universalindentgui/usr/share/universalindentgui/indenters/shellindent.awk
+	#rm -f debian/universalindentgui/usr/share/universalindentgui/indenters/uigui_shellindent.ini
 
+	# Fix lintian warnings
+	find debian -type f -name '*.rb' | xargs chmod a+x
+
+	# Install lintian override
+	install -D -p -m644 debian/universalindentgui.lintian \
+		debian/universalindentgui/usr/share/lintian/overrides/universalindentgui
 
 # Build architecture-independent files here.
-binary-indep: build install
+binary-indep: install
 # We have nothing to do by default.
 
 # Build architecture-dependent files here.
-binary-arch: build install
+binary-arch: install
 	dh_testdir
 	dh_testroot
 	dh_installchangelogs CHANGELOG.txt
-	dh_installdocs doc doc/iniFileFormat.html --exclude=INSTALL.txt --exclude=doc/universalindentgui.1.gz --exclude=doc/universalindentgui.man
+	dh_installdocs
 	dh_installexamples
 #	dh_install
 	dh_installmenu
-#	dh_installdebconf	
-#	dh_installlogrotate
-#	dh_installemacsen
-#	dh_installpam
-#	dh_installmime
-#	dh_python
-#	dh_installinit
-#	dh_installcron
-#	dh_installinfo
 	dh_installman
 	dh_link
 	dh_strip
 	dh_compress
 	dh_fixperms
-#	dh_perl
-#	dh_makeshlibs
+	dh_makeshlibs
 	dh_installdeb
 	dh_shlibdeps
 	dh_gencontrol
