@@ -45,7 +45,7 @@
      <x>0</x>
      <y>0</y>
      <width>949</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuIndenter">
@@ -114,6 +114,7 @@
      <string>Help</string>
     </property>
     <addaction name="actionCheck_for_update"/>
+    <addaction name="actionShowLog"/>
     <addaction name="separator"/>
     <addaction name="actionAbout_UniversalIndentGUI"/>
    </widget>
@@ -445,6 +446,21 @@
    </property>
    <property name="text">
     <string>Clear Recently Opened List</string>
+   </property>
+  </action>
+  <action name="actionShowLog">
+   <property name="icon">
+    <iconset resource="../resources/Icons.qrc">
+     <normaloff>:/mainWindow/document-properties.png</normaloff>:/mainWindow/document-properties.png</iconset>
+   </property>
+   <property name="text">
+    <string>Show Log</string>
+   </property>
+   <property name="toolTip">
+    <string>Displays logging information.</string>
+   </property>
+   <property name="statusTip">
+    <string>Displays logging info about the currently running UiGUI application.</string>
    </property>
   </action>
  </widget>

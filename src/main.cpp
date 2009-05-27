@@ -21,7 +21,7 @@
 #include <QApplication>
 
 #include "UiGuiIndentServer.h"
-
+#include "UiGuiLogger.h"
 #include "UiGuiIniFileParser.h"
 #include "UiGuiSettings.h"
 
@@ -81,6 +81,15 @@ int main(int argc, char *argv[]) {
         }
     }
 
+    // Setting UTF-8 as default 8-Bit encoding to ensure that qDebug does no false string conversion.
+    QTextCodec::setCodecForCStrings( QTextCodec::codecForName("UTF-8") );
+    QTextCodec::setCodecForLocale( QTextCodec::codecForName("UTF-8") );
+    // Force creation of an UiGuiLogger instance here, to avoid recursion with SettingsPaths init function.
+    UiGuiLogger::getInstance();
+    qInstallMsgHandler( UiGuiLogger::messageHandler );
+#ifdef _DEBUG
+    UiGuiLogger::getInstance()->setVerboseLevel(0);
+#endif
 
     // Set default values for all by UniversalIndentGUI used settings objects.
     QCoreApplication::setOrganizationName("UniversalIndentGUI");
@@ -118,6 +127,7 @@ int main(int argc, char *argv[]) {
     }
 
     UiGuiSettings::deleteInstance();
+    UiGuiLogger::deleteInstance();
 
     return returnValue;
 }

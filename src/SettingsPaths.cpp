@@ -55,6 +55,10 @@ bool SettingsPaths::portableMode = false;
     In not portable mode (multiuser mode) only users home directory is used for writing config data.
  */
 void SettingsPaths::init() {
+    alreadyInitialized = true;
+
+    qDebug() << __LINE__ << " " << __FUNCTION__ << ": Initializing application paths.";
+
     // Get the applications binary path, with respect to MacOSXs use of the .app folder.
     applicationBinaryPath = QCoreApplication::applicationDirPath();
     // Remove any trailing slashes
@@ -146,7 +150,13 @@ void SettingsPaths::init() {
 #endif
     }
 
-    alreadyInitialized = true;
+    qDebug() << __LINE__ << " " << __FUNCTION__ << ": Paths are:" \
+        "<ul><li>applicationBinaryPath=" << applicationBinaryPath \
+        << "</li><li>settingsPath=" << settingsPath \
+        << "</li><li>globalFilesPath=" << globalFilesPath \
+        << "</li><li>indenterPath=" << indenterPath \
+        << "</li><li>tempPath=" << tempPath \
+        << "</li><li>Running in portable mode=" << portableMode << "</li></ul>";
 }
 
 

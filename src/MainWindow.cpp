@@ -20,6 +20,7 @@
 #include "MainWindow.h"
 
 #include "UiGuiVersion.h"
+#include "UiGuiLogger.h"
 
 //! \defgroup grp_MainWindow All concerning main window functionality.
 
@@ -162,6 +163,7 @@ void MainWindow::initMainWindow() {
     connect( actionExportPDF, SIGNAL(triggered()), this, SLOT(exportToPDF()) );
     connect( actionExportHTML, SIGNAL(triggered()), this, SLOT(exportToHTML()) );
     connect( actionCheck_for_update, SIGNAL(triggered()), updateCheckDialog, SLOT(checkForUpdateAndShowDialog()) );
+    connect( actionShowLog, SIGNAL(triggered()), UiGuiLogger::getInstance(), SLOT(show()) );
 
     // Init the menu for selecting one of the recently opened files.
     updateRecentlyOpenedList();

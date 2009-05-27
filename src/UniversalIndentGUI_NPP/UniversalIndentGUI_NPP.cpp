@@ -21,6 +21,7 @@
 /* include files */
 #include "UniversalIndentGUI_NPP.h"
 
+#include "UiGuiLogger.h"
 
 /* information for notepad */
 CONST INT   nbFunc  = 3;
@@ -57,6 +58,16 @@ BOOL APIENTRY DllMain( HANDLE hModule, DWORD reasonForCall, LPVOID lpReserved ) 
                 indentHandler->setWindowIcon(QIcon(QString::fromUtf8(":/mainWindow/icon2.png")));
                 indentHandler->setParameterChangedCallback( NULL );
                 indentHandler->setWindowClosedCallback( showUiGUI );
+
+                // Setting UTF-8 as default 8-Bit encoding to ensure that qDebug does no false string conversion.
+                QTextCodec::setCodecForCStrings( QTextCodec::codecForName("UTF-8") );
+                QTextCodec::setCodecForLocale( QTextCodec::codecForName("UTF-8") );
+                // Force creation of an UiGuiLogger instance here, to avoid recursion with SettingsPaths init function.
+                UiGuiLogger::getInstance();
+                qInstallMsgHandler( UiGuiLogger::messageHandler );
+#ifdef _DEBUG
+                UiGuiLogger::getInstance()->setVerboseLevel(0);
+#endif
             }
 
             /* Set function pointers */

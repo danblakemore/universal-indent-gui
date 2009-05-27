@@ -184,6 +184,7 @@ HEADERS += src/AboutDialog.h \
            src/UiGuiHighlighter.h \
            src/UiGuiIndentServer.h \
            src/UiGuiIniFileParser.h \
+           src/UiGuiLogger.h \
            src/UiGuiSettings.h \
            src/UiGuiSettingsDialog.h \
            src/UiGuiVersion.h \
@@ -192,6 +193,7 @@ HEADERS += src/AboutDialog.h \
 
 FORMS += src/MainWindow.ui \
          src/ToolBarWidget.ui \
+         src/UiGuiLoggerDialog.ui \
          src/UiGuiSettingsDialog.ui \
          src/AboutDialog.ui \
          src/UpdateCheckDialog.ui
@@ -207,6 +209,7 @@ SOURCES += src/AboutDialog.cpp \
            src/UiGuiHighlighter.cpp \
            src/UiGuiIndentServer.cpp \
            src/UiGuiIniFileParser.cpp \
+           src/UiGuiLogger.cpp \
            src/UiGuiSettings.cpp \
            src/UiGuiSettingsDialog.cpp \
            src/UiGuiVersion.cpp \

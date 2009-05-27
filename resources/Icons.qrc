@@ -14,6 +14,7 @@
     <file>language-zh_TW.png</file>
   </qresource>
   <qresource prefix="/mainWindow" >
+    <file>document-properties.png</file>
     <file>Icon1.png</file>
     <file>universalIndentGUI.svg</file>
     <file>document-open.png</file>

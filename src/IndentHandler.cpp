@@ -19,6 +19,9 @@
 
 #include "IndentHandler.h"
 
+
+#include <QtDebug>
+
 #include "UiGuiSettings.h"
 
 #ifdef Q_OS_WIN32
@@ -215,7 +218,7 @@ QMenu* IndentHandler::getIndenterMenu() {
 
 /*!
     \brief Returns the actions of the context menu used for some actions like saving the indenter config file.
-*/
+ */
 QList<QAction*> IndentHandler::getIndenterMenuActions() {
     QList<QAction*> actionList;
     actionList << actionLoad_Indenter_Config_File << actionSave_Indenter_Config_File << actionCreateShellScript << actionResetIndenterParameters;
@@ -350,7 +353,7 @@ QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtensi
 
     The \a inputFileExtension has to be given as parameter so the called indenter
     can identify the programming language if needed.
-*/
+ */
 QString IndentHandler::callJavaScriptIndenter(QString sourceCode) {
     QScriptEngine engine;
 
@@ -374,7 +377,7 @@ QString IndentHandler::callJavaScriptIndenter(QString sourceCode) {
 
     The \a inputFileExtension has to be given as parameter so the called indenter
     can identify the programming language if needed.
-*/
+ */
 QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputFileExtension) {
     Q_ASSERT_X( !inputFileName.isEmpty(), "callIndenter", "inputFileName is empty" );
 //    Q_ASSERT_X( !outputFileName.isEmpty(), "callIndenter", "outputFileName is empty" );
@@ -432,6 +435,8 @@ QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputF
     // the Unicode path on their own.
     // Because of this the path gets converted to Windows short paths using the 8.3 notation.
 
+    qDebug() << __LINE__ << " " << __FUNCTION__ << ": Temp dir before trying to convert it to short Windows path is" << tempDirctoryStr;
+
     // At first convert the temp path to Windows like separators.
     QString tempDirctoryStrHelper = QDir::toNativeSeparators(tempDirctoryStr).replace("\\", "\\\\");
     // Then convert the QString to a WCHAR array and NULL terminate it.
@@ -452,7 +457,17 @@ QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputF
         tempDirctoryStrHelper = QString::fromWCharArray( buffer );
         tempDirctoryStr = QDir::fromNativeSeparators(tempDirctoryStrHelper).replace("//", "/");
         delete buffer;
+        
+        // Check whether the short path still contains some kind of non ascii characters.
+        if ( tempDirctoryStr.length() != tempDirctoryStr.toAscii().length() ) {
+            qWarning() << __LINE__ << " " << __FUNCTION__ << ": Shortened path still contains non ascii characters. Could cause some indenters not to work properly!";
+        }
     }
+    else {
+        qWarning() << __LINE__ << " " << __FUNCTION__ << ": Couldn't retrieve a short version of the temporary path!";
+    }
+
+    qDebug() << __LINE__ << " " << __FUNCTION__ << ": Temp dir after trying to convert it to short Windows path is " << tempDirctoryStr;
 
     delete tempDirctoryWindowsStr;
 #endif
