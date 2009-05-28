@@ -20,6 +20,8 @@
 #ifndef UIGUILOGGER_H
 #define UIGUILOGGER_H
 
+#define UiGuiInfoMsg QtMsgType(4)
+
 #include <QDialog>
 #include <QFile>
 

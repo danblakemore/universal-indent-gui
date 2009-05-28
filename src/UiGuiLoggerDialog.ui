@@ -37,7 +37,7 @@
      <item>
       <widget class="QToolButton" name="cleanUpToolButton">
        <property name="toolTip">
-        <string>Cleanup log</string>
+        <string>Clear log</string>
        </property>
        <property name="text">
         <string>...</string>

@@ -93,6 +93,11 @@ void UiGuiLogger::messageHandler(QtMsgType type, const char *msg) {
             break;
         case QtFatalMsg:
             message += " <span style=\"font-weight:bold; color:#D60000;\">Fatal:</span> ";
+        // This one is no Qt message type, but can be used to send info messages to the log
+        // by calling UiGuiLogger::messageHandler() directly.
+        case UiGuiInfoMsg:
+            message += " <span style=\"font-weight:bold; color:darkgray;\">Info:</span> ";
+            break;
     }
 
     // Append the ti UTF-8 back converted message parameter.
