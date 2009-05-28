@@ -54,8 +54,8 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/D &quot;QT_LARGEFILE_SUPPORT&quot; /D &quot;QT_DLL&quot; /D &quot;QT_GUI_LIB&quot; /D &quot;QT_CORE_LIB&quot; /D &quot;QT_THREAD_SUPPORT&quot;"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(OutDir)\tmp\uic\&quot;;&quot;$(QTDIR)\include\QtScript&quot;"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
+				AdditionalIncludeDirectories="&quot;$(OutDir)\tmp\uic\&quot;;&quot;$(QTDIR)\include\QtNetwork&quot;;&quot;$(QTDIR)\include\QtScript&quot;"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;QT_NO_CAST_TO_ASCII"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -255,6 +255,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\UiGuiLogger.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\UiGuiSettings.cpp"
 				>
 			</File>
@@ -317,6 +321,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\UiGuiLogger.h"
+				>
+			</File>
+			<File
 				RelativePath=".\UiGuiSettings.h"
 				>
 			</File>
@@ -363,6 +371,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\UiGuiLoggerDialog.ui"
+				>
+			</File>
+			<File
 				RelativePath=".\UiGuiSettingsDialog.ui"
 				>
 			</File>
@@ -400,6 +412,10 @@
 			</File>
 			<File
 				RelativePath="$(OutDir)\tmp\moc\moc_UiGuiIndentServer.cpp"
+				>
+			</File>
+			<File
+				RelativePath="$(OutDir)\tmp\moc\moc_UiGuiLogger.cpp"
 				>
 			</File>
 			<File
