@@ -22,6 +22,8 @@
 #include "UniversalIndentGUI_NPP.h"
 
 #include "UiGuiLogger.h"
+#include "UiGuiSystemInfo.h"
+#include "UiGuiVersion.h"
 
 /* information for notepad */
 CONST INT   nbFunc  = 3;
@@ -65,6 +67,9 @@ BOOL APIENTRY DllMain( HANDLE hModule, DWORD reasonForCall, LPVOID lpReserved ) 
                 // Force creation of an UiGuiLogger instance here, to avoid recursion with SettingsPaths init function.
                 UiGuiLogger::getInstance();
                 qInstallMsgHandler( UiGuiLogger::messageHandler );
+                UiGuiLogger::messageHandler( UiGuiInfoMsg, QString("Starting UiGUI Version %1 %2").arg(PROGRAM_VERSION_STRING).arg(PROGRAM_REVISION).toAscii() );
+                UiGuiLogger::messageHandler( UiGuiInfoMsg, QString("Running on %1").arg(UiGuiSystemInfo::getOperatingSystem()).toAscii() );
+
 #ifdef _DEBUG
                 UiGuiLogger::getInstance()->setVerboseLevel(0);
 #endif

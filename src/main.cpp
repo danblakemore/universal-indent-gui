@@ -25,6 +25,7 @@
 #include "UiGuiIniFileParser.h"
 #include "UiGuiSettings.h"
 #include "UiGuiVersion.h"
+#include "UiGuiSystemInfo.h"
 
 /*!
     /brief Entry point to UniversalIndentGUI application.
@@ -55,6 +56,7 @@ int main(int argc, char *argv[]) {
     UiGuiLogger::getInstance();
     qInstallMsgHandler( UiGuiLogger::messageHandler );
     UiGuiLogger::messageHandler( UiGuiInfoMsg, QString("Starting UiGUI Version %1 %2").arg(PROGRAM_VERSION_STRING).arg(PROGRAM_REVISION).toAscii() );
+    UiGuiLogger::messageHandler( UiGuiInfoMsg, QString("Running on %1").arg(UiGuiSystemInfo::getOperatingSystem()).toAscii() );
 
     // Parse command line arguments. First parameter is the executable itself.
     for ( int i = 1; i < argc; i++ ) {

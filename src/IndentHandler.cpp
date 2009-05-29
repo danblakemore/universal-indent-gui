@@ -516,7 +516,7 @@ QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputF
     // Set the directory for the indenter execution
     indentProcess.setWorkingDirectory( QFileInfo(tempDirctoryStr).absoluteFilePath() );
 
-    qDebug() << __LINE__ << " " << __FUNCTION__ << ": Will call the indenter in the directory " << QFileInfo(tempDirctoryStr).absoluteFilePath() << " using this commandline call: " << indenterCompleteCallString;
+    qDebug() << __LINE__ << " " << __FUNCTION__ << ": Will call the indenter in the directory " << indentProcess.workingDirectory() << " using this commandline call: " << indenterCompleteCallString;
 
     indentProcess.start(indenterCompleteCallString);
 

@@ -187,6 +187,7 @@ HEADERS += src/AboutDialog.h \
            src/UiGuiLogger.h \
            src/UiGuiSettings.h \
            src/UiGuiSettingsDialog.h \
+           src/UiGuiSystemInfo.h \
            src/UiGuiVersion.h \
            src/UpdateCheckDialog.h
 
@@ -212,6 +213,7 @@ SOURCES += src/AboutDialog.cpp \
            src/UiGuiLogger.cpp \
            src/UiGuiSettings.cpp \
            src/UiGuiSettingsDialog.cpp \
+           src/UiGuiSystemInfo.cpp \
            src/UiGuiVersion.cpp \
            src/UpdateCheckDialog.cpp
 

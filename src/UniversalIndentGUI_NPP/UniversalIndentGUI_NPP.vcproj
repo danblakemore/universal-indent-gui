@@ -240,6 +240,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\UiGuiSystemInfo.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\UniversalIndentGUI_NPP.cpp"
 				>
 			</File>
@@ -275,6 +279,10 @@
 			</File>
 			<File
 				RelativePath="..\UiGuiSettings.h"
+				>
+			</File>
+			<File
+				RelativePath="..\UiGuiSystemInfo.h"
 				>
 			</File>
 			<File

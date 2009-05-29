@@ -267,6 +267,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\UiGuiSystemInfo.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\UiGuiVersion.cpp"
 				>
 			</File>
@@ -330,6 +334,10 @@
 			</File>
 			<File
 				RelativePath=".\UiGuiSettingsDialog.h"
+				>
+			</File>
+			<File
+				RelativePath=".\UiGuiSystemInfo.h"
 				>
 			</File>
 			<File
