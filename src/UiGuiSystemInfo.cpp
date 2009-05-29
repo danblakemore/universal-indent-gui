@@ -128,7 +128,7 @@ QString UiGuiSystemInfo::getOperatingSystem() {
 
     process.start("uname -r");
     result = process.waitForFinished(1000);
-    QString kernel = process.readAllStandardOutput().trimmed();
+    QString rev = process.readAllStandardOutput().trimmed();
 
     process.start("uname -m");
     result = process.waitForFinished(1000);
@@ -145,7 +145,7 @@ QString UiGuiSystemInfo::getOperatingSystem() {
         result = process.waitForFinished(1000);
         QString timestamp = process.readAllStandardOutput().trimmed();
 
-        operatingSystemString = os + "" + kernel + "" + arch + "" + timestamp;
+        operatingSystemString = os + " " + rev + " (" + arch + " " + timestamp + ")";
     }
     else if ( os == "AIX" ) {
         process.start("oslevel -r");
@@ -157,7 +157,7 @@ QString UiGuiSystemInfo::getOperatingSystem() {
     else if ( os == "Linux" ) {
         QString dist;
         QString pseudoname;
-        QString rev;
+        QString kernel;
 
         if ( QFile::exists("/etc/redhat-release") ) {
             dist = "RedHat";
@@ -190,6 +190,17 @@ QString UiGuiSystemInfo::getOperatingSystem() {
             result = process.waitForFinished(1000);
             rev = process.readAllStandardOutput().trimmed();
         }
+        else if ( QFile::exists("/etc/lsb-release") ) {
+            dist = "Ubuntu";
+
+            process.start("cat /etc/lsb-release | sed s/.*\\(// | sed s/\\)//");
+            result = process.waitForFinished(1000);
+            pseudoname = process.readAllStandardOutput().trimmed();
+
+            process.start("cat /etc/lsb-release | sed s/.*release\\ // | sed s/\\ .*//");
+            result = process.waitForFinished(1000);
+            rev = process.readAllStandardOutput().trimmed();
+        }
         else if ( QFile::exists("/etc/debian_version") ) {
             dist = "Debian";
 
@@ -205,6 +216,8 @@ QString UiGuiSystemInfo::getOperatingSystem() {
             result = process.waitForFinished(1000);
             dist += process.readAllStandardOutput().trimmed();
         }
+
+        operatingSystemString = os + " " + dist + " " + rev + " (" + pseudoname + " " + kernel + " " + mach + ")";
     }
 #endif
 
