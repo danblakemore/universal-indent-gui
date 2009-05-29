@@ -21,6 +21,8 @@
 
 #include <QString>
 #include <QSysInfo>
+#include <QProcess>
+#include <QFile>
 
 UiGuiSystemInfo::UiGuiSystemInfo() {
 }
@@ -117,6 +119,93 @@ QString UiGuiSystemInfo::getOperatingSystem() {
     }
 #else
     //TODO: Detect Unix, Linux etc. distro as described on http://www.novell.com/coolsolutions/feature/11251.html
+    operatingSystemString = "Linux";
+    QProcess process;
+
+    process.start("uname -s");
+    bool result = process.waitForFinished(1000);
+    QString os = process.readAllStandardOutput().trimmed();
+
+    process.start("uname -r");
+    result = process.waitForFinished(1000);
+    QString kernel = process.readAllStandardOutput().trimmed();
+
+    process.start("uname -m");
+    result = process.waitForFinished(1000);
+    QString mach = process.readAllStandardOutput().trimmed();
+
+    if ( os == "SunOS" ) {
+        os = "Solaris";
+
+        process.start("uname -p");
+        result = process.waitForFinished(1000);
+        QString arch = process.readAllStandardOutput().trimmed();
+
+        process.start("uname -v");
+        result = process.waitForFinished(1000);
+        QString timestamp = process.readAllStandardOutput().trimmed();
+
+        operatingSystemString = os + "" + kernel + "" + arch + "" + timestamp;
+    }
+    else if ( os == "AIX" ) {
+        process.start("oslevel -r");
+        result = process.waitForFinished(1000);
+        QString oslevel = process.readAllStandardOutput().trimmed();
+
+        operatingSystemString = os + "oslevel " + oslevel;
+    }
+    else if ( os == "Linux" ) {
+        QString dist;
+        QString pseudoname;
+        QString rev;
+
+        if ( QFile::exists("/etc/redhat-release") ) {
+            dist = "RedHat";
+
+            process.start("cat /etc/redhat-release | sed s/.*\\(// | sed s/\\)//");
+            result = process.waitForFinished(1000);
+            pseudoname = process.readAllStandardOutput().trimmed();
+
+            process.start("cat /etc/redhat-release | sed s/.*release\\ // | sed s/\\ .*//");
+            result = process.waitForFinished(1000);
+            rev = process.readAllStandardOutput().trimmed();
+        }
+        else if ( QFile::exists("/etc/SUSE-release") ) {
+            process.start("cat /etc/SUSE-release | tr \"\n\" ' '| sed s/VERSION.*//");
+            result = process.waitForFinished(1000);
+            dist = process.readAllStandardOutput().trimmed();
+
+            process.start("cat /etc/SUSE-release | tr \"\n\" ' ' | sed s/.*=\\ //");
+            result = process.waitForFinished(1000);
+            rev = process.readAllStandardOutput().trimmed();
+        }
+        else if ( QFile::exists("/etc/mandrake-release") ) {
+            dist = "Mandrake";
+
+            process.start("cat /etc/mandrake-release | sed s/.*\\(// | sed s/\\)//");
+            result = process.waitForFinished(1000);
+            pseudoname = process.readAllStandardOutput().trimmed();
+
+            process.start("cat /etc/mandrake-release | sed s/.*release\\ // | sed s/\\ .*//");
+            result = process.waitForFinished(1000);
+            rev = process.readAllStandardOutput().trimmed();
+        }
+        else if ( QFile::exists("/etc/debian_version") ) {
+            dist = "Debian";
+
+            process.start("cat /etc/debian_version");
+            result = process.waitForFinished(1000);
+            dist += process.readAllStandardOutput().trimmed();
+
+            rev = "";
+        }
+
+        if ( QFile::exists("/etc/UnitedLinux-release") ) {
+            process.start("cat /etc/UnitedLinux-release | tr \"\n\" ' ' | sed s/VERSION.*//");
+            result = process.waitForFinished(1000);
+            dist += process.readAllStandardOutput().trimmed();
+        }
+    }
 #endif
 
     return operatingSystemString;
