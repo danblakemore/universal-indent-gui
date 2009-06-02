@@ -227,7 +227,7 @@ bool SettingsPaths::getPortableMode() {
 
 
 /*!
-    \brief Returns true if portable mode shall be used.
+    \brief Completely deletes the created temporary directory with all of its content.
  */
 void SettingsPaths::cleanAndRemoveTempDir() {
     QDirIterator dirIterator(tempPath, QDirIterator::Subdirectories);
@@ -245,7 +245,10 @@ void SettingsPaths::cleanAndRemoveTempDir() {
             // since it must be empty.
             if ( !directoryStack.isEmpty() && !currentDirOrFile.startsWith(directoryStack.top()) ) {
                 QString dirToBeRemoved = directoryStack.pop();
-                noErrorsOccurred &= QDir(dirToBeRemoved).rmdir(dirToBeRemoved);
+                bool couldRemoveDir = QDir(dirToBeRemoved).rmdir(dirToBeRemoved);
+                noErrorsOccurred &= couldRemoveDir;
+                if ( couldRemoveDir == false )
+                    qWarning() << __LINE__ << " " << __FUNCTION__ << "Could not remove the directory: " << dirToBeRemoved;
                 //qDebug() << "Removing Dir " << directoryStack.pop();
             }
             
@@ -256,11 +259,15 @@ void SettingsPaths::cleanAndRemoveTempDir() {
             }
             // otherwise it must be a file, so delete it.
             else {
-                noErrorsOccurred &= QFile::remove( currentDirOrFile );
+                bool couldRemoveFile = QFile::remove( currentDirOrFile );
+                noErrorsOccurred &= couldRemoveFile;
+                if ( couldRemoveFile == false )
+                    qWarning() << __LINE__ << " " << __FUNCTION__ << "Could not remove the file: " << currentDirOrFile;
                 //qDebug() << "Removing File " << currentDirOrFile;
             }
         }
     }
     noErrorsOccurred &= QDir(tempPath).rmdir(tempPath);
-    //qDebug() << "Removing tempPath " << tempPath;
+    if ( noErrorsOccurred == false )
+        qWarning() << __LINE__ << " " << __FUNCTION__ << "While cleaning up the temp dir an error occurred.";
 }
