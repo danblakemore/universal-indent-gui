@@ -157,7 +157,7 @@ QString UiGuiSystemInfo::getOperatingSystem() {
     else if ( os == "Linux" ) {
         QString dist;
         QString pseudoname;
-        QString kernel;
+        QString kernel = rev;
 
         if ( QFile::exists("/etc/redhat-release") ) {
             dist = "RedHat";
