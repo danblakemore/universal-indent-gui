@@ -554,6 +554,7 @@ QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputF
                                "(STDOUT):" + encodeToHTML( indentProcess.readAllStandardOutput() ) + "<br>" +
                                "(STDERR):" + encodeToHTML( indentProcess.readAllStandardError() ) + "<br>" +
                                "</pre></html></body>";
+        qWarning() << __LINE__ << " " << __FUNCTION__ << processReturnString;
         QApplication::restoreOverrideCursor();
         errorMessageDialog->showMessage(tr("Error calling Indenter"), processReturnString);
     }
@@ -568,6 +569,7 @@ QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputF
                               "(STDERR):" + encodeToHTML( indentProcess.readAllStandardError() ) + "<br>" +
                               tr("<br><b>Callstring was:</b> ") + encodeToHTML(indenterCompleteCallString) + 
                               "</html></body>";
+        qWarning() << __LINE__ << " " << __FUNCTION__ << processReturnString;
         QApplication::restoreOverrideCursor();
         errorMessageDialog->showMessage( tr("Indenter returned error"), processReturnString );
     }
