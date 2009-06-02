@@ -162,44 +162,46 @@ QString UiGuiSystemInfo::getOperatingSystem() {
         if ( QFile::exists("/etc/redhat-release") ) {
             dist = "RedHat";
 
-            process.start("cat /etc/redhat-release | sed s/.*\\(// | sed s/\\)//");
+            process.start("sh -c \"cat /etc/redhat-release | sed s/.*\\(// | sed s/\\)//\"");
             result = process.waitForFinished(1000);
             pseudoname = process.readAllStandardOutput().trimmed();
 
-            process.start("cat /etc/redhat-release | sed s/.*release\\ // | sed s/\\ .*//");
+            process.start("sh -c \"cat /etc/redhat-release | sed s/.*release\\ // | sed s/\\ .*//\"");
             result = process.waitForFinished(1000);
             rev = process.readAllStandardOutput().trimmed();
         }
         else if ( QFile::exists("/etc/SUSE-release") ) {
-            process.start("cat /etc/SUSE-release | tr \"\n\" ' '| sed s/VERSION.*//");
+            process.start("sh -c \"cat /etc/SUSE-release | tr '\\n' ' '| sed s/VERSION.*//\"");
             result = process.waitForFinished(1000);
             dist = process.readAllStandardOutput().trimmed();
 
-            process.start("cat /etc/SUSE-release | tr \"\n\" ' ' | sed s/.*=\\ //");
+            process.start("sh -c \"cat /etc/SUSE-release | tr '\\n' ' ' | sed s/.*=\\ //\"");
             result = process.waitForFinished(1000);
             rev = process.readAllStandardOutput().trimmed();
         }
         else if ( QFile::exists("/etc/mandrake-release") ) {
             dist = "Mandrake";
 
-            process.start("cat /etc/mandrake-release | sed s/.*\\(// | sed s/\\)//");
+            process.start("sh -c \"cat /etc/mandrake-release | sed s/.*\\(// | sed s/\\)//\"");
             result = process.waitForFinished(1000);
             pseudoname = process.readAllStandardOutput().trimmed();
 
-            process.start("cat /etc/mandrake-release | sed s/.*release\\ // | sed s/\\ .*//");
+            process.start("sh -c \"cat /etc/mandrake-release | sed s/.*release\\ // | sed s/\\ .*//\"");
             result = process.waitForFinished(1000);
             rev = process.readAllStandardOutput().trimmed();
         }
         else if ( QFile::exists("/etc/lsb-release") ) {
             dist = "Ubuntu";
 
-            process.start("cat /etc/lsb-release | sed s/.*\\(// | sed s/\\)//");
-            result = process.waitForFinished(1000);
-            pseudoname = process.readAllStandardOutput().trimmed();
-
-            process.start("cat /etc/lsb-release | sed s/.*release\\ // | sed s/\\ .*//");
+            QString processCall = "sh -c \"cat /etc/lsb-release | tr '\\n' ' ' | sed s/.*DISTRIB_RELEASE=// | sed s/\\ .*//\"";
+            process.start( processCall );
             result = process.waitForFinished(1000);
             rev = process.readAllStandardOutput().trimmed();
+            QString errorStr = process.readAllStandardError();
+
+            process.start("sh -c \"cat /etc/lsb-release | tr '\\n' ' ' | sed s/.*DISTRIB_CODENAME=// | sed s/\\ .*//\"");
+            result = process.waitForFinished(1000);
+            pseudoname = process.readAllStandardOutput().trimmed();
         }
         else if ( QFile::exists("/etc/debian_version") ) {
             dist = "Debian";
@@ -212,7 +214,7 @@ QString UiGuiSystemInfo::getOperatingSystem() {
         }
 
         if ( QFile::exists("/etc/UnitedLinux-release") ) {
-            process.start("cat /etc/UnitedLinux-release | tr \"\n\" ' ' | sed s/VERSION.*//");
+            process.start("sh -c \"cat /etc/UnitedLinux-release | tr '\\n' ' ' | sed s/VERSION.*//\"");
             result = process.waitForFinished(1000);
             dist += process.readAllStandardOutput().trimmed();
         }
