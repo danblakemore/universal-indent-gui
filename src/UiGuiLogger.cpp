@@ -50,11 +50,38 @@ UiGuiLogger::UiGuiLogger() : QDialog() {
 
     // On different systems it may be that "QDir::tempPath()" ends with a "/" or not. So check this.
     // Remove any trailing slashes.
-    QString tempPath = QDir::tempPath();
+    QString tempPath = QFileInfo( SettingsPaths::getTempPath() ).absolutePath();
     while ( tempPath.right(1) == "/" ) {
         tempPath.chop(1);
     }
-    logFile.setFileName( tempPath + "/UiGUI_log.html" );
+
+    // To make the temporary log file invulnerable against file symbolic link hacks
+    // append the current date and time up to milliseconds to its name and a random character.
+    QString logFileName = "UiGUI_log_" + QDateTime::currentDateTime().toString("yyyyMMdd");
+    logFileName += "-" + QDateTime::currentDateTime().toString("hhmmsszzz");
+    // By random decide whether to append a number or an upper or lower case character.
+    qsrand( time(NULL) );
+    unsigned char randomChar;
+    switch ( qrand() % 3 ) {
+        // Append a number from 0 to 9.
+        case 0:
+            randomChar = qrand() % 10 + '0';
+            break;
+        // Append a upper case characer between A and Z.
+        case 1:
+            randomChar = qrand() % 26 + 'A';
+            break;
+        // Append a lower case characer between a and z.
+        default:
+            randomChar = qrand() % 26 + 'a';
+            break;
+    }
+    logFileName += "_" + QString(randomChar) + ".html";
+
+    logFile.setFileName( tempPath + "/" + logFileName );
+
+    // Set the tooltip of the open log file folder button to show the unique name of the log file.
+    openLogFileFolderToolButton->setToolTip( openLogFileFolderToolButton->toolTip() + " (" + logFileName + ")" );
 
     connect( openLogFileFolderToolButton, SIGNAL(clicked()), this, SLOT(openLogFileFolder()) );
 

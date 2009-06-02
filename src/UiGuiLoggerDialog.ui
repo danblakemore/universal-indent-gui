@@ -51,7 +51,10 @@
      <item>
       <widget class="QToolButton" name="openLogFileFolderToolButton">
        <property name="toolTip">
-        <string>Open folder containing log file. (UiGUI_log.html)</string>
+        <string>Open folder containing log file.</string>
+       </property>
+       <property name="statusTip">
+        <string>Open folder containing log file.</string>
        </property>
        <property name="icon">
         <iconset resource="../resources/Icons.qrc">
