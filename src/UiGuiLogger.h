@@ -51,6 +51,7 @@ public:
 
 private:
     UiGuiLogger();
+    void writeToLogFile(const QString message);
 
     static UiGuiLogger* instance;
     QtMsgType verboseLevel;

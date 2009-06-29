@@ -46,42 +46,11 @@ UiGuiLogger* UiGuiLogger::getInstance() {
  */
 UiGuiLogger::UiGuiLogger() : QDialog() {
     setupUi(this);
+#ifdef _DEBUG
+    verboseLevel = QtDebugMsg;
+#else
     verboseLevel = QtWarningMsg;
-
-    // On different systems it may be that "QDir::tempPath()" ends with a "/" or not. So check this.
-    // Remove any trailing slashes.
-    QString tempPath = QFileInfo( SettingsPaths::getTempPath() ).absolutePath();
-    while ( tempPath.right(1) == "/" ) {
-        tempPath.chop(1);
-    }
-
-    // To make the temporary log file invulnerable against file symbolic link hacks
-    // append the current date and time up to milliseconds to its name and a random character.
-    QString logFileName = "UiGUI_log_" + QDateTime::currentDateTime().toString("yyyyMMdd");
-    logFileName += "-" + QDateTime::currentDateTime().toString("hhmmsszzz");
-    // By random decide whether to append a number or an upper or lower case character.
-    qsrand( time(NULL) );
-    unsigned char randomChar;
-    switch ( qrand() % 3 ) {
-        // Append a number from 0 to 9.
-        case 0:
-            randomChar = qrand() % 10 + '0';
-            break;
-        // Append a upper case characer between A and Z.
-        case 1:
-            randomChar = qrand() % 26 + 'A';
-            break;
-        // Append a lower case characer between a and z.
-        default:
-            randomChar = qrand() % 26 + 'a';
-            break;
-    }
-    logFileName += "_" + QString(randomChar) + ".html";
-
-    logFile.setFileName( tempPath + "/" + logFileName );
-
-    // Set the tooltip of the open log file folder button to show the unique name of the log file.
-    openLogFileFolderToolButton->setToolTip( openLogFileFolderToolButton->toolTip() + " (" + logFileName + ")" );
+#endif
 
     connect( openLogFileFolderToolButton, SIGNAL(clicked()), this, SLOT(openLogFileFolder()) );
 
@@ -134,11 +103,7 @@ void UiGuiLogger::messageHandler(QtMsgType type, const char *msg) {
     instance->logTextEdit->append( message );
 
     // Write/append the log message to the log file.
-    if ( instance->logFile.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append) ) {
-        QTextStream out(&instance->logFile);
-        out << message << "\n";
-        instance->logFile.close();
-    }
+    instance->writeToLogFile( message );
 
     // In case of a fatal error abort the application.
     if ( type == QtFatalMsg )
@@ -176,4 +141,57 @@ void UiGuiLogger::deleteInstance() {
  */
 void UiGuiLogger::openLogFileFolder() {
     QDesktopServices::openUrl( QFileInfo( logFile ).absolutePath() );
+}
+
+
+/*!
+    \brief Writes the \a message to the used log file.
+ */
+void UiGuiLogger::writeToLogFile(const QString message) {
+
+    QString testname = logFile.fileName();
+    if ( logFile.fileName().isEmpty() ) {
+        // On different systems it may be that "QDir::tempPath()" ends with a "/" or not. So check this.
+        // Remove any trailing slashes.
+        QString tempPath = QFileInfo( SettingsPaths::getTempPath() ).absolutePath();
+        while ( tempPath.right(1) == "/" ) {
+            tempPath.chop(1);
+        }
+
+        // To make the temporary log file invulnerable against file symbolic link hacks
+        // append the current date and time up to milliseconds to its name and a random character.
+        QString logFileName = "UiGUI_log_" + QDateTime::currentDateTime().toString("yyyyMMdd");
+        logFileName += "-" + QDateTime::currentDateTime().toString("hhmmsszzz");
+        // By random decide whether to append a number or an upper or lower case character.
+        qsrand( time(NULL) );
+        unsigned char randomChar;
+        switch ( qrand() % 3 ) {
+            // Append a number from 0 to 9.
+        case 0:
+            randomChar = qrand() % 10 + '0';
+            break;
+            // Append a upper case characer between A and Z.
+        case 1:
+            randomChar = qrand() % 26 + 'A';
+            break;
+            // Append a lower case characer between a and z.
+        default:
+            randomChar = qrand() % 26 + 'a';
+            break;
+        }
+        logFileName += "_" + QString(randomChar) + ".html";
+
+        logFile.setFileName( tempPath + "/" + logFileName );
+
+        // Set the tooltip of the open log file folder button to show the unique name of the log file.
+        openLogFileFolderToolButton->setToolTip( openLogFileFolderToolButton->toolTip() + " (" + logFileName + ")" );
+
+    }
+
+    // Write/append the log message to the log file.
+    if ( logFile.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append) ) {
+        QTextStream out(&logFile);
+        out << message << "\n";
+        logFile.close();
+    }
 }
