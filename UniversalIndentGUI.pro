@@ -162,6 +162,7 @@ win32 {
 
 CONFIG(debug, debug|release) {
     DESTDIR = ./debug
+    DEFINES += _DEBUG DEBUG
 } else {
     DESTDIR = ./release
 }
