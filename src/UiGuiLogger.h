@@ -24,6 +24,7 @@
 
 #include <QDialog>
 #include <QFile>
+#include <QStringList>
 
 #include "ui_UiGuiLoggerDialog.h"
 
@@ -50,12 +51,14 @@ public:
     void setVerboseLevel(int level);
 
 private:
+    enum LogFileInitState { NOTINITIALZED, INITIALIZING, INITIALZED } logFileInitState;
     UiGuiLogger();
     void writeToLogFile(const QString message);
 
     static UiGuiLogger* instance;
     QtMsgType verboseLevel;
     QFile logFile;
+    QStringList messageQueue;
 
 private slots:
     void openLogFileFolder();

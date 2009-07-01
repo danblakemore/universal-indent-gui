@@ -19,6 +19,7 @@
 
 #include "UiGuiLogger.h"
 
+#include <ctime>
 #include <QDateTime>
 #include <QFile>
 #include <QUrl>
@@ -51,6 +52,8 @@ UiGuiLogger::UiGuiLogger() : QDialog() {
 #else
     verboseLevel = QtWarningMsg;
 #endif
+
+    logFileInitState = NOTINITIALZED;
 
     connect( openLogFileFolderToolButton, SIGNAL(clicked()), this, SLOT(openLogFileFolder()) );
 
@@ -149,8 +152,10 @@ void UiGuiLogger::openLogFileFolder() {
  */
 void UiGuiLogger::writeToLogFile(const QString message) {
 
-    QString testname = logFile.fileName();
-    if ( logFile.fileName().isEmpty() ) {
+    // If the file where all logging messages should go to isn't initilized yet, do that now.
+    if ( logFileInitState == NOTINITIALZED ) {
+        logFileInitState = INITIALIZING;
+
         // On different systems it may be that "QDir::tempPath()" ends with a "/" or not. So check this.
         // Remove any trailing slashes.
         QString tempPath = QFileInfo( SettingsPaths::getTempPath() ).absolutePath();
@@ -186,12 +191,23 @@ void UiGuiLogger::writeToLogFile(const QString message) {
         // Set the tooltip of the open log file folder button to show the unique name of the log file.
         openLogFileFolderToolButton->setToolTip( openLogFileFolderToolButton->toolTip() + " (" + logFileName + ")" );
 
+        logFileInitState = INITIALZED;
     }
 
-    // Write/append the log message to the log file.
-    if ( logFile.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append) ) {
-        QTextStream out(&logFile);
-        out << message << "\n";
-        logFile.close();
+    // Add the message to the message queue.
+    messageQueue << message;
+
+    // If the logging file is initialzed, write all messages contained in the message queue into the file.
+    if ( logFileInitState == INITIALZED ) {
+        // Write/append the log message to the log file.
+        if ( logFile.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append) ) {
+            QTextStream out(&logFile);
+
+            while ( !messageQueue.isEmpty() ) {
+                out << messageQueue.takeFirst() << "\n";
+            }
+
+            logFile.close();
+        }
     }
 }
