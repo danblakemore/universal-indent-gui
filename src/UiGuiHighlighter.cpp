@@ -134,7 +134,7 @@ void UiGuiHighlighter::turnHighlightOn() {
 void UiGuiHighlighter::turnHighlightOff() {
     highlightningIsOn = false;
     qsciEditorParent->setLexer();
-#ifdef Q_OS_WIN
+#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     qsciEditorParent->setFont( QFont("Courier", 10, QFont::Normal) );
     qsciEditorParent->setMarginsFont( QFont("Courier", 10, QFont::Normal) );
 #else
@@ -193,7 +193,7 @@ bool UiGuiHighlighter::readCurrentSettings( const char *prefix ) {
         if (ok && fdesc.count() == 5) {
             QFont f;
 
-#ifdef Q_OS_WIN
+#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
             f.setFamily(fdesc[0]);
 #else
             if ( fdesc[0].contains("courier", Qt::CaseInsensitive) )
