@@ -45,6 +45,7 @@ class UiGuiLogger : public QDialog, private Ui::UiGuiLoggerDialog
     Q_OBJECT
 
 public:
+    static UiGuiLogger* getInstance(int verboseLevel);
     static UiGuiLogger* getInstance();
     static void messageHandler(QtMsgType type, const char *msg);
     static void deleteInstance();
@@ -52,7 +53,7 @@ public:
 
 private:
     enum LogFileInitState { NOTINITIALZED, INITIALIZING, INITIALZED } logFileInitState;
-    UiGuiLogger();
+    UiGuiLogger(int verboseLevel);
     void writeToLogFile(const QString message);
 
     static UiGuiLogger* instance;

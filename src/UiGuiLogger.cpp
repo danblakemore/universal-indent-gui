@@ -33,11 +33,22 @@ UiGuiLogger* UiGuiLogger::instance = NULL;
 /*!
     \brief Returns the only existing instance of UiGuiLogger. If the instance doesn't exist, it will be created.
  */
-UiGuiLogger* UiGuiLogger::getInstance() {
+UiGuiLogger* UiGuiLogger::getInstance(int verboseLevel) {
     if ( instance == NULL )
-        instance = new UiGuiLogger();
+        instance = new UiGuiLogger(verboseLevel);
 
     return instance;
+}
+
+/*!
+    \brief Returns the only existing instance of UiGuiLogger. If the instance doesn't exist, it will be created.
+ */
+UiGuiLogger* UiGuiLogger::getInstance() {
+#ifdef _DEBUG
+    return UiGuiLogger::getInstance(QtDebugMsg);
+#else
+    return UiGuiLogger::getInstance(QtWarningMsg);
+#endif
 }
 
 
@@ -45,12 +56,12 @@ UiGuiLogger* UiGuiLogger::getInstance() {
     \brief Initializes the dialog and sets the path to the log file in the systems temporary directory.
     Sets the default verbose level to warning level.
  */
-UiGuiLogger::UiGuiLogger() : QDialog() {
+UiGuiLogger::UiGuiLogger(int verboseLevel) : QDialog() {
     setupUi(this);
 #ifdef _DEBUG
-    verboseLevel = QtDebugMsg;
+    this->verboseLevel = QtDebugMsg;
 #else
-    verboseLevel = QtWarningMsg;
+    this->verboseLevel = QtMsgType(verboseLevel);
 #endif
 
     logFileInitState = NOTINITIALZED;
@@ -70,7 +81,7 @@ UiGuiLogger::UiGuiLogger() : QDialog() {
  */
 void UiGuiLogger::messageHandler(QtMsgType type, const char *msg) {
     if ( instance == NULL )
-        instance = new UiGuiLogger();
+        instance = UiGuiLogger::getInstance();
 
     // Only log messages that have a higher or equal priority than set with the verbose level.
     if ( type < instance->verboseLevel )

@@ -48,16 +48,6 @@ int main(int argc, char *argv[]) {
     MainWindow *mainWindow = NULL;
     IndentHandler *indentHandler = NULL;
 
-    // Init and install the logger function.
-    // Setting UTF-8 as default 8-Bit encoding to ensure that qDebug does no false string conversion.
-    QTextCodec::setCodecForCStrings( QTextCodec::codecForName("UTF-8") );
-    QTextCodec::setCodecForLocale( QTextCodec::codecForName("UTF-8") );
-    // Force creation of an UiGuiLogger instance here, to avoid recursion with SettingsPaths init function.
-    UiGuiLogger::getInstance();
-    qInstallMsgHandler( UiGuiLogger::messageHandler );
-    UiGuiLogger::messageHandler( UiGuiInfoMsg, QString("Starting UiGUI Version %1 %2").arg(PROGRAM_VERSION_STRING).arg(PROGRAM_REVISION).toAscii() );
-    UiGuiLogger::messageHandler( UiGuiInfoMsg, QString("Running on %1").arg(UiGuiSystemInfo::getOperatingSystem()).toAscii() );
-
     // Parse command line arguments. First parameter is the executable itself.
     for ( int i = 1; i < argc; i++ ) {
         QString currentArg = argv[i];
@@ -111,12 +101,19 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    // Set the verbose level for the logger. If not in debug, use the value given via command line or default to 1.
+    // Init and install the logger function.
+    // Setting UTF-8 as default 8-Bit encoding to ensure that qDebug does no false string conversion.
+    QTextCodec::setCodecForCStrings( QTextCodec::codecForName("UTF-8") );
+    QTextCodec::setCodecForLocale( QTextCodec::codecForName("UTF-8") );
+    // Force creation of an UiGuiLogger instance here, to avoid recursion with SettingsPaths init function.
 #ifdef _DEBUG
-    UiGuiLogger::getInstance()->setVerboseLevel(0);
+    UiGuiLogger::getInstance(0);
 #else
-    UiGuiLogger::getInstance()->setVerboseLevel( verboseLevel );
+    UiGuiLogger::getInstance(verboseLevel);
 #endif
+    qInstallMsgHandler( UiGuiLogger::messageHandler );
+    UiGuiLogger::messageHandler( UiGuiInfoMsg, QString("Starting UiGUI Version %1 %2").arg(PROGRAM_VERSION_STRING).arg(PROGRAM_REVISION).toAscii() );
+    UiGuiLogger::messageHandler( UiGuiInfoMsg, QString("Running on %1").arg(UiGuiSystemInfo::getOperatingSystem()).toAscii() );
 
     // Set default values for all by UniversalIndentGUI used settings objects.
     QCoreApplication::setOrganizationName("UniversalIndentGUI");
