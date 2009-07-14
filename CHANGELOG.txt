@@ -1,3 +1,12 @@
+2009-07-15 Version 1.1.0
+[add] Added a logging class, that can catch debug output and make trace backs if any problems occur possible.
+[add] Added an application icon for Mac OS X.
+[change] Feature Request ID 2596302 : Updated the greatcode.ini. Thanks to adxadx who has done this work!
+[change] Feature Request ID 2793216: Updated to Uncrustify 0.53.
+[change] Updated to JsDecoder version 1.1.0
+[fix] Bug ID 2791229: If UiGUI was located in a path containing Unicode characters or such a path needed to be handed over to a called indenter, the indenter could get confused on Windows. So using the Windows 8.3 short path notation.
+[fix] On Mac OS X the used default font wasn't monospaced. Switched back to use Courier on Mac.
+
 2009-02-12 Version 1.0.2
 [add] Feature Request ID 2498654 : Added support for the Fortran indenter F90ppr. http://universalindent.sf.net/issue/feature/2498654
 [add] Made it possible to define "stdin" to be used for an indenter calling.
