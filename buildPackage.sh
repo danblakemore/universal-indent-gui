@@ -5,7 +5,7 @@
 
 sourcedirname=universalindentgui-1.1.0
 sourcefilename=$sourcedirname.tar.gz
-sourcefilenameorig=$sourcedirname.orig.tar.gz
+sourcefilenameorig=universalindentgui_1.1.0.orig.tar.gz
 
 targetDir=packaging
 

@@ -1,15 +1,21 @@
 universalindentgui (1.1.0-1) unstable; urgency=low
 
   * New upstream release:
-    - [add] Added a logging class, that can catch debug output and make trace backs if any problems occur possible.
+    - [add] Added a logging class, that can catch debug output and
+      make trace backs if any problems occur possible.
     - [add] Added an application icon for Mac OS X.
-    - [change] Feature Request ID 2596302 : Updated the greatcode.ini. Thanks to adxadx who has done this work!
+    - [change] Feature Request ID 2596302 : Updated the greatcode.ini.
+      Thanks to adxadx who has done this work!
     - [change] Feature Request ID 2793216: Updated to Uncrustify 0.53.
     - [change] Updated to JsDecoder version 1.1.0
-    - [fix] Bug ID 2791229: If UiGUI was located in a path containing Unicode characters or such a path needed to be handed over to a called indenter, the indenter could get confused on Windows. So using the Windows 8.3 short path notation.
-    - [fix] On Mac OS X the used default font wasn't monospaced. Switched back to use Courier on Mac.
+    - [fix] Bug ID 2791229: If UiGUI was located in a path containing
+      Unicode characters or such a path needed to be handed over to a
+      called indenter, the indenter could get confused on Windows.
+      So using the Windows 8.3 short path notation.
+    - [fix] On Mac OS X the used default font wasn't monospaced.
+      Switched back to use Courier on Mac.
 
- -- Thomas Schweitzer <mail@thomas-schweitzer.de> on Thu, 16 Jul 2009 13:13:58 +0200
+ -- Thomas Schweitzer <mail@thomas-schweitzer.de>  Thu, 16 Jul 2009 13:13:58 +0200
 
 universalindentgui (1.0.2-1) unstable; urgency=low
 

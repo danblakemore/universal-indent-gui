@@ -1,19 +1,20 @@
 New version file changes
 ------------------------
-- CHANGELOG.txt
-- homepage/features.php
-- homepage/index.php
-- homepage/universalindentgui_pad.xml
-- debian/changelog
-- debian/control
-- debian/copyright
-- debian/files
-- doc/Doxyfile
-- doc/universalindentgui.man
-- src/UiGuiVersion.h
-- buildPackage.sh
-- buildRelease.sh
++ CHANGELOG.txt
++ homepage/features.php
++ homepage/index.php
++ homepage/universalindentgui_pad.xml
++ debian/changelog
++ debian/control (evtl.)
++ debian/copyright
++ debian/files
++ doc/Doxyfile
++ doc/universalindentgui.man
++ src/UiGuiVersion.h
++ buildPackage.sh
++ buildRelease.sh
 - SourceForge News
+- Freshmeat
 
 New indenter file changes
 -------------------------
