@@ -1,4 +1,4 @@
-2009-07-15 Version 1.1.0
+2009-07-16 Version 1.1.0
 [add] Added a logging class, that can catch debug output and make trace backs if any problems occur possible.
 [add] Added an application icon for Mac OS X.
 [change] Feature Request ID 2596302 : Updated the greatcode.ini. Thanks to adxadx who has done this work!

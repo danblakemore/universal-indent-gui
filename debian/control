@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Thomas Schweitzer <mail@thomas-schweitzer.de>
 Uploaders: Fathi Boudra <fabo@debian.org>
 Build-Depends: quilt, debhelper (>= 7), libqt4-dev, libqscintilla2-dev
-Standards-Version: 3.8.1
+Standards-Version: 3.8.0
 Homepage: http://universalindent.sourceforge.net
 
 Package: universalindentgui
