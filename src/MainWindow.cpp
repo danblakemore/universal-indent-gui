@@ -202,7 +202,7 @@ void MainWindow::initToolBar() {
 void MainWindow::initTextEditor() {
     // Create the QScintilla widget and add it to the layout.
     qDebug() << "Trying to load QScintilla library. If anything fails during loading, it might be possible that"
-             << " the debug and release version of QScintilla are mixed or the library cannot be found at all.";
+        << " the debug and release version of QScintilla are mixed or the library cannot be found at all.";
     // Try and catch doesn't seem to catch the runtime error when starting UiGUI release with QScintilla debug lib and the other way around.
     try {
         qSciSourceCodeEditor = new QsciScintilla(this);
@@ -396,7 +396,7 @@ void MainWindow::openSourceFileDialog(QString fileName) {
     }
     QString openedSourceFileContent = "";
     QString fileExtensions = tr("Supported by indenter")+" ("+indentHandler->getPossibleIndenterFileExtensions()+
-                             ");;"+tr("All files")+" (*.*)";
+        ");;"+tr("All files")+" (*.*)";
 
     //QString openedSourceFileContent = openFileDialog( tr("Choose source code file"), "./", fileExtensions );
     if ( fileName.isEmpty() ) {
@@ -436,7 +436,7 @@ void MainWindow::openSourceFileDialog(QString fileName) {
 bool MainWindow::saveasSourceFileDialog(QAction *chosenEncodingAction) {
     QString encoding;
     QString fileExtensions = tr("Supported by indenter")+" ("+indentHandler->getPossibleIndenterFileExtensions()+
-                             ");;"+tr("All files")+" (*.*)";
+        ");;"+tr("All files")+" (*.*)";
 
     //QString openedSourceFileContent = openFileDialog( tr("Choose source code file"), "./", fileExtensions );
     QString fileName = QFileDialog::getSaveFileName( this, tr("Save source code file"), currentSourceFile, fileExtensions);
@@ -976,11 +976,10 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event) {
 bool MainWindow::maybeSave() {
     if ( isWindowModified() ) {
         int ret = QMessageBox::warning(this, tr("Modified code"),
-            tr("The source code has been modified.\n"
-                "Do you want to save your changes?"),
-            QMessageBox::Yes | QMessageBox::Default,
-            QMessageBox::No,
-            QMessageBox::Cancel | QMessageBox::Escape);
+			tr("The source code has been modified.\nDo you want to save your changes?"),
+			QMessageBox::Yes | QMessageBox::Default,
+			QMessageBox::No,
+			QMessageBox::Cancel | QMessageBox::Escape);
         if (ret == QMessageBox::Yes) {
             return saveSourceFile();
         }
@@ -1029,10 +1028,10 @@ void MainWindow::createEncodingMenu() {
     QString encodingName;
 
     encodingsList = QStringList() << "UTF-8" << "UTF-16" << "UTF-16BE" << "UTF-16LE"
-                    << "Apple Roman" << "Big5" << "Big5-HKSCS" << "EUC-JP" << "EUC-KR" << "GB18030-0"
-                    << "IBM 850" << "IBM 866" << "IBM 874" << "ISO 2022-JP" << "ISO 8859-1" << "ISO 8859-13"
-                    << "Iscii-Bng" << "JIS X 0201" << "JIS X 0208" << "KOI8-R" << "KOI8-U" << "MuleLao-1"
-                    << "ROMAN8" << "Shift-JIS" << "TIS-620" << "TSCII" << "Windows-1250" << "WINSAMI2";
+        << "Apple Roman" << "Big5" << "Big5-HKSCS" << "EUC-JP" << "EUC-KR" << "GB18030-0"
+        << "IBM 850" << "IBM 866" << "IBM 874" << "ISO 2022-JP" << "ISO 8859-1" << "ISO 8859-13"
+        << "Iscii-Bng" << "JIS X 0201" << "JIS X 0208" << "KOI8-R" << "KOI8-U" << "MuleLao-1"
+        << "ROMAN8" << "Shift-JIS" << "TIS-620" << "TSCII" << "Windows-1250" << "WINSAMI2";
 
     encodingActionGroup = new QActionGroup(this);
     saveEncodedActionGroup = new QActionGroup(this);

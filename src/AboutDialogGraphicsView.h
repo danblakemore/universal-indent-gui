@@ -31,11 +31,11 @@
 
 class AboutDialogGraphicsView : public QGraphicsView
 {
-     Q_OBJECT
+    Q_OBJECT
 public:
     AboutDialogGraphicsView(AboutDialog *aboutDialog, QWidget *parent = 0);
     ~AboutDialogGraphicsView(void);
-	void setScreenshotPixmap(const QPixmap &screenShot);
+    void setScreenshotPixmap(const QPixmap &screenShot);
 
 public slots:
     void show();
@@ -50,7 +50,7 @@ private:
     QSplashScreen *aboutDialogAsSplashScreen;
     int windowTitleBarWidth;
     bool firstRunOfAnimation;
-	QPixmap originalPixmap;
+    QPixmap originalPixmap;
 
 private slots:
     void updateStep(int step);

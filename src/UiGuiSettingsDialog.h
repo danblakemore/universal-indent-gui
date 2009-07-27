@@ -26,10 +26,10 @@
 
 class UiGuiSettingsDialog : public QDialog, private Ui::SettingsDialog
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	UiGuiSettingsDialog(QWidget* parent, UiGuiSettings* settings);
+    UiGuiSettingsDialog(QWidget* parent, UiGuiSettings* settings);
 
 public slots:
     int showDialog();
@@ -39,7 +39,7 @@ private slots:
 
 private:
     void changeEvent(QEvent *event);
-	void initTranslationSelection();
+    void initTranslationSelection();
 
     UiGuiSettings* settings;
     QList<QCheckBox*> checkBoxes;

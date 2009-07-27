@@ -87,14 +87,14 @@ int main(int argc, char *argv[]) {
         }
         else {
             QString message = "Invalid parameter found. Allowed parameters are:\n" \
-                              "-f filename --file filename   : Opens the by filename defined file on start.\n" \
-                              "-p --plugin        : Run as plugin. Server will be startet with a simplified gui.\n" \
-                              "-s --server        : Run as server only without gui.\n" \
-                              "-v level --verbose level : Sets the verbose level for logging application info.\n" \
-                              "                     Level is a number from 0 to 3, where 0 means even\n" \
-                              "                     log debug info (most log info).\n\n" \
-                              "If -p and -s are set, -p will be used.\n" \
-                              "No parameters starts without server and full gui.";
+                "-f filename --file filename   : Opens the by filename defined file on start.\n" \
+                "-p --plugin        : Run as plugin. Server will be startet with a simplified gui.\n" \
+                "-s --server        : Run as server only without gui.\n" \
+                "-v level --verbose level : Sets the verbose level for logging application info.\n" \
+                "                     Level is a number from 0 to 3, where 0 means even\n" \
+                "                     log debug info (most log info).\n\n" \
+                "If -p and -s are set, -p will be used.\n" \
+                "No parameters starts without server and full gui.";
             QMessageBox::information( NULL, "Invalid parameter", message );
             fprintf(stderr, "Invalid parameter found. Allowed parameters are...");
             exit(1);

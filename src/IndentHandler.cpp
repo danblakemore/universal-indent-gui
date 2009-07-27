@@ -468,7 +468,7 @@ QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputF
 #endif
         tempDirctoryStr = QDir::fromNativeSeparators(tempDirctoryStrHelper).replace("//", "/");
         delete buffer;
-        
+
         // Check whether the short path still contains some kind of non ascii characters.
         if ( tempDirctoryStr.length() != tempDirctoryStr.toAscii().length() ) {
             qWarning() << __LINE__ << " " << __FUNCTION__ << ": Shortened path still contains non ascii characters. Could cause some indenters not to work properly!";
@@ -534,32 +534,32 @@ QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputF
         processReturnString += tr("<b>Returned error message:</b> ") + indentProcess.errorString() + "<br>";
 
         switch ( indentProcess.error() ) {
-            case QProcess::FailedToStart:
+            case QProcess::FailedToStart :
                 processReturnString += tr("<b>Reason could be:</b> ") + "The process failed to start. Either the invoked program is missing, or you may have insufficient permissions to invoke the program.<br>";
                 break;
-            case QProcess::Crashed:
+            case QProcess::Crashed :
                 processReturnString += "The process crashed some time after starting successfully.<br>";
                 break;
-            case QProcess::Timedout:
+            case QProcess::Timedout :
                 processReturnString += "The called indenter did not response for over 10 seconds, so aborted its execution.<br>";
                 break;
-            case QProcess::WriteError:
+            case QProcess::WriteError :
                 processReturnString += "An error occurred when attempting to write to the process. For example, the process may not be running, or it may have closed its input channel.<br>";
                 break;
-            case QProcess::ReadError:
+            case QProcess::ReadError :
                 processReturnString += "An error occurred when attempting to read from the process. For example, the process may not be running.<br>";
                 break;
-            case QProcess::UnknownError:
+            case QProcess::UnknownError :
                 processReturnString += "An unknown error occurred. This is the default return value of error().<br>";
                 break;
-            default:
+            default :
                 break;
         }
         processReturnString += tr("<br><b>Callstring was:</b> ") + encodeToHTML(indenterCompleteCallString);
         processReturnString += tr("<br><br><b>Indenter output was:</b><pre>") + "<br>" +
-                               "(STDOUT):" + encodeToHTML( indentProcess.readAllStandardOutput() ) + "<br>" +
-                               "(STDERR):" + encodeToHTML( indentProcess.readAllStandardError() ) + "<br>" +
-                               "</pre></html></body>";
+            "(STDOUT):" + encodeToHTML( indentProcess.readAllStandardOutput() ) + "<br>" +
+            "(STDERR):" + encodeToHTML( indentProcess.readAllStandardError() ) + "<br>" +
+            "</pre></html></body>";
         qWarning() << __LINE__ << " " << __FUNCTION__ << processReturnString;
         QApplication::restoreOverrideCursor();
         errorMessageDialog->showMessage(tr("Error calling Indenter"), processReturnString);
@@ -570,11 +570,11 @@ QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputF
         QString exitCode;
         exitCode.setNum(indentProcess.exitCode());
         processReturnString = tr("<b>Indenter returned with exit code:</b> ") + exitCode + "<br>" +
-                              tr("<b>Indent console output was:</b> ") + "<br>" +
-                              "(STDOUT):" + encodeToHTML( indentProcess.readAllStandardOutput() ) + "<br>" +
-                              "(STDERR):" + encodeToHTML( indentProcess.readAllStandardError() ) + "<br>" +
-                              tr("<br><b>Callstring was:</b> ") + encodeToHTML(indenterCompleteCallString) + 
-                              "</html></body>";
+            tr("<b>Indent console output was:</b> ") + "<br>" +
+            "(STDOUT):" + encodeToHTML( indentProcess.readAllStandardOutput() ) + "<br>" +
+            "(STDERR):" + encodeToHTML( indentProcess.readAllStandardError() ) + "<br>" +
+            tr("<br><b>Callstring was:</b> ") + encodeToHTML(indenterCompleteCallString) +
+            "</html></body>";
         qWarning() << __LINE__ << " " << __FUNCTION__ << processReturnString;
         QApplication::restoreOverrideCursor();
         errorMessageDialog->showMessage( tr("Indenter returned error"), processReturnString );
@@ -1170,7 +1170,6 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
 #ifdef UNIVERSALINDENTGUI_NPP_EXPORTS
                 connect( comboBox, SIGNAL(activated(int)), this, SLOT(updateDrawing()) );
 #endif // UNIVERSALINDENTGUI_NPP_EXPORTS
-
             }
         }
     }

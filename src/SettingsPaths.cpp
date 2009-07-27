@@ -233,7 +233,7 @@ void SettingsPaths::cleanAndRemoveTempDir() {
     QDirIterator dirIterator(tempPath, QDirIterator::Subdirectories);
     QStack<QString> directoryStack;
     bool noErrorsOccurred = true;
-    
+
     while ( dirIterator.hasNext() ) {
         QString currentDirOrFile = dirIterator.next();
         // If this dummy call isn't done here, calling "dirIterator.fileInfo().isDir()" later somehow fails.
@@ -251,7 +251,7 @@ void SettingsPaths::cleanAndRemoveTempDir() {
                     qWarning() << __LINE__ << " " << __FUNCTION__ << "Could not remove the directory: " << dirToBeRemoved;
                 //qDebug() << "Removing Dir " << directoryStack.pop();
             }
-            
+
             // If the iterator currently points to a directory push it onto the stack.
             if ( dirIterator.fileInfo().isDir() ) {
                 directoryStack.push( currentDirOrFile );

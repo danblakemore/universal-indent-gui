@@ -82,13 +82,13 @@ void UniversalIndentGUI_NPPDialog::doDialog(bool willBeShown) {
 BOOL CALLBACK UniversalIndentGUI_NPPDialog::run_dlgProc(HWND hWnd, UINT Message, WPARAM wParam, LPARAM lParam) {
     switch (Message)
     {
-        case WM_INITDIALOG:
+        case WM_INITDIALOG :
         {
             InitialDialog();
             break;
         }
-        case WM_SIZE:
-        case WM_MOVE:
+        case WM_SIZE :
+        case WM_MOVE :
         {
             RECT    rc          = {0};
 
@@ -121,7 +121,7 @@ BOOL CALLBACK UniversalIndentGUI_NPPDialog::run_dlgProc(HWND hWnd, UINT Message,
             }
             break;
         }
-        case WM_COMMAND:
+        case WM_COMMAND :
         {
             if ((HWND)lParam == _ToolBar.getHSelf()) {
                 tb_cmd(LOWORD(wParam));
@@ -129,7 +129,7 @@ BOOL CALLBACK UniversalIndentGUI_NPPDialog::run_dlgProc(HWND hWnd, UINT Message,
             }
             break;
         }
-        case WM_NOTIFY:
+        case WM_NOTIFY :
         {
             LPNMHDR     nmhdr = (LPNMHDR)lParam;
 
@@ -160,13 +160,13 @@ BOOL CALLBACK UniversalIndentGUI_NPPDialog::run_dlgProc(HWND hWnd, UINT Message,
             }
             break;
         }
-        case WM_DESTROY:
+        case WM_DESTROY :
         {
             /* destroy icon of tab */
             ::DestroyIcon(_data.hIconTab);
             break;
         }
-        default:
+        default :
             return DockingDlgInterface::run_dlgProc(hWnd, Message, wParam, lParam);
     }
 
@@ -187,19 +187,19 @@ void UniversalIndentGUI_NPPDialog::InitialDialog(void) {
 void UniversalIndentGUI_NPPDialog::tb_cmd(UINT message) {
     switch (message)
     {
-        case IDM_EX_UNDO:
+        case IDM_EX_UNDO :
         {
             ::SendMessage(_hEdit, WM_UNDO, 0, 0);
             break;
         }
-        case IDM_EX_REDO:
+        case IDM_EX_REDO :
         {
             TCHAR   pszText[256];
             _stprintf(pszText, "Value1 = %d\r\nValue2 = %d\r\n\r\n", _pPluginProp->iValue1, _pPluginProp->iValue2);
             ::SendMessage(_hEdit, WM_SETTEXT, 0, (LPARAM)pszText);
             break;
         }
-        default:
+        default :
             break;
     }
 }

@@ -39,7 +39,7 @@ public:
 
 private:
     SettingsPaths();
-    
+
     static bool alreadyInitialized;
     static QString applicationBinaryPath;
     static QString settingsPath;

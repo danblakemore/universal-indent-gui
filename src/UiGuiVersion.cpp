@@ -24,7 +24,6 @@
 #include <QDate>
 
 namespace UiGuiVersion {
-
 /*!
     \brief Returns the build date as a localized string, e.g. "9. Februar 2009". If
     there was some kind of error, the returned string is empty.
@@ -35,7 +34,7 @@ QString getBuildDate() {
 
     monthNames << "Jan" << "Feb" << "Mar" << "Apr" << "May" << "Jun" << "Jul" << "Aug" << "Sep" << "Oct" << "Nov" << "Dez";
     QStringList buildDateStringList = QString(__DATE__).simplified().split(' '); // __DATE__ returns eg "Feb  4 2009"
-    
+
     if ( buildDateStringList.count() == 3 ) {
         QDate buildDate(buildDateStringList.last().toInt(), monthNames.indexOf( buildDateStringList.first() )+1, buildDateStringList.at(1).toInt());
         buildDateString = buildDate.toString("d. MMMM yyyy");
@@ -59,5 +58,4 @@ QString getBuildRevision() {
 
     return buildRevision;
 }
-
 }  // namespace UiGuiVersion

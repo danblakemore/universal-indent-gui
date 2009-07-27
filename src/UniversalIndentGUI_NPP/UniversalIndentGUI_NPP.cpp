@@ -48,7 +48,7 @@ BOOL APIENTRY DllMain( HANDLE hModule, DWORD reasonForCall, LPVOID lpReserved ) 
 
     switch (reasonForCall)
     {
-    case DLL_PROCESS_ATTACH:
+        case DLL_PROCESS_ATTACH :
         {
             if (!qApp) {
                 int argc = 1;
@@ -105,7 +105,7 @@ BOOL APIENTRY DllMain( HANDLE hModule, DWORD reasonForCall, LPVOID lpReserved ) 
             funcItem[TOGGLE_AUTO_UPDATE_INDEX]._pShKey = NULL;
             break;
         }
-    case DLL_PROCESS_DETACH:
+        case DLL_PROCESS_DETACH :
         {
             delete funcItem[TOGGLE_SHOW_UIGUI_INDEX]._pShKey;
             delete indentHandler;
@@ -114,11 +114,11 @@ BOOL APIENTRY DllMain( HANDLE hModule, DWORD reasonForCall, LPVOID lpReserved ) 
             saveSettings();
             break;
         }
-    case DLL_THREAD_ATTACH:
-        break;
+        case DLL_THREAD_ATTACH :
+            break;
 
-    case DLL_THREAD_DETACH:
-        break;
+        case DLL_THREAD_DETACH :
+            break;
     }
 
     return TRUE;

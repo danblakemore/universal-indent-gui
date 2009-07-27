@@ -75,9 +75,9 @@ public:
     UiGuiHighlighter(QsciScintilla *parent);
     void turnHighlightOff();
     void turnHighlightOn();
-	
-	bool readCurrentSettings(const char *prefix);
-	void writeCurrentSettings(const char *prefix);
+
+    bool readCurrentSettings(const char *prefix);
+    void writeCurrentSettings(const char *prefix);
     QStringList getAvailableHighlighters();
 
 private:
@@ -98,12 +98,12 @@ public slots:
     //! -1 then the font is set for all styles.
     void setFont(const QFont &font, int style = -1);
 
-	//! Sets the lexer that is responsible for the given \a extension.
-	int setLexerForExtension( QString extension );
+    //! Sets the lexer that is responsible for the given \a extension.
+    int setLexerForExtension( QString extension );
 
     void setLexerByName( QString lexerName );
 
-	void setHighlighterByAction(QAction* highlighterAction);
+    void setHighlighterByAction(QAction* highlighterAction);
 };
 
 #endif  // UIGUIHIGHLIGHTER_H

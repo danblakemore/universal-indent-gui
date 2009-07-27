@@ -87,7 +87,7 @@ protected:
     bool event( QEvent *event );
     void closeEvent(QCloseEvent *event);
     void wheelEvent( QWheelEvent *event );
-    
+
 private slots:
     void setIndenter(int indenterID);
     void showIndenterManual();
@@ -149,7 +149,7 @@ private:
         QCheckBox *valueEnabledChkBox;
         QComboBox *comboBox;
         QStringList choicesStrings;
-		QStringList choicesStringsReadable;
+        QStringList choicesStringsReadable;
     };
     QVector<ParamMultiple> paramMultiples;
 
@@ -167,7 +167,7 @@ private:
     QString tempDirctoryStr;
     QString settingsDirctoryStr;
     QStringList indenterIniFileList;
-	QString parameterOrder;
+    QString parameterOrder;
     QString configFilename;
     QString cfgFileParameterEnding;
     QString inputFileParameter;

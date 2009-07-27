@@ -113,7 +113,7 @@ QString UiGuiSystemInfo::getOperatingSystem() {
         case QSysInfo::MV_Unknown :
             operatingSystemString = "An unknown and currently unsupported platform";
             break;
-        default:
+        default :
             operatingSystemString = "Unknown Mac operating system.";
             break;
     }

@@ -32,31 +32,31 @@
 
 class UiGuiSettings : public QObject
 {
-	Q_OBJECT
+    Q_OBJECT
 private:
     UiGuiSettings();
     static UiGuiSettings* instance;
 
 public:
-	static UiGuiSettings* getInstance();
+    static UiGuiSettings* getInstance();
     static void deleteInstance();
     ~UiGuiSettings();
     bool loadSettings();
     bool saveSettings();
     bool setValueByName(QString settingName, QVariant value);
-	QVariant getValueByName(QString settingName);
+    QVariant getValueByName(QString settingName);
     void updateAllDependend();
-	QStringList getAvailableTranslations();
+    QStringList getAvailableTranslations();
 
-// Only one slot per possible value type needed, because wanted setting
-// is recognized by the sender objects name.
+    // Only one slot per possible value type needed, because wanted setting
+    // is recognized by the sender objects name.
 public slots:
-	void handleValueChangeFromExtern(int value);
+    void handleValueChangeFromExtern(int value);
     void handleValueChangeFromExtern(bool value);
     void handleValueChangeFromExtern(QDate value);
     void handleValueChangeFromExtern(QByteArray value);
 
-// Each possible setting needs an own signal.
+    // Each possible setting needs an own signal.
 signals:
     void versionInSettingsFile(QString value);
     void windowIsMaximized(bool value);
@@ -78,16 +78,16 @@ signals:
 
 private:
     void emitSignalForSetting(QString settingName);
-	void readAvailableTranslations();
+    void readAvailableTranslations();
 
-	//! Stores the mnemonics of the available translations.
-	QStringList availableTranslations;
+    //! Stores the mnemonics of the available translations.
+    QStringList availableTranslations;
 
     //! The settings file.
     QSettings *qsettings;
 
-	//! This map holds all possible settings defined by their name as QString. The value is of the type QVariant.
-	QMap<QString, QVariant> settings;
+    //! This map holds all possible settings defined by their name as QString. The value is of the type QVariant.
+    QMap<QString, QVariant> settings;
 
     QString indenterDirctoryStr;
 };

@@ -70,7 +70,6 @@ UiGuiLogger::UiGuiLogger(int verboseLevel) : QDialog() {
 
     // Make the main application not to wait for the logging window to close.
     setAttribute(Qt::WA_QuitOnClose, false);
-
 }
 
 
@@ -92,20 +91,20 @@ void UiGuiLogger::messageHandler(QtMsgType type, const char *msg) {
 
     // Depending on the QtMsgType prepend a different colored Debug, Warning, Critical or Fatal.
     switch (type) {
-        case QtDebugMsg:
+        case QtDebugMsg :
             message += " <span style=\"font-weight:bold; color:black;\">Debug:</span> ";
             break;
-        case QtWarningMsg:
+        case QtWarningMsg :
             message += " <span style=\"font-weight:bold; color:gold;\">Warning:</span> ";
             break;
-        case QtCriticalMsg:
+        case QtCriticalMsg :
             message += "<span style=\"font-weight:bold; color:red;\">Critical:</span> ";
             break;
-        case QtFatalMsg:
+        case QtFatalMsg :
             message += " <span style=\"font-weight:bold; color:#D60000;\">Fatal:</span> ";
         // This one is no Qt message type, but can be used to send info messages to the log
         // by calling UiGuiLogger::messageHandler() directly.
-        case UiGuiInfoMsg:
+        case UiGuiInfoMsg :
             message += " <span style=\"font-weight:bold; color:darkgray;\">Info:</span> ";
             break;
     }
@@ -162,7 +161,6 @@ void UiGuiLogger::openLogFileFolder() {
     \brief Writes the \a message to the used log file.
  */
 void UiGuiLogger::writeToLogFile(const QString message) {
-
     // If the file where all logging messages should go to isn't initilized yet, do that now.
     if ( logFileInitState == NOTINITIALZED ) {
         logFileInitState = INITIALIZING;
@@ -183,17 +181,17 @@ void UiGuiLogger::writeToLogFile(const QString message) {
         unsigned char randomChar;
         switch ( qrand() % 3 ) {
             // Append a number from 0 to 9.
-        case 0:
-            randomChar = qrand() % 10 + '0';
-            break;
+            case 0 :
+                randomChar = qrand() % 10 + '0';
+                break;
             // Append a upper case characer between A and Z.
-        case 1:
-            randomChar = qrand() % 26 + 'A';
-            break;
+            case 1 :
+                randomChar = qrand() % 26 + 'A';
+                break;
             // Append a lower case characer between a and z.
-        default:
-            randomChar = qrand() % 26 + 'a';
-            break;
+            default :
+                randomChar = qrand() % 26 + 'a';
+                break;
         }
         logFileName += "_" + QString(randomChar) + ".html";
 

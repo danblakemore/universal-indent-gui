@@ -76,10 +76,10 @@ private:
     void dragEnterEvent(QDragEnterEvent *event);
     void dropEvent(QDropEvent *event);
 
-	QsciScintilla *qSciSourceCodeEditor;
-	UiGuiSettings *settings;
+    QsciScintilla *qSciSourceCodeEditor;
+    UiGuiSettings *settings;
 
-	QString currentEncoding;
+    QString currentEncoding;
     QString sourceFileContent;
     QString sourceFormattedContent;
     QString sourceViewContent;
@@ -87,10 +87,10 @@ private:
     QScrollBar *textEditVScrollBar;
     AboutDialog *aboutDialog;
     AboutDialogGraphicsView *aboutDialogGraphicsView;
-	UiGuiSettingsDialog *settingsDialog;
+    UiGuiSettingsDialog *settingsDialog;
     int textEditLastScrollPos;
     int currentIndenterID;
-	bool loadLastSourceCodeFileOnStartup;
+    bool loadLastSourceCodeFileOnStartup;
     QString currentSourceFile;
     QString currentSourceFileExtension;
     QString savedSourceContent;
@@ -105,7 +105,7 @@ private:
     bool scrollPositionChanged;
     bool indentSettingsChanged;
     bool previewToggled;
-	QStringList encodingsList;
+    QStringList encodingsList;
 
     Ui::ToolBarWidget *toolBarWidget;
     IndentHandler *indentHandler;
@@ -124,20 +124,20 @@ private slots:
     void callIndenter();
     void updateSourceView();
     void turnHighlightOnOff(bool turnOn);
-	void setWhiteSpaceVisibility(bool visible);
-	void sourceCodeChangedHelperSlot();
+    void setWhiteSpaceVisibility(bool visible);
+    void sourceCodeChangedHelperSlot();
     void sourceCodeChangedSlot();
     void indentSettingsChangedSlot();
     void previewTurnedOnOff(bool turnOn);
     void exportToPDF();
     void exportToHTML();
-	void languageChanged(int languageIndex);
+    void languageChanged(int languageIndex);
     void encodingChanged(QAction *encodingAction);
-	void numberOfLinesChanged();
+    void numberOfLinesChanged();
     void updateRecentlyOpenedList();
     void openFileFromRecentlyOpenedList(QAction* recentlyOpenedAction);
     void clearRecentlyOpenedList();
-	void showAboutDialog();
+    void showAboutDialog();
     void setStatusBarCursorPosInfo(int line, int column);
 };
 

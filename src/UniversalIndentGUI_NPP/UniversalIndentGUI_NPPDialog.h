@@ -31,40 +31,41 @@
 class UniversalIndentGUI_NPPDialog : public DockingDlgInterface
 {
 public:
-	UniversalIndentGUI_NPPDialog(void);
-	~UniversalIndentGUI_NPPDialog(void);
+    UniversalIndentGUI_NPPDialog(void);
+    ~UniversalIndentGUI_NPPDialog(void);
 
     void init(HINSTANCE hInst, NppData nppData, tPluginProp *pMgrProp);
 
-	void destroy(void) {};
+    void destroy(void) {
+    };
 
-   	void doDialog(bool willBeShown = true);
+    void doDialog(bool willBeShown = true);
 
 protected:
 
-	/* get toolbar tooltips */
-	void GetNameStrFromCmd(UINT resID, LPTSTR tip);
+    /* get toolbar tooltips */
+    void GetNameStrFromCmd(UINT resID, LPTSTR tip);
 
-	virtual BOOL CALLBACK run_dlgProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+    virtual BOOL CALLBACK run_dlgProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
-	/* initial dialog here */
-	void InitialDialog(void);
-	
-	/* toolbar commands */
-	void tb_cmd(UINT message);
+    /* initial dialog here */
+    void InitialDialog(void);
+
+    /* toolbar commands */
+    void tb_cmd(UINT message);
 
 private:
-	/* Handles */
-	NppData					_nppData;
-	HWND					_hEdit;
+    /* Handles */
+    NppData                 _nppData;
+    HWND                    _hEdit;
 
-	/* classes */
-	ToolBar					_ToolBar;
-	ReBar					_Rebar;
+    /* classes */
+    ToolBar                 _ToolBar;
+    ReBar                   _Rebar;
 
-	/* settings */
-	tTbData					_data;
-	tPluginProp*			_pPluginProp;
+    /* settings */
+    tTbData                 _data;
+    tPluginProp*            _pPluginProp;
 
     IndentHandler *indentHandler;
 };

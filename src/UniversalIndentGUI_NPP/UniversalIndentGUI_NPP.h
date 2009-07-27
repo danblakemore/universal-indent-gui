@@ -31,26 +31,26 @@
 #include "SettingsPaths.h"
 
 /* menu position in funcItem */
-#define	TOGGLE_SHOW_UIGUI_INDEX	    0
-#define	EXECUTE_TEXT_INDENT_INDEX	1
-#define	TOGGLE_AUTO_UPDATE_INDEX	2
+#define TOGGLE_SHOW_UIGUI_INDEX     0
+#define EXECUTE_TEXT_INDENT_INDEX   1
+#define TOGGLE_AUTO_UPDATE_INDEX    2
 
 
 /* ini file name */
-CONST TCHAR PLUGINTEMP_INI[]	= _T("\\UniversalIndentGUI.ini");
+CONST TCHAR PLUGINTEMP_INI[]    = _T("\\UniversalIndentGUI.ini");
 
 /* param names of ini file */
 /* section */
-CONST TCHAR dlgTemp[]			= _T("UniversalIndentGUI");
+CONST TCHAR dlgTemp[]           = _T("UniversalIndentGUI");
 /* keys of section */
-CONST TCHAR Value1[]			= _T("Value1");
-CONST TCHAR Value2[]			= _T("Value2");
+CONST TCHAR Value1[]            = _T("Value1");
+CONST TCHAR Value2[]            = _T("Value2");
 
 
 /* define here your plugin properties (stored in an ini file) */
 typedef struct tPluginProp {
-	INT		iValue1;
-	INT		iValue2;
+    INT     iValue1;
+    INT     iValue2;
 } tPluginProp;
 
 
@@ -65,5 +65,5 @@ void indentText(void);
 
 
 
-#endif	// UNIVERSALINDENTGUI_NPP_H
+#endif  // UNIVERSALINDENTGUI_NPP_H
 
