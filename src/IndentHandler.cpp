@@ -457,9 +457,15 @@ QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputF
     // If the short path could be retrieved, create a correct sized buffer, store the
     // short path in it and convert all back to QString.
     if ( length != 0 ) {
+#ifdef UNICODE
         buffer = new WCHAR[length];
         length = GetShortPathName((LPCTSTR)tempDirctoryWindowsStr, buffer, length);
         tempDirctoryStrHelper = QString::fromWCharArray( buffer );
+#else
+        buffer = new TCHAR[length];
+        length = GetShortPathName((LPCTSTR)tempDirctoryWindowsStr, buffer, length);
+        tempDirctoryStrHelper = buffer;
+#endif
         tempDirctoryStr = QDir::fromNativeSeparators(tempDirctoryStrHelper).replace("//", "/");
         delete buffer;
         
