@@ -54,7 +54,7 @@ public:
 private:
     enum LogFileInitState { NOTINITIALZED, INITIALIZING, INITIALZED } logFileInitState;
     UiGuiLogger(int verboseLevel);
-    void writeToLogFile(const QString message);
+    void writeToLogFile(const QString &message);
 
     static UiGuiLogger* instance;
     QtMsgType verboseLevel;

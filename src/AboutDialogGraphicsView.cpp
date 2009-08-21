@@ -45,6 +45,7 @@ AboutDialogGraphicsView::AboutDialogGraphicsView(AboutDialog *aboutDialog, QWidg
     this->aboutDialog = aboutDialog;
 
     firstRunOfAnimation = true;
+    windowTitleBarWidth = 0;
 
     scene = new QGraphicsScene(this);
     setSceneRect( newGeometry );

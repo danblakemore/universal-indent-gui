@@ -160,7 +160,7 @@ void UiGuiLogger::openLogFileFolder() {
 /*!
     \brief Writes the \a message to the used log file.
  */
-void UiGuiLogger::writeToLogFile(const QString message) {
+void UiGuiLogger::writeToLogFile(const QString &message) {
     // If the file where all logging messages should go to isn't initilized yet, do that now.
     if ( logFileInitState == NOTINITIALZED ) {
         logFileInitState = INITIALIZING;

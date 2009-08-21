@@ -467,7 +467,7 @@ QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputF
         tempDirctoryStrHelper = buffer;
 #endif
         tempDirctoryStr = QDir::fromNativeSeparators(tempDirctoryStrHelper).replace("//", "/");
-        delete buffer;
+        delete [] buffer;
 
         // Check whether the short path still contains some kind of non ascii characters.
         if ( tempDirctoryStr.length() != tempDirctoryStr.toAscii().length() ) {
@@ -480,7 +480,7 @@ QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputF
 
     qDebug() << __LINE__ << " " << __FUNCTION__ << ": Temp dir after trying to convert it to short Windows path is " << tempDirctoryStr;
 
-    delete tempDirctoryWindowsStr;
+    delete [] tempDirctoryWindowsStr;
 #endif
 
     // If the config file name is empty it is assumed that all parameters are sent via command line call
@@ -683,7 +683,7 @@ bool IndentHandler::loadConfigFile(QString filePathName) {
     int index;
     int crPos;
     int paramValue = 0;
-    QString paramValueStr;
+    QString paramValueStr = "";
     QString cfgFileData = "";
 
     // If the to be loaded config file does not exist leave all values as they are and return false.

@@ -336,6 +336,6 @@ void indentText() {
         ::SendMessage(getCurrentHScintilla(currentEdit), SCI_SETSEL, selectionStartPos, selectionStartPos + indentedTextByteArray.length() );
     }
 
-    delete fullEditorText;
+    delete [] fullEditorText;
     fullEditorText = NULL;
 }

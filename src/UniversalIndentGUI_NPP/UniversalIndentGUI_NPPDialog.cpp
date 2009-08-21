@@ -50,7 +50,7 @@ void UniversalIndentGUI_NPPDialog::GetNameStrFromCmd(UINT resID, LPTSTR tip) {
 
 
 /* Note: Within constructor send dialog IDD to DockingDlgInterface class */
-UniversalIndentGUI_NPPDialog::UniversalIndentGUI_NPPDialog(void) : DockingDlgInterface(IDD_DOCK_DLG), _hEdit(NULL) {
+UniversalIndentGUI_NPPDialog::UniversalIndentGUI_NPPDialog(void) : DockingDlgInterface(IDD_DOCK_DLG), _hEdit(NULL), _pPluginProp(NULL), indentHandler(NULL) {
 }
 
 UniversalIndentGUI_NPPDialog::~UniversalIndentGUI_NPPDialog(void) {
