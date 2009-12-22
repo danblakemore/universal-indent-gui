@@ -13,16 +13,37 @@
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Version %1 rev.%2, %3 &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/AboutDialog.ui" line="120"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;... is a cross platform compatible GUI for several code formatter, beautifier and indenter like GreatCode, AStyle (Artistic Styler), GNU Indent, BCPP and so on. Main feature is a live preview to directly see how the selected formatting option affects the source code.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;&lt;br /&gt;Written by : &lt;/span&gt;&lt;a href=&quot;http://www.thomas-schweitzer.de&quot;&gt;&lt;span style=&quot; font-size:9pt; text-decoration: underline; color:#0000ff;&quot;&gt;Thomas Schweitzer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Project Homepage : &lt;/span&gt;&lt;a href=&quot;http://universalindent.sourceforge.net&quot;&gt;&lt;span style=&quot; font-size:9pt; text-decoration: underline; color:#0000ff;&quot;&gt;http://universalindent.sourceforge.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;License: UniversalIndentGui is released under the GPL 2. For details read the included file LICENSE.GPL visit &lt;/span&gt;&lt;a href=&quot;http://www.gnu.org/licenses/gpl.html&quot;&gt;&lt;span style=&quot; font-size:9pt; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.gnu.org/licenses/gpl.html&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Credits:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:12pt;&quot;&gt;Version %1 rev.%2, %3 &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:12pt;&quot;&gt;Version %1 rev.%2, %3 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/AboutDialog.ui" line="120"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -33,7 +54,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:9pt;&quot;&gt;License: UniversalIndentGui is released under the GPL 2. For details read the included file LICENSE.GPL visit &lt;/span&gt;&lt;a href=&quot;http://www.gnu.org/licenses/gpl.html&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:9pt; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.gnu.org/licenses/gpl.html&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:9pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;MS Shell Dlg 2&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:9pt;&quot;&gt;Credits:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -51,193 +72,241 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>FindDialog</name>
+    <message>
+        <location filename="../src/FindDialog.ui" line="14"/>
+        <source>Find</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/FindDialog.ui" line="26"/>
+        <source>Find what:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/FindDialog.ui" line="46"/>
+        <source>Find options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/FindDialog.ui" line="52"/>
+        <source>Match case</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/FindDialog.ui" line="59"/>
+        <source>Match whole word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/FindDialog.ui" line="66"/>
+        <source>Search forward</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/FindDialog.ui" line="76"/>
+        <source>Use Regular Expressions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/FindDialog.ui" line="104"/>
+        <source>Find Next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/FindDialog.ui" line="111"/>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>IndentHandler</name>
     <message>
-        <location filename="../src/IndentHandler.cpp" line="509"/>
+        <location filename="../src/IndentHandler.cpp" line="573"/>
         <source>&lt;b&gt;Indent console output was:&lt;/b&gt; </source>
         <translation>&lt;b&gt;重整工具命令列輸出為：&lt;/b&gt; </translation>
     </message>
     <message>
-        <location filename="../src/IndentHandler.cpp" line="508"/>
+        <location filename="../src/IndentHandler.cpp" line="572"/>
         <source>&lt;b&gt;Indenter returned with exit code:&lt;/b&gt; </source>
         <translation>&lt;b&gt;重整工具傳回的錯誤代碼：&lt;/b&gt; </translation>
     </message>
     <message>
-        <location filename="../src/IndentHandler.cpp" line="475"/>
+        <location filename="../src/IndentHandler.cpp" line="538"/>
         <source>&lt;b&gt;Reason could be:&lt;/b&gt; </source>
         <translation>&lt;b&gt;原因可能是：&lt;/b&gt; </translation>
     </message>
     <message>
-        <location filename="../src/IndentHandler.cpp" line="471"/>
+        <location filename="../src/IndentHandler.cpp" line="534"/>
         <source>&lt;b&gt;Returned error message:&lt;/b&gt; </source>
         <translation>&lt;b&gt;傳回的錯誤訊息：&lt;/b&gt; </translation>
     </message>
     <message>
-        <location filename="../src/IndentHandler.cpp" line="501"/>
+        <location filename="../src/IndentHandler.cpp" line="565"/>
         <source>Error calling Indenter</source>
         <translation>呼叫重整工具時發生錯誤</translation>
     </message>
     <message>
-        <location filename="../src/IndentHandler.cpp" line="515"/>
+        <location filename="../src/IndentHandler.cpp" line="580"/>
         <source>Indenter returned error</source>
         <translation>重整工具傳回錯誤</translation>
     </message>
     <message>
-        <location filename="../src/IndentHandler.cpp" line="450"/>
+        <location filename="../src/IndentHandler.cpp" line="511"/>
         <source>No indenter executable</source>
         <translation>找不到重整工具</translation>
     </message>
     <message>
-        <location filename="../src/IndentHandler.cpp" line="1346"/>
+        <location filename="../src/IndentHandler.cpp" line="1416"/>
         <source>There exists only a win32 executable of the indenter and wine does not seem to be installed. Please install wine to be able to run the indenter.</source>
         <translation>該重整工具只有 Win32 版本，而你似乎尚未安裝 wine。請安裝 wine 以便執行該重整工具。</translation>
     </message>
     <message>
-        <location filename="../src/IndentHandler.cpp" line="1346"/>
+        <location filename="../src/IndentHandler.cpp" line="1416"/>
         <source>wine not installed</source>
         <translation>尚未安裝 wine</translation>
     </message>
     <message>
-        <location filename="../src/IndentHandler.cpp" line="495"/>
-        <location filename="../src/IndentHandler.cpp" line="512"/>
+        <location filename="../src/IndentHandler.cpp" line="558"/>
+        <location filename="../src/IndentHandler.cpp" line="576"/>
         <source>&lt;br&gt;&lt;b&gt;Callstring was:&lt;/b&gt; </source>
         <translation>&lt;br&gt;&lt;b&gt;呼叫方式是：&lt;/b&gt; </translation>
     </message>
     <message>
-        <location filename="../src/IndentHandler.cpp" line="152"/>
+        <location filename="../src/IndentHandler.cpp" line="159"/>
         <source>No indenter ini files</source>
         <translation>找不到重整工具需要的 INI 檔</translation>
     </message>
     <message>
-        <location filename="../src/IndentHandler.cpp" line="152"/>
+        <location filename="../src/IndentHandler.cpp" line="159"/>
         <source>There exists no indenter ini files in the directory &quot;</source>
         <translation>本目錄下找不到重整工具所需的 INI 檔 &quot;</translation>
     </message>
     <message>
-        <location filename="../src/IndentHandler.cpp" line="451"/>
+        <location filename="../src/IndentHandler.cpp" line="512"/>
         <source>There exists no indenter executable with the name &quot;%1&quot; in the directory &quot;%2&quot; nor in the global environment.</source>
         <translation>找不到重整工具 &quot;%1&quot; 於目錄 &quot;%2&quot; 下及全域環境變數下。</translation>
     </message>
     <message>
-        <location filename="../src/IndentHandler.cpp" line="496"/>
+        <location filename="../src/IndentHandler.cpp" line="559"/>
         <source>&lt;br&gt;&lt;br&gt;&lt;b&gt;Indenter output was:&lt;/b&gt;&lt;pre&gt;</source>
         <translation>&lt;br&gt;&lt;br&gt;&lt;b&gt;重整工具的輸出結果：&lt;/b&gt;&lt;pre&gt;</translation>
     </message>
     <message>
-        <location filename="../src/IndentHandler.cpp" line="842"/>
+        <location filename="../src/IndentHandler.cpp" line="913"/>
         <source>Indenter ini file header error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/IndentHandler.cpp" line="843"/>
+        <location filename="../src/IndentHandler.cpp" line="914"/>
         <source>The loaded indenter ini file &quot;%1&quot;has a faulty header. At least the indenters file name is not set.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/IndentHandler.cpp" line="1301"/>
+        <location filename="../src/IndentHandler.cpp" line="1371"/>
         <source>Interpreter needed</source>
         <translation>需要直譯器</translation>
     </message>
     <message>
-        <location filename="../src/IndentHandler.cpp" line="1302"/>
+        <location filename="../src/IndentHandler.cpp" line="1372"/>
         <source>To use the selected indenter the program &quot;%1&quot; needs to be available in the global environment. You should add an entry to your path settings.</source>
         <translation>要使用這個重整工具，你必須將程式 &quot;%1&quot; 加到全域的 Path 變數中。</translation>
     </message>
     <message>
-        <location filename="../src/IndentHandler.cpp" line="1392"/>
+        <location filename="../src/IndentHandler.cpp" line="1462"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Shows the currently chosen indenters name and lets you choose other available indenters&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;顯示目前使用的重整工具名稱，並讓你選擇其他可用的重整工具&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/IndentHandler.cpp" line="1393"/>
+        <location filename="../src/IndentHandler.cpp" line="1463"/>
         <source>Brings you to the online manual of the currently selected indenter, where you can get further help on the possible parameters.</source>
         <translation>這會開啟當前重整工具的線上手冊，你將能找到更多關於可用參數的說明。</translation>
     </message>
     <message>
-        <location filename="../src/IndentHandler.cpp" line="1404"/>
-        <location filename="../src/IndentHandler.cpp" line="1405"/>
+        <location filename="../src/IndentHandler.cpp" line="1474"/>
+        <location filename="../src/IndentHandler.cpp" line="1475"/>
         <source>Create a shell script that calls the current selected indenter for formatting an as parameter given file with the current indent settings.</source>
         <translation>建立批次檔呼叫目前的重整工具。它會接受檔案路徑作為參數，接著呼叫重整工具並套用目前的重整設定，適合讓 IDE 作為外部工具呼叫。</translation>
     </message>
     <message>
-        <location filename="../src/IndentHandler.cpp" line="1437"/>
+        <location filename="../src/IndentHandler.cpp" line="1507"/>
         <source>Choose indenter config file</source>
         <translation>選擇重整工具設定檔</translation>
     </message>
     <message>
-        <location filename="../src/IndentHandler.cpp" line="1451"/>
-        <location filename="../src/IndentHandler.cpp" line="1483"/>
+        <location filename="../src/IndentHandler.cpp" line="1521"/>
+        <location filename="../src/IndentHandler.cpp" line="1553"/>
         <source>All files</source>
         <translation>所有檔案</translation>
     </message>
     <message>
-        <location filename="../src/IndentHandler.cpp" line="1454"/>
+        <location filename="../src/IndentHandler.cpp" line="1524"/>
         <source>Save indent config file</source>
         <translation>儲存重整工具的設定</translation>
     </message>
     <message>
-        <location filename="../src/IndentHandler.cpp" line="1483"/>
+        <location filename="../src/IndentHandler.cpp" line="1553"/>
         <source>Shell Script</source>
         <translation>批次檔</translation>
     </message>
     <message>
-        <location filename="../src/IndentHandler.cpp" line="1489"/>
+        <location filename="../src/IndentHandler.cpp" line="1559"/>
         <source>Save shell script</source>
         <translation>儲存批次檔</translation>
     </message>
     <message>
-        <location filename="../src/IndentHandler.cpp" line="1395"/>
+        <location filename="../src/IndentHandler.cpp" line="1465"/>
         <source>Load Indenter Config File</source>
         <translation>載入重整工具設定檔</translation>
     </message>
     <message>
-        <location filename="../src/IndentHandler.cpp" line="1396"/>
+        <location filename="../src/IndentHandler.cpp" line="1466"/>
         <source>Opens a file dialog to load the original config file of the indenter.</source>
         <translation>載入目前重整工具的設定</translation>
     </message>
     <message>
-        <location filename="../src/IndentHandler.cpp" line="1397"/>
+        <location filename="../src/IndentHandler.cpp" line="1467"/>
         <source>Alt+O</source>
         <translation>Alt+O</translation>
     </message>
     <message>
-        <location filename="../src/IndentHandler.cpp" line="1399"/>
+        <location filename="../src/IndentHandler.cpp" line="1469"/>
         <source>Save Indenter Config File</source>
         <translation>儲存重整工具設定檔</translation>
     </message>
     <message>
-        <location filename="../src/IndentHandler.cpp" line="1400"/>
+        <location filename="../src/IndentHandler.cpp" line="1470"/>
         <source>Opens a dialog to save the current indenter configuration to a file.</source>
         <translation>儲存目前重整工具的設定</translation>
     </message>
     <message>
-        <location filename="../src/IndentHandler.cpp" line="1401"/>
+        <location filename="../src/IndentHandler.cpp" line="1471"/>
         <source>Alt+S</source>
         <translation>Alt+S</translation>
     </message>
     <message>
-        <location filename="../src/IndentHandler.cpp" line="1403"/>
+        <location filename="../src/IndentHandler.cpp" line="1473"/>
         <source>Create Indenter Call Shell Script</source>
         <translation>建立重整工具批次檔</translation>
     </message>
     <message>
-        <location filename="../src/IndentHandler.cpp" line="1407"/>
+        <location filename="../src/IndentHandler.cpp" line="1477"/>
         <source>Reset indenter parameters</source>
         <translation>恢復為預設值</translation>
     </message>
     <message>
-        <location filename="../src/IndentHandler.cpp" line="1408"/>
-        <location filename="../src/IndentHandler.cpp" line="1409"/>
+        <location filename="../src/IndentHandler.cpp" line="1478"/>
+        <location filename="../src/IndentHandler.cpp" line="1479"/>
         <source>Resets all indenter parameters to the default values.</source>
         <translation>將所有重整參數設定恢復為預設值。</translation>
     </message>
     <message>
-        <location filename="../src/IndentHandler.cpp" line="1517"/>
+        <location filename="../src/IndentHandler.cpp" line="1587"/>
         <source>Really reset parameters?</source>
         <translation>確定要恢復為預設值？</translation>
     </message>
     <message>
-        <location filename="../src/IndentHandler.cpp" line="1517"/>
+        <location filename="../src/IndentHandler.cpp" line="1587"/>
         <source>Do you really want to reset the indenter parameters to the default values?</source>
         <translation>你真的要將參數恢復為預設值嗎？</translation>
     </message>
@@ -245,98 +314,98 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/MainWindow.cpp" line="401"/>
-        <location filename="../src/MainWindow.cpp" line="441"/>
+        <location filename="../src/MainWindow.cpp" line="399"/>
+        <location filename="../src/MainWindow.cpp" line="439"/>
         <source>All files</source>
         <translation>所有檔案</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="369"/>
-        <location filename="../src/MainWindow.cpp" line="1095"/>
+        <location filename="../src/MainWindow.cpp" line="367"/>
+        <location filename="../src/MainWindow.cpp" line="1092"/>
         <source>Cannot read the file </source>
         <translation>無法讀取檔案</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="405"/>
+        <location filename="../src/MainWindow.cpp" line="403"/>
         <source>Choose source code file</source>
         <translation>選擇檔案</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="369"/>
-        <location filename="../src/MainWindow.cpp" line="1095"/>
+        <location filename="../src/MainWindow.cpp" line="367"/>
+        <location filename="../src/MainWindow.cpp" line="1092"/>
         <source>Error opening file</source>
         <translation>開啟檔案時發生錯誤</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="827"/>
-        <location filename="../src/MainWindow.cpp" line="849"/>
+        <location filename="../src/MainWindow.cpp" line="825"/>
+        <location filename="../src/MainWindow.cpp" line="847"/>
         <source>Export source code file</source>
         <translation>匯出檔案</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="842"/>
+        <location filename="../src/MainWindow.cpp" line="840"/>
         <source>HTML Document</source>
         <translation>HTML 文件</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="980"/>
+        <location filename="../src/MainWindow.cpp" line="978"/>
         <source>Modified code</source>
         <translation>修改後的檔案</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="820"/>
+        <location filename="../src/MainWindow.cpp" line="818"/>
         <source>PDF Document</source>
         <translation>PDF 文件</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1046"/>
-        <location filename="../src/MainWindow.cpp" line="1180"/>
+        <location filename="../src/MainWindow.cpp" line="1043"/>
+        <location filename="../src/MainWindow.cpp" line="1177"/>
         <source>Reopen the currently opened source code file by using the text encoding scheme </source>
         <translation>重新開啟目前的檔案，編碼使用 </translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="444"/>
+        <location filename="../src/MainWindow.cpp" line="442"/>
         <source>Save source code file</source>
         <translation>儲存檔案</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="400"/>
-        <location filename="../src/MainWindow.cpp" line="440"/>
+        <location filename="../src/MainWindow.cpp" line="398"/>
+        <location filename="../src/MainWindow.cpp" line="438"/>
         <source>Supported by indenter</source>
         <translation>重整工具支援的檔案類型</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="981"/>
+        <location filename="../src/MainWindow.cpp" line="979"/>
         <source>The source code has been modified.
 Do you want to save your changes?</source>
         <translation>程式碼已被修改。
 你要儲存嗎？</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1125"/>
-        <location filename="../src/MainWindow.cpp" line="1194"/>
+        <location filename="../src/MainWindow.cpp" line="1122"/>
+        <location filename="../src/MainWindow.cpp" line="1191"/>
         <source>Set the syntax highlightning to </source>
         <translation>將語法高亮度方式設為 </translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1336"/>
+        <location filename="../src/MainWindow.cpp" line="1333"/>
         <source>File no longer exists</source>
         <translation>檔案不存在</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1336"/>
+        <location filename="../src/MainWindow.cpp" line="1333"/>
         <source>The file %1 in the list of recently opened files does no longer exist.</source>
         <translation>找不到檔案清單裡的「%1」</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1054"/>
-        <location filename="../src/MainWindow.cpp" line="1186"/>
+        <location filename="../src/MainWindow.cpp" line="1051"/>
+        <location filename="../src/MainWindow.cpp" line="1183"/>
         <source>Save the currently opened source code file by using the text encoding scheme </source>
         <translation>另存目前的檔案，編碼使用 </translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="242"/>
-        <location filename="../src/MainWindow.cpp" line="1384"/>
+        <location filename="../src/MainWindow.cpp" line="240"/>
+        <location filename="../src/MainWindow.cpp" line="1381"/>
         <source>Line %1, Column %2</source>
         <translation>列 %1，行 %2</translation>
     </message>
@@ -380,8 +449,8 @@ Do you want to save your changes?</source>
     </message>
     <message>
         <location filename="../src/MainWindow.ui" line="97"/>
-        <location filename="../src/MainWindow.ui" line="414"/>
-        <location filename="../src/MainWindow.ui" line="417"/>
+        <location filename="../src/MainWindow.ui" line="415"/>
+        <location filename="../src/MainWindow.ui" line="418"/>
         <source>Settings</source>
         <translation>設定</translation>
     </message>
@@ -396,222 +465,237 @@ Do you want to save your changes?</source>
         <translation>說明</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="170"/>
+        <location filename="../src/MainWindow.ui" line="171"/>
         <source>Main Toolbar</source>
         <translation>主要工具列</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="197"/>
+        <location filename="../src/MainWindow.ui" line="198"/>
         <source>Open Source File</source>
         <translation>開啟檔案</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="200"/>
+        <location filename="../src/MainWindow.ui" line="201"/>
         <source>Opens a dialog for selecting a source code file.</source>
         <translation>選擇要處理的檔案</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="203"/>
+        <location filename="../src/MainWindow.ui" line="204"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="212"/>
+        <location filename="../src/MainWindow.ui" line="213"/>
         <source>Save Source File</source>
         <translation>儲存</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="215"/>
+        <location filename="../src/MainWindow.ui" line="216"/>
         <source>Saves the currently shown source code to the last opened or saved source file.</source>
         <translation>儲存目前顯示的程式碼</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="218"/>
+        <location filename="../src/MainWindow.ui" line="219"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="236"/>
+        <location filename="../src/MainWindow.ui" line="237"/>
         <source>Opens a file dialog to save the currently shown source code.</source>
         <translation>儲存目前顯示的程式碼到別的檔案</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="248"/>
+        <location filename="../src/MainWindow.ui" line="249"/>
         <source>About UniversalIndentGUI</source>
         <translation>關於 UniversalIndentGUI</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="251"/>
+        <location filename="../src/MainWindow.ui" line="252"/>
         <source>Shows info about UniversalIndentGUI.</source>
         <translation>顯示 UniversalIndentGUI 的相關資訊</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="260"/>
+        <location filename="../src/MainWindow.ui" line="261"/>
         <source>Exit</source>
         <translation>離開</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="263"/>
+        <location filename="../src/MainWindow.ui" line="264"/>
         <source>Quits the UniversalIndentGUI.</source>
         <translation>離開本程式</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="266"/>
+        <location filename="../src/MainWindow.ui" line="267"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="275"/>
+        <location filename="../src/MainWindow.ui" line="276"/>
         <source>PDF</source>
         <translation>PDF</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="278"/>
+        <location filename="../src/MainWindow.ui" line="279"/>
         <source>Export the currently visible source code as PDF document</source>
         <translation>匯出目前顯示的程式碼到 PDF 文件</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="287"/>
+        <location filename="../src/MainWindow.ui" line="288"/>
         <source>HTML</source>
         <translation>HTML</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="290"/>
+        <location filename="../src/MainWindow.ui" line="291"/>
         <source>Export the currently visible source code as HTML document</source>
         <translation>匯出目前顯示的程式碼到 HTML 文件</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="305"/>
+        <location filename="../src/MainWindow.ui" line="306"/>
         <source>Parameter Tooltips</source>
         <translation>顯示參數的提示訊息</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="308"/>
+        <location filename="../src/MainWindow.ui" line="309"/>
         <source>If checked, tool tips will show up if the mouse cursor remains over an indenter parameter for a while.</source>
         <translation>滑鼠移到重整工具的各項參數設定時，會顯示該參數的相關提示</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="323"/>
+        <location filename="../src/MainWindow.ui" line="324"/>
         <source>Live Indent Preview</source>
         <translation>即時預覽重整效果</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="326"/>
+        <location filename="../src/MainWindow.ui" line="327"/>
         <source>Ctrl+L</source>
         <translation>Ctrl+L</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="344"/>
-        <location filename="../src/MainWindow.ui" line="347"/>
+        <location filename="../src/MainWindow.ui" line="345"/>
+        <location filename="../src/MainWindow.ui" line="348"/>
         <source>Syntax Highlighting</source>
         <translation>語法高亮度</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="350"/>
+        <location filename="../src/MainWindow.ui" line="351"/>
         <source>Enables or disables syntax highlighting for the source code.</source>
         <translation>啟用或停用語法高亮度顯示</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="353"/>
+        <location filename="../src/MainWindow.ui" line="354"/>
         <source>By enabling special key words of the source code are highlighted.</source>
         <translation>啟用之後，程式碼會比較容易閱讀</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="367"/>
-        <location filename="../src/MainWindow.ui" line="370"/>
+        <location filename="../src/MainWindow.ui" line="368"/>
+        <location filename="../src/MainWindow.ui" line="371"/>
         <source>White Space Visible</source>
         <translation>顯示空白字元</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="373"/>
+        <location filename="../src/MainWindow.ui" line="374"/>
         <source>Set white space visible</source>
         <translation>顯示空白字元</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="376"/>
+        <location filename="../src/MainWindow.ui" line="377"/>
         <source>Enables or disables diplaying of white space characters in the editor.</source>
         <translation>是否在編輯視窗裡頭顯示空白字元</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="393"/>
+        <location filename="../src/MainWindow.ui" line="394"/>
         <source>Auto Open Last File</source>
         <translation>自動載入上次使用的檔案</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="396"/>
+        <location filename="../src/MainWindow.ui" line="397"/>
         <source>Auto open last source file on startup</source>
         <translation>啟動程式後，自動載入上次使用的檔案</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="399"/>
+        <location filename="../src/MainWindow.ui" line="400"/>
         <source>If selected opens last source code file on startup</source>
         <translation>若你啟用這個選項，程式啟動後將會自動載入上次使用的檔案</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="420"/>
+        <location filename="../src/MainWindow.ui" line="421"/>
         <source>Opens the settings dialog</source>
         <translation>開啟設定視窗</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="423"/>
+        <location filename="../src/MainWindow.ui" line="424"/>
         <source>Opens the settings dialog, to set language etc.</source>
         <translation>開啟設定視窗</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="432"/>
+        <location filename="../src/MainWindow.ui" line="433"/>
         <source>Check for update</source>
         <translation>檢查是否有更新檔</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="435"/>
-        <location filename="../src/MainWindow.ui" line="438"/>
+        <location filename="../src/MainWindow.ui" line="436"/>
+        <location filename="../src/MainWindow.ui" line="439"/>
         <source>Checks online whether a new version of UniversalIndentGUI is available.</source>
         <translation>上網檢查是否有新版的 UniversalIndentGUI</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="447"/>
+        <location filename="../src/MainWindow.ui" line="448"/>
         <source>Clear Recently Opened List</source>
         <translation>清空最近開啟的檔案清單</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="139"/>
+        <location filename="../src/MainWindow.ui" line="457"/>
+        <source>Show Log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.ui" line="460"/>
+        <source>Displays logging information.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.ui" line="463"/>
+        <source>Displays logging info about the currently running UiGUI application.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.ui" line="140"/>
         <source>Indenter Settings</source>
         <translation>重整工具設定</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="227"/>
-        <location filename="../src/MainWindow.ui" line="230"/>
-        <location filename="../src/MainWindow.ui" line="233"/>
+        <location filename="../src/MainWindow.ui" line="228"/>
+        <location filename="../src/MainWindow.ui" line="231"/>
+        <location filename="../src/MainWindow.ui" line="234"/>
         <source>Save Source File As...</source>
         <translation>另存新檔...</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="311"/>
+        <location filename="../src/MainWindow.ui" line="312"/>
         <source>DONOTTRANSLATE:IndenterParameterTooltipsEnabled</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="359"/>
+        <location filename="../src/MainWindow.ui" line="360"/>
         <source>DONOTTRANSLATE:SyntaxHighlightningEnabled</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="382"/>
+        <location filename="../src/MainWindow.ui" line="383"/>
         <source>DONOTTRANSLATE:WhiteSpaceIsVisible</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="405"/>
+        <location filename="../src/MainWindow.ui" line="406"/>
         <source>DONOTTRANSLATE:LoadLastOpenedFileOnStartup</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="239"/>
+        <location filename="../src/MainWindow.ui" line="240"/>
         <source>Ctrl+Shift+S</source>
         <translation>Ctrl+Shift+S</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.ui" line="356"/>
+        <location filename="../src/MainWindow.ui" line="357"/>
         <source>Ctrl+H</source>
         <translation>Ctrl+H</translation>
     </message>
@@ -896,6 +980,35 @@ Do you want to save your changes?</source>
     </message>
 </context>
 <context>
+    <name>UiGuiLoggerDialog</name>
+    <message>
+        <location filename="../src/UiGuiLoggerDialog.ui" line="14"/>
+        <source>Log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/UiGuiLoggerDialog.ui" line="24"/>
+        <source>Logged messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/UiGuiLoggerDialog.ui" line="40"/>
+        <source>Clear log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/UiGuiLoggerDialog.ui" line="43"/>
+        <source>...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/UiGuiLoggerDialog.ui" line="54"/>
+        <location filename="../src/UiGuiLoggerDialog.ui" line="57"/>
+        <source>Open folder containing log file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>UiGuiSettingsDialog</name>
     <message>
         <location filename="../src/UiGuiSettingsDialog.cpp" line="73"/>
@@ -949,14 +1062,14 @@ Do you want to save your changes?</source>
 <context>
     <name>UpdateCheckDialog</name>
     <message>
-        <location filename="../src/UpdateCheckDialog.cpp" line="166"/>
         <location filename="../src/UpdateCheckDialog.ui" line="17"/>
+        <location filename="../src/UpdateCheckDialog.cpp" line="166"/>
         <source>Checking for update...</source>
         <translation>正在檢查是否有更新檔</translation>
     </message>
     <message>
-        <location filename="../src/UpdateCheckDialog.cpp" line="167"/>
         <location filename="../src/UpdateCheckDialog.ui" line="23"/>
+        <location filename="../src/UpdateCheckDialog.cpp" line="167"/>
         <source>Checking whether a newer version is available</source>
         <translation>正在檢查是否有新版本</translation>
     </message>
