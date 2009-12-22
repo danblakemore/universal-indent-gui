@@ -27,79 +27,68 @@
 #include "UiGuiVersion.h"
 #include "UiGuiSystemInfo.h"
 
+#include <string>
+#include <iostream>
+#include <algorithm>
+#include <tclap/CmdLine.h>
+
 /*!
     /brief Entry point to UniversalIndentGUI application.
 
     Evaluates the following parameters:
     No parameters starts without server and full gui.
     -f filename --file filename   : Opens the by filename defined file on start.
-    -p --plugin  : Run as plugin. Server will be startet with a simplified gui.
+    -p --plugin  : Run as plugin. Server will be started with a simplified gui.
     -s --server  : Run as server only without gui.
     If -p and -s are set, -p will be used.
+	-v --verbose needs a following parameter defining the verbose level as a number from 0 to 3.
  */
 int main(int argc, char *argv[]) {
-    QApplication app(argc, argv);
-    QString file2OpenOnStart = "";
-    int verboseLevel = 1;
-    bool startAsPlugin = false;
-    bool startAsServer = false;
+	QString file2OpenOnStart = "";
+	int verboseLevel = 1;
+	bool startAsPlugin = false;
+	bool startAsServer = false;
 
+	// Wrap everything in a try block.  Do this every time, 
+	// because exceptions will be thrown for problems. 
+	try {  
+		// Define the command line object.
+		TCLAP::CmdLine cmd("If -p and -s are set, -p will be used.\nGiving no parameters starts full gui without server.", ' ', "UiGUI version " PROGRAM_VERSION_STRING " " PROGRAM_REVISION);
+		//cmd.setExceptionHandling(false);
+
+		// Define a value argument and add it to the command line.
+		TCLAP::ValueArg<std::string> filenameArg("f", "file", "Opens the by filename defined file on start" , false, "", "string");
+		cmd.add( filenameArg );
+
+		// Define a switch and add it to the command line.
+		TCLAP::SwitchArg pluginSwitch("p", "plugin", "Run as plugin. Server will be started with a simplified gui", false);
+		cmd.add( pluginSwitch );
+
+		// Define a switch and add it to the command line.
+		TCLAP::SwitchArg serverSwitch("s", "server", "Run as server only without gui", false);
+		cmd.add( serverSwitch );
+
+		// Define a value argument and add it to the command line.
+		TCLAP::ValueArg<int> verboselevelArg("v", "verbose", "Sets how many info is written to the log. 0 means with debug info, 3 means critical messages only" , false, 1, "int");
+		cmd.add( verboselevelArg );
+
+		// Parse the args.
+		cmd.parse( argc, argv );
+
+		// Get the value parsed by each arg. 
+		file2OpenOnStart = QString::fromStdString( filenameArg.getValue() );
+		startAsPlugin = pluginSwitch.getValue();
+		startAsServer = serverSwitch.getValue();
+		verboseLevel = verboselevelArg.getValue();
+	} catch (TCLAP::ArgException &e) { // catch any exceptions
+		std::cerr << "error: " << e.error() << " for arg " << e.argId() << endl;
+	}
+
+
+    QApplication app(argc, argv);
     UiGuiIndentServer server;
     MainWindow *mainWindow = NULL;
     IndentHandler *indentHandler = NULL;
-
-    // Parse command line arguments. First parameter is the executable itself.
-    for ( int i = 1; i < argc; i++ ) {
-        QString currentArg = argv[i];
-        // Open file parameters.
-        if ( currentArg == "-f" || currentArg == "--file" ) {
-            // Test whether a parameter follows the file parameter.
-            if ( i + 1 >= argc ) {
-                QMessageBox::information( NULL, "Need additional parameter", "The parameter -f / --file needs a following parameter defining the file to be opened at start." );
-                fprintf(stderr, "The parameter -f / --file needs a following parameter defining the file to be opened at start.");
-                exit(1);
-            }
-            // Set the file that shall be opened a start.
-            else {
-                i++;
-                file2OpenOnStart = argv[i];
-            }
-        }
-        else if ( currentArg == "-p" || currentArg == "--plugin" ) {
-            startAsPlugin = true;
-        }
-        else if ( currentArg == "-s" || currentArg == "--server" ) {
-            startAsServer = true;
-        }
-        // Verbose level parameters.
-        if ( currentArg == "-v" || currentArg == "--verbose" ) {
-            // Test whether a parameter follows the verbose parameter.
-            if ( i + 1 >= argc ) {
-                QMessageBox::information( NULL, "Need additional parameter", "The parameter -v / --verbose needs a following parameter defining the verbose level as a number from 0 to 3." );
-                fprintf(stderr, "The parameter -v / --verbose needs a following parameter defining the verbose level as a number from 0 to 3." );
-                exit(1);
-            }
-            // Set the verbose level.
-            else {
-                i++;
-                verboseLevel = atoi( argv[i] );
-            }
-        }
-        else {
-            QString message = "Invalid parameter found. Allowed parameters are:\n" \
-                "-f filename --file filename   : Opens the by filename defined file on start.\n" \
-                "-p --plugin        : Run as plugin. Server will be startet with a simplified gui.\n" \
-                "-s --server        : Run as server only without gui.\n" \
-                "-v level --verbose level : Sets the verbose level for logging application info.\n" \
-                "                     Level is a number from 0 to 3, where 0 means even\n" \
-                "                     log debug info (most log info).\n\n" \
-                "If -p and -s are set, -p will be used.\n" \
-                "No parameters starts without server and full gui.";
-            QMessageBox::information( NULL, "Invalid parameter", message );
-            fprintf(stderr, "Invalid parameter found. Allowed parameters are...");
-            exit(1);
-        }
-    }
 
     // Init and install the logger function.
     // Setting UTF-8 as default 8-Bit encoding to ensure that qDebug does no false string conversion.
@@ -138,17 +127,11 @@ int main(int argc, char *argv[]) {
 
     int returnValue = app.exec();
 
-    // Delete the correct objects.
-    if ( !startAsPlugin && !startAsServer && mainWindow != NULL) {
-        delete mainWindow;
-    }
-    else if ( startAsPlugin && indentHandler != NULL) {
+    if ( startAsPlugin || startAsServer != NULL)
         server.stopServer();
-        delete indentHandler;
-    }
-    else if ( startAsServer ) {
-        server.stopServer();
-    }
+
+    delete indentHandler;
+	delete mainWindow;
 
     UiGuiSettings::deleteInstance();
     UiGuiLogger::deleteInstance();
