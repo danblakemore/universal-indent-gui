@@ -32,6 +32,74 @@
 #include <algorithm>
 #include <tclap/CmdLine.h>
 
+#ifdef WIN32
+
+#include <windows.h>
+#include <direct.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <fcntl.h>
+#include <io.h>
+#include <iostream>
+#include <fstream>
+
+/**
+	\brief Calling this function tries to attach to the console of the parent process and
+	redirect all inputs and outputs from and to this console.
+
+	The redirected streams are stdout, stdin, stderr, cout, wcout, cin, wcin, wcerr, cerr, wclog and clog.
+
+	Code based on info from http://dslweb.nwnexus.com/~ast/dload/guicon.htm.
+ */
+bool attachToConsole(/*enum ATTACH_ONLY|TRY_ATTACH_ELSE_CREATE|CREATE_NEW*/)
+{
+	int hConHandle;
+	long lStdHandle;
+	CONSOLE_SCREEN_BUFFER_INFO coninfo;
+	FILE *fp;
+
+	// Trying to attach to the console of the parent process.
+	BOOL successful = AttachConsole(ATTACH_PARENT_PROCESS);
+	// In case that the parent process has no console return false and do no input/output redirection.
+	if ( !successful )
+		return false;
+
+	// Set the screen buffer to be big enough to let us scroll text
+	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &coninfo);
+	// Set maximum console lines.
+	coninfo.dwSize.Y = 500;
+	SetConsoleScreenBufferSize(GetStdHandle(STD_OUTPUT_HANDLE), coninfo.dwSize);
+
+	// Redirect unbuffered STDOUT to the console.
+	lStdHandle = (long)GetStdHandle(STD_OUTPUT_HANDLE);
+	hConHandle = _open_osfhandle(lStdHandle, _O_TEXT);
+	fp = _fdopen( hConHandle, "w" );
+	*stdout = *fp;
+	setvbuf( stdout, NULL, _IONBF, 0 );
+
+	// Redirect unbuffered STDIN to the console.
+	lStdHandle = (long)GetStdHandle(STD_INPUT_HANDLE);
+	hConHandle = _open_osfhandle(lStdHandle, _O_TEXT);
+	fp = _fdopen( hConHandle, "r" );
+	*stdin = *fp;
+	setvbuf( stdin, NULL, _IONBF, 0 );
+
+	// Redirect unbuffered STDERR to the console.
+	lStdHandle = (long)GetStdHandle(STD_ERROR_HANDLE);
+	hConHandle = _open_osfhandle(lStdHandle, _O_TEXT);
+	fp = _fdopen( hConHandle, "w" );
+	*stderr = *fp;
+	setvbuf( stderr, NULL, _IONBF, 0 );
+
+	// Make cout, wcout, cin, wcin, wcerr, cerr, wclog and clog point to console as well.
+	std::ios::sync_with_stdio();
+
+	return true;
+}
+#endif
+
+
+
 /*!
     /brief Entry point to UniversalIndentGUI application.
 
@@ -48,13 +116,20 @@ int main(int argc, char *argv[]) {
 	int verboseLevel = 1;
 	bool startAsPlugin = false;
 	bool startAsServer = false;
+	bool tclapExitExceptionThrown = false;
+	int returnValue = 0;
 
-	// Wrap everything in a try block.  Do this every time, 
+#ifdef WIN32
+	bool attachedToConsole = false;
+	attachedToConsole = attachToConsole();
+#endif
+
+	// Wrap everything in a try block. Do this every time, 
 	// because exceptions will be thrown for problems. 
 	try {  
 		// Define the command line object.
 		TCLAP::CmdLine cmd("If -p and -s are set, -p will be used.\nGiving no parameters starts full gui without server.", ' ', "UiGUI version " PROGRAM_VERSION_STRING " " PROGRAM_REVISION);
-		//cmd.setExceptionHandling(false);
+		cmd.setExceptionHandling(false);
 
 		// Define a value argument and add it to the command line.
 		TCLAP::ValueArg<std::string> filenameArg("f", "file", "Opens the by filename defined file on start" , false, "", "string");
@@ -80,10 +155,35 @@ int main(int argc, char *argv[]) {
 		startAsPlugin = pluginSwitch.getValue();
 		startAsServer = serverSwitch.getValue();
 		verboseLevel = verboselevelArg.getValue();
-	} catch (TCLAP::ArgException &e) { // catch any exceptions
-		std::cerr << "error: " << e.error() << " for arg " << e.argId() << endl;
+	}
+	catch (TCLAP::ArgException &e) { // catch arg exceptions
+		std::cerr << std::endl << "error: " << e.error() << ". " << e.argId() << std::endl;
+		returnValue = 1;
+	}
+	catch (TCLAP::ExitException &e) { // catch exit exceptions
+		tclapExitExceptionThrown = true;
+		returnValue = e.getExitStatus();
+	}
+	catch (...) { // catch any exceptions
+		std::cerr << std::endl << "There was an error! Maybe faulty command line arguments set. See --help." << std::endl;
+		returnValue = 1;
 	}
 
+	if ( returnValue != 0 || tclapExitExceptionThrown ) {
+#ifdef WIN32
+		if ( attachedToConsole ) {
+			// Workaround for skipped command line prompt: Get the current working directory and print it to console.
+			char* buffer;
+			if( (buffer = _getcwd( NULL, 0 )) != NULL ) {
+				std::cerr << std::endl << buffer << ">";
+				free(buffer);
+			}
+			// Release the connection to the parents console.
+			FreeConsole();
+		}
+#endif
+		return returnValue;
+	}
 
     QApplication app(argc, argv);
     UiGuiIndentServer server;
@@ -125,7 +225,7 @@ int main(int argc, char *argv[]) {
         server.startServer();
     }
 
-    int returnValue = app.exec();
+    returnValue = app.exec();
 
     if ( startAsPlugin || startAsServer != NULL)
         server.stopServer();
