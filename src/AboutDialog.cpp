@@ -51,7 +51,7 @@ AboutDialog::AboutDialog(QWidget *parent, Qt::WindowFlags flags) : QDialog(paren
         "<p align='center'><a href=\"http://korytskyy.lviv.ua/\"><b>Oleksandr</b></a> for Ukrainian and Russian translation.</p></br>"
         "<p align='center'><b>Erwan &quot;leg&quot;</b> for French translation and the new icon logo.</p></br>"
         "<p align='center'>The <a href=\"http://www.scintilla.org/\"><b>Scintilla</b></a> project for their great text editing component.</p></br>"
-        "<p align='center'><a href=\"http://www.riverbankcomputing.co.uk/software/qscintilla/\"><b>Riverbank</b></a> for their Scintlla Qt wrapper QScintilla.</p></br>"
+        "<p align='center'><a href=\"http://www.riverbankcomputing.co.uk/software/qscintilla/\"><b>Riverbank</b></a> for their Scintilla Qt wrapper QScintilla.</p></br>"
         "<p align='center'>The <a href=\"http://astyle.sourceforge.net/\"><b>Artistic Style</b></a> project.</p></br>"
         "<p align='center'>The <a href=\"http://invisible-island.net/bcpp/\"><b>BCPP</b></a> project.</p></br>"
         "<p align='center'>The <a href=\"http://www.siber.com/sct/tools/cbl-beau.html\"><b>Cobol Beautifier</b></a> project.</p></br>"
