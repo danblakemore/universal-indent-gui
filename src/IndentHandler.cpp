@@ -238,7 +238,7 @@ void IndentHandler::contextMenuEvent( QContextMenuEvent *event ) {
     \brief Creates the content for a shell script that can be used as a external tool call
     to indent an as parameter defined file.
  */
-QString IndentHandler::generateCommandlineCall() {
+QString IndentHandler::generateShellScript(const QString &configFilename) {
     QString indenterCompleteCallString;
     QString parameterInputFile;
     QString parameterOuputFile;
@@ -252,13 +252,6 @@ QString IndentHandler::generateCommandlineCall() {
     QString shellParameterPlaceholder = "$1";
 #endif
 
-    // Generate the parameter string that will be saved to the indenters config file.
-    QString parameterString = getParameterString();
-
-    if ( !configFilename.isEmpty() ) {
-        saveConfigFile( indenterDirctoryStr + "/" + configFilename, parameterString );
-    }
-
     parameterInputFile = " " + inputFileParameter + "\"" + shellParameterPlaceholder + "\"";
 
     if ( outputFileParameter != "none" && outputFileParameter != "stdout" ) {
@@ -271,12 +264,12 @@ QString IndentHandler::generateCommandlineCall() {
     }
 
     // If the config file name is empty it is assumed that all parameters are sent via command line call
-    if ( configFilename.isEmpty() ) {
-        parameterParameterFile = " " + parameterString;
+    if ( globalConfigFilename_.isEmpty() ) {
+        parameterParameterFile = " " + getParameterString();
     }
     // else if needed add the parameter to the indenter call string where the config file can be found.
     else if (useCfgFileParameter != "none") {
-        parameterParameterFile = " " + useCfgFileParameter + "\"" + indenterDirctoryStr + "/" + configFilename + "\"";
+        parameterParameterFile = " " + useCfgFileParameter + "\"./" + configFilename + "\"";
     }
 
     // Assemble indenter call string for parameters according to the set order.
@@ -398,8 +391,8 @@ QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputF
     // Generate the parameter string that will be saved to the indenters config file
     QString parameterString = getParameterString();
 
-    if ( !configFilename.isEmpty() ) {
-        saveConfigFile( tempDirctoryStr + "/" + configFilename, parameterString );
+    if ( !globalConfigFilename_.isEmpty() ) {
+        saveConfigFile( tempDirctoryStr + "/" + globalConfigFilename_, parameterString );
     }
 
     // Only add a dot to file extension if the string is not empty
@@ -484,12 +477,12 @@ QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputF
 #endif
 
     // If the config file name is empty it is assumed that all parameters are sent via command line call
-    if ( configFilename.isEmpty() ) {
+    if ( globalConfigFilename_.isEmpty() ) {
         parameterParameterFile = " " + parameterString;
     }
     // if needed add the parameter to the indenter call string where the config file can be found
     else if (useCfgFileParameter != "none") {
-        parameterParameterFile = " " + useCfgFileParameter + "\"" + tempDirctoryStr + "/" + configFilename + "\"";
+        parameterParameterFile = " " + useCfgFileParameter + "\"" + tempDirctoryStr + "/" + globalConfigFilename_ + "\"";
     }
 
     // Assemble indenter call string for parameters according to the set order.
@@ -901,7 +894,7 @@ void IndentHandler::readIndentIniFile(QString iniFilePath) {
 
     indenterName = indenterSettings->value("header/indenterName").toString();
     indenterFileName = indenterSettings->value("header/indenterFileName").toString();
-    configFilename = indenterSettings->value("header/configFilename").toString();
+    globalConfigFilename_ = indenterSettings->value("header/configFilename").toString();
     useCfgFileParameter = indenterSettings->value("header/useCfgFileParameter").toString();
     cfgFileParameterEnding = indenterSettings->value("header/cfgFileParameterEnding").toString();
     if ( cfgFileParameterEnding == "cr" ) {
@@ -1291,7 +1284,7 @@ QString IndentHandler::getPossibleIndenterFileExtensions() {
     \brief Returns the path and filename of the current indenter config file.
  */
 QString IndentHandler::getIndenterCfgFile() {
-    QFileInfo fileInfo( indenterDirctoryStr + "/" + configFilename );
+    QFileInfo fileInfo( indenterDirctoryStr + "/" + globalConfigFilename_ );
     return fileInfo.absoluteFilePath();
 }
 
@@ -1507,7 +1500,9 @@ void IndentHandler::openConfigFileDialog() {
     configFilePath = QFileDialog::getOpenFileName( NULL, tr("Choose indenter config file"), getIndenterCfgFile(), "All files (*.*)" );
 
     if (configFilePath != "") {
-        loadConfigFile(configFilePath);
+        // If the config file was loaded successfully, inform any who is interested about it.
+        if ( loadConfigFile(configFilePath) )
+            handleChangedIndenterSettings();
     }
 }
 
@@ -1540,9 +1535,6 @@ void IndentHandler::saveasIndentCfgFileDialog() {
     other application and open a save dialog for saving the shell script.
 */
 void IndentHandler::createIndenterCallShellScript() {
-    // Get the content of the shell/batch script.
-    QString indenterCallShellScript = generateCommandlineCall();
-
     QString shellScriptExtension;
 #if defined(Q_OS_WIN32)
     shellScriptExtension = "bat";
@@ -1555,27 +1547,38 @@ void IndentHandler::createIndenterCallShellScript() {
     QString currentIndenterName = getCurrentIndenterName();
     currentIndenterName = currentIndenterName.replace(" ", "_");
 
-    //QString openedSourceFileContent = openFileDialog( tr("Choose source code file"), "./", fileExtensions );
-    QString fileName = QFileDialog::getSaveFileName( this, tr("Save shell script"), "call_"+currentIndenterName+"."+shellScriptExtension, fileExtensions);
+    QString shellScriptFileName = QFileDialog::getSaveFileName( this, tr("Save shell script"), "call_"+currentIndenterName+"."+shellScriptExtension, fileExtensions);
 
     // Saving has been canceled if the filename is empty
-    if ( fileName.isEmpty() ) {
+    if ( shellScriptFileName.isEmpty() ) {
         return;
     }
 
-    // Replace placeholder for script name in script template.
-    indenterCallShellScript = indenterCallShellScript.replace( "__INDENTERCALLSTRINGSCRIPTNAME__", QFileInfo(fileName).fileName() );
-
     // Delete any old file, write the new contents and set executable permissions.
-    QFile::remove(fileName);
-    QFile outSrcFile(fileName);
-    outSrcFile.open( QFile::ReadWrite | QFile::Text );
-    outSrcFile.write( indenterCallShellScript.toAscii() );
+    QFile::remove(shellScriptFileName);
+    QFile outSrcFile(shellScriptFileName);
+    if ( outSrcFile.open( QFile::ReadWrite | QFile::Text ) ) {
+        QString shellScriptConfigFilename = QFileInfo(shellScriptFileName).baseName() + "." + QFileInfo(globalConfigFilename_).suffix();
+
+        // Get the content of the shell/batch script.
+        QString indenterCallShellScript = generateShellScript(shellScriptConfigFilename);
+
+        // Replace placeholder for script name in script template.
+        indenterCallShellScript = indenterCallShellScript.replace( "__INDENTERCALLSTRINGSCRIPTNAME__", QFileInfo(shellScriptFileName).fileName() );
+
+        outSrcFile.write( indenterCallShellScript.toAscii() );
 #if !defined(Q_OS_WIN32)
-    // For none Windows systems set the files executable flag
-    outSrcFile.setPermissions( outSrcFile.permissions() | QFile::ExeOwner | QFile::ExeUser| QFile::ExeGroup );
+        // For none Windows systems set the files executable flag
+        outSrcFile.setPermissions( outSrcFile.permissions() | QFile::ExeOwner | QFile::ExeUser| QFile::ExeGroup );
 #endif
-    outSrcFile.close();
+        outSrcFile.close();
+
+        // Save the indenter config file to the same directory, where the shell srcipt was saved to,
+        // because the script will reference it there via "./".
+        if ( !globalConfigFilename_.isEmpty() ) {
+            saveConfigFile( QFileInfo(shellScriptFileName).path() + "/" + shellScriptConfigFilename, getParameterString() );
+        }
+    }
 }
 
 

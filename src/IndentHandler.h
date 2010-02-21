@@ -61,7 +61,7 @@ public:
     IndentHandler(int indenterID, QWidget *mainWindow = NULL, QWidget *parent = NULL);
     ~IndentHandler();
 
-    QString generateCommandlineCall();
+    QString generateShellScript(const QString &configFilename);
     QString callIndenter(QString sourceCode, QString inputFileExtension);
     bool loadConfigFile(QString filePathName);
     void resetToDefaultValues();
@@ -168,7 +168,7 @@ private:
     QString settingsDirctoryStr;
     QStringList indenterIniFileList;
     QString parameterOrder;
-    QString configFilename;
+    QString globalConfigFilename_;
     QString cfgFileParameterEnding;
     QString inputFileParameter;
     QString inputFileName;
