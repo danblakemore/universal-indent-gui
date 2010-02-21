@@ -227,7 +227,7 @@ int main(int argc, char *argv[]) {
 
     returnValue = app.exec();
 
-    if ( startAsPlugin || startAsServer != NULL)
+    if ( startAsPlugin || startAsServer )
         server.stopServer();
 
     delete indentHandler;
