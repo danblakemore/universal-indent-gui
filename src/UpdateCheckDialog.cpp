@@ -20,7 +20,14 @@
 #include "UpdateCheckDialog.h"
 
 #include "UiGuiVersion.h"
+
+#include <QDesktopServices>
+#include <QNetworkAccessManager>
+#include <QTimer>
+#include <QUrl>
 #include <QRegExpValidator>
+#include <QNetworkRequest>
+#include <QNetworkReply>
 
 /*!
     \class UpdateCheckDialog
@@ -32,15 +39,16 @@
 /*!
     \brief Initializes member variables and stores the version of UiGui and a pointer to the settings object.
  */
-UpdateCheckDialog::UpdateCheckDialog(UiGuiSettings *settings, QWidget *parent) : QDialog(parent) {
+UpdateCheckDialog::UpdateCheckDialog(UiGuiSettings *settings, QWidget *parent) : QDialog(parent),
+    manualUpdateRequested(false),
+    currentNetworkReply(NULL),
+    roleOfClickedButton(QDialogButtonBox::InvalidRole)
+{
     setupUi(this);
 
-    manualUpdateRequested = false;
-    roleOfClickedButton = QDialogButtonBox::InvalidRole;
-
-    // Create object for http request and connect it with the request return handler.
-    http = new QHttp(this);
-    connect( http, SIGNAL(done(bool)), this, SLOT(checkResultsOfFetchedPadXMLFile(bool)) );
+    // Create object for networkAccessManager request and connect it with the request return handler.
+    networkAccessManager = new QNetworkAccessManager(this);
+    connect( networkAccessManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(checkResultsOfFetchedPadXMLFile(QNetworkReply*)) );
 
     // Create a timer object used for the progress bar.
     updateCheckProgressTimer = new QTimer(this);
@@ -55,6 +63,16 @@ UpdateCheckDialog::UpdateCheckDialog(UiGuiSettings *settings, QWidget *parent) :
 
     // This dialog is always modal.
     setModal(true);
+}
+
+
+/*!
+    \brief On destroy cancels any currently running network request.
+ */
+UpdateCheckDialog::~UpdateCheckDialog() {
+    disconnect( networkAccessManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(checkResultsOfFetchedPadXMLFile(QNetworkReply*)) );
+    if (currentNetworkReply != NULL)
+        currentNetworkReply->abort();
 }
 
 
@@ -84,11 +102,12 @@ void UpdateCheckDialog::checkForUpdate() {
 
 
 /*!
-    \brief This function tries to download the UniversalIndentGui pad file from the SourceForge server
+    \brief This function tries to download the UniversalIndentGui pad file from the SourceForge server.
  */
 void UpdateCheckDialog::getPadXMLFile() {
-    http->setHost("universalindent.sourceforge.net");
-    http->get("/universalindentgui_pad.xml");
+    //networkAccessManager->setHost("universalindent.sourceforge.net");
+    //networkAccessManager->get("/universalindentgui_pad.xml");
+    currentNetworkReply = networkAccessManager->get(QNetworkRequest(QUrl("http://universalindent.sourceforge.net/universalindentgui_pad.xml")));
 }
 
 
@@ -100,13 +119,15 @@ void UpdateCheckDialog::getPadXMLFile() {
     download page if a newer version exists. In case of an error during update
     check, a message box with the error will be displayed.
  */
-void UpdateCheckDialog::checkResultsOfFetchedPadXMLFile(bool errorOccurred) {
+void UpdateCheckDialog::checkResultsOfFetchedPadXMLFile(QNetworkReply *networkReply) {
+    Q_ASSERT(currentNetworkReply == networkReply);
+
     // Stop the progress bar timer.
     updateCheckProgressTimer->stop();
 
-    if ( !errorOccurred ) {
+    if ( networkReply->error() == QNetworkReply::NoError ) {
         // Try to find the version string.
-        QString returnedString = http->readAll();
+        QString returnedString = networkReply->readAll();
         int leftPosition = returnedString.indexOf("<Program_Version>");
         int rightPosition = returnedString.indexOf("</Program_Version>");
 
@@ -126,7 +147,7 @@ void UpdateCheckDialog::checkResultsOfFetchedPadXMLFile(bool errorOccurred) {
 
                 // If yes clicked, open the download url in the default browser.
                 if ( roleOfClickedButton == QDialogButtonBox::YesRole ) {
-                    QDesktopServices::openUrl( QUrl("http://sourceforge.net/project/showfiles.php?group_id=167482") );
+                    QDesktopServices::openUrl( QUrl("networkAccessManager://sourceforge.net/project/showfiles.php?group_id=167482") );
                 }
             }
             else if ( manualUpdateRequested ) {
@@ -137,14 +158,16 @@ void UpdateCheckDialog::checkResultsOfFetchedPadXMLFile(bool errorOccurred) {
         }
         // In the returned string, the version string could not be found.
         else {
-            QMessageBox::warning(this, "Update check error", "There was an error while trying to check for an update! The retrieved file did not contain expected content." );
+            QMessageBox::warning(this, tr("Update check error"), tr("There was an error while trying to check for an update! The retrieved file did not contain expected content.") );
         }
     }
     // If there was some error while trying to retrieve the update info from server and not cancel was pressed.
     else if ( roleOfClickedButton != QDialogButtonBox::RejectRole ) {
-        QMessageBox::warning(this, "Update check error", "There was an error while trying to check for an update! Error was : " + http->errorString() );
+        QMessageBox::warning(this, tr("Update check error"), tr("There was an error while trying to check for an update! Error was : %1").arg(networkReply->errorString()) );
     }
     manualUpdateRequested = false;
+    networkReply->deleteLater();
+    currentNetworkReply = NULL;
 }
 
 
@@ -198,7 +221,7 @@ void UpdateCheckDialog::showNoNewVersionAvailableDialog() {
     \brief This slot is called, when a button in the dialog is clicked.
 
     If the clicked button was the cancel button, the user wants to cancel
-    the update check. So the http request is aborted and the timer for the
+    the update check. So the networkAccessManager request is aborted and the timer for the
     progress bar animation is stopped.
 
     In any case if a button is clicked, the dialog box will be closed.
@@ -207,8 +230,8 @@ void UpdateCheckDialog::handleUpdateCheckDialogButtonClicked(QAbstractButton *cl
     roleOfClickedButton = buttonBox->buttonRole(clickedButton);
 
     if ( roleOfClickedButton == QDialogButtonBox::RejectRole ) {
-        // Abort the http request.
-        http->abort();
+        // Abort the networkAccessManager request.
+        currentNetworkReply->abort();
         // Stop the progress bar timer.
         updateCheckProgressTimer->stop();
     }

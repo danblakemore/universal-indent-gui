@@ -20,15 +20,11 @@
 #ifndef UPDATECHECKDIALOG_H
 #define UPDATECHECKDIALOG_H
 
-#include <QDialog>
 #include <QMessageBox>
-#include <QDesktopServices>
-#include <QHttp>
-#include <QUrl>
-#include <QDate>
-#include <QHBoxLayout>
-#include <QLabel>
-#include <QTimer>
+class QTimer;
+class QDesktopServices;
+class QNetworkAccessManager;
+class QNetworkReply;
 
 #include "ui_UpdateCheckDialog.h"
 #include "UiGuiSettings.h"
@@ -39,6 +35,7 @@ class UpdateCheckDialog : public QDialog, public Ui::UpdateCheckDialog
 
 public:
     UpdateCheckDialog(UiGuiSettings *settings, QWidget *parent=0);
+    ~UpdateCheckDialog();
 
 public slots:
     void checkForUpdateAndShowDialog();
@@ -52,14 +49,15 @@ private:
 
     UiGuiSettings *settings;
     bool manualUpdateRequested;
-    QHttp *http;
+    QNetworkAccessManager *networkAccessManager;
+    QNetworkReply *currentNetworkReply;
     QDialogButtonBox::ButtonRole roleOfClickedButton;
     QTimer *updateCheckProgressTimer;
     int updateCheckProgressCounter;
     int convertVersionStringToNumber(QString versionString);
 
 private slots:
-    void checkResultsOfFetchedPadXMLFile(bool errorOccurred);
+    void checkResultsOfFetchedPadXMLFile(QNetworkReply *networkReply);
     void handleUpdateCheckDialogButtonClicked(QAbstractButton *clickedButton);
     void updateUpdateCheckProgressBar();
 };
