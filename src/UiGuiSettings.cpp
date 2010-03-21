@@ -248,9 +248,15 @@ void UiGuiSettings::emitSignalForSetting(QString settingName) {
     else if ( settingName == "IndenterParameterTooltipsEnabled" ) emit indenterParameterTooltipsEnabled( settings[settingName].toBool() );
     else if ( settingName == "TabWidth" ) emit tabWidth( settings[settingName].toInt() );
     else if ( settingName == "Language" ) emit language( settings[settingName].toInt() );
-    else if ( settingName == "CheckForUpdate" ) emit checkForUpdate( settings[settingName].toBool() );
     else if ( settingName == "LastUpdateCheck" ) emit lastUpdateCheck( settings[settingName].toDate() );
     else if ( settingName == "MainWindowState" ) emit mainWindowState( settings[settingName].toByteArray() );
+    // Network settings.
+    else if ( settingName == "CheckForUpdate" ) emit checkForUpdate( settings[settingName].toBool() );
+    else if ( settingName == "ProxyEnabled" ) emit enableProxy( settings[settingName].toBool() );
+    else if ( settingName == "ProxyHostName" ) emit proxyHostName( settings[settingName].toString() );
+    else if ( settingName == "ProxyPort" ) emit proxyPort( settings[settingName].toInt() );
+    else if ( settingName == "ProxyUserName" ) emit proxyUserName( settings[settingName].toString() );
+    else if ( settingName == "ProxyPassword" ) emit proxyPassword( settings[settingName].toString() );
     else if ( settingName == "all" ) {
         emit versionInSettingsFile( settings["VersionInSettingsFile"].toString() );
         emit windowIsMaximized( settings["WindowIsMaximized"].toBool() );
@@ -266,9 +272,15 @@ void UiGuiSettings::emitSignalForSetting(QString settingName) {
         emit indenterParameterTooltipsEnabled( settings["IndenterParameterTooltipsEnabled"].toBool() );
         emit tabWidth( settings["TabWidth"].toInt() );
         emit language( settings["Language"].toInt() );
-        emit checkForUpdate( settings["CheckForUpdate"].toBool() );
         emit lastUpdateCheck( settings["LastUpdateCheck"].toDate() );
         emit mainWindowState( settings["MainWindowState"].toByteArray() );
+        // Network settings.
+        emit checkForUpdate( settings["CheckForUpdate"].toBool() );
+        emit enableProxy( settings["ProxyEnabled"].toBool() );
+        emit proxyHostName( settings["ProxyHostName"].toString() );
+        emit proxyPort( settings["ProxyPort"].toInt() );
+        emit proxyUserName( settings["ProxyUserName"].toString() );
+        emit proxyPassword( settings["ProxyPassword"].toString() );
     }
 }
 

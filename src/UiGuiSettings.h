@@ -72,9 +72,15 @@ signals:
     void indenterParameterTooltipsEnabled(bool value);
     void tabWidth(int value);
     void language(int value);
-    void checkForUpdate(bool value);
     void lastUpdateCheck(QDate value);
     void mainWindowState(QByteArray value);
+    // Network settings.
+    void checkForUpdate(bool value);
+    void enableProxy(bool value);
+    void proxyHostName(QString value);
+    void proxyPort(int value);
+    void proxyUserName(QString value);
+    void proxyPassword(QString value);
 
 private:
     void emitSignalForSetting(QString settingName);
