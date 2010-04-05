@@ -62,7 +62,7 @@
             <string>Displays all available translations for UniversalIndentGui and lets you choose one.</string>
            </property>
            <property name="connectedSettingName" stdset="0">
-            <string>DONOTTRANSLATE:Language</string>
+            <string>DONOTTRANSLATE:language</string>
            </property>
           </widget>
          </item>
@@ -90,7 +90,7 @@
           <string>Automatically open last file on startup</string>
          </property>
          <property name="connectedSettingName" stdset="0">
-          <string>DONOTTRANSLATE:LoadLastOpenedFileOnStartup</string>
+          <string>DONOTTRANSLATE:loadLastSourceCodeFileOnStartup</string>
          </property>
         </widget>
        </item>
@@ -103,7 +103,7 @@
           <string>Enable Parameter Tooltips</string>
          </property>
          <property name="connectedSettingName" stdset="0">
-          <string>DONOTTRANSLATE:IndenterParameterTooltipsEnabled</string>
+          <string>DONOTTRANSLATE:indenterParameterTooltipsEnabled</string>
          </property>
         </widget>
        </item>
@@ -140,7 +140,7 @@
             <number>1</number>
            </property>
            <property name="connectedSettingName" stdset="0">
-            <string>DONOTTRANSLATE:RecentlyOpenedListSize</string>
+            <string>DONOTTRANSLATE:recentlyOpenedListSize</string>
            </property>
           </widget>
          </item>
@@ -192,7 +192,7 @@
           <string>Display white space character (tabs, spaces, etc.)</string>
          </property>
          <property name="connectedSettingName" stdset="0">
-          <string>DONOTTRANSLATE:WhiteSpaceIsVisible</string>
+          <string>DONOTTRANSLATE:whiteSpaceIsVisible</string>
          </property>
         </widget>
        </item>
@@ -232,7 +232,7 @@
             <number>1</number>
            </property>
            <property name="connectedSettingName" stdset="0">
-            <string>DONOTTRANSLATE:TabWidth</string>
+            <string>DONOTTRANSLATE:tabWidth</string>
            </property>
           </widget>
          </item>
@@ -428,7 +428,7 @@
           <string>Enable syntax highlighting</string>
          </property>
          <property name="connectedSettingName" stdset="0">
-          <string>DONOTTRANSLATE:SyntaxHighlightningEnabled</string>
+          <string>DONOTTRANSLATE:SyntaxHighlightingEnabled</string>
          </property>
         </widget>
        </item>

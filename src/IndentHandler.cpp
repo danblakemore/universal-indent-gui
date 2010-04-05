@@ -85,12 +85,10 @@ IndentHandler::IndentHandler(int indenterID, QWidget *mainWindow, QWidget *paren
 
     // Create the indenter selection combo box.
     indenterSelectionCombobox = new QComboBox(this);
-    indenterSelectionCombobox->setObjectName(QString::fromUtf8("indenterSelectionCombobox"));
-    indenterSelectionCombobox->setProperty("connectedSettingName", "DONOTTRANSLATE:SelectedIndenter");
     indenterSelectionCombobox->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
     indenterSelectionCombobox->setMinimumContentsLength(20);
-    connect( indenterSelectionCombobox, SIGNAL(activated(int)), UiGuiSettings::getInstance(), SLOT(handleValueChangeFromExtern(int)) );
-    connect( UiGuiSettings::getInstance(), SIGNAL(selectedIndenter(int)), this, SLOT(setIndenter(int)) );
+    connect( indenterSelectionCombobox, SIGNAL(activated(int)), this, SLOT(setIndenter(int)) );
+    UiGuiSettings::getInstance()->registerObjectProperty(indenterSelectionCombobox, "currentIndex", "selectedIndenter");
     hboxLayout->addWidget( indenterSelectionCombobox );
 
     // Create the indenter parameter help button.

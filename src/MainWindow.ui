@@ -102,7 +102,7 @@
      </property>
     </widget>
     <addaction name="actionLive_Indent_Preview"/>
-    <addaction name="enableSyntaxHighlightningAction"/>
+    <addaction name="enableSyntaxHighlightingAction"/>
     <addaction name="whiteSpaceIsVisibleAction"/>
     <addaction name="highlighterMenu"/>
     <addaction name="indenterParameterTooltipsEnabledAction"/>
@@ -309,7 +309,7 @@
     <string>If checked, tool tips will show up if the mouse cursor remains over an indenter parameter for a while.</string>
    </property>
    <property name="connectedSettingName" stdset="0">
-    <string>DONOTTRANSLATE:IndenterParameterTooltipsEnabled</string>
+    <string>DONOTTRANSLATE:indenterParameterTooltipsEnabled</string>
    </property>
   </action>
   <action name="actionLive_Indent_Preview">
@@ -330,7 +330,7 @@
     <bool>false</bool>
    </property>
   </action>
-  <action name="enableSyntaxHighlightningAction">
+  <action name="enableSyntaxHighlightingAction">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -357,7 +357,7 @@
     <string>Ctrl+H</string>
    </property>
    <property name="connectedSettingName" stdset="0">
-    <string>DONOTTRANSLATE:SyntaxHighlightningEnabled</string>
+    <string>DONOTTRANSLATE:SyntaxHighlightingEnabled</string>
    </property>
   </action>
   <action name="whiteSpaceIsVisibleAction">
@@ -380,7 +380,7 @@
     <bool>false</bool>
    </property>
    <property name="connectedSettingName" stdset="0">
-    <string>DONOTTRANSLATE:WhiteSpaceIsVisible</string>
+    <string>DONOTTRANSLATE:whiteSpaceIsVisible</string>
    </property>
   </action>
   <action name="loadLastOpenedFileOnStartupAction">
@@ -403,7 +403,7 @@
     <bool>false</bool>
    </property>
    <property name="connectedSettingName" stdset="0">
-    <string>DONOTTRANSLATE:LoadLastOpenedFileOnStartup</string>
+    <string>DONOTTRANSLATE:loadLastSourceCodeFileOnStartup</string>
    </property>
   </action>
   <action name="actionShowSettings">

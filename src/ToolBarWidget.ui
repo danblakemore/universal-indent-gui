@@ -70,7 +70,7 @@
       <bool>true</bool>
      </property>
      <property name="connectedSettingName" stdset="0">
-      <string>DONOTTRANSLATE:SyntaxHighlightningEnabled</string>
+      <string>DONOTTRANSLATE:SyntaxHighlightingEnabled</string>
      </property>
     </widget>
    </item>

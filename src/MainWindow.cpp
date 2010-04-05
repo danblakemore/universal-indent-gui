@@ -37,7 +37,7 @@
 /*!
     \brief Constructs the main window.
  */
-MainWindow::MainWindow(QString file2OpenOnStart, QWidget *parent) : QMainWindow(parent) {
+MainWindow::MainWindow(QString file2OpenOnStart, QWidget *parent) : QMainWindow(parent), qSciSourceCodeEditor(NULL) {
     // Init of some variables.
     sourceCodeChanged = false;
     scrollPositionChanged = false;
@@ -108,9 +108,9 @@ void MainWindow::initMainWindow() {
 
     // Handle last opened window size
     // ------------------------------
-    bool maximized = settings->getValueByName("WindowIsMaximized").toBool();
-    QPoint pos = settings->getValueByName("WindowPosition").toPoint();
-    QSize size = settings->getValueByName("WindowSize").toSize();
+    bool maximized = settings->getValueByName("maximized").toBool();
+    QPoint pos = settings->getValueByName("position").toPoint();
+    QSize size = settings->getValueByName("size").toSize();
     resize(size);
     move(pos);
     if ( maximized ) {
@@ -122,7 +122,7 @@ void MainWindow::initMainWindow() {
 
     // Handle if first run of this version
     // -----------------------------------
-    QString readVersion = settings->getValueByName("VersionInSettingsFile").toString();
+    QString readVersion = settings->getValueByName("version").toString();
     // If version strings are not equal set first run true.
     if ( readVersion != PROGRAM_VERSION_STRING ) {
         isFirstRunOfThisVersion = true;
@@ -133,28 +133,17 @@ void MainWindow::initMainWindow() {
 
     // Get last selected file encoding
     // -------------------------------
-    currentEncoding = settings->getValueByName("FileEncoding").toString();
+    currentEncoding = settings->getValueByName("encoding").toString();
 
     updateCheckDialog = new UpdateCheckDialog(settings, this);
 
-    // Register the syntax highlightning setting in the menu to the settings object.
-    connect( enableSyntaxHighlightningAction, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern(bool)) );
-    connect( settings, SIGNAL(syntaxHighlightningEnabled(bool)), enableSyntaxHighlightningAction, SLOT(setChecked(bool)) );
-    enableSyntaxHighlightningAction->setChecked( settings->getValueByName("SyntaxHighlightningEnabled").toBool() );
-    // Tell the highlighter if it has to be enabled or disabled.
-    connect( settings, SIGNAL(syntaxHighlightningEnabled(bool)), this, SLOT(turnHighlightOnOff(bool)) );
-
     // Register the load last file setting in the menu to the settings object.
-    connect( loadLastOpenedFileOnStartupAction, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern(bool)) );
-    connect( settings, SIGNAL(loadLastOpenedFileOnStartup(bool)), loadLastOpenedFileOnStartupAction, SLOT(setChecked(bool)) );
-    loadLastOpenedFileOnStartupAction->setChecked( settings->getValueByName("LoadLastOpenedFileOnStartup").toBool() );
+    settings->registerObjectProperty(loadLastOpenedFileOnStartupAction, "checked", "loadLastSourceCodeFileOnStartup");
 
-    // Register the white space setting in the menu to the settings object.
-    connect( whiteSpaceIsVisibleAction, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern(bool)) );
-    connect( settings, SIGNAL(whiteSpaceIsVisible(bool)), whiteSpaceIsVisibleAction, SLOT(setChecked(bool)) );
-    whiteSpaceIsVisibleAction->setChecked( settings->getValueByName("WhiteSpaceIsVisible").toBool() );
     // Tell the QScintilla editor if it has to show white space.
-    connect( settings, SIGNAL(whiteSpaceIsVisible(bool)), this, SLOT(setWhiteSpaceVisibility(bool)) );
+    connect( whiteSpaceIsVisibleAction, SIGNAL(toggled(bool)), this, SLOT(setWhiteSpaceVisibility(bool)) );
+    // Register the white space setting in the menu to the settings object.
+    settings->registerObjectProperty(whiteSpaceIsVisibleAction, "checked", "whiteSpaceIsVisible");
 
     // Connect the remaining menu items.
     connect( actionOpen_Source_File, SIGNAL(triggered()), this, SLOT(openSourceFileDialog()) );
@@ -168,7 +157,8 @@ void MainWindow::initMainWindow() {
     // Init the menu for selecting one of the recently opened files.
     updateRecentlyOpenedList();
     connect( menuRecently_Opened_Files, SIGNAL(triggered(QAction*)), this, SLOT(openFileFromRecentlyOpenedList(QAction*)) );
-    connect( settings, SIGNAL(recentlyOpenedListSize(int)), this, SLOT(updateRecentlyOpenedList()) );
+    //connect( settings, SIGNAL(recentlyOpenedListSize(int)), this, SLOT(updateRecentlyOpenedList()) );
+    settings->registerObjectSlot(this, "updateRecentlyOpenedList()", "recentlyOpenedListSize");
 }
 
 
@@ -184,9 +174,7 @@ void MainWindow::initToolBar() {
     toolBar->setAllowedAreas( Qt::TopToolBarArea | Qt::BottomToolBarArea );
 
     // Connect the tool bar widgets to their functions.
-    connect( toolBarWidget->enableSyntaxHighlightningCheckBox, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern(bool)) );
-    connect( settings, SIGNAL(syntaxHighlightningEnabled(bool)), toolBarWidget->enableSyntaxHighlightningCheckBox, SLOT(setChecked(bool)) );
-    toolBarWidget->enableSyntaxHighlightningCheckBox->setChecked( settings->getValueByName("SyntaxHighlightningEnabled").toBool() );
+    settings->registerObjectProperty(toolBarWidget->enableSyntaxHighlightningCheckBox, "checked", "SyntaxHighlightingEnabled");
     toolBarWidget->enableSyntaxHighlightningCheckBox->hide();
     connect( toolBarWidget->pbOpen_Source_File, SIGNAL(clicked()), this, SLOT(openSourceFileDialog()) );
     connect( toolBarWidget->pbExit, SIGNAL(clicked()), this, SLOT(close()));
@@ -225,11 +213,11 @@ void MainWindow::initTextEditor() {
     qSciSourceCodeEditor->setAutoCompletionThreshold(3);
 
     // Handle if white space is set to be visible
-    bool whiteSpaceIsVisible = settings->getValueByName("WhiteSpaceIsVisible").toBool();
+    bool whiteSpaceIsVisible = settings->getValueByName("whiteSpaceIsVisible").toBool();
     setWhiteSpaceVisibility( whiteSpaceIsVisible );
 
     // Handle the width of tabs in spaces
-    int tabWidth = settings->getValueByName("TabWidth").toInt();
+    int tabWidth = settings->getValueByName("tabWidth").toInt();
     qSciSourceCodeEditor->setTabWidth(tabWidth);
 
     // Remember a pointer to the scrollbar of the QScintilla widget used to keep
@@ -244,8 +232,9 @@ void MainWindow::initTextEditor() {
     // Connect the text editor to dependent functions.
     connect( qSciSourceCodeEditor, SIGNAL(textChanged()), this, SLOT(sourceCodeChangedHelperSlot()) );
     connect( qSciSourceCodeEditor, SIGNAL(linesChanged()), this, SLOT(numberOfLinesChanged()) );
-    connect( settings, SIGNAL(tabWidth(int)), qSciSourceCodeEditor, SLOT(setTabWidth(int)) );
-    qSciSourceCodeEditor->setTabWidth( settings->getValueByName("TabWidth").toInt() );
+    //connect( settings, SIGNAL(tabWidth(int)), qSciSourceCodeEditor, SLOT(setTabWidth(int)) );
+    settings->registerObjectSlot(qSciSourceCodeEditor, "setTabWidth(int)", "tabWidth");
+    qSciSourceCodeEditor->setTabWidth( settings->getValueByName("tabWidth").toInt() );
 }
 
 
@@ -256,14 +245,11 @@ void MainWindow::initSyntaxHighlighter() {
     // Create the highlighter.
     highlighter = new UiGuiHighlighter(qSciSourceCodeEditor);
 
-    // Handle if syntax highlighting is enabled
-    bool syntaxHighlightningEnabled = settings->getValueByName("SyntaxHighlightningEnabled").toBool();
-    if ( syntaxHighlightningEnabled ) {
-        highlighter->turnHighlightOn();
-    }
-    else {
-        highlighter->turnHighlightOff();
-    }
+    // Connect the syntax highlighting setting in the menu to the turnHighlightOnOff function.
+    connect( enableSyntaxHighlightingAction, SIGNAL(toggled(bool)), this, SLOT(turnHighlightOnOff(bool)) );
+
+    // Register the syntax highlighting setting in the menu to the settings object.
+    settings->registerObjectProperty(enableSyntaxHighlightingAction, "checked", "SyntaxHighlightingEnabled");
 }
 
 
@@ -280,7 +266,7 @@ bool MainWindow::initApplicationLanguage() {
     QString languageShort;
 
     // Get the language settings from the settings object.
-    int languageIndex = settings->getValueByName("Language").toInt();
+    int languageIndex = settings->getValueByName("language").toInt();
 
     // If no language was set, indicated by a negative index, use the system language.
     if ( languageIndex < 0 ) {
@@ -298,7 +284,7 @@ bool MainWindow::initApplicationLanguage() {
         }
 
         // Set the language setting to the new language.
-        settings->setValueByName("Language", settings->getAvailableTranslations().indexOf(languageShort) );
+        settings->setValueByName("language", settings->getAvailableTranslations().indexOf(languageShort) );
     }
     // If a language was defined in the settings, get this language mnemonic.
     else {
@@ -320,7 +306,8 @@ bool MainWindow::initApplicationLanguage() {
         qApp->installTranslator(uiGuiTranslator);
     }
 
-    connect( settings, SIGNAL(language(int)), this, SLOT(languageChanged(int)) );
+    //connect( settings, SIGNAL(language(int)), this, SLOT(languageChanged(int)) );
+    settings->registerObjectSlot(this, "languageChanged(int)", "language");
 
     return translationFileLoaded;
 }
@@ -331,7 +318,7 @@ bool MainWindow::initApplicationLanguage() {
  */
 void MainWindow::initIndenter() {
     // Get Id of last selected indenter.
-    currentIndenterID = settings->getValueByName("SelectedIndenter").toInt();
+    currentIndenterID = settings->getValueByName("selectedIndenter").toInt();
 
     // Create the indenter widget with the ID and add it to the layout.
     indentHandler = new IndentHandler(currentIndenterID, this, centralwidget);
@@ -345,9 +332,7 @@ void MainWindow::initIndenter() {
     previewToggled = true;
 
     // Handle if indenter parameter tool tips are enabled
-    connect( indenterParameterTooltipsEnabledAction, SIGNAL(toggled(bool)), settings, SLOT(handleValueChangeFromExtern(bool)) );
-    connect( settings, SIGNAL(indenterParameterTooltipsEnabled(bool)), indenterParameterTooltipsEnabledAction, SLOT(setChecked(bool)) );
-    indenterParameterTooltipsEnabledAction->setChecked( settings->getValueByName("IndenterParameterTooltipsEnabled").toBool() );
+    settings->registerObjectProperty(indenterParameterTooltipsEnabledAction, "checked", "indenterParameterTooltipsEnabled");
 
     // Add the indenters context menu to the mainwindows menu.
     menuIndenter->addActions( indentHandler->getIndenterMenuActions() );
@@ -873,12 +858,12 @@ void MainWindow::exportToHTML() {
 */
 void MainWindow::loadLastOpenedFile() {
     // Get setting for last opened source code file.
-    loadLastSourceCodeFileOnStartup = settings->getValueByName("LoadLastOpenedFileOnStartup").toBool();
+    loadLastSourceCodeFileOnStartup = settings->getValueByName("loadLastSourceCodeFileOnStartup").toBool();
 
     // Only load last source code file if set to do so
     if ( loadLastSourceCodeFileOnStartup ) {
         // From the list of last opened files get the first one.
-        currentSourceFile = settings->getValueByName("LastOpenedFiles").toString().split("|").first();
+        currentSourceFile = settings->getValueByName("lastSourceCodeFile").toString().split("|").first();
 
         // If source file exist load it.
         if ( QFile::exists(currentSourceFile) ) {
@@ -918,12 +903,12 @@ void MainWindow::loadLastOpenedFile() {
     Settings are for example last selected indenter, last loaded config file and so on.
 */
 void MainWindow::saveSettings() {
-    settings->setValueByName( "FileEncoding", currentEncoding );
-    settings->setValueByName( "VersionInSettingsFile", PROGRAM_VERSION_STRING );
-    settings->setValueByName( "WindowIsMaximized", isMaximized() );
+    settings->setValueByName( "encoding", currentEncoding );
+    settings->setValueByName( "version", PROGRAM_VERSION_STRING );
+    settings->setValueByName( "maximized", isMaximized() );
     if ( !isMaximized() ) {
-        settings->setValueByName( "WindowPosition", pos() );
-        settings->setValueByName( "WindowSize", size() );
+        settings->setValueByName( "position", pos() );
+        settings->setValueByName( "size", size() );
     }
     settings->setValueByName( "MainWindowState", saveState() );
 
@@ -976,10 +961,10 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event) {
 bool MainWindow::maybeSave() {
     if ( isWindowModified() ) {
         int ret = QMessageBox::warning(this, tr("Modified code"),
-			tr("The source code has been modified.\nDo you want to save your changes?"),
-			QMessageBox::Yes | QMessageBox::Default,
-			QMessageBox::No,
-			QMessageBox::Cancel | QMessageBox::Escape);
+            tr("The source code has been modified.\nDo you want to save your changes?"),
+            QMessageBox::Yes | QMessageBox::Default,
+            QMessageBox::No,
+            QMessageBox::Cancel | QMessageBox::Escape);
         if (ret == QMessageBox::Yes) {
             return saveSourceFile();
         }
@@ -996,26 +981,28 @@ bool MainWindow::maybeSave() {
     corresponding action in the languageInfoList and sets the language.
  */
 void MainWindow::languageChanged(int languageIndex) {
-    // Get the mnemonic of the new selected language.
-    QString languageShort = settings->getAvailableTranslations().at(languageIndex);
+    if ( languageIndex < settings->getAvailableTranslations().size() ) {
+        // Get the mnemonic of the new selected language.
+        QString languageShort = settings->getAvailableTranslations().at(languageIndex);
 
-    // Remove the old qt translation.
-    qApp->removeTranslator( qTTranslator );
+        // Remove the old qt translation.
+        qApp->removeTranslator( qTTranslator );
 
-    // Remove the old uigui translation.
-    qApp->removeTranslator( uiGuiTranslator );
+        // Remove the old uigui translation.
+        qApp->removeTranslator( uiGuiTranslator );
 
-    // Load the Qt own translation file and set it for the application.
-    bool translationFileLoaded;
-    translationFileLoaded = qTTranslator->load( SettingsPaths::getGlobalFilesPath() + "/translations/qt_" + languageShort );
-    if ( translationFileLoaded ) {
-        qApp->installTranslator(qTTranslator);
-    }
+        // Load the Qt own translation file and set it for the application.
+        bool translationFileLoaded;
+        translationFileLoaded = qTTranslator->load( SettingsPaths::getGlobalFilesPath() + "/translations/qt_" + languageShort );
+        if ( translationFileLoaded ) {
+            qApp->installTranslator(qTTranslator);
+        }
 
-    // Load the uigui translation file and set it for the application.
-    translationFileLoaded = uiGuiTranslator->load( SettingsPaths::getGlobalFilesPath() + "/translations/universalindent_" + languageShort );
-    if ( translationFileLoaded ) {
-        qApp->installTranslator(uiGuiTranslator);
+        // Load the uigui translation file and set it for the application.
+        translationFileLoaded = uiGuiTranslator->load( SettingsPaths::getGlobalFilesPath() + "/translations/universalindent_" + languageShort );
+        if ( translationFileLoaded ) {
+            qApp->installTranslator(uiGuiTranslator);
+        }
     }
 }
 
@@ -1133,11 +1120,13 @@ void MainWindow::createHighlighterMenu() {
     \brief Is called whenever the white space visibility is being changed in the menu.
  */
 void MainWindow::setWhiteSpaceVisibility(bool visible) {
-    if ( visible ) {
-        qSciSourceCodeEditor->setWhitespaceVisibility(QsciScintilla::WsVisible);
-    }
-    else {
-        qSciSourceCodeEditor->setWhitespaceVisibility(QsciScintilla::WsInvisible);
+    if ( qSciSourceCodeEditor != NULL ) {
+        if ( visible ) {
+            qSciSourceCodeEditor->setWhitespaceVisibility(QsciScintilla::WsVisible);
+        }
+        else {
+            qSciSourceCodeEditor->setWhitespaceVisibility(QsciScintilla::WsInvisible);
+        }
     }
 }
 
@@ -1215,7 +1204,7 @@ void MainWindow::changeEvent(QEvent *event) {
 void MainWindow::updateRecentlyOpenedList() {
     QString fileName;
     QString filePath;
-    QStringList recentlyOpenedList = settings->getValueByName("LastOpenedFiles").toString().split("|");
+    QStringList recentlyOpenedList = settings->getValueByName("lastSourceCodeFile").toString().split("|");
     QList<QAction*> recentlyOpenedActionList = menuRecently_Opened_Files->actions();
 
     // Check if the currently open file is in the list of recently opened.
@@ -1235,7 +1224,7 @@ void MainWindow::updateRecentlyOpenedList() {
     }
 
     // Get the maximum recently opened list size.
-    int recentlyOpenedListMaxSize = settings->getValueByName("RecentlyOpenedListSize").toInt();
+    int recentlyOpenedListMaxSize = settings->getValueByName("recentlyOpenedListSize").toInt();
 
     // Loop for each filepath in the recently opened list, remove non existing files and
     // loop only as long as maximum allowed list entries are set.
@@ -1273,7 +1262,7 @@ void MainWindow::updateRecentlyOpenedList() {
     menuRecently_Opened_Files->addActions(recentlyOpenedActionList);
 
     // Write the new recently opened list to the settings.
-    settings->setValueByName( "LastOpenedFiles", recentlyOpenedList.join("|") );
+    settings->setValueByName( "lastSourceCodeFile", recentlyOpenedList.join("|") );
 
     // Enable or disable "actionClear_Recently_Opened_List" if list is [not] emtpy
     if ( recentlyOpenedList.isEmpty() ) {
@@ -1289,7 +1278,7 @@ void MainWindow::updateRecentlyOpenedList() {
     \brief This slot empties the list of recently opened files.
  */
 void MainWindow::clearRecentlyOpenedList() {
-    QStringList recentlyOpenedList = settings->getValueByName("LastOpenedFiles").toString().split("|");
+    QStringList recentlyOpenedList = settings->getValueByName("lastSourceCodeFile").toString().split("|");
     QList<QAction*> recentlyOpenedActionList = menuRecently_Opened_Files->actions();
 
     while ( recentlyOpenedList.size() > 0 ) {
@@ -1299,7 +1288,7 @@ void MainWindow::clearRecentlyOpenedList() {
     }
 
     // Write the new recently opened list to the settings.
-    settings->setValueByName( "LastOpenedFiles", recentlyOpenedList.join("|") );
+    settings->setValueByName( "lastSourceCodeFile", recentlyOpenedList.join("|") );
 
     // Disable "actionClear_Recently_Opened_List"
     actionClear_Recently_Opened_List->setEnabled(false);
@@ -1320,7 +1309,7 @@ void MainWindow::openFileFromRecentlyOpenedList(QAction* recentlyOpenedAction) {
 
     QString fileName = recentlyOpenedAction->text();
     int indexOfSelectedFile = menuRecently_Opened_Files->actions().indexOf( recentlyOpenedAction );
-    QStringList recentlyOpenedList = settings->getValueByName("LastOpenedFiles").toString().split("|");
+    QStringList recentlyOpenedList = settings->getValueByName("lastSourceCodeFile").toString().split("|");
     QString filePath = recentlyOpenedList.at(indexOfSelectedFile);
     QFileInfo fileInfo(filePath);
 

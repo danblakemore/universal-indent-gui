@@ -20,6 +20,7 @@
 #ifndef UIGUISETTINGS_H
 #define UIGUISETTINGS_H
 
+//TODO: Move to cpp and add pre declarations.
 #include <QObject>
 #include <QString>
 #include <QSettings>
@@ -41,49 +42,26 @@ public:
     static UiGuiSettings* getInstance();
     static void deleteInstance();
     ~UiGuiSettings();
-    bool loadSettings();
-    bool saveSettings();
-    bool setValueByName(QString settingName, QVariant value);
+
+    bool registerObjectProperty(QObject *obj, const QString &propertyName, const QString &settingName);
+    bool registerObjectPropertyRecursive(QObject *obj);
+    bool registerObjectSlot(QObject *obj, const QString &slotName, const QString &settingName);
     QVariant getValueByName(QString settingName);
-    void updateAllDependend();
     QStringList getAvailableTranslations();
 
-    // Only one slot per possible value type needed, because wanted setting
-    // is recognized by the sender objects name.
 public slots:
-    void handleValueChangeFromExtern(int value);
-    void handleValueChangeFromExtern(bool value);
-    void handleValueChangeFromExtern(QDate value);
-    void handleValueChangeFromExtern(QByteArray value);
+    void setValueByName(const QString &settingName, const QVariant &value);
+    void unregisterObjectProperty(QObject *obj);
+    void unregisterObjectSlot(QObject *obj, const QString &slotName = "", const QString &settingName = "");
 
-    // Each possible setting needs an own signal.
-signals:
-    void versionInSettingsFile(QString value);
-    void windowIsMaximized(bool value);
-    void windowPosition(QPoint value);
-    void windowSize(QSize value);
-    void fileEncoding(QString value);
-    void recentlyOpenedListSize(int value);
-    void loadLastOpenedFileOnStartup(bool value);
-    void lastOpenedFiles(QString value);
-    void selectedIndenter(int value);
-    void syntaxHighlightningEnabled(bool value);
-    void whiteSpaceIsVisible(bool value);
-    void indenterParameterTooltipsEnabled(bool value);
-    void tabWidth(int value);
-    void language(int value);
-    void lastUpdateCheck(QDate value);
-    void mainWindowState(QByteArray value);
-    // Network settings.
-    void checkForUpdate(bool value);
-    void enableProxy(bool value);
-    void proxyHostName(QString value);
-    void proxyPort(int value);
-    void proxyUserName(QString value);
-    void proxyPassword(QString value);
+protected:
+    bool initSettings();
+    bool invokeMethodWithValue(QObject *obj, QMetaMethod mMethod, QVariant value);
+
+private slots:
+    void handleObjectPropertyChange();
 
 private:
-    void emitSignalForSetting(QString settingName);
     void readAvailableTranslations();
 
     //! Stores the mnemonics of the available translations.
@@ -92,8 +70,11 @@ private:
     //! The settings file.
     QSettings *qsettings;
 
-    //! This map holds all possible settings defined by their name as QString. The value is of the type QVariant.
-    QMap<QString, QVariant> settings;
+    //! Maps an QObject to a string list containing the property name and the associated setting name.
+    QMap<QObject*, QStringList> registeredObjectProperties;
+
+    //! Maps QObjects to a string list containing the method name and the associated setting name.
+    QMultiMap<QObject*, QStringList> registeredObjectSlots;
 
     QString indenterDirctoryStr;
 };

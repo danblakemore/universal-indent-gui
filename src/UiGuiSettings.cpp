@@ -21,6 +21,10 @@
 
 #include "SettingsPaths.h"
 
+#include <QMetaMethod>
+#include <QMetaProperty>
+#include <QWidget>
+
 //! \defgroup grp_Settings All concerning the settings.
 
 /*!
@@ -42,7 +46,7 @@ UiGuiSettings::UiGuiSettings() : QObject() {
 
     indenterDirctoryStr = SettingsPaths::getGlobalFilesPath() + "/indenters";
     readAvailableTranslations();
-    loadSettings();
+    initSettings();
 }
 
 
@@ -74,7 +78,12 @@ void UiGuiSettings::deleteInstance() {
     \brief The destructor saves the settings to a file.
  */
 UiGuiSettings::~UiGuiSettings() {
-    saveSettings();
+    // Convert the language setting from an integer index to a string.
+    int index = qsettings->value("UniversalIndentGUI/language", 0).toInt();
+    if ( index < 0 || index >= availableTranslations.size() )
+        index = 0;
+
+    qsettings->setValue( "UniversalIndentGUI/language", availableTranslations.at(index) );
 }
 
 
@@ -114,197 +123,12 @@ QStringList UiGuiSettings::getAvailableTranslations() {
 
 
 /*!
-    \brief Extern widgets can connect to this slot to change settings.
-
-    According to the objects property "connectedSettingName" the corresponding
-    setting is known and set.
- */
-void UiGuiSettings::handleValueChangeFromExtern(int value) {
-    if ( sender() ) {
-        // Get the corresponding setting name from the sender objects property and remove "DONOTTRANSLATE:" from its beginning..
-        QString settingName = sender()->property("connectedSettingName").toString().remove(0, 15);
-        // If the property is not set, try using the objects name for convenience.
-        if ( settingName.isEmpty() ) {
-            // Get the objects name and remove "uiGui" from its beginning and use that as setting name.
-            settingName = sender()->objectName();
-            settingName.remove(0,5);
-        }
-
-        // Set the value of the setting to the objects value.
-        setValueByName( settingName, value );
-    }
-}
-
-
-/*!
-    \brief Extern widgets can connect to this slot to change settings.
-
-    According to the objects property "connectedSettingName" the corresponding
-    setting is known and set.
- */
-void UiGuiSettings::handleValueChangeFromExtern(bool value) {
-    if ( sender() ) {
-        // Get the corresponding setting name from the sender objects property and remove "DONOTTRANSLATE:" from its beginning.
-        QString settingName = sender()->property("connectedSettingName").toString().remove(0, 15);
-        // If the property is not set, try using the objects name for convenience.
-        if ( settingName.isEmpty() ) {
-            // Get the objects name and remove "uiGui" from its beginning and use that as setting name.
-            settingName = sender()->objectName();
-            settingName.remove(0,5);
-        }
-
-        // Set the value of the setting to the objects value.
-        setValueByName( settingName, value );
-    }
-}
-
-
-/*!
-    \brief Extern widgets can connect to this slot to change settings.
-
-    According to the objects property "connectedSettingName" the corresponding
-    setting is known and set.
- */
-void UiGuiSettings::handleValueChangeFromExtern(QDate value) {
-    if ( sender() ) {
-        // Get the corresponding setting name from the sender objects property and remove "DONOTTRANSLATE:" from its beginning.
-        QString settingName = sender()->property("connectedSettingName").toString().remove(0, 15);
-        // If the property is not set, try using the objects name for convenience.
-        if ( settingName.isEmpty() ) {
-            // Get the objects name and remove "uiGui" from its beginning and use that as setting name.
-            settingName = sender()->objectName();
-            settingName.remove(0,5);
-        }
-
-        // Set the value of the setting to the objects value.
-        setValueByName( settingName, value );
-    }
-}
-
-
-/*!
-    \brief Extern widgets can connect to this slot to change settings.
-
-    According to the objects property "connectedSettingName" the corresponding
-    setting is known and set.
- */
-void UiGuiSettings::handleValueChangeFromExtern(QByteArray value) {
-    if ( sender() ) {
-        // Get the corresponding setting name from the sender objects property.
-        QString settingName = sender()->property("connectedSettingName").toString();
-        // If the property is not set, try using the objects name for convenience.
-        if ( settingName.isEmpty() ) {
-            // Get the objects name and remove "uiGui" from its beginning and use that as setting name.
-            settingName = sender()->objectName();
-            settingName.remove(0,5);
-        }
-
-        // Set the value of the setting to the objects value.
-        setValueByName( settingName, value );
-    }
-}
-
-
-/*!
-    \brief Sets the value of the by \a settingsName defined setting to the value \a value.
-
-    The to \a settingsName corresponding signal is emitted, if the value has changed.
- */
-bool UiGuiSettings::setValueByName(QString settingName, QVariant value) {
-    // Test if the named setting really exists.
-    if ( settings.contains(settingName) ) {
-        // Test if the new value is different to the one before.
-        if ( settings[settingName] != value ) {
-            // Set the new value.
-            settings[settingName] = value;
-            // Emit the signal for the changed setting.
-            emitSignalForSetting(settingName);
-        }
-        return true;
-    }
-    return false;
-}
-
-
-/*!
-    \brief Emits the correct signal for the given \a settingName.
-
-    If \a settingName equals "all", all signals are emitted. This can be used to update all
-    dependent widgets. \a value is the new value that is emitted along with the signal.
- */
-void UiGuiSettings::emitSignalForSetting(QString settingName) {
-    // Emit the signal for the changed value.
-    if ( settingName == "VersionInSettingsFile" ) emit versionInSettingsFile( settings[settingName].toString() );
-    else if ( settingName == "WindowIsMaximized" ) emit windowIsMaximized( settings[settingName].toBool() );
-    else if ( settingName == "WindowPosition" ) emit windowPosition( settings[settingName].toPoint() );
-    else if ( settingName == "WindowSize" ) emit windowSize( settings[settingName].toSize() );
-    else if ( settingName == "FileEncoding" ) emit fileEncoding( settings[settingName].toString() );
-    else if ( settingName == "RecentlyOpenedListSize" ) emit recentlyOpenedListSize( settings[settingName].toInt() );
-    else if ( settingName == "LoadLastOpenedFileOnStartup" ) emit loadLastOpenedFileOnStartup( settings[settingName].toBool() );
-    else if ( settingName == "LastOpenedFiles" ) emit lastOpenedFiles( settings[settingName].toString() );
-    else if ( settingName == "SelectedIndenter" ) emit selectedIndenter( settings[settingName].toInt() );
-    else if ( settingName == "SyntaxHighlightningEnabled" ) emit syntaxHighlightningEnabled( settings[settingName].toBool() );
-    else if ( settingName == "WhiteSpaceIsVisible" ) emit whiteSpaceIsVisible( settings[settingName].toBool() );
-    else if ( settingName == "IndenterParameterTooltipsEnabled" ) emit indenterParameterTooltipsEnabled( settings[settingName].toBool() );
-    else if ( settingName == "TabWidth" ) emit tabWidth( settings[settingName].toInt() );
-    else if ( settingName == "Language" ) emit language( settings[settingName].toInt() );
-    else if ( settingName == "LastUpdateCheck" ) emit lastUpdateCheck( settings[settingName].toDate() );
-    else if ( settingName == "MainWindowState" ) emit mainWindowState( settings[settingName].toByteArray() );
-    // Network settings.
-    else if ( settingName == "CheckForUpdate" ) emit checkForUpdate( settings[settingName].toBool() );
-    else if ( settingName == "ProxyEnabled" ) emit enableProxy( settings[settingName].toBool() );
-    else if ( settingName == "ProxyHostName" ) emit proxyHostName( settings[settingName].toString() );
-    else if ( settingName == "ProxyPort" ) emit proxyPort( settings[settingName].toInt() );
-    else if ( settingName == "ProxyUserName" ) emit proxyUserName( settings[settingName].toString() );
-    else if ( settingName == "ProxyPassword" ) emit proxyPassword( settings[settingName].toString() );
-    else if ( settingName == "all" ) {
-        emit versionInSettingsFile( settings["VersionInSettingsFile"].toString() );
-        emit windowIsMaximized( settings["WindowIsMaximized"].toBool() );
-        emit windowPosition( settings["WindowPosition"].toPoint() );
-        emit windowSize( settings["WindowSize"].toSize() );
-        emit fileEncoding( settings["FileEncoding"].toString() );
-        emit recentlyOpenedListSize( settings["RecentlyOpenedListSize"].toInt() );
-        emit loadLastOpenedFileOnStartup( settings["LoadLastOpenedFileOnStartup"].toBool() );
-        emit lastOpenedFiles( settings["LastOpenedFiles"].toString() );
-        emit selectedIndenter( settings["SelectedIndenter"].toInt() );
-        emit syntaxHighlightningEnabled( settings["SyntaxHighlightningEnabled"].toBool() );
-        emit whiteSpaceIsVisible( settings["WhiteSpaceIsVisible"].toBool() );
-        emit indenterParameterTooltipsEnabled( settings["IndenterParameterTooltipsEnabled"].toBool() );
-        emit tabWidth( settings["TabWidth"].toInt() );
-        emit language( settings["Language"].toInt() );
-        emit lastUpdateCheck( settings["LastUpdateCheck"].toDate() );
-        emit mainWindowState( settings["MainWindowState"].toByteArray() );
-        // Network settings.
-        emit checkForUpdate( settings["CheckForUpdate"].toBool() );
-        emit enableProxy( settings["ProxyEnabled"].toBool() );
-        emit proxyHostName( settings["ProxyHostName"].toString() );
-        emit proxyPort( settings["ProxyPort"].toInt() );
-        emit proxyUserName( settings["ProxyUserName"].toString() );
-        emit proxyPassword( settings["ProxyPassword"].toString() );
-    }
-}
-
-
-/*!
-    \brief Calls \sa emitSignalForSetting with settingName "all" to update all widgets or whatever
-    is connected to each setting.
- */
-void UiGuiSettings::updateAllDependend() {
-    emitSignalForSetting("all");
-}
-
-
-/*!
     \brief Returns the value of the by \a settingsName defined setting as QVariant.
 
     If the named setting does not exist, 0 is being returned.
 */
 QVariant UiGuiSettings::getValueByName(QString settingName) {
-    // Test if the named setting really exists.
-    if ( settings.contains(settingName) ) {
-        return settings[settingName];
-    }
-    return QVariant(0);
+    return qsettings->value("UniversalIndentGUI/" + settingName);
 }
 
 
@@ -313,87 +137,458 @@ QVariant UiGuiSettings::getValueByName(QString settingName) {
 
     Settings are for example last selected indenter, last loaded source code file and so on.
 */
-bool UiGuiSettings::loadSettings() {
+bool UiGuiSettings::initSettings()
+{
     // Read the version string saved in the settings file.
-    settings["VersionInSettingsFile"] = qsettings->value("UniversalIndentGUI/version", "").toString();
+    qsettings->setValue( "UniversalIndentGUI/version", qsettings->value("UniversalIndentGUI/version", "") );
 
     // Read windows last size and position from the settings file.
-    settings["WindowIsMaximized"] = qsettings->value("UniversalIndentGUI/maximized", false).toBool();
-    settings["WindowPosition"] = qsettings->value("UniversalIndentGUI/position", QPoint(50, 50)).toPoint();
-    settings["WindowSize"] = qsettings->value("UniversalIndentGUI/size", QSize(800, 600)).toSize();
+    qsettings->setValue( "UniversalIndentGUI/maximized", qsettings->value("UniversalIndentGUI/maximized", false) );
+    qsettings->setValue( "UniversalIndentGUI/position", qsettings->value("UniversalIndentGUI/position", QPoint(50, 50)) );
+    qsettings->setValue( "UniversalIndentGUI/size", qsettings->value("UniversalIndentGUI/size", QSize(800, 600)) );
 
     // Read last selected encoding for the opened source code file.
-    settings["FileEncoding"] = qsettings->value("UniversalIndentGUI/encoding", "UTF-8").toString();
+    qsettings->setValue( "UniversalIndentGUI/encoding", qsettings->value("UniversalIndentGUI/encoding", "UTF-8") );
 
     // Read maximum length of list for recently opened files.
-    settings["RecentlyOpenedListSize"] = qsettings->value("UniversalIndentGUI/recentlyOpenedListSize", 5).toInt();
+    qsettings->setValue( "UniversalIndentGUI/recentlyOpenedListSize", qsettings->value("UniversalIndentGUI/recentlyOpenedListSize", 5) );
 
     // Read if last opened source code file should be loaded on startup.
-    settings["LoadLastOpenedFileOnStartup"] = qsettings->value("UniversalIndentGUI/loadLastSourceCodeFileOnStartup", true).toBool();
+    qsettings->setValue( "UniversalIndentGUI/loadLastSourceCodeFileOnStartup", qsettings->value("UniversalIndentGUI/loadLastSourceCodeFileOnStartup", true) );
 
     // Read last opened source code file from the settings file.
-    settings["LastOpenedFiles"] = qsettings->value("UniversalIndentGUI/lastSourceCodeFile", indenterDirctoryStr+"/example.cpp").toString();
+    qsettings->setValue( "UniversalIndentGUI/lastSourceCodeFile", qsettings->value("UniversalIndentGUI/lastSourceCodeFile",  indenterDirctoryStr+"/example.cpp") );
 
     // Read last selected indenter from the settings file.
-    int SelectedIndenter = qsettings->value("UniversalIndentGUI/selectedIndenter", 0).toInt();
-    if ( SelectedIndenter < 0 ) {
-        SelectedIndenter = 0;
+    int selectedIndenter = qsettings->value("UniversalIndentGUI/selectedIndenter", 0).toInt();
+    if ( selectedIndenter < 0 ) {
+        selectedIndenter = 0;
     }
-    settings["SelectedIndenter"] = SelectedIndenter;
+    qsettings->setValue( "UniversalIndentGUI/selectedIndenter", selectedIndenter );
 
     // Read if syntax highlighting is enabled.
-    settings["SyntaxHighlightningEnabled"] = qsettings->value("UniversalIndentGUI/SyntaxHighlightningEnabled", true).toBool();
+    qsettings->setValue( "UniversalIndentGUI/SyntaxHighlightingEnabled", qsettings->value("UniversalIndentGUI/SyntaxHighlightingEnabled", true) );
 
     // Read if white space characters should be displayed.
-    settings["WhiteSpaceIsVisible"] = qsettings->value("UniversalIndentGUI/whiteSpaceIsVisible", false).toBool();
+    qsettings->setValue( "UniversalIndentGUI/whiteSpaceIsVisible", qsettings->value("UniversalIndentGUI/whiteSpaceIsVisible", false) );
 
     // Read if indenter parameter tool tips are enabled.
-    settings["IndenterParameterTooltipsEnabled"] = qsettings->value("UniversalIndentGUI/indenterParameterTooltipsEnabled", true).toBool();
+    qsettings->setValue( "UniversalIndentGUI/indenterParameterTooltipsEnabled", qsettings->value("UniversalIndentGUI/indenterParameterTooltipsEnabled", true) );
 
     // Read the tab width from the settings file.
-    settings["TabWidth"] = qsettings->value("UniversalIndentGUI/tabWidth", 4).toInt();
+    qsettings->setValue( "UniversalIndentGUI/tabWidth", qsettings->value("UniversalIndentGUI/tabWidth", 4) );
 
     // Read the last selected language and stores the index it has in the list of available translations.
-    settings["Language"] = availableTranslations.indexOf( qsettings->value("UniversalIndentGUI/language", "").toString() );
+    qsettings->setValue( "UniversalIndentGUI/language", availableTranslations.indexOf( qsettings->value("UniversalIndentGUI/language", "").toString() ) );
 
     // Read the update check settings from the settings file.
-    settings["CheckForUpdate"] = qsettings->value("UniversalIndentGUI/CheckForUpdate", true).toBool();
-    settings["LastUpdateCheck"] = qsettings->value("UniversalIndentGUI/LastUpdateCheck", QDate(1900,1,1)).toDate();
+    qsettings->setValue( "UniversalIndentGUI/CheckForUpdate", qsettings->value("UniversalIndentGUI/CheckForUpdate", true) );
+    qsettings->setValue( "UniversalIndentGUI/LastUpdateCheck", qsettings->value("UniversalIndentGUI/LastUpdateCheck", QDate(1900,1,1)) );
 
     // Read the main window state.
-    settings["MainWindowState"] = qsettings->value("UniversalIndentGUI/MainWindowState", QByteArray()).toByteArray();
+    qsettings->setValue( "UniversalIndentGUI/MainWindowState", qsettings->value("UniversalIndentGUI/MainWindowState", QByteArray()) );
 
     return true;
 }
 
 
 /*!
-    \brief Saves the settings for the main application.
+    \brief Register the by \a propertyName defined property of \a obj to be connected to the setting defined by \a settingName.
 
-    Settings are for example last selected indenter, last loaded source code file and so on.
-*/
-bool UiGuiSettings::saveSettings() {
-    qsettings->setValue( "UniversalIndentGUI/recentlyOpenedListSize", settings["RecentlyOpenedListSize"] );
-    qsettings->setValue( "UniversalIndentGUI/lastSourceCodeFile", settings["LastOpenedFiles"] );
-    qsettings->setValue( "UniversalIndentGUI/loadLastSourceCodeFileOnStartup", settings["LoadLastOpenedFileOnStartup"] );
-    qsettings->setValue( "UniversalIndentGUI/selectedIndenter", settings["SelectedIndenter"] );
-    qsettings->setValue( "UniversalIndentGUI/indenterParameterTooltipsEnabled", settings["IndenterParameterTooltipsEnabled"] );
-    qsettings->setValue( "UniversalIndentGUI/language", availableTranslations[ settings["Language"].toInt() ] );
-    qsettings->setValue( "UniversalIndentGUI/encoding", settings["FileEncoding"] );
-    qsettings->setValue( "UniversalIndentGUI/version", settings["VersionInSettingsFile"] );
-    qsettings->setValue( "UniversalIndentGUI/maximized", settings["WindowIsMaximized"] );
-    if ( !settings["WindowIsMaximized"].toBool() ) {
-        qsettings->setValue( "UniversalIndentGUI/position", settings["WindowPosition"] );
-        qsettings->setValue( "UniversalIndentGUI/size", settings["WindowSize"] );
+    The \a propertyName must be one of those that are listed in the Qt "Properties" documentation section of a Qt Object.
+    All further needed info is retrieved via the \a obj's MetaObject, like the to the property bound signal.
+ */
+bool UiGuiSettings::registerObjectProperty( QObject *obj, const QString &propertyName, const QString &settingName )
+{
+    const QMetaObject *metaObject = obj->metaObject();
+    bool connectSuccess = false;
+
+    // Connect to the objects destroyed signal, so that it will be correctly unregistered.
+    connectSuccess = connect(obj, SIGNAL(destroyed(QObject*)), this, SLOT(unregisterObjectProperty(QObject*)));
+
+    int indexOfProp = metaObject->indexOfProperty( qPrintable(propertyName) );
+    if ( connectSuccess && indexOfProp > -1 ) {
+        QMetaProperty mProp = metaObject->property(indexOfProp);
+
+        // Connect to the property's value changed signal.
+        if ( mProp.hasNotifySignal() ) {
+            QMetaMethod signal = mProp.notifySignal();
+            //QString teststr = qPrintable(SIGNAL() + QString(signal.signature()));
+            // The command "SIGNAL() + QString(signal.signature())" assembles the signal methods signature to a valid Qt SIGNAL.
+            connectSuccess = connect(obj, qPrintable(SIGNAL() + QString(signal.signature())), this, SLOT(handleObjectPropertyChange()));
+        }
+
+        if ( connectSuccess ) {
+            registeredObjectProperties[obj] = QStringList() << propertyName << settingName;
+        }
+        else {
+            //TODO: Write a debug warning to the log.
+            disconnect(obj, SIGNAL(destroyed(QObject*)), this, SLOT(unregisterObjectProperty(QObject*)));
+            return false;
+        }
+
+        // If setting already exists, set the objects property to the setting value.
+        if ( qsettings->contains("UniversalIndentGUI/" + settingName) ) {
+            mProp.write(obj, qsettings->value("UniversalIndentGUI/" + settingName));
+        }
+        // Otherwise add the setting and set it to the value of the objects property.
+        else {
+            qsettings->setValue("UniversalIndentGUI/" + settingName, mProp.read(obj));
+        }
     }
-    qsettings->setValue( "UniversalIndentGUI/SyntaxHighlightningEnabled", settings["SyntaxHighlightningEnabled"] );
-    qsettings->setValue( "UniversalIndentGUI/whiteSpaceIsVisible", settings["WhiteSpaceIsVisible"] );
-    qsettings->setValue( "UniversalIndentGUI/tabWidth", settings["TabWidth"] );
-    // Write the update check settings to the settings file.
-    qsettings->setValue("UniversalIndentGUI/CheckForUpdate", settings["CheckForUpdate"].toBool() );
-    qsettings->setValue("UniversalIndentGUI/LastUpdateCheck", settings["LastUpdateCheck"].toDate() );
-    // Write the main window state.
-    qsettings->setValue("UniversalIndentGUI/MainWindowState", settings["MainWindowState"].toByteArray() );
+    else {
+        //TODO: Write a debug warning to the log.
+        disconnect(obj, SIGNAL(destroyed(QObject*)), this, SLOT(unregisterObjectProperty(QObject*)));
+        return false;
+    }
 
     return true;
+}
+
+
+/*!
+        \brief Searches the child QWidgets of \a obj for a property name and setting name definition within
+        their style sheet string and registers this property to that setting if both were found.
+
+        Returns true, if all found property and setting definitions could be successfully registered.
+        Returns false, if any of those registrations fails.
+ */
+bool UiGuiSettings::registerObjectPropertyRecursive(QObject *obj) {
+
+    QRegExp regExpPropertyName("(PropertyName\\s*:\\s*)(\\w+)", Qt::CaseInsensitive);
+    QRegExp regExpSettingName("(SettingName\\s*:\\s*)(\\w+)", Qt::CaseInsensitive);
+    bool success = true;
+
+    // Find all widgets that have PropertyName and SettingName defined in their style sheet.
+    QList<QWidget *> allWidgets = obj->findChildren<QWidget *>();
+    foreach (QWidget *widget, allWidgets) {
+        QString styleSheetString = widget->styleSheet();
+        // Test if style sheet string is set at all. If so get the property and setting name.
+        if ( !styleSheetString.isEmpty() ) {
+            QString propertyName;
+            QString settingName;
+            if (regExpPropertyName.indexIn(styleSheetString) != -1) {
+                propertyName = regExpPropertyName.cap(2);
+            }
+            if (regExpSettingName.indexIn(styleSheetString) != -1) {
+                settingName = regExpSettingName.cap(2);
+            }
+
+            // If property and setting name were found, register that widget with the settings.
+            if ( !propertyName.isEmpty() && !settingName.isEmpty() ) {
+                success &= registerObjectProperty( widget, propertyName, settingName );
+            }
+        }
+    }
+
+    return success;
+}
+
+
+/*!
+        \brief The with a certain property registered \a obj gets unregistered.
+ */
+void UiGuiSettings::unregisterObjectProperty(QObject *obj) {
+    if ( registeredObjectProperties.contains(obj) ) {
+        const QMetaObject *metaObject = obj->metaObject();
+        QString propertyName = registeredObjectProperties[obj].first();
+        QString settingName = registeredObjectProperties[obj].last();
+
+        bool connectSuccess = false;
+        int indexOfProp = metaObject->indexOfProperty( qPrintable(propertyName) );
+        if ( indexOfProp > -1 ) {
+            QMetaProperty mProp = metaObject->property(indexOfProp);
+
+            // Disconnect to the property's value changed signal.
+            if ( mProp.hasNotifySignal() ) {
+                QMetaMethod signal = mProp.notifySignal();
+                // The command "SIGNAL() + QString(signal.signature())" assembles the signal methods signature to a valid Qt SIGNAL.
+                connectSuccess = disconnect(obj, qPrintable(SIGNAL() + QString(signal.signature())), this, SLOT(handleObjectPropertyChange()));
+            }
+        }
+        registeredObjectProperties.remove(obj);
+    }
+}
+
+
+/*!
+        \brief Registers a slot form the \a obj by its \a slotName to be invoked, if the by \a settingName defined
+        setting changes.
+
+        The registered slot may have no parameters or exactly one. If it accepts one parameter, whenever the setting
+        \a settingName changes the slot gets tried to be invoked with the settings value as parameter. This only works,
+        if the slot parameter is of the same type as the setting.
+ */
+bool UiGuiSettings::registerObjectSlot(QObject *obj, const QString &slotName, const QString &settingName) {
+
+    const QMetaObject *metaObject = obj->metaObject();
+
+    bool connectSuccess = false;
+    // Connect to the objects destroyed signal, so that it will be correctly unregistered.
+    connectSuccess = connect(obj, SIGNAL(destroyed(QObject*)), this, SLOT(unregisterObjectSlot(QObject*)));
+
+    QString normalizedSlotName = QMetaObject::normalizedSignature( qPrintable(slotName) );
+    int indexOfMethod = metaObject->indexOfMethod( qPrintable(normalizedSlotName) );
+    if ( connectSuccess && indexOfMethod > -1 ) {
+        QMetaMethod mMethod = metaObject->method(indexOfMethod);
+        QMetaMethod::Access access = mMethod.access();
+        QMetaMethod::MethodType methType = mMethod.methodType();
+
+        // Since the method can at maximum be invoked with the setting value as argument,
+        // only methods taking max one argument are allowed.
+        if ( mMethod.parameterTypes().size() <= 1 ) {
+            registeredObjectSlots.insert(obj, QStringList() << normalizedSlotName << settingName);
+        }
+        else {
+            //TODO: Write a debug warning to the log.
+            disconnect(obj, SIGNAL(destroyed(QObject*)), this, SLOT(unregisterObjectSlot(QObject*)));
+            return false;
+        }
+    }
+    else {
+        //TODO: Write a debug warning to the log.
+        disconnect(obj, SIGNAL(destroyed(QObject*)), this, SLOT(unregisterObjectSlot(QObject*)));
+        return false;
+    }
+
+    return true;
+}
+
+
+/*!
+        \brief If \a obj, \a slotName and \a settingName are given, that certain connection is unregistered.
+        If only \a obj is given, all to this object registered slot-setting connections are unregistered.
+ */
+void UiGuiSettings::unregisterObjectSlot(QObject *obj, const QString &slotName, const QString &settingName) {
+    const QMetaObject *metaObject = obj->metaObject();
+    QString normalizedSlotName = QMetaObject::normalizedSignature( qPrintable(slotName) );
+    QMutableMapIterator<QObject*, QStringList> it(registeredObjectSlots);
+    while (it.hasNext()) {
+        it.next();
+        if (it.key() == obj && slotName.isEmpty() && settingName.isEmpty())
+            it.remove();
+        else if (it.key() == obj && it.value().first() == slotName && it.value().last() == settingName)
+            it.remove();
+    }
+}
+
+
+/*!
+    \brief This private slot gets invoked whenever a registered objects property changes
+    and distributes the new value to all other to the same settingName registered objects.
+ */
+void UiGuiSettings::handleObjectPropertyChange() {
+    QObject *obj = QObject::sender();
+    QString className = obj->metaObject()->className();
+    const QMetaObject *metaObject = obj->metaObject();
+    QString propertyName = registeredObjectProperties[obj].first();
+    QString settingName = registeredObjectProperties[obj].last();
+
+    int indexOfProp = metaObject->indexOfProperty( qPrintable(propertyName) );
+    if ( indexOfProp > -1 ) {
+        QMetaProperty mProp = metaObject->property(indexOfProp);
+        setValueByName(settingName, mProp.read(obj));
+    }
+}
+
+
+/*!
+    \brief Sets the setting defined by \a settingName to \a value.
+
+    When setting a changed value, all to this settingName registered objects get
+    the changed value set too.
+        If the \a settingName didn't exist yet, it will be created.
+ */
+void UiGuiSettings::setValueByName(const QString &settingName, const QVariant &value) {
+    // Do the updating only, if the setting was really changed.
+    if ( qsettings->value("UniversalIndentGUI/" + settingName) != value ) {
+        qsettings->setValue("UniversalIndentGUI/" + settingName, value);
+
+        // Set the new value for all registered object properties for settingName.
+        for ( QMap<QObject*, QStringList>::ConstIterator it = registeredObjectProperties.begin(); it != registeredObjectProperties.end(); ++it ) {
+            if ( it.value().last() == settingName ) {
+                QObject *obj = it.key();
+                const QMetaObject *metaObject = obj->metaObject();
+                QString propertyName = it.value().first();
+
+                int indexOfProp = metaObject->indexOfProperty( qPrintable(propertyName) );
+                if ( indexOfProp > -1 ) {
+                    QMetaProperty mProp = metaObject->property(indexOfProp);
+                    mProp.write(obj, value);
+                }
+            }
+        }
+
+        // Invoke all registered object methods for settingName.
+        for ( QMap<QObject*, QStringList>::ConstIterator it = registeredObjectSlots.begin(); it != registeredObjectSlots.end(); ++it ) {
+            if ( it.value().last() == settingName ) {
+                QObject *obj = it.key();
+                const QMetaObject *metaObject = obj->metaObject();
+                QString slotName = it.value().first();
+
+                int indexOfMethod = metaObject->indexOfMethod( qPrintable(slotName) );
+                if ( indexOfMethod > -1 ) {
+                    QMetaMethod mMethod = metaObject->method(indexOfMethod);
+                    QMetaMethod::Access access = mMethod.access();
+                    QMetaMethod::MethodType methType = mMethod.methodType();
+
+                    bool success = false;
+
+                    // Handle registered slots taking one parameter.
+                    if ( mMethod.parameterTypes().size() == 1 ) {
+                        if ( mMethod.parameterTypes().first() == value.typeName() ) {
+                            success = invokeMethodWithValue(obj, mMethod, value);
+                        }
+                    }
+                    // Handle registered slots taking zero parameters.
+                    else {
+                        success = mMethod.invoke( obj, Qt::DirectConnection );
+                    }
+
+                    if ( success == false ) {
+                        // TODO: Write a warning to the log if no success.
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+#include <QBitArray>
+#include <QBitmap>
+#include <QBrush>
+#include <QCursor>
+#include <QDateTime>
+#include <QFont>
+#include <QIcon>
+#include <QKeySequence>
+#include <QLocale>
+#include <QPalette>
+#include <QPen>
+#include <QSizePolicy>
+#include <QTextFormat>
+#include <QTextLength>
+#include <QUrl>
+#if QT_VERSION >= 0x040600
+#include <QMatrix4x4>
+#include <QVector2D>
+#endif
+
+bool UiGuiSettings::invokeMethodWithValue( QObject *obj, QMetaMethod mMethod, QVariant value )
+{
+    switch (value.type()) {
+    case QVariant::BitArray :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QBitArray, value.toBitArray()) );
+    case QVariant::Bitmap :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QBitmap, value.value<QBitmap>()) );
+    case QVariant::Bool :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(bool, value.toBool()) );
+    case QVariant::Brush :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QBrush, value.value<QBrush>()) );
+    case QVariant::ByteArray :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QByteArray, value.toByteArray()) );
+    case QVariant::Char :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QChar, value.toChar()) );
+    case QVariant::Color :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QColor, value.value<QColor>()) );
+    case QVariant::Cursor :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QCursor, value.value<QCursor>()) );
+    case QVariant::Date :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QDate, value.toDate()) );
+    case QVariant::DateTime :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QDateTime, value.toDateTime()) );
+    case QVariant::Double :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(double, value.toDouble()) );
+    case QVariant::Font :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QFont, value.value<QFont>()) );
+    case QVariant::Hash :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QVariantHash, value.toHash()) );
+    case QVariant::Icon :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QIcon, value.value<QIcon>()) );
+    case QVariant::Image :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QImage, value.value<QImage>()) );
+    case QVariant::Int :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(int, value.toInt()) );
+    case QVariant::KeySequence :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QKeySequence, value.value<QKeySequence>()) );
+    case QVariant::Line :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QLine, value.toLine()) );
+    case QVariant::LineF :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QLineF, value.toLineF()) );
+    case QVariant::List :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QVariantList, value.toList()) );
+    case QVariant::Locale :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QLocale, value.toLocale()) );
+    case QVariant::LongLong :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(qlonglong, value.toLongLong()) );
+    case QVariant::Map :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QVariantMap, value.toMap()) );
+    case QVariant::Matrix :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QMatrix, value.value<QMatrix>()) );
+    case QVariant::Transform :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QTransform, value.value<QTransform>()) );
+#if QT_VERSION >= 0x040600
+    case QVariant::Matrix4x4 :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QMatrix4x4, value.value<QMatrix4x4>()) );
+#endif
+    case QVariant::Palette :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QPalette, value.value<QPalette>()) );
+    case QVariant::Pen :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QPen, value.value<QPen>()) );
+    case QVariant::Pixmap :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QPixmap, value.value<QPixmap>()) );
+    case QVariant::Point :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QPoint, value.toPoint()) );
+        //    case QVariant::PointArray :
+        //        return Q_ARG(QPointArray, value.value<QPointArray>()) );
+    case QVariant::PointF :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QPointF, value.toPointF()) );
+    case QVariant::Polygon :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QPolygon, value.value<QPolygon>()) );
+#if QT_VERSION >= 0x040600
+    case QVariant::Quaternion :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QQuaternion, value.value<QQuaternion>()) );
+#endif
+    case QVariant::Rect :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QRect, value.toRect()) );
+    case QVariant::RectF :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QRectF, value.toRectF()) );
+    case QVariant::RegExp :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QRegExp, value.toRegExp()) );
+    case QVariant::Region :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QRegion, value.value<QRegion>()) );
+    case QVariant::Size :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QSize, value.toSize()) );
+    case QVariant::SizeF :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QSizeF, value.toSizeF()) );
+    case QVariant::SizePolicy :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QSizePolicy, value.value<QSizePolicy>()) );
+    case QVariant::String :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QString, value.toString()) );
+    case QVariant::StringList :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QStringList, value.toStringList()) );
+    case QVariant::TextFormat :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QTextFormat, value.value<QTextFormat>()) );
+    case QVariant::TextLength :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QTextLength, value.value<QTextLength>()) );
+    case QVariant::Time :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QTime, value.toTime()) );
+    case QVariant::UInt :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(uint, value.toUInt()) );
+    case QVariant::ULongLong :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(qulonglong, value.toULongLong()) );
+    case QVariant::Url :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QUrl, value.toUrl()) );
+#if QT_VERSION >= 0x040600
+    case QVariant::Vector2D :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QVector2D, value.value<QVector2D>()) );
+    case QVariant::Vector3D :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QVector3D, value.value<QVector3D>()) );
+    case QVariant::Vector4D :
+        return mMethod.invoke( obj, Qt::DirectConnection, Q_ARG(QVector4D, value.value<QVector4D>()) );
+#endif
+    default:
+        return false;
+    }
 }
