@@ -78,7 +78,7 @@ BEGIN
             VALUE "FileDescription", PROGRAM_TITLE "\0"
             VALUE "FileVersion", RESOURCE_VERSION_STRING
             VALUE "InternalName", INTERNALNAME "\0"
-            VALUE "LegalCopyright", "Copyright © Thomas Schweitzer 2009\0"
+            VALUE "LegalCopyright", "Copyright © Thomas Schweitzer 2010\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", ORIGINALFILENAME "\0"
             VALUE "PrivateBuild", "\0"
