@@ -39,15 +39,6 @@ UiGuiSettingsDialog::UiGuiSettingsDialog(QWidget* parent, UiGuiSettings* setting
     // with the settings dialog.
     groupBoxSyntaxHighlighterProperties->setToolTip( "(Will be implemented soon)" + groupBoxSyntaxHighlighterProperties->toolTip() );
 
-    // Get all check boxes that are used for settings.
-    checkBoxes = findChildren<QCheckBox*>( QRegExp("uiGui*") );
-
-    // Get all spin boxes that are used for settings.
-    spinBoxes = findChildren<QSpinBox*>( QRegExp("uiGui*") );
-
-    // Get all combo boxes that are used for settings.
-    comboBoxes = findChildren<QComboBox*>( QRegExp("uiGui*") );
-
     // Connect the accepted signal to own function, to write values back to the UiGuiSettings object.
     connect(this, SIGNAL(accepted()), this, SLOT(writeWidgetValuesToSettings()) );
 
@@ -64,35 +55,35 @@ UiGuiSettingsDialog::UiGuiSettingsDialog(QWidget* parent, UiGuiSettings* setting
  */
 void UiGuiSettingsDialog::initTranslationSelection() {
     // First empty the combo box.
-    uiGuiLanguageSelectionComboBox->clear();
+    languageSelectionComboBox->clear();
 
     // Now add an entry into the box for every language short.
     foreach (QString languageShort, settings->getAvailableTranslations() ) {
         // Identify the language mnemonic and set the full name.
         if ( languageShort == "en" ) {
-            uiGuiLanguageSelectionComboBox->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("English") );
+            languageSelectionComboBox->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("English") );
         }
         else if ( languageShort == "fr" ) {
-            uiGuiLanguageSelectionComboBox->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("French") );
+            languageSelectionComboBox->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("French") );
         }
         else if ( languageShort == "de" ) {
-            uiGuiLanguageSelectionComboBox->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("German") );
+            languageSelectionComboBox->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("German") );
         }
         else if ( languageShort == "zh_TW" ) {
-            uiGuiLanguageSelectionComboBox->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("Chinese (Taiwan)") );
+            languageSelectionComboBox->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("Chinese (Taiwan)") );
         }
         else if ( languageShort == "ja_jp" ) {
-            uiGuiLanguageSelectionComboBox->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("Japanese") );
+            languageSelectionComboBox->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("Japanese") );
         }
         else if ( languageShort == "ru" ) {
-            uiGuiLanguageSelectionComboBox->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("Russian") );
+            languageSelectionComboBox->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("Russian") );
         }
         else if ( languageShort == "uk" ) {
-            uiGuiLanguageSelectionComboBox->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("Ukrainian") );
+            languageSelectionComboBox->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("Ukrainian") );
         }
 
         else {
-            uiGuiLanguageSelectionComboBox->addItem( tr("Unknown language mnemonic ") + languageShort );
+            languageSelectionComboBox->addItem( tr("Unknown language mnemonic ") + languageShort );
         }
     }
 }
@@ -104,53 +95,8 @@ void UiGuiSettingsDialog::initTranslationSelection() {
     Before it gets all the values needed from the UiGuiSettings object.
  */
 int UiGuiSettingsDialog::showDialog() {
-    // Get the values for the check boxes from the settings object.
-    foreach (QCheckBox* checkBox, checkBoxes) {
-        // Get the corresponding setting name from the check boxs property and remove "DONOTTRANSLATE:" from its beginning.
-        QString settingName = checkBox->property("connectedSettingName").toString().remove(0, 15);
-        // If the property is not set, try using the objects name for convenience.
-        if ( settingName.isEmpty() ) {
-            // Get the objects name and remove "uiGui" from its beginning and use that as setting name.
-            settingName = checkBox->objectName();
-            settingName.remove(0,5);
-        }
-
-        // Get value from settings and assign it to the checkbox.
-        bool value = settings->getValueByName( settingName ).toBool();
-        checkBox->setChecked(value);
-    }
-
-    // Get the values for the spin boxes from the settings object.
-    foreach (QSpinBox* spinBox, spinBoxes) {
-        // Get the corresponding setting name from the spin boxs property and remove "DONOTTRANSLATE:" from its beginning.
-        QString settingName = spinBox->property("connectedSettingName").toString().remove(0, 15);
-        // If the property is not set, try using the objects name for convenience.
-        if ( settingName.isEmpty() ) {
-            // Get the objects name and remove "uiGui" from its beginning and use that as setting name.
-            settingName = spinBox->objectName();
-            settingName.remove(0,5);
-        }
-
-        // Get value from settings and assign it to the checkbox.
-        int value = settings->getValueByName( settingName ).toInt();
-        spinBox->setValue(value);
-    }
-
-    // Get the values for the combo boxes from the settings object.
-    foreach (QComboBox* comboBox, comboBoxes) {
-        // Get the corresponding setting name from the combo boxs property and remove "DONOTTRANSLATE:" from its beginning.
-        QString settingName = comboBox->property("connectedSettingName").toString().remove(0, 15);
-        // If the property is not set, try using the objects name for convenience.
-        if ( settingName.isEmpty() ) {
-            // Get the objects name and remove "uiGui" from its beginning and use that as setting name.
-            settingName = comboBox->objectName();
-            settingName.remove(0,5);
-        }
-
-        // Get value from settings and assign it to the checkbox.
-        int value = settings->getValueByName( settingName ).toInt();
-        comboBox->setCurrentIndex(value);
-    }
+    // Init all settings dialog objects with values from settings.
+    settings->setObjectPropertyToSettingValueRecursive(this);
 
     // Execute the dialog.
     return exec();
@@ -163,50 +109,8 @@ int UiGuiSettingsDialog::showDialog() {
     Writes all settings to the UiGuiSettings object.
  */
 void UiGuiSettingsDialog::writeWidgetValuesToSettings() {
-    // Write the values of the check boxes to the settings object.
-    foreach (QCheckBox* checkBox, checkBoxes) {
-        // Get the corresponding setting name from the check boxs property and remove "DONOTTRANSLATE:" from its beginning.
-        QString settingName = checkBox->property("connectedSettingName").toString().remove(0, 15);
-        // If the property is not set, try using the objects name for convenience.
-        if ( settingName.isEmpty() ) {
-            // Get the objects name and remove "uiGui" from its beginning and use that as setting name.
-            settingName = checkBox->objectName();
-            settingName.remove(0,5);
-        }
-
-        // Write the check box value to the settings.
-        settings->setValueByName( settingName, checkBox->isChecked() );
-    }
-
-    // Write the values for the spin boxes to the settings object.
-    foreach (QSpinBox* spinBox, spinBoxes) {
-        // Get the corresponding setting name from the spin boxs property and remove "DONOTTRANSLATE:" from its beginning.
-        QString settingName = spinBox->property("connectedSettingName").toString().remove(0, 15);
-        // If the property is not set, try using the objects name for convenience.
-        if ( settingName.isEmpty() ) {
-            // Get the objects name and remove "uiGui" from its beginning and use that as setting name.
-            settingName = spinBox->objectName();
-            settingName.remove(0,5);
-        }
-
-        // Write the spin box value to the settings.
-        settings->setValueByName( settingName, spinBox->value() );
-    }
-
-    // Write the values for the spin boxes to the settings object.
-    foreach (QComboBox* comboBox, comboBoxes) {
-        // Get the corresponding setting name from the combo boxs property and remove "DONOTTRANSLATE:" from its beginning.
-        QString settingName = comboBox->property("connectedSettingName").toString().remove(0, 15);
-        // If the property is not set, try using the objects name for convenience.
-        if ( settingName.isEmpty() ) {
-            // Get the objects name and remove "uiGui" from its beginning and use that as setting name.
-            settingName = comboBox->objectName();
-            settingName.remove(0,5);
-        }
-
-        // Write the spin box value to the settings.
-        settings->setValueByName( settingName, comboBox->currentIndex() );
-    }
+    // Write settings dialog object values to settings.
+    settings->setSettingToObjectPropertyValueRecursive(this);
 }
 
 
@@ -230,28 +134,28 @@ void UiGuiSettingsDialog::changeEvent(QEvent *event) {
 
             // Identify the language mnemonic and set the full name.
             if ( languageShort == "en" ) {
-                uiGuiLanguageSelectionComboBox->setItemText( i, tr("English") );
+                languageSelectionComboBox->setItemText( i, tr("English") );
             }
             else if ( languageShort == "fr" ) {
-                uiGuiLanguageSelectionComboBox->setItemText( i, tr("French") );
+                languageSelectionComboBox->setItemText( i, tr("French") );
             }
             else if ( languageShort == "de" ) {
-                uiGuiLanguageSelectionComboBox->setItemText( i, tr("German") );
+                languageSelectionComboBox->setItemText( i, tr("German") );
             }
             else if ( languageShort == "zh_TW" ) {
-                uiGuiLanguageSelectionComboBox->setItemText( i, tr("Chinese (Taiwan)") );
+                languageSelectionComboBox->setItemText( i, tr("Chinese (Taiwan)") );
             }
             else if ( languageShort == "ja_jp" ) {
-                uiGuiLanguageSelectionComboBox->setItemText( i, tr("Japanese") );
+                languageSelectionComboBox->setItemText( i, tr("Japanese") );
             }
             else if ( languageShort == "ru" ) {
-                uiGuiLanguageSelectionComboBox->setItemText( i, tr("Russian") );
+                languageSelectionComboBox->setItemText( i, tr("Russian") );
             }
             else if ( languageShort == "uk" ) {
-                uiGuiLanguageSelectionComboBox->setItemText( i, tr("Ukrainian") );
+                languageSelectionComboBox->setItemText( i, tr("Ukrainian") );
             }
             else {
-                uiGuiLanguageSelectionComboBox->setItemText( i, tr("Unknown language mnemonic ") + languageShort );
+                languageSelectionComboBox->setItemText( i, tr("Unknown language mnemonic ") + languageShort );
             }
         }
     }

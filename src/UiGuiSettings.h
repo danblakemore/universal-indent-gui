@@ -45,6 +45,10 @@ public:
 
     bool registerObjectProperty(QObject *obj, const QString &propertyName, const QString &settingName);
     bool registerObjectPropertyRecursive(QObject *obj);
+    bool setObjectPropertyToSettingValue(QObject *obj, const QString &propertyName, const QString &settingName);
+    bool setObjectPropertyToSettingValueRecursive(QObject *obj);
+    bool setSettingToObjectPropertyValue(QObject *obj, const QString &propertyName, const QString &settingName);
+    bool setSettingToObjectPropertyValueRecursive(QObject *obj);
     bool registerObjectSlot(QObject *obj, const QString &slotName, const QString &settingName);
     QVariant getValueByName(QString settingName);
     QStringList getAvailableTranslations();
@@ -57,6 +61,7 @@ public slots:
 protected:
     bool initSettings();
     bool invokeMethodWithValue(QObject *obj, QMetaMethod mMethod, QVariant value);
+    bool checkCustomPropertiesAndCallFunction(QObject *obj, bool (UiGuiSettings::*callBackFunc)(QObject *obj, const QString &propertyName, const QString &settingName));
 
 private slots:
     void handleObjectPropertyChange();

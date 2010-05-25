@@ -42,9 +42,6 @@ private:
     void initTranslationSelection();
 
     UiGuiSettings* settings;
-    QList<QCheckBox*> checkBoxes;
-    QList<QSpinBox*> spinBoxes;
-    QList<QComboBox*> comboBoxes;
 };
 
 #endif // UIGUISETTINGSDIALOG_H

@@ -247,46 +247,140 @@ bool UiGuiSettings::registerObjectProperty( QObject *obj, const QString &propert
 
 
 /*!
-        \brief Searches the child QWidgets of \a obj for a property name and setting name definition within
-        their style sheet string and registers this property to that setting if both were found.
+    \brief Searches the child QObjects of \a obj for a property name and setting name definition within
+    their custom properties and registers this property name to that setting name if both were found.
 
-        Returns true, if all found property and setting definitions could be successfully registered.
-        Returns false, if any of those registrations fails.
+    The custom properties, for which are searched, are "connectedPropertyName" and "connectedSettingName",
+    where "connectedPropertyName" is the name of a QObject property as it is documented in the QtDocs, and
+    "connectedSettingName" is the name of a setting here within UiGuiSettings. If the mentioned setting
+    name doesn't exist, it will be created.
+
+    Returns true, if all found property and setting definitions could be successfully registered.
+    Returns false, if any of those registrations fails.
  */
 bool UiGuiSettings::registerObjectPropertyRecursive(QObject *obj) {
+    return checkCustomPropertiesAndCallFunction(obj, &UiGuiSettings::registerObjectProperty);
+}
 
-    QRegExp regExpPropertyName("(PropertyName\\s*:\\s*)(\\w+)", Qt::CaseInsensitive);
-    QRegExp regExpSettingName("(SettingName\\s*:\\s*)(\\w+)", Qt::CaseInsensitive);
+
+/*!
+    \brief Assigns the by \a settingName defined setting value to the by \a propertyName defined property of \a obj.
+
+    Returns true, if the value could be assigned, otherwise returns false, which is the case if settingName doesn't exist
+    within the settings or if the mentioned propertyName wasn't found for the \a obj.
+ */
+bool UiGuiSettings::setObjectPropertyToSettingValue( QObject *obj, const QString &propertyName, const QString &settingName )
+{
+    const QMetaObject *metaObject = obj->metaObject();
+
+    int indexOfProp = metaObject->indexOfProperty( qPrintable(propertyName) );
+    if ( indexOfProp > -1 ) {
+        QMetaProperty mProp = metaObject->property(indexOfProp);
+
+        // If setting already exists, set the objects property to the setting value.
+        if ( qsettings->contains("UniversalIndentGUI/" + settingName) ) {
+            mProp.write(obj, qsettings->value("UniversalIndentGUI/" + settingName));
+        }
+        // The setting didn't exist so return that setting the objects property failed.
+        else {
+            //TODO: Write a debug warning to the log.
+            return false;
+        }
+    }
+    else {
+        //TODO: Write a debug warning to the log.
+        return false;
+    }
+
+    return true;
+}
+
+
+/*!
+    \brief Searches the child QObjects of \a obj for a property name and setting name definition within
+    their custom properties and sets each property to settings value.
+
+    The custom properties, for which are searched, are "connectedPropertyName" and "connectedSettingName",
+    where "connectedPropertyName" is the name of a QObject property as it is documented in the QtDocs, and
+    "connectedSettingName" is the name of a setting here within UiGuiSettings.
+
+    Returns true, if all found property and setting definitions could be successfully registered.
+    Returns false, if any of those registrations fails.
+ */
+bool UiGuiSettings::setObjectPropertyToSettingValueRecursive(QObject *obj) {
+    return checkCustomPropertiesAndCallFunction(obj, &UiGuiSettings::setObjectPropertyToSettingValue);
+}
+
+
+/*!
+    \brief Assigns the by \a propertyName defined property's value of \a obj to the by \a settingName defined setting.
+    
+    If the \a settingName didn't exist yet, it will be created.
+
+    Returns true, if the value could be assigned, otherwise returns false, which is the case if the mentioned
+    propertyName wasn't found for the \a obj.
+ */
+bool UiGuiSettings::setSettingToObjectPropertyValue( QObject *obj, const QString &propertyName, const QString &settingName )
+{
+    const QMetaObject *metaObject = obj->metaObject();
+
+    int indexOfProp = metaObject->indexOfProperty( qPrintable(propertyName) );
+    if ( indexOfProp > -1 ) {
+        QMetaProperty mProp = metaObject->property(indexOfProp);
+
+        setValueByName(settingName, mProp.read(obj));
+    }
+    else {
+        //TODO: Write a debug warning to the log.
+        return false;
+    }
+
+    return true;
+}
+
+
+/*!
+    \brief Searches the child QObjects of \a obj for a property name and setting name definition within
+    their custom properties and sets each setting to the property value.
+
+    The custom properties, for which are searched, are "connectedPropertyName" and "connectedSettingName",
+    where "connectedPropertyName" is the name of a QObject property as it is documented in the QtDocs, and
+    "connectedSettingName" is the name of a setting here within UiGuiSettings. If the settingName
+    didn't exist yet, it will be created.
+
+    Returns true, if all found property and setting definitions could be successfully registered.
+    Returns false, if any of those registrations fails.
+ */
+bool UiGuiSettings::setSettingToObjectPropertyValueRecursive(QObject *obj) {
+    return checkCustomPropertiesAndCallFunction(obj, &UiGuiSettings::setSettingToObjectPropertyValue);
+}
+
+
+/*!
+    \brief Iterates over all \a objs child QObjects and checks whether they have the custom properties
+    "connectedPropertyName" and "connectedSettingName" set. If both are set, it invokes the \a callBackFunc
+    with both.
+ */
+bool UiGuiSettings::checkCustomPropertiesAndCallFunction(QObject *obj, bool (UiGuiSettings::*callBackFunc)(QObject *obj, const QString &propertyName, const QString &settingName)) {
     bool success = true;
 
     // Find all widgets that have PropertyName and SettingName defined in their style sheet.
-    QList<QWidget *> allWidgets = obj->findChildren<QWidget *>();
-    foreach (QWidget *widget, allWidgets) {
-        QString styleSheetString = widget->styleSheet();
-        // Test if style sheet string is set at all. If so get the property and setting name.
-        if ( !styleSheetString.isEmpty() ) {
-            QString propertyName;
-            QString settingName;
-            if (regExpPropertyName.indexIn(styleSheetString) != -1) {
-                propertyName = regExpPropertyName.cap(2);
-            }
-            if (regExpSettingName.indexIn(styleSheetString) != -1) {
-                settingName = regExpSettingName.cap(2);
-            }
+    QList<QObject *> allObjects = obj->findChildren<QObject *>();
+    foreach (QObject *object, allObjects) {
+        QString propertyName = object->property("connectedPropertyName").toString();
+        QString settingName = object->property("connectedSettingName").toString();
 
-            // If property and setting name were found, register that widget with the settings.
-            if ( !propertyName.isEmpty() && !settingName.isEmpty() ) {
-                success &= registerObjectProperty( widget, propertyName, settingName );
-            }
+        // If property and setting name were found, register that widget with the settings.
+        if ( !propertyName.isEmpty() && !settingName.isEmpty() ) {
+            success &= (this->*callBackFunc)( object, propertyName, settingName );
         }
     }
 
     return success;
 }
 
-
 /*!
-        \brief The with a certain property registered \a obj gets unregistered.
+    \brief The with a certain property registered \a obj gets unregistered.
  */
 void UiGuiSettings::unregisterObjectProperty(QObject *obj) {
     if ( registeredObjectProperties.contains(obj) ) {
@@ -312,12 +406,12 @@ void UiGuiSettings::unregisterObjectProperty(QObject *obj) {
 
 
 /*!
-        \brief Registers a slot form the \a obj by its \a slotName to be invoked, if the by \a settingName defined
-        setting changes.
+    \brief Registers a slot form the \a obj by its \a slotName to be invoked, if the by \a settingName defined
+    setting changes.
 
-        The registered slot may have no parameters or exactly one. If it accepts one parameter, whenever the setting
-        \a settingName changes the slot gets tried to be invoked with the settings value as parameter. This only works,
-        if the slot parameter is of the same type as the setting.
+    The registered slot may have no parameters or exactly one. If it accepts one parameter, whenever the setting
+    \a settingName changes the slot gets tried to be invoked with the settings value as parameter. This only works,
+    if the slot parameter is of the same type as the setting.
  */
 bool UiGuiSettings::registerObjectSlot(QObject *obj, const QString &slotName, const QString &settingName) {
 
@@ -356,8 +450,8 @@ bool UiGuiSettings::registerObjectSlot(QObject *obj, const QString &slotName, co
 
 
 /*!
-        \brief If \a obj, \a slotName and \a settingName are given, that certain connection is unregistered.
-        If only \a obj is given, all to this object registered slot-setting connections are unregistered.
+    \brief If \a obj, \a slotName and \a settingName are given, that certain connection is unregistered.
+    If only \a obj is given, all to this object registered slot-setting connections are unregistered.
  */
 void UiGuiSettings::unregisterObjectSlot(QObject *obj, const QString &slotName, const QString &settingName) {
     const QMetaObject *metaObject = obj->metaObject();
@@ -397,7 +491,7 @@ void UiGuiSettings::handleObjectPropertyChange() {
 
     When setting a changed value, all to this settingName registered objects get
     the changed value set too.
-        If the \a settingName didn't exist yet, it will be created.
+    If the \a settingName didn't exist yet, it will be created.
  */
 void UiGuiSettings::setValueByName(const QString &settingName, const QVariant &value) {
     // Do the updating only, if the setting was really changed.

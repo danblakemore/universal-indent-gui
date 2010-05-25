@@ -46,12 +46,12 @@
             <string>Application language</string>
            </property>
            <property name="buddy">
-            <cstring>uiGuiLanguageSelectionComboBox</cstring>
+            <cstring>languageSelectionComboBox</cstring>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QComboBox" name="uiGuiLanguageSelectionComboBox">
+          <widget class="QComboBox" name="languageSelectionComboBox">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -62,7 +62,10 @@
             <string>Displays all available translations for UniversalIndentGui and lets you choose one.</string>
            </property>
            <property name="connectedSettingName" stdset="0">
-            <string>DONOTTRANSLATE:language</string>
+            <string notr="true">language</string>
+           </property>
+           <property name="connectedPropertyName" stdset="0">
+            <string notr="true">currentIndex</string>
            </property>
           </widget>
          </item>
@@ -82,7 +85,7 @@
         </layout>
        </item>
        <item>
-        <widget class="QCheckBox" name="uiGuiLoadLastOpenedFileOnStartupComboBox">
+        <widget class="QCheckBox" name="loadLastOpenedFileOnStartupComboBox">
          <property name="toolTip">
           <string>If selected opens the source code file on startup that was opened last time.</string>
          </property>
@@ -90,12 +93,15 @@
           <string>Automatically open last file on startup</string>
          </property>
          <property name="connectedSettingName" stdset="0">
-          <string>DONOTTRANSLATE:loadLastSourceCodeFileOnStartup</string>
+          <string notr="true">loadLastSourceCodeFileOnStartup</string>
+         </property>
+         <property name="connectedPropertyName" stdset="0">
+          <string notr="true">checked</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="uiGuiEnableIndenterParameterTooltipsCheckBox">
+        <widget class="QCheckBox" name="enableIndenterParameterTooltipsCheckBox">
          <property name="toolTip">
           <string>If checked, tool tips will show up if the mouse cursor remains over an indenter parameter for a while.</string>
          </property>
@@ -103,7 +109,10 @@
           <string>Enable Parameter Tooltips</string>
          </property>
          <property name="connectedSettingName" stdset="0">
-          <string>DONOTTRANSLATE:indenterParameterTooltipsEnabled</string>
+          <string notr="true">indenterParameterTooltipsEnabled</string>
+         </property>
+         <property name="connectedPropertyName" stdset="0">
+          <string notr="true">checked</string>
          </property>
         </widget>
        </item>
@@ -120,7 +129,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QSpinBox" name="uiGuiRecentlyOpenedListSizeSpinBox">
+          <widget class="QSpinBox" name="recentlyOpenedListSizeSpinBox">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -140,7 +149,10 @@
             <number>1</number>
            </property>
            <property name="connectedSettingName" stdset="0">
-            <string>DONOTTRANSLATE:recentlyOpenedListSize</string>
+            <string notr="true">recentlyOpenedListSize</string>
+           </property>
+           <property name="connectedPropertyName" stdset="0">
+            <string notr="true">value</string>
            </property>
           </widget>
          </item>
@@ -184,7 +196,7 @@
       </attribute>
       <layout class="QVBoxLayout">
        <item>
-        <widget class="QCheckBox" name="uiGuiWhiteSpaceIsVisibleCheckBox">
+        <widget class="QCheckBox" name="whiteSpaceIsVisibleCheckBox">
          <property name="toolTip">
           <string>Enables or disables displaying of white space characters in the editor.</string>
          </property>
@@ -192,7 +204,10 @@
           <string>Display white space character (tabs, spaces, etc.)</string>
          </property>
          <property name="connectedSettingName" stdset="0">
-          <string>DONOTTRANSLATE:whiteSpaceIsVisible</string>
+          <string notr="true">whiteSpaceIsVisible</string>
+         </property>
+         <property name="connectedPropertyName" stdset="0">
+          <string notr="true">checked</string>
          </property>
         </widget>
        </item>
@@ -212,7 +227,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QSpinBox" name="uiGuiTabWidthSpinBox">
+          <widget class="QSpinBox" name="tabWidthSpinBox">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -232,7 +247,10 @@
             <number>1</number>
            </property>
            <property name="connectedSettingName" stdset="0">
-            <string>DONOTTRANSLATE:tabWidth</string>
+            <string notr="true">tabWidth</string>
+           </property>
+           <property name="connectedPropertyName" stdset="0">
+            <string notr="true">value</string>
            </property>
           </widget>
          </item>
@@ -276,7 +294,7 @@
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QCheckBox" name="uiGuiCheckForUpdateCheckBox">
+        <widget class="QCheckBox" name="checkForUpdateCheckBox">
          <property name="toolTip">
           <string>Checks whether a new version of UniversalIndentGUI exists on program start, but only once a day.</string>
          </property>
@@ -284,7 +302,10 @@
           <string>Check online for update on program start</string>
          </property>
          <property name="connectedSettingName" stdset="0">
-          <string>DONOTTRANSLATE:CheckForUpdate</string>
+          <string notr="true">CheckForUpdate</string>
+         </property>
+         <property name="connectedPropertyName" stdset="0">
+          <string notr="true">checked</string>
          </property>
         </widget>
        </item>
@@ -295,7 +316,7 @@
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_5">
           <item>
-           <widget class="QCheckBox" name="uiGuiEnableProxyCheckBox">
+           <widget class="QCheckBox" name="enableProxyCheckBox">
             <property name="toolTip">
              <string>If checked, the made proxy settings will be applied for all network connections. Type of the used proxy is SOCKS5.</string>
             </property>
@@ -303,7 +324,10 @@
              <string>Enable proxy</string>
             </property>
             <property name="connectedSettingName" stdset="0">
-             <string>DONOTTRANSLATE:ProxyEnabled</string>
+             <string notr="true">ProxyEnabled</string>
+            </property>
+            <property name="connectedPropertyName" stdset="0">
+             <string notr="true">checked</string>
             </property>
            </widget>
           </item>
@@ -319,17 +343,20 @@
                 <string>Host name:</string>
                </property>
                <property name="buddy">
-                <cstring>uiGuiProxyHostNameLineEdit</cstring>
+                <cstring>proxyHostNameLineEdit</cstring>
                </property>
               </widget>
              </item>
              <item row="0" column="1">
-              <widget class="QLineEdit" name="uiGuiProxyHostNameLineEdit">
+              <widget class="QLineEdit" name="proxyHostNameLineEdit">
                <property name="toolTip">
                 <string>Host name of the to be used proxy. E.g.: proxy.example.com</string>
                </property>
                <property name="connectedSettingName" stdset="0">
-                <string>DONOTTRANSLATE:ProxyHostName</string>
+                <string notr="true">ProxyHostName</string>
+               </property>
+               <property name="connectedPropertyName" stdset="0">
+                <string notr="true">text</string>
                </property>
               </widget>
              </item>
@@ -339,12 +366,12 @@
                 <string>Port:</string>
                </property>
                <property name="buddy">
-                <cstring>uiGuiProxyPortSpinBox</cstring>
+                <cstring>proxyPortSpinBox</cstring>
                </property>
               </widget>
              </item>
              <item row="1" column="1">
-              <widget class="QSpinBox" name="uiGuiProxyPortSpinBox">
+              <widget class="QSpinBox" name="proxyPortSpinBox">
                <property name="toolTip">
                 <string>Port number to connect to the before named proxy.</string>
                </property>
@@ -355,7 +382,10 @@
                 <enum>QAbstractSpinBox::NoButtons</enum>
                </property>
                <property name="connectedSettingName" stdset="0">
-                <string>DONOTTRANSLATE:ProxyPort</string>
+                <string notr="true">ProxyPort</string>
+               </property>
+               <property name="connectedPropertyName" stdset="0">
+                <string notr="true">text</string>
                </property>
               </widget>
              </item>
@@ -365,17 +395,20 @@
                 <string>User name:</string>
                </property>
                <property name="buddy">
-                <cstring>uiGuiProxyUserNameLineEdit</cstring>
+                <cstring>proxyUserNameLineEdit</cstring>
                </property>
               </widget>
              </item>
              <item row="2" column="1">
-              <widget class="QLineEdit" name="uiGuiProxyUserNameLineEdit">
+              <widget class="QLineEdit" name="proxyUserNameLineEdit">
                <property name="toolTip">
                 <string>If the proxy needs authentification, enter the login name here.</string>
                </property>
                <property name="connectedSettingName" stdset="0">
-                <string>DONOTTRANSLATE:ProxyUserName</string>
+                <string notr="true">ProxyUserName</string>
+               </property>
+               <property name="connectedPropertyName" stdset="0">
+                <string notr="true">text</string>
                </property>
               </widget>
              </item>
@@ -385,12 +418,12 @@
                 <string>Password:</string>
                </property>
                <property name="buddy">
-                <cstring>uiGuiProxyPasswordLineEdit</cstring>
+                <cstring>proxyPasswordLineEdit</cstring>
                </property>
               </widget>
              </item>
              <item row="3" column="1">
-              <widget class="QLineEdit" name="uiGuiProxyPasswordLineEdit">
+              <widget class="QLineEdit" name="proxyPasswordLineEdit">
                <property name="toolTip">
                 <string>If the proxy needs authentification, enter the password here.</string>
                </property>
@@ -398,7 +431,10 @@
                 <enum>QLineEdit::Password</enum>
                </property>
                <property name="connectedSettingName" stdset="0">
-                <string>DONOTTRANSLATE:ProxyPassword</string>
+                <string notr="true">ProxyPassword</string>
+               </property>
+               <property name="connectedPropertyName" stdset="0">
+                <string notr="true">text</string>
                </property>
               </widget>
              </item>
@@ -420,7 +456,7 @@
       </attribute>
       <layout class="QVBoxLayout">
        <item>
-        <widget class="QCheckBox" name="uiGuiEnableSyntaxHighlightningCheckBox">
+        <widget class="QCheckBox" name="enableSyntaxHighlightningCheckBox">
          <property name="toolTip">
           <string>By enabling special key words of the source code are highlighted.</string>
          </property>
@@ -428,7 +464,10 @@
           <string>Enable syntax highlighting</string>
          </property>
          <property name="connectedSettingName" stdset="0">
-          <string>DONOTTRANSLATE:SyntaxHighlightingEnabled</string>
+          <string notr="true">SyntaxHighlightingEnabled</string>
+         </property>
+         <property name="connectedPropertyName" stdset="0">
+          <string notr="true">checked</string>
          </property>
         </widget>
        </item>
@@ -564,7 +603,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>uiGuiEnableProxyCheckBox</sender>
+   <sender>enableProxyCheckBox</sender>
    <signal>toggled(bool)</signal>
    <receiver>widget</receiver>
    <slot>setEnabled(bool)</slot>
