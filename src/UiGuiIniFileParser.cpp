@@ -51,7 +51,7 @@ UiGuiIniFileParser::UiGuiIniFileParser(void) {
     \brief Directly loads and parses the file with name \a iniFileName.
  */
 UiGuiIniFileParser::UiGuiIniFileParser(const QString &iniFileName) {
-    UiGuiIniFileParser::UiGuiIniFileParser();
+    UiGuiIniFileParser();
     this->iniFileName = iniFileName;
     parseIniFile();
 }
