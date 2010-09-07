@@ -458,6 +458,15 @@ inline void CmdLine::parse(std::vector<std::string>& args)
 			if ( !matched && _emptyCombined( args[i] ) )
 				matched = true;
 
+#ifdef __APPLE__
+			// If we are running on Mac, opening an app with the finder
+			// adds a command line arg like this: -^G^Gn_0_516222.
+			// To avoid a CmdLineParseException set matched to true if
+			// the arg begines with ^.
+			if ( !matched && args[i].at(0) == '^' )
+				matched = true;
+#endif
+
 			if ( !matched && !Arg::ignoreRest() )
 				throw(CmdLineParseException("Couldn't find match "
 											"for argument",
