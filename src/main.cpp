@@ -124,6 +124,25 @@ int main(int argc, char *argv[]) {
 	attachedToConsole = attachToConsole();
 #endif
 
+#ifdef __APPLE__
+		// Filter out -psn_0_118813 and similar parameters.
+		std::vector<char*> argList;
+		for ( int i = 0; i < argc; i++ ) {
+			QString argString(argv[i]);
+
+			if ( argString.startsWith("-psn_") ) {
+				argList.push_back(argv[i]);
+			}
+			else {
+//				std::cerr << std::endl << "The parameter "<< i << " is an invalid finder parameter. Parameter was " << argv[i] << std::endl;
+			}
+		}
+		for ( size_t i = 0; i < argList.size(); i++ ) {
+			argv[i] = argList.at(i);
+		}
+		argc = argList.size();
+#endif
+
 	// Wrap everything in a try block. Do this every time, 
 	// because exceptions will be thrown for problems. 
 	try {  
