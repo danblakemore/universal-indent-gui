@@ -510,7 +510,12 @@ QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputF
     // errors and standard outputs from the process call are merged together
     //indentProcess.setReadChannelMode(QProcess::MergedChannels);
 
-    // Set the directory for the indenter execution
+	// Set the directory where the indenter will be executed for the process' environment as PWD.
+    QStringList env = indentProcess.environment();
+    env << "PWD=" + QFileInfo(tempDirctoryStr).absoluteFilePath();
+    indentProcess.setEnvironment( env );
+
+	// Set the directory for the indenter execution
     indentProcess.setWorkingDirectory( QFileInfo(tempDirctoryStr).absoluteFilePath() );
 
     qDebug() << __LINE__ << " " << __FUNCTION__ << ": Will call the indenter in the directory " << indentProcess.workingDirectory() << " using this commandline call: " << indenterCompleteCallString;
@@ -555,6 +560,7 @@ QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputF
         QApplication::restoreOverrideCursor();
         errorMessageDialog->showMessage(tr("Error calling Indenter"), processReturnString);
     }
+
 
     // If the indenter returned an error code != 0 show its output.
     if ( indentProcess.exitCode() != 0 ) {
