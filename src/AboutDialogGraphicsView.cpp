@@ -50,7 +50,7 @@ AboutDialogGraphicsView::AboutDialogGraphicsView(AboutDialog *aboutDialog, QWidg
     scene = new QGraphicsScene(this);
     setSceneRect( newGeometry );
     aboutDialogAsSplashScreen = new QSplashScreen(this);
-    aboutDialogAsSplashScreen->setPixmap( QPixmap::grabWidget(aboutDialog) );
+    //aboutDialogAsSplashScreen->setPixmap( QPixmap::grabWidget(aboutDialog) );
     graphicsProxyWidget = scene->addWidget(aboutDialogAsSplashScreen);
     graphicsProxyWidget->setWindowFlags( Qt::ToolTip );
 
@@ -98,6 +98,7 @@ void AboutDialogGraphicsView::show() {
 
     aboutDialogAsSplashScreen->setPixmap( QPixmap::grabWidget(aboutDialog) );
     graphicsProxyWidget->setGeometry( aboutDialog->geometry() );
+    aboutDialog->hide();
     if ( firstRunOfAnimation ) {
         graphicsProxyWidget->setPos( parent->geometry().x()+(parent->geometry().width()-graphicsProxyWidget->geometry().width()) / 2, parent->y()+windowTitleBarWidth);
     }
@@ -155,8 +156,8 @@ void AboutDialogGraphicsView::showAboutDialog() {
     \brief Does not directly hide the AboutDialog but instead starts the "fade out" 3D animation.
  */
 void AboutDialogGraphicsView::hide() {
-    aboutDialogAsSplashScreen->setPixmap( QPixmap::grabWidget(aboutDialog) );
-    graphicsProxyWidget->setGeometry( aboutDialog->geometry() );
+    //aboutDialogAsSplashScreen->setPixmap( QPixmap::grabWidget(aboutDialog) );
+    //graphicsProxyWidget->setGeometry( aboutDialog->geometry() );
     //if ( firstRunOfAnimation ) {
     firstRunOfAnimation = false;
     //    graphicsProxyWidget->setPos( parent->geometry().x()+(parent->geometry().width()-graphicsProxyWidget->geometry().width()) / 2, parent->y());
@@ -190,6 +191,7 @@ void AboutDialogGraphicsView::hide() {
 void AboutDialogGraphicsView::hideReally() {
     disconnect(timeLine, SIGNAL(finished()), this, SLOT(hideReally()));
     QGraphicsView::hide();
+    parent->activateWindow();
 }
 
 
