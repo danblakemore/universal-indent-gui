@@ -1,6 +1,6 @@
 TEMPLATE = app
 QT += network
-QT += script 
+QT += script
 
 unix:TARGET = universalindentgui
 win32:TARGET = UniversalIndentGUI
@@ -13,14 +13,17 @@ DEPENDPATH += resources \
 
 INCLUDEPATH += src
 
-LIBS += -lqscintilla2
-
 CONFIG += debug_and_release
 
 macx {
- CONFIG += x86 ppc sdk
- QMAKE-MAC_SDK = /Developer/SDKs/MacOSX10.4u.sdk
+ CONFIG += x86 x86_64 sdk
+ # qscintilla needs to be build with:
+ # qmake -spec macx-g++ CONFIG+=sdk CONFIG+=x86_64 CONFIG+=x86 CONFIG+=lib_bundle qscintilla.pro && make && sudo make install
+ LIBS += -framework qscintilla2
  ICON = resources/UniversalIndentGUI.icns
+}
+else {
+ LIBS += -lqscintilla2
 }
 
 CONFIG(release, debug|release) {
