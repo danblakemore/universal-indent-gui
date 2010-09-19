@@ -50,7 +50,7 @@ fi
 # Configuration
 # -------------
 #TODO: get version from source code file.
-version=1.1.0
+version=1.1.1
 doSVNUpdate=false
 
 
@@ -68,9 +68,12 @@ if [ "$targetSystem" = "win32" ] && [ ! -n "$2" ]; then
     QTDIR=/f/Qt/qt.4.4.3_gpl_static
 else
     if [ "$targetSystem" = "macx" ] && [ ! -n "$2" ]; then
-        echo "The QTDIR has not been set via command line parameter!"
-        exit 1
-        QTDIR=/Users/thomas/Documents/Informatik/qt-static-release
+        TEST=`qmake -v`
+        if [ "$?" -ne "0" ]; then
+            echo "The QTDIR has not been set via command line parameter!"
+            exit 1
+            QTDIR=/Users/thomas/Documents/Informatik/qt-static-release
+        fi
     fi
 fi
 
@@ -295,6 +298,13 @@ fi
 echo "Done"
 echo ""
 
+if [ "$targetSystem" = "macx" ]; then
+    echo "Executing macdeployqt ./release/$targetName.app"
+    echo "-----------------------------------------------"
+    macdeployqt ./release/$targetName.app
+    echo "Done"
+    echo ""
+fi
 
 echo "Copying ${targetName}$ext to target dir"
 echo "--------------------------------------------"
