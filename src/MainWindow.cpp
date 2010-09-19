@@ -1356,9 +1356,9 @@ void MainWindow::dropEvent(QDropEvent *event) {
     \brief If the dropped in object contains urls/paths to a file, open that file.
 */
 void MainWindow::showAboutDialog() {
-    QPixmap originalPixmap = QPixmap::grabWindow(QApplication::desktop()->screen()->winId());
+    //QPixmap originalPixmap = QPixmap::grabWindow(QApplication::desktop()->screen()->winId());
     //qDebug("in main pixmap width %d, numScreens = %d", originalPixmap.size().width(), QApplication::desktop()->availableGeometry().width());
-    aboutDialogGraphicsView->setScreenshotPixmap( originalPixmap );
+    //aboutDialogGraphicsView->setScreenshotPixmap( originalPixmap );
     aboutDialogGraphicsView->show();
 }
 
