@@ -49,7 +49,7 @@ private:
     QTimeLine *timeLine;
     QSplashScreen *aboutDialogAsSplashScreen;
     int windowTitleBarWidth;
-    bool firstRunOfAnimation;
+    int windowPosOffset;
     QPixmap originalPixmap;
 
 private slots:

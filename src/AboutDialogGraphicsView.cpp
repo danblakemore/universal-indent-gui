@@ -36,15 +36,17 @@ AboutDialogGraphicsView::AboutDialogGraphicsView(AboutDialog *aboutDialog, QWidg
     setWindowFlags(Qt::SplashScreen);
 
 #ifdef Q_OS_LINUX
-    QRect newGeometry = QRect( QApplication::desktop()->availableGeometry().x(), QApplication::desktop()->availableGeometry().y(), QApplication::desktop()->availableGeometry().width(), QApplication::desktop()->availableGeometry().height() );
+    QRect availableGeometry = QApplication::desktop()->availableGeometry();
+    QRect newGeometry = QRect( availableGeometry.x(), availableGeometry.y(), availableGeometry.width(), availableGeometry.height() );
+    windowPosOffset = 27;
 #else
     QRect newGeometry = QRect( -1,-1, QApplication::desktop()->rect().width()+2, QApplication::desktop()->rect().height()+2 );
+    windowPosOffset = 0;
 #endif
     setGeometry( newGeometry );
 
     this->aboutDialog = aboutDialog;
 
-    firstRunOfAnimation = true;
     windowTitleBarWidth = 0;
 
     scene = new QGraphicsScene(this);
@@ -88,23 +90,18 @@ void AboutDialogGraphicsView::show() {
     // Because on X11 system the window decoration is only available after a widget has been shown once,
     // we can detect windowTitleBarWidth here for the first time.
     windowTitleBarWidth = parent->geometry().y() - parent->y();
-#ifdef Q_OS_LINUX
-    QPixmap originalPixmap = QPixmap::grabWindow(QApplication::desktop()->winId(), 0, 0, QApplication::desktop()->availableGeometry().width(), QApplication::desktop()->availableGeometry().height()+windowTitleBarWidth+1 );
-#else
-    QPixmap originalPixmap = QPixmap::grabWindow(QApplication::desktop()->winId(), 0, 0, geometry().width(), geometry().height() );
-#endif
+    QPixmap originalPixmap = QPixmap::grabWindow(QApplication::desktop()->winId(), QApplication::desktop()->availableGeometry().x(), QApplication::desktop()->availableGeometry().y(), geometry().width(), geometry().height() );
+    QBrush brush(originalPixmap);
+    QTransform transform;
+    transform.translate(0, QApplication::desktop()->availableGeometry().y());
+    brush.setTransform(transform);
 
-    setBackgroundBrush(originalPixmap);
+    setBackgroundBrush(brush);
 
     aboutDialogAsSplashScreen->setPixmap( QPixmap::grabWidget(aboutDialog) );
     graphicsProxyWidget->setGeometry( aboutDialog->geometry() );
     aboutDialog->hide();
-    if ( firstRunOfAnimation ) {
-        graphicsProxyWidget->setPos( parent->geometry().x()+(parent->geometry().width()-graphicsProxyWidget->geometry().width()) / 2, parent->y()+windowTitleBarWidth);
-    }
-    else {
-        graphicsProxyWidget->setPos( parent->geometry().x()+(parent->geometry().width()-graphicsProxyWidget->geometry().width()) / 2, parent->y()+windowTitleBarWidth);
-    }
+    graphicsProxyWidget->setPos( parent->geometry().x()+(parent->geometry().width()-graphicsProxyWidget->geometry().width()) / 2, parent->y()+windowTitleBarWidth-windowPosOffset);
 
     QRectF r = graphicsProxyWidget->boundingRect();
     graphicsProxyWidget->setTransform(QTransform()
@@ -147,7 +144,7 @@ void AboutDialogGraphicsView::updateStep(int step) {
 void AboutDialogGraphicsView::showAboutDialog() {
     //hide();
     disconnect(timeLine, SIGNAL(finished()), this, SLOT(showAboutDialog()));
-    aboutDialog->move( int(parent->geometry().x()+(parent->geometry().width()-graphicsProxyWidget->geometry().width()) / 2), parent->y()+windowTitleBarWidth );
+    aboutDialog->move( int(parent->geometry().x()+(parent->geometry().width()-graphicsProxyWidget->geometry().width()) / 2), parent->y()+windowTitleBarWidth-windowPosOffset );
     aboutDialog->exec();
 }
 
@@ -158,13 +155,7 @@ void AboutDialogGraphicsView::showAboutDialog() {
 void AboutDialogGraphicsView::hide() {
     //aboutDialogAsSplashScreen->setPixmap( QPixmap::grabWidget(aboutDialog) );
     //graphicsProxyWidget->setGeometry( aboutDialog->geometry() );
-    //if ( firstRunOfAnimation ) {
-    firstRunOfAnimation = false;
-    //    graphicsProxyWidget->setPos( parent->geometry().x()+(parent->geometry().width()-graphicsProxyWidget->geometry().width()) / 2, parent->y());
-    //}
-    //else {
-    graphicsProxyWidget->setPos( parent->geometry().x()+(parent->geometry().width()-graphicsProxyWidget->geometry().width()) / 2, parent->y()+windowTitleBarWidth);
-    //}
+    graphicsProxyWidget->setPos( parent->geometry().x()+(parent->geometry().width()-graphicsProxyWidget->geometry().width()) / 2, parent->y()+windowTitleBarWidth-windowPosOffset);
 
     QRectF r = graphicsProxyWidget->boundingRect();
     graphicsProxyWidget->setTransform(QTransform()
