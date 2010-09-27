@@ -130,7 +130,7 @@ int main(int argc, char *argv[]) {
 		for ( int i = 0; i < argc; i++ ) {
 			QString argString(argv[i]);
 
-			if ( argString.startsWith("-psn_") ) {
+			if ( argString.startsWith("-psn_") == false ) {
 				argList.push_back(argv[i]);
 			}
 			else {
@@ -143,9 +143,9 @@ int main(int argc, char *argv[]) {
 		argc = argList.size();
 #endif
 
-	// Wrap everything in a try block. Do this every time, 
-	// because exceptions will be thrown for problems. 
-	try {  
+	// Wrap everything in a try block. Do this every time,
+	// because exceptions will be thrown for problems.
+	try {
 		// Define the command line object.
 		TCLAP::CmdLine cmd("If -p and -s are set, -p will be used.\nGiving no parameters starts full gui without server.", ' ', "UiGUI version " PROGRAM_VERSION_STRING " " PROGRAM_REVISION);
 		cmd.setExceptionHandling(false);
@@ -169,7 +169,7 @@ int main(int argc, char *argv[]) {
 		// Parse the args.
 		cmd.parse( argc, argv );
 
-		// Get the value parsed by each arg. 
+		// Get the value parsed by each arg.
 		file2OpenOnStart = QString::fromStdString( filenameArg.getValue() );
 		startAsPlugin = pluginSwitch.getValue();
 		startAsServer = serverSwitch.getValue();
