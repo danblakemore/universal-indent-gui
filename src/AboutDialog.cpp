@@ -32,9 +32,7 @@
  */
 AboutDialog::AboutDialog(QWidget *parent, Qt::WindowFlags flags) : QDialog(parent, flags) {
     this->parent = parent;
-    qApp->setStyleSheet("QTextBrowser{background-color:transparent}");
     setupUi(this);
-    creditsTextBrowser->setStyleSheet("QTextBrowser#creditsTextBrowser{background-color:white}");
 
     authorTextBrowser->setOpenExternalLinks( true );
     creditsTextBrowser->setOpenExternalLinks( true );
@@ -49,7 +47,7 @@ AboutDialog::AboutDialog(QWidget *parent, Qt::WindowFlags flags) : QDialog(paren
         "<p align='center'><a href=\"http://www.csie.nctu.edu.tw/~chtai/\"><b>Nelson Tai</b></a> for Chinese translation, good ideas and always fast answers.</p></br>"
         "<p align='center'><a href=\"http://www.hartwork.org/\"><b>Sebastian Pipping</b></a> for helping me bring UiGUI into the Debian repository and other good ideas.</p></br>"
         "<p align='center'><a href=\"http://korytskyy.lviv.ua/\"><b>Oleksandr</b></a> for Ukrainian and Russian translation.</p></br>"
-        "<p align='center'><b>Erwan &quot;leg&quot;</b> for French translation and the new icon logo.</p></br>"
+        "<p align='center'><b>Erwan &quot;leg&quot;</b> for French translation and the icon logo.</p></br>"
         "<p align='center'>The <a href=\"http://www.scintilla.org/\"><b>Scintilla</b></a> project for their great text editing component.</p></br>"
         "<p align='center'><a href=\"http://www.riverbankcomputing.co.uk/software/qscintilla/\"><b>Riverbank</b></a> for their Scintilla Qt wrapper QScintilla.</p></br>"
         "<p align='center'>The <a href=\"http://astyle.sourceforge.net/\"><b>Artistic Style</b></a> project.</p></br>"
