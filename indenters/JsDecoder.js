@@ -1175,4 +1175,5 @@ var formattedCode;
 jsdecoder.s = unformattedCode;
 formattedCode = jsdecoder.decode();
 
-return formattedCode;
+// Newer Qt versions doesn't seem to need the return statement.
+//return formattedCode;

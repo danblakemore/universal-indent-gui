@@ -348,8 +348,7 @@ QString IndentHandler::callIndenter(QString sourceCode, QString inputFileExtensi
 QString IndentHandler::callJavaScriptIndenter(QString sourceCode) {
     QScriptEngine engine;
 
-    QScriptValue unformattedCode(&engine, sourceCode);
-    engine.globalObject().setProperty("unformattedCode", unformattedCode);
+    engine.globalObject().setProperty("unformattedCode", sourceCode);
 
     QFile jsDecoderFile( indenterExecutableCallString );
     QString jsDecoderCode;
