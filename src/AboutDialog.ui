@@ -139,7 +139,7 @@ p, li { white-space: pre-wrap; }
       <item>
        <widget class="QTextBrowser" name="creditsTextBrowser">
         <property name="styleSheet">
-         <string notr="true">QTextBrowser#creditsTextBrowser{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(0,0,0,80%), stop:0.1 rgba(0,0,0,0), stop:0.9 rgba(0,0,0,0), stop:1 rgba(0,0,0,80%) )}</string>
+         <string notr="true">QTextBrowser#creditsTextBrowser{border:2px solid rgba(0,0,0,10%); background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(0,0,0,80%), stop:0.1 rgba(0,0,0,15%), stop:0.9 rgba(0,0,0,15%), stop:1 rgba(0,0,0,80%) )}</string>
         </property>
         <property name="frameShape">
          <enum>QFrame::NoFrame</enum>
