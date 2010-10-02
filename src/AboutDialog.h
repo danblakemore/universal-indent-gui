@@ -21,16 +21,12 @@
 #define ABOUTDIALOG_H
 
 #include <QDialog>
-#include <QUrl>
-#include <QDesktopServices>
-#include <QScrollBar>
-#include <QTimer>
-#include "ui_AboutDialog.h"
 
-#include <QLocale>
+namespace Ui {
+	class AboutDialog;
+}
 
-
-class AboutDialog : public QDialog, private Ui::AboutDialog
+class AboutDialog : public QDialog
 {
     Q_OBJECT
 
@@ -46,6 +42,8 @@ private slots:
 
 private:
     void changeEvent(QEvent *event);
+
+	Ui::AboutDialog* dialogForm;
 
     QString gplText;
     QString textBrowserSavedContent;

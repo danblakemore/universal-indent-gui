@@ -18,9 +18,15 @@
  ***************************************************************************/
 
 #include "AboutDialog.h"
-
+#include "ui_AboutDialog.h"
 #include "UiGuiVersion.h"
 
+#include <QUrl>
+#include <QDesktopServices>
+#include <QScrollBar>
+#include <QTimer>
+
+#include <QLocale>
 /*!
     \class AboutDialog
     \brief Displays a dialog window with information about UniversalIndentGUI
@@ -32,16 +38,17 @@
  */
 AboutDialog::AboutDialog(QWidget *parent, Qt::WindowFlags flags) : QDialog(parent, flags) {
     this->parent = parent;
-    setupUi(this);
+    dialogForm = new Ui::AboutDialog();
+    dialogForm->setupUi(this);
 
-    authorTextBrowser->setOpenExternalLinks( true );
-    creditsTextBrowser->setOpenExternalLinks( true );
+    dialogForm->authorTextBrowser->setOpenExternalLinks( true );
+    dialogForm->creditsTextBrowser->setOpenExternalLinks( true );
 
-    QString versionString = versionTextBrowser->toHtml();
+    QString versionString = dialogForm->versionTextBrowser->toHtml();
     versionString = versionString.arg(PROGRAM_VERSION_STRING).arg( UiGuiVersion::getBuildRevision() ).arg( UiGuiVersion::getBuildDate() );
-    versionTextBrowser->setHtml(versionString);
+    dialogForm->versionTextBrowser->setHtml(versionString);
 
-    creditsTextBrowser->setHtml("<html><head></head><body>"
+    dialogForm->creditsTextBrowser->setHtml("<html><head></head><body>"
         "<pre> </br></pre>"
         "<h3 align='center'>Thanks go out to</h3>"
         "<p align='center'><a href=\"http://www.csie.nctu.edu.tw/~chtai/\"><b>Nelson Tai</b></a> for Chinese translation, good ideas and always fast answers.</p></br>"
@@ -94,11 +101,11 @@ AboutDialog::AboutDialog(QWidget *parent, Qt::WindowFlags flags) : QDialog(paren
  */
 void AboutDialog::changeEvent(QEvent *event) {
     if (event->type() == QEvent::LanguageChange) {
-        retranslateUi(this);
+        dialogForm->retranslateUi(this);
 
-        QString versionString = versionTextBrowser->toHtml();
+        QString versionString = dialogForm->versionTextBrowser->toHtml();
         versionString = versionString.arg(PROGRAM_VERSION_STRING).arg( UiGuiVersion::getBuildRevision() ).arg( UiGuiVersion::getBuildDate() );
-        versionTextBrowser->setHtml(versionString);
+        dialogForm->versionTextBrowser->setHtml(versionString);
     }
     else {
         QWidget::changeEvent(event);
@@ -121,7 +128,7 @@ int AboutDialog::exec() {
     Also changes the scroll direction and speed when reaching the start or end.
  */
 void AboutDialog::scroll() {
-    QScrollBar *scrollBar = creditsTextBrowser->verticalScrollBar();
+    QScrollBar *scrollBar = dialogForm->creditsTextBrowser->verticalScrollBar();
     scrollBar->setValue( scrollBar->value()+scrollDirection );
 
     if ( scrollBar->value() == scrollBar->maximum() ) {
@@ -139,7 +146,7 @@ void AboutDialog::scroll() {
         timer->start(scrollSpeed);
     }
 
-    creditsTextBrowser->update();
+    dialogForm->creditsTextBrowser->update();
 }
 
 
