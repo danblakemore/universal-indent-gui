@@ -38,16 +38,15 @@ AboutDialogGraphicsView::AboutDialogGraphicsView(AboutDialog *aboutDialog, QWidg
 #ifdef Q_OS_LINUX
     QRect availableGeometry = QApplication::desktop()->availableGeometry();
     QRect newGeometry = QRect( availableGeometry.x(), availableGeometry.y(), availableGeometry.width(), availableGeometry.height() );
-    windowPosOffset = 27;
 #else
     QRect newGeometry = QRect( -1,-1, QApplication::desktop()->rect().width()+2, QApplication::desktop()->rect().height()+2 );
-    windowPosOffset = 0;
 #endif
     setGeometry( newGeometry );
 
     this->aboutDialog = aboutDialog;
 
     windowTitleBarWidth = 0;
+    windowPosOffset = 0;
 
     scene = new QGraphicsScene(this);
     setSceneRect( newGeometry );
@@ -90,6 +89,16 @@ void AboutDialogGraphicsView::show() {
     // Because on X11 system the window decoration is only available after a widget has been shown once,
     // we can detect windowTitleBarWidth here for the first time.
     windowTitleBarWidth = parent->geometry().y() - parent->y();
+    // If the windowTitleBarWidth could not be determined, try it a second way. Even the chances are low to get good results.
+    if ( windowTitleBarWidth == 0 )
+        windowTitleBarWidth = parent->frameGeometry().height() - parent->geometry().height();
+#ifdef Q_OS_LINUX
+    if ( windowTitleBarWidth == 0 ) {
+        //TODO: 27 pixel is a fix value for the Ubuntu 10.4 default window theme and so just a workaround for that specific case.
+        windowPosOffset = 27;
+        windowTitleBarWidth = 27;
+    }
+#endif
     QPixmap originalPixmap = QPixmap::grabWindow(QApplication::desktop()->winId(), QApplication::desktop()->availableGeometry().x(), QApplication::desktop()->availableGeometry().y(), geometry().width(), geometry().height() );
     QBrush brush(originalPixmap);
     QTransform transform;
