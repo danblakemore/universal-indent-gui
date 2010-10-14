@@ -21,15 +21,19 @@
 #define UIGUISETTINGSDIALOG_H
 
 #include <QDialog>
-#include "ui_UiGuiSettingsDialog.h"
-#include "UiGuiSettings.h"
 
-class UiGuiSettingsDialog : public QDialog, private Ui::SettingsDialog
+namespace Ui {
+	class SettingsDialog;
+}
+class UiGuiSettings;
+
+
+class UiGuiSettingsDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    UiGuiSettingsDialog(QWidget* parent, UiGuiSettings* settings);
+    UiGuiSettingsDialog(QWidget* parent, QSharedPointer<UiGuiSettings> settings);
 
 public slots:
     int showDialog();
@@ -38,10 +42,12 @@ private slots:
     void writeWidgetValuesToSettings();
 
 private:
+	Ui::SettingsDialog *_settingsDialogForm;
+
     void changeEvent(QEvent *event);
     void initTranslationSelection();
 
-    UiGuiSettings* settings;
+    QSharedPointer<UiGuiSettings> _settings;
 };
 
 #endif // UIGUISETTINGSDIALOG_H

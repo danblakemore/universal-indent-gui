@@ -20,42 +20,37 @@
 #define ABOUTDIALOGGRAPHICSVIEW_H
 
 #include <QGraphicsView>
-#include <QGraphicsProxyWidget>
-#include <QDesktopWidget>
-#include <QDate>
-#include <QTimeLine>
-#include <QPixmap>
-#include <QSplashScreen>
 
-#include "AboutDialog.h"
+class AboutDialog;
+
+class QTimeLine;
+class QSplashScreen;
+
 
 class AboutDialogGraphicsView : public QGraphicsView
 {
     Q_OBJECT
 public:
-    AboutDialogGraphicsView(AboutDialog *aboutDialog, QWidget *parent = 0);
+    AboutDialogGraphicsView(AboutDialog *aboutDialog, QWidget *parentWindow = NULL);
     ~AboutDialogGraphicsView(void);
-    void setScreenshotPixmap(const QPixmap &screenShot);
 
 public slots:
     void show();
     void hide();
 
-private:
-    AboutDialog *aboutDialog;
-    QGraphicsProxyWidget *graphicsProxyWidget;
-    QGraphicsScene *scene;
-    QWidget *parent;
-    QTimeLine *timeLine;
-    QSplashScreen *aboutDialogAsSplashScreen;
-    int windowTitleBarWidth;
-    int windowPosOffset;
-    QPixmap originalPixmap;
-
 private slots:
     void updateStep(int step);
     void showAboutDialog();
     void hideReally();
+
+private:
+    AboutDialog *_aboutDialog;
+    QGraphicsProxyWidget *_graphicsProxyWidget;
+    QWidget *_parentWindow;
+    QTimeLine *_timeLine;
+    QSplashScreen *_aboutDialogAsSplashScreen;
+    int _windowTitleBarWidth;
+    int _windowPosOffset;
 };
 
 #endif // ABOUTDIALOGGRAPHICSVIEW_H

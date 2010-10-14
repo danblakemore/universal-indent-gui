@@ -20,97 +20,35 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "ui_MainWindow.h"
-#include "ui_ToolBarWidget.h"
-#include "AboutDialog.h"
-#include "AboutDialogGraphicsView.h"
-#include "UiGuiSettings.h"
-#include "UiGuiSettingsDialog.h"
-#include "UiGuiHighlighter.h"
-#include "IndentHandler.h"
-#include "UpdateCheckDialog.h"
+#include <QMainWindow>
 
-#include <QWidget>
-#include <QString>
-#include <QScrollBar>
-#include <QTextCursor>
-#include <QFileDialog>
-#include <QTextStream>
-#include <QPrinter>
-#include <QPrintDialog>
-#include <QCloseEvent>
-#include <QHelpEvent>
-#include <QToolTip>
-#include <QTranslator>
-#include <QLocale>
-#include <QTextCodec>
-#include <QDate>
+class UiGuiSettings;
+class UiGuiSettingsDialog;
+class AboutDialog;
+class AboutDialogGraphicsView;
+class UiGuiHighlighter;
+class IndentHandler;
+class UpdateCheckDialog;
+namespace Ui {
+	class ToolBarWidget;
+	class MainWindowUi;
+}
 
-#include <Qsci/qsciscintilla.h>
-#include <Qsci/qsciprinter.h>
+class QLabel;
+class QScrollBar;
+class QActionGroup;
+class QTranslator;
 
-class MainWindow : public QMainWindow, private Ui::MainWindowUi
+class QsciScintilla;
+
+
+class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
     //! Constructor
-    MainWindow(QString file2OpenOnStart = "", QWidget *parent = 0);
-
-private:
-    QString loadFile(QString filePath);
-    QString openFileDialog(QString dialogHeaderStr, QString startPath, QString fileMaskStr);
-    void updateWindowTitle();
-    void loadLastOpenedFile();
-    void saveSettings();
-    bool maybeSave();
-    void createEncodingMenu();
-    void createHighlighterMenu();
-    bool initApplicationLanguage();
-    void initMainWindow();
-    void initToolBar();
-    void initTextEditor();
-    void initSyntaxHighlighter();
-    void initIndenter();
-    void changeEvent(QEvent *event);
-    void dragEnterEvent(QDragEnterEvent *event);
-    void dropEvent(QDropEvent *event);
-
-    QsciScintilla *qSciSourceCodeEditor;
-    UiGuiSettings *settings;
-
-    QString currentEncoding;
-    QString sourceFileContent;
-    QString sourceFormattedContent;
-    QString sourceViewContent;
-    UiGuiHighlighter *highlighter;
-    QScrollBar *textEditVScrollBar;
-    AboutDialog *aboutDialog;
-    AboutDialogGraphicsView *aboutDialogGraphicsView;
-    UiGuiSettingsDialog *settingsDialog;
-    int textEditLastScrollPos;
-    int currentIndenterID;
-    bool loadLastSourceCodeFileOnStartup;
-    QString currentSourceFile;
-    QString currentSourceFileExtension;
-    QString savedSourceContent;
-    QActionGroup *encodingActionGroup;
-    QActionGroup *saveEncodedActionGroup;
-    QActionGroup *highlighterActionGroup;
-    QTranslator *uiGuiTranslator;
-    QTranslator *qTTranslator;
-    bool isFirstRunOfThisVersion;
-
-    bool sourceCodeChanged;
-    bool scrollPositionChanged;
-    bool indentSettingsChanged;
-    bool previewToggled;
-    QStringList encodingsList;
-
-    Ui::ToolBarWidget *toolBarWidget;
-    IndentHandler *indentHandler;
-    UpdateCheckDialog *updateCheckDialog;
-    QLabel *textEditLineColumnInfoLabel;
+    MainWindow(QString file2OpenOnStart = "", QWidget *parent = NULL);
 
 protected:
     void closeEvent( QCloseEvent *event );
@@ -139,6 +77,63 @@ private slots:
     void clearRecentlyOpenedList();
     void showAboutDialog();
     void setStatusBarCursorPosInfo(int line, int column);
+
+private:
+	Ui::MainWindowUi *_mainWindowForm;
+
+    QString loadFile(QString filePath);
+    QString openFileDialog(QString dialogHeaderStr, QString startPath, QString fileMaskStr);
+    void updateWindowTitle();
+    void loadLastOpenedFile();
+    void saveSettings();
+    bool maybeSave();
+    void createEncodingMenu();
+    void createHighlighterMenu();
+    bool initApplicationLanguage();
+    void initMainWindow();
+    void initToolBar();
+    void initTextEditor();
+    void initSyntaxHighlighter();
+    void initIndenter();
+    void changeEvent(QEvent *event);
+    void dragEnterEvent(QDragEnterEvent *event);
+    void dropEvent(QDropEvent *event);
+
+    QsciScintilla *_qSciSourceCodeEditor;
+    QSharedPointer<UiGuiSettings> _settings;
+
+    QString _currentEncoding;
+    QString _sourceFileContent;
+    QString _sourceFormattedContent;
+    QString _sourceViewContent;
+    UiGuiHighlighter *_highlighter;
+    QScrollBar *_textEditVScrollBar;
+    AboutDialog *_aboutDialog;
+    AboutDialogGraphicsView *_aboutDialogGraphicsView;
+    UiGuiSettingsDialog *_settingsDialog;
+    int _textEditLastScrollPos;
+    int _currentIndenterID;
+    bool _loadLastSourceCodeFileOnStartup;
+    QString _currentSourceFile;
+    QString _currentSourceFileExtension;
+    QString _savedSourceContent;
+    QActionGroup *_encodingActionGroup;
+    QActionGroup *_saveEncodedActionGroup;
+    QActionGroup *_highlighterActionGroup;
+    QTranslator *_uiGuiTranslator;
+    QTranslator *_qTTranslator;
+    bool _isFirstRunOfThisVersion;
+
+    bool _sourceCodeChanged;
+    bool _scrollPositionChanged;
+    bool _indentSettingsChanged;
+    bool _previewToggled;
+    QStringList _encodingsList;
+
+    Ui::ToolBarWidget *_toolBarWidget;
+    IndentHandler *_indentHandler;
+    UpdateCheckDialog *_updateCheckDialog;
+    QLabel *_textEditLineColumnInfoLabel;
 };
 
 #endif // MAINWINDOW_H

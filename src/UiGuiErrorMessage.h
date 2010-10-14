@@ -21,7 +21,9 @@
 #define UIGUIERRORMESSAGE_H
 
 #include <QErrorMessage>
-#include <QCheckBox>
+
+class QCheckBox;
+
 
 class UiGuiErrorMessage : public QErrorMessage
 {
@@ -34,8 +36,8 @@ public:
     void showMessage( const QString &title, const QString &message );
 
 private:
-    QCheckBox *showAgainCheckBox;
-    QStringList errorMessageList;
+    QCheckBox *_showAgainCheckBox;
+    QStringList _errorMessageList;
 };
 
 #endif // UIGUIERRORMESSAGE_H

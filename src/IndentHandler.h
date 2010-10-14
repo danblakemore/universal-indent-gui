@@ -21,36 +21,19 @@
 #define INDENTHANDLER_H
 
 #include <QWidget>
-#include <QToolBox>
-#include <QVBoxLayout>
-#include <QApplication>
-#include <QCheckBox>
-#include <QComboBox>
-#include <QToolButton>
-#include <QFile>
-#include <QProcess>
-#include <QSettings>
-#include <QStringList>
-#include <QLineEdit>
-#include <QSpinBox>
-#include <QLabel>
-#include <QByteArray>
-#include <QDir>
-#include <QMessageBox>
-#include <QMainWindow>
-#include <QTextStream>
-#include <QTextCodec>
-#include <QtScript>
-#include <QDesktopServices>
-#include <QMenu>
-#include <QAction>
-#include <QContextMenuEvent>
-#include <QFileDialog>
 
-#include "UiGuiErrorMessage.h"
-#include "TemplateBatchScript.h"
-#include "UiGuiIniFileParser.h"
-#include "SettingsPaths.h"
+class UiGuiErrorMessage;
+class UiGuiIniFileParser;
+
+class QMenu;
+class QVBoxLayout;
+class QLabel;
+class QSpinBox;
+class QComboBox;
+class QCheckBox;
+class QLineEdit;
+class QToolButton;
+class QToolBox;
 
 
 class IndentHandler : public QWidget
@@ -106,12 +89,12 @@ private:
     bool createIndenterCallString();
     void initIndenterMenu();
 
-    //! Holds a reference to all created pages of the toolbox and the pages boxlayout
-    struct ToolBoxPage {
-        QWidget *page;
+    //! Holds a reference to all created pages of the parameter categories toolbox and the pages boxlayout
+    struct IndenterParameterCategoryPage {
+        QWidget *widget;
         QVBoxLayout *vboxLayout;
     };
-    QVector<ToolBoxPage> toolBoxPages;
+    QVector<IndenterParameterCategoryPage> _indenterParameterCategoryPages;
 
     //! Holds a reference to all checkboxes needed for boolean parameter setting and the parameters name
     struct ParamBoolean {
@@ -120,7 +103,7 @@ private:
         QString falseString;
         QCheckBox *checkBox;
     };
-    QVector<ParamBoolean> paramBooleans;
+    QVector<ParamBoolean> _paramBooleans;
 
     //! Holds a reference to all line edits needed for parameter setting and the parameters name
     struct ParamString {
@@ -130,7 +113,7 @@ private:
         QLineEdit *lineEdit;
         QLabel *label;
     };
-    QVector<ParamString> paramStrings;
+    QVector<ParamString> _paramStrings;
 
     //! Hold a reference to all spin boxes needed for parameter setting and the parameters name
     struct ParamNumeric {
@@ -140,7 +123,7 @@ private:
         QSpinBox *spinBox;
         QLabel *label;
     };
-    QVector<ParamNumeric> paramNumerics;
+    QVector<ParamNumeric> _paramNumerics;
 
     //! Hold a reference to all combo boxes needed for parameter setting and the parameters name
     struct ParamMultiple {
@@ -151,45 +134,49 @@ private:
         QStringList choicesStrings;
         QStringList choicesStringsReadable;
     };
-    QVector<ParamMultiple> paramMultiples;
+    QVector<ParamMultiple> _paramMultiples;
 
-    QComboBox *indenterSelectionCombobox;
-    QToolButton *indenterParameterHelpButton;
-    QVBoxLayout *vboxLayout;
-    QToolBox *toolBox;
-    UiGuiIniFileParser *indenterSettings;
-    QStringList indenterParameters;
+    QComboBox *_indenterSelectionCombobox;
+    QToolButton *_indenterParameterHelpButton;
+    //! Vertical layout box, into which the toolbox will be added
+    QVBoxLayout *_toolBoxContainerLayout;
+    QToolBox *_indenterParameterCategoriesToolBox;
+    UiGuiIniFileParser *_indenterSettings;
+    QStringList _indenterParameters;
     //! The indenters name in a descriptive form
-    QString indenterName;
+    QString _indenterName;
     //! The indenters file name (w/o extension), that is being called
-    QString indenterFileName;
-    QString indenterDirctoryStr;
-    QString tempDirctoryStr;
-    QString settingsDirctoryStr;
-    QStringList indenterIniFileList;
-    QString parameterOrder;
-    QString globalConfigFilename_;
-    QString cfgFileParameterEnding;
-    QString inputFileParameter;
-    QString inputFileName;
-    QString outputFileParameter;
-    QString outputFileName;
-    QString fileTypes;
-    QString useCfgFileParameter;
-    QString indenterShowHelpParameter;
-    QWidget *mainWindow;
-    UiGuiErrorMessage *errorMessageDialog;
-    QString indenterExecutableCallString;
-    QString indenterExecutableSuffix;
+    QString _indenterFileName;
+    QString _indenterDirctoryStr;
+    QString _tempDirctoryStr;
+    QString _settingsDirctoryStr;
+    QStringList _indenterIniFileList;
+    QString _parameterOrder;
+    QString _globalConfigFilename;
+    QString _cfgFileParameterEnding;
+    QString _inputFileParameter;
+    QString _inputFileName;
+    QString _outputFileParameter;
+    QString _outputFileName;
+    QString _fileTypes;
+    QString _useCfgFileParameter;
+    QString _indenterShowHelpParameter;
+    QWidget *_mainWindow;
+    UiGuiErrorMessage *_errorMessageDialog;
+    QString _indenterExecutableCallString;
+    QString _indenterExecutableSuffix;
 
-    QMenu *menuIndenter;
-    QAction *actionLoad_Indenter_Config_File;
-    QAction *actionSave_Indenter_Config_File;
-    QAction *actionCreateShellScript;
-    QAction *actionResetIndenterParameters;
-    void(*parameterChangedCallback)(void);
-    void(*windowClosedCallback)(void);
+    QMenu *_menuIndenter;
+    QAction *_actionLoadIndenterConfigFile;
+    QAction *_actionSaveIndenterConfigFile;
+    QAction *_actionCreateShellScript;
+    QAction *_actionResetIndenterParameters;
+    //! Needed for the NPP plugin.
+    void(*_parameterChangedCallback)(void);
+    //! Needed for the NPP plugin.
+    void(*_windowClosedCallback)(void);
 
+	//TODO: This function should go into a string helper/tool class/file.
     QString encodeToHTML(const QString &text);
 };
 

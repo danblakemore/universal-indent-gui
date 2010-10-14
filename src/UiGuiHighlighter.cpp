@@ -17,11 +17,62 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include <QtGui>
-
 #include "UiGuiHighlighter.h"
 
 #include "SettingsPaths.h"
+
+#include <QSettings>
+#include <QMenu>
+#include <QScrollBar>
+#include <QCoreApplication>
+
+#include <Qsci/qsciscintilla.h>
+#include <Qsci/qscilexer.h>
+#include <Qsci/qscilexerbash.h>
+#include <Qsci/qscilexerbatch.h>
+#include <Qsci/qscilexercmake.h>
+#include <Qsci/qscilexercpp.h>
+#include <Qsci/qscilexercsharp.h>
+#include <Qsci/qscilexercss.h>
+#include <Qsci/qscilexerd.h>
+#include <Qsci/qscilexerdiff.h>
+#if ( QSCINTILLA_VERSION >= 0x020300 )
+#include <Qsci/qscilexerfortran.h>
+#include <Qsci/qscilexerfortran77.h>
+#endif
+#include <Qsci/qscilexerhtml.h>
+#include <Qsci/qscilexeridl.h>
+#include <Qsci/qscilexerjava.h>
+#include <Qsci/qscilexerjavascript.h>
+#include <Qsci/qscilexerlua.h>
+#include <Qsci/qscilexermakefile.h>
+#if ( QSCINTILLA_VERSION >= 0x020300 )
+#include <Qsci/qscilexerpascal.h>
+#endif
+#include <Qsci/qscilexerperl.h>
+#if ( QSCINTILLA_VERSION >= 0x020300 )
+#include <Qsci/qscilexerpostscript.h>
+#endif
+#include <Qsci/qscilexerpov.h>
+#include <Qsci/qscilexerproperties.h>
+#include <Qsci/qscilexerpython.h>
+#include <Qsci/qscilexerruby.h>
+#if ( QSCINTILLA_VERSION >= 0x020400 )
+#include <Qsci/qscilexerspice.h>
+#endif
+#include <Qsci/qscilexersql.h>
+#if ( QSCINTILLA_VERSION >= 0x020300 )
+#include <Qsci/qscilexertcl.h>
+#endif
+#include <Qsci/qscilexertex.h>
+#if ( QSCINTILLA_VERSION >= 0x020400 )
+#include <Qsci/qscilexerverilog.h>
+#endif
+#include <Qsci/qscilexervhdl.h>
+#if ( QSCINTILLA_VERSION >= 0x020300 )
+#include <Qsci/qscilexerxml.h>
+#include <Qsci/qscilexeryaml.h>
+#endif
 
 //! \defgroup grp_EditorComponent All concerning editor widget.
 
@@ -35,59 +86,65 @@
     \brief The constructor initializes some regular expressions and keywords to identify cpp tokens
  */
 UiGuiHighlighter::UiGuiHighlighter(QsciScintilla *parent) : QObject(parent) {
-    this->qsciEditorParent = parent;
+    _qsciEditorParent = parent;
 
-    // Create the highlighter settings object from the UiGuiSyntaxHighlightConfig.ini file.
-    this->settings = new QSettings(SettingsPaths::getSettingsPath() + "/UiGuiSyntaxHighlightConfig.ini", QSettings::IniFormat, this);
+    // Create the highlighter _settings object from the UiGuiSyntaxHighlightConfig.ini file.
+    _settings = new QSettings(SettingsPaths::getSettingsPath() + "/UiGuiSyntaxHighlightConfig.ini", QSettings::IniFormat, this);
 
-    highlightningIsOn = true;
+    _highlightningIsOn = true;
 
-    mapHighlighternameToExtension["Bash"] = QStringList() << "sh";
-    mapHighlighternameToExtension["Batch"] = QStringList() << "bat";
-    mapHighlighternameToExtension["CMake"] = QStringList() << "cmake";
-    mapHighlighternameToExtension["C++"] = QStringList() << "c" << "h" << "cpp" << "hpp" << "cxx" << "hxx";
-    mapHighlighternameToExtension["C#"] = QStringList() << "cs";
-    mapHighlighternameToExtension["CSS"] = QStringList() << "css";
-    mapHighlighternameToExtension["D"] = QStringList() << "d";
-    mapHighlighternameToExtension["Diff"] = QStringList() << "diff";
+    _mapHighlighternameToExtension["Bash"] = QStringList() << "sh";
+    _mapHighlighternameToExtension["Batch"] = QStringList() << "bat";
+    _mapHighlighternameToExtension["CMake"] = QStringList() << "cmake";
+    _mapHighlighternameToExtension["C++"] = QStringList() << "c" << "h" << "cpp" << "hpp" << "cxx" << "hxx";
+    _mapHighlighternameToExtension["C#"] = QStringList() << "cs";
+    _mapHighlighternameToExtension["CSS"] = QStringList() << "css";
+    _mapHighlighternameToExtension["D"] = QStringList() << "d";
+    _mapHighlighternameToExtension["Diff"] = QStringList() << "diff";
 #if ( QSCINTILLA_VERSION >= 0x020300 )
-    mapHighlighternameToExtension["Fortran"] = QStringList() << "f" << "for" << "f90";
-    mapHighlighternameToExtension["Fortran77"] = QStringList() << "f77";
+    _mapHighlighternameToExtension["Fortran"] = QStringList() << "f" << "for" << "f90";
+    _mapHighlighternameToExtension["Fortran77"] = QStringList() << "f77";
 #endif
-    mapHighlighternameToExtension["HTML"] = QStringList() << "html" << "htm";
-    mapHighlighternameToExtension["IDL"] = QStringList() << "idl";
-    mapHighlighternameToExtension["Java"] = QStringList() << "java";
-    mapHighlighternameToExtension["JavaScript"] = QStringList() << "js";
-    mapHighlighternameToExtension["LUA"] = QStringList() << "lua";
-    mapHighlighternameToExtension["Makefile"] = QStringList() << "makefile";
+    _mapHighlighternameToExtension["HTML"] = QStringList() << "html" << "htm";
+    _mapHighlighternameToExtension["IDL"] = QStringList() << "idl";
+    _mapHighlighternameToExtension["Java"] = QStringList() << "java";
+    _mapHighlighternameToExtension["JavaScript"] = QStringList() << "js";
+    _mapHighlighternameToExtension["LUA"] = QStringList() << "lua";
+    _mapHighlighternameToExtension["Makefile"] = QStringList() << "makefile";
 #if ( QSCINTILLA_VERSION >= 0x020300 )
-    mapHighlighternameToExtension["Pascal"] = QStringList() << "pas";
+    _mapHighlighternameToExtension["Pascal"] = QStringList() << "pas";
 #endif
-    mapHighlighternameToExtension["Perl"] = QStringList() << "perl" << "pl" << "pm";
-    mapHighlighternameToExtension["PHP"] = QStringList() << "php";
+    _mapHighlighternameToExtension["Perl"] = QStringList() << "perl" << "pl" << "pm";
+    _mapHighlighternameToExtension["PHP"] = QStringList() << "php";
 #if ( QSCINTILLA_VERSION >= 0x020300 )
-    mapHighlighternameToExtension["PostScript"] = QStringList() << "ps" << "eps" << "pdf" << "ai" << "fh";
+    _mapHighlighternameToExtension["PostScript"] = QStringList() << "ps" << "eps" << "pdf" << "ai" << "fh";
 #endif
-    mapHighlighternameToExtension["POV"] = QStringList() << "pov";
-    mapHighlighternameToExtension["Ini"] = QStringList() << "ini";
-    mapHighlighternameToExtension["Python"] = QStringList() << "py";
-    mapHighlighternameToExtension["Ruby"] = QStringList() << "rub" << "rb";
-    mapHighlighternameToExtension["SQL"] = QStringList() << "sql";
-#if ( QSCINTILLA_VERSION >= 0x020300 )
-    mapHighlighternameToExtension["TCL"] = QStringList() << "tcl";
+    _mapHighlighternameToExtension["POV"] = QStringList() << "pov";
+    _mapHighlighternameToExtension["Ini"] = QStringList() << "ini";
+    _mapHighlighternameToExtension["Python"] = QStringList() << "py";
+    _mapHighlighternameToExtension["Ruby"] = QStringList() << "rub" << "rb";
+#if ( QSCINTILLA_VERSION >= 0x020400 )
+    _mapHighlighternameToExtension["Spice"] = QStringList() << "cir";
 #endif
-    mapHighlighternameToExtension["TeX"] = QStringList() << "tex";
-    mapHighlighternameToExtension["VHDL"] = QStringList() << "vhdl";
-    mapHighlighternameToExtension["XML"] = QStringList() << "xml";
+    _mapHighlighternameToExtension["SQL"] = QStringList() << "sql";
 #if ( QSCINTILLA_VERSION >= 0x020300 )
-    mapHighlighternameToExtension["YAML"] = QStringList() << "yaml";
+    _mapHighlighternameToExtension["TCL"] = QStringList() << "tcl";
+#endif
+    _mapHighlighternameToExtension["TeX"] = QStringList() << "tex";
+#if ( QSCINTILLA_VERSION >= 0x020400 )
+    _mapHighlighternameToExtension["Verilog"] = QStringList() << "v" << "vh";
+#endif
+    _mapHighlighternameToExtension["VHDL"] = QStringList() << "vhdl";
+    _mapHighlighternameToExtension["XML"] = QStringList() << "xml";
+#if ( QSCINTILLA_VERSION >= 0x020300 )
+    _mapHighlighternameToExtension["YAML"] = QStringList() << "yaml";
 #endif
 
-    lexer = NULL;
+    _lexer = NULL;
 
     // This code is only for testing.
     /*
-    foreach(QStringList extensionList, mapHighlighternameToExtension.values() ) {
+    foreach(QStringList extensionList, _mapHighlighternameToExtension.values() ) {
         setLexerForExtension( extensionList.at(0) );
     }
     */
@@ -101,7 +158,7 @@ UiGuiHighlighter::UiGuiHighlighter(QsciScintilla *parent) : QObject(parent) {
     \brief Returns the available highlighters as QStringList.
  */
 QStringList UiGuiHighlighter::getAvailableHighlighters() {
-    return mapHighlighternameToExtension.keys();
+    return _mapHighlighternameToExtension.keys();
 }
 
 
@@ -110,12 +167,12 @@ QStringList UiGuiHighlighter::getAvailableHighlighters() {
  */
 void UiGuiHighlighter::setHighlighterByAction(QAction* highlighterAction) {
     QString highlighterName = highlighterAction->text();
-    setLexerForExtension( mapHighlighternameToExtension[highlighterName].first() );
+    setLexerForExtension( _mapHighlighternameToExtension[highlighterName].first() );
     //TODO: This is really no nice way. How do it better?
     // Need to do this "text update" to update the syntax highlighting. Otherwise highlighting is wrong.
-    int scrollPos = qsciEditorParent->verticalScrollBar()->value();
-    qsciEditorParent->setText( qsciEditorParent->text() );
-    qsciEditorParent->verticalScrollBar()->setValue(scrollPos);
+    int scrollPos = _qsciEditorParent->verticalScrollBar()->value();
+    _qsciEditorParent->setText( _qsciEditorParent->text() );
+    _qsciEditorParent->verticalScrollBar()->setValue(scrollPos);
 }
 
 
@@ -123,8 +180,8 @@ void UiGuiHighlighter::setHighlighterByAction(QAction* highlighterAction) {
     \brief Turns the syntax parser on.
 */
 void UiGuiHighlighter::turnHighlightOn() {
-    highlightningIsOn = true;
-    qsciEditorParent->setLexer(lexer);
+    _highlightningIsOn = true;
+    _qsciEditorParent->setLexer(_lexer);
     readCurrentSettings("");
 }
 
@@ -132,14 +189,14 @@ void UiGuiHighlighter::turnHighlightOn() {
     \brief Turns the syntax parser off.
 */
 void UiGuiHighlighter::turnHighlightOff() {
-    highlightningIsOn = false;
-    qsciEditorParent->setLexer();
+    _highlightningIsOn = false;
+    _qsciEditorParent->setLexer();
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
-    qsciEditorParent->setFont( QFont("Courier", 10, QFont::Normal) );
-    qsciEditorParent->setMarginsFont( QFont("Courier", 10, QFont::Normal) );
+    _qsciEditorParent->setFont( QFont("Courier", 10, QFont::Normal) );
+    _qsciEditorParent->setMarginsFont( QFont("Courier", 10, QFont::Normal) );
 #else
-    qsciEditorParent->setFont( QFont("Monospace", 10, QFont::Normal) );
-    qsciEditorParent->setMarginsFont( QFont("Monospace", 10, QFont::Normal) );
+    _qsciEditorParent->setFont( QFont("Monospace", 10, QFont::Normal) );
+    _qsciEditorParent->setMarginsFont( QFont("Monospace", 10, QFont::Normal) );
 #endif
 }
 
@@ -154,21 +211,21 @@ bool UiGuiHighlighter::readCurrentSettings( const char *prefix ) {
     QString key;
 
     // Reset lists containing fonts and colors for each style
-    fontForStyles.clear();
-    colorForStyles.clear();
+    _fontForStyles.clear();
+    _colorForStyles.clear();
 
     // Read the styles.
     for (int i = 0; i < 128; ++i) {
         // Ignore invalid styles.
-        if ( lexer->description(i).isEmpty() )
+        if ( _lexer->description(i).isEmpty() )
             continue;
 
-        key.sprintf( "%s/%s/style%d/", prefix, lexer->language(), i );
+        key.sprintf( "%s/%s/style%d/", prefix, _lexer->language(), i );
         key.replace("+", "p");
 
         // Read the foreground color.
-        ok = settings->contains(key + "color");
-        num = settings->value(key + "color", 0).toInt();
+        ok = _settings->contains(key + "color");
+        num = _settings->value(key + "color", 0).toInt();
 
         if (ok)
             setColor( QColor((num >> 16) & 0xff, (num >> 8) & 0xff, num & 0xff), i );
@@ -176,19 +233,19 @@ bool UiGuiHighlighter::readCurrentSettings( const char *prefix ) {
             rc = false;
 
         // Read the end-of-line fill.
-        ok = settings->contains(key + "eolfill");
-        flag = settings->value(key + "eolfill", false).toBool();
+        ok = _settings->contains(key + "eolfill");
+        flag = _settings->value(key + "eolfill", false).toBool();
 
         if (ok)
-            lexer->setEolFill( flag, i );
+            _lexer->setEolFill( flag, i );
         else
             rc = false;
 
         // Read the font
         QStringList fdesc;
 
-        ok = settings->contains(key + "font");
-        fdesc = settings->value(key + "font").toStringList();
+        ok = _settings->contains(key + "font");
+        fdesc = _settings->value(key + "font").toStringList();
 
         if (ok && fdesc.count() == 5) {
             QFont f;
@@ -212,19 +269,19 @@ bool UiGuiHighlighter::readCurrentSettings( const char *prefix ) {
             rc = false;
 
         // Read the background color.
-        ok = settings->contains(key + "paper");
-        num = settings->value(key + "paper", 0).toInt();
+        ok = _settings->contains(key + "paper");
+        num = _settings->value(key + "paper", 0).toInt();
 
         if (ok)
-            lexer->setPaper( QColor((num >> 16) & 0xff, (num >> 8) & 0xff, num & 0xff), i );
+            _lexer->setPaper( QColor((num >> 16) & 0xff, (num >> 8) & 0xff, num & 0xff), i );
         else
             rc = false;
     }
 
     // Read the properties.
-    key.sprintf( "%s/%s/properties/", prefix, lexer->language() );
+    key.sprintf( "%s/%s/properties/", prefix, _lexer->language() );
 
-    lexer->refreshProperties();
+    _lexer->refreshProperties();
 
     return rc;
 }
@@ -239,42 +296,42 @@ void UiGuiHighlighter::writeCurrentSettings( const char *prefix ) {
     // Write the styles.
     for (int i = 0; i < 128; ++i) {
         // Ignore invalid styles.
-        if ( lexer->description(i).isEmpty() )
+        if ( _lexer->description(i).isEmpty() )
             continue;
 
         int num;
         QColor c;
 
-        key.sprintf( "%s/%s/style%d/", prefix, lexer->language(), i );
+        key.sprintf( "%s/%s/style%d/", prefix, _lexer->language(), i );
         key.replace("+", "p");
 
         // Write style name
-        settings->setValue( key + "", lexer->description(i) );
+        _settings->setValue( key + "", _lexer->description(i) );
 
         // Write the foreground color.
-        if ( colorForStyles.contains(i) ) {
-            c = colorForStyles[i];
+        if ( _colorForStyles.contains(i) ) {
+            c = _colorForStyles[i];
         }
         else {
-            c = lexer->color(i);
+            c = _lexer->color(i);
         }
         num = (c.red() << 16) | (c.green() << 8) | c.blue();
 
-        settings->setValue(key + "color", num);
+        _settings->setValue(key + "color", num);
 
         // Write the end-of-line fill.
-        settings->setValue( key + "eolfill", lexer->eolFill(i) );
+        _settings->setValue( key + "eolfill", _lexer->eolFill(i) );
 
         // Write the font
         QStringList fdesc;
         QString fmt("%1");
         QFont f;
 
-        if ( fontForStyles.contains(i) ) {
-            f = fontForStyles[i];
+        if ( _fontForStyles.contains(i) ) {
+            f = _fontForStyles[i];
         }
         else {
-            f = lexer->font(i);
+            f = _lexer->font(i);
         }
 
         fdesc += f.family();
@@ -285,13 +342,13 @@ void UiGuiHighlighter::writeCurrentSettings( const char *prefix ) {
         fdesc += fmt.arg( (int)f.italic() );
         fdesc += fmt.arg( (int)f.underline() );
 
-        settings->setValue(key + "font", fdesc);
+        _settings->setValue(key + "font", fdesc);
 
         // Write the background color.
-        c = lexer->paper(i);
+        c = _lexer->paper(i);
         num = (c.red() << 16) | (c.green() << 8) | c.blue();
 
-        settings->setValue(key + "paper", num);
+        _settings->setValue(key + "paper", num);
     }
 }
 
@@ -300,8 +357,8 @@ void UiGuiHighlighter::writeCurrentSettings( const char *prefix ) {
     \brief Sets the \a color for the given \a style.
  */
 void UiGuiHighlighter::setColor(const QColor &color, int style) {
-    colorForStyles[style] = color;
-    lexer->setColor( color, style );
+    _colorForStyles[style] = color;
+    _lexer->setColor( color, style );
 }
 
 
@@ -309,8 +366,8 @@ void UiGuiHighlighter::setColor(const QColor &color, int style) {
     \brief Sets the \a font for the given \a style.
  */
 void UiGuiHighlighter::setFont(const QFont &font, int style) {
-    fontForStyles[style] = font;
-    lexer->setFont( font, style );
+    _fontForStyles[style] = font;
+    _lexer->setFont( font, style );
 }
 
 
@@ -318,7 +375,7 @@ void UiGuiHighlighter::setFont(const QFont &font, int style) {
     \brief Sets the to be used lexer by giving his name.
  */
 void UiGuiHighlighter::setLexerByName( QString lexerName ) {
-    setLexerForExtension( mapHighlighternameToExtension[lexerName].first() );
+    setLexerForExtension( _mapHighlighternameToExtension[lexerName].first() );
 }
 
 
@@ -329,132 +386,142 @@ int UiGuiHighlighter::setLexerForExtension( QString extension ) {
     int indexOfHighlighter = 0;
     extension = extension.toLower();
 
-    if ( lexer != NULL ) {
+    if ( _lexer != NULL ) {
         writeCurrentSettings("");
-        delete lexer;
+        delete _lexer;
     }
 
     if ( extension == "cpp" || extension == "hpp" || extension == "c" || extension == "h" || extension == "cxx" || extension == "hxx" ) {
-        lexer = new QsciLexerCPP();
+        _lexer = new QsciLexerCPP();
     }
     else if ( extension == "sh" ) {
-        lexer = new QsciLexerBash();
+        _lexer = new QsciLexerBash();
     }
     else if ( extension == "bat" ) {
-        lexer = new QsciLexerBatch();
+        _lexer = new QsciLexerBatch();
     }
     else if ( extension == "cmake" ) {
-        lexer = new QsciLexerCMake();
+        _lexer = new QsciLexerCMake();
     }
     else if ( extension == "cs" ) {
-        lexer = new QsciLexerCSharp();
+        _lexer = new QsciLexerCSharp();
     }
     else if ( extension == "css" ) {
-        lexer = new QsciLexerCSS();
+        _lexer = new QsciLexerCSS();
     }
     else if ( extension == "d" ) {
-        lexer = new QsciLexerD();
+        _lexer = new QsciLexerD();
     }
     else if ( extension == "diff" ) {
-        lexer = new QsciLexerDiff();
+        _lexer = new QsciLexerDiff();
     }
 #if ( QSCINTILLA_VERSION >= 0x020300 )
     else if ( extension == "f" || extension == "for" || extension == "f90" ) {
-        lexer = new QsciLexerFortran();
+        _lexer = new QsciLexerFortran();
     }
     else if ( extension == "f77" ) {
-        lexer = new QsciLexerFortran77();
+        _lexer = new QsciLexerFortran77();
     }
 #endif
     else if ( extension == "html" || extension == "htm" ) {
-        lexer = new QsciLexerHTML();
+        _lexer = new QsciLexerHTML();
     }
     else if ( extension == "idl" ) {
-        lexer = new QsciLexerIDL();
+        _lexer = new QsciLexerIDL();
     }
     else if ( extension == "java" ) {
-        lexer = new QsciLexerJava();
+        _lexer = new QsciLexerJava();
     }
     else if ( extension == "js" ) {
-        lexer = new QsciLexerJavaScript();
+        _lexer = new QsciLexerJavaScript();
     }
     else if ( extension == "lua" ) {
-        lexer = new QsciLexerLua();
+        _lexer = new QsciLexerLua();
     }
     else if ( extension == "makefile" ) {
-        lexer = new QsciLexerMakefile();
+        _lexer = new QsciLexerMakefile();
     }
 #if ( QSCINTILLA_VERSION >= 0x020300 )
     else if ( extension == "pas" ) {
-        lexer = new QsciLexerPascal();
+        _lexer = new QsciLexerPascal();
     }
 #endif
     else if ( extension == "perl" || extension == "pl" || extension == "pm" ) {
-        lexer = new QsciLexerPerl();
+        _lexer = new QsciLexerPerl();
     }
     else if ( extension == "php" ) {
-        lexer = new QsciLexerHTML();
+        _lexer = new QsciLexerHTML();
     }
 #if ( QSCINTILLA_VERSION >= 0x020300 )
     else if ( extension == "ps" || extension == "eps" || extension == "pdf" || extension == "ai" || extension == "fh") {
-        lexer = new QsciLexerPostScript();
+        _lexer = new QsciLexerPostScript();
     }
 #endif
     else if ( extension == "pov" ) {
-        lexer = new QsciLexerPOV();
+        _lexer = new QsciLexerPOV();
     }
     else if ( extension == "ini" ) {
-        lexer = new QsciLexerProperties();
+        _lexer = new QsciLexerProperties();
     }
     else if ( extension == "py" ) {
-        lexer = new QsciLexerPython();
+        _lexer = new QsciLexerPython();
     }
     else if ( extension == "rub" || extension == "rb" ) {
-        lexer = new QsciLexerRuby();
+        _lexer = new QsciLexerRuby();
     }
+#if ( QSCINTILLA_VERSION >= 0x020400 )
+    else if ( extension == "spice?" ) {
+        _lexer = new QsciLexerSpice();
+    }
+#endif
     else if ( extension == "sql" ) {
-        lexer = new QsciLexerSQL();
+        _lexer = new QsciLexerSQL();
     }
 #if ( QSCINTILLA_VERSION >= 0x020300 )
     else if ( extension == "tcl" ) {
-        lexer = new QsciLexerTCL();
+        _lexer = new QsciLexerTCL();
     }
 #endif
     else if ( extension == "tex" ) {
-        lexer = new QsciLexerTeX();
+        _lexer = new QsciLexerTeX();
     }
+#if ( QSCINTILLA_VERSION >= 0x020400 )
+    else if ( extension == "vlog?" ) {
+        _lexer = new QsciLexerVerilog();
+    }
+#endif
     else if ( extension == "vhdl" ) {
-        lexer = new QsciLexerVHDL();
+        _lexer = new QsciLexerVHDL();
     }
     else if ( extension == "xml" ) {
 #if ( QSCINTILLA_VERSION >= 0x020300 )
-        lexer = new QsciLexerXML();
+        _lexer = new QsciLexerXML();
 #else
-        lexer = new QsciLexerHTML();
+        _lexer = new QsciLexerHTML();
 #endif
     }
 #if ( QSCINTILLA_VERSION >= 0x020300 )
     else if ( extension == "yaml" ) {
-        lexer = new QsciLexerYAML();
+        _lexer = new QsciLexerYAML();
     }
 #endif
     else {
-        lexer = new QsciLexerCPP();
+        _lexer = new QsciLexerCPP();
         extension = "cpp";
     }
 
-    // Find the index of the selected lexer.
+    // Find the index of the selected _lexer.
     indexOfHighlighter = 0;
-    while ( !mapHighlighternameToExtension.values().at(indexOfHighlighter).contains(extension) ) {
+    while ( !_mapHighlighternameToExtension.values().at(indexOfHighlighter).contains(extension) ) {
         indexOfHighlighter++;
     }
 
-    // Set the lexer for the QScintilla widget.
-    if ( highlightningIsOn ) {
-        qsciEditorParent->setLexer(lexer);
+    // Set the _lexer for the QScintilla widget.
+    if ( _highlightningIsOn ) {
+        _qsciEditorParent->setLexer(_lexer);
     }
 
-    // Read the settings for the lexer properties from file.
+    // Read the _settings for the _lexer properties from file.
     readCurrentSettings("");
 
     return indexOfHighlighter;

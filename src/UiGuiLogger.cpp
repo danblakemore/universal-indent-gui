@@ -18,27 +18,43 @@
  ***************************************************************************/
 
 #include "UiGuiLogger.h"
+#include "ui_UiGuiLoggerDialog.h"
 
-#include <ctime>
+#include "SettingsPaths.h"
+
 #include <QDateTime>
 #include <QFile>
+#include <QFileInfo>
 #include <QUrl>
 #include <QTextStream>
 #include <QDesktopServices>
 
-#include "SettingsPaths.h"
+#include <ctime>
 
-UiGuiLogger* UiGuiLogger::instance = NULL;
+UiGuiLogger* UiGuiLogger::_instance = NULL;
+
+/*!
+    \class UiGuiLogger
+    \brief This class handles any kind of data logging, for debugging and whatever purpose.
+
+    Beneath being able of displaying a dialog window containing all log messages of the
+    current session, a log file in the systems temporary directory is used. Its name
+    is "UiGUI_log.html".
+
+    Setting a verbose level allows to only write messages that have the selected minimum
+    priority to the log.
+ */
 
 /*!
     \brief Returns the only existing instance of UiGuiLogger. If the instance doesn't exist, it will be created.
  */
 UiGuiLogger* UiGuiLogger::getInstance(int verboseLevel) {
-    if ( instance == NULL )
-        instance = new UiGuiLogger(verboseLevel);
+    if ( _instance == NULL )
+        _instance = new UiGuiLogger(verboseLevel);
 
-    return instance;
+    return _instance;
 }
+
 
 /*!
     \brief Returns the only existing instance of UiGuiLogger. If the instance doesn't exist, it will be created.
@@ -57,16 +73,17 @@ UiGuiLogger* UiGuiLogger::getInstance() {
     Sets the default verbose level to warning level.
  */
 UiGuiLogger::UiGuiLogger(int verboseLevel) : QDialog() {
-    setupUi(this);
+	_uiGuiLoggerDialogForm = new Ui::UiGuiLoggerDialog();
+    _uiGuiLoggerDialogForm->setupUi(this);
 #ifdef _DEBUG
-    this->verboseLevel = QtDebugMsg;
+    _verboseLevel = QtDebugMsg;
 #else
-    this->verboseLevel = QtMsgType(verboseLevel);
+    _verboseLevel = QtMsgType(verboseLevel);
 #endif
 
-    logFileInitState = NOTINITIALZED;
+    _logFileInitState = NOTINITIALZED;
 
-    connect( openLogFileFolderToolButton, SIGNAL(clicked()), this, SLOT(openLogFileFolder()) );
+    connect( _uiGuiLoggerDialogForm->openLogFileFolderToolButton, SIGNAL(clicked()), this, SLOT(openLogFileFolder()) );
 
     // Make the main application not to wait for the logging window to close.
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -79,11 +96,11 @@ UiGuiLogger::UiGuiLogger(int verboseLevel) : QDialog() {
     Only messages whos \a type have a higher priority than the set verbose level are logged.
  */
 void UiGuiLogger::messageHandler(QtMsgType type, const char *msg) {
-    if ( instance == NULL )
-        instance = UiGuiLogger::getInstance();
+    if ( _instance == NULL )
+        _instance = UiGuiLogger::getInstance();
 
     // Only log messages that have a higher or equal priority than set with the verbose level.
-    if ( type < instance->verboseLevel )
+    if ( type < _instance->_verboseLevel )
         return;
 
     // Init log message with prepended date and time.
@@ -113,10 +130,10 @@ void UiGuiLogger::messageHandler(QtMsgType type, const char *msg) {
     message += QString::fromUtf8( msg ) + "<br/>\n";
 
     // Write the message to the log windows text edit.
-    instance->logTextEdit->append( message );
+    _instance->_uiGuiLoggerDialogForm->logTextEdit->append( message );
 
     // Write/append the log message to the log file.
-    instance->writeToLogFile( message );
+    _instance->writeToLogFile( message );
 
     // In case of a fatal error abort the application.
     if ( type == QtFatalMsg )
@@ -130,21 +147,21 @@ void UiGuiLogger::messageHandler(QtMsgType type, const char *msg) {
  */
 void UiGuiLogger::setVerboseLevel(int level) {
     if ( level < 0 )
-        verboseLevel = QtDebugMsg;
+        _verboseLevel = QtDebugMsg;
     if ( level > 3 )
-        verboseLevel = QtFatalMsg;
+        _verboseLevel = QtFatalMsg;
     else
-        verboseLevel = QtMsgType(level);
+        _verboseLevel = QtMsgType(level);
 }
 
 
 /*!
-    \brief Deletes the existing instance of UiGuiLogger.
+    \brief Deletes the existing _instance of UiGuiLogger.
  */
 void UiGuiLogger::deleteInstance() {
-    if ( instance != NULL ) {
-        delete instance;
-        instance = NULL;
+    if ( _instance != NULL ) {
+        delete _instance;
+        _instance = NULL;
     }
 }
 
@@ -153,7 +170,7 @@ void UiGuiLogger::deleteInstance() {
     \brief Opens the folder that contains the created log file with the name "UiGUI_log.html".
  */
 void UiGuiLogger::openLogFileFolder() {
-    QDesktopServices::openUrl( QFileInfo( logFile ).absolutePath() );
+    QDesktopServices::openUrl( QFileInfo( _logFile ).absolutePath() );
 }
 
 
@@ -162,8 +179,8 @@ void UiGuiLogger::openLogFileFolder() {
  */
 void UiGuiLogger::writeToLogFile(const QString &message) {
     // If the file where all logging messages should go to isn't initilized yet, do that now.
-    if ( logFileInitState == NOTINITIALZED ) {
-        logFileInitState = INITIALIZING;
+    if ( _logFileInitState == NOTINITIALZED ) {
+        _logFileInitState = INITIALIZING;
 
         // On different systems it may be that "QDir::tempPath()" ends with a "/" or not. So check this.
         // Remove any trailing slashes.
@@ -195,28 +212,28 @@ void UiGuiLogger::writeToLogFile(const QString &message) {
         }
         logFileName += "_" + QString(randomChar) + ".html";
 
-        logFile.setFileName( tempPath + "/" + logFileName );
+        _logFile.setFileName( tempPath + "/" + logFileName );
 
         // Set the tooltip of the open log file folder button to show the unique name of the log file.
-        openLogFileFolderToolButton->setToolTip( openLogFileFolderToolButton->toolTip() + " (" + logFileName + ")" );
+        _uiGuiLoggerDialogForm->openLogFileFolderToolButton->setToolTip( _uiGuiLoggerDialogForm->openLogFileFolderToolButton->toolTip() + " (" + logFileName + ")" );
 
-        logFileInitState = INITIALZED;
+        _logFileInitState = INITIALZED;
     }
 
     // Add the message to the message queue.
-    messageQueue << message;
+    _messageQueue << message;
 
     // If the logging file is initialzed, write all messages contained in the message queue into the file.
-    if ( logFileInitState == INITIALZED ) {
+    if ( _logFileInitState == INITIALZED ) {
         // Write/append the log message to the log file.
-        if ( logFile.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append) ) {
-            QTextStream out(&logFile);
+        if ( _logFile.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append) ) {
+            QTextStream out(&_logFile);
 
-            while ( !messageQueue.isEmpty() ) {
-                out << messageQueue.takeFirst() << "\n";
+            while ( !_messageQueue.isEmpty() ) {
+                out << _messageQueue.takeFirst() << "\n";
             }
 
-            logFile.close();
+            _logFile.close();
         }
     }
 }

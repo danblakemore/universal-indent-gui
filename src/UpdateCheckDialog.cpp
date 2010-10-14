@@ -18,12 +18,16 @@
  ***************************************************************************/
 
 #include "UpdateCheckDialog.h"
+#include "ui_UpdateCheckDialog.h"
 
+#include "UiGuiSettings.h"
 #include "UiGuiVersion.h"
 
+#include <QMessageBox>
 #include <QDesktopServices>
 #include <QNetworkAccessManager>
 #include <QTimer>
+#include <QDate>
 #include <QUrl>
 #include <QRegExpValidator>
 #include <QNetworkRequest>
@@ -37,29 +41,30 @@
 */
 
 /*!
-    \brief Initializes member variables and stores the version of UiGui and a pointer to the settings object.
+    \brief Initializes member variables and stores the version of UiGui and a pointer to the _settings object.
  */
-UpdateCheckDialog::UpdateCheckDialog(UiGuiSettings *settings, QWidget *parent) : QDialog(parent),
-    manualUpdateRequested(false),
-    currentNetworkReply(NULL),
-    roleOfClickedButton(QDialogButtonBox::InvalidRole)
+UpdateCheckDialog::UpdateCheckDialog(QSharedPointer<UiGuiSettings> settings, QWidget *parent) : QDialog(parent),
+    _manualUpdateRequested(false),
+    _currentNetworkReply(NULL),
+    _roleOfClickedButton(QDialogButtonBox::InvalidRole)
 {
-    setupUi(this);
+	_updateCheckDialogForm = new Ui::UpdateCheckDialog();
+    _updateCheckDialogForm->setupUi(this);
 
-    // Create object for networkAccessManager request and connect it with the request return handler.
-    networkAccessManager = new QNetworkAccessManager(this);
-    connect( networkAccessManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(checkResultsOfFetchedPadXMLFile(QNetworkReply*)) );
+    // Create object for _networkAccessManager request and connect it with the request return handler.
+    _networkAccessManager = new QNetworkAccessManager(this);
+    connect( _networkAccessManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(checkResultsOfFetchedPadXMLFile(QNetworkReply*)) );
 
     // Create a timer object used for the progress bar.
-    updateCheckProgressTimer = new QTimer(this);
-    updateCheckProgressTimer->setInterval(5);
-    connect( updateCheckProgressTimer, SIGNAL(timeout()), this, SLOT(updateUpdateCheckProgressBar()) );
-    updateCheckProgressCounter = 0;
+    _updateCheckProgressTimer = new QTimer(this);
+    _updateCheckProgressTimer->setInterval(5);
+    connect( _updateCheckProgressTimer, SIGNAL(timeout()), this, SLOT(updateUpdateCheckProgressBar()) );
+    _updateCheckProgressCounter = 0;
 
     // Connect the dialogs buttonbox with a button click handler.
-    connect( buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(handleUpdateCheckDialogButtonClicked(QAbstractButton*)) );
+    connect( _updateCheckDialogForm->buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(handleUpdateCheckDialogButtonClicked(QAbstractButton*)) );
 
-    this->settings = settings;
+    _settings = settings;
 
     // This dialog is always modal.
     setModal(true);
@@ -70,9 +75,9 @@ UpdateCheckDialog::UpdateCheckDialog(UiGuiSettings *settings, QWidget *parent) :
     \brief On destroy cancels any currently running network request.
  */
 UpdateCheckDialog::~UpdateCheckDialog() {
-    disconnect( networkAccessManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(checkResultsOfFetchedPadXMLFile(QNetworkReply*)) );
-    if (currentNetworkReply != NULL)
-        currentNetworkReply->abort();
+    disconnect( _networkAccessManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(checkResultsOfFetchedPadXMLFile(QNetworkReply*)) );
+    if (_currentNetworkReply != NULL)
+        _currentNetworkReply->abort();
 }
 
 
@@ -83,7 +88,7 @@ UpdateCheckDialog::~UpdateCheckDialog() {
     a modal progress indicator dialog will be shown.
  */
 void UpdateCheckDialog::checkForUpdateAndShowDialog() {
-    manualUpdateRequested = true;
+    _manualUpdateRequested = true;
     getPadXMLFile();
     showCheckingForUpdateDialog();
 }
@@ -96,7 +101,7 @@ void UpdateCheckDialog::checkForUpdateAndShowDialog() {
     gets not interrupted by a dialog box.
  */
 void UpdateCheckDialog::checkForUpdate() {
-    manualUpdateRequested = false;
+    _manualUpdateRequested = false;
     getPadXMLFile();
 }
 
@@ -105,9 +110,9 @@ void UpdateCheckDialog::checkForUpdate() {
     \brief This function tries to download the UniversalIndentGui pad file from the SourceForge server.
  */
 void UpdateCheckDialog::getPadXMLFile() {
-    //networkAccessManager->setHost("universalindent.sourceforge.net");
-    //networkAccessManager->get("/universalindentgui_pad.xml");
-    currentNetworkReply = networkAccessManager->get(QNetworkRequest(QUrl("http://universalindent.sourceforge.net/universalindentgui_pad.xml")));
+    //_networkAccessManager->setHost("universalindent.sourceforge.net");
+    //_networkAccessManager->get("/universalindentgui_pad.xml");
+    _currentNetworkReply = _networkAccessManager->get(QNetworkRequest(QUrl("http://universalindent.sourceforge.net/universalindentgui_pad.xml")));
 }
 
 
@@ -120,10 +125,10 @@ void UpdateCheckDialog::getPadXMLFile() {
     check, a message box with the error will be displayed.
  */
 void UpdateCheckDialog::checkResultsOfFetchedPadXMLFile(QNetworkReply *networkReply) {
-    Q_ASSERT(currentNetworkReply == networkReply);
+    Q_ASSERT(_currentNetworkReply == networkReply);
 
     // Stop the progress bar timer.
-    updateCheckProgressTimer->stop();
+    _updateCheckProgressTimer->stop();
 
     if ( networkReply->error() == QNetworkReply::NoError ) {
         // Try to find the version string.
@@ -146,15 +151,15 @@ void UpdateCheckDialog::checkResultsOfFetchedPadXMLFile(QNetworkReply *networkRe
                 showNewVersionAvailableDialog(returnedString);
 
                 // If yes clicked, open the download url in the default browser.
-                if ( roleOfClickedButton == QDialogButtonBox::YesRole ) {
-                    QDesktopServices::openUrl( QUrl("networkAccessManager://sourceforge.net/project/showfiles.php?group_id=167482") );
+                if ( _roleOfClickedButton == QDialogButtonBox::YesRole ) {
+                    QDesktopServices::openUrl( QUrl("_networkAccessManager://sourceforge.net/project/showfiles.php?group_id=167482") );
                 }
             }
-            else if ( manualUpdateRequested ) {
+            else if ( _manualUpdateRequested ) {
                 showNoNewVersionAvailableDialog();
             }
             // Set last update check date.
-            settings->setValueByName("LastUpdateCheck", QDate::currentDate());
+            _settings->setValueByName("LastUpdateCheck", QDate::currentDate());
         }
         // In the returned string, the version string could not be found.
         else {
@@ -162,12 +167,12 @@ void UpdateCheckDialog::checkResultsOfFetchedPadXMLFile(QNetworkReply *networkRe
         }
     }
     // If there was some error while trying to retrieve the update info from server and not cancel was pressed.
-    else if ( roleOfClickedButton != QDialogButtonBox::RejectRole ) {
+    else if ( _roleOfClickedButton != QDialogButtonBox::RejectRole ) {
         QMessageBox::warning(this, tr("Update check error"), tr("There was an error while trying to check for an update! Error was : %1").arg(networkReply->errorString()) );
     }
-    manualUpdateRequested = false;
+    _manualUpdateRequested = false;
     networkReply->deleteLater();
-    currentNetworkReply = NULL;
+    _currentNetworkReply = NULL;
 }
 
 
@@ -180,15 +185,15 @@ void UpdateCheckDialog::checkResultsOfFetchedPadXMLFile(QNetworkReply *networkRe
  */
 void UpdateCheckDialog::showCheckingForUpdateDialog() {
     // Reset the progress bar.
-    updateCheckProgressCounter = 0;
-    progressBar->setValue(updateCheckProgressCounter);
-    progressBar->setInvertedAppearance( false );
+    _updateCheckProgressCounter = 0;
+    _updateCheckDialogForm->progressBar->setValue(_updateCheckProgressCounter);
+    _updateCheckDialogForm->progressBar->setInvertedAppearance( false );
 
-    updateCheckProgressTimer->start();
-    progressBar->show();
+    _updateCheckProgressTimer->start();
+    _updateCheckDialogForm->progressBar->show();
     setWindowTitle( tr("Checking for update...") );
-    label->setText( tr("Checking whether a newer version is available") );
-    buttonBox->setStandardButtons(QDialogButtonBox::Cancel);
+    _updateCheckDialogForm->label->setText( tr("Checking whether a newer version is available") );
+    _updateCheckDialogForm->buttonBox->setStandardButtons(QDialogButtonBox::Cancel);
     show();
 }
 
@@ -197,10 +202,10 @@ void UpdateCheckDialog::showCheckingForUpdateDialog() {
     \brief Displays the dialog with info about the new available version.
  */
 void UpdateCheckDialog::showNewVersionAvailableDialog(QString newVersion) {
-    progressBar->hide();
+    _updateCheckDialogForm->progressBar->hide();
     setWindowTitle( tr("Update available") );
-    label->setText( tr("A newer version of UniversalIndentGUI is available.\nYour version is %1. New version is %2.\nDo you want to go to the download website?").arg(PROGRAM_VERSION_STRING).arg(newVersion) );
-    buttonBox->setStandardButtons(QDialogButtonBox::No|QDialogButtonBox::NoButton|QDialogButtonBox::Yes);
+    _updateCheckDialogForm->label->setText( tr("A newer version of UniversalIndentGUI is available.\nYour version is %1. New version is %2.\nDo you want to go to the download website?").arg(PROGRAM_VERSION_STRING).arg(newVersion) );
+    _updateCheckDialogForm->buttonBox->setStandardButtons(QDialogButtonBox::No|QDialogButtonBox::NoButton|QDialogButtonBox::Yes);
     exec();
 }
 
@@ -209,10 +214,10 @@ void UpdateCheckDialog::showNewVersionAvailableDialog(QString newVersion) {
     \brief Displays the dialog, that no new version is available.
  */
 void UpdateCheckDialog::showNoNewVersionAvailableDialog() {
-    progressBar->hide();
+    _updateCheckDialogForm->progressBar->hide();
     setWindowTitle( tr("No new update available") );
-    label->setText( tr("You already have the latest version of UniversalIndentGUI.") );
-    buttonBox->setStandardButtons(QDialogButtonBox::Ok);
+    _updateCheckDialogForm->label->setText( tr("You already have the latest version of UniversalIndentGUI.") );
+    _updateCheckDialogForm->buttonBox->setStandardButtons(QDialogButtonBox::Ok);
     exec();
 }
 
@@ -221,19 +226,19 @@ void UpdateCheckDialog::showNoNewVersionAvailableDialog() {
     \brief This slot is called, when a button in the dialog is clicked.
 
     If the clicked button was the cancel button, the user wants to cancel
-    the update check. So the networkAccessManager request is aborted and the timer for the
+    the update check. So the _networkAccessManager request is aborted and the timer for the
     progress bar animation is stopped.
 
     In any case if a button is clicked, the dialog box will be closed.
  */
 void UpdateCheckDialog::handleUpdateCheckDialogButtonClicked(QAbstractButton *clickedButton) {
-    roleOfClickedButton = buttonBox->buttonRole(clickedButton);
+    _roleOfClickedButton = _updateCheckDialogForm->buttonBox->buttonRole(clickedButton);
 
-    if ( roleOfClickedButton == QDialogButtonBox::RejectRole ) {
-        // Abort the networkAccessManager request.
-        currentNetworkReply->abort();
+    if ( _roleOfClickedButton == QDialogButtonBox::RejectRole ) {
+        // Abort the _networkAccessManager request.
+        _currentNetworkReply->abort();
         // Stop the progress bar timer.
-        updateCheckProgressTimer->stop();
+        _updateCheckProgressTimer->stop();
     }
 
     accept();
@@ -245,20 +250,20 @@ void UpdateCheckDialog::handleUpdateCheckDialogButtonClicked(QAbstractButton *cl
  */
 void UpdateCheckDialog::updateUpdateCheckProgressBar() {
     // Depending on the progress bar direction, decrease or increase the progressbar value.
-    if ( progressBar->invertedAppearance() ) {
-        updateCheckProgressCounter--;
+    if ( _updateCheckDialogForm->progressBar->invertedAppearance() ) {
+        _updateCheckProgressCounter--;
     }
     else {
-        updateCheckProgressCounter++;
+        _updateCheckProgressCounter++;
     }
 
     // If the progress bar reaches 0 or 100 as value, swap the animation direction.
-    if ( updateCheckProgressCounter == 0 || updateCheckProgressCounter == 100 ) {
-        progressBar->setInvertedAppearance( !progressBar->invertedAppearance() );
+    if ( _updateCheckProgressCounter == 0 || _updateCheckProgressCounter == 100 ) {
+        _updateCheckDialogForm->progressBar->setInvertedAppearance( !_updateCheckDialogForm->progressBar->invertedAppearance() );
     }
 
     // Update the progress bar value.
-    progressBar->setValue(updateCheckProgressCounter);
+    _updateCheckDialogForm->progressBar->setValue(_updateCheckProgressCounter);
 }
 
 

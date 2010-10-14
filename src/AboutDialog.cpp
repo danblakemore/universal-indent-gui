@@ -19,14 +19,15 @@
 
 #include "AboutDialog.h"
 #include "ui_AboutDialog.h"
+
 #include "UiGuiVersion.h"
 
 #include <QUrl>
 #include <QDesktopServices>
 #include <QScrollBar>
 #include <QTimer>
-
 #include <QLocale>
+
 /*!
     \class AboutDialog
     \brief Displays a dialog window with information about UniversalIndentGUI
@@ -36,19 +37,21 @@
     \brief The constructor calls the setup function for the ui created by uic and adds
     the GPL text to the text edit.
  */
-AboutDialog::AboutDialog(QWidget *parent, Qt::WindowFlags flags) : QDialog(parent, flags) {
-    this->parent = parent;
-    dialogForm = new Ui::AboutDialog();
-    dialogForm->setupUi(this);
+AboutDialog::AboutDialog(QWidget *parent, Qt::WindowFlags flags) : QDialog(parent, flags)
+	, _dialogForm(NULL)
+	, _timer(NULL)
+ {
+    _dialogForm = new Ui::AboutDialog();
+    _dialogForm->setupUi(this);
 
-    dialogForm->authorTextBrowser->setOpenExternalLinks( true );
-    dialogForm->creditsTextBrowser->setOpenExternalLinks( true );
+    _dialogForm->authorTextBrowser->setOpenExternalLinks( true );
+    _dialogForm->creditsTextBrowser->setOpenExternalLinks( true );
 
-    QString versionString = dialogForm->versionTextBrowser->toHtml();
+    QString versionString = _dialogForm->versionTextBrowser->toHtml();
     versionString = versionString.arg(PROGRAM_VERSION_STRING).arg( UiGuiVersion::getBuildRevision() ).arg( UiGuiVersion::getBuildDate() );
-    dialogForm->versionTextBrowser->setHtml(versionString);
+    _dialogForm->versionTextBrowser->setHtml(versionString);
 
-    dialogForm->creditsTextBrowser->setHtml("<html><head></head><body>"
+    _dialogForm->creditsTextBrowser->setHtml("<html><head></head><body>"
         "<pre> </br></pre>"
         "<h3 align='center'>Thanks go out to</h3>"
         "<p align='center'><a href=\"http://www.csie.nctu.edu.tw/~chtai/\"><b>Nelson Tai</b></a> for Chinese translation, good ideas and always fast answers.</p></br>"
@@ -88,11 +91,11 @@ AboutDialog::AboutDialog(QWidget *parent, Qt::WindowFlags flags) : QDialog(paren
         "<h3 align='center'>My girlfriend (meanwhile also wife) for putting my head right and not sit all the time in front of my computer ;-)</h3>"
         "</body></html>");
 
-    scrollDirection = 1;
-    scrollSpeed = 100;
-    timer = new QTimer(this);
-    connect( timer, SIGNAL(timeout()), this, SLOT(scroll()) );
-    connect( this, SIGNAL(accepted()), timer, SLOT(stop()) );
+    _scrollDirection = 1;
+    _scrollSpeed = 100;
+    _timer = new QTimer(this);
+    connect( _timer, SIGNAL(timeout()), this, SLOT(scroll()) );
+    connect( this, SIGNAL(accepted()), _timer, SLOT(stop()) );
 }
 
 
@@ -101,11 +104,11 @@ AboutDialog::AboutDialog(QWidget *parent, Qt::WindowFlags flags) : QDialog(paren
  */
 void AboutDialog::changeEvent(QEvent *event) {
     if (event->type() == QEvent::LanguageChange) {
-        dialogForm->retranslateUi(this);
+        _dialogForm->retranslateUi(this);
 
-        QString versionString = dialogForm->versionTextBrowser->toHtml();
+        QString versionString = _dialogForm->versionTextBrowser->toHtml();
         versionString = versionString.arg(PROGRAM_VERSION_STRING).arg( UiGuiVersion::getBuildRevision() ).arg( UiGuiVersion::getBuildDate() );
-        dialogForm->versionTextBrowser->setHtml(versionString);
+        _dialogForm->versionTextBrowser->setHtml(versionString);
     }
     else {
         QWidget::changeEvent(event);
@@ -118,35 +121,35 @@ void AboutDialog::changeEvent(QEvent *event) {
  */
 int AboutDialog::exec() {
     //creditsTextBrowser->verticalScrollBar()->setValue(0);
-    timer->start(scrollSpeed);
+    _timer->start(_scrollSpeed);
     return QDialog::exec();
 }
 
 
 /*!
-    \brief This slot is called each timer timeout to scroll the credits textbrowser.
+    \brief This slot is called each _timer timeout to scroll the credits textbrowser.
     Also changes the scroll direction and speed when reaching the start or end.
  */
 void AboutDialog::scroll() {
-    QScrollBar *scrollBar = dialogForm->creditsTextBrowser->verticalScrollBar();
-    scrollBar->setValue( scrollBar->value()+scrollDirection );
+    QScrollBar *scrollBar = _dialogForm->creditsTextBrowser->verticalScrollBar();
+    scrollBar->setValue( scrollBar->value()+_scrollDirection );
 
     if ( scrollBar->value() == scrollBar->maximum() ) {
         // Toggle scroll direction and change scroll speed;
-        scrollDirection = -1;
-        scrollSpeed = 5;
-        timer->stop();
-        timer->start(scrollSpeed);
+        _scrollDirection = -1;
+        _scrollSpeed = 5;
+        _timer->stop();
+        _timer->start(_scrollSpeed);
     }
     else if ( scrollBar->value() == scrollBar->minimum() ) {
         // Toggle scroll direction and change scroll speed;
-        scrollDirection = 1;
-        scrollSpeed = 100;
-        timer->stop();
-        timer->start(scrollSpeed);
+        _scrollDirection = 1;
+        _scrollSpeed = 100;
+        _timer->stop();
+        _timer->start(_scrollSpeed);
     }
 
-    dialogForm->creditsTextBrowser->update();
+    _dialogForm->creditsTextBrowser->update();
 }
 
 
@@ -154,6 +157,6 @@ void AboutDialog::scroll() {
     \brief Shows the about dialog and also starts the credits scroller.
  */
 void AboutDialog::show() {
-    timer->start(scrollSpeed);
+    _timer->start(_scrollSpeed);
     QDialog::show();
 }

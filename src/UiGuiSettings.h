@@ -20,27 +20,23 @@
 #ifndef UIGUISETTINGS_H
 #define UIGUISETTINGS_H
 
-//TODO: Move to cpp and add pre declarations.
 #include <QObject>
-#include <QString>
-#include <QSettings>
-#include <QPoint>
-#include <QSize>
-#include <QDir>
-#include <QDate>
 #include <QStringList>
-#include <QCoreApplication>
+#include <QMultiMap>
+#include <QSharedPointer>
+
+class QSettings;
+
 
 class UiGuiSettings : public QObject
 {
     Q_OBJECT
 private:
     UiGuiSettings();
-    static UiGuiSettings* instance;
+    static QWeakPointer<UiGuiSettings> _instance;
 
 public:
-    static UiGuiSettings* getInstance();
-    static void deleteInstance();
+    static QSharedPointer<UiGuiSettings> getInstance();
     ~UiGuiSettings();
 
     bool registerObjectProperty(QObject *obj, const QString &propertyName, const QString &settingName);
@@ -70,18 +66,18 @@ private:
     void readAvailableTranslations();
 
     //! Stores the mnemonics of the available translations.
-    QStringList availableTranslations;
+    QStringList _availableTranslations;
 
     //! The settings file.
-    QSettings *qsettings;
+    QSettings *_qsettings;
 
     //! Maps an QObject to a string list containing the property name and the associated setting name.
-    QMap<QObject*, QStringList> registeredObjectProperties;
+    QMap<QObject*, QStringList> _registeredObjectProperties;
 
     //! Maps QObjects to a string list containing the method name and the associated setting name.
-    QMultiMap<QObject*, QStringList> registeredObjectSlots;
+    QMultiMap<QObject*, QStringList> _registeredObjectSlots;
 
-    QString indenterDirctoryStr;
+    QString _indenterDirctoryStr;
 };
 
 #endif // UIGUISETTINGS_H

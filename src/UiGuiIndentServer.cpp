@@ -17,9 +17,12 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include <QtDebug>
-
 #include "UiGuiIndentServer.h"
+
+#include <QTcpServer>
+#include <QTcpSocket>
+#include <QMessageBox>
+#include <QtDebug>
 
 //! \defgroup grp_Server All concerning the server component.
 
@@ -41,9 +44,9 @@
 */
 
 UiGuiIndentServer::UiGuiIndentServer(void) : QObject() {
-    tcpServer = NULL;
-    currentClientConnection = NULL;
-    readyForHandleRequest = false;
+    _tcpServer = NULL;
+    _currentClientConnection = NULL;
+    _readyForHandleRequest = false;
 }
 
 
@@ -52,36 +55,36 @@ UiGuiIndentServer::~UiGuiIndentServer(void) {
 
 
 void UiGuiIndentServer::startServer() {
-    if ( tcpServer == NULL ) {
-        tcpServer = new QTcpServer(this);
+    if ( _tcpServer == NULL ) {
+        _tcpServer = new QTcpServer(this);
     }
 
-    if ( !tcpServer->isListening() ) {
-        if ( !tcpServer->listen(QHostAddress::Any, 84484) ) {
-            QMessageBox::critical( NULL, tr("UiGUI Server"), tr("Unable to start the server: %1.").arg(tcpServer->errorString()) );
+    if ( !_tcpServer->isListening() ) {
+        if ( !_tcpServer->listen(QHostAddress::Any, quint16(84484)) ) {
+            QMessageBox::critical( NULL, tr("UiGUI Server"), tr("Unable to start the server: %1.").arg(_tcpServer->errorString()) );
             return;
         }
     }
 
-    connect( tcpServer, SIGNAL(newConnection()), this, SLOT(handleNewConnection()) );
-    readyForHandleRequest = true;
-    blockSize = 0;
+    connect( _tcpServer, SIGNAL(newConnection()), this, SLOT(handleNewConnection()) );
+    _readyForHandleRequest = true;
+    _blockSize = 0;
 }
 
 
 void UiGuiIndentServer::stopServer() {
-    if ( tcpServer != NULL ) {
-        tcpServer->close();
-        delete tcpServer;
-        tcpServer = NULL;
+    if ( _tcpServer != NULL ) {
+        _tcpServer->close();
+        delete _tcpServer;
+        _tcpServer = NULL;
     }
-    currentClientConnection = NULL;
-    readyForHandleRequest = false;
+    _currentClientConnection = NULL;
+    _readyForHandleRequest = false;
 }
 
 
 void UiGuiIndentServer::handleNewConnection() {
-    QTcpSocket *clientConnection = tcpServer->nextPendingConnection();
+    QTcpSocket *clientConnection = _tcpServer->nextPendingConnection();
     connect( clientConnection, SIGNAL(disconnected()), clientConnection, SLOT(deleteLater()) );
 
     connect( clientConnection, SIGNAL(readyRead()), this, SLOT(handleReceivedData()) );
@@ -89,31 +92,31 @@ void UiGuiIndentServer::handleNewConnection() {
 
 
 void UiGuiIndentServer::handleReceivedData() {
-    if ( !readyForHandleRequest ) {
+    if ( !_readyForHandleRequest ) {
         return;
     }
 
-    currentClientConnection = qobject_cast<QTcpSocket*>( sender() );
+    _currentClientConnection = qobject_cast<QTcpSocket*>( sender() );
     QString receivedData = "";
 
-    if ( currentClientConnection != NULL ) {
-        QDataStream in(currentClientConnection);
+    if ( _currentClientConnection != NULL ) {
+        QDataStream in(_currentClientConnection);
         in.setVersion(QDataStream::Qt_4_0);
 
-        if ( blockSize == 0 ) {
-            if ( currentClientConnection->bytesAvailable() < (int)sizeof(quint32) )
+        if ( _blockSize == 0 ) {
+            if ( _currentClientConnection->bytesAvailable() < (int)sizeof(quint32) )
                 return;
 
-            in >> blockSize;
+            in >> _blockSize;
         }
 
-        if ( currentClientConnection->bytesAvailable() < blockSize )
+        if ( _currentClientConnection->bytesAvailable() < _blockSize )
             return;
 
         QString receivedMessage;
         in >> receivedMessage;
 
-        blockSize = 0;
+        _blockSize = 0;
 
         qDebug() << "receivedMessage: " << receivedMessage;
 
@@ -128,26 +131,26 @@ void UiGuiIndentServer::handleReceivedData() {
 
 
 void UiGuiIndentServer::sendMessage( const QString &message ) {
-    readyForHandleRequest = false;
+    _readyForHandleRequest = false;
 
-    dataToSend = "";
-    QDataStream out(&dataToSend, QIODevice::WriteOnly);
+    _dataToSend = "";
+    QDataStream out(&_dataToSend, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_4_0);
     out << (quint32)0;
     out << message;
     out.device()->seek(0);
-    out << (quint32)(dataToSend.size() - sizeof(quint32));
+    out << (quint32)(_dataToSend.size() - sizeof(quint32));
 
-    connect(currentClientConnection, SIGNAL(bytesWritten(qint64)), this, SLOT(checkIfReadyForHandleRequest()));
-    currentClientConnection->write(dataToSend);
+    connect(_currentClientConnection, SIGNAL(bytesWritten(qint64)), this, SLOT(checkIfReadyForHandleRequest()));
+    _currentClientConnection->write(_dataToSend);
 }
 
 
 void UiGuiIndentServer::checkIfReadyForHandleRequest() {
-    if ( currentClientConnection->bytesToWrite() == 0 ) {
-        QString dataToSendStr = dataToSend.right( dataToSend.size() - sizeof(quint32) );
-        qDebug() << "checkIfReadyForHandleRequest dataToSend was: " << dataToSendStr;
-        disconnect(currentClientConnection, SIGNAL(bytesWritten(qint64)), this, SLOT(checkIfReadyForHandleRequest()));
-        readyForHandleRequest = true;
+    if ( _currentClientConnection->bytesToWrite() == 0 ) {
+        QString dataToSendStr = _dataToSend.right( _dataToSend.size() - sizeof(quint32) );
+        qDebug() << "checkIfReadyForHandleRequest _dataToSend was: " << dataToSendStr;
+        disconnect(_currentClientConnection, SIGNAL(bytesWritten(qint64)), this, SLOT(checkIfReadyForHandleRequest()));
+        _readyForHandleRequest = true;
     }
 }

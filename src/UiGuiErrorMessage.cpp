@@ -19,6 +19,8 @@
 
 #include "UiGuiErrorMessage.h"
 
+#include <QCheckBox>
+
 /*!
     \class UiGuiErrorMessage
     \ingroup grp_Dialogs
@@ -31,13 +33,13 @@
 /*!
     \brief Initializes the dialog.
 
-    Retrieves the object pointer to the \a showAgainCheckBox check box, sets the dialogs
+    Retrieves the object pointer to the \a _showAgainCheckBox check box, sets the dialogs
     modality and for a working translation sets the check box text.
  */
 UiGuiErrorMessage::UiGuiErrorMessage(QWidget *parent) : QErrorMessage(parent) {
-    showAgainCheckBox = findChild<QCheckBox *>();
+    _showAgainCheckBox = findChild<QCheckBox *>();
     setWindowModality( Qt::ApplicationModal );
-    showAgainCheckBox->setText( tr("Show this message again") );
+    _showAgainCheckBox->setText( tr("Show this message again") );
 }
 
 
@@ -58,16 +60,16 @@ UiGuiErrorMessage::~UiGuiErrorMessage(void) {
 void UiGuiErrorMessage::showMessage( const QString &title, const QString &message ) {
     bool showAgain = true;
 
-    if ( showAgainCheckBox != 0 ) {
-        showAgain = showAgainCheckBox->isChecked();
+    if ( _showAgainCheckBox != 0 ) {
+        showAgain = _showAgainCheckBox->isChecked();
     }
 
     setWindowTitle(title);
 
-    if ( !errorMessageList.contains(message) ) {
-        errorMessageList << message;
-        if ( showAgainCheckBox != 0 ) {
-            showAgainCheckBox->setChecked(true);
+    if ( !_errorMessageList.contains(message) ) {
+        _errorMessageList << message;
+        if ( _showAgainCheckBox != 0 ) {
+            _showAgainCheckBox->setChecked(true);
         }
         QErrorMessage::showMessage( message );
     }

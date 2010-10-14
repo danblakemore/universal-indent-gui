@@ -20,9 +20,11 @@
 #ifndef UIGUIINDENTSERVER_H
 #define UIGUIINDENTSERVER_H
 
-#include <QTcpServer>
-#include <QTcpSocket>
-#include <QMessageBox>
+#include <QObject>
+
+class QTcpServer;
+class QTcpSocket;
+
 
 class UiGuiIndentServer : public QObject
 {
@@ -43,11 +45,11 @@ private slots:
     void checkIfReadyForHandleRequest();
 
 private:
-    QTcpServer *tcpServer;
-    QByteArray dataToSend;
-    bool readyForHandleRequest;
-    QTcpSocket *currentClientConnection;
-    quint32 blockSize;
+    QTcpServer *_tcpServer;
+    QByteArray _dataToSend;
+    bool _readyForHandleRequest;
+    QTcpSocket *_currentClientConnection;
+    quint32 _blockSize;
 };
 
 #endif // UIGUIINDENTSERVER_H

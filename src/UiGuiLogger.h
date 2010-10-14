@@ -24,23 +24,13 @@
 
 #include <QDialog>
 #include <QFile>
-#include <QStringList>
 
-#include "ui_UiGuiLoggerDialog.h"
+namespace Ui {
+	class UiGuiLoggerDialog;
+}
 
-/*!
-    \class UiGuiLogger
-    \brief This class handles any kind of data logging, for debugging and whatever purpose.
 
-    Beneath being able of displaying a dialog window containing all log messages of the
-    current session, a log file in the systems temporary directory is used. Its name
-    is "UiGUI_log.html".
-
-    Setting a verbose level allows to only write messages that have the selected minimum
-    priority to the log.
- */
-
-class UiGuiLogger : public QDialog, private Ui::UiGuiLoggerDialog
+class UiGuiLogger : public QDialog
 {
     Q_OBJECT
 
@@ -51,18 +41,20 @@ public:
     static void deleteInstance();
     void setVerboseLevel(int level);
 
+private slots:
+    void openLogFileFolder();
+
 private:
-    enum LogFileInitState { NOTINITIALZED, INITIALIZING, INITIALZED } logFileInitState;
+	Ui::UiGuiLoggerDialog *_uiGuiLoggerDialogForm;
+
+    enum LogFileInitState { NOTINITIALZED, INITIALIZING, INITIALZED } _logFileInitState;
     UiGuiLogger(int verboseLevel);
     void writeToLogFile(const QString &message);
 
-    static UiGuiLogger* instance;
-    QtMsgType verboseLevel;
-    QFile logFile;
-    QStringList messageQueue;
-
-private slots:
-    void openLogFileFolder();
+    static UiGuiLogger* _instance;
+    QtMsgType _verboseLevel;
+    QFile _logFile;
+    QStringList _messageQueue;
 };
 
 #endif // UIGUILOGGER_H

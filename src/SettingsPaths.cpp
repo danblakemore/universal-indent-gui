@@ -17,14 +17,16 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
+#include "SettingsPaths.h"
 
-#include <stdlib.h>
+#include <QCoreApplication>
+#include <QFile>
+#include <QDir>
 #include <QDirIterator>
 #include <QStack>
 #include <QtDebug>
 
-#include "SettingsPaths.h"
-
+#include <stdlib.h>
 
 //! \defgroup grp_Settings All concerning applications settings.
 
@@ -35,13 +37,13 @@
     paths needed for settings can be retrieved.
 */
 
-bool SettingsPaths::alreadyInitialized = false;
-QString SettingsPaths::applicationBinaryPath = "";
-QString SettingsPaths::settingsPath = "";
-QString SettingsPaths::globalFilesPath = "";
-QString SettingsPaths::indenterPath = "";
-QString SettingsPaths::tempPath = "";
-bool SettingsPaths::portableMode = false;
+bool SettingsPaths::_alreadyInitialized = false;
+QString SettingsPaths::_applicationBinaryPath = "";
+QString SettingsPaths::_settingsPath = "";
+QString SettingsPaths::_globalFilesPath = "";
+QString SettingsPaths::_indenterPath = "";
+QString SettingsPaths::_tempPath = "";
+bool SettingsPaths::_portableMode = false;
 
 
 /*!
@@ -55,108 +57,108 @@ bool SettingsPaths::portableMode = false;
     In not portable mode (multiuser mode) only users home directory is used for writing config data.
  */
 void SettingsPaths::init() {
-    alreadyInitialized = true;
+    _alreadyInitialized = true;
 
     qDebug() << __LINE__ << " " << __FUNCTION__ << ": Initializing application paths.";
 
     // Get the applications binary path, with respect to MacOSXs use of the .app folder.
-    applicationBinaryPath = QCoreApplication::applicationDirPath();
+    _applicationBinaryPath = QCoreApplication::applicationDirPath();
     // Remove any trailing slashes
-    while ( applicationBinaryPath.right(1) == "/" ) {
-        applicationBinaryPath.chop(1);
+    while ( _applicationBinaryPath.right(1) == "/" ) {
+        _applicationBinaryPath.chop(1);
     }
 
 #ifdef UNIVERSALINDENTGUI_NPP_EXPORTS
-    applicationBinaryPath += "/plugins/uigui";
+    _applicationBinaryPath += "/plugins/uigui";
 #endif
 
 #ifdef Q_OS_MAC
     // Because on Mac universal binaries are used, the binary path is not equal
     // to the applications (.app) path. So get the .apps path here.
-    int indexOfDotApp = applicationBinaryPath.indexOf(".app");
+    int indexOfDotApp = _applicationBinaryPath.indexOf(".app");
     if ( indexOfDotApp != -1 ) {
         // Cut off after the dot of ".app".
-        applicationBinaryPath = applicationBinaryPath.left( indexOfDotApp-1 );
+        _applicationBinaryPath = _applicationBinaryPath.left( indexOfDotApp-1 );
         // Cut off after the first slash that was in front of ".app" (normally this is the word "UniversalIndentGUI")
-        applicationBinaryPath = applicationBinaryPath.left( applicationBinaryPath.lastIndexOf("/") );
+        _applicationBinaryPath = _applicationBinaryPath.left( _applicationBinaryPath.lastIndexOf("/") );
     }
 #endif
 
     // If the "config" directory is a subdir of the applications binary path, use this one (portable mode)
-    settingsPath = applicationBinaryPath + "/config";
-    if ( QFile::exists( settingsPath ) ) {
-        portableMode = true;
+    _settingsPath = _applicationBinaryPath + "/config";
+    if ( QFile::exists( _settingsPath ) ) {
+        _portableMode = true;
         QDir dirCreator;
-        globalFilesPath = applicationBinaryPath;
-        indenterPath = applicationBinaryPath + "/indenters";
-        dirCreator.mkpath( settingsPath );
-        tempPath = applicationBinaryPath + "/temp";
+        _globalFilesPath = _applicationBinaryPath;
+        _indenterPath = _applicationBinaryPath + "/indenters";
+        dirCreator.mkpath( _settingsPath );
+        _tempPath = _applicationBinaryPath + "/temp";
         //TODO: If the portable drive has write protection, use local temp path and clean it up on exit.
-        dirCreator.mkpath( tempPath );
+        dirCreator.mkpath( _tempPath );
     }
     // ... otherwise use the system specific global application data path.
     else {
-        portableMode = false;
+        _portableMode = false;
         QDir dirCreator;
 #ifdef Q_OS_WIN
         // Get the local users application settings directory.
         // Remove any trailing slashes.
-        settingsPath = QDir::fromNativeSeparators( qgetenv("APPDATA") );
-        while ( settingsPath.right(1) == "/" ) {
-            settingsPath.chop(1);
+        _settingsPath = QDir::fromNativeSeparators( qgetenv("APPDATA") );
+        while ( _settingsPath.right(1) == "/" ) {
+            _settingsPath.chop(1);
         }
-        settingsPath = settingsPath + "/UniversalIndentGUI";
+        _settingsPath = _settingsPath + "/UniversalIndentGUI";
 
-        // On windows systems the directories "indenters", "translations" are subdirs of the applicationBinaryPath.
-        globalFilesPath = applicationBinaryPath;
+        // On windows systems the directories "indenters", "translations" are subdirs of the _applicationBinaryPath.
+        _globalFilesPath = _applicationBinaryPath;
 #else
         // Remove any trailing slashes.
-        settingsPath = QDir::homePath();
-        while ( settingsPath.right(1) == "/" ) {
-            settingsPath.chop(1);
+        _settingsPath = QDir::homePath();
+        while ( _settingsPath.right(1) == "/" ) {
+            _settingsPath.chop(1);
         }
-        settingsPath = settingsPath + "/.universalindentgui";
-        globalFilesPath = "/usr/share/universalindentgui";
+        _settingsPath = _settingsPath + "/.universalindentgui";
+        _globalFilesPath = "/usr/share/universalindentgui";
 #endif
-        dirCreator.mkpath( settingsPath );
+        dirCreator.mkpath( _settingsPath );
         // If a highlighter config file does not exist in the users home config dir
         // copy the default config file over there.
-        if ( !QFile::exists(settingsPath+"/UiGuiSyntaxHighlightConfig.ini") ) {
-            QFile::copy( globalFilesPath+"/config/UiGuiSyntaxHighlightConfig.ini", settingsPath+"/UiGuiSyntaxHighlightConfig.ini" );
+        if ( !QFile::exists(_settingsPath+"/UiGuiSyntaxHighlightConfig.ini") ) {
+            QFile::copy( _globalFilesPath+"/config/UiGuiSyntaxHighlightConfig.ini", _settingsPath+"/UiGuiSyntaxHighlightConfig.ini" );
         }
-        indenterPath = globalFilesPath + "/indenters";
+        _indenterPath = _globalFilesPath + "/indenters";
 
         // On different systems it may be that "QDir::tempPath()" ends with a "/" or not. So check this.
         // Remove any trailing slashes.
-        tempPath = QDir::tempPath();
-        while ( tempPath.right(1) == "/" ) {
-            tempPath.chop(1);
+        _tempPath = QDir::tempPath();
+        while ( _tempPath.right(1) == "/" ) {
+            _tempPath.chop(1);
         }
-        tempPath = tempPath + "/UniversalIndentGUI";
+        _tempPath = _tempPath + "/UniversalIndentGUI";
 
 #if defined(Q_OS_WIN32)
-        dirCreator.mkpath( tempPath );
+        dirCreator.mkpath( _tempPath );
 #else
         // On Unix based systems create a random temporary directory for security
         // reasons. Otherwise an evil human being could create a symbolic link
         // to an important existing file which gets overwritten when UiGUI writes
         // into this normally temporary but linked file.
-        char *pathTemplate = new char[tempPath.length()+8];
-        QByteArray pathTemplateQBA = QString(tempPath + "-XXXXXX").toAscii();
+        char *pathTemplate = new char[_tempPath.length()+8];
+        QByteArray pathTemplateQBA = QString(_tempPath + "-XXXXXX").toAscii();
         delete [] pathTemplate;
         pathTemplate = pathTemplateQBA.data();
         pathTemplate = mkdtemp( pathTemplate );
-        tempPath = pathTemplate;
+        _tempPath = pathTemplate;
 #endif
     }
 
     qDebug() << __LINE__ << " " << __FUNCTION__ << ": Paths are:" \
-        "<ul><li>applicationBinaryPath=" << applicationBinaryPath \
-        << "</li><li>settingsPath=" << settingsPath \
-        << "</li><li>globalFilesPath=" << globalFilesPath \
-        << "</li><li>indenterPath=" << indenterPath \
-        << "</li><li>tempPath=" << tempPath \
-        << "</li><li>Running in portable mode=" << portableMode << "</li></ul>";
+        "<ul><li>_applicationBinaryPath=" << _applicationBinaryPath \
+        << "</li><li>_settingsPath=" << _settingsPath \
+        << "</li><li>_globalFilesPath=" << _globalFilesPath \
+        << "</li><li>_indenterPath=" << _indenterPath \
+        << "</li><li>_tempPath=" << _tempPath \
+        << "</li><li>Running in portable mode=" << _portableMode << "</li></ul>";
 }
 
 
@@ -164,10 +166,10 @@ void SettingsPaths::init() {
     \brief Returns the path of the applications executable.
  */
 const QString SettingsPaths::getApplicationBinaryPath() {
-    if ( !alreadyInitialized ) {
+    if ( !_alreadyInitialized ) {
         SettingsPaths::init();
     }
-    return applicationBinaryPath;
+    return _applicationBinaryPath;
 }
 
 
@@ -175,10 +177,10 @@ const QString SettingsPaths::getApplicationBinaryPath() {
     \brief Returns the path where all settings are being/should be written to.
  */
 const QString SettingsPaths::getSettingsPath() {
-    if ( !alreadyInitialized ) {
+    if ( !_alreadyInitialized ) {
         SettingsPaths::init();
     }
-    return settingsPath;
+    return _settingsPath;
 }
 
 
@@ -186,10 +188,10 @@ const QString SettingsPaths::getSettingsPath() {
     \brief Returns the path where the files concerning all users reside. For example translations.
  */
 const QString SettingsPaths::getGlobalFilesPath() {
-    if ( !alreadyInitialized ) {
+    if ( !_alreadyInitialized ) {
         SettingsPaths::init();
     }
-    return globalFilesPath;
+    return _globalFilesPath;
 }
 
 
@@ -197,10 +199,10 @@ const QString SettingsPaths::getGlobalFilesPath() {
     \brief Returns the path where the indenter executables reside.
  */
 const QString SettingsPaths::getIndenterPath() {
-    if ( !alreadyInitialized ) {
+    if ( !_alreadyInitialized ) {
         SettingsPaths::init();
     }
-    return indenterPath;
+    return _indenterPath;
 }
 
 
@@ -208,10 +210,10 @@ const QString SettingsPaths::getIndenterPath() {
     \brief Returns the path where the where all temporary data should be written to.
  */
 const QString SettingsPaths::getTempPath() {
-    if ( !alreadyInitialized ) {
+    if ( !_alreadyInitialized ) {
         SettingsPaths::init();
     }
-    return tempPath;
+    return _tempPath;
 }
 
 
@@ -219,10 +221,10 @@ const QString SettingsPaths::getTempPath() {
     \brief Returns true if portable mode shall be used.
  */
 bool SettingsPaths::getPortableMode() {
-    if ( !alreadyInitialized ) {
+    if ( !_alreadyInitialized ) {
         SettingsPaths::init();
     }
-    return portableMode;
+    return _portableMode;
 }
 
 
@@ -230,7 +232,7 @@ bool SettingsPaths::getPortableMode() {
     \brief Completely deletes the created temporary directory with all of its content.
  */
 void SettingsPaths::cleanAndRemoveTempDir() {
-    QDirIterator dirIterator(tempPath, QDirIterator::Subdirectories);
+    QDirIterator dirIterator(_tempPath, QDirIterator::Subdirectories);
     QStack<QString> directoryStack;
     bool noErrorsOccurred = true;
 
@@ -267,7 +269,7 @@ void SettingsPaths::cleanAndRemoveTempDir() {
             }
         }
     }
-    noErrorsOccurred &= QDir(tempPath).rmdir(tempPath);
+    noErrorsOccurred &= QDir(_tempPath).rmdir(_tempPath);
     if ( noErrorsOccurred == false )
         qWarning() << __LINE__ << " " << __FUNCTION__ << "While cleaning up the temp dir an error occurred.";
 }

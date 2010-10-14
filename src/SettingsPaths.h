@@ -20,10 +20,8 @@
 #ifndef SETTINGSPATHS_H
 #define SETTINGSPATHS_H
 
-#include <QString>
-#include <QCoreApplication>
-#include <QFile>
-#include <QDir>
+class QString;
+
 
 class SettingsPaths
 {
@@ -40,13 +38,13 @@ public:
 private:
     SettingsPaths();
 
-    static bool alreadyInitialized;
-    static QString applicationBinaryPath;
-    static QString settingsPath;
-    static QString globalFilesPath;
-    static QString indenterPath;
-    static QString tempPath;
-    static bool portableMode;
+    static bool _alreadyInitialized;
+    static QString _applicationBinaryPath;
+    static QString _settingsPath;
+    static QString _globalFilesPath;
+    static QString _indenterPath;
+    static QString _tempPath;
+    static bool _portableMode;
 };
 
 #endif // SETTINGSPATHS_H

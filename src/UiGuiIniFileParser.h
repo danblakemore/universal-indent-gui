@@ -20,17 +20,14 @@
 #ifndef UIGUIINIFILEPARSER_H
 #define UIGUIINIFILEPARSER_H
 
-#include <QFile>
-#include <QString>
 #include <QMap>
-#include <QVariant>
-#include <QStringList>
+#include <QString>
+
 #include <vector>
 
-/*!
-    \class UiGuiIniFileParser
-    \brief This class can be used to parse and access the contents of well formed ini files, but only readable.
- */
+class QStringList;
+class QVariant;
+
 
 class UiGuiIniFileParser
 {
@@ -38,15 +35,15 @@ public:
     UiGuiIniFileParser(void);
     UiGuiIniFileParser(const QString &iniFileName);
     ~UiGuiIniFileParser(void);
-    QVariant value(const QString &keyName, const QString &defaultValue="");
+    QVariant value(const QString &keyName, const QString &defaultValue = "");
     QStringList childGroups();
 
 private:
     void parseIniFile();
 
-    QString iniFileName;
-    std::vector<QString> sections;
-    QMap<QString, QVariant> keyValueMap;
+    QString _iniFileName;
+    std::vector<QString> _sections;
+    QMap<QString, QVariant> _keyValueMap;
 };
 
 #endif // UIGUIINIFILEPARSER_H

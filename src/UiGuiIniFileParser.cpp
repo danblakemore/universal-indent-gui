@@ -19,6 +19,9 @@
 
 #include "UiGuiIniFileParser.h"
 
+#include <QFile>
+#include <QStringList>
+#include <QVariant>
 #include <QTextStream>
 
 //! \defgroup grp_Settings All concerning applications settings.
@@ -41,9 +44,9 @@
     \brief Init and empty all needed lists and strings.
  */
 UiGuiIniFileParser::UiGuiIniFileParser(void) {
-    sections.clear();
-    keyValueMap.clear();
-    iniFileName = "";
+    _sections.clear();
+    _keyValueMap.clear();
+    _iniFileName = "";
 }
 
 
@@ -52,7 +55,7 @@ UiGuiIniFileParser::UiGuiIniFileParser(void) {
  */
 UiGuiIniFileParser::UiGuiIniFileParser(const QString &iniFileName) {
     UiGuiIniFileParser();
-    this->iniFileName = iniFileName;
+    _iniFileName = iniFileName;
     parseIniFile();
 }
 
@@ -67,8 +70,8 @@ UiGuiIniFileParser::~UiGuiIniFileParser(void) {
 QStringList UiGuiIniFileParser::childGroups() {
     QStringList sectionsStringList;
 
-    for( unsigned int i = 0; i < sections.size(); i++ ) {
-        sectionsStringList << sections[i];
+    for( unsigned int i = 0; i < _sections.size(); i++ ) {
+        sectionsStringList << _sections[i];
     }
 
     return sectionsStringList;
@@ -84,7 +87,7 @@ QStringList UiGuiIniFileParser::childGroups() {
     value("NiceSection/niceKeyName").
  */
 QVariant UiGuiIniFileParser::value(const QString &keyName, const QString &defaultValue) {
-    return keyValueMap.value( keyName, defaultValue );
+    return _keyValueMap.value( keyName, defaultValue );
 }
 
 
@@ -92,12 +95,12 @@ QVariant UiGuiIniFileParser::value(const QString &keyName, const QString &defaul
     \brief Parses the ini file and stores the key value pairs in the internal vectors \a keys and \a values.
  */
 void UiGuiIniFileParser::parseIniFile() {
-    QFile iniFile(iniFileName);
+    QFile iniFile(_iniFileName);
 
     if ( iniFile.open(QFile::ReadOnly) ) {
         // Clear the vectors holding the keys and values.
-        sections.clear();
-        keyValueMap.clear();
+        _sections.clear();
+        _keyValueMap.clear();
 
         QTextStream iniFileStream( &iniFile );
         QString line;
@@ -114,7 +117,7 @@ void UiGuiIniFileParser::parseIniFile() {
                 currentSectionName.chop(1);
 
                 // Store the section name.
-                sections.push_back( currentSectionName );
+                _sections.push_back( currentSectionName );
             }
             // Otherwise test whether the line has a assign char
             else if ( line.contains("=") ) {
@@ -135,7 +138,7 @@ void UiGuiIniFileParser::parseIniFile() {
                     }
 
                     // Store the key and value in the map.
-                    keyValueMap.insert(keyName, valueAsString );
+                    _keyValueMap.insert(keyName, valueAsString );
                 }
             }
         }

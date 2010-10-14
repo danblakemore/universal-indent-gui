@@ -16,8 +16,16 @@
 *   Free Software Foundation, Inc.,                                       *
 *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
 ***************************************************************************/
-#include <QtGui>
+
 #include "AboutDialogGraphicsView.h"
+
+#include "AboutDialog.h"
+
+#include <QtGui>
+#include <QDesktopWidget>
+#include <QDate>
+#include <QTimeLine>
+#include <QSplashScreen>
 
 /*!
     \class AboutDialogGraphicsView
@@ -31,8 +39,14 @@
 /*!
     \brief The constructor initializes everything needed for the 3D animation.
  */
-AboutDialogGraphicsView::AboutDialogGraphicsView(AboutDialog *aboutDialog, QWidget *parent) : QGraphicsView(parent) {
-    this->parent = parent;
+AboutDialogGraphicsView::AboutDialogGraphicsView(AboutDialog *aboutDialog, QWidget *parentWindow) : QGraphicsView(parentWindow)
+	, _aboutDialog(NULL)
+	, _graphicsProxyWidget(NULL)
+	, _parentWindow(NULL)
+	, _timeLine(NULL)
+	, _aboutDialogAsSplashScreen(NULL)
+{
+    _parentWindow = parentWindow;
     setWindowFlags(Qt::SplashScreen);
 
 #ifdef Q_OS_LINUX
@@ -43,17 +57,16 @@ AboutDialogGraphicsView::AboutDialogGraphicsView(AboutDialog *aboutDialog, QWidg
 #endif
     setGeometry( newGeometry );
 
-    this->aboutDialog = aboutDialog;
+    _aboutDialog = aboutDialog;
 
-    windowTitleBarWidth = 0;
-    windowPosOffset = 0;
+    _windowTitleBarWidth = 0;
+    _windowPosOffset = 0;
 
-    scene = new QGraphicsScene(this);
+    QGraphicsScene *scene = new QGraphicsScene(this);
     setSceneRect( newGeometry );
-    aboutDialogAsSplashScreen = new QSplashScreen(this);
-    //aboutDialogAsSplashScreen->setPixmap( QPixmap::grabWidget(aboutDialog) );
-    graphicsProxyWidget = scene->addWidget(aboutDialogAsSplashScreen);
-    graphicsProxyWidget->setWindowFlags( Qt::ToolTip );
+    _aboutDialogAsSplashScreen = new QSplashScreen(this);
+    _graphicsProxyWidget = scene->addWidget(_aboutDialogAsSplashScreen);
+    _graphicsProxyWidget->setWindowFlags( Qt::ToolTip );
 
     setScene( scene );
     setRenderHint(QPainter::Antialiasing);
@@ -61,7 +74,7 @@ AboutDialogGraphicsView::AboutDialogGraphicsView(AboutDialog *aboutDialog, QWidg
     setCacheMode(QGraphicsView::CacheBackground);
     setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);
 
-    connect(aboutDialog, SIGNAL(finished(int)), this, SLOT(hide()));
+    connect(_aboutDialog, SIGNAL(finished(int)), this, SLOT(hide()));
 
     //setWindowOpacity(0.9);
 
@@ -69,11 +82,11 @@ AboutDialogGraphicsView::AboutDialogGraphicsView(AboutDialog *aboutDialog, QWidg
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setStyleSheet("AboutDialogGraphicsView { border: 0px; }");
 
-    timeLine = new QTimeLine(1000, this);
-    timeLine->setFrameRange(270, 0);
-    //timeLine->setUpdateInterval(10);
-    //timeLine->setCurveShape(QTimeLine::EaseInCurve);
-    connect(timeLine, SIGNAL(frameChanged(int)), this, SLOT(updateStep(int)));
+    _timeLine = new QTimeLine(1000, this);
+    _timeLine->setFrameRange(270, 0);
+    //_timeLine->setUpdateInterval(10);
+    //_timeLine->setCurveShape(QTimeLine::EaseInCurve);
+    connect(_timeLine, SIGNAL(frameChanged(int)), this, SLOT(updateStep(int)));
 }
 
 
@@ -87,16 +100,16 @@ AboutDialogGraphicsView::~AboutDialogGraphicsView(void) {
  */
 void AboutDialogGraphicsView::show() {
     // Because on X11 system the window decoration is only available after a widget has been shown once,
-    // we can detect windowTitleBarWidth here for the first time.
-    windowTitleBarWidth = parent->geometry().y() - parent->y();
-    // If the windowTitleBarWidth could not be determined, try it a second way. Even the chances are low to get good results.
-    if ( windowTitleBarWidth == 0 )
-        windowTitleBarWidth = parent->frameGeometry().height() - parent->geometry().height();
+    // we can detect _windowTitleBarWidth here for the first time.
+    _windowTitleBarWidth = _parentWindow->geometry().y() - _parentWindow->y();
+    // If the _windowTitleBarWidth could not be determined, try it a second way. Even the chances are low to get good results.
+    if ( _windowTitleBarWidth == 0 )
+        _windowTitleBarWidth = _parentWindow->frameGeometry().height() - _parentWindow->geometry().height();
 #ifdef Q_OS_LINUX
-    if ( windowTitleBarWidth == 0 ) {
+    if ( _windowTitleBarWidth == 0 ) {
         //TODO: 27 pixel is a fix value for the Ubuntu 10.4 default window theme and so just a workaround for that specific case.
-        windowPosOffset = 27;
-        windowTitleBarWidth = 27;
+        _windowPosOffset = 27;
+        _windowTitleBarWidth = 27;
     }
 #endif
     QPixmap originalPixmap = QPixmap::grabWindow(QApplication::desktop()->winId(), QApplication::desktop()->availableGeometry().x(), QApplication::desktop()->availableGeometry().y(), geometry().width(), geometry().height() );
@@ -107,27 +120,27 @@ void AboutDialogGraphicsView::show() {
 
     setBackgroundBrush(brush);
 
-    aboutDialogAsSplashScreen->setPixmap( QPixmap::grabWidget(aboutDialog) );
-    graphicsProxyWidget->setGeometry( aboutDialog->geometry() );
-    aboutDialog->hide();
-    graphicsProxyWidget->setPos( parent->geometry().x()+(parent->geometry().width()-graphicsProxyWidget->geometry().width()) / 2, parent->y()+windowTitleBarWidth-windowPosOffset);
+    _aboutDialogAsSplashScreen->setPixmap( QPixmap::grabWidget(_aboutDialog) );
+    _graphicsProxyWidget->setGeometry( _aboutDialog->geometry() );
+    _aboutDialog->hide();
+    _graphicsProxyWidget->setPos( _parentWindow->geometry().x()+(_parentWindow->geometry().width()-_graphicsProxyWidget->geometry().width()) / 2, _parentWindow->y()+_windowTitleBarWidth-_windowPosOffset);
 
-    QRectF r = graphicsProxyWidget->boundingRect();
-    graphicsProxyWidget->setTransform(QTransform()
-        .translate(r.width() / 2, -windowTitleBarWidth)
+    QRectF r = _graphicsProxyWidget->boundingRect();
+    _graphicsProxyWidget->setTransform(QTransform()
+        .translate(r.width() / 2, -_windowTitleBarWidth)
         .rotate(270, Qt::XAxis)
         //.rotate(90, Qt::YAxis)
         //.rotate(5, Qt::ZAxis)
         //.scale(1 + 1.5 * step, 1 + 1.5 * step)
-        .translate(-r.width() / 2, windowTitleBarWidth));
+        .translate(-r.width() / 2, _windowTitleBarWidth));
 
-    graphicsProxyWidget->show();
-    //aboutDialogAsSplashScreen->show();
+    _graphicsProxyWidget->show();
+    //_aboutDialogAsSplashScreen->show();
     QGraphicsView::show();
 
-    connect(timeLine, SIGNAL(finished()), this, SLOT(showAboutDialog()));
-    timeLine->setDirection(QTimeLine::Forward);
-    timeLine->start();
+    connect(_timeLine, SIGNAL(finished()), this, SLOT(showAboutDialog()));
+    _timeLine->setDirection(QTimeLine::Forward);
+    _timeLine->start();
 }
 
 
@@ -135,14 +148,14 @@ void AboutDialogGraphicsView::show() {
     \brief Does the next calculation/transformation step.
  */
 void AboutDialogGraphicsView::updateStep(int step) {
-    QRectF r = graphicsProxyWidget->boundingRect();
-    graphicsProxyWidget->setTransform(QTransform()
-        .translate(r.width() / 2, -windowTitleBarWidth)
+    QRectF r = _graphicsProxyWidget->boundingRect();
+    _graphicsProxyWidget->setTransform(QTransform()
+        .translate(r.width() / 2, -_windowTitleBarWidth)
         .rotate(step, Qt::XAxis)
         //.rotate(step, Qt::YAxis)
         //.rotate(step * 5, Qt::ZAxis)
         //.scale(1 + 1.5 * step, 1 + 1.5 * step)
-        .translate(-r.width() / 2, windowTitleBarWidth));
+        .translate(-r.width() / 2, _windowTitleBarWidth));
     //update();
 }
 
@@ -152,9 +165,9 @@ void AboutDialogGraphicsView::updateStep(int step) {
  */
 void AboutDialogGraphicsView::showAboutDialog() {
     //hide();
-    disconnect(timeLine, SIGNAL(finished()), this, SLOT(showAboutDialog()));
-    aboutDialog->move( int(parent->geometry().x()+(parent->geometry().width()-graphicsProxyWidget->geometry().width()) / 2), parent->y()+windowTitleBarWidth-windowPosOffset );
-    aboutDialog->exec();
+    disconnect(_timeLine, SIGNAL(finished()), this, SLOT(showAboutDialog()));
+    _aboutDialog->move( int(_parentWindow->geometry().x()+(_parentWindow->geometry().width()-_graphicsProxyWidget->geometry().width()) / 2), _parentWindow->y()+_windowTitleBarWidth-_windowPosOffset );
+    _aboutDialog->exec();
 }
 
 
@@ -162,26 +175,24 @@ void AboutDialogGraphicsView::showAboutDialog() {
     \brief Does not directly hide the AboutDialog but instead starts the "fade out" 3D animation.
  */
 void AboutDialogGraphicsView::hide() {
-    //aboutDialogAsSplashScreen->setPixmap( QPixmap::grabWidget(aboutDialog) );
-    //graphicsProxyWidget->setGeometry( aboutDialog->geometry() );
-    graphicsProxyWidget->setPos( parent->geometry().x()+(parent->geometry().width()-graphicsProxyWidget->geometry().width()) / 2, parent->y()+windowTitleBarWidth-windowPosOffset);
+    _graphicsProxyWidget->setPos( _parentWindow->geometry().x()+(_parentWindow->geometry().width()-_graphicsProxyWidget->geometry().width()) / 2, _parentWindow->y()+_windowTitleBarWidth-_windowPosOffset);
 
-    QRectF r = graphicsProxyWidget->boundingRect();
-    graphicsProxyWidget->setTransform(QTransform()
-        .translate(r.width() / 2, -windowTitleBarWidth)
+    QRectF r = _graphicsProxyWidget->boundingRect();
+    _graphicsProxyWidget->setTransform(QTransform()
+        .translate(r.width() / 2, -_windowTitleBarWidth)
         .rotate(0, Qt::XAxis)
         //.rotate(90, Qt::YAxis)
         //.rotate(5, Qt::ZAxis)
         //.scale(1 + 1.5 * step, 1 + 1.5 * step)
-        .translate(-r.width() / 2, windowTitleBarWidth));
+        .translate(-r.width() / 2, _windowTitleBarWidth));
 
-    graphicsProxyWidget->show();
-    //aboutDialogAsSplashScreen->show();
+    _graphicsProxyWidget->show();
+    //_aboutDialogAsSplashScreen->show();
     QGraphicsView::show();
 
-    connect(timeLine, SIGNAL(finished()), this, SLOT(hideReally()));
-    timeLine->setDirection(QTimeLine::Backward);
-    timeLine->start();
+    connect(_timeLine, SIGNAL(finished()), this, SLOT(hideReally()));
+    _timeLine->setDirection(QTimeLine::Backward);
+    _timeLine->start();
 }
 
 
@@ -189,16 +200,7 @@ void AboutDialogGraphicsView::hide() {
     \brief This slot really hides this AboutDialog container.
  */
 void AboutDialogGraphicsView::hideReally() {
-    disconnect(timeLine, SIGNAL(finished()), this, SLOT(hideReally()));
+    disconnect(_timeLine, SIGNAL(finished()), this, SLOT(hideReally()));
     QGraphicsView::hide();
-    parent->activateWindow();
-}
-
-
-/*!
-    \brief Makes it possible to set the screen shot used for the animation.
- */
-//TODO: Test whether this function is really still needed. Not only for debug.
-void AboutDialogGraphicsView::setScreenshotPixmap(const QPixmap &screenShot) {
-    originalPixmap = screenShot;
+    _parentWindow->activateWindow();
 }

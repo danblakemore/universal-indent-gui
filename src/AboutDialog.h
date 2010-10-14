@@ -26,12 +26,13 @@ namespace Ui {
 	class AboutDialog;
 }
 
+
 class AboutDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    AboutDialog(QWidget *parent = 0, Qt::WindowFlags flags = 0);
+    AboutDialog(QWidget *parent = NULL, Qt::WindowFlags flags = 0);
 
 public slots:
     int exec();
@@ -43,14 +44,10 @@ private slots:
 private:
     void changeEvent(QEvent *event);
 
-	Ui::AboutDialog* dialogForm;
-
-    QString gplText;
-    QString textBrowserSavedContent;
-    int scrollDirection;
-    int scrollSpeed;
-    QTimer *timer;
-    QWidget *parent;
+	Ui::AboutDialog* _dialogForm;
+    int _scrollDirection;
+    int _scrollSpeed;
+    QTimer *_timer;
 };
 
 #endif // ABOUTDIALOG_H

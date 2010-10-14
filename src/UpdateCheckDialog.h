@@ -20,46 +20,53 @@
 #ifndef UPDATECHECKDIALOG_H
 #define UPDATECHECKDIALOG_H
 
-#include <QMessageBox>
+#include <QDialog>
+#include <QDialogButtonBox>
+
+class UiGuiSettings;
+namespace Ui {
+	class UpdateCheckDialog;
+}
+
 class QTimer;
 class QDesktopServices;
 class QNetworkAccessManager;
 class QNetworkReply;
 
-#include "ui_UpdateCheckDialog.h"
-#include "UiGuiSettings.h"
 
-class UpdateCheckDialog : public QDialog, public Ui::UpdateCheckDialog
+class UpdateCheckDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    UpdateCheckDialog(UiGuiSettings *settings, QWidget *parent=0);
+    UpdateCheckDialog(QSharedPointer<UiGuiSettings> settings, QWidget *parent = NULL);
     ~UpdateCheckDialog();
 
 public slots:
     void checkForUpdateAndShowDialog();
     void checkForUpdate();
 
-private:
-    void getPadXMLFile();
-    void showCheckingForUpdateDialog();
-    void showNewVersionAvailableDialog(QString newVersion);
-    void showNoNewVersionAvailableDialog();
-
-    UiGuiSettings *settings;
-    bool manualUpdateRequested;
-    QNetworkAccessManager *networkAccessManager;
-    QNetworkReply *currentNetworkReply;
-    QDialogButtonBox::ButtonRole roleOfClickedButton;
-    QTimer *updateCheckProgressTimer;
-    int updateCheckProgressCounter;
-    int convertVersionStringToNumber(QString versionString);
-
 private slots:
     void checkResultsOfFetchedPadXMLFile(QNetworkReply *networkReply);
     void handleUpdateCheckDialogButtonClicked(QAbstractButton *clickedButton);
     void updateUpdateCheckProgressBar();
+
+private:
+	Ui::UpdateCheckDialog *_updateCheckDialogForm;
+
+    void getPadXMLFile();
+    void showCheckingForUpdateDialog();
+    void showNewVersionAvailableDialog(QString newVersion);
+    void showNoNewVersionAvailableDialog();
+    int convertVersionStringToNumber(QString versionString);
+
+    QSharedPointer<UiGuiSettings> _settings;
+    bool _manualUpdateRequested;
+    QNetworkAccessManager *_networkAccessManager;
+    QNetworkReply *_currentNetworkReply;
+    QDialogButtonBox::ButtonRole _roleOfClickedButton;
+    QTimer *_updateCheckProgressTimer;
+    int _updateCheckProgressCounter;
 };
 
 #endif // UPDATECHECKDIALOG_H

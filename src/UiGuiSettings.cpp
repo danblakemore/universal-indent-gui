@@ -21,6 +21,13 @@
 
 #include "SettingsPaths.h"
 
+#include <QSettings>
+#include <QPoint>
+#include <QSize>
+#include <QDir>
+#include <QDate>
+#include <QStringList>
+#include <QCoreApplication>
 #include <QMetaMethod>
 #include <QMetaProperty>
 #include <QWidget>
@@ -35,16 +42,17 @@
 */
 
 // Inits the single class instance pointer.
-UiGuiSettings* UiGuiSettings::instance = NULL;
+QWeakPointer<UiGuiSettings> UiGuiSettings::_instance;
+
 
 /*!
     \brief The constructor for the settings.
 */
 UiGuiSettings::UiGuiSettings() : QObject() {
     // Create the main application settings object from the UniversalIndentGUI.ini file.
-    qsettings = new QSettings(SettingsPaths::getSettingsPath() + "/UniversalIndentGUI.ini", QSettings::IniFormat, this);
+    _qsettings = new QSettings(SettingsPaths::getSettingsPath() + "/UniversalIndentGUI.ini", QSettings::IniFormat, this);
 
-    indenterDirctoryStr = SettingsPaths::getGlobalFilesPath() + "/indenters";
+    _indenterDirctoryStr = SettingsPaths::getGlobalFilesPath() + "/indenters";
     readAvailableTranslations();
     initSettings();
 }
@@ -53,24 +61,15 @@ UiGuiSettings::UiGuiSettings() : QObject() {
 /*!
     \brief Returns the instance of the settings class. If no instance exists, ONE will be created.
  */
-UiGuiSettings* UiGuiSettings::getInstance() {
-    if ( instance == NULL ) {
+QSharedPointer<UiGuiSettings> UiGuiSettings::getInstance() {
+	QSharedPointer<UiGuiSettings> sharedInstance = _instance.toStrongRef();
+    if ( sharedInstance.isNull() ) {
         // Create the settings object, which loads all UiGui settings from a file.
-        instance = new UiGuiSettings();
+        sharedInstance = QSharedPointer<UiGuiSettings>(new UiGuiSettings());
+        _instance = sharedInstance.toWeakRef();
     }
 
-    return instance;
-}
-
-/*!
-    \brief Deletes the existing instance of UiGuiSettings and removes the created temp dir.
- */
-void UiGuiSettings::deleteInstance() {
-    SettingsPaths::cleanAndRemoveTempDir();
-    if ( instance != NULL ) {
-        delete instance;
-        instance = NULL;
-    }
+    return sharedInstance;
 }
 
 
@@ -79,17 +78,17 @@ void UiGuiSettings::deleteInstance() {
  */
 UiGuiSettings::~UiGuiSettings() {
     // Convert the language setting from an integer index to a string.
-    int index = qsettings->value("UniversalIndentGUI/language", 0).toInt();
-    if ( index < 0 || index >= availableTranslations.size() )
+    int index = _qsettings->value("UniversalIndentGUI/language", 0).toInt();
+    if ( index < 0 || index >= _availableTranslations.size() )
         index = 0;
 
-    qsettings->setValue( "UniversalIndentGUI/language", availableTranslations.at(index) );
+    _qsettings->setValue( "UniversalIndentGUI/language", _availableTranslations.at(index) );
 }
 
 
 /*!
     \brief Scans the translations directory for available translation files and
-    stores them in the QList \a availableTranslations.
+    stores them in the QList \a _availableTranslations.
  */
 void UiGuiSettings::readAvailableTranslations() {
     QString languageShort;
@@ -109,7 +108,7 @@ void UiGuiSettings::readAvailableTranslations() {
         // Remove trailing file extension ".qm".
         languageShort.chop(3);
 
-        availableTranslations.append(languageShort);
+        _availableTranslations.append(languageShort);
     }
 }
 
@@ -118,7 +117,7 @@ void UiGuiSettings::readAvailableTranslations() {
     \brief Returns a list of the mnemonics of the available translations.
  */
 QStringList UiGuiSettings::getAvailableTranslations() {
-    return availableTranslations;
+    return _availableTranslations;
 }
 
 
@@ -128,7 +127,7 @@ QStringList UiGuiSettings::getAvailableTranslations() {
     If the named setting does not exist, 0 is being returned.
 */
 QVariant UiGuiSettings::getValueByName(QString settingName) {
-    return qsettings->value("UniversalIndentGUI/" + settingName);
+    return _qsettings->value("UniversalIndentGUI/" + settingName);
 }
 
 
@@ -140,53 +139,53 @@ QVariant UiGuiSettings::getValueByName(QString settingName) {
 bool UiGuiSettings::initSettings()
 {
     // Read the version string saved in the settings file.
-    qsettings->setValue( "UniversalIndentGUI/version", qsettings->value("UniversalIndentGUI/version", "") );
+    _qsettings->setValue( "UniversalIndentGUI/version", _qsettings->value("UniversalIndentGUI/version", "") );
 
     // Read windows last size and position from the settings file.
-    qsettings->setValue( "UniversalIndentGUI/maximized", qsettings->value("UniversalIndentGUI/maximized", false) );
-    qsettings->setValue( "UniversalIndentGUI/position", qsettings->value("UniversalIndentGUI/position", QPoint(50, 50)) );
-    qsettings->setValue( "UniversalIndentGUI/size", qsettings->value("UniversalIndentGUI/size", QSize(800, 600)) );
+    _qsettings->setValue( "UniversalIndentGUI/maximized", _qsettings->value("UniversalIndentGUI/maximized", false) );
+    _qsettings->setValue( "UniversalIndentGUI/position", _qsettings->value("UniversalIndentGUI/position", QPoint(50, 50)) );
+    _qsettings->setValue( "UniversalIndentGUI/size", _qsettings->value("UniversalIndentGUI/size", QSize(800, 600)) );
 
     // Read last selected encoding for the opened source code file.
-    qsettings->setValue( "UniversalIndentGUI/encoding", qsettings->value("UniversalIndentGUI/encoding", "UTF-8") );
+    _qsettings->setValue( "UniversalIndentGUI/encoding", _qsettings->value("UniversalIndentGUI/encoding", "UTF-8") );
 
     // Read maximum length of list for recently opened files.
-    qsettings->setValue( "UniversalIndentGUI/recentlyOpenedListSize", qsettings->value("UniversalIndentGUI/recentlyOpenedListSize", 5) );
+    _qsettings->setValue( "UniversalIndentGUI/recentlyOpenedListSize", _qsettings->value("UniversalIndentGUI/recentlyOpenedListSize", 5) );
 
     // Read if last opened source code file should be loaded on startup.
-    qsettings->setValue( "UniversalIndentGUI/loadLastSourceCodeFileOnStartup", qsettings->value("UniversalIndentGUI/loadLastSourceCodeFileOnStartup", true) );
+    _qsettings->setValue( "UniversalIndentGUI/loadLastSourceCodeFileOnStartup", _qsettings->value("UniversalIndentGUI/loadLastSourceCodeFileOnStartup", true) );
 
     // Read last opened source code file from the settings file.
-    qsettings->setValue( "UniversalIndentGUI/lastSourceCodeFile", qsettings->value("UniversalIndentGUI/lastSourceCodeFile",  indenterDirctoryStr+"/example.cpp") );
+    _qsettings->setValue( "UniversalIndentGUI/lastSourceCodeFile", _qsettings->value("UniversalIndentGUI/lastSourceCodeFile",  _indenterDirctoryStr+"/example.cpp") );
 
     // Read last selected indenter from the settings file.
-    int selectedIndenter = qsettings->value("UniversalIndentGUI/selectedIndenter", 0).toInt();
+    int selectedIndenter = _qsettings->value("UniversalIndentGUI/selectedIndenter", 0).toInt();
     if ( selectedIndenter < 0 ) {
         selectedIndenter = 0;
     }
-    qsettings->setValue( "UniversalIndentGUI/selectedIndenter", selectedIndenter );
+    _qsettings->setValue( "UniversalIndentGUI/selectedIndenter", selectedIndenter );
 
     // Read if syntax highlighting is enabled.
-    qsettings->setValue( "UniversalIndentGUI/SyntaxHighlightingEnabled", qsettings->value("UniversalIndentGUI/SyntaxHighlightingEnabled", true) );
+    _qsettings->setValue( "UniversalIndentGUI/SyntaxHighlightingEnabled", _qsettings->value("UniversalIndentGUI/SyntaxHighlightingEnabled", true) );
 
     // Read if white space characters should be displayed.
-    qsettings->setValue( "UniversalIndentGUI/whiteSpaceIsVisible", qsettings->value("UniversalIndentGUI/whiteSpaceIsVisible", false) );
+    _qsettings->setValue( "UniversalIndentGUI/whiteSpaceIsVisible", _qsettings->value("UniversalIndentGUI/whiteSpaceIsVisible", false) );
 
     // Read if indenter parameter tool tips are enabled.
-    qsettings->setValue( "UniversalIndentGUI/indenterParameterTooltipsEnabled", qsettings->value("UniversalIndentGUI/indenterParameterTooltipsEnabled", true) );
+    _qsettings->setValue( "UniversalIndentGUI/indenterParameterTooltipsEnabled", _qsettings->value("UniversalIndentGUI/indenterParameterTooltipsEnabled", true) );
 
     // Read the tab width from the settings file.
-    qsettings->setValue( "UniversalIndentGUI/tabWidth", qsettings->value("UniversalIndentGUI/tabWidth", 4) );
+    _qsettings->setValue( "UniversalIndentGUI/tabWidth", _qsettings->value("UniversalIndentGUI/tabWidth", 4) );
 
     // Read the last selected language and stores the index it has in the list of available translations.
-    qsettings->setValue( "UniversalIndentGUI/language", availableTranslations.indexOf( qsettings->value("UniversalIndentGUI/language", "").toString() ) );
+    _qsettings->setValue( "UniversalIndentGUI/language", _availableTranslations.indexOf( _qsettings->value("UniversalIndentGUI/language", "").toString() ) );
 
     // Read the update check settings from the settings file.
-    qsettings->setValue( "UniversalIndentGUI/CheckForUpdate", qsettings->value("UniversalIndentGUI/CheckForUpdate", true) );
-    qsettings->setValue( "UniversalIndentGUI/LastUpdateCheck", qsettings->value("UniversalIndentGUI/LastUpdateCheck", QDate(1900,1,1)) );
+    _qsettings->setValue( "UniversalIndentGUI/CheckForUpdate", _qsettings->value("UniversalIndentGUI/CheckForUpdate", true) );
+    _qsettings->setValue( "UniversalIndentGUI/LastUpdateCheck", _qsettings->value("UniversalIndentGUI/LastUpdateCheck", QDate(1900,1,1)) );
 
     // Read the main window state.
-    qsettings->setValue( "UniversalIndentGUI/MainWindowState", qsettings->value("UniversalIndentGUI/MainWindowState", QByteArray()) );
+    _qsettings->setValue( "UniversalIndentGUI/MainWindowState", _qsettings->value("UniversalIndentGUI/MainWindowState", QByteArray()) );
 
     return true;
 }
@@ -219,7 +218,7 @@ bool UiGuiSettings::registerObjectProperty( QObject *obj, const QString &propert
         }
 
         if ( connectSuccess ) {
-            registeredObjectProperties[obj] = QStringList() << propertyName << settingName;
+            _registeredObjectProperties[obj] = QStringList() << propertyName << settingName;
         }
         else {
             //TODO: Write a debug warning to the log.
@@ -228,12 +227,12 @@ bool UiGuiSettings::registerObjectProperty( QObject *obj, const QString &propert
         }
 
         // If setting already exists, set the objects property to the setting value.
-        if ( qsettings->contains("UniversalIndentGUI/" + settingName) ) {
-            mProp.write(obj, qsettings->value("UniversalIndentGUI/" + settingName));
+        if ( _qsettings->contains("UniversalIndentGUI/" + settingName) ) {
+            mProp.write(obj, _qsettings->value("UniversalIndentGUI/" + settingName));
         }
         // Otherwise add the setting and set it to the value of the objects property.
         else {
-            qsettings->setValue("UniversalIndentGUI/" + settingName, mProp.read(obj));
+            _qsettings->setValue("UniversalIndentGUI/" + settingName, mProp.read(obj));
         }
     }
     else {
@@ -278,8 +277,8 @@ bool UiGuiSettings::setObjectPropertyToSettingValue( QObject *obj, const QString
         QMetaProperty mProp = metaObject->property(indexOfProp);
 
         // If setting already exists, set the objects property to the setting value.
-        if ( qsettings->contains("UniversalIndentGUI/" + settingName) ) {
-            mProp.write(obj, qsettings->value("UniversalIndentGUI/" + settingName));
+        if ( _qsettings->contains("UniversalIndentGUI/" + settingName) ) {
+            mProp.write(obj, _qsettings->value("UniversalIndentGUI/" + settingName));
         }
         // The setting didn't exist so return that setting the objects property failed.
         else {
@@ -314,7 +313,7 @@ bool UiGuiSettings::setObjectPropertyToSettingValueRecursive(QObject *obj) {
 
 /*!
     \brief Assigns the by \a propertyName defined property's value of \a obj to the by \a settingName defined setting.
-    
+
     If the \a settingName didn't exist yet, it will be created.
 
     Returns true, if the value could be assigned, otherwise returns false, which is the case if the mentioned
@@ -379,14 +378,15 @@ bool UiGuiSettings::checkCustomPropertiesAndCallFunction(QObject *obj, bool (UiG
     return success;
 }
 
+
 /*!
     \brief The with a certain property registered \a obj gets unregistered.
  */
 void UiGuiSettings::unregisterObjectProperty(QObject *obj) {
-    if ( registeredObjectProperties.contains(obj) ) {
+    if ( _registeredObjectProperties.contains(obj) ) {
         const QMetaObject *metaObject = obj->metaObject();
-        QString propertyName = registeredObjectProperties[obj].first();
-        QString settingName = registeredObjectProperties[obj].last();
+        QString propertyName = _registeredObjectProperties[obj].first();
+        QString settingName = _registeredObjectProperties[obj].last();
 
         bool connectSuccess = false;
         int indexOfProp = metaObject->indexOfProperty( qPrintable(propertyName) );
@@ -400,7 +400,7 @@ void UiGuiSettings::unregisterObjectProperty(QObject *obj) {
                 connectSuccess = disconnect(obj, qPrintable(SIGNAL() + QString(signal.signature())), this, SLOT(handleObjectPropertyChange()));
             }
         }
-        registeredObjectProperties.remove(obj);
+        _registeredObjectProperties.remove(obj);
     }
 }
 
@@ -431,7 +431,7 @@ bool UiGuiSettings::registerObjectSlot(QObject *obj, const QString &slotName, co
         // Since the method can at maximum be invoked with the setting value as argument,
         // only methods taking max one argument are allowed.
         if ( mMethod.parameterTypes().size() <= 1 ) {
-            registeredObjectSlots.insert(obj, QStringList() << normalizedSlotName << settingName);
+            _registeredObjectSlots.insert(obj, QStringList() << normalizedSlotName << settingName);
         }
         else {
             //TODO: Write a debug warning to the log.
@@ -456,7 +456,7 @@ bool UiGuiSettings::registerObjectSlot(QObject *obj, const QString &slotName, co
 void UiGuiSettings::unregisterObjectSlot(QObject *obj, const QString &slotName, const QString &settingName) {
     const QMetaObject *metaObject = obj->metaObject();
     QString normalizedSlotName = QMetaObject::normalizedSignature( qPrintable(slotName) );
-    QMutableMapIterator<QObject*, QStringList> it(registeredObjectSlots);
+    QMutableMapIterator<QObject*, QStringList> it(_registeredObjectSlots);
     while (it.hasNext()) {
         it.next();
         if (it.key() == obj && slotName.isEmpty() && settingName.isEmpty())
@@ -475,8 +475,8 @@ void UiGuiSettings::handleObjectPropertyChange() {
     QObject *obj = QObject::sender();
     QString className = obj->metaObject()->className();
     const QMetaObject *metaObject = obj->metaObject();
-    QString propertyName = registeredObjectProperties[obj].first();
-    QString settingName = registeredObjectProperties[obj].last();
+    QString propertyName = _registeredObjectProperties[obj].first();
+    QString settingName = _registeredObjectProperties[obj].last();
 
     int indexOfProp = metaObject->indexOfProperty( qPrintable(propertyName) );
     if ( indexOfProp > -1 ) {
@@ -495,11 +495,11 @@ void UiGuiSettings::handleObjectPropertyChange() {
  */
 void UiGuiSettings::setValueByName(const QString &settingName, const QVariant &value) {
     // Do the updating only, if the setting was really changed.
-    if ( qsettings->value("UniversalIndentGUI/" + settingName) != value ) {
-        qsettings->setValue("UniversalIndentGUI/" + settingName, value);
+    if ( _qsettings->value("UniversalIndentGUI/" + settingName) != value ) {
+        _qsettings->setValue("UniversalIndentGUI/" + settingName, value);
 
         // Set the new value for all registered object properties for settingName.
-        for ( QMap<QObject*, QStringList>::ConstIterator it = registeredObjectProperties.begin(); it != registeredObjectProperties.end(); ++it ) {
+        for ( QMap<QObject*, QStringList>::ConstIterator it = _registeredObjectProperties.begin(); it != _registeredObjectProperties.end(); ++it ) {
             if ( it.value().last() == settingName ) {
                 QObject *obj = it.key();
                 const QMetaObject *metaObject = obj->metaObject();
@@ -514,7 +514,7 @@ void UiGuiSettings::setValueByName(const QString &settingName, const QVariant &v
         }
 
         // Invoke all registered object methods for settingName.
-        for ( QMap<QObject*, QStringList>::ConstIterator it = registeredObjectSlots.begin(); it != registeredObjectSlots.end(); ++it ) {
+        for ( QMap<QObject*, QStringList>::ConstIterator it = _registeredObjectSlots.begin(); it != _registeredObjectSlots.end(); ++it ) {
             if ( it.value().last() == settingName ) {
                 QObject *obj = it.key();
                 const QMetaObject *metaObject = obj->metaObject();

@@ -22,12 +22,14 @@
 
 class QString;
 
+
 class UiGuiSystemInfo
 {
-private:
-    UiGuiSystemInfo();
 public:
     static QString getOperatingSystem();
+
+private:
+    UiGuiSystemInfo();
 };
 
 #endif // UIGUISYSTEMINFO_H

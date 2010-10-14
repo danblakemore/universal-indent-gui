@@ -18,7 +18,6 @@
  ***************************************************************************/
 
 #include "MainWindow.h"
-#include <QApplication>
 
 #include "UiGuiIndentServer.h"
 #include "UiGuiLogger.h"
@@ -26,6 +25,11 @@
 #include "UiGuiSettings.h"
 #include "UiGuiVersion.h"
 #include "UiGuiSystemInfo.h"
+#include "IndentHandler.h"
+#include "SettingsPaths.h"
+
+#include <QApplication>
+#include <QTextCodec>
 
 #include <string>
 #include <iostream>
@@ -252,7 +256,7 @@ int main(int argc, char *argv[]) {
     delete indentHandler;
 	delete mainWindow;
 
-    UiGuiSettings::deleteInstance();
+    SettingsPaths::cleanAndRemoveTempDir();
     UiGuiLogger::deleteInstance();
 
     return returnValue;

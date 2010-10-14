@@ -22,49 +22,14 @@
 
 #include <QObject>
 #include <QMap>
-#include <QMenu>
-#include <QCoreApplication>
-#include <Qsci/qsciscintilla.h>
-#include <Qsci/qscilexer.h>
-#include <Qsci/qscilexerbash.h>
-#include <Qsci/qscilexerbatch.h>
-#include <Qsci/qscilexercmake.h>
-#include <Qsci/qscilexercpp.h>
-#include <Qsci/qscilexercsharp.h>
-#include <Qsci/qscilexercss.h>
-#include <Qsci/qscilexerd.h>
-#include <Qsci/qscilexerdiff.h>
-#if ( QSCINTILLA_VERSION >= 0x020300 )
-#include <Qsci/qscilexerfortran.h>
-#include <Qsci/qscilexerfortran77.h>
-#endif
-#include <Qsci/qscilexerhtml.h>
-#include <Qsci/qscilexeridl.h>
-#include <Qsci/qscilexerjava.h>
-#include <Qsci/qscilexerjavascript.h>
-#include <Qsci/qscilexerlua.h>
-#include <Qsci/qscilexermakefile.h>
-#if ( QSCINTILLA_VERSION >= 0x020300 )
-#include <Qsci/qscilexerpascal.h>
-#endif
-#include <Qsci/qscilexerperl.h>
-#if ( QSCINTILLA_VERSION >= 0x020300 )
-#include <Qsci/qscilexerpostscript.h>
-#endif
-#include <Qsci/qscilexerpov.h>
-#include <Qsci/qscilexerproperties.h>
-#include <Qsci/qscilexerpython.h>
-#include <Qsci/qscilexerruby.h>
-#include <Qsci/qscilexersql.h>
-#if ( QSCINTILLA_VERSION >= 0x020300 )
-#include <Qsci/qscilexertcl.h>
-#endif
-#include <Qsci/qscilexertex.h>
-#include <Qsci/qscilexervhdl.h>
-#if ( QSCINTILLA_VERSION >= 0x020300 )
-#include <Qsci/qscilexerxml.h>
-#include <Qsci/qscilexeryaml.h>
-#endif
+#include <QFont>
+#include <QColor>
+
+class QAction;
+class QSettings;
+
+class QsciScintilla;
+class QsciLexer;
 
 
 class UiGuiHighlighter : public QObject
@@ -79,15 +44,6 @@ public:
     bool readCurrentSettings(const char *prefix);
     void writeCurrentSettings(const char *prefix);
     QStringList getAvailableHighlighters();
-
-private:
-    bool highlightningIsOn;
-    QsciScintilla *qsciEditorParent;
-    QMap<int, QFont> fontForStyles;
-    QMap<int, QColor> colorForStyles;
-    QsciLexer* lexer;
-    QSettings *settings;
-    QMap<QString, QStringList> mapHighlighternameToExtension;
 
 public slots:
     //! The foreground color for style number \a style is set to \a color.  If
@@ -104,6 +60,15 @@ public slots:
     void setLexerByName( QString lexerName );
 
     void setHighlighterByAction(QAction* highlighterAction);
+
+private:
+    bool _highlightningIsOn;
+    QsciScintilla *_qsciEditorParent;
+    QMap<int, QFont> _fontForStyles;
+    QMap<int, QColor> _colorForStyles;
+    QsciLexer* _lexer;
+    QSettings *_settings;
+    QMap<QString, QStringList> _mapHighlighternameToExtension;
 };
 
 #endif  // UIGUIHIGHLIGHTER_H
