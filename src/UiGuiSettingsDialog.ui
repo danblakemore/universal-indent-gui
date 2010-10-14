@@ -381,6 +381,9 @@
                <property name="buttonSymbols">
                 <enum>QAbstractSpinBox::NoButtons</enum>
                </property>
+               <property name="maximum">
+                <number>99999</number>
+               </property>
                <property name="connectedSettingName" stdset="0">
                 <string notr="true">ProxyPort</string>
                </property>
