@@ -174,7 +174,7 @@ int main(int argc, char *argv[]) {
 		cmd.parse( argc, argv );
 
 		// Get the value parsed by each arg.
-		file2OpenOnStart = QString::fromStdString( filenameArg.getValue() );
+                file2OpenOnStart = filenameArg.getValue().c_str();
 		startAsPlugin = pluginSwitch.getValue();
 		startAsServer = serverSwitch.getValue();
 		verboseLevel = verboselevelArg.getValue();
