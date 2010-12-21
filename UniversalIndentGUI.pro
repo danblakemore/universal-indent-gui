@@ -189,20 +189,20 @@ HEADERS += src/AboutDialog.h \
            src/UiGuiHighlighter.h \
            src/UiGuiIndentServer.h \
            src/UiGuiIniFileParser.h \
-           src/UiGuiLogger.h \
            src/UiGuiSettings.h \
            src/UiGuiSettingsDialog.h \
            src/UiGuiSystemInfo.h \
            src/UiGuiVersion.h \
-           src/UpdateCheckDialog.h
+           src/UpdateCheckDialog.h \
+           src/debugging/TSLogger.h
 
 
 FORMS += src/MainWindow.ui \
          src/ToolBarWidget.ui \
-         src/UiGuiLoggerDialog.ui \
          src/UiGuiSettingsDialog.ui \
          src/AboutDialog.ui \
-         src/UpdateCheckDialog.ui
+         src/UpdateCheckDialog.ui \
+         src/debugging/TSLoggerDialog.ui
 
 SOURCES += src/AboutDialog.cpp \
            src/AboutDialogGraphicsView.cpp \
@@ -215,12 +215,12 @@ SOURCES += src/AboutDialog.cpp \
            src/UiGuiHighlighter.cpp \
            src/UiGuiIndentServer.cpp \
            src/UiGuiIniFileParser.cpp \
-           src/UiGuiLogger.cpp \
            src/UiGuiSettings.cpp \
            src/UiGuiSettingsDialog.cpp \
            src/UiGuiSystemInfo.cpp \
            src/UiGuiVersion.cpp \
-           src/UpdateCheckDialog.cpp
+           src/UpdateCheckDialog.cpp \
+           src/debugging/TSLogger.cpp
 
 RESOURCES += resources/Icons.qrc
 RC_FILE    = resources/programicon.rc

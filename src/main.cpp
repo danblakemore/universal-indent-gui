@@ -20,7 +20,7 @@
 #include "MainWindow.h"
 
 #include "UiGuiIndentServer.h"
-#include "UiGuiLogger.h"
+#include "debugging/TSLogger.h"
 #include "UiGuiIniFileParser.h"
 #include "UiGuiSettings.h"
 #include "UiGuiVersion.h"
@@ -102,7 +102,7 @@ bool attachToConsole(/*enum ATTACH_ONLY|TRY_ATTACH_ELSE_CREATE|CREATE_NEW*/)
 }
 #endif
 
-
+using namespace tschweitzer::debugging;
 
 /*!
     /brief Entry point to UniversalIndentGUI application.
@@ -217,15 +217,15 @@ int main(int argc, char *argv[]) {
     // Setting UTF-8 as default 8-Bit encoding to ensure that qDebug does no false string conversion.
     QTextCodec::setCodecForCStrings( QTextCodec::codecForName("UTF-8") );
     QTextCodec::setCodecForLocale( QTextCodec::codecForName("UTF-8") );
-    // Force creation of an UiGuiLogger instance here, to avoid recursion with SettingsPaths init function.
+    // Force creation of an TSLogger instance here, to avoid recursion with SettingsPaths init function.
 #ifdef _DEBUG
-    UiGuiLogger::getInstance(0);
+    TSLogger::getInstance(0);
 #else
-    UiGuiLogger::getInstance(verboseLevel);
+    TSLogger::getInstance(verboseLevel);
 #endif
-    qInstallMsgHandler( UiGuiLogger::messageHandler );
-    UiGuiLogger::messageHandler( UiGuiInfoMsg, QString("Starting UiGUI Version %1 %2").arg(PROGRAM_VERSION_STRING).arg(PROGRAM_REVISION).toAscii() );
-    UiGuiLogger::messageHandler( UiGuiInfoMsg, QString("Running on %1").arg(UiGuiSystemInfo::getOperatingSystem()).toAscii() );
+    qInstallMsgHandler( TSLogger::messageHandler );
+    TSLogger::messageHandler( TSLoggerInfoMsg, QString("Starting UiGUI Version %1 %2").arg(PROGRAM_VERSION_STRING).arg(PROGRAM_REVISION).toAscii() );
+    TSLogger::messageHandler( TSLoggerInfoMsg, QString("Running on %1").arg(UiGuiSystemInfo::getOperatingSystem()).toAscii() );
 
     // Set default values for all by UniversalIndentGUI used settings objects.
     QCoreApplication::setOrganizationName("UniversalIndentGUI");
@@ -257,7 +257,7 @@ int main(int argc, char *argv[]) {
 	delete mainWindow;
 
     SettingsPaths::cleanAndRemoveTempDir();
-    UiGuiLogger::deleteInstance();
+    TSLogger::deleteInstance();
 
     return returnValue;
 }

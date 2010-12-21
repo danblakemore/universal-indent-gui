@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>UiGuiLoggerDialog</class>
- <widget class="QDialog" name="UiGuiLoggerDialog">
+ <class>TSLoggerDialog</class>
+ <widget class="QDialog" name="TSLoggerDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -91,9 +91,9 @@
  </resources>
  <connections>
   <connection>
-   <sender>UiGuiLoggerDialog</sender>
+   <sender>TSLoggerDialog</sender>
    <signal>finished(int)</signal>
-   <receiver>UiGuiLoggerDialog</receiver>
+   <receiver>TSLoggerDialog</receiver>
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -109,7 +109,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>clicked(QAbstractButton*)</signal>
-   <receiver>UiGuiLoggerDialog</receiver>
+   <receiver>TSLoggerDialog</receiver>
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">

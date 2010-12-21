@@ -17,8 +17,8 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "UiGuiLogger.h"
-#include "ui_UiGuiLoggerDialog.h"
+#include "TSLogger.h"
+#include "ui_TSLoggerDialog.h"
 
 #include "SettingsPaths.h"
 
@@ -28,13 +28,17 @@
 #include <QUrl>
 #include <QTextStream>
 #include <QDesktopServices>
+#include <QMessageBox>
 
 #include <ctime>
 
-UiGuiLogger* UiGuiLogger::_instance = NULL;
+using namespace tschweitzer;
+using namespace tschweitzer::debugging;
+
+TSLogger* TSLogger::_instance = NULL;
 
 /*!
-    \class UiGuiLogger
+    \class TSLogger
     \brief This class handles any kind of data logging, for debugging and whatever purpose.
 
     Beneath being able of displaying a dialog window containing all log messages of the
@@ -46,24 +50,24 @@ UiGuiLogger* UiGuiLogger::_instance = NULL;
  */
 
 /*!
-    \brief Returns the only existing instance of UiGuiLogger. If the instance doesn't exist, it will be created.
+    \brief Returns the only existing instance of TSLogger. If the instance doesn't exist, it will be created.
  */
-UiGuiLogger* UiGuiLogger::getInstance(int verboseLevel) {
+TSLogger* TSLogger::getInstance(int verboseLevel) {
     if ( _instance == NULL )
-        _instance = new UiGuiLogger(verboseLevel);
+        _instance = new TSLogger(verboseLevel);
 
     return _instance;
 }
 
 
 /*!
-    \brief Returns the only existing instance of UiGuiLogger. If the instance doesn't exist, it will be created.
+    \brief Returns the only existing instance of TSLogger. If the instance doesn't exist, it will be created.
  */
-UiGuiLogger* UiGuiLogger::getInstance() {
+TSLogger* TSLogger::getInstance() {
 #ifdef _DEBUG
-    return UiGuiLogger::getInstance(QtDebugMsg);
+    return TSLogger::getInstance(QtDebugMsg);
 #else
-    return UiGuiLogger::getInstance(QtWarningMsg);
+    return TSLogger::getInstance(QtWarningMsg);
 #endif
 }
 
@@ -72,9 +76,9 @@ UiGuiLogger* UiGuiLogger::getInstance() {
     \brief Initializes the dialog and sets the path to the log file in the systems temporary directory.
     Sets the default verbose level to warning level.
  */
-UiGuiLogger::UiGuiLogger(int verboseLevel) : QDialog() {
-	_uiGuiLoggerDialogForm = new Ui::UiGuiLoggerDialog();
-    _uiGuiLoggerDialogForm->setupUi(this);
+TSLogger::TSLogger(int verboseLevel) : QDialog() {
+	_TSLoggerDialogForm = new Ui::TSLoggerDialog();
+    _TSLoggerDialogForm->setupUi(this);
 #ifdef _DEBUG
     _verboseLevel = QtDebugMsg;
 #else
@@ -83,7 +87,7 @@ UiGuiLogger::UiGuiLogger(int verboseLevel) : QDialog() {
 
     _logFileInitState = NOTINITIALZED;
 
-    connect( _uiGuiLoggerDialogForm->openLogFileFolderToolButton, SIGNAL(clicked()), this, SLOT(openLogFileFolder()) );
+    connect( _TSLoggerDialogForm->openLogFileFolderToolButton, SIGNAL(clicked()), this, SLOT(openLogFileFolder()) );
 
     // Make the main application not to wait for the logging window to close.
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -95,9 +99,17 @@ UiGuiLogger::UiGuiLogger(int verboseLevel) : QDialog() {
 
     Only messages whos \a type have a higher priority than the set verbose level are logged.
  */
-void UiGuiLogger::messageHandler(QtMsgType type, const char *msg) {
+void TSLogger::messageHandler(QtMsgType type, const char *msg) {
     if ( _instance == NULL )
-        _instance = UiGuiLogger::getInstance();
+        _instance = TSLogger::getInstance();
+
+//*
+    QMessageBox messageBox;
+    QString messageBoxText = QString::fromUtf8( msg );
+    messageBox.setText( messageBoxText );
+    messageBox.setWindowModality( Qt::ApplicationModal );
+    messageBox.exec();
+//*/
 
     // Only log messages that have a higher or equal priority than set with the verbose level.
     if ( type < _instance->_verboseLevel )
@@ -120,17 +132,17 @@ void UiGuiLogger::messageHandler(QtMsgType type, const char *msg) {
         case QtFatalMsg :
             message += " <span style=\"font-weight:bold; color:#D60000;\">Fatal:</span> ";
         // This one is no Qt message type, but can be used to send info messages to the log
-        // by calling UiGuiLogger::messageHandler() directly.
-        case UiGuiInfoMsg :
+        // by calling TSLogger::messageHandler() directly.
+        case TSLoggerInfoMsg :
             message += " <span style=\"font-weight:bold; color:darkgray;\">Info:</span> ";
             break;
     }
 
-    // Append the ti UTF-8 back converted message parameter.
+    // Append the to UTF-8 back converted message parameter.
     message += QString::fromUtf8( msg ) + "<br/>\n";
 
     // Write the message to the log windows text edit.
-    _instance->_uiGuiLoggerDialogForm->logTextEdit->append( message );
+    _instance->_TSLoggerDialogForm->logTextEdit->append( message );
 
     // Write/append the log message to the log file.
     _instance->writeToLogFile( message );
@@ -145,7 +157,7 @@ void UiGuiLogger::messageHandler(QtMsgType type, const char *msg) {
     \brief Calling this the verbose level can be set in a range from 0 to 3
     which is equal to debug, warning, critical and fatal priority.
  */
-void UiGuiLogger::setVerboseLevel(int level) {
+void TSLogger::setVerboseLevel(int level) {
     if ( level < 0 )
         _verboseLevel = QtDebugMsg;
     if ( level > 3 )
@@ -156,9 +168,9 @@ void UiGuiLogger::setVerboseLevel(int level) {
 
 
 /*!
-    \brief Deletes the existing _instance of UiGuiLogger.
+    \brief Deletes the existing _instance of TSLogger.
  */
-void UiGuiLogger::deleteInstance() {
+void TSLogger::deleteInstance() {
     if ( _instance != NULL ) {
         delete _instance;
         _instance = NULL;
@@ -169,7 +181,7 @@ void UiGuiLogger::deleteInstance() {
 /*!
     \brief Opens the folder that contains the created log file with the name "UiGUI_log.html".
  */
-void UiGuiLogger::openLogFileFolder() {
+void TSLogger::openLogFileFolder() {
     QDesktopServices::openUrl( QFileInfo( _logFile ).absolutePath() );
 }
 
@@ -177,7 +189,7 @@ void UiGuiLogger::openLogFileFolder() {
 /*!
     \brief Writes the \a message to the used log file.
  */
-void UiGuiLogger::writeToLogFile(const QString &message) {
+void TSLogger::writeToLogFile(const QString &message) {
     // If the file where all logging messages should go to isn't initilized yet, do that now.
     if ( _logFileInitState == NOTINITIALZED ) {
         _logFileInitState = INITIALIZING;
@@ -215,7 +227,7 @@ void UiGuiLogger::writeToLogFile(const QString &message) {
         _logFile.setFileName( tempPath + "/" + logFileName );
 
         // Set the tooltip of the open log file folder button to show the unique name of the log file.
-        _uiGuiLoggerDialogForm->openLogFileFolderToolButton->setToolTip( _uiGuiLoggerDialogForm->openLogFileFolderToolButton->toolTip() + " (" + logFileName + ")" );
+        _TSLoggerDialogForm->openLogFileFolderToolButton->setToolTip( _TSLoggerDialogForm->openLogFileFolderToolButton->toolTip() + " (" + logFileName + ")" );
 
         _logFileInitState = INITIALZED;
     }

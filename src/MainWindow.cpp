@@ -21,7 +21,7 @@
 #include "ui_MainWindow.h"
 
 #include "UiGuiVersion.h"
-#include "UiGuiLogger.h"
+#include "debugging/TSLogger.h"
 #include "SettingsPaths.h"
 
 #include "ui_ToolBarWidget.h"
@@ -56,6 +56,8 @@
 
 #include <Qsci/qsciscintilla.h>
 #include <Qsci/qsciprinter.h>
+
+using namespace tschweitzer;
 
 //! \defgroup grp_MainWindow All concerning main window functionality.
 
@@ -206,7 +208,7 @@ void MainWindow::initMainWindow() {
     connect( _mainWindowForm->actionExportPDF, SIGNAL(triggered()), this, SLOT(exportToPDF()) );
     connect( _mainWindowForm->actionExportHTML, SIGNAL(triggered()), this, SLOT(exportToHTML()) );
     connect( _mainWindowForm->actionCheck_for_update, SIGNAL(triggered()), _updateCheckDialog, SLOT(checkForUpdateAndShowDialog()) );
-    connect( _mainWindowForm->actionShowLog, SIGNAL(triggered()), UiGuiLogger::getInstance(), SLOT(show()) );
+    connect( _mainWindowForm->actionShowLog, SIGNAL(triggered()), debugging::TSLogger::getInstance(), SLOT(show()) );
 
     // Init the menu for selecting one of the recently opened files.
     updateRecentlyOpenedList();
