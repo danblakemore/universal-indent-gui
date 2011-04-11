@@ -103,13 +103,13 @@ void TSLogger::messageHandler(QtMsgType type, const char *msg) {
     if ( _instance == NULL )
         _instance = TSLogger::getInstance();
 
-//*
+/*
     QMessageBox messageBox;
     QString messageBoxText = QString::fromUtf8( msg );
     messageBox.setText( messageBoxText );
     messageBox.setWindowModality( Qt::ApplicationModal );
     messageBox.exec();
-//*/
+*/
 
     // Only log messages that have a higher or equal priority than set with the verbose level.
     if ( type < _instance->_verboseLevel )
