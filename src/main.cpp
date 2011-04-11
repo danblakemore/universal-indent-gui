@@ -30,6 +30,7 @@
 
 #include <QApplication>
 #include <QTextCodec>
+#include <QDebug>
 
 #include <string>
 #include <iostream>
@@ -248,7 +249,12 @@ int main(int argc, char *argv[]) {
         server.startServer();
     }
 
-    returnValue = app.exec();
+    try {
+        returnValue = app.exec();
+    }
+    catch (std::exception &ex) {
+        qCritical() << __LINE__ << " " << __FUNCTION__ << ": Something went terribly wrong:" << ex.what();
+    }
 
     if ( startAsPlugin || startAsServer )
         server.stopServer();
