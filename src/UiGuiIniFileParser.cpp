@@ -44,9 +44,7 @@
     \brief Init and empty all needed lists and strings.
  */
 UiGuiIniFileParser::UiGuiIniFileParser(void) {
-    _sections.clear();
-    _keyValueMap.clear();
-    _iniFileName = "";
+	init();
 }
 
 
@@ -54,9 +52,16 @@ UiGuiIniFileParser::UiGuiIniFileParser(void) {
     \brief Directly loads and parses the file with name \a iniFileName.
  */
 UiGuiIniFileParser::UiGuiIniFileParser(const QString &iniFileName) {
-    UiGuiIniFileParser();
+	init();
     _iniFileName = iniFileName;
     parseIniFile();
+}
+
+
+void UiGuiIniFileParser::init() {
+	_sections.clear();
+	_keyValueMap.clear();
+	_iniFileName = "";
 }
 
 

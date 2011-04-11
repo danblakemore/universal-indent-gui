@@ -38,6 +38,9 @@ public:
     QVariant value(const QString &keyName, const QString &defaultValue = "");
     QStringList childGroups();
 
+protected:
+	void init();
+
 private:
     void parseIniFile();
 
