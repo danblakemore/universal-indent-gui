@@ -3,9 +3,9 @@
 # Call this script to create the source code archive.
 ./buildRelease.sh
 
-sourcedirname=universalindentgui-1.1.0
+sourcedirname=universalindentgui-1.2.0
 sourcefilename=$sourcedirname.tar.gz
-sourcefilenameorig=universalindentgui_1.1.0.orig.tar.gz
+sourcefilenameorig=universalindentgui_1.2.0.orig.tar.gz
 
 targetDir=packaging
 
@@ -89,8 +89,8 @@ cd $sourcedirname/debian
 rm -Rfv .svn
 echo ""
 
-echo "Creating the debian source package"
-echo "----------------------------------"
+echo "Creating the debian source package (devscripts and quilt needed)"
+echo "----------------------------------------------------------------"
 debuild -S -us -uc
 echo ""
 

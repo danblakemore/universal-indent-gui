@@ -50,7 +50,7 @@ fi
 # Configuration
 # -------------
 #TODO: get version from source code file.
-version=1.1.1
+version=1.2.0
 doSVNUpdate=false
 
 
@@ -184,7 +184,7 @@ if [ $? -gt 0 ]; then
     echo "ERROR: Could not update file \"universalindent.ts\"!"
     exit 1
 fi
-languages="de fr ja_jp ru uk zh_TW"
+languages="de fr ja ru uk zh_TW"
 for i in $languages
 do
     lupdate src -ts ./translations/universalindent_$i.ts &> /dev/null
@@ -214,9 +214,19 @@ if [ $? -gt 0 ]; then
     echo "ERROR: Could not copy dir \"resources\"!"
     exit 1
 fi
-cp ./src/* ./$targetDir/src/ &> /dev/null
+cp -R ./src/* ./$targetDir/src/ &> /dev/null
 if [ $? -gt 0 ]; then
     echo "ERROR: Could not copy dir \"src\"!"
+    exit 1
+fi
+# wait until the files have been really extracted
+while [ ! -f "./$targetDir/src/UniversalIndentGUI_NPP/UniversalIndentGUI_NPPDialog.rc" ]
+do
+    sleep 1
+done
+rm -Rf ./$targetDir/src/UniversalIndentGUI_NPP &> /dev/null
+if [ $? -gt 0 ]; then
+    echo "ERROR: Could not delete dir \"UniversalIndentGUI_NPP\"!"
     exit 1
 fi
 # Deleting backup files
