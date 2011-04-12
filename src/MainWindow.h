@@ -49,6 +49,9 @@ class MainWindow : public QMainWindow
 public:
     //! Constructor
     MainWindow(QString file2OpenOnStart = "", QWidget *parent = NULL);
+    ~MainWindow() {
+        _settings.clear();
+    }
 
 protected:
     void closeEvent( QCloseEvent *event );
