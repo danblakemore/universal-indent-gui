@@ -76,7 +76,7 @@ void UiGuiSettingsDialog::initTranslationSelection() {
         else if ( languageShort == "zh_TW" ) {
             _settingsDialogForm->languageSelectionComboBox->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("Chinese (Taiwan)") );
         }
-        else if ( languageShort == "ja_jp" ) {
+        else if ( languageShort == "ja" ) {
             _settingsDialogForm->languageSelectionComboBox->addItem( QIcon(QString(":/language/language-"+languageShort+".png")), tr("Japanese") );
         }
         else if ( languageShort == "ru" ) {
@@ -149,7 +149,7 @@ void UiGuiSettingsDialog::changeEvent(QEvent *event) {
             else if ( languageShort == "zh_TW" ) {
                 _settingsDialogForm->languageSelectionComboBox->setItemText( i, tr("Chinese (Taiwan)") );
             }
-            else if ( languageShort == "ja_jp" ) {
+            else if ( languageShort == "ja" ) {
                 _settingsDialogForm->languageSelectionComboBox->setItemText( i, tr("Japanese") );
             }
             else if ( languageShort == "ru" ) {
