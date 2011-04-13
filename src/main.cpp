@@ -110,11 +110,11 @@ using namespace tschweitzer::debugging;
 
     Evaluates the following parameters:
     No parameters starts without server and full gui.
-    -f filename --file filename   : Opens the by filename defined file on start.
+    A string without any parameter prefix will be loaded as file on start.
     -p --plugin  : Run as plugin. Server will be started with a simplified gui.
     -s --server  : Run as server only without gui.
     If -p and -s are set, -p will be used.
-	-v --verbose needs a following parameter defining the verbose level as a number from 0 to 3.
+    -v --verbose needs a following parameter defining the verbose level as a number from 0 to 3.
  */
 int main(int argc, char *argv[]) {
 	QString file2OpenOnStart = "";
@@ -156,7 +156,7 @@ int main(int argc, char *argv[]) {
 		cmd.setExceptionHandling(false);
 
 		// Define a value argument and add it to the command line.
-		TCLAP::ValueArg<std::string> filenameArg("f", "file", "Opens the by filename defined file on start" , false, "", "string");
+                TCLAP::UnlabeledValueArg<std::string> filenameArg("file", "Opens the by filename defined file on start" , false, "", "filename");
 		cmd.add( filenameArg );
 
 		// Define a switch and add it to the command line.
