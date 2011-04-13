@@ -1,0 +1,14 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Encoding=UTF-8
+Name=UniversalIndentGUI
+GenericName=UniversalIndentGUI
+Comment=UniversalIndentGUI is a GUI fontend for several code beautifiers
+Icon=/usr/share/pixmaps/universalIndentGUI_32x32.xpm
+TryExec=/usr/bin/universalindentgui
+Exec=/usr/bin/universalindentgui %f
+Terminal=false
+MimeType=text/plain;text/x-c;text/x-script.phyton;text/html;text/xml;text/css;application/x-javascript
+Categories=Qt;Development;
+
