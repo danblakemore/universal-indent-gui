@@ -1,9 +1,20 @@
 2011-04-xx Version 1.2.0
+[add] The Linux version has a menu entry in the application development menu now.
+[add] The Linux version has a mime type association to some code files now, so that UiGUI is available as "open with".
+[add] Updated the Uncrustify configuration to support Uncrustify version 0.57.
+[fix] Bug ID 3021933: Updated the Artistic Style configuration to support Artistic Style version 2.01.
+[fix] Bug ID 3021931: Fixed calling of Artistic Style version 1.22 and later.
+[fix] Bug ID 3006513: Fixed compiling UiGUI using GCC 4.5 and later.
 [fix] Bug ID 2942381: When loading an indenter configuration file, the settings displayed in the docking widget were correctly updated, but the code wasn't.
 [fix] Bug ID 2135872: A zombie process kept on running if UiGUI was quit during the update check in background if no internet connection is available.
+[fix] Bug ID 3175027: Uncrustify had wrong pop-up comments for two check-boxes.
+[fix] Made the JsDecoder integration be compatible with recent Qt versions.
 [change] Changed the created shell scripts indenter config file reference. Now each created shell script has a corresponding config file being created in the same dir as the shell script, with the same name but different suffix. But since the config file is referenced by "./", when calling the script the working directory must be the same as the directory containing the config file.
-[change] Using TCLAP as command line parser instead of own parsing.
+[change] Using TCLAP as command line parser instead of own command line parsing.
+[change] Setting a file name as parameter on the command line without any prefix will load this file instead of the last opened one.
 [change] Rewritten and improved the internal way how settings are connected to the UI.
+[change] Refactored and cleaned up the code.
+[change] Will no longer deliver binary bundles linked against Qt statically. Instead delivering all dependent DLLs and libs.
 
 2009-07-16 Version 1.1.0
 [add] Added a logging class, that can catch debug output and make trace backs if any problems occur possible.
