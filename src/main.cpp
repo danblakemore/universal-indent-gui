@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2010 by Thomas Schweitzer                          *
+ *   Copyright (C) 2006-2011 by Thomas Schweitzer                          *
  *   thomas-schweitzer(at)arcor.de                                         *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -37,7 +37,7 @@
 #include <algorithm>
 #include <tclap/CmdLine.h>
 
-#ifdef WIN32
+#ifdef _MSC_VER
 
 #include <windows.h>
 #include <direct.h>
@@ -78,29 +78,41 @@ bool attachToConsole(/*enum ATTACH_ONLY|TRY_ATTACH_ELSE_CREATE|CREATE_NEW*/)
 	// Redirect unbuffered STDOUT to the console.
 	lStdHandle = (long)GetStdHandle(STD_OUTPUT_HANDLE);
 	hConHandle = _open_osfhandle(lStdHandle, _O_TEXT);
-	fp = _fdopen( hConHandle, "w" );
-	*stdout = *fp;
-	setvbuf( stdout, NULL, _IONBF, 0 );
+        if ( hConHandle != -1 ) {
+            fp = _fdopen( hConHandle, "w" );
+            *stdout = *fp;
+            setvbuf( stdout, NULL, _IONBF, 0 );
+        }
 
 	// Redirect unbuffered STDIN to the console.
 	lStdHandle = (long)GetStdHandle(STD_INPUT_HANDLE);
 	hConHandle = _open_osfhandle(lStdHandle, _O_TEXT);
-	fp = _fdopen( hConHandle, "r" );
-	*stdin = *fp;
-	setvbuf( stdin, NULL, _IONBF, 0 );
+        if ( hConHandle != -1 ) {
+            fp = _fdopen( hConHandle, "r" );
+            *stdin = *fp;
+            setvbuf( stdin, NULL, _IONBF, 0 );
+        }
 
 	// Redirect unbuffered STDERR to the console.
 	lStdHandle = (long)GetStdHandle(STD_ERROR_HANDLE);
 	hConHandle = _open_osfhandle(lStdHandle, _O_TEXT);
-	fp = _fdopen( hConHandle, "w" );
-	*stderr = *fp;
-	setvbuf( stderr, NULL, _IONBF, 0 );
+        if ( hConHandle != -1 ) {
+            fp = _fdopen( hConHandle, "w" );
+            *stderr = *fp;
+            setvbuf( stderr, NULL, _IONBF, 0 );
+        }
 
 	// Make cout, wcout, cin, wcin, wcerr, cerr, wclog and clog point to console as well.
 	std::ios::sync_with_stdio();
 
 	return true;
 }
+#else
+bool attachToConsole()
+{
+    return false;
+}
+
 #endif
 
 using namespace tschweitzer::debugging;
@@ -124,10 +136,8 @@ int main(int argc, char *argv[]) {
 	bool tclapExitExceptionThrown = false;
 	int returnValue = 0;
 
-#ifdef WIN32
 	bool attachedToConsole = false;
 	attachedToConsole = attachToConsole();
-#endif
 
 #ifdef __APPLE__
 		// Filter out -psn_0_118813 and similar parameters.
@@ -194,7 +204,7 @@ int main(int argc, char *argv[]) {
 	}
 
 	if ( returnValue != 0 || tclapExitExceptionThrown ) {
-#ifdef WIN32
+#ifdef _MSC_VER
 		if ( attachedToConsole ) {
 			// Workaround for skipped command line prompt: Get the current working directory and print it to console.
 			char* buffer;
