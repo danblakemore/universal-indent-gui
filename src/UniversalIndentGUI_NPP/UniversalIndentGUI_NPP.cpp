@@ -1,5 +1,5 @@
 /***************************************************************************
-*   Copyright (C) 2006-2009 by Thomas Schweitzer                          *
+*   Copyright (C) 2006-2011 by Thomas Schweitzer                          *
 *   thomas-schweitzer(at)arcor.de                                         *
 *                                                                         *
 *   This program is free software; you can redistribute it and/or modify  *
