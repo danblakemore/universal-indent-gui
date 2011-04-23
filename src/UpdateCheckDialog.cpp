@@ -32,6 +32,7 @@
 #include <QRegExpValidator>
 #include <QNetworkRequest>
 #include <QNetworkReply>
+#include <QNetworkProxy>
 
 /*!
     \class UpdateCheckDialog
@@ -64,13 +65,15 @@ UpdateCheckDialog::UpdateCheckDialog(QSharedPointer<UiGuiSettings> settings, QWi
     // Connect the dialogs buttonbox with a button click handler.
     connect( _updateCheckDialogForm->buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(handleUpdateCheckDialogButtonClicked(QAbstractButton*)) );
 
-    settings->registerObjectSlot(this, "onProxySettingsChanged()", "ProxyEnabled");
-    settings->registerObjectSlot(this, "onProxySettingsChanged()", "ProxyHostName");
-    settings->registerObjectSlot(this, "onProxySettingsChanged()", "ProxyPort");
-    settings->registerObjectSlot(this, "onProxySettingsChanged()", "ProxyUserName");
-    settings->registerObjectSlot(this, "onProxySettingsChanged()", "ProxyPassword");
+    settings->registerObjectSlot(this, "initProxySettings()", "ProxyEnabled");
+    settings->registerObjectSlot(this, "initProxySettings()", "ProxyHostName");
+    settings->registerObjectSlot(this, "initProxySettings()", "ProxyPort");
+    settings->registerObjectSlot(this, "initProxySettings()", "ProxyUserName");
+    settings->registerObjectSlot(this, "initProxySettings()", "ProxyPassword");
 
     _settings = settings;
+
+	initProxySettings();
 
     // This dialog is always modal.
     setModal(true);
@@ -175,6 +178,7 @@ void UpdateCheckDialog::checkResultsOfFetchedPadXMLFile(QNetworkReply *networkRe
     // If there was some error while trying to retrieve the update info from server and not cancel was pressed.
     else if ( _roleOfClickedButton != QDialogButtonBox::RejectRole ) {
         QMessageBox::warning(this, tr("Update check error"), tr("There was an error while trying to check for an update! Error was : %1").arg(networkReply->errorString()) );
+		hide();
     }
     _manualUpdateRequested = false;
     networkReply->deleteLater();
@@ -303,12 +307,16 @@ int UpdateCheckDialog::convertVersionStringToNumber(QString versionString) {
     return versionInteger;
 }
 
-void UpdateCheckDialog::onProxySettingsChanged()
+void UpdateCheckDialog::initProxySettings()
 {
     if ( _settings->getValueByName("ProxyEnabled") == true ) {
-
+		QString proxyHostName = _settings->getValueByName("ProxyHostName").toString();
+		int proxyPort = _settings->getValueByName("ProxyPort").toInt();
+		QString proxyUserName = _settings->getValueByName("ProxyUserName").toString();
+		QString proxyPassword = _settings->getValueByName("ProxyPassword").toString();
+		_networkAccessManager->setProxy(QNetworkProxy(QNetworkProxy::Socks5Proxy, proxyHostName, proxyPort, proxyUserName, proxyPassword));
     }
     else {
-
+		_networkAccessManager->setProxy(QNetworkProxy());
     }
 }
