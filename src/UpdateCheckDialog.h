@@ -50,6 +50,7 @@ private slots:
     void checkResultsOfFetchedPadXMLFile(QNetworkReply *networkReply);
     void handleUpdateCheckDialogButtonClicked(QAbstractButton *clickedButton);
     void updateUpdateCheckProgressBar();
+    void onProxySettingsChanged();
 
 private:
 	Ui::UpdateCheckDialog *_updateCheckDialogForm;

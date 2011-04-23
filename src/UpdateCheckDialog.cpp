@@ -64,6 +64,12 @@ UpdateCheckDialog::UpdateCheckDialog(QSharedPointer<UiGuiSettings> settings, QWi
     // Connect the dialogs buttonbox with a button click handler.
     connect( _updateCheckDialogForm->buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(handleUpdateCheckDialogButtonClicked(QAbstractButton*)) );
 
+    settings->registerObjectSlot(this, "onProxySettingsChanged()", "ProxyEnabled");
+    settings->registerObjectSlot(this, "onProxySettingsChanged()", "ProxyHostName");
+    settings->registerObjectSlot(this, "onProxySettingsChanged()", "ProxyPort");
+    settings->registerObjectSlot(this, "onProxySettingsChanged()", "ProxyUserName");
+    settings->registerObjectSlot(this, "onProxySettingsChanged()", "ProxyPassword");
+
     _settings = settings;
 
     // This dialog is always modal.
@@ -295,4 +301,14 @@ int UpdateCheckDialog::convertVersionStringToNumber(QString versionString) {
     }
 
     return versionInteger;
+}
+
+void UpdateCheckDialog::onProxySettingsChanged()
+{
+    if ( _settings->getValueByName("ProxyEnabled") == true ) {
+
+    }
+    else {
+
+    }
 }
