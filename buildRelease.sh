@@ -354,7 +354,7 @@ fi
    
 
 if [ "$ext" = ".exe" ]; then
-    indenters="$indenters libiconv-2.dll libintl-2.dll"
+    indenters="$indenters cygwin1.dll libiconv-2.dll libintl-2.dll"
 fi
 for i in $indenters
 do
