@@ -1,10 +1,9 @@
 #!/usr/bin/ruby -w
 
-# NEED_SYMLINK
 
 =begin
 /***************************************************************************
- *   Copyright (C) 2006, Paul Lutus                                        *
+ *   Copyright (C) 2008, Paul Lutus                                        *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -23,164 +22,201 @@
  ***************************************************************************/
 =end
 
-PVERSION = "Version 2.2, 10/29/2007"
+PVERSION = "Version 2.9, 10/24/2008"
 
-$tabSize = 3
-$tabStr = " "
+module RBeautify
 
-# indent regexp tests
+   # user-customizable values
 
-$indentExp = [
-   /^module\b/,
-   /^if\b/,
-   /(=\s*|^)until\b/,
-   /(=\s*|^)for\b/,
-   /^unless\b/,
-   /(=\s*|^)while\b/,
-   /(=\s*|^)begin\b/,
-   /(^| )case\b/,
-   /\bthen\b/,
-   /^class\b/,
-   /^rescue\b/,
-   /^def\b/,
-   /\bdo\b/,
-   /^else\b/,
-   /^elsif\b/,
-   /^ensure\b/,
-   /\bwhen\b/,
-   /\{[^\}]*$/,
-   /\[[^\]]*$/
-]
+   RBeautify::TabStr = " "
+   RBeautify::TabSize = 3
 
-# outdent regexp tests
+   # indent regexp tests
 
-$outdentExp = [
-   /^rescue\b/,
-   /^ensure\b/,
-   /^elsif\b/,
-   /^end\b/,
-   /^else\b/,
-   /\bwhen\b/,
-   /^[^\{]*\}/,
-   /^[^\[]*\]/
-]
+   IndentExp = [
+      /^module\b/,
+      /^class\b/,
+      /^if\b/,
+      /(=\s*|^)until\b/,
+      /(=\s*|^)for\b/,
+      /^unless\b/,
+      /(=\s*|^)while\b/,
+      /(=\s*|^)begin\b/,
+      /(^| )case\b/,
+      /\bthen\b/,
+      /^rescue\b/,
+      /^def\b/,
+      /\bdo\b/,
+      /^else\b/,
+      /^elsif\b/,
+      /^ensure\b/,
+      /\bwhen\b/,
+      /\{[^\}]*$/,
+      /\[[^\]]*$/
+   ]
 
-def makeTab(tab)
-   return (tab < 0)?"":$tabStr * $tabSize * tab
-end
+   # outdent regexp tests
 
-def addLine(line,tab)
-   line.strip!
-   line = makeTab(tab)+line if line.length > 0
-   return line + "\n"
-end
+   OutdentExp = [
+      /^rescue\b/,
+      /^ensure\b/,
+      /^elsif\b/,
+      /^end\b/,
+      /^else\b/,
+      /\bwhen\b/,
+      /^[^\{]*\}/,
+      /^[^\[]*\]/
+   ]
 
-def beautifyRuby(path)
-   commentBlock = false
-   programEnd = false
-   multiLineArray = Array.new
-   multiLineStr = ""
-   tab = 0
-   source = File.read(path)
-   dest = ""
-   source.split("\n").each do |line|
-      if(!programEnd)
-         # detect program end mark
-         if(line =~ /^__END__$/)
-            programEnd = true
-         else
-            # combine continuing lines
-            if(!(line =~ /^\s*#/) && line =~ /[^\\]\\\s*$/)
-               multiLineArray.push line
-               multiLineStr += line.sub(/^(.*)\\\s*$/,"\\1")
-               next
-            end
+   def RBeautify.rb_make_tab(tab)
+      return (tab < 0)?"":TabStr * TabSize * tab
+   end
 
-            # add final line
-            if(multiLineStr.length > 0)
-               multiLineArray.push line
-               multiLineStr += line.sub(/^(.*)\\\s*$/,"\\1")
-            end
+   def RBeautify.rb_add_line(line,tab)
+      line.strip!
+      line = rb_make_tab(tab) + line if line.length > 0
+      return line
+   end
 
-            tline = ((multiLineStr.length > 0)?multiLineStr:line).strip
-            if(tline =~ /^=begin/)
-               commentBlock = true
-            end
-         end
-      end
-      if(commentBlock || programEnd)
-         # add the line unchanged
-         dest += line + "\n"
-      else
-         commentLine = (tline =~ /^#/)
-         if(!commentLine)
-            # throw out sequences that will
-            # only sow confusion
-            while tline.gsub!(/\{[^\{]*?\}/,"")
-            end
-            while tline.gsub!(/\[[^\[]*?\]/,"")
-            end
-            while tline.gsub!(/'.*?'/,"")
-            end
-            while tline.gsub!(/".*?"/,"")
-            end
-            while tline.gsub!(/\`.*?\`/,"")
-            end
-            while tline.gsub!(/\([^\(]*?\)/,"")
-            end
-            while tline.gsub!(/\/.*?\//,"")
-            end
-            while tline.gsub!(/%r(.).*?\1/,"")
-            end
-            # delete end-of-line comments
-            tline.sub!(/#[^\"]+$/,"")
-            # convert quotes
-            tline.gsub!(/\\\"/,"'")
-            $outdentExp.each do |re|
-               if(tline =~ re)
-                  tab -= 1
-                  break
+   def RBeautify.beautify_string(source, path = "")
+      comment_block = false
+      in_here_doc = false
+      here_doc_term = ""
+      program_end = false
+      multiLine_array = []
+      multiLine_str = ""
+      tab = 0
+      output = []
+      source.each do |line|
+         line.chomp!
+         if(!program_end)
+            # detect program end mark
+            if(line =~ /^__END__$/)
+               program_end = true
+            else
+               # combine continuing lines
+               if(!(line =~ /^\s*#/) && line =~ /[^\\]\\\s*$/)
+                  multiLine_array.push line
+                  multiLine_str += line.sub(/^(.*)\\\s*$/,"\\1")
+                  next
+               end
+
+               # add final line
+               if(multiLine_str.length > 0)
+                  multiLine_array.push line
+                  multiLine_str += line.sub(/^(.*)\\\s*$/,"\\1")
+               end
+
+               tline = ((multiLine_str.length > 0)?multiLine_str:line).strip
+               if(tline =~ /^=begin/)
+                  comment_block = true
+               end
+               if(in_here_doc)
+                  in_here_doc = false if tline =~ %r{\s*#{here_doc_term}\s*}
+               else # not in here_doc
+                  if tline =~ %r{=\s*<<}
+                     here_doc_term = tline.sub(%r{.*=\s*<<-?\s*([_|\w]+).*},"\\1")
+                     in_here_doc = here_doc_term.size > 0
+                  end
                end
             end
          end
-         if (multiLineArray.length > 0)
-            multiLineArray.each do |ml|
-               dest += addLine(ml,tab)
-            end
-            multiLineArray.clear
-            multiLineStr = ""
+         if(comment_block || program_end || in_here_doc)
+            # add the line unchanged
+            output << line
          else
-            dest += addLine(line,tab)
-         end
-         if(!commentLine)
-            $indentExp.each do |re|
-               if(tline =~ re && !(tline =~ /\s+end\s*$/))
-                  tab += 1
-                  break
+            comment_line = (tline =~ /^#/)
+            if(!comment_line)
+               # throw out sequences that will
+               # only sow confusion
+               while tline.gsub!(/\{[^\{]*?\}/,"")
+               end
+               while tline.gsub!(/\[[^\[]*?\]/,"")
+               end
+               while tline.gsub!(/'.*?'/,"")
+               end
+               while tline.gsub!(/".*?"/,"")
+               end
+               while tline.gsub!(/\`.*?\`/,"")
+               end
+               while tline.gsub!(/\([^\(]*?\)/,"")
+               end
+               while tline.gsub!(/\/.*?\//,"")
+               end
+               while tline.gsub!(/%r(.).*?\1/,"")
+               end
+               # delete end-of-line comments
+               tline.sub!(/#[^\"]+$/,"")
+               # convert quotes
+               tline.gsub!(/\\\"/,"'")
+               OutdentExp.each do |re|
+                  if(tline =~ re)
+                     tab -= 1
+                     break
+                  end
+               end
+            end
+            if (multiLine_array.length > 0)
+               multiLine_array.each do |ml|
+                  output << rb_add_line(ml,tab)
+               end
+               multiLine_array.clear
+               multiLine_str = ""
+            else
+               output << rb_add_line(line,tab)
+            end
+            if(!comment_line)
+               IndentExp.each do |re|
+                  if(tline =~ re && !(tline =~ /\s+end\s*$/))
+                     tab += 1
+                     break
+                  end
                end
             end
          end
+         if(tline =~ /^=end/)
+            comment_block = false
+         end
       end
-      if(tline =~ /^=end/)
-         commentBlock = false
+      error = (tab != 0)
+      STDERR.puts "Error: indent/outdent mismatch: #{tab}." if error
+      return output.join("\n") + "\n",error
+   end # beautify_string
+
+   def RBeautify.beautify_file(path)
+      error = false
+      if(path == '-') # stdin source
+         source = STDIN.read
+         dest,error = beautify_string(source,"stdin")
+         print dest
+      else # named file source
+         source = File.read(path)
+         dest,error = beautify_string(source,path)
+         if(source != dest)
+            # make a backup copy
+            File.open(path + "~","w") { |f| f.write(source) }
+            # overwrite the original
+            File.open(path,"w") { |f| f.write(dest) }
+         end
       end
-   end
-   if(source != dest)
-      # make a backup copy
-      File.open(path + "~","w") { |f| f.write(source) }
-      # overwrite the original
-      File.open(path,"w") { |f| f.write(dest) }
-   end
-   if(tab != 0)
-      STDERR.puts "#{path}: Indentation error: #{tab}"
-   end
-end
+      return error
+   end # beautify_file
 
-if(!ARGV[0])
-   STDERR.puts "usage: Ruby filenames to beautify."
-   exit 0
-end
+   def RBeautify.main
+      error = false
+      if(!ARGV[0])
+         STDERR.puts "usage: Ruby filenames or \"-\" for stdin."
+         exit 0
+      end
+      ARGV.each do |path|
+         error = (beautify_file(path))?true:error
+      end
+      error = (error)?1:0
+      exit error
+   end # main
+end # module RBeautify
 
-ARGV.each do |path|
-   beautifyRuby(path)
+# if launched as a standalone program, not loaded as a module
+if __FILE__ == $0
+   RBeautify.main
 end

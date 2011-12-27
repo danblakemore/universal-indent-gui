@@ -4,12 +4,7 @@ BEGIN {
 	puts "a block i have never seen used"
 }
 entry = Post.update(params["id"],{:title => params["title"],:post => params['post'],:context => params["context"],:creator => session[:creator]})
-moo = if false
-	"Sdf"
-elsif true
-	"df"
-end
-defintion = "moo"
+definition = "moo"
 puts moo
 moo = case 3
 when 2
