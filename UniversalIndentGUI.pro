@@ -16,10 +16,10 @@ INCLUDEPATH += src
 CONFIG += debug_and_release
 
 macx {
- CONFIG += x86 x86_64 sdk
- # qscintilla needs to be build with:
+ # If using as framework qscintilla needs to be build with:
  # qmake -spec macx-g++ CONFIG+=sdk CONFIG+=x86_64 CONFIG+=x86 CONFIG+=lib_bundle qscintilla.pro && make && sudo make install
- LIBS += -framework qscintilla2
+ #LIBS += -framework qscintilla2
+ LIBS += -lqscintilla2
  ICON = resources/UniversalIndentGUI.icns
 }
 else {
@@ -31,8 +31,11 @@ CONFIG(release, debug|release) {
 win32:pipe2nul = ">NUL"
 unix:pipe2nul = "&> /dev/null"
 macx:pipe2nul = "&> /dev/null"
-message(Updating language files)
 
+
+# Language file processing
+##########################
+message(Updating language files)
 lupdate = lupdate
 unix:lupdate = lupdate-qt4
 macx:lupdate = lupdate
@@ -68,22 +71,22 @@ system($${lrelease} ./translations/universalindent_zh_TW.ts -qm ./translations/u
 # Copy Qts own translation files to the local translation directory
 message ( Copy Qts own translation files to the local translation directory )
 qtTranslationInstallDir = $$[QT_INSTALL_TRANSLATIONS]
-win32:qtTranslationInstallDir = $$replace(qtTranslationInstallDir, /, \)
+win32:qtTranslationInstallDir = $$replace(qtTranslationInstallDir, /, \\)
 unix:system(cp $${qtTranslationInstallDir}/qt_de.qm ./translations/ $$pipe2nul)
 unix:system(cp $${qtTranslationInstallDir}/qt_fr.qm ./translations/ $$pipe2nul)
 unix:system(cp $${qtTranslationInstallDir}/qt_ja.qm ./translations/ $$pipe2nul)
 unix:system(cp $${qtTranslationInstallDir}/qt_ru.qm ./translations/ $$pipe2nul)
 unix:system(cp $${qtTranslationInstallDir}/qt_uk.qm ./translations/ $$pipe2nul)
 unix:system(cp $${qtTranslationInstallDir}/qt_zh_TW.qm ./translations/ $$pipe2nul)
-win32:system(copy $${qtTranslationInstallDir}\qt_de.qm .\translations\ /Y $$pipe2nul)
-win32:system(copy $${qtTranslationInstallDir}\qt_fr.qm .\translations\ /Y $$pipe2nul)
-win32:system(copy $${qtTranslationInstallDir}\qt_ja.qm .\translations\ /Y $$pipe2nul)
-win32:system(copy $${qtTranslationInstallDir}\qt_ru.qm .\translations\ /Y $$pipe2nul)
-win32:system(copy $${qtTranslationInstallDir}\qt_uk.qm .\translations\ /Y $$pipe2nul)
-win32:system(copy $${qtTranslationInstallDir}\qt_zh_TW.qm .\translations\ /Y $$pipe2nul)
+win32:system(copy $${qtTranslationInstallDir}\\qt_de.qm .\\translations\\ /Y $$pipe2nul)
+win32:system(copy $${qtTranslationInstallDir}\\qt_fr.qm .\\translations\\ /Y $$pipe2nul)
+win32:system(copy $${qtTranslationInstallDir}\\qt_ja.qm .\\translations\\ /Y $$pipe2nul)
+win32:system(copy $${qtTranslationInstallDir}\\qt_ru.qm .\\translations\\ /Y $$pipe2nul)
+win32:system(copy $${qtTranslationInstallDir}\\qt_uk.qm .\\translations\\ /Y $$pipe2nul)
+win32:system(copy $${qtTranslationInstallDir}\\qt_zh_TW.qm .\\translations\\ /Y $$pipe2nul)
 
-# Defining files that shall be installed
-########################################
+# Defining files that shall be installed when calling "make install"
+####################################################################
 # Create and install man page
 exists( ./doc/universalindentgui.1* ) {
     unix:system(rm ./doc/universalindentgui.1*)
@@ -125,44 +128,6 @@ unix:INSTALLS += target \
                  documentation
 
 }
-
-#######################
-# remove linker flag "-mthreads" so the mingwm10.dll is no longer needed
-#######################
-win32 {
-    message ( remove linker flag "-mthreads" so the mingwm10.dll is no longer needed )
-    #message(old flags:$${QMAKE_LFLAGS})
-    parameters = $${QMAKE_LFLAGS}
-    newFlags =
-    for(parameter, parameters) {
-        !contains(parameter, -mthreads) {
-            newFlags += $${parameter}
-        }
-    }
-    QMAKE_LFLAGS = $${newFlags}
-    #message(new flags:$${QMAKE_LFLAGS})
-
-    parameters = $${QMAKE_LFLAGS_EXCEPTIONS_ON}
-    newFlags =
-    for(parameter, parameters) {
-        !contains(parameter, -mthreads) {
-            newFlags += $${parameter}
-        }
-    }
-    QMAKE_LFLAGS_EXCEPTIONS_ON = $${newFlags}
-
-    parameters = $${QMAKE_CXXFLAGS_EXCEPTIONS_ON}
-    newFlags =
-    for(parameter, parameters) {
-        !contains(parameter, -mthreads) {
-            newFlags += $${parameter}
-        }
-    }
-    QMAKE_CXXFLAGS_EXCEPTIONS_ON = $${newFlags}
-}
-#######################
-
-
 
 CONFIG(debug, debug|release) {
     DESTDIR = ./debug
@@ -224,3 +189,13 @@ SOURCES += src/AboutDialog.cpp \
 
 RESOURCES += resources/Icons.qrc
 RC_FILE    = resources/programicon.rc
+
+
+
+#message(Creating symbolic links within target dir for debugging)
+#macx:system(ln -s $$PWD/config ./debug/config)
+#macx:system(ln -s $$PWD/indenters ./debug/indenters)
+#macx:system(ln -s $$PWD/translations ./debug/translations)
+#macx:system(ln -s $$PWD/config ./release/config)
+#macx:system(ln -s $$PWD/indenters ./release/indenters)
+#macx:system(ln -s $$PWD/translations ./release/translations)
