@@ -56,6 +56,10 @@
 #include <Windows.h>
 #endif
 
+// Avoid unused parameter warnings by this template
+template<typename T>
+inline void UNUSED_PARAMETER_WARNING_AVOID(T){}
+
 //! \defgroup grp_Indenter All concerning handling of the indenter.
 
 /*!
@@ -1721,6 +1725,7 @@ void IndentHandler::updateDrawing() {
 }
 
 void IndentHandler::wheelEvent( QWheelEvent *event ) {
+	UNUSED_PARAMETER_WARNING_AVOID(event);
 #ifdef UNIVERSALINDENTGUI_NPP_EXPORTS
     QWidget::wheelEvent( event );
     updateDrawing();

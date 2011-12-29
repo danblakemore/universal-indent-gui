@@ -425,8 +425,8 @@ bool UiGuiSettings::registerObjectSlot(QObject *obj, const QString &slotName, co
     int indexOfMethod = metaObject->indexOfMethod( qPrintable(normalizedSlotName) );
     if ( connectSuccess && indexOfMethod > -1 ) {
         QMetaMethod mMethod = metaObject->method(indexOfMethod);
-        QMetaMethod::Access access = mMethod.access();
-        QMetaMethod::MethodType methType = mMethod.methodType();
+        //QMetaMethod::Access access = mMethod.access();
+        //QMetaMethod::MethodType methType = mMethod.methodType();
 
         // Since the method can at maximum be invoked with the setting value as argument,
         // only methods taking max one argument are allowed.
@@ -454,7 +454,7 @@ bool UiGuiSettings::registerObjectSlot(QObject *obj, const QString &slotName, co
     If only \a obj is given, all to this object registered slot-setting connections are unregistered.
  */
 void UiGuiSettings::unregisterObjectSlot(QObject *obj, const QString &slotName, const QString &settingName) {
-    const QMetaObject *metaObject = obj->metaObject();
+    //const QMetaObject *metaObject = obj->metaObject();
     QString normalizedSlotName = QMetaObject::normalizedSignature( qPrintable(slotName) );
     QMutableMapIterator<QObject*, QStringList> it(_registeredObjectSlots);
     while (it.hasNext()) {
@@ -523,8 +523,8 @@ void UiGuiSettings::setValueByName(const QString &settingName, const QVariant &v
                 int indexOfMethod = metaObject->indexOfMethod( qPrintable(slotName) );
                 if ( indexOfMethod > -1 ) {
                     QMetaMethod mMethod = metaObject->method(indexOfMethod);
-                    QMetaMethod::Access access = mMethod.access();
-                    QMetaMethod::MethodType methType = mMethod.methodType();
+                    //QMetaMethod::Access access = mMethod.access();
+                    //QMetaMethod::MethodType methType = mMethod.methodType();
 
                     bool success = false;
 
