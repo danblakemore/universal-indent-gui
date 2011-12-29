@@ -22,10 +22,11 @@
 
 #include <QDialog>
 
+#include "UiGuiSettings.h"
+
 namespace Ui {
 	class SettingsDialog;
 }
-class UiGuiSettings;
 
 
 class UiGuiSettingsDialog : public QDialog

@@ -22,7 +22,8 @@
 
 #include <QMainWindow>
 
-class UiGuiSettings;
+#include  "UiGuiSettings.h"
+
 class UiGuiSettingsDialog;
 class AboutDialog;
 class AboutDialogGraphicsView;
