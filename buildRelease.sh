@@ -74,6 +74,7 @@ else
             exit 1
             QTDIR=/Users/thomas/Documents/Informatik/qt-static-release
         fi
+        QTDIR=`echo $TEST | sed 's/.* //'`
     fi
 fi
 
@@ -85,9 +86,11 @@ export QTDIR
 PATH=$QTDIR/bin:$PATH
 export PATH
 export QMAKESPEC
+echo "QTDIR = $QTDIR"
+echo "QMAKESPEC = $QMAKESPEC"
+echo "pwd = `pwd`"
 echo "Done"
 echo ""
-
 
 echo "Delete old target dir and create new one"
 echo "----------------------------------------"
@@ -312,6 +315,7 @@ if [ "$targetSystem" = "macx" ]; then
     echo "Executing macdeployqt ./release/$targetName.app"
     echo "-----------------------------------------------"
     macdeployqt ./release/$targetName.app
+    cp -rf $QTDIR/Resources/qt_menu.nib ./release/UniversalIndentGUI.app/Contents/Resources/
     echo "Done"
     echo ""
 fi
@@ -349,12 +353,12 @@ echo "-----------------------------------------------------------------"
 indenters="astyle$ext astyle.html uncrustify$ext uncrustify.txt xmlindent$ext xmlindent.txt"
 # For win32 and Linux add some indenters that do not run or exist under MaxOSX
 if [ "$targetSystem" = "win32" ] || [ "$targetSystem" = "linux" ]; then
-    indenters="$indenters bcpp$ext bcpp.txt csstidy$ext f90ppr.exe f90ppr.txt greatcode.exe greatcode.txt htb.exe htb.html indent$ext indent.html tidy$ext tidy.html"
+    indenters="$indenters bcpp$ext bcpp.txt csstidy$ext f90ppr.exe f90ppr.txt greatcode.exe greatcode.txt htb.exe htb.html indent$ext indent.html phpCB.html phpCB.exe psti_license.txt psti_manual.html psti.exe tidy$ext tidy.html vbsbeaut_keywords_indent.txt vbsbeaut_keywords.txt vbsbeaut.bat vbsbeaut.exe"
 fi
    
 
 if [ "$ext" = ".exe" ]; then
-    indenters="$indenters cygwin1.dll libiconv-2.dll libintl-2.dll"
+    indenters="$indenters libiconv-2.dll libintl-2.dll"
 fi
 for i in $indenters
 do
@@ -366,6 +370,36 @@ do
 done
 echo "Done"
 echo ""
+
+if [ "$ext" = ".exe" ]; then
+	echo "Copying the Qt Dlls to the target dir"
+	echo "-------------------------------------"
+
+    qtdlls="QtCore4.dll QtGui4.dll QtNetwork4.dll QtScript4.dll qscintilla2.dll"
+    for i in $qtdlls
+	do
+	    cp $QTDIR/lib/$i ./$targetDir/ &> /dev/null
+	    if [ $? -gt 0 ]; then
+	        echo "WARNING: Could not copy Qt dll \"$i\"!"
+	        WARNINGOCCURRED=true
+	    fi
+	done
+	
+	echo "Copying the mingw Dlls to the target dir"
+	echo "----------------------------------------"
+
+    qtdlls="mingwm10.dll libgcc_s_dw2-1.dll"
+    for i in $qtdlls
+	do
+	    cp $QTDIR/../../../../mingw/bin/$i ./$targetDir/ &> /dev/null
+	    if [ $? -gt 0 ]; then
+	        echo "WARNING: Could not copy Qt dll \"$i\"!"
+	        WARNINGOCCURRED=true
+	    fi
+	done
+	echo "Done"
+	echo ""
+fi
 
 
 echo "Copying the translation binaries to the target translation dir"
@@ -390,7 +424,7 @@ fi
 
 echo "Copying the script based indenters to the target indenters dir"
 echo "--------------------------------------------------------------"
-indenters="hindent hindent.html JsDecoder.js perltidy PerlTidyLib.pm phpStylist.php phpStylist.txt pindent.py pindent.txt rbeautify.rb ruby_formatter.rb shellindent.awk"
+indenters="hindent hindent.html JsDecoder.js perltidy phpStylist.php phpStylist.txt pindent.py pindent.txt rbeautify.rb ruby_formatter.rb shellindent.awk"
 for i in $indenters
 do
     cp ./indenters/$i ./$targetDir/indenters/ &> /dev/null
