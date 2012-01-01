@@ -13,7 +13,7 @@ Depends: ${shlibs:Depends}, ${misc:Depends}
 Recommends: astyle, bcpp, csstidy, hindent, indent, perltidy, tidy, uncrustify,
  xmlindent
 Description: GUI frontend for several code beautifiers
- UniversalIndentGui is a GUI fontend for several code beautifiers, currently
+ UniversalIndentGUI is a GUI frontend for several code beautifiers, currently
  supporting:
   * Artistic Styler
   * BCPP
@@ -31,15 +31,17 @@ Description: GUI frontend for several code beautifiers
   * PHP Code Beautifier
   * PHP Stylist
   * pindent
+  * Pl/Sql tidy
   * Ruby Beautify
   * Ruby Formatter
   * Shell Indent
   * (HTML) Tidy
   * Uncrustify
+  * VBSBeautifier
   * XML Indent
  .
- UniversalIndentGui allows you to tune a beautifier's configuration and see
+ UniversalIndentGUI allows you to tune a beautifier's configuration and see
  how the changes affects a source example live. It is especially useful to
  compare different beautifiers when you have to choose one of them.
- Currently not supported indenters can be easyly added by creating a
+ Currently not supported indenters can be easily added by creating a
  configuration file for them.
