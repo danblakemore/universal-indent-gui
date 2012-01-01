@@ -1,4 +1,4 @@
-.TH universalindentgui 1 "2009-07-16" "1.1.0" "UniversalIndentGUI"
+.TH universalindentgui 1 "2012-01-01" "1.2.0" "UniversalIndentGUI"
 
 .SH NAME 
 universalindentgui \- GUI frontend for several code beautifiers
@@ -12,7 +12,7 @@ Optional the as parameter given
 can be opened at start.
 
 .SH DESCRIPTION 
-\fBUniversalIndentGUI\fP is a GUI fontend for nearly any code beautifier. It allows you to comfortably change each parameter of a beautifier and directly see how the source code is affected done by a live preview. Many free available code beautifier, formatter and indenter are currently supported, like GNU Indent, Uncrustify, Artistic Styler, PHP Stylist, Ruby Beautify, HTML Tidy and many other (look at features for complete list). Currently not supported indenters can be easyly added by creating a configuration file for them.
+\fBUniversalIndentGUI\fP is a GUI frontend for nearly any code beautifier. It allows you to comfortably change each parameter of a beautifier and directly see how the source code is affected done by a live preview. Many free available code beautifier, formatter and indenter are currently supported, like GNU Indent, Uncrustify, Artistic Styler, PHP Stylist, Ruby Beautify, HTML Tidy and many other (look at features for complete list). Currently not supported indenters can be easily added by creating a configuration file for them.
 
 .SH BUGS 
 Currently known bugs can be browsed on http://sf.net/tracker2/?func=browse&group_id=167482&atid=843127
