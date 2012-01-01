@@ -1,6 +1,8 @@
-2011-04-xx Version 1.2.0
+2012-01-01 Version 1.2.0
 [add] The Linux version has a menu entry in the application development menu now.
 [add] The Linux version has a mime type association to some code files now, so that UiGUI is available as "open with".
+[add] Added support for the Visual Basic beautifier VBSBeautifier.
+[add] Added support for the SQL beautifier Pl/Sql tidy.
 [add] Updated the Artistic Style configuration to support Artistic Style version 2.02.1.
 [add] Updated the Uncrustify configuration to support Uncrustify version 0.59.
 [add] Updated the PerlTidy configuration to support PerlTidy version 1.74.
