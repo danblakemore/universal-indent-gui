@@ -65,14 +65,12 @@ fi
 if [ "$targetSystem" = "win32" ] && [ ! -n "$2" ]; then
     echo "The QTDIR has not been set via command line parameter!"
     exit 1
-    QTDIR=/f/Qt/qt.4.4.3_gpl_static
 else
     if [ "$targetSystem" = "macx" ] && [ ! -n "$2" ]; then
         TEST=`qmake -v`
         if [ "$?" -ne "0" ]; then
             echo "The QTDIR has not been set via command line parameter!"
             exit 1
-            QTDIR=/Users/thomas/Documents/Informatik/qt-static-release
         fi
         QTDIR=`echo $TEST | sed 's/.* //'`
     fi
