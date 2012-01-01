@@ -13,7 +13,7 @@
 [fix] Bug ID 2942381: When loading an indenter configuration file, the settings displayed in the docking widget were correctly updated, but the code wasn't.
 [fix] Bug ID 2135872: A zombie process kept on running if UiGUI was quit during the update check in background if no internet connection is available.
 [fix] Bug ID 3175027: Uncrustify had wrong pop-up comments for two check-boxes.
-[fix] Bug ID 2916163: The proxy settings a properly used and applied now.
+[fix] Bug ID 2916163: The proxy settings are properly used and applied now.
 [fix] Made the JsDecoder integration be compatible with recent Qt versions.
 [change] Changed the created shell scripts indenter config file reference. Now each created shell script has a corresponding config file being created in the same dir as the shell script, with the same name but different suffix. But since the config file is referenced by "./", when calling the script the working directory must be the same as the directory containing the config file.
 [change] Using TCLAP as command line parser instead of own command line parsing.
