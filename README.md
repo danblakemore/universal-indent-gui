@@ -21,7 +21,7 @@ Thus UniversalIndentGUI is open for nearly any new indenter and programming lang
 *   Live Preview: change an indenter parameter and directly see how your formatted code will look like.
 *   Support for nearly any existing indenter possible. Currently supported are:
 
-->![UiGUI Screenshot](doc/images/screenshot8.jpg)<-
+![UiGUI Screenshot](doc/images/screenshot8.jpg)
 
 *   [Artistic Styler](http://astyle.sourceforge.net/)
 *   [BCPP](http://invisible-island.net/bcpp/)
@@ -57,7 +57,7 @@ Reset to indenters default parameters.
 
 By the above named indenters currently supported programming languages:
 
-->![UiGUI Screenshot](doc/images/screenshot6.jpg)<-
+![UiGUI Screenshot](doc/images/screenshot6.jpg)
 
 *   C, C++
 *   C#
@@ -134,7 +134,8 @@ But if you'd like to build UiGUI from source, follow these steps:
 2.  Download, unpack, compile and install
             [QScintilla](http://www.riverbankcomputing.com/software/qscintilla/download)
             >= 2.2.
-3.  Checkout UiGUI: svn co https://universalindent.svn.sourceforge.net/svnroot/universalindent/trunk universalindentgui
+3.  Checkout UiGUI: git clone git@github.com:danblakemore/universal-indent-gui.git  
+    ~~svn co https://universalindent.svn.sourceforge.net/svnroot/universalindent/trunk universalindentgui~~
 4.  In the checked out directory run "qmake UniversalIndentGUI.pro".
 5.  Run "make release".
 6.  Install it
@@ -187,7 +188,7 @@ This list shows some selected functionalities that Qt offers and that I use with
 
 Here I'd like to say "thank you" to all those guys, who helped me improving UiGUI. May it be doing some translations, creating packages for Linux, letting me know about bugs or ways to improve or just saying that they found my application helpful and that they like it. So:
 
-->**Thank you all out there!!**<-
+**Thank you all out there!!**
 
 ### Disclaimer
 
