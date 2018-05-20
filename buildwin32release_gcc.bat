@@ -55,7 +55,7 @@ echo.
 
 echo Copying the indenter executables and example file to the release indenters dir
 echo ------------------------------------------------------------------------------
-FOR %%A IN ( astyle.exe, astyle.html, bcpp.exe, bcpp.txt, csstidy.exe, gc.exe, gc.txt, indent.exe, libiconv-2.dll, libintl-2.dll, indent.html, JsDecoder.js, perltidy, PerlTidyLib.pm, phpStylist.php, phpStylist.txt, rbeautify.rb, ruby_formatter.rb, shellindent.awk, tidy.exe, tidy.html, uncrustify.exe, uncrustify.txt, xmlindent.exe, xmlindent.txt ) DO (
+FOR %%A IN ( astyle.exe, astyle.html, bcpp.exe, bcpp.txt, clang-format.exe csstidy.exe, gc.exe, gc.txt, indent.exe, libiconv-2.dll, libintl-2.dll, indent.html, JsDecoder.js, perltidy, PerlTidyLib.pm, phpStylist.php, phpStylist.txt, rbeautify.rb, ruby_formatter.rb, shellindent.awk, tidy.exe, tidy.html, uncrustify.exe, uncrustify.txt, xmlindent.exe, xmlindent.txt ) DO (
     if not exist .\indenters\%%A (
         echo WARNING!! File .\indenters\%%A not found!
 		set warningsoccurred=true

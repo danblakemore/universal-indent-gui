@@ -348,7 +348,7 @@ echo ""
 echo "Copying the indenter executable files to the target indenters dir"
 echo "-----------------------------------------------------------------"
 # This list does not include script based indenters. These are copied somewhere below.
-indenters="astyle$ext astyle.html uncrustify$ext uncrustify.txt xmlindent$ext xmlindent.txt"
+indenters="astyle$ext astyle.html clang-format$ext uncrustify$ext uncrustify.txt xmlindent$ext xmlindent.txt"
 # For win32 and Linux add some indenters that do not run or exist under MaxOSX
 if [ "$targetSystem" = "win32" ] || [ "$targetSystem" = "linux" ]; then
     indenters="$indenters bcpp$ext bcpp.txt csstidy$ext f90ppr.exe f90ppr.txt greatcode.exe greatcode.txt htb.exe htb.html indent$ext indent.html phpCB.html phpCB.exe psti_license.txt psti_manual.html psti.exe tidy$ext tidy.html vbsbeaut_keywords_indent.txt vbsbeaut_keywords.txt vbsbeaut.bat vbsbeaut.exe"
