@@ -99,7 +99,7 @@ TSLogger::TSLogger(int verboseLevel) : QDialog() {
 
     Only messages whos \a type have a higher priority than the set verbose level are logged.
  */
-void TSLogger::messageHandler(QtMsgType type, const char *msg) {
+void TSLogger::messageHandler(QtMsgType type, const QMessageLogContext &,  const QString &msg) {
     if ( _instance == NULL )
         _instance = TSLogger::getInstance();
 
@@ -131,15 +131,10 @@ void TSLogger::messageHandler(QtMsgType type, const char *msg) {
             break;
         case QtFatalMsg :
             message += " <span style=\"font-weight:bold; color:#D60000;\">Fatal:</span> ";
-        // This one is no Qt message type, but can be used to send info messages to the log
-        // by calling TSLogger::messageHandler() directly.
-        case TSLoggerInfoMsg :
-            message += " <span style=\"font-weight:bold; color:darkgray;\">Info:</span> ";
-            break;
     }
 
     // Append the to UTF-8 back converted message parameter.
-    message += QString::fromUtf8( msg ) + "<br/>\n";
+    message += msg + "<br/>\n";
 
     // Write the message to the log windows text edit.
     _instance->_TSLoggerDialogForm->logTextEdit->append( message );

@@ -1,6 +1,8 @@
 TEMPLATE = app
-QT += network
-QT += script
+QT += network \
+      script \
+      widgets \
+      printsupport
 
 unix:TARGET = universalindentgui
 win32:TARGET = UniversalIndentGUI
@@ -23,7 +25,7 @@ macx {
  ICON = resources/UniversalIndentGUI.icns
 }
 else {
- LIBS += -lqscintilla2
+ LIBS += -lqscintilla2_qt5
 }
 
 CONFIG(release, debug|release) {
@@ -37,10 +39,10 @@ macx:pipe2nul = "&> /dev/null"
 ##########################
 message(Updating language files)
 lupdate = lupdate
-unix:lupdate = lupdate-qt4
+unix:lupdate = lupdate-qt5
 macx:lupdate = lupdate
 lrelease = lrelease
-unix:lrelease = lrelease-qt4
+unix:lrelease = lrelease-qt5
 macx:lrelease = lrelease
 # Update translation files
 message ( Updating universalindent.ts )

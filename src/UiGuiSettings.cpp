@@ -214,7 +214,7 @@ bool UiGuiSettings::registerObjectProperty( QObject *obj, const QString &propert
             QMetaMethod signal = mProp.notifySignal();
             //QString teststr = qPrintable(SIGNAL() + QString(signal.signature()));
             // The command "SIGNAL() + QString(signal.signature())" assembles the signal methods signature to a valid Qt SIGNAL.
-            connectSuccess = connect(obj, qPrintable(SIGNAL() + QString(signal.signature())), this, SLOT(handleObjectPropertyChange()));
+            connectSuccess = connect(obj, qPrintable(SIGNAL() + QString(signal.methodSignature())), this, SLOT(handleObjectPropertyChange()));
         }
 
         if ( connectSuccess ) {
@@ -397,7 +397,7 @@ void UiGuiSettings::unregisterObjectProperty(QObject *obj) {
             if ( mProp.hasNotifySignal() ) {
                 QMetaMethod signal = mProp.notifySignal();
                 // The command "SIGNAL() + QString(signal.signature())" assembles the signal methods signature to a valid Qt SIGNAL.
-                connectSuccess = disconnect(obj, qPrintable(SIGNAL() + QString(signal.signature())), this, SLOT(handleObjectPropertyChange()));
+                connectSuccess = disconnect(obj, qPrintable(SIGNAL() + QString(signal.methodSignature())), this, SLOT(handleObjectPropertyChange()));
             }
         }
         _registeredObjectProperties.remove(obj);
