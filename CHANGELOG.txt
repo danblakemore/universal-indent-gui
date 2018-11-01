@@ -131,7 +131,7 @@
 2007-11-22 Version 0.7.1 Beta
 [add] Feature Request ID 1833814 : Added support for building on MacOSX.
 [change] Feature Request ID 1836486 : Update to latest version of Uncrustify.
-[change] Update to latest version of Artistic Styler.
+[change] Update to latest version of Artistic Style.
 
 2007-11-11 Version 0.7.0 Beta
 [add] Feature Request ID 1826733 : If the called indenter returns an error message, you can chose to not show the same error again. Helpful for HTMLtidy since it often shows a long, repeating error list.
@@ -201,7 +201,7 @@
 [add] Support for the indenter Uncrustify has been added.
 [add] Feature Request ID 1651719: A binary release for Linux AMD64 is now available.
 [add] Feature Request ID 1657251: If only a win32 executable exists under Linux, wine will be used to call it. Now a test will be mad if wine is installed and an error message will show up if not installed.
-[change] Some changes mad to the Artistic Styler ini file as suggested by its author Jim Pattee.
+[change] Some changes mad to the Artistic Style ini file as suggested by its author Jim Pattee.
 [change] Put the file open button at first position in the toolbar, because normally this is the first step one would do, if he tries to find the optimal indenter and settings for himself.
 [change] The background in the about dialog has been changed to look equal on all systems.
 [change] The error message dialogs had small optical enhancements to be more readable.

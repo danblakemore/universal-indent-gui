@@ -15,7 +15,7 @@ One of the main features and the reason why this tool was (better is being) deve
 2. Features
 -----------
 - Supports the following indenters:
-  * Artistic Styler
+  * Artistic Style
   * BCPP
   * Cobol Beautifier
   * CSS Tidy
@@ -35,7 +35,7 @@ One of the main features and the reason why this tool was (better is being) deve
   * Uncrustify
 
 - By these indenters the following programming languages are supported:
-  C, C++, C#, Cobol, CSS, D, HTML, JAVA, Javascript, ObjectiveC, Pawn, Perl, PHP, Ruby, Shellscript, VALA, XML and XSL.
+  C, C++, C#, Cobol, CSS, D, HTML, Java, Javascript, ObjectiveC, Pawn, Perl, PHP, Ruby, Shellscript, VALA, XML and XSL.
 
 - Directly see how the code/text is affected by a indenter parameter
 
