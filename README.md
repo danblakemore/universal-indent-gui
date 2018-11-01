@@ -12,7 +12,7 @@ Ever got bored by that tedious "changing a parameter"-"call the indeter"-"try an
 
 Help is close to you. UniversalIndentGUI offers a live preview for setting the parameters of nearly any indenter. You change the value of a parameter and directly see how your reformatted code will look like. Save your beauty looking code or create an anywhere usable batch/shell script to reformat whole directories or just one file even out of the editor of your choice that supports external tool calls.
 
-Many free available code beautifier, formatter and indenter are currently supported, like GNU Indent, Uncrustify, Artistic Styler, PHP Stylist, Ruby Beautify, HTML Tidy and many other (look at features for complete list). Currently not supported indenters can be easyly added by creating a configuration file for them.
+Many free available code beautifier, formatter and indenter are currently supported, like GNU Indent, Uncrustify, Artistic Style, PHP Stylist, Ruby Beautify, HTML Tidy and many other (look at features for complete list). Currently not supported indenters can be easyly added by creating a configuration file for them.
 
 Thus UniversalIndentGUI is open for nearly any new indenter and programming languages. Give it a try. Perhaps you'll also find an indenter for your programming language that you even didn't know that it exists.
 
@@ -23,7 +23,7 @@ Thus UniversalIndentGUI is open for nearly any new indenter and programming lang
 
 ![UiGUI Screenshot](doc/images/screenshot8.jpg)
 
-*   [Artistic Styler](http://astyle.sourceforge.net/)
+*   [Artistic Style](http://astyle.sourceforge.net/)
 *   [BCPP](http://invisible-island.net/bcpp/)
 *   [Cobol Beautify](http://www.siber.com/sct/tools/cbl-beau.html)
 *   [CSSTidy](http://csstidy.sourceforge.net/)

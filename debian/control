@@ -15,7 +15,7 @@ Recommends: astyle, bcpp, csstidy, hindent, indent, perltidy, tidy, uncrustify,
 Description: GUI frontend for several code beautifiers
  UniversalIndentGUI is a GUI frontend for several code beautifiers, currently
  supporting:
-  * Artistic Styler
+  * Artistic Style
   * BCPP
   * Cobol Beautify
   * CSSTidy
