@@ -53,6 +53,7 @@
 #include <QUrl>
 #include <QMessageBox>
 #include <QtDebug>
+#include <QMimeData>
 
 #include <Qsci/qsciscintilla.h>
 #include <Qsci/qsciprinter.h>
@@ -410,7 +411,7 @@ QString MainWindow::loadFile(QString filePath) {
     else {
         QTextStream inSrcStrm(&inSrcFile);
         QApplication::setOverrideCursor(Qt::WaitCursor);
-        inSrcStrm.setCodec( QTextCodec::codecForName(_currentEncoding.toAscii()) );
+        inSrcStrm.setCodec( QTextCodec::codecForName(_currentEncoding.toLatin1()) );
         fileContent = inSrcStrm.readAll();
         QApplication::restoreOverrideCursor();
         inSrcFile.close();
@@ -502,7 +503,7 @@ bool MainWindow::saveasSourceFileDialog(QAction *chosenEncodingAction) {
         encoding = _encodingActionGroup->checkedAction()->text();
     }
     QTextStream outSrcStrm(&outSrcFile);
-    outSrcStrm.setCodec( QTextCodec::codecForName(encoding.toAscii()) );
+    outSrcStrm.setCodec( QTextCodec::codecForName(encoding.toLatin1()) );
     outSrcStrm << _savedSourceContent;
     outSrcFile.close();
 
@@ -536,7 +537,7 @@ bool MainWindow::saveSourceFile() {
         // Get current encoding.
         QString _currentEncoding = _encodingActionGroup->checkedAction()->text();
         QTextStream outSrcStrm(&outSrcFile);
-        outSrcStrm.setCodec( QTextCodec::codecForName(_currentEncoding.toAscii()) );
+        outSrcStrm.setCodec( QTextCodec::codecForName(_currentEncoding.toLatin1()) );
         outSrcStrm << _savedSourceContent;
         outSrcFile.close();
 
@@ -681,7 +682,7 @@ void MainWindow::sourceCodeChangedSlot() {
     updateSourceView();
 
     if ( _toolBarWidget->cbLivePreview->isChecked() && !enteredCharacter.isNull() && enteredCharacter != 10 ) {
-        //const char ch = enteredCharacter.toAscii();
+        //const char ch = enteredCharacter.toLatin1();
 
         int saveCursorLine = cursorLine;
         int saveCursorPos = cursorPos;
@@ -899,7 +900,7 @@ void MainWindow::exportToHTML() {
         QFile::remove(fileName);
         QFile outSrcFile(fileName);
         outSrcFile.open( QFile::ReadWrite | QFile::Text );
-        outSrcFile.write( sourceCodeAsHTML.toAscii() );
+        outSrcFile.write( sourceCodeAsHTML.toLatin1() );
         outSrcFile.close();
     }
 }
@@ -1139,7 +1140,7 @@ void MainWindow::encodingChanged(QAction* encodingAction) {
             QApplication::setOverrideCursor(Qt::WaitCursor);
             QString encodingName = encodingAction->text();
             _currentEncoding = encodingName;
-            inSrcStrm.setCodec( QTextCodec::codecForName(encodingName.toAscii()) );
+            inSrcStrm.setCodec( QTextCodec::codecForName(encodingName.toLatin1()) );
             fileContent = inSrcStrm.readAll();
             QApplication::restoreOverrideCursor();
             inSrcFile.close();

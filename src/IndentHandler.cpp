@@ -499,7 +499,7 @@ QString IndentHandler::callExecutableIndenter(QString sourceCode, QString inputF
         delete [] buffer;
 
         // Check whether the short path still contains some kind of non ascii characters.
-        if ( _tempDirctoryStr.length() != _tempDirctoryStr.toAscii().length() ) {
+        if ( _tempDirctoryStr.length() != _tempDirctoryStr.toLatin1().length() ) {
             qWarning() << __LINE__ << " " << __FUNCTION__ << ": Shortened path still contains non ascii characters. Could cause some indenters not to work properly!";
         }
     }
@@ -705,7 +705,7 @@ void IndentHandler::saveConfigFile(QString filePathName, QString paramString) {
     QFile cfgFile( filePathName );
 
     cfgFile.open( QFile::ReadWrite | QFile::Text );
-    cfgFile.write( paramString.toAscii() );
+    cfgFile.write( paramString.toLatin1() );
     cfgFile.close();
 }
 
@@ -1497,21 +1497,21 @@ void IndentHandler::retranslateUi() {
     _indenterSelectionCombobox->setToolTip( tr("<html><head><meta name=\"qrichtext\" content=\"1\" /></head><body style=\" white-space: pre-wrap; font-family:MS Shell Dlg; font-size:8.25pt; font-weight:400; font-style:normal; text-decoration:none;\"><p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Shows the currently chosen indenters name and lets you choose other available indenters</p></body></html>") );
     _indenterParameterHelpButton->setToolTip( tr("Brings you to the online manual of the currently selected indenter, where you can get further help on the possible parameters.") );
 
-    _actionLoadIndenterConfigFile->setText(QApplication::translate("IndentHandler", "Load Indenter Config File", 0, QApplication::UnicodeUTF8));
-    _actionLoadIndenterConfigFile->setStatusTip(QApplication::translate("IndentHandler", "Opens a file dialog to load the original config file of the indenter.", 0, QApplication::UnicodeUTF8));
-    _actionLoadIndenterConfigFile->setShortcut(QApplication::translate("IndentHandler", "Alt+O", 0, QApplication::UnicodeUTF8));
+    _actionLoadIndenterConfigFile->setText(QApplication::translate("IndentHandler", "Load Indenter Config File", 0));
+    _actionLoadIndenterConfigFile->setStatusTip(QApplication::translate("IndentHandler", "Opens a file dialog to load the original config file of the indenter.", 0));
+    _actionLoadIndenterConfigFile->setShortcut(QApplication::translate("IndentHandler", "Alt+O", 0));
 
-    _actionSaveIndenterConfigFile->setText(QApplication::translate("IndentHandler", "Save Indenter Config File", 0, QApplication::UnicodeUTF8));
-    _actionSaveIndenterConfigFile->setStatusTip(QApplication::translate("IndentHandler", "Opens a dialog to save the current indenter configuration to a file.", 0, QApplication::UnicodeUTF8));
-    _actionSaveIndenterConfigFile->setShortcut(QApplication::translate("IndentHandler", "Alt+S", 0, QApplication::UnicodeUTF8));
+    _actionSaveIndenterConfigFile->setText(QApplication::translate("IndentHandler", "Save Indenter Config File", 0));
+    _actionSaveIndenterConfigFile->setStatusTip(QApplication::translate("IndentHandler", "Opens a dialog to save the current indenter configuration to a file.", 0));
+    _actionSaveIndenterConfigFile->setShortcut(QApplication::translate("IndentHandler", "Alt+S", 0));
 
-    _actionCreateShellScript->setText(QApplication::translate("IndentHandler", "Create Indenter Call Shell Script", 0, QApplication::UnicodeUTF8));
-    _actionCreateShellScript->setToolTip(QApplication::translate("IndentHandler", "Create a shell script that calls the current selected indenter for formatting an as parameter given file with the current indent settings.", 0, QApplication::UnicodeUTF8));
-    _actionCreateShellScript->setStatusTip(QApplication::translate("IndentHandler", "Create a shell script that calls the current selected indenter for formatting an as parameter given file with the current indent settings.", 0, QApplication::UnicodeUTF8));
+    _actionCreateShellScript->setText(QApplication::translate("IndentHandler", "Create Indenter Call Shell Script", 0));
+    _actionCreateShellScript->setToolTip(QApplication::translate("IndentHandler", "Create a shell script that calls the current selected indenter for formatting an as parameter given file with the current indent settings.", 0));
+    _actionCreateShellScript->setStatusTip(QApplication::translate("IndentHandler", "Create a shell script that calls the current selected indenter for formatting an as parameter given file with the current indent settings.", 0));
 
-    _actionResetIndenterParameters->setText(QApplication::translate("IndentHandler", "Reset indenter parameters", 0, QApplication::UnicodeUTF8));
-    _actionResetIndenterParameters->setToolTip(QApplication::translate("IndentHandler", "Resets all indenter parameters to the default values.", 0, QApplication::UnicodeUTF8));
-    _actionResetIndenterParameters->setStatusTip(QApplication::translate("IndentHandler", "Resets all indenter parameters to the default values.", 0, QApplication::UnicodeUTF8));
+    _actionResetIndenterParameters->setText(QApplication::translate("IndentHandler", "Reset indenter parameters", 0));
+    _actionResetIndenterParameters->setToolTip(QApplication::translate("IndentHandler", "Resets all indenter parameters to the default values.", 0));
+    _actionResetIndenterParameters->setStatusTip(QApplication::translate("IndentHandler", "Resets all indenter parameters to the default values.", 0));
 }
 
 
@@ -1564,7 +1564,7 @@ void IndentHandler::saveasIndentCfgFileDialog() {
         QFile::remove(fileName);
         QFile outCfgFile(fileName);
         outCfgFile.open( QFile::ReadWrite | QFile::Text );
-        outCfgFile.write( getParameterString().toAscii() );
+        outCfgFile.write( getParameterString().toLatin1() );
         outCfgFile.close();
     }
 }
@@ -1608,7 +1608,7 @@ void IndentHandler::createIndenterCallShellScript() {
         // Replace placeholder for script name in script template.
         indenterCallShellScript = indenterCallShellScript.replace( "__INDENTERCALLSTRINGSCRIPTNAME__", QFileInfo(shellScriptFileName).fileName() );
 
-        outSrcFile.write( indenterCallShellScript.toAscii() );
+        outSrcFile.write( indenterCallShellScript.toLatin1() );
 #if !defined(Q_OS_WIN32)
         // For none Windows systems set the files executable flag
         outSrcFile.setPermissions( outSrcFile.permissions() | QFile::ExeOwner | QFile::ExeUser| QFile::ExeGroup );

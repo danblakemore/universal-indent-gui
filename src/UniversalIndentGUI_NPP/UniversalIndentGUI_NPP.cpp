@@ -67,8 +67,8 @@ BOOL APIENTRY DllMain( HANDLE hModule, DWORD reasonForCall, LPVOID lpReserved ) 
                 // Force creation of an UiGuiLogger instance here, to avoid recursion with SettingsPaths init function.
                 UiGuiLogger::getInstance();
                 qInstallMsgHandler( UiGuiLogger::messageHandler );
-                UiGuiLogger::messageHandler( UiGuiInfoMsg, QString("Starting UiGUI Version %1 %2").arg(PROGRAM_VERSION_STRING).arg(PROGRAM_REVISION).toAscii() );
-                UiGuiLogger::messageHandler( UiGuiInfoMsg, QString("Running on %1").arg(UiGuiSystemInfo::getOperatingSystem()).toAscii() );
+                UiGuiLogger::messageHandler( UiGuiInfoMsg, QString("Starting UiGUI Version %1 %2").arg(PROGRAM_VERSION_STRING).arg(PROGRAM_REVISION).toLatin1() );
+                UiGuiLogger::messageHandler( UiGuiInfoMsg, QString("Running on %1").arg(UiGuiSystemInfo::getOperatingSystem()).toLatin1() );
 
 #ifdef _DEBUG
                 UiGuiLogger::getInstance()->setVerboseLevel(0);
@@ -307,7 +307,7 @@ void indentText() {
 
         QString indentedText = indentHandler->callIndenter(fullEditorText, "cpp");
 
-        QByteArray indentedTextByteArray = indentedText.toAscii();
+        QByteArray indentedTextByteArray = indentedText.toLatin1();
 
         // Set whole text.
         ::SendMessage(getCurrentHScintilla(currentEdit), SCI_SETTEXT, 0, (LPARAM)indentedTextByteArray.constData());
@@ -327,7 +327,7 @@ void indentText() {
 
         QString indentedText = indentHandler->callIndenter(fullEditorText, "cpp");
 
-        QByteArray indentedTextByteArray = indentedText.toAscii();
+        QByteArray indentedTextByteArray = indentedText.toLatin1();
 
         // Replace selected text.
         ::SendMessage(getCurrentHScintilla(currentEdit), SCI_REPLACESEL, 0, (LPARAM)indentedTextByteArray.constData());

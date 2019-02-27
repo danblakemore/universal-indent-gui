@@ -1,6 +1,9 @@
 TEMPLATE = lib
 CONFIG += plugin
-QT += script
+QT += network \
+      script \
+      widgets \
+      printsupport
 
 TARGET = UniversalIndentGUI_NPP
 

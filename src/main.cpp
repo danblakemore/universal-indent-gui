@@ -226,7 +226,6 @@ int main(int argc, char *argv[]) {
 
     // Init and install the logger function.
     // Setting UTF-8 as default 8-Bit encoding to ensure that qDebug does no false string conversion.
-    QTextCodec::setCodecForCStrings( QTextCodec::codecForName("UTF-8") );
     QTextCodec::setCodecForLocale( QTextCodec::codecForName("UTF-8") );
     // Force creation of an TSLogger instance here, to avoid recursion with SettingsPaths init function.
 #ifdef _DEBUG
@@ -234,9 +233,9 @@ int main(int argc, char *argv[]) {
 #else
     TSLogger::getInstance(verboseLevel);
 #endif
-    qInstallMsgHandler( TSLogger::messageHandler );
-    TSLogger::messageHandler( TSLoggerInfoMsg, QString("Starting UiGUI Version %1 %2").arg(PROGRAM_VERSION_STRING).arg(PROGRAM_REVISION).toAscii() );
-    TSLogger::messageHandler( TSLoggerInfoMsg, QString("Running on %1").arg(UiGuiSystemInfo::getOperatingSystem()).toAscii() );
+    qInstallMessageHandler( TSLogger::messageHandler );
+    qInfo() << QString("Starting UiGUI Version %1 %2").arg(PROGRAM_VERSION_STRING).arg(PROGRAM_REVISION).toLatin1();
+    qInfo() << QString("Running on %1").arg(UiGuiSystemInfo::getOperatingSystem()).toLatin1();
 
     // Set default values for all by UniversalIndentGUI used settings objects.
     QCoreApplication::setOrganizationName("UniversalIndentGUI");
