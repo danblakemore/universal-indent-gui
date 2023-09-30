@@ -25,7 +25,7 @@ Thus UniversalIndentGUI is open for nearly any new indenter and programming lang
 
 *   [Artistic Styler](http://astyle.sourceforge.net/)
 *   [BCPP](http://invisible-island.net/bcpp/)
-*   [ClangFormat](https://releases.llvm.org/15.0.0/tools/clang/docs/ClangFormat.html)
+*   [ClangFormat](https://releases.llvm.org/16.0.0/tools/clang/docs/ClangFormat.html)
 *   [Cobol Beautify](http://www.siber.com/sct/tools/cbl-beau.html)
 *   [CSSTidy](http://csstidy.sourceforge.net/)
 *   [Fortran 90 PPR](ftp://ftp.ifremer.fr/ifremer/ditigo/fortran90/)
