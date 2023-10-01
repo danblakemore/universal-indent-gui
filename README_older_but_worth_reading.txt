@@ -17,6 +17,7 @@ One of the main features and the reason why this tool was (better is being) deve
 - Supports the following indenters:
   * Artistic Styler
   * BCPP
+  * ClangFormat
   * Cobol Beautifier
   * CSS Tidy
   * GNU Indent

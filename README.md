@@ -25,6 +25,7 @@ Thus UniversalIndentGUI is open for nearly any new indenter and programming lang
 
 *   [Artistic Styler](http://astyle.sourceforge.net/)
 *   [BCPP](http://invisible-island.net/bcpp/)
+*   [ClangFormat](https://releases.llvm.org/17.0.0/tools/clang/docs/ClangFormat.html)
 *   [Cobol Beautify](http://www.siber.com/sct/tools/cbl-beau.html)
 *   [CSSTidy](http://csstidy.sourceforge.net/)
 *   [Fortran 90 PPR](ftp://ftp.ifremer.fr/ifremer/ditigo/fortran90/)
@@ -140,7 +141,7 @@ But if you'd like to build UiGUI from source, follow these steps:
 5.  Run "make release".
 6.  Install it
         **Indenter binary packages** can be downloaded from the project at SourceForge
-        [here](http://sourceforge.net/project/showfiles.php?group_id=167482&package_id=293094).
+        [here](http://sourceforge.net/project/showfiles.php?group_id=167482&package_id=293094). **ClangFormat** is not part of them (yet), and you can download it separately at [the LLVM Builds page](http://llvm.org/builds/). (Rename it to `clang-format.exe` after downloading if needed.)
 
 Beneath the possibility to build UiGUI using qmake, also project files for Visual Studio 2005
         and XCode are included.
